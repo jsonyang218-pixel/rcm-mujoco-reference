@@ -60,6 +60,7 @@ def verify(output_dir=None):
             pass
 
     unlimited_settings = {**DEFAULT_SERVO, "max_iterations": None,
+                          "position_feedback": "image_depth",
                           "use_target_pose_calibration": False,
                           "pixel_tolerance": .001, "depth_tolerance_mm": .001,
                           "save_diagnostics": False}
@@ -146,10 +147,16 @@ def verify(output_dir=None):
     strict_config["navigation"]["visual_servo"]["use_target_pose_calibration"] = False
     strict_reference = Reference(strict_config)
     strict_reference.set_task(strict_reference.target_task())
+    def forbid_target_truth():
+        raise AssertionError('Geometry feedback read target-pose truth')
+    strict_reference.target_task = forbid_target_truth
     strict_controller = VisualServoController(strict_reference)
     strict_report = strict_controller.run()
-    assert strict_report["result"] == "FAIL"
-    assert strict_report["reason"] in {"TIP_NOT_VISIBLE", "TARGET_NOT_VISIBLE"}
+    assert strict_report["result"] == "PASS", strict_report
+    assert strict_report['terminal_stop_validated']
+    assert strict_report['final_tip_target_error_um'] < 20.
+    assert not strict_report['known_target_pose_used_for_feature_calibration']
+    assert strict_report['final_geometry_measurement']['tip_quality']['source'] == 'shaft_end_plane'
     missing_target = dict(reached, target_pixel=None, target_depth_m=None)
     try:
         VisualServoSensor.error(missing_target)
@@ -168,7 +175,7 @@ def verify(output_dir=None):
         "sensor_passes_exclude_viewer_only_auxiliary_marker": "PASS",
         "cached_visual_target_reference_is_limited_to_goal_calibration": "PASS",
         "missing_target_without_cached_visual_reference_rejected": "PASS",
-        "strict_visual_controller_fails_closed_after_physical_tip_loss": "PASS",
+        "hidden_apex_reconstructed_from_visible_shaft_geometry_without_target_truth": "PASS",
         "unlimited_visual_servo_continues_past_400_until_explicit_abort": "PASS",
         "visual_servo_goal_execution": "see single-target motion report",
         "cached_target_pixel": cached_target["target_pixel"],
@@ -177,7 +184,7 @@ def verify(output_dir=None):
         "target_pixels_initial": int(initial["target_pixels"]),
         "target_pixels_unoccluded_at_goal": int(occlusion["target_pixels_unoccluded"]),
         "target_pixels_occluded_at_goal": int(occlusion["target_pixels_occluded_by_needle"]),
-        "strict_controller_failure_reason": strict_report["reason"],
+        "strict_controller_reason": strict_report["reason"],
     }
     if output_dir is not None:
         Path(output_dir).mkdir(parents=True, exist_ok=True)

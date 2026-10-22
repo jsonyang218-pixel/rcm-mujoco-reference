@@ -1,0 +1,53 @@
+{
+  "status": "PASS",
+  "exit_code": 0,
+  "tests_run": 10,
+  "failures": 0,
+  "errors": 0,
+  "outcomes": [
+    {
+      "test": "__main__.OcclusionRecoveryChecks.test_expired_memory_brakes_retracts_and_requires_three_reobservations",
+      "status": "PASS"
+    },
+    {
+      "test": "__main__.OcclusionRecoveryChecks.test_missing_tip_cannot_be_filled_by_target_memory_or_privileged_lookalike",
+      "status": "PASS"
+    },
+    {
+      "test": "__main__.OcclusionRecoveryChecks.test_permanent_loss_times_out_after_four_seconds_and_holds_zero",
+      "status": "PASS"
+    },
+    {
+      "test": "__main__.OcclusionRecoveryChecks.test_reappearing_target_shift_over_40um_requires_replan",
+      "status": "PASS"
+    },
+    {
+      "test": "__main__.OcclusionRecoveryChecks.test_retraction_boundary_exits_fail_without_crossing_bound",
+      "status": "PASS"
+    },
+    {
+      "test": "__main__.OcclusionRecoveryChecks.test_short_missing_target_reaches_and_settles_from_registered_memory",
+      "status": "PASS"
+    },
+    {
+      "test": "__main__.OcclusionRecoveryChecks.test_stop_mode_never_bridges_a_missing_target",
+      "status": "PASS"
+    },
+    {
+      "test": "__main__.OcclusionRecoveryChecks.test_transformed_measured_goal_intermediate_pass_and_final_20um_gate",
+      "status": "PASS"
+    },
+    {
+      "test": "__main__.OcclusionRecoveryChecks.test_virtual_retraction_recovers_tip_without_observing_marker_or_changing_goal",
+      "status": "PASS"
+    },
+    {
+      "test": "__main__.OcclusionRecoveryChecks.test_visual_retraction_goal_can_complete_while_far_from_true_marker",
+      "status": "PASS"
+    }
+  ],
+  "feedback": "current measured tip; current measured or labelled bounded registered static target",
+  "plant": "independent coupled linear plant; only calibrated actuation matrix supplied to controller",
+  "renderer_used": false,
+  "physical_braking_validated": false
+}

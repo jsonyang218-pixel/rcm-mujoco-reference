@@ -1,44 +1,59 @@
-"""Image-based visual servoing for the fixed intraocular MuJoCo camera.
+"""RGB-D visual servoing for the fixed intraocular MuJoCo camera.
 
 The controller is deliberately simulation-only: orange target detection comes
 from RGB, while the needle tip is measured from MuJoCo geom segmentation and
-depth.  It drives the existing kinematic A/B/C task joints with a damped
-finite-difference image Jacobian.
+depth. The default uses calibrated visible geometry and a coupled actuation
+Jacobian to drive the kinematic A/B/C task joints. The historical image/depth
+controller remains available through position_feedback='image_depth'.
 """
 from __future__ import annotations
 
 import csv
 import json
 import math
+import time
 from itertools import count
 from pathlib import Path
 
 import numpy as np
 
 from rcm_reference import Reference, _vec, save_png
+from rcm_visual_geometry import NeedleGeometry
+from rcm_oct import SyntheticOCTProvider, relative_depth
 
 
 DEFAULT_SERVO = {
     "camera_name": "eye_internal", "target_rgb_min": [180, 35, 0],
     "target_rgb_max": [255, 180, 100], "target_depth_weight": 0.35,
     "pixel_tolerance": 3.0, "depth_tolerance_mm": 0.05,
-    "endpoint_tolerance_um": 150.0, "max_iterations": None,
+    "endpoint_tolerance_um": 20.0, "max_iterations": None,
     "step_gain": 0.65, "finite_difference_A_deg": 0.05,
     "finite_difference_B_deg": 0.05, "finite_difference_C_mm": 0.05,
     "damping": 0.02, "sample_period_s": 0.05, "save_diagnostics": True,
-    "require_settled": False, "settle_frames": 3,
+    "require_settled": True, "settle_frames": 3,
+    "position_feedback": "geometry", "position_tolerance_um": 8.,
+    "max_geometry_fit_quality_um": 10., "geometry_gain_per_s": 3.,
+    "occlusion_handling": "stop",
 }
 
 
 def visual_servo_settings(reference):
     settings = {**DEFAULT_SERVO, **reference.config.get("navigation", {}).get("visual_servo", {})}
+    if settings.get('occlusion_handling', 'stop') not in ('stop', 'static_memory_reobserve'):
+        raise ValueError('visual_servo.occlusion_handling must be stop or static_memory_reobserve')
+    if settings.get('occlusion_handling') == 'static_memory_reobserve' and settings['position_feedback'] != 'geometry':
+        raise ValueError('static_memory_reobserve requires geometry feedback')
+    if settings['position_feedback'] not in ('geometry', 'image_depth'):
+        raise ValueError('visual_servo.position_feedback must be geometry or image_depth')
     if settings["camera_name"] != "eye_internal":
         reference.camera_id(settings["camera_name"])
     if settings["max_iterations"] is not None and int(settings["max_iterations"]) <= 0:
         raise ValueError("visual_servo.max_iterations must be positive or null (unlimited)")
     if int(settings["settle_frames"]) < 1:
         raise ValueError("visual_servo.settle_frames must be positive")
-    for key in ("pixel_tolerance", "depth_tolerance_mm", "endpoint_tolerance_um", "damping"):
+    for key in ("pixel_tolerance", "depth_tolerance_mm", "endpoint_tolerance_um", "damping",
+                "position_tolerance_um", "max_geometry_fit_quality_um", "geometry_gain_per_s",
+                "sample_period_s"):
         if not math.isfinite(float(settings[key])) or float(settings[key]) <= 0:
             raise ValueError(f"visual_servo.{key} must be positive")
     return settings
@@ -109,11 +124,21 @@ def guidance_overlay(observation):
 
 
 class VisualServoSensor:
-    def __init__(self, reference, settings=None):
+    def __init__(self, reference, settings=None, depth_provider=None):
         self.reference = reference
         self.settings = settings or visual_servo_settings(reference)
         self.camera_name = self.settings["camera_name"]
         self.width, self.height = reference.eye_camera["resolution_px"]
+        self.oct_provider = depth_provider if depth_provider is not None else SyntheticOCTProvider(
+            nominal_period_s=float(self.settings["sample_period_s"]),
+            min_valid_depth_m=reference.eye_camera["znear_mm"]*.001,
+            # Reverse-Z float rounding can return an empty pixel just below
+            # zfar. Conservatively exclude the last 0.01% of the depth range.
+            max_valid_depth_m=reference.eye_camera["zfar_mm"]*.001*(1.-1e-4))
+        self.observation_time_s = None
+        self.observation_time_origin_s = 0.
+        self._oct_capture_count = 0
+        self.last_oct_frame = None
         self.target_geom_ids = np.asarray([int(reference.model.geom("lesion_marker").id)])
         self.tip_geom_id = int(reference.model.geom("needle_tip_marker").id)
         self.tip_geom_ids = np.asarray([
@@ -134,27 +159,43 @@ class VisualServoSensor:
             elif mode == "segmentation":
                 renderer.enable_segmentation_rendering()
             self.renderers[mode] = renderer
+        self.geometry = (NeedleGeometry.from_reference(
+            reference, self.width, self.height, self.camera_name, self.settings)
+            if self.settings.get('position_feedback') == 'geometry' else None)
 
     def close(self):
         for renderer in self.renderers.values():
             renderer.close()
 
     def observe(self):
+        render_started = time.monotonic()
         rgb = self._render("rgb")
-        # Keep a complete scene depth image for OCT-style inspection, including
-        # the fundus surface. The feature depth pass is a separate axial return
-        # for the target and needle, so a backdrop surface cannot mask either
-        # feature in the synthetic OCT measurement.
+        # Two ideal registered depth passes; these are not physical OCT scans.
         depth = self._render("depth", include_fundus=True)
         oct_depth = self._render("depth", include_fundus=False)
-        # Keep the normal scene segmentation for visibility decisions. A target
-        # hidden by the needle or fundus is allowed to disappear, matching the
-        # real monocular view. OCT still supplies an independent axial depth
-        # return for features that remain measurable.
+        # Normal scene segmentation gates visibility even in the feature pass.
         segmentation = self._render("segmentation", include_fundus=True)
+        timestamp = (self._oct_capture_count*float(self.settings["sample_period_s"])
+                     if self.observation_time_s is None else float(self.observation_time_s))
+        repeated = self.last_oct_frame is not None and timestamp == self.last_oct_frame.timestamp_s
+        frame = self.oct_provider.capture(
+            depth, oct_depth, timestamp_s=timestamp, camera_name=self.camera_name,
+            acquisition_wall_s=time.monotonic(), allow_repeated_timestamp=repeated,
+            metadata={
+                "timestamp_policy": ("synthetic_sensor_sequence_clock" if self.observation_time_s is None
+                                     else "controller_simulation_clock"),
+                "render_wall_duration_s": time.monotonic()-render_started,
+                "feature_pass_excludes_fundus_backdrop": True,
+                "visibility_gated_by_normal_scene_segmentation": True,
+                "renderer_znear_m": self.reference.eye_camera["znear_mm"]*.001,
+                "renderer_zfar_m": self.reference.eye_camera["zfar_mm"]*.001,
+            })
+        self._oct_capture_count += 1
+        self.last_oct_frame = frame
+        depth, oct_depth = frame.scene_surface_depth_m, frame.registered_feature_depth_m
         target_mask = np.isin(segmentation[:, :, 0], self.target_geom_ids)
         target_pixel = _centroid(target_mask)
-        target_depth_mask = target_mask
+        target_depth_mask = target_mask & frame.feature_valid_mask
         tip_mask = np.isin(segmentation[:, :, 0], self.tip_geom_ids)
         needle_mask = np.isin(segmentation[:, :, 0], self.needle_geom_ids)
         marker_mask = segmentation[:, :, 0] == self.tip_geom_id
@@ -175,13 +216,14 @@ class VisualServoSensor:
             else:
                 tip_pixel = _centroid(tip_mask)
                 tip_depth_mask = tip_mask
+        tip_depth_mask = tip_depth_mask & frame.feature_valid_mask
         target_depth = None if not target_depth_mask.any() else float(np.median(oct_depth[target_depth_mask]))
         tip_depth = None if not tip_depth_mask.any() else float(np.median(oct_depth[tip_depth_mask]))
         if target_depth is not None and not np.isfinite(target_depth):
             target_depth = None
         if tip_depth is not None and not np.isfinite(tip_depth):
             tip_depth = None
-        return {
+        observation = {
             "target_pixel": None if target_pixel is None else target_pixel.tolist(),
             "tip_pixel": None if tip_pixel is None else tip_pixel.tolist(),
             "target_depth_m": target_depth, "tip_depth_m": tip_depth,
@@ -192,8 +234,49 @@ class VisualServoSensor:
             "tip_occluded": tip_pixel is None,
             "rgb": rgb, "depth": depth, "oct_depth": oct_depth,
             "segmentation": segmentation, "depth_source": "scene_depth_with_fundus",
-            "oct_depth_source": "feature_depth_without_backdrop_occlusion",
+            "oct_depth_source": frame.source, "oct_depth_unit": frame.depth_unit,
+            "oct_frame": frame, "oct_metadata": frame.metadata(),
+            "oct_depth_valid_mask": frame.feature_valid_mask,
+            "oct_navigation_depth": None,
         }
+        if self.geometry is not None:
+            # Raw image features remain available for diagnostics. Precision
+            # feedback uses one calibrated physical endpoint, not a taper pixel.
+            observation.update(raw_tip_pixel=observation['tip_pixel'],
+                               raw_tip_depth_m=observation['tip_depth_m'])
+            measured = {}
+            for name in ('target', 'tip'):
+                try:
+                    point, quality = getattr(self.geometry, name)(observation)
+                    measured[name+'_world_mm'] = point.tolist()
+                    measured[name+'_quality'] = quality
+                except RuntimeError as exc:
+                    measured[name+'_world_mm'] = None
+                    measured[name+'_error'] = str(exc)
+            observation['geometry'] = measured
+            if measured['tip_world_mm'] is not None:
+                observation['tip_pixel'], observation['tip_depth_m'] = self.geometry.project(measured['tip_world_mm'])
+            else:
+                observation['tip_pixel'] = observation['tip_depth_m'] = None
+            observation['tip_observable'] = measured['tip_world_mm'] is not None
+            # Relative depth uses measured points only. No fresh hidden target
+            # depth is invented when target visibility/geometry is unavailable.
+            observation['oct_navigation_depth'] = None
+            if measured['target_world_mm'] is not None and measured['tip_world_mm'] is not None:
+                def optical(point):
+                    local = self.geometry.camera_rotation.T@(
+                        np.asarray(point)-self.geometry.camera_position_mm)*.001
+                    return local*np.array([1., -1., -1.])
+                axis = measured['tip_quality'].get('axis_world')
+                optical_axis = (None if axis is None else
+                                (self.geometry.camera_rotation.T@np.asarray(axis))*[1., -1., -1.])
+                observation['oct_navigation_depth'] = relative_depth(
+                    optical(measured['tip_world_mm']), optical(measured['target_world_mm']),
+                    needle_axis_camera=optical_axis,
+                    source_flags={"source": frame.source, "frame_id": frame.frame_id,
+                                  "target_source": "current_visible_measurement",
+                                  "is_simulation": frame.is_simulation})
+        return observation
 
     def visibility_metrics(self, segmentation=None):
         """Measure target occlusion by the rendered physical needle geometry.
@@ -295,32 +378,70 @@ class VisualServoSensor:
 
 class VisualServoController:
     def __init__(self, reference, settings=None, output_dir=None, initial_velocity=None,
-                 command_validator=None, control_axes=None, completion_axes=None):
+                 command_validator=None, control_axes=None, completion_axes=None,
+                 measurement_goal=None, target_transform=None,
+                 independent_endpoint_acceptance=True):
         self.reference = reference
         self.settings = settings or visual_servo_settings(reference)
         # Strict visual collection disables the privileged target-pose feature
         # calibration.  In that mode every feedback error is computed from the
         # current RGB/segmentation/depth observation.
         self.use_target_pose_calibration = bool(
+            self.settings.get('position_feedback') != 'geometry' and
             self.settings.get("use_target_pose_calibration", True))
         self.command_validator = command_validator
+        # Intermediate strict-visual goals are constructed from measured needle
+        # geometry, never from an inverse solution of the scene target.
+        self.measurement_goal = (None if measurement_goal is None else np.asarray(measurement_goal, dtype=float).copy())
+        if (self.measurement_goal is not None and
+                (self.measurement_goal.shape != (3,) or not np.isfinite(self.measurement_goal).all())):
+            raise ValueError('measurement_goal must be a finite measured 3D point in millimeters')
+        if target_transform is not None and not callable(target_transform):
+            raise ValueError('target_transform must be callable')
+        self.target_transform = target_transform
+        self.independent_endpoint_acceptance = bool(independent_endpoint_acceptance)
+        self.final_observation = None
         self.control_axes = np.ones(3, dtype=bool) if control_axes is None else np.asarray(control_axes, dtype=bool)
         self.completion_axes = (self.control_axes.copy() if completion_axes is None
                                 else np.asarray(completion_axes, dtype=bool))
-        if self.control_axes.shape != (3,) or self.completion_axes.shape != (3,) or not np.any(self.control_axes):
+        if (self.control_axes.shape != (3,) or self.completion_axes.shape != (3,)
+                or not np.any(self.control_axes) or not np.any(self.completion_axes)):
             raise ValueError("control_axes and completion_axes must be non-empty length-3 masks")
         # Carry the previous interval's command across consecutive visual goals.
         # Units are rad/s, rad/s, m/s, matching the internal task coordinates.
         self.initial_velocity = np.zeros(3) if initial_velocity is None else _vec(initial_velocity).copy()
+        if (self.settings.get('position_feedback') == 'geometry'
+                and np.any(np.abs(self.initial_velocity[~self.control_axes]) > 1e-12)):
+            raise ValueError('initial_velocity on disabled control axes must be zero')
         self.final_velocity = self.initial_velocity.copy()
         self.sensor = VisualServoSensor(reference, self.settings)
         self.output_dir = None if output_dir is None else Path(output_dir)
         if self.output_dir is not None and self.settings["save_diagnostics"]:
             self.output_dir.mkdir(parents=True, exist_ok=True)
         self.rows = []
+        self.oct_records = []
         self.max_velocity = np.zeros(3)
         self.max_acceleration = np.zeros(3)
         self.iteration_callback = None
+        self.observation_hook = None
+
+    def _record_oct(self, iteration, observation):
+        if observation.get('oct_metadata') is not None:
+            self.oct_records.append({
+                'iteration': int(iteration),
+                'controller_time_s': iteration*float(self.settings['sample_period_s']),
+                'oct': observation['oct_metadata'],
+                'navigation_depth': observation.get('oct_navigation_depth'),
+            })
+
+    def _visual_goal(self, target, tip, observation):
+        goal = self.measurement_goal if self.measurement_goal is not None else target
+        if self.target_transform is not None:
+            goal = self.target_transform(np.asarray(goal).copy(), np.asarray(tip).copy(), observation)
+        goal = np.asarray(goal, dtype=float)
+        if goal.shape != (3,) or not np.isfinite(goal).all():
+            raise RuntimeError('INVALID_VISUAL_PHASE_GOAL')
+        return goal.copy()
 
     def _jacobian(self, q, base_error, feature_bias, target_reference):
         steps = np.asarray([
@@ -359,7 +480,501 @@ class VisualServoController:
                 jacobian[:, axis] = np.nan
         return jacobian
 
+    def _model_jacobian(self, q):
+        """Actuation Jacobian only; absolute model positions are not feedback."""
+        steps = [1e-5, 1e-5, 1e-6]
+        jacobian = np.zeros((3, 3))
+        for i, step in enumerate(steps):
+            points = []
+            for sign in (1., -1.):
+                trial = q.copy()
+                trial[i] += sign*step
+                state = self.reference.state_from_task(trial)
+                points.append(self.reference.robot_to_world(
+                    self.reference.nominal.forward(state, enforce_limits=False)))
+            jacobian[:, i] = (points[0]-points[1])/(2*step)
+        return jacobian
+
+    def _run_geometry(self):
+        """Measured 3D feedback with coupled actuation and a settled endpoint.
+
+        No target-pose feature calibration is performed. Simulation truth is
+        used in log/evaluation fields only, including the independent final
+        accuracy gate after the measurement-driven controller has stopped.
+        """
+        q = self.reference.current_task().copy()
+        initial = self.reference.metrics()
+        dt = float(self.settings['sample_period_s'])
+        navigation = self.reference.config.get('navigation', {})
+        unit = np.array([math.pi/180, math.pi/180, .001])
+        vmax = np.asarray(navigation.get('max_velocity_A_deg_B_deg_C_mm_per_s', [4., 2., .6]))*unit
+        amax = np.asarray(navigation.get('max_acceleration_A_deg_B_deg_C_mm_per_s2', [10., 5., 1.5]))*unit
+        previous_velocity = self.initial_velocity.copy()
+        if np.any(np.abs(previous_velocity) > vmax+1e-12):
+            self.sensor.close()
+            raise ValueError('initial_velocity exceeds configured velocity limits')
+        self.max_velocity = np.abs(previous_velocity)
+        status, reason, settled = 'FAIL', 'MAX_ITERATIONS', 0
+        final_observation = None
+        measured_error = None
+        max_iterations = self.settings['max_iterations']
+        iterations = count() if max_iterations is None else range(int(max_iterations))
+        try:
+            for iteration in iterations:
+                self.reference.set_task(q)
+                self.sensor.observation_time_s = getattr(self.sensor, 'observation_time_origin_s', 0.)+iteration*dt
+                if self.observation_hook is not None:
+                    self.observation_hook(iteration, {
+                        'controller_state': 'tracking', 'time_s': iteration*dt,
+                        'task_A_rad_B_rad_C_m': q.tolist(), 'recovery_attempt': 0})
+                observation = self.sensor.observe()
+                self._record_oct(iteration, observation)
+                final_observation = observation
+                self.final_observation = observation
+                geometry = observation.get('geometry', {})
+                observation_error = None
+                if (self.measurement_goal is None and
+                        (observation['target_pixel'] is None or geometry.get('target_world_mm') is None)):
+                    observation_error = geometry.get('target_error', 'TARGET_NOT_VISIBLE')
+                elif geometry.get('tip_world_mm') is None:
+                    observation_error = geometry.get('tip_error', 'TIP_NOT_OBSERVABLE')
+                if observation_error is not None:
+                    reason = observation_error
+                    measured_error = None
+                    observation['tracking'] = {
+                        'target_source': 'unavailable', 'target_observed': False,
+                        'cached_target_age_s': None, 'used_target_world_mm': None,
+                        'estimated_position_error_um': None, 'controller_state': 'failed_observation',
+                    }
+                    self.rows.append({
+                        'iteration': iteration, 'time_s': iteration*dt,
+                        'u_error_px': None, 'v_error_px': None, 'depth_error_mm': None,
+                        'pixel_error_px': None,
+                        'tip_error_um': float(self.reference.metrics()['tip_target_error_um']),
+                        'estimated_position_error_um': None, 'completion_error_um': None,
+                        'geometry_fit_quality_um': None,
+                        'tip_feature_source': geometry.get('tip_quality', {}).get('source'),
+                        'tip_support_points': geometry.get('tip_quality', {}).get('support'),
+                        'tip_fit_residual_mm': geometry.get('tip_quality', {}).get('residual_mm'),
+                        'target_fit_residual_mm': geometry.get('target_quality', {}).get('residual_mm'),
+                        'target_pixels': observation['target_pixels'], 'tip_pixels': observation['tip_pixels'],
+                        'A_deg': math.degrees(q[0]), 'B_deg': math.degrees(q[1]), 'C_mm': q[2]*1000.,
+                        'command_velocity_A_deg_B_deg_C_mm_per_s': None,
+                        'command_acceleration_A_deg_B_deg_C_mm_per_s2': None,
+                    })
+                    if self.iteration_callback is not None and self.iteration_callback(iteration, observation) is False:
+                        reason = 'USER_ABORTED'
+                    break
+                tip = np.asarray(geometry['tip_world_mm'])
+                target = self._visual_goal(geometry.get('target_world_mm'), tip, observation)
+                error_mm = target-tip
+                measured_error = float(np.linalg.norm(error_mm)*1000)
+                tip_quality = geometry['tip_quality']
+                target_quality = ({'fit_quality_mm': .002, 'residual_mm': 0.}
+                                  if self.measurement_goal is not None else geometry['target_quality'])
+                observation['tracking'] = {
+                    'target_source': 'visual_retraction_waypoint' if self.measurement_goal is not None else 'observed',
+                    'target_observed': self.measurement_goal is None,
+                    'cached_target_age_s': None if self.measurement_goal is not None else 0.,
+                    'used_target_world_mm': target.tolist(),
+                    'estimated_position_error_um': measured_error, 'controller_state': 'tracking',
+                }
+                quality_um = (tip_quality['fit_quality_mm']+target_quality['fit_quality_mm'])*1000
+                if quality_um > self.settings['max_geometry_fit_quality_um']:
+                    reason = 'LOW_QUALITY_VISUAL_GEOMETRY'
+                    break
+                jacobian = self._model_jacobian(q)
+                active = self.control_axes
+                # Normalize by per-axis velocity limits before SVD: radians and
+                # meters must not receive arbitrary weights from their units.
+                normalized = jacobian[:, active]*vmax[active]
+                u, singular, vt = np.linalg.svd(normalized, full_matrices=False)
+                if not len(singular) or singular[-1] < max(1e-10, singular[0]*1e-6):
+                    reason = 'SINGULAR_ACTUATION_JACOBIAN'
+                    break
+                damping = singular[0]*1e-4
+                correction = np.zeros(3)
+                correction[active] = vmax[active]*(vt.T@(
+                    singular/(singular**2+damping**2)*(u.T@error_mm)))
+                # Partial-axis phases (e.g. fixed-direction fundus insertion)
+                # may complete only their controllable projection. Independent
+                # final 3D acceptance still checks the complete endpoint.
+                complete_j = jacobian[:, self.completion_axes]
+                projected = complete_j@np.linalg.lstsq(complete_j, error_mm, rcond=None)[0]
+                completion_error_um = float(np.linalg.norm(projected)*1000)
+                in_tolerance = completion_error_um < float(self.settings['position_tolerance_um'])
+                pixel_tip, depth_tip = self.sensor.geometry.project(tip)
+                pixel_target, depth_target = self.sensor.geometry.project(target)
+                feature_error = np.r_[np.asarray(pixel_tip)-pixel_target, (depth_tip-depth_target)*1000]
+                # Evaluation only, not read by any control/stop expression.
+                truth_error = float(self.reference.metrics()['tip_target_error_um'])
+                self.rows.append({
+                    'iteration': iteration, 'time_s': iteration*dt,
+                    'u_error_px': float(feature_error[0]), 'v_error_px': float(feature_error[1]),
+                    'depth_error_mm': float(feature_error[2]),
+                    'pixel_error_px': float(np.linalg.norm(feature_error[:2])), 'tip_error_um': truth_error,
+                    'estimated_position_error_um': measured_error,
+                    'completion_error_um': completion_error_um, 'geometry_fit_quality_um': quality_um,
+                    'tip_feature_source': tip_quality['source'], 'tip_support_points': tip_quality['support'],
+                    'tip_fit_residual_mm': tip_quality['residual_mm'],
+                    'target_fit_residual_mm': target_quality['residual_mm'],
+                    'target_pixels': observation['target_pixels'], 'tip_pixels': observation['tip_pixels'],
+                    'A_deg': math.degrees(q[0]), 'B_deg': math.degrees(q[1]), 'C_mm': q[2]*1000,
+                })
+                if self.iteration_callback is not None and self.iteration_callback(iteration, observation) is False:
+                    reason = 'USER_ABORTED'
+                    break
+                settled = settled+1 if in_tolerance and np.all(np.abs(previous_velocity) < 1e-12) else 0
+                if settled >= int(self.settings['settle_frames']):
+                    status, reason = 'PASS', 'POSITION_ERROR_AND_SETTLED'
+                    break
+                if max_iterations is not None and iteration == int(max_iterations)-1:
+                    break  # Never leave an applied but unobserved final command.
+                wanted = np.zeros(3) if in_tolerance else float(self.settings['geometry_gain_per_s'])*correction
+                braking = .6*np.sqrt(2*amax*np.abs(correction))
+                wanted = np.clip(wanted, -np.minimum(vmax, braking), np.minimum(vmax, braking))
+                wanted[~active] = 0.
+                velocity = np.clip(wanted, previous_velocity-amax*dt, previous_velocity+amax*dt)
+                acceleration = (velocity-previous_velocity)/dt
+                candidate = q+velocity*dt
+                try:
+                    candidate = self.reference.validate_task(candidate).copy()
+                except ValueError:
+                    reason = 'TASK_CONSTRAINT'
+                    break
+                if self.command_validator is not None and not self.command_validator(q, candidate):
+                    reason = 'FUNDUS_MOTION_CONSTRAINT'
+                    break
+                self.max_velocity = np.maximum(self.max_velocity, np.abs(velocity))
+                self.max_acceleration = np.maximum(self.max_acceleration, np.abs(acceleration))
+                self.rows[-1].update(
+                    command_velocity_A_deg_B_deg_C_mm_per_s=(velocity/unit).tolist(),
+                    command_acceleration_A_deg_B_deg_C_mm_per_s2=(acceleration/unit).tolist())
+                q, previous_velocity = candidate, velocity
+                self.final_velocity = velocity.copy()
+                if self.output_dir is not None and self.settings['save_diagnostics'] and iteration == 0:
+                    save_png(self.output_dir/'camera_0000.png', observation['rgb'])
+                    save_png(self.output_dir/'guidance_0000.png', guidance_overlay(observation))
+            self.reference.set_task(q)
+            if final_observation is not None and self.output_dir is not None and self.settings['save_diagnostics']:
+                save_png(self.output_dir/'camera_final.png', final_observation['rgb'])
+                save_png(self.output_dir/'guidance_final.png', guidance_overlay(final_observation))
+        finally:
+            self.sensor.close()
+        return self._finish_geometry(initial, final_observation, status, reason, measured_error,
+                                     settled, dt, unit, vmax, amax)
+
+    def _run_geometry_with_memory(self):
+        """Opt-in static-target memory and bounded encoder-based reobservation.
+
+        Memory supplies only the static target position. The tip is never
+        predicted, and recovery cannot satisfy the arrival condition. Raw
+        observations remain intact; their separate tracking record explains
+        which information was actually used by the controller.
+        """
+        from rcm_target_tracking import TargetMemory
+
+        tracker = TargetMemory(sample_period_s=float(self.settings['sample_period_s']))
+        allow_memory = self.settings.get('occlusion_handling', 'stop') == 'static_memory_reobserve'
+        q = self.reference.current_task().copy()
+        initial = self.reference.metrics()
+        dt = float(self.settings['sample_period_s'])
+        navigation = self.reference.config.get('navigation', {})
+        unit = np.array([math.pi/180, math.pi/180, .001])
+        vmax = np.asarray(navigation.get('max_velocity_A_deg_B_deg_C_mm_per_s', [4., 2., .6]))*unit
+        amax = np.asarray(navigation.get('max_acceleration_A_deg_B_deg_C_mm_per_s2', [10., 5., 1.5]))*unit
+        velocity = self.initial_velocity.copy()
+        if np.any(np.abs(velocity) > vmax+1e-12):
+            self.sensor.close()
+            raise ValueError('initial_velocity exceeds configured velocity limits')
+        self.max_velocity = np.abs(velocity)
+        state, status, reason = 'tracking', 'FAIL', 'MAX_ITERATIONS'
+        recovery_attempts = recovery_successes = memory_frames = 0
+        recovery_started = retract_origin = None
+        observed_streak = settled = 0
+        final_observation = None
+        measured_error = None
+        last_tracking = {}
+        loss_reason = None
+        max_iterations = self.settings['max_iterations']
+        iterations = count() if max_iterations is None else range(int(max_iterations))
+        try:
+            for iteration in iterations:
+                time_s = iteration*dt
+                self.reference.set_task(q)
+                self.sensor.observation_time_s = getattr(self.sensor, 'observation_time_origin_s', 0.)+time_s
+                if self.observation_hook is not None:
+                    self.observation_hook(iteration, {
+                        'controller_state': state, 'time_s': time_s,
+                        'task_A_rad_B_rad_C_m': q.tolist(), 'recovery_attempt': recovery_attempts})
+                observation = self.sensor.observe()
+                self._record_oct(iteration, observation)
+                final_observation = observation
+                self.final_observation = observation
+                geometry = observation.get('geometry', {})
+                tracking = {
+                    'target_source': 'unavailable', 'target_observed': False,
+                    'cached_target_age_s': None, 'used_target_world_mm': None,
+                    'estimated_position_error_um': None,
+                }
+                target = tip = None
+                quality_um = None
+                fatal = None
+                try:
+                    if self.measurement_goal is not None:
+                        if geometry.get('tip_world_mm') is None:
+                            raise RuntimeError(geometry.get('tip_error', 'TIP_NOT_OBSERVABLE'))
+                        tip = np.asarray(geometry['tip_world_mm'], dtype=float)
+                        target_quality = {'fit_quality_mm': .002, 'residual_mm': 0.}
+                        tracking.update(target_source='visual_retraction_waypoint', target_observed=False,
+                                        cached_target_age_s=None, tip_world_mm=tip.tolist())
+                        target = self.measurement_goal.copy()
+                    else:
+                        tracking.update(tracker.resolve(observation, time_s))
+                        if not allow_memory and tracking['target_source'] != 'observed':
+                            raise RuntimeError(geometry.get('target_error', 'TARGET_NOT_VISIBLE'))
+                        target = np.asarray(tracking['used_target_world_mm'], dtype=float)
+                        tip = np.asarray(tracking['tip_world_mm'], dtype=float)
+                        target_quality = tracking['target_quality']
+                    target = self._visual_goal(target, tip, observation)
+                    tracking['used_target_world_mm'] = target.tolist()
+                    tip_quality = geometry['tip_quality']
+                    quality_um = 1000.*(float(target_quality['fit_quality_mm'])+
+                                        float(tip_quality['fit_quality_mm']))
+                    if not math.isfinite(quality_um) or quality_um > self.settings['max_geometry_fit_quality_um']:
+                        raise RuntimeError('LOW_QUALITY_VISUAL_GEOMETRY')
+                    measured_error = float(np.linalg.norm(target-tip)*1000.)
+                    tracking['estimated_position_error_um'] = measured_error
+                    if tracking['target_source'] == 'registered_memory':
+                        memory_frames += 1
+                except RuntimeError as error:
+                    loss_reason = str(error)
+                    # A registered target may never be replaced by a newly
+                    # observed position that violates the static assumption.
+                    if loss_reason == 'TARGET_MOVED_REPLAN_REQUIRED' or not allow_memory:
+                        fatal = loss_reason
+                    target = tip = None
+                    measured_error = None
+                    tracking.update({
+                        'target_source': 'unavailable', 'target_observed': False,
+                        'used_target_world_mm': None, 'estimated_position_error_um': None})
+                    if state == 'tracking' and fatal is None:
+                        if recovery_attempts >= 3:
+                            fatal = 'OCCLUSION_RECOVERY_ATTEMPTS_EXHAUSTED'
+                        else:
+                            recovery_attempts += 1
+                            recovery_started = time_s
+                            retract_origin = None
+                            observed_streak = settled = 0
+                            state = 'braking'
+                            tracker.reacquire()
+
+                valid = target is not None and tip is not None
+                if state != 'tracking':
+                    # A fixed visual retraction waypoint needs a fresh tip,
+                    # not the marker. Physical goals still require a fresh
+                    # target too: memory cannot count toward reacquisition.
+                    reobserved = valid and (self.measurement_goal is not None
+                                            or tracking.get('target_observed', False))
+                    observed_streak = observed_streak+1 if reobserved else 0
+                    if observed_streak >= 3:
+                        state = 'reobserving'
+                        if np.all(np.abs(velocity) < 1e-12):
+                            state = 'tracking'
+                            recovery_successes += 1
+                            recovery_started = None
+                            observed_streak = settled = 0
+                    if state != 'tracking' and time_s-recovery_started >= 4.-1e-10:
+                        fatal = 'OCCLUSION_RECOVERY_TIMEOUT'
+                tracking['controller_state'] = state
+                tracking['error_code'] = loss_reason if not valid else None
+                observation['tracking'] = tracking
+                last_tracking = tracking
+
+                # The same columns are present on normal, occluded, recovery,
+                # failed and terminal frames, including command-free frames.
+                row = {
+                    'iteration': iteration, 'time_s': time_s,
+                    'u_error_px': None, 'v_error_px': None, 'depth_error_mm': None,
+                    'pixel_error_px': None,
+                    'tip_error_um': float(self.reference.metrics()['tip_target_error_um']),
+                    'estimated_position_error_um': measured_error, 'completion_error_um': None,
+                    'geometry_fit_quality_um': quality_um,
+                    'tip_feature_source': geometry.get('tip_quality', {}).get('source'),
+                    'tip_support_points': geometry.get('tip_quality', {}).get('support'),
+                    'tip_fit_residual_mm': geometry.get('tip_quality', {}).get('residual_mm'),
+                    'target_fit_residual_mm': geometry.get('target_quality', {}).get('residual_mm'),
+                    'target_pixels': observation['target_pixels'], 'tip_pixels': observation['tip_pixels'],
+                    'A_deg': math.degrees(q[0]), 'B_deg': math.degrees(q[1]), 'C_mm': q[2]*1000.,
+                    'target_source': tracking['target_source'], 'target_observed': tracking['target_observed'],
+                    'cached_target_age_s': tracking['cached_target_age_s'], 'controller_state': state,
+                    'used_target_world_mm': tracking['used_target_world_mm'], 'error_code': tracking['error_code'],
+                    'recovery_attempt': recovery_attempts,
+                    'command_velocity_A_deg_B_deg_C_mm_per_s': None,
+                    'command_acceleration_A_deg_B_deg_C_mm_per_s2': None,
+                }
+                correction = None
+                in_tolerance = False
+                if valid:
+                    error_mm = target-tip
+                    pixel_tip, depth_tip = self.sensor.geometry.project(tip)
+                    pixel_target, depth_target = self.sensor.geometry.project(target)
+                    feature_error = np.r_[np.asarray(pixel_tip)-pixel_target, (depth_tip-depth_target)*1000.]
+                    row.update(u_error_px=float(feature_error[0]), v_error_px=float(feature_error[1]),
+                               depth_error_mm=float(feature_error[2]),
+                               pixel_error_px=float(np.linalg.norm(feature_error[:2])))
+                    if state == 'tracking':
+                        jacobian = self._model_jacobian(q)
+                        active = self.control_axes
+                        normalized = jacobian[:, active]*vmax[active]
+                        u, singular, vt = np.linalg.svd(normalized, full_matrices=False)
+                        if not len(singular) or singular[-1] < max(1e-10, singular[0]*1e-6):
+                            fatal = 'SINGULAR_ACTUATION_JACOBIAN'
+                        else:
+                            damping = singular[0]*1e-4
+                            correction = np.zeros(3)
+                            correction[active] = vmax[active]*(vt.T@(
+                                singular/(singular**2+damping**2)*(u.T@error_mm)))
+                            complete_j = jacobian[:, self.completion_axes]
+                            projected = complete_j@np.linalg.lstsq(complete_j, error_mm, rcond=None)[0]
+                            row['completion_error_um'] = float(np.linalg.norm(projected)*1000.)
+                            in_tolerance = row['completion_error_um'] < float(self.settings['position_tolerance_um'])
+                self.rows.append(row)
+                if self.iteration_callback is not None and self.iteration_callback(iteration, observation) is False:
+                    fatal = 'USER_ABORTED'
+                if fatal is not None:
+                    reason = fatal
+                    break
+                settled = (settled+1 if state == 'tracking' and valid and in_tolerance and
+                           np.all(np.abs(velocity) < 1e-12) else 0)
+                if settled >= int(self.settings['settle_frames']):
+                    status, reason = 'PASS', 'POSITION_ERROR_AND_SETTLED'
+                    break
+                if max_iterations is not None and iteration == int(max_iterations)-1:
+                    break
+
+                if state == 'tracking':
+                    wanted = np.zeros(3) if in_tolerance else float(self.settings['geometry_gain_per_s'])*correction
+                    braking = .6*np.sqrt(2*amax*np.abs(correction))
+                    wanted = np.clip(wanted, -np.minimum(vmax, braking), np.minimum(vmax, braking))
+                    wanted[~self.control_axes] = 0.
+                else:
+                    wanted = np.zeros(3)
+                    if state == 'braking' and np.all(np.abs(velocity) < 1e-12):
+                        state = 'retracting'
+                        retract_origin = float(q[2])
+                    if state == 'retracting':
+                        remaining = max(0., float(q[2])-(retract_origin-.0005))
+                        wanted[2] = -min(.0002, vmax[2], .6*math.sqrt(2*amax[2]*remaining))
+                        if remaining < 1e-10 and abs(velocity[2]) < 1e-12:
+                            state = 'reobserving'
+                    # Recovering A/B always decelerate to zero. C motion is
+                    # encoder-based and bounded; no hidden tip/target is used.
+                next_velocity = np.clip(wanted, velocity-amax*dt, velocity+amax*dt)
+                candidate = q+next_velocity*dt
+                if retract_origin is not None and state != 'tracking' and candidate[2] < retract_origin-.0005-1e-12:
+                    reason = 'OCCLUSION_RETRACTION_LIMIT'
+                    break
+                try:
+                    candidate = self.reference.validate_task(candidate).copy()
+                except ValueError:
+                    reason = 'TASK_CONSTRAINT'
+                    break
+                if self.command_validator is not None and not self.command_validator(q, candidate):
+                    reason = 'FUNDUS_MOTION_CONSTRAINT'
+                    break
+                acceleration = (next_velocity-velocity)/dt
+                self.max_velocity = np.maximum(self.max_velocity, np.abs(next_velocity))
+                self.max_acceleration = np.maximum(self.max_acceleration, np.abs(acceleration))
+                row.update(command_velocity_A_deg_B_deg_C_mm_per_s=(next_velocity/unit).tolist(),
+                           command_acceleration_A_deg_B_deg_C_mm_per_s2=(acceleration/unit).tolist())
+                q, velocity = candidate, next_velocity
+                self.final_velocity = velocity.copy()
+            self.reference.set_task(q)
+            if final_observation is not None and self.output_dir is not None and self.settings['save_diagnostics']:
+                save_png(self.output_dir/'camera_final.png', final_observation['rgb'])
+                save_png(self.output_dir/'guidance_final.png', guidance_overlay(final_observation))
+        finally:
+            self.sensor.close()
+        report = self._finish_geometry(initial, final_observation, status, reason, measured_error,
+                                       settled, dt, unit, vmax, amax)
+        report.update(
+            occlusion_handling=self.settings.get('occlusion_handling', 'stop'),
+            static_target_assumption=allow_memory, memory_frame_count=memory_frames,
+            recovery_attempt_count=recovery_attempts, recovery_success_count=recovery_successes,
+            final_target_source=last_tracking.get('target_source', 'unavailable'),
+            final_target_observed=bool(last_tracking.get('target_observed', False)),
+            final_tracking=last_tracking,
+            target_detection=('current-frame calibrated geometry or explicitly labelled bounded static-target memory'
+                              if allow_memory else 'current-frame calibrated geometry; no target-memory bridge'),
+            recovery_limits={'max_attempts': 3, 'max_retract_mm_per_attempt': .5,
+                             'max_duration_s_per_attempt': 4., 'reobserve_frames': 3,
+                             'retract_speed_mm_per_s': .2},
+            recovery_last_observation_error=loss_reason,
+        )
+        return report
+
+    def _finish_geometry(self, initial, final_observation, status, reason, measured_error,
+                         settled, dt, unit, vmax, amax):
+        abort_velocity = self.final_velocity.copy()
+        if status != 'PASS':
+            # A lost observation/constraint violation is an immediate simulator
+            # hold, not a physical brake. Account for that velocity discontinuity
+            # instead of incorrectly reporting only the preceding bounded moves.
+            self.max_acceleration = np.maximum(self.max_acceleration, np.abs(abort_velocity)/dt)
+            self.final_velocity = np.zeros(3)
+        metrics = self.reference.metrics()
+        acceptance = metrics['tip_target_error_um'] < float(self.settings['endpoint_tolerance_um'])
+        overall = status == 'PASS' and (acceptance or not self.independent_endpoint_acceptance)
+        geometry = {} if final_observation is None else final_observation.get('geometry', {})
+        return {
+            'result': 'PASS' if overall else 'FAIL',
+            'reason': ('INDEPENDENT_ACCURACY_REJECTED' if status == 'PASS' and self.independent_endpoint_acceptance and not acceptance else reason),
+            'controller_result': status, 'controller_reason': reason,
+            'execution_mode': 'visual_servo_kinematic', 'feedback_controller_used': True,
+            'position_feedback': 'calibrated_visible_geometry', 'camera_name': self.sensor.camera_name,
+            'iterations': len(self.rows), 'initial_tip_world_mm': initial['tip_world_mm'],
+            'final_tip_world_mm': metrics['tip_world_mm'], 'target_world_mm': metrics['target_world_mm'],
+            'final_tip_target_error_um': metrics['tip_target_error_um'],
+            'final_estimated_position_error_um': measured_error,
+            'final_geometry_measurement': geometry,
+            'final_oct_metadata': None if final_observation is None else final_observation.get('oct_metadata'),
+            'final_oct_navigation_depth': None if final_observation is None else final_observation.get('oct_navigation_depth'),
+            'final_visual_error': None if not self.rows else {
+                'calibrated_u_v_depth_mm': [self.rows[-1][k] for k in ('u_error_px', 'v_error_px', 'depth_error_mm')]},
+            'camera_resolution_px': [self.sensor.width, self.sensor.height],
+            'max_velocity_A_deg_B_deg_C_mm_per_s': (self.max_velocity/unit).tolist(),
+            'max_acceleration_A_deg_B_deg_C_mm_per_s2': (self.max_acceleration/unit).tolist(),
+            'trajectory_rate_limits_pass': bool(np.all(self.max_velocity <= vmax+1e-12) and np.all(self.max_acceleration <= amax+1e-12)),
+            'initial_command_velocity_A_deg_B_deg_C_mm_per_s': (self.initial_velocity/unit).tolist(),
+            'final_command_velocity_A_deg_B_deg_C_mm_per_s': (self.final_velocity/unit).tolist(),
+            'simulation_abort_hold': status != 'PASS',
+            'velocity_before_abort_hold_A_deg_B_deg_C_mm_per_s': (
+                (abort_velocity/unit).tolist() if status != 'PASS' else None),
+            'physical_braking_validated': False,
+            'settled_frames': settled,
+            'terminal_stop_validated': bool(status == 'PASS' and np.all(np.abs(self.final_velocity) < 1e-12)),
+            'independent_accuracy_acceptance_pass': bool(acceptance) if self.independent_endpoint_acceptance else None,
+            'independent_endpoint_acceptance_required': self.independent_endpoint_acceptance,
+            'measurement_goal_type': ('measured_tip_retraction_waypoint' if self.measurement_goal is not None else
+                                      'transformed_measured_target' if self.target_transform is not None else 'physical_target'),
+            'independent_accuracy_tolerance_um': float(self.settings['endpoint_tolerance_um']),
+            'stop_condition': 'measured controllable 3D error and consecutive zero-command-velocity observations',
+            'tip_detection': 'visible shaft cylinder plus identified end plane or actual apex sphere; no taper-pixel substitution',
+            'target_detection': 'current-frame RGB/segmentation and calibrated sphere depth fit',
+            'control_axes': self.control_axes.tolist(), 'completion_axes': self.completion_axes.tolist(),
+            'known_target_pose_used_for_feature_calibration': False,
+            'ground_truth_used_for_stop': False,
+            'ground_truth_used_for_post_run_acceptance': self.independent_endpoint_acceptance,
+            'calibration_inputs': 'fixed camera, RCM, needle lengths/radii and target marker radius',
+            'scope': 'MuJoCo RGB-D geometry and kinematic control; geometric calibration and ideal depth are simulation assumptions, not hardware accuracy.',
+        }
+
     def run(self):
+        if self.settings.get('position_feedback') == 'geometry':
+            if self.settings.get('occlusion_handling', 'stop') == 'static_memory_reobserve':
+                return self._run_geometry_with_memory()
+            return self._run_geometry()
         q = self.reference.current_task().copy()
         target_observation = self.sensor.observe()
         if target_observation["target_pixel"] is None or target_observation["target_depth_m"] is None:
@@ -402,6 +1017,7 @@ class VisualServoController:
         for iteration in iterations:
             self.reference.set_task(q)
             observation = self.sensor.observe()
+            self._record_oct(iteration, observation)
             try:
                 error = VisualServoSensor.error(observation, target_reference)
             except RuntimeError as exc:
@@ -536,6 +1152,17 @@ class VisualServoController:
     def write(self, report, output_dir):
         directory = Path(output_dir)
         directory.mkdir(parents=True, exist_ok=True)
+        if self.oct_records:
+            with (directory/'oct_observations.jsonl').open('w', encoding='utf-8') as handle:
+                for record in self.oct_records:
+                    handle.write(json.dumps(record, ensure_ascii=False, allow_nan=False)+'\n')
+            report['oct_observation_audit'] = 'oct_observations.jsonl'
+            report['oct_observation_count'] = len(self.oct_records)
+        frame = getattr(self.sensor, 'last_oct_frame', None)
+        if frame is not None:
+            frame.save(directory/'final_oct_frame.npz')
+            report['final_oct_frame_archive'] = 'final_oct_frame.npz'
+            report['oct_archive_scope'] = 'One final registered simulation frame per phase; full raw depth sequence is not exported.'
         (directory/"visual_servo_report.json").write_text(json.dumps(report, ensure_ascii=False, indent=2)+"\n", encoding="utf-8")
         if self.rows:
             with (directory/"visual_servo.csv").open("w", encoding="utf-8", newline="") as handle:

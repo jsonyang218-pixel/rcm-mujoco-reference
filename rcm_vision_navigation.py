@@ -17,66 +17,7 @@ from rcm_fundus import no_surface_slide_edge, standoff_task
 from rcm_navigation import navigation_settings, task_si_units, task_user_units, write_json
 from rcm_sampling_planners import PRM, TaskSpace, rrt, shortcut_path
 from rcm_visual_servo import VisualServoSensor
-
-
-def fit_marker_center(points_mm, offsets_mm, radii_mm):
-    """Fit a calibrated spherical target or tip surface to depth samples.
-
-    Offsets are relative marker geometry, never the scene target translation.
-    Reject sparse/ill-conditioned observations rather than substituting truth.
-    """
-    points, offsets, radii = map(np.asarray, (points_mm, offsets_mm, radii_mm))
-    if len(points) < 6:
-        raise RuntimeError("INSUFFICIENT_VISUAL_DEPTH")
-    shifted = points-offsets
-    def algebraic_center(indices):
-        origin = shifted[indices].mean(axis=0)
-        relative = shifted[indices]-origin
-        solution, _, rank, _ = np.linalg.lstsq(
-            np.column_stack([2*relative, np.ones(len(relative))]),
-            np.sum(relative**2, axis=1)-radii[indices]**2, rcond=None)
-        return origin+solution[:3] if rank == 4 else None
-
-    # Depth and ID rendering can disagree at antialiased occlusion boundaries.
-    # RANSAC rejects those samples; at least 70% must support one measured sphere.
-    rng = np.random.default_rng(0)
-    best, best_count = None, 0
-    subsets = [np.arange(len(points)), *[rng.choice(len(points), min(6, len(points)), replace=False) for _ in range(48)]]
-    for indices in subsets:
-        candidate = algebraic_center(indices)
-        if candidate is None:
-            continue
-        inliers = np.abs(np.linalg.norm(candidate-shifted, axis=1)-radii) < .015
-        count = int(inliers.sum())
-        if count > best_count:
-            best, best_count = inliers, count
-    if best_count < max(6, math.ceil(.7*len(points))):
-        raise RuntimeError("INCONSISTENT_VISUAL_DEPTH")
-    center = algebraic_center(np.flatnonzero(best))
-    shifted, radii = shifted[best], radii[best]
-    for _ in range(30):
-        delta = center-shifted
-        distance = np.linalg.norm(delta, axis=1)
-        jacobian = delta/np.maximum(distance[:, None], 1e-12)
-        step, _, rank, singular = np.linalg.lstsq(jacobian, distance-radii, rcond=None)
-        if rank < 3 or singular[-1] < singular[0]*1e-3:
-            raise RuntimeError("ILL_CONDITIONED_VISUAL_DEPTH")
-        # Partial visibility can make an unconstrained Newton step diverge.
-        # Backtracking retains only steps supported by the measured surface.
-        cost = float(np.sum((distance-radii)**2))
-        scale = min(1., .1/max(float(np.linalg.norm(step)), 1e-12))
-        for _ in range(12):
-            candidate = center-scale*step
-            if np.sum((np.linalg.norm(candidate-shifted, axis=1)-radii)**2) <= cost:
-                center = candidate
-                break
-            scale *= .5
-        if np.linalg.norm(step) < 1e-7:
-            break
-    residual = float(np.sqrt(np.mean((np.linalg.norm(center-shifted, axis=1)-radii)**2)))
-    if not np.isfinite(center).all() or residual > .025:
-        raise RuntimeError("INCONSISTENT_VISUAL_DEPTH")
-    return center, residual
+from rcm_visual_geometry import NeedleGeometry, fit_marker_center
 
 
 class RGBDPositionSensor(VisualServoSensor):
@@ -93,59 +34,16 @@ class RGBDPositionSensor(VisualServoSensor):
     def center_from_image(self, observation, target):
         if target and observation["target_pixel"] is None:
             raise RuntimeError("TARGET_NOT_VISIBLE")
-        if not target and observation["tip_pixel"] is None:
-            raise RuntimeError("TIP_NOT_VISIBLE")
-        rgb = observation["rgb"]
-        if target:
-            geom_id = int(self.target_geom_ids[0])
-            color_mask = np.all((rgb >= np.asarray(self.settings["target_rgb_min"])) &
-                                (rgb <= np.asarray(self.settings["target_rgb_max"])), axis=2)
-            mask = observation["segmentation"][:, :, 0] == geom_id
-            mask &= color_mask
-            rows, cols = np.where(mask)
-            # OCT supplies the axial measurement used for 3-D reconstruction;
-            # the complete scene depth remains available for diagnostics.
-            depth = observation.get("oct_depth", observation["depth"])[rows, cols]*1000.
-            finite = np.isfinite(depth) & (depth > 0.)
-            rows, cols, depth = rows[finite], cols[finite], depth[finite]
-            points = np.column_stack([(cols+.5-self.width/2)*depth/self.focal_px,
-                                      -(rows+.5-self.height/2)*depth/self.focal_px, -depth])
-            center, residual = fit_marker_center(
-                points, np.zeros((len(points), 3)), np.full(len(points), self.target_radius_mm))
-        else:
-            segmentation = observation["segmentation"][:, :, 0]
-            marker_mask = segmentation == self.tip_geom_id
-            if marker_mask.any():
-                tip_mask = marker_mask
-            else:
-                # A visible distal cone is the fallback when the sub-pixel
-                # physical apex marker is occluded. Select its exposed end.
-                tip_mask = segmentation == int(self.distal_geom_ids[1])
-                if not tip_mask.any():
-                    raise RuntimeError("TIP_NOT_VISIBLE")
-                rows, cols = np.where(tip_mask)
-                shaft_mask = segmentation == int(self.distal_geom_ids[0])
-                if shaft_mask.any():
-                    shaft_rows, shaft_cols = np.where(shaft_mask)
-                    shaft_center = np.array([np.mean(shaft_cols), np.mean(shaft_rows)])
-                    endpoint = int(np.argmax((cols-shaft_center[0])**2+(rows-shaft_center[1])**2))
-                    tip_mask = np.zeros_like(tip_mask)
-                    tip_mask[rows[endpoint], cols[endpoint]] = True
-            rows, cols = np.where(tip_mask)
-            depth_image = observation.get("oct_depth", observation["depth"])*1000.
-            depths = depth_image[rows, cols]
-            finite = np.isfinite(depths) & (depths > 0.)
-            rows, cols, depths = rows[finite], cols[finite], depths[finite]
-            if not len(depths):
-                raise RuntimeError("DEPTH_NOT_VISIBLE")
-            u, v, depth = float(np.mean(cols)+.5), float(np.mean(rows)+.5), float(np.median(depths))
-            # The calibrated physical apex radius corrects the visible surface
-            # point; pixel and depth both come from the rendered geometry.
-            center = np.array([(u-self.width/2)*depth/self.focal_px,
-                               -(v-self.height/2)*depth/self.focal_px,
-                               -depth-self.tip_radius_mm])
-            residual = 0.
-        return self.camera_position_mm+self.camera_rotation@center, residual
+        if (not target and observation["tip_pixel"] is None
+                and self.settings.get('position_feedback') == 'geometry'):
+            raise RuntimeError(observation.get("geometry", {}).get("tip_error", "TIP_NOT_VISIBLE"))
+        # Recompute from supplied image arrays: injected sensor changes must
+        # affect measurements, even when an observation has cached diagnostics.
+        if self.geometry is None:
+            self.geometry = NeedleGeometry.from_reference(
+                self.reference, self.width, self.height, self.camera_name, self.settings)
+        center, quality = (self.geometry.target(observation) if target else self.geometry.tip(observation))
+        return center, quality["residual_mm"]
 
     def positions(self, observation):
         target, target_residual = self.center_from_image(observation, True)

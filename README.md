@@ -1,5 +1,17 @@
 # RCM A/B/C MuJoCo 导航工程
 
+2026-10-22 更新：已完成按给定顺序 P1→P2→P3 的严格视觉导航和实体遮挡恢复实验。零位出发三点独立终点误差为 **6.63 / 6.09 / 6.27 μm**；遮挡恢复组为 **6.38 / 6.44 / 6.28 μm**，均到达并停稳。目标在眼球后部内表面代理上，未建立独立视网膜层。这是理想 RGB、分割和深度的仿真结果。
+
+当前入口与限制见 [严格视觉导航](STRICT_VISUAL_NAVIGATION.md)、[OCT 仿真接口](OCT_SIMULATION.md) 和 [实验及组会材料](reports/20261022/README.md)。OCT 深度来源明确标注为 MuJoCo 理想注册深度，尚未接真实 OCT，也未验证实时 20 Hz。
+
+严格视觉连续三点导航（依赖安装后执行）：
+
+```bash
+python run_waypoint_comparison.py --strict-visual --methods visual_servo --planner-feedback vision --targets examples/three_waypoints.json --output-dir runs/strict_three_demo
+```
+
+云端无窗口运行可先设置 `MUJOCO_GL=egl`。Windows 本地通常不需要此设置。输出目录须为新目录。`run_navigation.py` 是保留的模型导航入口；默认多方法对比仍保留历史混合流程，严格视觉实验须显式使用上面的参数。
+
 ## 安装与运行
 
 仓库保留导航代码、配置、场景、目标示例、验证脚本和说明。Python 虚拟环境、历史运行结果、验收产物、预览图和备份不上传；下文的历史结果路径仅适用于保存过这些结果的本地目录。
@@ -23,11 +35,29 @@ python run_waypoint_comparison.py
 
 本地已保存的汇总可通过 `runs/打开结果.html` 或 `runs/最新结果/` 查看；GitHub 仓库不包含这些文件。
 
-最新多目标实验是五目标 `visual_current_target` 仿真 pilot，结果及限制见下文；旧的三目标视觉失败记录保留在历史文档中，不代表最新状态。器械前端细针段外径 0.060 mm、长度 4 mm。点间回撤 2 mm、转向时针尖至少离壁 1 mm 的仿真约束保留。
+历史五目标 `visual_current_target` 混合流程 pilot 及其限制保留在下文；旧失败记录也保留，最新严格视觉结果见本页开头。器械前端细针段外径 0.060 mm、长度 4 mm。点间回撤 2 mm、转向时针尖至少离壁 1 mm 的仿真约束保留。
 
 随机眼底目标生成和 train/validation/test 数据采集见 [RANDOM_FUNDUS_DATASET.md](RANDOM_FUNDUS_DATASET.md)。
 
 多目标共享访问顺序、视觉伺服/RRT/PRM 对比和 RGB/state/action 数据格式见 [WAYPOINT_NAVIGATION.md](WAYPOINT_NAVIGATION.md)。运行 `python run_waypoint_comparison.py` 可生成实验、对比表、数据集和路径图。默认 `--planner-feedback vision` 使用仿真 RGB、深度和标记分割，依赖相机与标靶几何标定，不是实机 RGB-only 感知。使用 `--planner-feedback model` 可复现模型目标规划基线。随机目标及数据集说明见 [RANDOM_FUNDUS_DATASET.md](RANDOM_FUNDUS_DATASET.md)。
+
+## 当前默认视觉模式（2026-10-22）
+
+`run_visual_servo.py` 默认使用 `position_feedback="geometry"`，相机实际渲染分辨率为 1920×1440。固定相机内外参、RCM 位置和针具尺寸作为标定输入；针轴从可见近端针杆圆柱的多点深度拟合，轴向位置由可见实体端面或真实尖端小球约束，再重建同一个物理针尖。均匀针杆不能单独确定进针位置；观测不足或拟合不可靠会报告失败，不再将单个锥面像素当作尖端。目标中心由当前 RGB、分割和深度的球面拟合得到。几何测量不读取动态针尖/目标位置，也不使用已知目标姿态做特征校准。
+
+控制使用归一化的三轴耦合 Jacobian、限速/限加速度和接近减速。默认测得的位置误差阈值为 8 μm，并要求连续三帧误差达标且指令速度为零；结束后再用独立 MuJoCo 真值按 **<20 μm** 验收。测量阈值、停稳和独立验收是不同检查，不能只看视觉条件。这里仍是标定几何和理想 RGB-D 的运动学仿真，不是实机精度结果。历史 `image_depth` 模式保留，旧实验的像素/深度阈值及逐目标姿态标定只适用于该模式。
+
+```bash
+python run_visual_servo.py --no-viewer --output-dir runs/geometry_navigation
+python verify_visual_geometry.py --output-dir runs/geometry_checks
+python verify_visual_geometry_direction.py
+python verify_visual_motion.py
+python verify_visual_servo.py --output-dir runs/visual_checks
+```
+
+云端可在这些命令前设置 `MUJOCO_GL=egl MPLBACKEND=Agg`；图形窗口仍需桌面环境。`verify_visual_geometry.py` 检查代表姿态、隐藏尖端、轴向退化和真值接口隔离；方向检查覆盖端面方向歧义，运动检查覆盖耦合控制、停稳与失败保持。完整导航结果应以该次生成的报告为准，不能把短测试或历史多目标 pilot 的误差当作当前全周期结果。
+
+默认多目标眼底流程的回撤/转移仍使用已知目标构造解析轨迹，仅最后固定方向的 C 轴接近使用视觉反馈；因此整个流程仍是混合先验导航。`--strict-visual` 已支持给定顺序的 3–5 点连续访问：以当前 RGB-D 测量驱动 A/B 对准、固定 A/B 的 C 轴接近，以及点间沿实测针轴回撤，不生成场景目标逆解或解析转移轨迹。它不进行自主病灶识别或访问排序，仍使用相机、RCM、器械标定和运动执行 Jacobian。默认不可观测即停止；可选的有界静态目标记忆须另行声明假设。协议、复现命令与结果判读见 [严格视觉导航](STRICT_VISUAL_NAVIGATION.md)。目前尚无已发布的严格三点 3/3 完整通过结论；下方 2026-10-19 pilot 是旧控制版本的历史记录。
 
 ## 最新多目标视觉 pilot（2026-10-19）
 

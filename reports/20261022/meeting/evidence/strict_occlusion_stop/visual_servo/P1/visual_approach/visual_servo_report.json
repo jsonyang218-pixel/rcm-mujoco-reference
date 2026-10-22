@@ -1,0 +1,113 @@
+{
+  "result": "FAIL",
+  "reason": "TARGET_NOT_VISIBLE",
+  "controller_result": "FAIL",
+  "controller_reason": "TARGET_NOT_VISIBLE",
+  "execution_mode": "visual_servo_kinematic",
+  "feedback_controller_used": true,
+  "position_feedback": "calibrated_visible_geometry",
+  "camera_name": "eye_internal",
+  "iterations": 21,
+  "initial_tip_world_mm": [
+    2.418536551980437,
+    12.131910361537372,
+    -17.974401642069925
+  ],
+  "final_tip_world_mm": [
+    2.4734025691823858,
+    12.407130350271284,
+    -18.38216220656543
+  ],
+  "target_world_mm": [
+    2.640000000000001,
+    13.24440230063386,
+    -19.62046395741142
+  ],
+  "final_tip_target_error_um": 1504.0512787027008,
+  "final_estimated_position_error_um": 1535.0256758743863,
+  "final_geometry_measurement": {
+    "target_world_mm": null,
+    "target_error": "TARGET_NOT_VISIBLE",
+    "tip_world_mm": [
+      2.47341481233915,
+      12.407127435368364,
+      -18.38216011885079
+    ],
+    "tip_quality": {
+      "source": "shaft_end_plane",
+      "plane_end": "rear",
+      "support": 1789,
+      "residual_mm": 6.490304659000335e-07,
+      "axis_residual_mm": 0.0010832407546568891,
+      "fit_quality_mm": 0.002508190854799726,
+      "axis_world": [
+        0.1108409972955176,
+        0.5559998960337105,
+        -0.8237586958139127
+      ]
+    }
+  },
+  "final_visual_error": {
+    "calibrated_u_v_depth_mm": [
+      null,
+      null,
+      null
+    ]
+  },
+  "camera_resolution_px": [
+    1920,
+    1440
+  ],
+  "max_velocity_A_deg_B_deg_C_mm_per_s": [
+    0.0,
+    0.0,
+    0.6
+  ],
+  "max_acceleration_A_deg_B_deg_C_mm_per_s2": [
+    0.0,
+    0.0,
+    11.999999999999998
+  ],
+  "trajectory_rate_limits_pass": false,
+  "initial_command_velocity_A_deg_B_deg_C_mm_per_s": [
+    0.0,
+    0.0,
+    0.0
+  ],
+  "final_command_velocity_A_deg_B_deg_C_mm_per_s": [
+    0.0,
+    0.0,
+    0.0
+  ],
+  "simulation_abort_hold": true,
+  "velocity_before_abort_hold_A_deg_B_deg_C_mm_per_s": [
+    0.0,
+    0.0,
+    0.6
+  ],
+  "physical_braking_validated": false,
+  "settled_frames": 0,
+  "terminal_stop_validated": false,
+  "independent_accuracy_acceptance_pass": false,
+  "independent_endpoint_acceptance_required": true,
+  "measurement_goal_type": "physical_target",
+  "independent_accuracy_tolerance_um": 20.0,
+  "stop_condition": "measured controllable 3D error and consecutive zero-command-velocity observations",
+  "tip_detection": "visible shaft cylinder plus identified end plane or actual apex sphere; no taper-pixel substitution",
+  "target_detection": "current-frame RGB/segmentation and calibrated sphere depth fit",
+  "control_axes": [
+    false,
+    false,
+    true
+  ],
+  "completion_axes": [
+    false,
+    false,
+    true
+  ],
+  "known_target_pose_used_for_feature_calibration": false,
+  "ground_truth_used_for_stop": false,
+  "ground_truth_used_for_post_run_acceptance": true,
+  "calibration_inputs": "fixed camera, RCM, needle lengths/radii and target marker radius",
+  "scope": "MuJoCo RGB-D geometry and kinematic control; geometric calibration and ideal depth are simulation assumptions, not hardware accuracy."
+}

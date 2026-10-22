@@ -1,0 +1,47 @@
+{
+  "result": "PASS",
+  "definition": {
+    "kind": "posterior_eye_surface",
+    "minimum_normalized_posterior_z": 0.9,
+    "surface_tolerance_um": 0.001,
+    "scope": "Compiled eye ellipsoid posterior cap as fundus proxy; no separate retinal layer"
+  },
+  "targets": [
+    {
+      "waypoint_id": "P1",
+      "result": "PASS",
+      "eye_local_mm": [
+        2.6399999999999983,
+        -1.150000000000001,
+        11.644329091879868
+      ],
+      "ellipsoid_value": 0.9999999999999987,
+      "normalized_posterior_z": 0.9703607576566556,
+      "surface_radial_gap_um": 7.354337211075899e-12
+    },
+    {
+      "waypoint_id": "P2",
+      "result": "PASS",
+      "eye_local_mm": [
+        -0.9599999999999993,
+        2.0699999999999994,
+        11.764896939625089
+      ],
+      "ellipsoid_value": 0.9999999999999984,
+      "normalized_posterior_z": 0.9804080783020908,
+      "surface_radial_gap_um": 9.090957362871364e-12
+    },
+    {
+      "waypoint_id": "P3",
+      "result": "PASS",
+      "eye_local_mm": [
+        1.9199999999999986,
+        2.990000000000002,
+        11.42712562283271
+      ],
+      "ellipsoid_value": 0.9999999999999989,
+      "normalized_posterior_z": 0.9522604685693925,
+      "surface_radial_gap_um": 7.407775423123776e-12
+    }
+  ]
+}

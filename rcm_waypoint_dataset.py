@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import json
+from collections.abc import Mapping
 from pathlib import Path
 
 import numpy as np
@@ -13,6 +14,45 @@ TASK_REGIMES = ("registered_coordinate_prior", "visual_current_target")
 POLICY_INPUT_FIELDS = ("observation.images.microscope_rgb", "observation.state", "task")
 NO_IMAGE_INPUT_FIELDS = ("observation.state", "task")
 VISIBILITY_CONDITIONS = ("visible", "needle_occluded", "other_visibility_issue", "unknown")
+PERCEPTION_STRING_FIELDS = ("target_source", "tip_source", "controller_state", "occlusion_event_id")
+PERCEPTION_NUMERIC_FIELDS = ("cached_target_age_s", "estimated_position_error_um", "true_position_error_um")
+PERCEPTION_INTEGER_FIELDS = ("control_frame_index",)
+
+
+def _normalize_perception(perception):
+    """Keep optional perception provenance in audit records, never policy inputs."""
+    values = {} if perception is None else perception
+    if not isinstance(values, Mapping):
+        raise ValueError("Perception metadata must be a mapping or null")
+    result = {}
+    for name in PERCEPTION_STRING_FIELDS:
+        value = values.get(name, "unknown")
+        if not isinstance(value, str):
+            raise ValueError(f"Perception field {name} must be a string")
+        result[name] = value
+    for name in PERCEPTION_INTEGER_FIELDS:
+        value = values.get(name)
+        if value is not None:
+            if (isinstance(value, (bool, np.bool_)) or
+                    not isinstance(value, (int, np.integer)) or
+                    not 0 <= value <= np.iinfo(np.int64).max):
+                raise ValueError(f"Perception field {name} must be a non-negative int64 integer or null")
+            value = int(value)
+        result[name] = value
+    for name in PERCEPTION_NUMERIC_FIELDS:
+        value = values.get(name)
+        if value is not None:
+            if (isinstance(value, (bool, np.bool_)) or
+                    not isinstance(value, (int, float, np.integer, np.floating)) or
+                    not np.isfinite(value) or value < 0):
+                raise ValueError(f"Perception field {name} must be finite, non-negative, or null")
+            value = float(value)
+        result[name] = value
+    observed = values.get("target_observed", False)
+    if not isinstance(observed, (bool, np.bool_)):
+        raise ValueError("Perception field target_observed must be a boolean")
+    result["target_observed"] = bool(observed)
+    return result
 
 
 def make_policy_task(task_regime, solutions, fundus_surface=False):
@@ -47,7 +87,7 @@ class EpisodeWriter:
         self.action_label_dir = self.root / "action_labels"
 
     def add(self, timestamp, state, action, waypoint_id, rgb, terminal=False, phase="motion",
-            visibility=None):
+            visibility=None, perception=None):
         import time
         started = time.perf_counter()
         state = np.asarray(state, dtype=np.float32)
@@ -59,10 +99,11 @@ class EpisodeWriter:
             raise ValueError("Dataset image must be uint8 HWC RGB")
         if self.records and timestamp <= self.records[-1]["timestamp"]:
             raise ValueError("Episode timestamps must increase strictly")
+        visibility = _normalize_visibility(visibility)
+        perception = _normalize_perception(perception)
         frame = len(self.records)
         image_path = self.image_dir / f"frame_{frame:06d}.png"
         save_png(image_path, rgb)
-        visibility = _normalize_visibility(visibility)
         self.records.append({
             "observation.images.microscope_rgb": image_path.relative_to(self.root).as_posix(),
             "observation.state": state.tolist(), "action": action.tolist(),
@@ -71,6 +112,7 @@ class EpisodeWriter:
             "waypoint_id": waypoint_id, "is_terminal": bool(terminal),
             "phase": phase,
             "visibility": visibility,
+            "perception": perception,
         })
         self.write_wall_s += time.perf_counter()-started
 
@@ -114,6 +156,19 @@ class EpisodeWriter:
                 r["visibility"]["tip_fully_occluded"] for r in self.records], dtype=np.bool_),
             "visibility.counterfactual_no_needle_rendered": np.asarray([
                 r["visibility"]["counterfactual_no_needle_rendered"] for r in self.records], dtype=np.bool_),
+            **{f"perception.{name}": np.asarray([
+                r["perception"][name] for r in self.records], dtype=str)
+               for name in PERCEPTION_STRING_FIELDS},
+            **{f"perception.{name}": np.asarray([
+                -1. if r["perception"][name] is None else r["perception"][name]
+                for r in self.records], dtype=np.float64)
+               for name in PERCEPTION_NUMERIC_FIELDS},
+            **{f"perception.{name}": np.asarray([
+                -1 if r["perception"][name] is None else r["perception"][name]
+                for r in self.records], dtype=np.int64)
+               for name in PERCEPTION_INTEGER_FIELDS},
+            "perception.target_observed": np.asarray([
+                r["perception"]["target_observed"] for r in self.records], dtype=np.bool_),
         })
         self.policy_input_dir.mkdir(parents=True, exist_ok=True)
         self.policy_no_image_dir.mkdir(parents=True, exist_ok=True)
@@ -320,6 +375,8 @@ def write_manifest(root, episodes, image_shape, sample_period_s=0.05, task_regim
         "nominal_sampling_frequency_hz": 1./sample_period_s,
         "image_semantics": "raw eye_internal RGB, same render groups as visual controller; no crosshair overlay or synthetic occlusion",
         "visibility_semantics": "Per-frame counts from physical MuJoCo segmentation. Needle-caused occlusion is measured with a diagnostic render that temporarily hides needle geoms; this counterfactual is offline metadata only and is never passed to navigation/control. No synthetic noise or pasted masks are used.",
+        "perception_semantics": "Audit-only measurement provenance and controller state. target_observed distinguishes a current-frame target measurement from memory or unknown data. control_frame_index identifies the controller observation behind an exported row; occlusion_event_id associates controlled occlusion events with their audit records. true_position_error_um is independent evaluation and must not enter controller feedback or policy inputs.",
+        "target_memory_scope": "A cached target, when used by a controller, assumes a calibrated stationary target and is not a current-frame observation. cached_target_age_s records time since observation; exporting these fields alone does not validate occlusion recovery, moving targets, or hardware performance. Consult the per-run protocol and result for the tested memory limits.",
         "task_regime": task_regime,
         "policy_interface": {
             "contract_version": 1,
@@ -329,7 +386,7 @@ def write_manifest(root, episodes, image_shape, sample_period_s=0.05, task_regim
             "no_image_ablation_fields": list(NO_IMAGE_INPUT_FIELDS),
             "action_supervision": "action_labels/episode_*.npz; row-aligned with policy_inputs",
             "excluded_from_policy_inputs": ["action", "timestamp", "episode_index", "frame_index",
-                                             "is_terminal", "waypoint_id", "phase", "visibility.*", "scene truth"],
+                                             "is_terminal", "waypoint_id", "phase", "visibility.*", "perception.*", "scene truth"],
             "goal_coordinates_in_task": task_regime == "registered_coordinate_prior",
             "goal_coordinate_visibility": ("registered robot-frame coordinates are present in task text; simulated, not measured OCT"
                                             if task_regime == "registered_coordinate_prior"
@@ -358,6 +415,15 @@ def write_manifest(root, episodes, image_shape, sample_period_s=0.05, task_regim
             "visibility.needle_pixels_visible": {"dtype": "int32", "unknown_sentinel": -1},
             "visibility.tip_fully_occluded": {"dtype": "bool", "unknown_sentinel": False},
             "visibility.counterfactual_no_needle_rendered": {"dtype": "bool", "meaning": "true when a second diagnostic segmentation hid needle geoms"},
+            "perception.target_source": {"dtype": "string", "unknown_sentinel": "unknown", "meaning": "controller-declared source of target position, such as current observation or stationary-target memory"},
+            "perception.tip_source": {"dtype": "string", "unknown_sentinel": "unknown", "meaning": "controller-declared physical-tip measurement source"},
+            "perception.controller_state": {"dtype": "string", "unknown_sentinel": "unknown"},
+            "perception.control_frame_index": {"dtype": "int64", "unknown_sentinel": -1, "jsonl_unknown": None, "meaning": "source controller observation index; distinct from the exported dataset frame_index"},
+            "perception.occlusion_event_id": {"dtype": "string", "unknown_sentinel": "unknown", "meaning": "occlusion fixture event identity for audit correlation; not a policy feature"},
+            "perception.cached_target_age_s": {"dtype": "float64", "unit": "s", "unknown_sentinel": -1.0, "jsonl_unknown": None},
+            "perception.estimated_position_error_um": {"dtype": "float64", "unit": "um", "unknown_sentinel": -1.0, "jsonl_unknown": None},
+            "perception.true_position_error_um": {"dtype": "float64", "unit": "um", "unknown_sentinel": -1.0, "jsonl_unknown": None, "meaning": "evaluation only; not controller or policy input"},
+            "perception.target_observed": {"dtype": "bool", "unknown_sentinel": False, "meaning": "true only when the controller reports a valid current-frame target measurement"},
         },
         "episodes": episodes,
         "total_frames": sum(e["frames"] for e in episodes),

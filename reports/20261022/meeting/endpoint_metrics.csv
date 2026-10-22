@@ -1,0 +1,13 @@
+﻿case,episode_index,waypoint_id,attempted,recorded_result,reason,true_endpoint_error_um,terminal_stop_validated,settled_frames,final_command_velocity,independent_success_lt20um_and_3_zero_frames,verification
+baseline_three,0,P3,True,PASS,POSITION_ERROR_AND_SETTLED,6.217548622304273,True,3,"[0.0, 0.0, 0.0]",True,VERIFIED
+baseline_three,0,P2,True,PASS,POSITION_ERROR_AND_SETTLED,6.224501760883537,True,3,"[0.0, 0.0, 0.0]",True,VERIFIED
+baseline_three,0,P1,True,PASS,POSITION_ERROR_AND_SETTLED,6.300581089538309,True,3,"[0.0, 0.0, 0.0]",True,VERIFIED
+strict_three,0,P1,True,PASS,VISUAL_ARRIVAL_AND_STOP,6.634482537712616,True,3,"[0.0, 0.0, 0.0]",True,VERIFIED
+strict_three,0,P2,True,PASS,VISUAL_ARRIVAL_AND_STOP,6.085112747937411,True,3,"[0.0, 0.0, 0.0]",True,VERIFIED
+strict_three,0,P3,True,PASS,VISUAL_ARRIVAL_AND_STOP,6.267575687082636,True,3,"[0.0, 0.0, 0.0]",True,VERIFIED
+strict_occlusion_stop,0,P1,True,FAIL,TARGET_NOT_VISIBLE,1504.0512787027008,False,0,"[0.0, 0.0, 0.0]",False,VERIFIED
+strict_occlusion_stop,0,P2,False,NOT_RUN,PREVIOUS_VISUAL_PHASE_FAILED,,False,,,False,PHASE_DETAIL_MISSING
+strict_occlusion_stop,0,P3,False,NOT_RUN,PREVIOUS_VISUAL_PHASE_FAILED,,False,,,False,PHASE_DETAIL_MISSING
+strict_occlusion_recovery,0,P1,True,PASS,VISUAL_ARRIVAL_AND_STOP,6.381807367328575,True,3,"[0.0, 0.0, 0.0]",True,VERIFIED
+strict_occlusion_recovery,0,P2,True,PASS,VISUAL_ARRIVAL_AND_STOP,6.442211732963663,True,3,"[0.0, 0.0, 0.0]",True,VERIFIED
+strict_occlusion_recovery,0,P3,True,PASS,VISUAL_ARRIVAL_AND_STOP,6.282897544824121,True,3,"[0.0, 0.0, 0.0]",True,VERIFIED

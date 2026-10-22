@@ -1,5 +1,28 @@
 # 视觉伺服使用与研究笔记
 
+## 当前实现补充（2026-10-22）
+
+本节描述当前默认 `geometry` 模式。下方自“2026-10-16 历史研究记录”起保留当时的 `image_depth` 实现、参数和实验，不作为当前默认行为说明；其中旧分辨率、逐目标姿态标定及停止阈值不能直接套用于新模式。
+
+当前相机实际渲染为 1920×1440，测量使用 RGB、仿真分割和深度。固定相机内外参、RCM 和针具长度/半径是标定输入。可见针杆圆柱多点约束针轴，可见实体端面或真正 apex 小球约束轴向位置，重建物理尖端；看不到这些约束时明确失败，不使用可见锥面单像素替代尖端。目标由当前标靶球面深度拟合得到。测量器只读图像数组和标定数据，不读动态针尖/目标真值，也不在已知目标姿态渲染特征偏置。
+
+几何反馈使用归一化的完整三轴 Jacobian 将测得的三维误差映射成轴指令，模型导数用于执行映射；误差本身来自视觉测量。接近阶段限速、限加速度并减速。默认测量误差阈值 8 μm，连续三帧达标且指令速度为零才停止；之后使用独立 MuJoCo 针尖真值按 <20 μm 验收。固定方向 C-only 阶段只按可控方向判断测量收敛，独立验收仍检查完整三维终点。失败保持是有记录的仿真中止，不能解释为实机受约束制动。
+
+```bash
+python run_visual_servo.py --no-viewer --output-dir runs/geometry_navigation
+python verify_visual_geometry.py --output-dir runs/geometry_checks
+python verify_visual_geometry_direction.py
+python verify_visual_motion.py
+python verify_visual_servo.py --output-dir runs/visual_checks
+python verify_vision_navigation.py --output-dir runs/vision_checks
+```
+
+在云端使用已配置的 EGL 离屏渲染。几何测试覆盖代表姿态、旧假成功姿态、缺失支持、轴向/方向退化及动态图像因果性；运动测试检查耦合求解、连续停稳和失败路径。各次导航的精度、失败原因和速率以其报告为准，不能由短测试推出全部目标或真实器械均达到20 μm。
+
+`navigation.visual_servo.position_feedback="image_depth"` 保留历史分区图像/深度路径；其标定开关与像素/深度阈值仅在该模式生效。默认 `geometry` 强制不使用目标姿态特征标定。多目标眼底回撤/转移仍按已知目标构造解析轨迹，最后 C 轴接近才使用视觉闭环；这与单目标全程视觉接近、受限制的 `--strict-visual` 入口应分别报告。本项目尚无驱动器动力学、真实 OCT/相机噪声或组织接触验证。
+
+## 2026-10-16 历史研究记录
+
 日期：2026-10-16。对象：本目录当前代码和配置。本文包含代码核对、实际复现、参数对比和定向文献调研；不代表完整系统综述或实机验证。
 
 ## 1. 当前系统是什么

@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "targets": [
+    {
+      "id": "P1",
+      "frame": "robot",
+      "point_mm": [
+        2.6399999999999992,
+        4.508556434770947,
+        23.23896979385276
+      ]
+    },
+    {
+      "id": "P2",
+      "frame": "robot",
+      "point_mm": [
+        -0.9599999999999996,
+        7.664776747372681,
+        22.589962903111108
+      ]
+    },
+    {
+      "id": "P3",
+      "frame": "robot",
+      "point_mm": [
+        1.9199999999999993,
+        8.477994401325262,
+        22.04300174384336
+      ]
+    }
+  ],
+  "target_region": {
+    "kind": "posterior_eye_surface",
+    "minimum_normalized_posterior_z": 0.9,
+    "surface_tolerance_um": 0.001,
+    "scope": "Compiled eye ellipsoid posterior cap as fundus proxy; no separate retinal layer"
+  }
+}

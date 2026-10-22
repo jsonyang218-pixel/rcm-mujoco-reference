@@ -450,7 +450,9 @@ class Reference:
         option = ET.SubElement(root, "option", timestep="0.005", gravity="0 0 0")
         ET.SubElement(option, "flag", contact="disable")
         visual = ET.SubElement(root, "visual")
-        ET.SubElement(visual, "global", offwidth="1280", offheight="960")
+        sensor_width, sensor_height = self.eye_camera['resolution_px']
+        ET.SubElement(visual, "global", offwidth=str(max(1280, sensor_width)),
+                      offheight=str(max(960, sensor_height)))
         ET.SubElement(visual, "map", znear="0.002", zfar="6", fogstart="3", fogend="6")
         ET.SubElement(visual, "headlight", ambient="0.45 0.45 0.45", diffuse="0.7 0.7 0.7", specular="0.3 0.3 0.3")
         ET.SubElement(visual, "rgba", haze="0.09 0.11 0.15 1")
@@ -478,6 +480,9 @@ class Reference:
         if self.reset_encoders is not None:
             ET.SubElement(custom, "numeric", name="reported_reset_robot_encoder_ABC", data=_s(self.reset_encoders))
         world = ET.SubElement(root, "worldbody")
+        # Optional experimental geometry; default scenes and sensors are unchanged.
+        from rcm_occlusion_fixture import add_occluder_to_xml
+        add_occluder_to_xml(asset, world, self.config)
         rcm_m = self.rcm_mm*.001
         ET.SubElement(world, "light", pos=_s(rcm_m+[.1, -.1, .3]), dir="-0.3 0.2 -1", directional="true")
         ET.SubElement(world, "geom", name="reference_floor", type="plane", pos=_s(rcm_m+[0, 0, -.175]), size=".6 .6 .01", material="floor")

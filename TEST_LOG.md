@@ -26,3 +26,12 @@
 - 2026-10-22：检查 GitHub 推送连接；`Test-NetConnection github.com -Port 443` 解析到 `20.205.243.166`，TCP 连接失败（TcpTestSucceeded=False）；Git 已有本地提交 `413d3a6c Initial commit`，origin 指向用户提供的 GitHub HTTPS 地址，未配置 Git HTTP 代理或 HTTP(S)_PROXY 环境变量。推送未到达 GitHub，判定为本机当前网络连接问题；未改动源码。
 - 2026-10-22：在 `rcm_mujoco_reference_upload` 中运行项目 `.venv` 的 `python -m compileall -q .`，PASS（退出码 0）；检查该副本所有 Python 源文件的语法。生成的 `__pycache__` 已由 `.gitignore` 排除。
 - 2026-10-22：在 `rcm_mujoco_reference_upload` 中运行 `.venv\Scripts\python.exe verify_navigation.py --output-dir acceptance\upload_navigation_check`，PASS（MuJoCo 3.3.7）；593 个目标求解、49 个完整运动循环、3 个无效目标拒绝、109338 个轨迹采样点，最大针尖误差 5.48 µm。此项验证限于 MuJoCo 运动学仿真，不代表实体机械臂实测。
+
+- 2026-10-22：云环境几何视觉伺服最终完整复验，PASS；默认P3从零位出发，1920×1440实际RGB-D渲染，679次观测、视觉段33.90 s，独立三维终点误差6.032794 μm（<20 μm），测量误差7.065029 μm；连续3帧零指令速度、速度/加速度检查通过，无目标姿态特征校准。停留0.4 s后单独执行模型C回退及A/B复位，成功回零；全周期名义时间102.579481 s。数据：runs/precision_final_validation/geometry/。限于理想分割/深度及固定几何标定的单目标MuJoCo运动学仿真，非硬件精度。
+- 2026-10-22：云环境回归检查通过：run_reference.py --verify；verify_navigation.py（593目标求解、49运动学循环，最大误差5.479882 μm）；verify_visual_geometry.py（9姿态，最大针尖测量误差1.946668 μm）、verify_visual_geometry_direction.py（8用例）、verify_visual_motion.py（8测试）、verify_visual_servo.py与verify_vision_navigation.py。视觉规划回归中的RRT/PRM样例均TIP_NOT_OBSERVABLE中止，PASS指失观测闭锁及接口回归通过，不代表这些导航成功。逐条退出码和日志：runs/precision_implementation/regression_final.json。
+
+- 2026-10-22：严格视觉三点零位完整导航，PASS 3/3；P1/P2/P3 独立误差6.634483/6.085113/6.267576 μm，1289帧、64.05s名义仿真时间。运行时禁用场景目标逆解，视觉对准、接近及点间回撤均用测量构造目标，每点停稳及速率/离壁约束通过。
+- 2026-10-22：实体遮挡配对实验：stop组 FAIL（P1 TARGET_NOT_VISIBLE，P2/P3 NOT_RUN，29帧）；其仿真瞬停独立加速度约束也FAIL，不能视为安全制动。相同重置及球体计划下，static_memory_reobserve组 PASS 3/3，误差6.381807/6.442212/6.282898 μm，669帧、33.05s；共24记忆帧、1次重观测恢复，速率约束通过。四组包含历史混合对照共3133帧，完整性/动作对齐及抽样重渲均通过；数据完整性PASS不改变失败组结局。
+- 2026-10-22：接入明确标注的理想注册OCT仿真接口：verify_oct_interface.py 10组数值PASS；verify_oct_sensor.py 12组实际1920×1440 EGL传感器检查PASS。覆盖单位、有效mask、远裁剪背景拒绝、时钟、坐标符号、遮挡/无效测量拒绝、深度扰动因果性及真实深度帧NPZ/JSON往返。无真实OCT、无A/B-scan或设备实时性验证。
+- 2026-10-22：新OCT接口P1严格视觉闭环从此前实际视觉回撤姿态运行，PASS；8帧对准+89帧接近，共97帧、4.75s名义仿真时间，独立误差6.381807 μm，停稳、速率及dataset_verification均PASS。逐帧OCT来源/唯一ID/阶段仿真时钟及末帧完整深度归档审计PASS；实测渲染中位0.471s/帧，不支持实时20Hz。报告及快照说明见reports/20261022/。
+- 2026-10-22：发布审查修复虚拟回撤阶段针尖短暂丢失后重获不能恢复的问题；新增组合回归后verify_occlusion_recovery.py 10/10 PASS。标靶全程不可见仍保留原回撤虚拟点、target_observed始终false；针尖重获后连续有效测量恢复跟踪，停稳及速率通过。该恢复分支修复发生在上述stop模式OCT闭环之后，单独验证，未将旧采集源码副本冒充采集版本。

@@ -1,0 +1,302 @@
+{
+  "schema_version": 2,
+  "format": "PNG RGB + JSONL metadata + NumPy NPZ (not a LeRobot container)",
+  "source": "MuJoCo kinematic simulation; no hardware measurements",
+  "state_semantics": "actual current MuJoCo A/B/C task position before applying action",
+  "action_semantics": "next commanded absolute A/B/C task position after trajectory/rate constraints; not final mission goal",
+  "units": [
+    "degree",
+    "degree",
+    "millimeter"
+  ],
+  "timestamp_semantics": "simulation seconds since episode start; intervals may be shorter at planner/phase endpoints",
+  "nominal_sample_period_s": 0.05,
+  "nominal_sampling_frequency_hz": 20.0,
+  "image_semantics": "raw eye_internal RGB, same render groups as visual controller; no crosshair overlay or synthetic occlusion",
+  "visibility_semantics": "Per-frame counts from physical MuJoCo segmentation. Needle-caused occlusion is measured with a diagnostic render that temporarily hides needle geoms; this counterfactual is offline metadata only and is never passed to navigation/control. No synthetic noise or pasted masks are used.",
+  "task_regime": "visual_current_target",
+  "policy_interface": {
+    "contract_version": 1,
+    "input_bundle": "policy_inputs/episode_*.npz",
+    "input_fields": [
+      "observation.images.microscope_rgb",
+      "observation.state",
+      "task"
+    ],
+    "no_image_ablation_bundle": "policy_inputs_no_image/episode_*.npz",
+    "no_image_ablation_fields": [
+      "observation.state",
+      "task"
+    ],
+    "action_supervision": "action_labels/episode_*.npz; row-aligned with policy_inputs",
+    "excluded_from_policy_inputs": [
+      "action",
+      "timestamp",
+      "episode_index",
+      "frame_index",
+      "is_terminal",
+      "waypoint_id",
+      "phase",
+      "visibility.*",
+      "scene truth"
+    ],
+    "goal_coordinates_in_task": false,
+    "goal_coordinate_visibility": "target coordinates and target IDs are absent from task text",
+    "image_loading": "Decode paths relative to dataset root into RGB pixels; never tokenize paths or use filenames as features",
+    "audit_bundle": "data/episode_*.npz and JSONL contain additional diagnostic labels; do not use those columns as policy features"
+  },
+  "alignment": "image and state at timestamp t precede action; action equals next frame state within float32 tolerance",
+  "terminal_action": "hold current position; does not establish hardware braking behavior",
+  "fields": {
+    "observation.images.microscope_rgb": {
+      "dtype": "uint8",
+      "shape": [
+        1440,
+        1920,
+        3
+      ],
+      "storage": "lossless PNG path in JSONL/NPZ"
+    },
+    "observation.state": {
+      "dtype": "float32",
+      "shape": [
+        3
+      ]
+    },
+    "action": {
+      "dtype": "float32",
+      "shape": [
+        3
+      ]
+    },
+    "task": {
+      "dtype": "string"
+    },
+    "timestamp": {
+      "dtype": "float64",
+      "unit": "s"
+    },
+    "episode_index": {
+      "dtype": "int64"
+    },
+    "frame_index": {
+      "dtype": "int64"
+    },
+    "phase": {
+      "dtype": "string",
+      "meaning": "phase of the outgoing action: retract, transfer, approach, visual_servo, or hold"
+    },
+    "visibility.known": {
+      "dtype": "bool",
+      "meaning": "false when segmentation was unavailable; remaining fields use unknown sentinels"
+    },
+    "visibility.target_pixels_visible": {
+      "dtype": "int32",
+      "unknown_sentinel": -1
+    },
+    "visibility.target_pixels_unoccluded": {
+      "dtype": "int32",
+      "unknown_sentinel": -1
+    },
+    "visibility.target_pixels_occluded_by_needle": {
+      "dtype": "int32",
+      "unknown_sentinel": -1
+    },
+    "visibility.target_occlusion_fraction_by_needle": {
+      "dtype": "float32",
+      "unknown_sentinel": -1.0,
+      "undefined_when": "unoccluded target pixel count is zero; JSONL stores null"
+    },
+    "visibility.target_occlusion_state": {
+      "dtype": "string",
+      "values": [
+        "clear",
+        "partial_needle",
+        "full_needle",
+        "not_visible",
+        "unknown"
+      ]
+    },
+    "visibility.tip_pixels_visible": {
+      "dtype": "int32",
+      "unknown_sentinel": -1
+    },
+    "visibility.needle_pixels_visible": {
+      "dtype": "int32",
+      "unknown_sentinel": -1
+    },
+    "visibility.tip_fully_occluded": {
+      "dtype": "bool",
+      "unknown_sentinel": false
+    },
+    "visibility.counterfactual_no_needle_rendered": {
+      "dtype": "bool",
+      "meaning": "true when a second diagnostic segmentation hid needle geoms"
+    }
+  },
+  "episodes": [
+    {
+      "episode_index": 0,
+      "method": "visual_servo",
+      "seed": null,
+      "visit_order": [
+        "P3",
+        "P2",
+        "P1"
+      ],
+      "result": "PASS",
+      "frames": 1146,
+      "data": "data/episode_000000.npz",
+      "jsonl": "data/episode_000000.jsonl",
+      "policy_inputs": "policy_inputs/episode_000000.npz",
+      "policy_inputs_no_image": "policy_inputs_no_image/episode_000000.npz",
+      "action_labels": "action_labels/episode_000000.npz",
+      "image_write_wall_s": 62.919922498013875,
+      "visibility_summary": {
+        "known_frames": 1146,
+        "unknown_frames": 0,
+        "target_occlusion_state_frames": {
+          "clear": 995,
+          "partial_needle": 151,
+          "full_needle": 0,
+          "not_visible": 0
+        },
+        "frames_with_needle_occlusion": 151,
+        "maximum_target_occlusion_fraction_by_needle": 0.10317460317460317,
+        "source": "MuJoCo geometry segmentation; offline no-needle counterfactual, not controller input"
+      },
+      "target_success_by_visibility": {
+        "unit": "attempted target visit, not frame",
+        "success_definition": "endpoint result PASS and terminal stop validated",
+        "condition_definition": "Conditions are exposure-based at target-visit level and may overlap. visible means at least one clear frame; needle_occluded means at least one partial/full needle-occlusion frame; other_visibility_issue means target absent even with the needle hidden; unknown means visibility could not be classified.",
+        "exclusive_visit_class_definition": "An auxiliary single-label summary prioritizes needle_occluded, then other_visibility_issue, then visible when every sampled frame is clear, otherwise unknown. It is not used for condition_exposure success rates; exposure groups may overlap.",
+        "attempted_target_visits": 3,
+        "not_attempted_target_visits": 0,
+        "condition_exposure": {
+          "visible": {
+            "target_visits": 3,
+            "successful_target_visits": 3,
+            "success_rate": 1.0
+          },
+          "needle_occluded": {
+            "target_visits": 3,
+            "successful_target_visits": 3,
+            "success_rate": 1.0
+          },
+          "other_visibility_issue": {
+            "target_visits": 0,
+            "successful_target_visits": 0,
+            "success_rate": null
+          },
+          "unknown": {
+            "target_visits": 0,
+            "successful_target_visits": 0,
+            "success_rate": null
+          }
+        },
+        "target_visits": [
+          {
+            "waypoint_id": "P3",
+            "attempted": true,
+            "result": "PASS",
+            "reason": "POSITION_ERROR_AND_SETTLED",
+            "endpoint_error_um": 6.217548622304273,
+            "terminal_stop_validated": true,
+            "success_with_stop": true,
+            "visibility_exposure": [
+              "visible",
+              "needle_occluded"
+            ],
+            "exclusive_visibility_class": "needle_occluded",
+            "visibility_frame_counts": {
+              "clear": 634,
+              "partial_needle": 52,
+              "full_needle": 0,
+              "not_visible": 0,
+              "unknown": 0
+            },
+            "visibility_issue_frame_counts": {
+              "target_not_visible_without_needle_frames": 0,
+              "tip_fully_occluded_frames": 0,
+              "unknown_visibility_frames": 0,
+              "approach_frames": 686
+            }
+          },
+          {
+            "waypoint_id": "P2",
+            "attempted": true,
+            "result": "PASS",
+            "reason": "POSITION_ERROR_AND_SETTLED",
+            "endpoint_error_um": 6.224501760883537,
+            "terminal_stop_validated": true,
+            "success_with_stop": true,
+            "visibility_exposure": [
+              "visible",
+              "needle_occluded"
+            ],
+            "exclusive_visibility_class": "needle_occluded",
+            "visibility_frame_counts": {
+              "clear": 167,
+              "partial_needle": 42,
+              "full_needle": 0,
+              "not_visible": 0,
+              "unknown": 0
+            },
+            "visibility_issue_frame_counts": {
+              "target_not_visible_without_needle_frames": 0,
+              "tip_fully_occluded_frames": 0,
+              "unknown_visibility_frames": 0,
+              "approach_frames": 209
+            }
+          },
+          {
+            "waypoint_id": "P1",
+            "attempted": true,
+            "result": "PASS",
+            "reason": "POSITION_ERROR_AND_SETTLED",
+            "endpoint_error_um": 6.300581089538309,
+            "terminal_stop_validated": true,
+            "success_with_stop": true,
+            "visibility_exposure": [
+              "visible",
+              "needle_occluded"
+            ],
+            "exclusive_visibility_class": "needle_occluded",
+            "visibility_frame_counts": {
+              "clear": 194,
+              "partial_needle": 57,
+              "full_needle": 0,
+              "not_visible": 0,
+              "unknown": 0
+            },
+            "visibility_issue_frame_counts": {
+              "target_not_visible_without_needle_frames": 0,
+              "tip_fully_occluded_frames": 0,
+              "unknown_visibility_frames": 0,
+              "approach_frames": 251
+            }
+          }
+        ],
+        "source": "frame visibility labels from MuJoCo segmentation plus per-waypoint endpoint and stop reports"
+      },
+      "stop_constraint_summary": {
+        "required_at_every_target": true,
+        "requested_targets": 3,
+        "attempted_targets": 3,
+        "not_attempted_targets": 0,
+        "targets_with_validated_stop": 3,
+        "target_stop_failures": 0,
+        "terminal_velocity_A_deg_B_deg_C_mm_per_s": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "terminal_velocity_zero": true,
+        "all_targets_reached_and_stopped": true,
+        "pass": true,
+        "stop_validation_source": "per-target controller stop reports or rest-to-rest planner endpoints; final command velocity must be zero"
+      }
+    }
+  ],
+  "total_frames": 1146
+}

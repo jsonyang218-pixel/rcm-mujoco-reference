@@ -8,6 +8,7 @@ import json
 import math
 import subprocess
 import sys
+from collections import Counter
 from datetime import datetime
 from pathlib import Path
 
@@ -27,7 +28,7 @@ def _episode_seed(base_seed, split_index, episode_index):
 
 def _sample_start_task(reference, seed, target_world_mm=None, minimum_clearance_mm=1.0,
                        max_attempts=10000):
-    """Sample a safe reset pose where the single target is visible in the current frame."""
+    """Sample a safe reset pose where the initial target is visible in the current frame."""
     rng = np.random.default_rng(seed)
     home = np.zeros(3)
     from rcm_visual_servo import VisualServoSensor
@@ -100,9 +101,19 @@ def _collect_episode(target_path, episode_dir, methods, planner_seeds, profile, 
                                    text=True, check=False)
     reports_path = episode_dir/"run_reports.json"
     reports = json.loads(reports_path.read_text(encoding="utf-8")) if reports_path.exists() else []
-    capture_complete = (len(reports) == len(methods)
-                        and (episode_dir/"dataset"/"manifest.json").exists())
+    manifest_path = episode_dir/"dataset"/"manifest.json"
+    manifest = json.loads(manifest_path.read_text(encoding="utf-8")) if manifest_path.exists() else {}
+    expected = Counter((method, seed) for method in methods
+                       for seed in ([None] if method == "visual_servo" else planner_seeds))
+    manifest_episodes = manifest.get("episodes", [])
+    reported = Counter((row.get("method"), row.get("seed")) for row in reports)
+    captured = Counter((row.get("method"), row.get("seed")) for row in manifest_episodes)
+    expected_count = sum(expected.values())
+    capture_complete = (len(reports) == len(manifest_episodes) == expected_count
+                        and reported == captured == expected)
     return {"exit_code": int(completed.returncode), "capture_complete": capture_complete,
+            "expected_runs": expected_count, "reported_runs": len(reports),
+            "manifest_episodes": len(manifest_episodes),
             "log": str(log_path), "reports": reports}
 
 
@@ -163,6 +174,14 @@ def _canonical_sha256(payload):
     return hashlib.sha256(encoded).hexdigest()
 
 
+def _freeze_config(root, config_bytes):
+    """Retain the exact configuration read before scenario generation."""
+    path = root/"collection_config.json"
+    with path.open("xb") as stream:
+        stream.write(config_bytes)
+    return path
+
+
 def _freeze_scenarios(root, scenarios, args, config_path):
     manifest = {
         "schema_version": 1,
@@ -174,6 +193,7 @@ def _freeze_scenarios(root, scenarios, args, config_path):
         "start_pose_sampling": "safe eye clearance and current-frame target/tip visibility; no target inverse kinematics"
                                 if args.randomize_start else "fixed zero reset pose",
         "config_sha256": hashlib.sha256(config_path.read_bytes()).hexdigest(),
+        "config_snapshot": config_path.relative_to(root).as_posix(),
         "scenarios": [{
             key: scenario[key] for key in (
                 "split", "episode_index", "random_seed", "targets", "targets_sha256",
@@ -237,19 +257,19 @@ def main(argv=None):
     if args.strict_visual:
         if args.methods != ["visual_servo"]:
             parser.error("--strict-visual requires --methods visual_servo")
-        if args.targets_per_episode != 1:
-            parser.error("--strict-visual requires exactly one target per episode")
         if args.task_regime != "visual_current_target":
             parser.error("--strict-visual requires --task-regime visual_current_target")
     if args.profile != "precision":
         parser.error("Random posterior-fundus collection requires the precision profile to verify a stop at every target")
-    config = json.loads(args.config.read_text(encoding="utf-8"))
+    config_bytes = args.config.read_bytes()
+    config = json.loads(config_bytes.decode("utf-8"))
     reference = Reference(copy.deepcopy(config))
     split_names = ("train", "validation", "test")
-    root = args.output_dir
+    root = args.output_dir.resolve()
     if root.exists():
         parser.error(f"output directory already exists: {root}")
     root.mkdir(parents=True)
+    frozen_config = _freeze_config(root, config_bytes)
     index = {
         "schema_version": 1,
         "dataset_type": "random_posterior_fundus_navigation",
@@ -267,13 +287,20 @@ def main(argv=None):
         "perception": "simulated RGB + segmentation + OCT-like rendered depth; no synthetic noise; physical-geometry needle occlusion is labeled per frame",
         "sampling_frequency_hz": args.sampling_frequency_hz,
         "task_regime": args.task_regime,
+        "config_snapshot": frozen_config.relative_to(root).as_posix(),
+        "config_sha256": hashlib.sha256(config_bytes).hexdigest(),
         "research_scope": {
             "coordinate_source": "simulation targets, not measured OCT",
             "expert": ("strict current-frame visual-servo controller; target coordinates are reserved for scene setup and independent acceptance"
                        if args.strict_visual else "configured simulation controller; see each experiment_protocol.json"),
-            "multi_target": "one target per episode; no visit ordering is required",
+            "multi_target": ("one target per episode; no visit ordering is required"
+                             if args.targets_per_episode == 1 else
+                             f"one set of {args.targets_per_episode} sequentially presented targets per episode; "
+                             + ("strict visual servo follows the given input order without target inverse kinematics or a precomputed scene route"
+                                if args.strict_visual else
+                                "methods share a script-selected visit order")),
             "image_ablation": "paired input exports only; no policy training or evaluation has been performed",
-            "split_unit": "one independent target and reset pose per episode; pilot, train, validation, and test scenes are frozen before collection",
+            "split_unit": "one independent target set and reset pose per episode; every method and planner seed for that set stays in the same split; pilot, train, validation, and test scenes are frozen before collection",
         },
         "methods": args.methods,
         "strict_visual": args.strict_visual,
@@ -311,7 +338,7 @@ def main(argv=None):
             })
             print(json.dumps({"scenarios_frozen": len(scenarios), "split": split,
                               "episode": episode_index}, ensure_ascii=False), flush=True)
-    frozen_hash = _freeze_scenarios(root, scenarios, args, args.config)
+    frozen_hash = _freeze_scenarios(root, scenarios, args, frozen_config)
     index["scenario_manifest"] = "scenario_manifest.json"
     index["scenario_manifest_sha256"] = frozen_hash
     index["episodes"] = scenarios
@@ -327,7 +354,7 @@ def main(argv=None):
         target_path = root/scenario["targets"]
         episode_dir = root/"episodes"/split/f"episode_{episode_index:06d}"
         result = _collect_episode(
-            target_path, episode_dir, args.methods, args.planner_seeds, args.profile, args.config,
+            target_path, episode_dir, args.methods, args.planner_seeds, args.profile, frozen_config,
             args.sampling_frequency_hz, args.task_regime,
             start_task=scenario["start_task_A_deg_B_deg_C_mm"], strict_visual=args.strict_visual)
         scenario["collection"] = result

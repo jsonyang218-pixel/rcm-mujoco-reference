@@ -57,6 +57,51 @@ def goal_result(reference, solution, duration, computation, status, reason,
             "success_with_stop": bool(passed and terminal_stop_validated)}
 
 
+def perception_record(reference, observation, phase):
+    """Audit only: keep truth, memory and current observations distinguishable."""
+    geometry = observation.get("geometry", {})
+    tracking = observation.get("tracking", {})
+    target = tracking.get("used_target_world_mm", geometry.get("target_world_mm"))
+    tip = geometry.get("tip_world_mm")
+    estimated = tracking.get("estimated_position_error_um")
+    if estimated is None and target is not None and tip is not None:
+        estimated = float(np.linalg.norm(np.asarray(target)-tip)*1000.)
+    observed = (observation.get("target_pixel") is not None
+                and geometry.get("target_world_mm") is not None)
+    return {
+        "target_source": tracking.get("target_source", "observed" if observed else "unavailable"),
+        "tip_source": geometry.get("tip_quality", {}).get("source", "unavailable"),
+        "controller_state": tracking.get("controller_state", "model_"+phase),
+        "cached_target_age_s": tracking.get("cached_target_age_s"),
+        "estimated_position_error_um": estimated,
+        "true_position_error_um": float(reference.metrics()["tip_target_error_um"]),
+        "target_observed": bool(tracking.get("target_observed", observed)),
+        "control_frame_index": observation.get("experiment_frame_index"),
+        "occlusion_event_id": observation.get("occlusion_intervention", {}).get("event_id") or "unknown",
+    }
+
+
+def guard_scene_goal_inverse(reference):
+    """Fail a strict run if control asks for a privileged scene-goal inverse.
+
+    Forward kinematics and measured-point actuation Jacobians remain available.
+    Scene construction precedes this guard; truth metrics stay evaluation-only.
+    """
+    nominal = reference.nominal
+
+    class ForwardOnlyNominal:
+        def __getattr__(self, name):
+            if name == "inverse":
+                raise RuntimeError("SCENE_GOAL_INVERSE_FORBIDDEN_IN_STRICT_VISUAL_CONTROL")
+            return getattr(nominal, name)
+
+    def forbidden_target_task(*args, **kwargs):
+        raise RuntimeError("SCENE_TARGET_TASK_FORBIDDEN_IN_STRICT_VISUAL_CONTROL")
+
+    reference.nominal = ForwardOnlyNominal()
+    reference.target_task = forbidden_target_task
+
+
 def run_visual(reference, solutions, directory, writer, strict_visual=False):
     frames, results, details = [], [], []
     elapsed, computation = 0., 0.
@@ -65,13 +110,32 @@ def run_visual(reference, solutions, directory, writer, strict_visual=False):
     pending = None
     dt = float(reference.config["navigation"]["visual_servo"]["sample_period_s"])
     settings = navigation_settings(reference)
+    servo_settings = settings.get("visual_servo", {})
+    geometry_feedback = servo_settings.get("position_feedback", "geometry") == "geometry"
+    feature_calibration = bool(not geometry_feedback and
+                               servo_settings.get("use_target_pose_calibration", True))
     # Strict visual collection does not construct an analytic retract/transfer
-    # trajectory from the target pose. The controller receives only current
-    # camera observations; kinematics are retained for independent validation.
+    # trajectory from the scene target pose. Current camera measurements drive
+    # the error; fixed calibration and the actuation Jacobian remain available.
     policy = None if strict_visual else settings.get("fundus_transition")
+    fixture = None
+    if reference.config.get("reference_scene", {}).get("occlusion_fixture", {}).get("enabled", False):
+        from rcm_occlusion_fixture import PhysicalOcclusionFixture
+        fixture = PhysicalOcclusionFixture(reference)
+    if strict_visual:
+        from rcm_multitarget_visual import run_strict_visual
+        strict_settings = reference.config["navigation"]["strict_visual_navigation"]
+        guard_scene_goal_inverse(reference)
+        return run_strict_visual(reference, solutions, directory, writer, fixture=fixture,
+                                 retract_mm=strict_settings["retract_mm"],
+                                 minimum_transfer_clearance_mm=strict_settings["minimum_transfer_clearance_mm"])
     transition_details = []
     for waypoint_index, solution in enumerate(solutions):
         reference.set_target_world(solution["requested_world_mm"])
+        if fixture is not None:
+            fixture.hide()
+        print(json.dumps({"waypoint": solution["id"], "event": "begin",
+                          "dataset_frames": len(writer.records)}, ensure_ascii=False), flush=True)
         retreat_duration = 0.
         if policy:
             if np.max(np.abs(velocity)) > 1e-12:
@@ -104,7 +168,8 @@ def run_visual(reference, solutions, directory, writer, strict_visual=False):
                             observation = sensor.observe()
                             visibility = sensor.visibility_metrics(observation["segmentation"])
                             writer.add(elapsed+t, q, states[sample_index+1], solution["id"],
-                                       observation["rgb"], phase=phase_name, visibility=visibility)
+                                       observation["rgb"], phase=phase_name, visibility=visibility,
+                                       perception=perception_record(reference, observation, phase_name))
                     scale_si = np.array([math.pi/180, math.pi/180, .001])
                     max_velocity = np.maximum(max_velocity, motion.speed*np.abs(motion.delta)*scale_si)
                     max_acceleration = np.maximum(max_acceleration, motion.acceleration*np.abs(motion.delta)*scale_si)
@@ -141,6 +206,10 @@ def run_visual(reference, solutions, directory, writer, strict_visual=False):
                 reference, output_dir=directory/solution["id"]/phase_label,
                 initial_velocity=velocity, command_validator=validator,
                 control_axes=control_axes, completion_axes=completion_axes)
+            controller.sensor.observation_time_origin_s = phase_elapsed
+            if fixture is not None:
+                controller.observation_hook = lambda iteration, state: fixture.update(
+                    solution["id"], phase_label, iteration)
 
             def capture(iteration, observation, phase_label=phase_label, phase_elapsed=phase_elapsed):
                 nonlocal pending
@@ -148,14 +217,18 @@ def run_visual(reference, solutions, directory, writer, strict_visual=False):
                 visibility = controller.sensor.visibility_metrics(observation["segmentation"])
                 if pending is not None:
                     writer.add(pending[0], pending[1], q, solution["id"], pending[2], phase=pending[3],
-                               visibility=pending[4])
+                               visibility=pending[4], perception=pending[5])
                 raw_time = phase_elapsed+iteration*dt
                 # The first observation of a new controller phase shares the
                 # previous phase's terminal instant.  Shift only the pending
                 # dataset timestamp by machine epsilon so each action remains
                 # strictly ordered without changing the simulation time.
                 record_time = max(raw_time, writer.records[-1]["timestamp"]+1e-9) if writer.records else raw_time
-                pending = (record_time, q, observation["rgb"].copy(), phase_label, visibility)
+                pending = (record_time, q, observation["rgb"].copy(), phase_label, visibility,
+                           perception_record(reference, observation, phase_label))
+                if iteration % 100 == 0:
+                    print(json.dumps({"waypoint": solution["id"], "iteration": iteration,
+                                      "perception": pending[5]}, ensure_ascii=False), flush=True)
 
             controller.iteration_callback = capture
             started = time.perf_counter()
@@ -180,7 +253,7 @@ def run_visual(reference, solutions, directory, writer, strict_visual=False):
             if controller.rows and not np.allclose(final_q, frames[-1]["q"], rtol=0, atol=1e-10):
                 if pending is not None:
                     writer.add(pending[0], pending[1], final_q, solution["id"], pending[2], phase=pending[3],
-                               visibility=pending[4])
+                               visibility=pending[4], perception=pending[5])
                     pending = None
                 phase_duration += dt
                 append_frame(frames, phase_elapsed+phase_duration, final_q, solution["id"], phase_label)
@@ -205,7 +278,7 @@ def run_visual(reference, solutions, directory, writer, strict_visual=False):
                                    writer.records[-1]["timestamp"] + 1e-9
                                    if writer.records else float(pending[0]))
                 writer.add(pending_time, pending[1], task_user_units(q), solution["id"],
-                           pending[2], phase=pending[3], visibility=pending[4])
+                           pending[2], phase=pending[3], visibility=pending[4], perception=pending[5])
                 pending = None
             acceleration = (np.asarray(settings["max_acceleration_A_deg_B_deg_C_mm_per_s2"], dtype=float)
                             * np.array([math.pi/180, math.pi/180, .001]))
@@ -232,7 +305,8 @@ def run_visual(reference, solutions, directory, writer, strict_visual=False):
                                       writer.records[-1]["timestamp"] + 1e-9
                                       if writer.records else float(elapsed))
                     writer.add(record_time, q_user, next_user, solution["id"], observation["rgb"],
-                               phase="failure_brake", visibility=visibility)
+                               phase="failure_brake", visibility=visibility,
+                               perception=perception_record(reference, observation, "failure_brake"))
                     elapsed += dt
                     append_frame(frames, elapsed, task_user_units(candidate), solution["id"], "failure_brake")
                     q, velocity = candidate, next_velocity
@@ -249,6 +323,8 @@ def run_visual(reference, solutions, directory, writer, strict_visual=False):
                                    report.get("terminal_stop_validated", False)))
         results[-1]["failure_hold_validated"] = failure_hold_validated
         results[-1]["failure_hold_steps"] = failure_hold_steps
+        print(json.dumps({"waypoint": solution["id"], "event": "end", "result": results[-1]},
+                         ensure_ascii=False), flush=True)
         if results[-1]["result"] != "PASS":
             break
     if pending is not None:
@@ -258,7 +334,7 @@ def run_visual(reference, solutions, directory, writer, strict_visual=False):
         terminal_time = max(float(pending[0]),
                             (writer.records[-1]["timestamp"] + dt) if writer.records else float(pending[0]))
         writer.add(terminal_time, pending[1], pending[1], results[-1]["waypoint_id"], pending[2], terminal=True,
-                   phase="hold", visibility=pending[4])
+                   phase="hold", visibility=pending[4], perception=pending[5])
     else:
         sensor = VisualServoSensor(reference)
         try:
@@ -267,19 +343,25 @@ def run_visual(reference, solutions, directory, writer, strict_visual=False):
             observation = sensor.observe()
             visibility = sensor.visibility_metrics(observation["segmentation"])
             writer.add(elapsed, q, q, solutions[len(results)-1]["id"], observation["rgb"], terminal=True,
-                       phase="hold", visibility=visibility)
+                       phase="hold", visibility=visibility,
+                       perception=perception_record(reference, observation, "hold"))
         finally:
             sensor.close()
+    if fixture is not None:
+        fixture.hide()
     scale = np.array([180/math.pi, 180/math.pi, 1000.])
     return frames, results, {"algorithm_wall_s": computation,
         "execution_mode": ("strict_current_frame_visual_servo" if strict_visual else
                            "hybrid_scene_transfer_and_visual_depth_approach" if policy else "calibrated_visual_servo"),
-        "known_target_pose_used_for_feature_calibration": not strict_visual,
+        "known_target_pose_used_for_feature_calibration": feature_calibration,
+        "occlusion_handling": servo_settings.get("occlusion_handling", "stop"),
+        "controlled_occlusion_fixture": None if fixture is None else fixture.audit,
         "ground_truth_used_for_fundus_transfer": bool(policy),
-        "visual_feedback_scope": ("current-frame image/depth feedback throughout; no target-pose path or analytic transfer"
+        "visual_feedback_scope": ("current-frame RGB-D feedback throughout; no target-pose path or analytic transfer"
                                   if strict_visual else
                                   "C-only final approach; retract/transfer are analytic trajectories with RGB recorded but not used as feedback"
-                                  if policy else "calibrated image/depth feedback"),
+                                  if policy else
+                                  "calibrated visible-geometry 3D feedback" if geometry_feedback else "legacy image/depth feedback"),
         "eye_containment_guard_enabled": bool(strict_visual),
         "max_velocity": (max_velocity*scale).tolist(),
         "max_acceleration": (max_acceleration*scale).tolist(),
@@ -403,7 +485,8 @@ def evaluate(reference, frames, solutions, directory):
         "rcm_drift_um", "needle_axis_rcm_distance_um", "fk_agreement_um",
         "upper_link_closure_um", "lower_link_closure_um")}
     outside, proximal = 0, 0.
-    policy = navigation_settings(reference).get("fundus_transition")
+    navigation = navigation_settings(reference)
+    policy = navigation.get("fundus_transition") or navigation.get("strict_visual_navigation")
     transition_violations = 0
     minimum_transfer_clearance = math.inf
 
@@ -423,7 +506,7 @@ def evaluate(reference, frames, solutions, directory):
         outside += int(not geometry["tip_inside_eye"])
         proximal = max(proximal, geometry["proximal_centerline_inside_mm"])
         clearance = clearance_lower_bound_mm(reference, q)
-        if policy and phase == "transfer":
+        if policy and phase in ("transfer", "visual_align"):
             minimum_transfer_clearance = min(minimum_transfer_clearance, clearance)
             transition_violations += int(clearance < policy["minimum_transfer_clearance_mm"]-1e-8)
         rows.append({"time_s": timestamp, "waypoint_id": waypoint, "phase": phase,
@@ -444,7 +527,7 @@ def evaluate(reference, frames, solutions, directory):
         if policy:
             transition_violations += int(not no_surface_slide_edge(
                 reference, left["q"], right["q"], policy["minimum_transfer_clearance_mm"]))
-            if left["phase"] in ("retract", "approach"):
+            if left["phase"] in ("retract", "approach", "visual_retract", "visual_approach"):
                 transition_violations += int(np.max(np.abs(right["q"][:2]-left["q"][:2])) > 1e-9)
         for i in range(1, count+1):
             fraction = i/count
@@ -492,6 +575,9 @@ def summarize_stop_constraints(waypoints, method_info, requested_target_count):
 def write_comparison(directory, reports, solutions, order_report):
     protocol = json.loads((directory/"experiment_protocol.json").read_text(encoding="utf-8"))
     precision = protocol["profile"] == "precision"
+    geometry_feedback = protocol.get("visual_servo_position_feedback", "image_depth") == "geometry"
+    strict_visual = protocol.get("guidance_mode") in (
+        "strict_current_frame_visual_servo", "strict_visual_multitarget")
     aggregate = []
     for method in dict.fromkeys(report["method"] for report in reports):
         trials = [r for r in reports if r["method"] == method]
@@ -522,11 +608,12 @@ def write_comparison(directory, reports, solutions, order_report):
             waypoint_rows.append({"method": report["method"], "seed": report["seed"],
                                   "episode_index": report["episode_index"], **row})
     write_csv(directory/"waypoint_results.csv", waypoint_rows)
-    lines = [f"# {len(solutions)} 个眼底目标访问与导航对比", "", f"输入为 {len(solutions)} 个仿真目标；从零位出发，访问全部目标后结束，不回起点。目标逐个呈现，顺序由运行脚本确定后共享给各方法。", "",
-              "脚本选择并由各方法共享的访问顺序："+(" → ".join(order_report["selected_order"]) or "未生成：视觉建图不完整，机器人未运动"), "",
-             ("顺序代价：关节限速/限加速度下，同步梯形速度轨迹的预计运动时间之和。" if precision else "顺序代价：关节限速/限加速度下，五次插值的预计运动时间之和。")+
+    lines = [f"# {len(solutions)} 个眼底目标访问与导航对比", "", f"输入为 {len(solutions)} 个仿真目标；从记录起点 {protocol.get('start_task_A_deg_B_deg_C_mm', [0., 0., 0.])} 出发，访问全部目标后结束，不回起点。目标逐个呈现。", "",
+              ("给定输入顺序：" if strict_visual else "脚本选择并由各方法共享的访问顺序：")+(" → ".join(order_report["selected_order"]) or "未生成：视觉建图不完整，机器人未运动"), "",
+             ("严格视觉按给定顺序访问，不枚举目标逆解路径；回撤、对准、接近目标均由视觉测量构造。" if strict_visual else
+              ("顺序代价：关节限速/限加速度下，同步梯形速度轨迹的预计运动时间之和。" if precision else "顺序代价：关节限速/限加速度下，五次插值的预计运动时间之和。")+
               (f"枚举全部 {math.factorial(len(solutions))} 种顺序，三种方法共享选择结果。它不是对视觉/RRT/PRM 实际路径时间的全局最优证明."
-               if len(solutions) <= 8 else "目标数超过 8 时使用确定性的最近目标启发式排序，三种方法共享选择结果。"), "",
+               if len(solutions) <= 8 else "目标数超过 8 时使用确定性的最近目标启发式排序，三种方法共享选择结果。")), "",
              "| 路径点 | 机器人坐标 (mm) |", "|---|---|"]
     lines += [f"| {s['id']} | {s['requested_robot_mm']} |" for s in solutions]
     lines += ["", "| 候选顺序 | 预计时间 (s) |", "|---|---:|"]
@@ -545,13 +632,14 @@ def write_comparison(directory, reports, solutions, order_report):
         lines.append(f"| {row['method']} | {row['seed']} | {row['waypoint_id']} | {row['result']} | {error} | {row['motion_time_s']:.4f} |")
     lines += ["", "## 比较口径", "",
               f"- 所有方法使用相同初始姿态、{len(solutions)} 个目标、访问顺序和 A/B/C 速度/加速度参数。",
-              "- 视觉伺服使用现有图像/深度控制，目标切换时传递上一段指令速度；每个目标仍使用已知目标姿态进行特征标定。",
+              ("- 几何视觉伺服根据当前RGB-D和固定相机/RCM/针具尺寸重建物理针尖，目标切换时传递上一段指令速度；不使用已知目标姿态进行特征标定。"
+               if geometry_feedback else "- 历史image_depth视觉伺服使用图像/深度特征控制；是否进行目标姿态特征标定以该次协议的先验开关为准。"),
               "- RRT 与 PRM 是实际随机采样规划；固定随机种子。PRM 一张路线图复用于全部转移段，建图开销仅计一次。",
               "- RRT/PRM 使用连续关节坐标和精确模型目标，未施加编码器量化与感知噪声；其接近零的终点误差不代表实机精度优于视觉伺服。",
               "- 采样范围是围绕起点/目标加边距的算法搜索域，不是新设定的设备限位。检查连杆有效性及针尖位于参考眼球内；没有额外障碍物，也没有针杆体积/组织接触检查。",
               ("- RRT/PRM 先做逐边有效性检查的路径简化，再使用同步梯形速度轨迹。每个指定目标均停稳；无法简化的转角保留内部停靠。是否能直连由实际眼球约束决定，详见 paths.json。速度连续、加速度有界，未限制 jerk。"
                if precision else "- 原始 RRT/PRM 路径没有快捷化或平滑优化，每条图边使用端点静止的五次插值。"),
-              "- 算法时间：视觉包含渲染、特征标定、雅可比计算及采集图像写盘；RRT/PRM 包含搜索/建图但不含之后的 RGB 采集。它们含义不同，不能直接当作实时控制性能排名。",
+              "- 算法时间：视觉包含渲染、测量拟合、控制计算及采集图像写盘；历史image_depth模式还可能包含目标姿态特征标定。RRT/PRM 包含搜索/建图但不含之后的 RGB 采集，不能直接当作实时控制性能排名。",
               f"- 数据集目标采样频率为 {1./protocol['dataset_sampling_period_s']:g} Hz；规划边界和阶段切换可能产生更短的事件帧间隔，精确时间戳保存在 JSONL/NPZ。几何验证对命令路径按不超过 0.02 s 加密。",
               ("- 所有指定目标都要求停止。视觉误差连续三帧达标且指令速度为零，三维位置另以 20 μm 验收。速率指标为视觉离散指令和规划轨迹解析极值；MuJoCo 使用 mj_forward，验证的是指令制动，不是实机响应。"
                if precision else "- 速率指标：视觉为离散指令速度/加速度；规划为五次轨迹解析极值。视觉最终保持姿态未验证减速停止。"),
@@ -584,7 +672,17 @@ def write_comparison(directory, reports, solutions, order_report):
                      f"{summary.get('unknown_frames', 0)} | {states.get('clear', 0)} | "
                      f"{states.get('partial_needle', 0)} | {states.get('full_needle', 0)} | "
                      f"{states.get('not_visible', 0)} | {maximum_text} |")
-    if protocol.get("planner_feedback") == "vision":
+    if strict_visual:
+        start, end = lines.index("## 比较口径")+2, lines.index("## 数据集")-1
+        lines[start:end] = [
+            "- 严格RGB-D视觉按输入目标顺序执行；无静止目标建图、无目标逆解路径、无RRT/PRM路线。",
+            "- scene目标坐标仅布置标记、绘图和独立验收；控制误差来自当前针尖和当前/有界历史目标测量。",
+            "- 回撤目标由实际测得针尖沿观测针轴后退构造；固定C的A/B对准使用测量目标方向，固定A/B的C接近使用测量距离。",
+            "- 固定相机/RCM/针具尺寸、执行雅可比、限速限加速度和眼壁安全检查仍可用；不是RGB-only实机系统。",
+            f"- 遮挡模式：{protocol.get('occlusion_handling', 'stop')}；记忆模式仅假设静态已注册目标，当前针尖仍须观测有效。",
+            "- 各阶段连续停稳；仅最终接近按独立真值<20μm验收到达，回撤/对准的中间测量收敛不当作目标到达。",
+        ]
+    elif protocol.get("planner_feedback") == "vision":
         start, end = lines.index("## 比较口径")+2, lines.index("## 数据集")-1
         lines[start:end] = [
             "- RRT/PRM 默认使用视觉导航：从 RGB、仿真分割和深度重建标靶中心；顺序与规划目标来自测量，不读取目标三维真值。",
@@ -592,7 +690,8 @@ def write_comparison(directory, reports, solutions, order_report):
             "- 任一目标不可见或深度拟合无效，整体建图失败，不生成访问顺序、不执行规划；不能用输入坐标补齐缺失测量。",
             "- 建图成功时使用真实 RRT/PRM 搜索；执行过程中每条运动指令依据视觉针尖位置修正。目标丢失立即终止并保持，目标明显移动要求重新建图。",
             "- 对视觉 RRT/PRM，运动学用于视觉测量到轴位置的转换及机械/眼壁约束；目标与针尖真值用于布置场景、绘图和独立验收。",
-            "- 直接视觉伺服仍是原有标定基线，使用已知目标姿态标定特征；不宣称三种控制器拥有完全相同的先验信息。",
+            ("- 默认几何视觉伺服使用固定相机、RCM与针具尺寸标定，不做目标姿态特征校准；眼底解析回撤/转移仍有目标先验，不宣称三种控制器拥有完全相同的信息。"
+             if geometry_feedback else "- 历史image_depth视觉伺服保留可选的目标姿态特征标定；具体先验以该次协议开关为准，不宣称三种控制器拥有完全相同的信息。"),
             "- 保留回撤、离壁转向、固定方向接近约束。视觉跟踪速率按实际指令差分统计；遮挡后的立即保持不等于已验证实机制动。",
             "- 算法墙钟时间包含在线视觉处理/图像保存；与旧模型规划时间不能直接排名。未完成不计入到达精度或完整导航耗时。",
             "- 默认眼底任务的建图检查与各目标结果见 visual_target_map.json；成功建图后的逐步反馈见各方法目录 visual_feedback.json。", ""]
@@ -620,8 +719,13 @@ def write_comparison(directory, reports, solutions, order_report):
                "任务文本不含目标坐标、目标 ID、访问顺序或随机种子，只要求导航到当前呈现的标靶。"
                if regime == "visual_current_target" else
                "此历史结果未声明策略输入模式，不能自动归入无坐标视觉实验。"), "",
-              "专家和学习策略的信息必须分开：专家使用渲染深度、分割和标定参数；视觉伺服专家还使用已知目标姿态标定特征。",
-              "眼底视觉伺服基线在转移阶段直接根据已知目标轴位置构造离壁姿态，回撤/转移按解析轨迹执行；该阶段 RGB 仅被记录，不参与纠偏或不可见停机，最后的 C 轴接近才是视觉深度闭环。它是混合先验专家，不是全程纯单目导航。",
+              ("专家和学习策略的信息必须分开：几何视觉专家使用渲染深度、分割、固定相机/RCM和针具尺寸；不进行已知目标姿态特征校准。"
+               if geometry_feedback else "专家和学习策略的信息必须分开：image_depth专家使用渲染深度、分割和标定参数，且可按协议开关使用已知目标姿态特征校准。"),
+              ("本次strict-visual使用当前图像/深度反馈，不生成已知目标轴路径或解析回撤/转移；仍依赖标定信息和仿真分割/深度，不是实机RGB-only导航。"
+               if strict_visual else
+               "本次眼底视觉伺服在转移阶段根据已知目标轴位置构造离壁姿态，回撤/转移按解析轨迹执行；该阶段RGB只记录，最后C轴接近才使用视觉反馈，是混合先验流程。"
+               if protocol.get("fundus_transition") else
+               "本次无解析眼底转移策略的视觉接近使用图像/深度反馈；具体测量模式和目标先验以协议记录为准。"),
               "逐个呈现标靶后由脚本选定顺序，所有方法共享；这不证明学习模型能同时识别多个病灶或自主排序。", "",
               "训练输入仅取 `dataset/policy_inputs/*.npz`（RGB 路径、轴状态、任务文本）；路径须解码成像素，不能将文件名当作特征。",
               "`dataset/policy_inputs_no_image/*.npz` 只保留状态和任务；`dataset/action_labels/*.npz` 是逐行对齐的动作监督。完整 `dataset/data/`、坐标文件、phase、visibility、时间/帧索引及访问顺序仅供审计，不得直接拼入策略输入。", "",
@@ -642,7 +746,7 @@ def main():
     parser.add_argument("--start-task", type=float, nargs=3, metavar=("A_DEG", "B_DEG", "C_MM"),
                         help="Optional episode reset pose in task units (degrees, degrees, millimeters)")
     parser.add_argument("--strict-visual", action="store_true",
-                        help="Use current-frame visual servo only; disable target-pose calibration and equation-generated fundus transfer")
+                        help="Use measured RGB-D targets/tips for multi-target retract, align and approach; no scene-goal path or inverse-kinematic goal")
     parser.add_argument("--sampling-frequency-hz", type=float, default=20.0,
                         help="Nominal RGB/state/action dataset rate (default: 20 Hz)")
     parser.add_argument("--task-regime", choices=TASK_REGIMES,
@@ -666,13 +770,17 @@ def main():
     target_region = json.loads(args.targets.read_text(encoding="utf-8")).get("target_region")
     if target_region and args.profile != "precision":
         parser.error("Fundus surface navigation requires precision profile with waypoint stops")
-    if args.strict_visual and (len(targets) != 1 or not target_region):
-        parser.error("--strict-visual currently requires exactly one target on the fundus surface")
+    if args.strict_visual and not target_region:
+        parser.error("--strict-visual requires targets on the fundus surface")
     if any(not math.isfinite(x) or x <= 0 for x in (args.retract_mm, args.transfer_clearance_mm)):
         parser.error("Retraction and transfer clearance must be finite and positive")
     if len(targets) < 1:
         parser.error("Provide at least one unordered target point")
     config = json.loads(args.config.read_text(encoding="utf-8"))
+    occlusion_handling = config.get("navigation", {}).get("visual_servo", {}).get("occlusion_handling", "stop")
+    fixture_enabled = config.get("reference_scene", {}).get("occlusion_fixture", {}).get("enabled", False)
+    if fixture_enabled and args.methods != ["visual_servo"]:
+        parser.error("Controlled occlusion fixtures currently require --methods visual_servo")
     sample_period_s = 1.0/args.sampling_frequency_hz
     config["navigation"]["sample_period_s"] = sample_period_s
     config["navigation"]["visual_servo"]["sample_period_s"] = sample_period_s
@@ -683,18 +791,28 @@ def main():
             "scope": "simulation tip clearance; not validated tissue/shaft clearance or clinical withdrawal distance",
         }
     if args.strict_visual:
-        # The physical 0.02 mm apex marker is sub-pixel at 640x480 and
-        # disappears at the terminal pose.  Use a calibrated 2x RGB-D render
-        # for this simulation profile so the marker remains measurable.
+        config["navigation"].pop("fundus_transition", None)
+        config["navigation"]["strict_visual_navigation"] = {
+            "retract_mm": args.retract_mm,
+            "minimum_transfer_clearance_mm": args.transfer_clearance_mm,
+            "policy": "measured-tip axial retract, measured-target angular alignment, measured-target axial approach",
+            "scope": "RGB-D feedback goals; kinematics are actuation/safety only; no scene-goal joint trajectory",
+        }
+        # Require sufficient actual RGB-D sampling without doubling an already
+        # prepared precision camera beyond the model's offscreen framebuffer.
         camera = config["reference_scene"]["eye_camera"]
-        camera["resolution_px"] = [2*int(value) for value in camera["resolution_px"]]
+        width, height = camera["resolution_px"]
+        scale = max(1., 1280/width, 960/height)
+        camera["resolution_px"] = [int(round(width*scale)), int(round(height*scale))]
     config["navigation"]["visual_servo"].update(require_settled=True, settle_frames=3)
-    config["navigation"]["visual_servo"]["use_target_pose_calibration"] = not args.strict_visual
+    config["navigation"]["visual_servo"]["use_target_pose_calibration"] = bool(
+        config["navigation"]["visual_servo"].get("position_feedback", "geometry") != "geometry"
+        and not args.strict_visual)
     if args.profile == "precision":
-        config["navigation"].update(endpoint_tolerance_um=150., waypoint_trajectory="trapezoid")
+        config["navigation"].update(endpoint_tolerance_um=20., waypoint_trajectory="trapezoid")
         config["navigation"]["visual_servo"].update(
             require_settled=True, settle_frames=3, pixel_tolerance=.5,
-            depth_tolerance_mm=.003, step_gain=.3, endpoint_tolerance_um=150.)
+            depth_tolerance_mm=.003, step_gain=.3, endpoint_tolerance_um=20.)
     reference = Reference(copy.deepcopy(config))
     if args.start_task is not None:
         reference.set_task(task_si_units(args.start_task))
@@ -731,9 +849,9 @@ def main():
         order_report = {
             "selected_order": [solution["id"] for solution in solutions],
             "input_order": [solution["id"] for solution in solutions],
-            "candidates": [], "result": "PASS", "reason": "SINGLE_TARGET_NO_ROUTE_PLANNING",
-            "target_source": "one currently rendered target; its task pose is excluded from visual control",
-            "scope": "No target-to-joint route is generated; the current image directly drives visual servo commands",
+            "candidates": [], "result": "PASS", "reason": "GIVEN_TARGET_ORDER_NO_SCENE_ROUTE_PLANNING",
+            "target_source": "sequentially rendered targets; scene task poses are excluded from visual control",
+            "scope": "Input visit order; retract, align and approach goals derive from measured geometry, without scene target inverse kinematics",
         }
         measured_solutions, survey = [], []
     elif args.planner_feedback == "vision":
@@ -764,23 +882,45 @@ def main():
         write_json(args.output_dir/"visual_target_map.json", {"result": "FAIL" if survey_failed else "PASS",
                    "observations": survey, "measured_solutions": measured_solutions,
                    "scope": "Sequential stationary RGB-D survey; unknown targets are never filled from scene truth"})
+    servo_settings = config["navigation"]["visual_servo"]
+    geometry_feedback = servo_settings.get("position_feedback", "geometry") == "geometry"
+    feature_calibration = bool(not geometry_feedback and
+                               servo_settings.get("use_target_pose_calibration", True))
+    feedback_kind = "visible-geometry 3D" if geometry_feedback else "legacy image-plane/depth"
+    settle_frames = int(servo_settings.get("settle_frames", 3))
     write_json(args.output_dir/"experiment_protocol.json", {
         "profile": args.profile, "endpoint_tolerance_um": settings["endpoint_tolerance_um"],
+        "occlusion_handling": occlusion_handling,
+        "static_target_memory_assumption": ("fixed camera and static registered target during bounded occlusion; current measured tip remains required"
+                                            if occlusion_handling == "static_memory_reobserve" else None),
+        "occlusion_fixture": config.get("reference_scene", {}).get("occlusion_fixture"),
+        "visual_servo_position_feedback": servo_settings.get("position_feedback", "geometry"),
+        "depth_interface": {
+            "source": "mujoco_ideal_registered_oct_simulation", "is_simulation": True,
+            "raw_oct_available": False, "realtime_validated": False,
+            "depth_unit": "m", "depth_convention": "positive_camera_optical_axis_z_not_ray_range",
+            "clock_domain": "simulation", "nominal_rate_is_wall_clock_guarantee": False,
+            "raw_depth_maps_exported_in_policy_dataset": False,
+        },
         "task_regime": args.task_regime,
         "task_regime_scope": ("Registered robot-frame target-coordinate prior is part of task text; values are simulated inputs, not measured OCT"
                               if args.task_regime == "registered_coordinate_prior"
                               else "No goal coordinates or goal IDs in policy task text; one current target is presented at a time"),
         "required_stop_at_every_waypoint": True,
-        "guidance_mode": ("strict_current_frame_visual_servo" if args.strict_visual else
+        "guidance_mode": ("strict_visual_multitarget" if args.strict_visual else
                           "visual_feedback" if args.planner_feedback == "vision" else "model_guidance"),
         "equation_navigation_used_for_control": False if args.strict_visual else args.planner_feedback == "model",
+        "scene_goal_inverse_runtime_guard": bool(args.strict_visual),
         "strict_visual_control_contract": ({
             "target_detection": "current-frame RGB segmentation and rendered feature depth",
-            "command_generation": "image-plane/depth visual servo with online finite-difference image Jacobian",
+            "command_generation": ("measured visible-geometry 3D error with a normalized coupled actuation Jacobian"
+                                   if geometry_feedback else "legacy image-plane/depth visual servo with online finite-difference image Jacobian"),
             "disabled": ["target inverse-kinematic goal for controller", "target-pose feature calibration",
-                         "analytic retract/transfer path", "RRT/PRM route planning", "cached target after full occlusion"],
+                         "scene-goal analytic retract/transfer path", "RRT/PRM route planning", "scene truth fallback"],
             "retained": ["joint limits", "velocity/acceleration limits", "eye-containment safety guard",
-                         "independent post-run geometric acceptance"],
+                         "fixed camera/RCM/needle calibration", "actuation Jacobian", "independent post-run geometric acceptance"],
+            "temporal_target_memory": ("bounded registered measurements from earlier images; static target assumption; never a replacement for current tip measurement"
+                                       if occlusion_handling == "static_memory_reobserve" else "disabled"),
         } if args.strict_visual else None),
         "target_pose_usage": ("target world coordinates place the virtual marker and support independent post-run acceptance only; target inverse kinematics are not supplied to the visual controller or used to generate motion commands"
                               if args.strict_visual else "see method-specific privileges below"),
@@ -790,7 +930,8 @@ def main():
         "start_task_A_deg_B_deg_C_mm": list(initial),
         "scene_reset_scope": "fresh Reference/MuJoCo scene for each method run; target marker and robot task are reset to this episode's scenario",
         "stop_constraint": {
-            "visual_controller": "visual error within configured tolerance for three consecutive observations with zero commanded velocity",
+            "visual_controller": (f"measured controllable 3D error within {float(servo_settings.get('position_tolerance_um', 8.)):g} um for {settle_frames} consecutive zero-command-velocity observations"
+                                  if geometry_feedback else f"legacy pixel/depth error within configured tolerances for {settle_frames} consecutive zero-command-velocity observations"),
             "sampled_planners": "rest-to-rest trajectory with zero endpoint velocity at every target",
             "independent_acceptance": "all targets reached, per-target stop reports valid, final command velocity is zero",
             "scope": "kinematic command validation; no hardware braking or tissue-contact validation",
@@ -799,17 +940,17 @@ def main():
         "dataset_sampling_frequency_hz": args.sampling_frequency_hz,
         "fundus_transition": config["navigation"].get("fundus_transition"),
         "planner_feedback": args.planner_feedback,
-        "target_mapping_complete": not survey_failed,
-        "perception": "simulated RGB + depth + marker segmentation; calibrated fixed camera and marker dimensions",
+        "target_mapping_complete": None if args.strict_visual else not survey_failed,
+        "perception": "simulated RGB + depth + geometry segmentation; calibrated fixed camera, RCM, needle and marker dimensions",
         "expert_perception_privileges": {
-            "rgbd_mapping": args.planner_feedback == "vision",
+            "rgbd_mapping": args.planner_feedback == "vision" and not args.strict_visual,
             "segmentation_and_rendered_depth": args.planner_feedback == "vision" or "visual_servo" in args.methods,
-            "visual_servo_known_target_pose_feature_calibration": "visual_servo" in args.methods and not args.strict_visual,
+            "visual_servo_known_target_pose_feature_calibration": "visual_servo" in args.methods and feature_calibration,
             "visual_servo_fundus_transfer_uses_scene_goal_pose": bool(target_region and "visual_servo" in args.methods and not args.strict_visual),
-            "visual_servo_fundus_feedback_scope": ("current-frame RGB/segmentation/depth feedback throughout; no equation-generated target path or analytic transfer"
+            "visual_servo_fundus_feedback_scope": (f"current-frame {feedback_kind} feedback throughout; no equation-generated target path or analytic transfer"
                                                     if args.strict_visual else
-                                                    "analytic retract/transfer; RGB recorded but not used for feedback or visibility stop; final C-only visual-depth approach"
-                                                    if target_region else "visual image/depth feedback throughout the target approach"),
+                                                    f"analytic retract/transfer; RGB recorded but not used for feedback or visibility stop; final C-only {feedback_kind} approach"
+                                                    if target_region else f"current-frame {feedback_kind} feedback throughout the target approach"),
             "model_planner_scene_target_coordinates": args.planner_feedback == "model" and any(m in args.methods for m in ("RRT", "PRM")),
             "policy_exclusion": "expert depth, segmentation, feature calibration and scene poses are not policy input fields",
             "multi_target_scope": "targets are presented sequentially; all methods share one script-selected order; this does not demonstrate a learned policy detecting or ordering multiple lesions",
@@ -825,7 +966,8 @@ def main():
     sources = ["run_waypoint_comparison.py", "random_fundus_dataset.py", "verify_waypoint_comparison.py",
                "rcm_sampling_planners.py", "rcm_waypoint_dataset.py",
                "rcm_visual_servo.py", "rcm_reference.py", "rcm_recovered_model.py", "rcm_navigation.py", "rcm_fundus.py",
-               "rcm_vision_navigation.py"]
+               "rcm_vision_navigation.py", "rcm_visual_geometry.py", "rcm_target_tracking.py",
+               "rcm_occlusion_fixture.py", "rcm_multitarget_visual.py", "rcm_oct.py"]
     write_json(args.output_dir/"source_sha256.json", {name: hashlib.sha256((HERE/name).read_bytes()).hexdigest() for name in sources})
     task = make_policy_task(args.task_regime, solutions, bool(target_region))
     print(json.dumps(order_report, ensure_ascii=False, indent=2), flush=True)

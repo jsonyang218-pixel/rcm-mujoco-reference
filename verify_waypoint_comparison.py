@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import argparse
 import copy
+import csv
 import itertools
 import json
 import math
@@ -22,7 +23,9 @@ from run_waypoint_comparison import summarize_stop_constraints
 from rcm_sampling_planners import PRM, TrapezoidMotion, rrt, select_visit_order, shortcut_path
 from rcm_visual_servo import VisualServoSensor
 from rcm_waypoint_dataset import (NO_IMAGE_INPUT_FIELDS, POLICY_INPUT_FIELDS, TASK_REGIMES,
-                                  EpisodeWriter, make_policy_task, write_manifest)
+                                  PERCEPTION_INTEGER_FIELDS, PERCEPTION_NUMERIC_FIELDS,
+                                  PERCEPTION_STRING_FIELDS, EpisodeWriter, make_policy_task,
+                                  write_manifest)
 
 
 class ObstacleSpace:
@@ -260,8 +263,21 @@ def verify_policy_export_contract():
             writer.add(0., initial, moved, "P1", rgb, phase="visual_servo")
             writer.add(.05, moved, moved, "P1", rgb, terminal=True, phase="hold")
             episode = writer.finish("PASS")
-            write_manifest(root, [episode], [2, 3, 3], .05, regime)
+            manifest = write_manifest(root, [episode], [2, 3, 3], .05, regime)
             assert verify_policy_bundles(root, episode, task, regime, solutions, True) == "PASS"
+            with np.load(root/episode["data"], allow_pickle=False) as audit:
+                assert verify_perception_metadata(audit, writer.records, manifest)
+                corrupted_audit = {name: audit[name].copy() for name in audit.files}
+            corrupted_audit["perception.true_position_error_um"][0] = 1.
+            corrupt_path = temporary_root/f"{regime}_misaligned_audit.npz"
+            np.savez_compressed(corrupt_path, **corrupted_audit)
+            with np.load(corrupt_path, allow_pickle=False) as audit:
+                try:
+                    verify_perception_metadata(audit, writer.records, manifest)
+                except AssertionError:
+                    pass
+                else:
+                    raise AssertionError("Perception audit accepted a JSONL/NPZ row mismatch")
 
             if regime == "visual_current_target":
                 policy_path = root/episode["policy_inputs"]
@@ -279,7 +295,235 @@ def verify_policy_export_contract():
                     raise AssertionError("Visual-only contract accepted a task-text coordinate leak")
     return {"both_task_regimes_exported_and_aligned": "PASS",
             "visual_current_target_rejects_coordinate_leak": "PASS",
-            "exact_policy_fields_and_action_labels": "PASS"}
+            "exact_policy_fields_and_action_labels": "PASS",
+            "perception_metadata_rejects_row_misalignment": "PASS"}
+
+
+def verify_perception_metadata(data, records, manifest, required=False):
+    """Audit provenance is losslessly row-aligned and absent from policy inputs."""
+    names = (*PERCEPTION_STRING_FIELDS, *PERCEPTION_NUMERIC_FIELDS,
+             *PERCEPTION_INTEGER_FIELDS, "target_observed")
+    expected = {f"perception.{name}" for name in names}
+    actual = {name for name in data.files if name.startswith("perception.")}
+    if not actual and not required:
+        assert not any("perception" in record for record in records)
+        return False
+    assert actual == expected, ("Incomplete perception audit fields", actual, expected)
+    assert expected <= set(manifest["fields"])
+    assert "perception.*" in manifest["policy_interface"]["excluded_from_policy_inputs"]
+    count = len(records)
+    for name in names:
+        values = data[f"perception.{name}"]
+        assert values.shape == (count,)
+        if name in PERCEPTION_STRING_FIELDS:
+            assert values.dtype.kind in "US"
+            assert all(isinstance(record["perception"][name], str) for record in records)
+            assert np.array_equal(values, [record["perception"][name] for record in records])
+        elif name in PERCEPTION_NUMERIC_FIELDS:
+            assert values.dtype == np.float64
+            assert np.isfinite(values).all() and np.all((values >= 0.) | (values == -1.))
+            expected_values = []
+            for record in records:
+                value = record["perception"][name]
+                assert value is None or (type(value) in (int, float) and np.isfinite(value) and value >= 0.)
+                expected_values.append(-1. if value is None else value)
+            assert np.array_equal(values, np.asarray(expected_values, dtype=np.float64))
+        elif name in PERCEPTION_INTEGER_FIELDS:
+            assert values.dtype == np.int64 and np.all(values >= -1)
+            expected_values = []
+            for record in records:
+                value = record["perception"][name]
+                assert value is None or (type(value) is int and value >= 0)
+                expected_values.append(-1 if value is None else value)
+            assert np.array_equal(values, expected_values)
+        else:
+            assert values.dtype == np.bool_
+            assert all(type(record["perception"][name]) is bool for record in records)
+            assert np.array_equal(values, [record["perception"][name] for record in records])
+    assert all(set(record["perception"]) == set(names) for record in records)
+    if required:
+        source = data["perception.target_source"]
+        observed = data["perception.target_observed"]
+        assert np.all(np.isin(source, ["observed", "registered_memory", "visual_retraction_waypoint",
+                                      "unavailable", "unknown"]))
+        assert np.all(observed[source == "observed"])
+        assert not observed[np.isin(source, ["registered_memory", "visual_retraction_waypoint", "unavailable"])].any()
+        assert np.all(data["visibility.target_pixels_visible"][observed] > 0)
+        memory = source == "registered_memory"
+        assert np.all(data["perception.cached_target_age_s"][memory] >= 0.)
+        moving = np.any(data["observation.state"] != data["action"], axis=1)
+        tracking_motion = moving & (data["perception.controller_state"] == "tracking")
+        assert not np.isin(data["perception.tip_source"][tracking_motion | memory], ["unknown", "unavailable"]).any()
+        assert np.all(data["perception.true_position_error_um"] >= 0.)
+        assert np.all(data["perception.control_frame_index"] >= 0)
+        for waypoint in dict.fromkeys(data["waypoint_id"].tolist()):
+            frames = data["perception.control_frame_index"][data["waypoint_id"] == waypoint]
+            assert np.array_equal(frames, np.arange(len(frames))), (
+                "Controller observation clock must accumulate across all phases", waypoint, frames)
+    return True
+
+
+def event_windows(fixture_states):
+    """An event may recur for another marker or phase; retain every exposure."""
+    windows = []
+    prior_key, prior_index = None, -2
+    for index, state in enumerate(fixture_states):
+        if not state["active"]:
+            continue
+        key = (state["event_id"], state["waypoint_id"], state["phase"])
+        if key != prior_key or index != prior_index+1:
+            windows.append({"event_id": key[0], "waypoint_id": key[1], "phase": key[2],
+                            "first_frame": index, "last_frame": index})
+        else:
+            windows[-1]["last_frame"] = index
+        prior_key, prior_index = key, index
+    return windows
+
+
+def event_recovery_frames(data, fixture_states):
+    recoveries = []
+    windows = event_windows(fixture_states)
+    for window_index, window in enumerate(windows):
+        last = window["last_frame"]
+        following = next((candidate["first_frame"] for candidate in windows[window_index+1:]
+                          if candidate["waypoint_id"] == window["waypoint_id"]), len(data["timestamp"]))
+        same_marker = data["waypoint_id"] == data["waypoint_id"][last]
+        clock = np.arange(len(same_marker))
+        observed = data["perception.target_observed"] & same_marker & (clock > last) & (clock < following)
+        tracking = observed & (data["perception.controller_state"] == "tracking")
+        reobserved, resumed = np.flatnonzero(observed), np.flatnonzero(tracking)
+        recoveries.append({**window,
+                           "first_reobserved_frame": int(reobserved[0]) if len(reobserved) else None,
+                           "tracking_resumed_frame": int(resumed[0]) if len(resumed) else None})
+    return recoveries
+
+
+def rerender_sample_indices(data, fixture_states):
+    """Cover each visual phase, visibility class, and intervention/recovery edge."""
+    count = len(data["timestamp"])
+    selected = {0, count//2, count-1}
+    phases = data["phase"]
+    for i in range(count):
+        if i == 0 or phases[i] != phases[i-1] or data["waypoint_id"][i] != data["waypoint_id"][i-1]:
+            selected.add(i)
+            if i:
+                selected.add(i-1)
+    for state in np.unique(data["visibility.target_occlusion_state"]):
+        indices = np.flatnonzero(data["visibility.target_occlusion_state"] == state)
+        selected.add(int(indices[len(indices)//2]))
+    for window in event_windows(fixture_states):
+        first, last = window["first_frame"], window["last_frame"]
+        selected.update((first, (first+last)//2, last))
+        if first:
+            selected.add(first-1)
+        if last+1 < count:
+            selected.add(last+1)
+    for recovery in event_recovery_frames(data, fixture_states):
+        selected.update(recovery[key] for key in ("first_reobserved_frame", "tracking_resumed_frame")
+                        if recovery[key] is not None)
+    return sorted(selected)
+
+
+def original_precision_replay_tasks(directory, episode, state, timestamps):
+    """Recover saved actual precision only within the exact exported float32 cell."""
+    method_directory = directory/(episode["method"] if episode["seed"] is None else
+                                  f"{episode['method']}_seed_{episode['seed']}")
+    path = method_directory/"trajectory.csv"
+    if not path.is_file():
+        return {}
+    with path.open(encoding="utf-8-sig", newline="") as handle:
+        rows = list(csv.DictReader(handle))
+    if not rows:
+        return {}
+    original_times = np.asarray([float(row["time_s"]) for row in rows])
+    original_tasks = np.asarray([[float(row[key]) for key in ("A_deg", "B_deg", "C_mm")]
+                                 for row in rows])
+    assert np.isfinite(original_tasks).all() and np.all(np.diff(original_times) >= 0.)
+    recovered = {}
+    for index, timestamp in enumerate(timestamps):
+        insertion = int(np.searchsorted(original_times, timestamp))
+        for candidate in (insertion, insertion-1):
+            if (0 <= candidate < len(rows) and abs(original_times[candidate]-timestamp) <= 1e-7
+                    and np.array_equal(original_tasks[candidate].astype(np.float32), state[index])):
+                recovered[index] = original_tasks[candidate]
+                break
+    return recovered
+
+
+def verify_strict_phases(config, report, episode, data, solutions):
+    """Check phase control/stop contracts and independently audit each arrival."""
+    order = list(solutions)
+    assert episode["visit_order"] == order and report["input_visit_order_preserved"]
+    assert not report["known_target_pose_used_for_feature_calibration"]
+    assert not report["ground_truth_used_for_fundus_transfer"]
+    assert report["fundus_command_guard_enabled"] and report["eye_containment_guard_enabled"]
+    planned = []
+    for index, waypoint in enumerate(order):
+        planned.extend([(waypoint, "visual_align"), (waypoint, "visual_approach")])
+        if index+1 < len(order):
+            planned.append((waypoint, "visual_retract"))
+    details = report["control_details"]
+    actual = [(detail["waypoint_id"], detail["phase"]) for detail in details]
+    assert actual == planned[:len(actual)], ("Strict phase order changed", actual, planned)
+    recorded = [key for key, _ in itertools.groupby(zip(data["waypoint_id"].tolist(),
+                                                       data["phase"].tolist()))]
+    assert recorded == actual, ("Recorded phases do not match executed controller phases", recorded, actual)
+    if episode["result"] == "PASS":
+        assert actual == planned
+    for previous, following in zip(details, details[1:]):
+        assert np.isclose(following["start_s"], previous["start_s"]+previous["duration_s"],
+                          atol=1e-9, rtol=0)
+        if "initial_command_velocity_A_deg_B_deg_C_mm_per_s" in following:
+            assert np.allclose(previous["final_command_velocity_A_deg_B_deg_C_mm_per_s"],
+                               following["initial_command_velocity_A_deg_B_deg_C_mm_per_s"], atol=1e-9, rtol=0)
+    for detail in details:
+        phase = detail["phase"]
+        if detail["result"] == "PASS" or "independent_endpoint_acceptance_required" in detail:
+            assert detail["independent_endpoint_acceptance_required"] == (phase == "visual_approach")
+            assert detail["ground_truth_used_for_post_run_acceptance"] == (phase == "visual_approach")
+            assert not detail["ground_truth_used_for_stop"]
+            assert not detail["known_target_pose_used_for_feature_calibration"]
+            assert detail["control_axes"] == ([True, True, False] if phase == "visual_align" else [False, False, True])
+        if detail["result"] == "PASS":
+            assert detail["settled_frames"] >= 3 and detail["terminal_stop_validated"]
+            assert np.max(np.abs(detail["final_command_velocity_A_deg_B_deg_C_mm_per_s"])) <= 1e-9
+            assert detail["trajectory_rate_limits_pass"]
+            if phase == "visual_approach":
+                assert detail["independent_accuracy_acceptance_pass"]
+                assert detail["final_tip_target_error_um"] < 20.
+            indices = np.flatnonzero((data["waypoint_id"] == detail["waypoint_id"]) &
+                                     (data["phase"] == phase))
+            assert len(indices) >= 3
+            assert np.array_equal(data["observation.state"][indices[-3:]], data["action"][indices[-3:]]), (
+                "Visual phase lacks three recorded stationary commands", detail["waypoint_id"], phase)
+    assert [row["waypoint_id"] for row in report["waypoints"]] == order
+    observed_frame_counts = {waypoint: int(np.count_nonzero(data["waypoint_id"] == waypoint))
+                             for waypoint in dict.fromkeys(data["waypoint_id"].tolist())}
+    assert report["fixture_visual_frame_counts"] == observed_frame_counts
+    reference = Reference(copy.deepcopy(config))
+    for row in report["waypoints"]:
+        assert row["result"] in ("PASS", "FAIL", "NOT_RUN")
+        assert row["success_with_stop"] == (row["result"] == "PASS" and row["terminal_stop_validated"])
+        if row["result"] == "NOT_RUN":
+            assert row["tip_error_um"] is None and not row["terminal_stop_validated"]
+            assert not np.any(data["waypoint_id"] == row["waypoint_id"])
+            continue
+        if row["result"] != "PASS":
+            continue
+        assert row["terminal_stop_validated"] and row["tip_error_um"] < 20.
+        indices = np.flatnonzero((data["waypoint_id"] == row["waypoint_id"]) &
+                                 (data["phase"] == "visual_approach"))
+        assert len(indices)
+        arrival = np.asarray(row["arrival_task_A_deg_B_deg_C_mm"], dtype=float)
+        assert np.allclose(data["observation.state"][indices[-1]], arrival, atol=2e-6, rtol=0)
+        reference.set_target_world(solutions[row["waypoint_id"]]["requested_world_mm"])
+        reference.set_task(task_si_units(arrival))
+        error = float(reference.metrics()["tip_target_error_um"])
+        assert np.isclose(error, row["tip_error_um"], atol=1e-8, rtol=0) and error < 20.
+    if episode["result"] == "PASS":
+        assert all(row["result"] == "PASS" and row["success_with_stop"] for row in report["waypoints"])
+    else:
+        assert any(row["result"] != "PASS" for row in report["waypoints"]) or report["failure"] is not None
 
 
 def verify(directory):
@@ -294,14 +538,27 @@ def verify(directory):
     assert "offline metadata only" in manifest["visibility_semantics"]
     reports = json.loads((directory/"run_reports.json").read_text(encoding="utf-8"))
     protocol = json.loads((directory/"experiment_protocol.json").read_text(encoding="utf-8"))
-    if protocol.get("guidance_mode") == "strict_current_frame_visual_servo":
+    strict_visual = protocol.get("guidance_mode") in (
+        "strict_current_frame_visual_servo", "strict_visual_multitarget")
+    strict_multitarget = protocol.get("guidance_mode") == "strict_visual_multitarget"
+    if strict_visual:
         assert protocol["planner_feedback"] == "vision"
         assert protocol["target_pose_usage"].startswith("target world coordinates place the virtual marker")
         assert protocol["strict_visual_control_contract"]["target_detection"].startswith("current-frame RGB")
-        assert "cached target after full occlusion" in protocol["strict_visual_control_contract"]["disabled"]
+        if protocol["guidance_mode"] == "strict_current_frame_visual_servo":
+            assert "cached target after full occlusion" in protocol["strict_visual_control_contract"]["disabled"]
+        else:
+            assert "scene truth fallback" in protocol["strict_visual_control_contract"]["disabled"]
+            assert "fundus_transition" not in config["navigation"]
+            assert "strict_visual_navigation" in config["navigation"]
+            assert protocol["scene_goal_inverse_runtime_guard"]
+            assert protocol["equation_navigation_used_for_control"] is False
+            assert protocol["fundus_transition"] is None
+            assert set(config["navigation"]["strict_visual_navigation"]) >= {
+                "retract_mm", "minimum_transfer_clearance_mm"}
         assert protocol["expert_perception_privileges"]["visual_servo_known_target_pose_feature_calibration"] is False
         assert protocol["expert_perception_privileges"]["visual_servo_fundus_transfer_uses_scene_goal_pose"] is False
-        checks["strict_current_frame_visual_only_protocol"] = "PASS"
+        checks["strict_visual_control_protocol"] = "PASS"
     task_regime = manifest.get("task_regime")
     if task_regime is not None:
         assert task_regime in TASK_REGIMES and protocol["task_regime"] == task_regime
@@ -316,7 +573,6 @@ def verify(directory):
     nominal_period = float(protocol["dataset_sampling_period_s"])
     assert np.isclose(manifest["nominal_sample_period_s"], nominal_period, atol=1e-12, rtol=0)
     assert np.isclose(manifest["nominal_sampling_frequency_hz"], 1./nominal_period, atol=1e-10, rtol=0)
-    strict_visual = protocol.get("guidance_mode") == "strict_current_frame_visual_servo"
     vision_planning = protocol.get("planner_feedback") == "vision" and not strict_visual
     if vision_planning:
         visual_map = json.loads((directory/"visual_target_map.json").read_text(encoding="utf-8"))
@@ -336,11 +592,24 @@ def verify(directory):
         order = json.loads((directory/"order_selection.json").read_text(encoding="utf-8"))
         assert visual_map["measured_solutions"] == [] and visual_map["observations"] == []
         assert order["selected_order"] == [target["id"] for target in targets]
-        assert all(report.get("execution_mode") == "strict_current_frame_visual_servo"
-                   for report in reports)
+        assert all(report.get("execution_mode") in (
+            "strict_current_frame_visual_servo", "strict_visual_multitarget") for report in reports)
         checks["strict_visual_no_survey_or_route_planning"] = "PASS"
     precision = config["navigation"].get("waypoint_trajectory") == "trapezoid"
     solutions = {s["id"]: s for s in json.loads((directory/"target_solutions.json").read_text(encoding="utf-8"))}
+    if strict_multitarget:
+        assert list(solutions) == [target["id"] for target in targets]
+        required_solution_fields = {"id", "requested_world_mm", "requested_robot_mm"}
+        assert all(required_solution_fields <= set(solution) <= required_solution_fields | {"frame"}
+                   for solution in solutions.values()), "Strict controller scene inputs contain an IK goal"
+        assert all(report["execution_mode"] == "strict_visual_multitarget" for report in reports)
+        reference = Reference(copy.deepcopy(config))
+        for target in targets:
+            world = (np.asarray(target["point_mm"], dtype=float) if target["frame"] == "world" else
+                     reference.robot_to_world(target["point_mm"]))
+            solution = solutions[target["id"]]
+            assert np.allclose(solution["requested_world_mm"], world, atol=1e-12, rtol=0)
+            assert np.allclose(solution["requested_robot_mm"], reference.world_to_robot(world), atol=1e-12, rtol=0)
     region = json.loads((directory/"targets.json").read_text(encoding="utf-8")).get("target_region")
     if region:
         from rcm_fundus import verify_fundus_targets
@@ -358,12 +627,18 @@ def verify(directory):
             assert verify_fundus_targets(reference, bad, region)["result"] == "FAIL"
         checks["fundus_surface_and_posterior_location"] = "PASS"
     shape = manifest["fields"]["observation.images.microscope_rgb"]["shape"]
-    policy = config["navigation"].get("fundus_transition")
+    policy = (config["navigation"].get("fundus_transition")
+              or config["navigation"].get("strict_visual_navigation"))
     if policy:
         from rcm_fundus import no_surface_slide_edge, standoff_task
         reference = Reference(copy.deepcopy(config))
-        goals = [np.asarray(s["requested_task_A_deg_B_deg_C_mm"]) for s in solutions.values()]
-        assert not no_surface_slide_edge(reference, goals[0], goals[1], policy["minimum_transfer_clearance_mm"])
+        # Independent mechanical audit only. These inverse solutions are never
+        # passed to the strict controller or stored in its target solution file.
+        audit_solutions = [s if "requested_task_A_deg_B_deg_C_mm" in s else solve_target(
+            reference, s["requested_world_mm"], "world", s["id"]) for s in solutions.values()]
+        goals = [np.asarray(s["requested_task_A_deg_B_deg_C_mm"]) for s in audit_solutions]
+        if len(goals) > 1:
+            assert not no_surface_slide_edge(reference, goals[0], goals[1], policy["minimum_transfer_clearance_mm"])
         near = standoff_task(goals[0], .1)
         lateral = near.copy()
         lateral[0] += .1
@@ -373,6 +648,11 @@ def verify(directory):
         assert no_surface_slide_edge(reference, far, goals[0], policy["minimum_transfer_clearance_mm"])
         checks["reject_surface_slide_and_allow_axial_motion"] = "PASS"
     total, render_checks, max_different_pixels = 0, 0, 0
+    original_precision_render_checks = 0
+    perception_episodes = 0
+    visual_rate_audits = []
+    rerender_visibility_states, rerender_event_ids = set(), set()
+    occlusion_rerender_coverage = []
     max_observation_interval = 0.
     for episode, report in zip(manifest["episodes"], reports, strict=True):
         if "stop_constraint_summary" in report:
@@ -411,7 +691,15 @@ def verify(directory):
             assert np.array_equal(action[:-1], state[1:]), "Action is not aligned with next actual state"
             assert np.array_equal(action[-1], state[-1])
             if "phase" in data:
-                assert len(data["phase"]) == count and data["phase"][-1] == "hold"
+                assert len(data["phase"]) == count
+                # Strict runs retain their final real observation's phase. The
+                # explicit terminal flag and state-equal action define the hold.
+                if not strict_multitarget:
+                    assert data["phase"][-1] == "hold"
+                else:
+                    assert np.all(np.char.startswith(data["phase"], "visual_"))
+                    if episode["result"] == "PASS":
+                        assert data["phase"][-1] == "visual_approach"
             visibility_fields = (
                 "visibility.known", "visibility.target_pixels_visible",
                 "visibility.target_pixels_unoccluded", "visibility.target_pixels_occluded_by_needle",
@@ -476,17 +764,26 @@ def verify(directory):
             with (root/episode["jsonl"]).open(encoding="utf-8") as handle:
                 records = [json.loads(line) for line in handle]
                 assert len(records) == count
+            if verify_perception_metadata(data, records, manifest, required=strict_multitarget):
+                perception_episodes += 1
             if task_regime is not None:
                 assert manifest["policy_interface"]["image_loading"].startswith("Decode paths")
                 task_texts = set(data["task"].tolist())
                 assert len(task_texts) == 1
                 assert verify_policy_bundles(root, episode, next(iter(task_texts)), task_regime,
                                              list(solutions.values()), bool(region)) == "PASS"
+            if strict_multitarget:
+                verify_strict_phases(config, report, episode, data, solutions)
             for index, (name, record) in enumerate(zip(data["observation.images.microscope_rgb"], records)):
                 assert name == record["observation.images.microscope_rgb"]
                 assert np.array_equal(np.asarray(record["observation.state"], dtype=np.float32), state[index])
                 assert np.array_equal(np.asarray(record["action"], dtype=np.float32), action[index])
                 assert record["frame_index"] == index and record["timestamp"] == timestamps[index]
+                assert record["episode_index"] == episode["episode_index"]
+                assert record["waypoint_id"] == data["waypoint_id"][index]
+                assert record["phase"] == data["phase"][index]
+                assert record["is_terminal"] == bool(data["is_terminal"][index])
+                assert record["task"] == data["task"][index]
                 metadata = record["visibility"]
                 assert metadata["known"] == bool(known[index])
                 assert metadata["target_occlusion_state"] == str(states[index])
@@ -525,26 +822,40 @@ def verify(directory):
                     if episode["method"] == "visual_servo":
                         assert all(d["settled_frames"] >= 3 and d["terminal_stop_validated"]
                                    and not d["ground_truth_used_for_stop"] for d in report["control_details"])
-                        for waypoint in episode["visit_order"]:
-                            indices = np.flatnonzero(data["waypoint_id"] == waypoint)
-                            # The last observation at intermediate targets is shared with the next leg.
-                            assert np.array_equal(state[indices[-1]], state[indices[-2]])
-                            assert np.array_equal(state[indices[-1]], action[indices[-1]])
+                        if not strict_multitarget:
+                            for waypoint in episode["visit_order"]:
+                                indices = np.flatnonzero(data["waypoint_id"] == waypoint)
+                                # Hybrid runs label the next retraction with the next target.
+                                assert np.array_equal(state[indices[-1]], state[indices[-2]])
+                                assert np.array_equal(state[indices[-1]], action[indices[-1]])
             # Independently check carried command velocities across all visual target boundaries.
             if episode["method"] == "visual_servo":
                 dt = np.diff(timestamps)
                 velocity = (action[:-1].astype(float)-state[:-1])/dt[:, None]
-                visual_indices = (np.flatnonzero(data["phase"][:-1] == "visual_servo")
+                visual_indices = (np.flatnonzero(np.char.startswith(data["phase"][:-1], "visual_"))
                                   if "phase" in data else np.arange(len(velocity)))
                 if len(visual_indices):
-                    # Retraction is analytic rest-to-rest motion; its last interval
-                    # average is not the velocity at the start of visual control.
+                    # Legacy analytic transfers are rest-to-rest. Strict runs
+                    # include every retract/align/approach interval in one
+                    # continuous velocity and acceleration audit.
                     accelerations = []
+                    visual_set = set(visual_indices.tolist())
                     for i in visual_indices:
-                        previous = velocity[i-1] if i > 0 and i-1 in visual_indices else np.zeros(3)
+                        previous = velocity[i-1] if i > 0 and i-1 in visual_set else np.zeros(3)
                         accelerations.append((velocity[i]-previous)/dt[i])
-                    assert np.all(np.max(np.abs(velocity[visual_indices]), axis=0) <= np.asarray(config["navigation"]["max_velocity_A_deg_B_deg_C_mm_per_s"])+.001)
-                    assert np.all(np.max(np.abs(accelerations), axis=0) <= np.asarray(config["navigation"]["max_acceleration_A_deg_B_deg_C_mm_per_s2"])+.005)
+                    if strict_multitarget and len(velocity)-1 in visual_set:
+                        # The terminal action explicitly commands a hold. Its
+                        # deceleration must count even after an abrupt abort.
+                        accelerations.append(-velocity[-1]/nominal_period)
+                    maximum_velocity = np.max(np.abs(velocity[visual_indices]), axis=0)
+                    maximum_acceleration = np.max(np.abs(accelerations), axis=0)
+                    rates_pass = bool(np.all(maximum_velocity <= np.asarray(config["navigation"]["max_velocity_A_deg_B_deg_C_mm_per_s"])+.001)
+                                      and np.all(maximum_acceleration <= np.asarray(config["navigation"]["max_acceleration_A_deg_B_deg_C_mm_per_s2"])+.005))
+                    visual_rate_audits.append({"episode_index": episode["episode_index"], "pass": rates_pass,
+                                               "maximum_velocity_A_deg_B_deg_C_mm_per_s": maximum_velocity.tolist(),
+                                               "maximum_acceleration_A_deg_B_deg_C_mm_per_s2": maximum_acceleration.tolist()})
+                    if episode["result"] == "PASS" or report["trajectory_rate_limits_pass"]:
+                        assert rates_pass, ("Visual command rate violation", visual_rate_audits[-1])
             reference = Reference(copy.deepcopy(config))
             if policy:
                 # Independent check against compiled MuJoCo tip positions, not planner FK.
@@ -552,27 +863,73 @@ def verify(directory):
                 center = reference.data.geom_xpos[geom].copy()
                 rotation = reference.data.geom_xmat[geom].reshape(3, 3).copy()
                 radii = reference.model.geom_size[geom].copy()
-                for q0, q1, phase in zip(state[:-1], action[:-1], data["phase"][:-1]):
+                last_audited_marker = None
+                for frame_index, (q0, q1, phase) in enumerate(zip(state[:-1], action[:-1], data["phase"][:-1])):
+                    if strict_multitarget:
+                        marker = str(data["waypoint_id"][frame_index])
+                        if marker != last_audited_marker:
+                            reference.set_target_world(solutions[marker]["requested_world_mm"])
+                            last_audited_marker = marker
                     turning = np.max(np.abs(q1[:2]-q0[:2])) > 1e-6
-                    if phase in ("retract", "approach"):
+                    if phase in ("retract", "approach", "visual_retract", "visual_approach"):
                         assert not turning
-                        assert q1[2] <= q0[2]+1e-6 if phase == "retract" else q1[2] >= q0[2]-1e-6
+                        if phase in ("retract", "approach"):
+                            assert q1[2] <= q0[2]+1e-6 if phase == "retract" else q1[2] >= q0[2]-1e-6
                     for interpolation_fraction in np.linspace(0., 1., 5):
                         reference.set_task(task_si_units(q0.astype(float)+interpolation_fraction*(q1.astype(float)-q0)))
+                        if strict_multitarget and interpolation_fraction == 0.:
+                            true_error = float(reference.metrics()["tip_target_error_um"])
+                            assert np.isclose(true_error, data["perception.true_position_error_um"][frame_index],
+                                              atol=.02, rtol=0), ("Incorrect independent truth audit", frame_index)
                         tip = np.asarray(reference.metrics()["tip_world_mm"])*.001
                         unit = rotation.T@(tip-center)/radii
                         clearance = float(np.min(radii)*(1.-np.linalg.norm(unit))*1000.)
                         assert clearance >= -2e-6
-                        if turning or phase == "transfer":
+                        if turning or phase in ("transfer", "visual_align"):
                             assert clearance >= policy["minimum_transfer_clearance_mm"]-2e-6
+                if strict_multitarget:
+                    reference.set_target_world(solutions[str(data["waypoint_id"][-1])]["requested_world_mm"])
+                    reference.set_task(task_si_units(state[-1]))
+                    assert np.isclose(reference.metrics()["tip_target_error_um"],
+                                      data["perception.true_position_error_um"][-1], atol=.02, rtol=0)
+            from rcm_occlusion_fixture import PhysicalOcclusionFixture
+            fixture = PhysicalOcclusionFixture(reference)
+            fixture_states = []
+            if fixture.enabled:
+                assert "perception.control_frame_index" in data
+                # Replay the complete metadata clock first. Phase-relative
+                # events cannot be reconstructed from selected frames alone.
+                for index in range(count):
+                    marker = str(data["waypoint_id"][index])
+                    reference.set_target_world(solutions[marker]["requested_world_mm"])
+                    intervention = fixture.update(marker, str(data["phase"][index]),
+                                                  int(data["perception.control_frame_index"][index]))
+                    fixture_states.append(intervention)
+                    assert str(intervention["event_id"] or "unknown") == data["perception.occlusion_event_id"][index]
+                fixture.reset()
+            elif "perception.occlusion_event_id" in data:
+                assert np.all(data["perception.occlusion_event_id"] == "unknown")
+            selected_frames = set(rerender_sample_indices(data, fixture_states))
+            if fixture.enabled:
+                occlusion_rerender_coverage.append({"episode_index": episode["episode_index"],
+                                                   "events": event_recovery_frames(data, fixture_states)})
+            original_tasks = original_precision_replay_tasks(directory, episode, state, timestamps)
             sensor = VisualServoSensor(reference)
             try:
-                for index in sorted({0, count//2, count-1}):
+                for index in range(count):
+                    if not fixture.enabled and index not in selected_frames:
+                        continue
+                    marker = str(data["waypoint_id"][index])
+                    reference.set_target_world(solutions[marker]["requested_world_mm"])
+                    reference.set_task(task_si_units(original_tasks.get(index, state[index])))
+                    if fixture.enabled:
+                        replayed = fixture.update(marker, str(data["phase"][index]),
+                                                  int(data["perception.control_frame_index"][index]))
+                        assert replayed == fixture_states[index]
+                    if index not in selected_frames:
+                        continue
                     stored = read_png(root/str(data["observation.images.microscope_rgb"][index]))
                     assert list(stored.shape) == shape and stored.dtype == np.uint8
-                    solution = solutions[str(data["waypoint_id"][index])]
-                    reference.set_target_world(solution["requested_world_mm"])
-                    reference.set_task(task_si_units(state[index]))
                     observation = sensor.observe()
                     rendered = observation["rgb"]
                     changed = int(np.any(stored != rendered, axis=2).sum())
@@ -580,7 +937,11 @@ def verify(directory):
                     assert changed <= 10, (episode["episode_index"], index, changed)
                     max_different_pixels = max(max_different_pixels, changed)
                     render_checks += 1
+                    original_precision_render_checks += int(index in original_tasks)
                     expected_visibility = sensor.visibility_metrics(observation["segmentation"])
+                    rerender_visibility_states.add(str(states[index]))
+                    if fixture.enabled and fixture_states[index]["active"]:
+                        rerender_event_ids.add(fixture_states[index]["event_id"])
                     assert known[index]
                     assert expected_visibility["target_pixels_visible"] == data["visibility.target_pixels_visible"][index]
                     assert expected_visibility["target_pixels_unoccluded"] == data["visibility.target_pixels_unoccluded"][index]
@@ -594,18 +955,34 @@ def verify(directory):
                     checks["frame_specific_geometric_occlusion_rerender"] = "PASS"
             finally:
                 sensor.close()
+                fixture.hide("verification_complete")
             total += count
     assert total == manifest["total_frames"]
     result = {"result": "PASS", **checks, "episodes": len(manifest["episodes"]), "frames": total,
               "all_image_headers_checked": total, "RGB_state_rerender_checks": render_checks,
               "max_rerender_different_pixels": max_different_pixels,
-              "action_next_state_alignment": "PASS", "visual_boundary_rate_limits": "PASS",
+              "rerenders_using_saved_actual_float64_with_exact_float32_alignment": original_precision_render_checks,
+              "action_next_state_alignment": "PASS",
+              "visual_boundary_rate_limits": "PASS" if all(audit["pass"] for audit in visual_rate_audits) else "FAIL",
+              "visual_rate_limit_audits": visual_rate_audits,
               "schema_dtypes_and_shapes": "PASS",
               "visibility_metadata_integrity": "PASS",
+              "perception_metadata_integrity": "PASS" if perception_episodes == len(manifest["episodes"]) else "NOT_AVAILABLE_LEGACY",
+              "perception_metadata_episodes_checked": perception_episodes,
+              "rerendered_visibility_states": sorted(rerender_visibility_states),
+              "rerendered_occlusion_event_ids": sorted(rerender_event_ids),
+              "occlusion_rerender_coverage": occlusion_rerender_coverage,
               "nominal_sampling_frequency_hz": manifest["nominal_sampling_frequency_hz"],
               "maximum_observation_interval_s": max_observation_interval}
     if precision:
-        result["successful_episodes_precision_20um_and_waypoint_stops"] = "PASS"
+        result["successful_episodes_precision_20um_and_waypoint_stops"] = (
+            "PASS" if any(report["result"] == "PASS" for report in reports) else "NOT_APPLICABLE_NO_SUCCESSFUL_EPISODES")
+    if strict_multitarget:
+        result["strict_visual_executed_phase_contract_and_successful_arrival_stops"] = "PASS"
+        result["strict_visual_full_phase_continuity_and_rate_limits"] = result["visual_boundary_rate_limits"]
+        result["strict_visual_independent_per_frame_truth_audit"] = "PASS"
+        if rerender_event_ids:
+            result["physical_occlusion_fixture_schedule_rerender"] = "PASS"
     if policy:
         result["independent_phase_and_wall_clearance_checks"] = "PASS"
     if task_regime is not None:
