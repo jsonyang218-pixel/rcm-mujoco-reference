@@ -1,0 +1,26 @@
+﻿# Python 本地环境与缓存
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+
+# 本地运行结果、验收结果和备份
+runs/
+acceptance/
+preview/
+backups/
+
+# 生成的顶层图像与验证快照
+image.png
+preview.png
+verification*.json
+needle_geometry_verification.json
+
+# 压缩实验数据
+*.zip
+
+# 本地环境与编辑器文件
+.env
+.env.*
+.vscode/
+.idea/
