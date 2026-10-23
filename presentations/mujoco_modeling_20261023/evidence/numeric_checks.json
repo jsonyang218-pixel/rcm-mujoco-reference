@@ -1,0 +1,147 @@
+{
+  "date": "2026-10-23",
+  "scope": "three previously completed read-only kinematic consistency cases; no additional experiments",
+  "execution": "existing repository .venv/bin/python; Reference.set_task writes qpos and calls mujoco.mj_forward",
+  "source_root": "/workspace/rcm-mujoco-reference",
+  "model_counts": {
+    "nq": 7,
+    "nv": 7,
+    "nu": 0,
+    "independent_task_coordinates": 3,
+    "dependent_visual_joints": 4
+  },
+  "reference": {
+    "robot_encoder_ABC_counts": [
+      0,
+      1466018,
+      893518
+    ],
+    "phi0_deg": 0.0,
+    "alpha0_deg": 54.23600525044604,
+    "beta0_deg": -13.763994749553959,
+    "theta0_deg": 76.23600525044604,
+    "tip_reference_mm": 4.0,
+    "physical_tip_reference_confirmed": false,
+    "installation_xyz_deg": [
+      45.0,
+      0.0,
+      0.0
+    ],
+    "rcm_world_mm": [
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  "formulas": {
+    "homogeneous_chain": "T(p_RCM) H(Rx(45deg)) H(Ry(-(phi0+a))) H(Rx(beta0+b)) Tz(-(0.004+c)); SI units",
+    "tip": "p_RCM + (L0_mm+1000*c) R_mount Ry(-phi) Rx(beta) [0,0,-1]^T; output mm",
+    "axis_distance": "norm(cross(rcm_mm-back_mm,normalized(tip_mm-back_mm)))"
+  },
+  "position_precision_note": "analytic_tip_world_mm and mujoco_site_tip_world_mm are both rounded to 12 decimal places. Raw measured discrepancy norms from the completed checks are retained separately.",
+  "cases": [
+    {
+      "name": "reported_reset",
+      "q_rad_rad_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "q_deg_deg_mm": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "joint_state_deg_deg_mm": [
+        0.0,
+        54.23600525044604,
+        4.0
+      ],
+      "analytic_tip_world_mm": [
+        0.0,
+        2.074257706609,
+        -3.420154231402
+      ],
+      "mujoco_site_tip_world_mm": [
+        0.0,
+        2.074257706609,
+        -3.420154231402
+      ],
+      "fk_difference_norm_mm": 2.589462819655575e-15,
+      "axis_to_rcm_distance_mm": 0.0
+    },
+    {
+      "name": "small_offset",
+      "q_rad_rad_m": [
+        0.08726646259971647,
+        0.03490658503988659,
+        0.002
+      ],
+      "q_deg_deg_mm": [
+        5.0,
+        2.0,
+        2.0
+      ],
+      "joint_state_deg_deg_mm": [
+        5.0,
+        56.23600525044604,
+        6.0
+      ],
+      "analytic_tip_world_mm": [
+        0.511950585785,
+        3.272728255044,
+        -5.002714899567
+      ],
+      "mujoco_site_tip_world_mm": [
+        0.511950585785,
+        3.272728255044,
+        -5.002714899567
+      ],
+      "fk_difference_norm_mm": 2.8435583831733384e-15,
+      "axis_to_rcm_distance_mm": 2.220446049250313e-16
+    },
+    {
+      "name": "larger_offset",
+      "q_rad_rad_m": [
+        -0.3490658503988659,
+        0.13962634015954636,
+        0.01
+      ],
+      "q_deg_deg_mm": [
+        -20.0,
+        8.0,
+        10.0
+      ],
+      "joint_state_deg_deg_mm": [
+        -20.0,
+        62.23600525044604,
+        14.0
+      ],
+      "analytic_tip_world_mm": [
+        -4.764072535047,
+        8.261232141943,
+        -10.249666159331
+      ],
+      "mujoco_site_tip_world_mm": [
+        -4.764072535047,
+        8.261232141943,
+        -10.249666159331
+      ],
+      "fk_difference_norm_mm": 8.140289677804162e-15,
+      "axis_to_rcm_distance_mm": 2.979040983896728e-15
+    }
+  ],
+  "interpretation": "Floating-point agreement of the ideal analytic FK with MuJoCo kinematics only. These residuals do not establish measured robot accuracy or physical RCM drift.",
+  "model_boundaries": [
+    "No actuator or motor plant; placeholder unmeasured masses/inertias",
+    "No dynamics integration in set_task; gravity zero; contact disabled",
+    "Installation and absolute needle reference not physically calibrated",
+    "Illustrative linkage geometry unmeasured; visual joints dependent on B",
+    "Recorded encoder working window disabled and not confirmed full travel"
+  ],
+  "source_files_sha256": {
+    "config.json": "0b739b29415fde416af85313caf4e2dd2391e2cda0e2e4bf3326055e882fd5de",
+    "rcm_reference.py": "f7388260747c99f9f9851300c71c05c4878a6ffadd6f18fdb05acb1cf7a105c7",
+    "rcm_recovered_model.py": "9c23a20a18305cd1b4718f9266fa87fbe337c868a88b94b242bd4dbf7a870271"
+  }
+}
