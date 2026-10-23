@@ -35,3 +35,10 @@
 - 2026-10-22：接入明确标注的理想注册OCT仿真接口：verify_oct_interface.py 10组数值PASS；verify_oct_sensor.py 12组实际1920×1440 EGL传感器检查PASS。覆盖单位、有效mask、远裁剪背景拒绝、时钟、坐标符号、遮挡/无效测量拒绝、深度扰动因果性及真实深度帧NPZ/JSON往返。无真实OCT、无A/B-scan或设备实时性验证。
 - 2026-10-22：新OCT接口P1严格视觉闭环从此前实际视觉回撤姿态运行，PASS；8帧对准+89帧接近，共97帧、4.75s名义仿真时间，独立误差6.381807 μm，停稳、速率及dataset_verification均PASS。逐帧OCT来源/唯一ID/阶段仿真时钟及末帧完整深度归档审计PASS；实测渲染中位0.471s/帧，不支持实时20Hz。报告及快照说明见reports/20261022/。
 - 2026-10-22：发布审查修复虚拟回撤阶段针尖短暂丢失后重获不能恢复的问题；新增组合回归后verify_occlusion_recovery.py 10/10 PASS。标靶全程不可见仍保留原回撤虚拟点、target_observed始终false；针尖重获后连续有效测量恢复跟踪，停稳及速率通过。该恢复分支修复发生在上述stop模式OCT闭环之后，单独验证，未将旧采集源码副本冒充采集版本。
+- 2026-10-23：通过 `127.0.0.1:7890` 执行 GitHub `ls-remote` 和 `fetch`，确认远端 `main` 为 `79afacc`；未向远端写入。
+- 2026-10-23：从 `origin/main` 创建保护性分支 `experiment/oct-three-group-79afacc`；`main` 未切换、未修改。
+- 2026-10-23：首次在上传工作树执行补充包审计未能启动，因为该副本没有 `.venv`；改用已验证的 Python 3.11 环境执行后，审计明确报告原始 RGB/OCT 文件仍引用被 `.gitignore` 排除的 `runs/` 路径。
+- 2026-10-23：将审计所需的 29 个本地资产（12 个 OCT JSONL、12 个无 pickle NPZ、5 个 RGB）归档到补充包 `evidence/local_diagnostic/`，并将 `raw_rgb_manifest.json`、`oct_audit.json` 更新为分支内路径；原始 `runs/` 目录未修改。
+- 2026-10-23：归档后首次执行分支内 `.venv` 审计，按预期因 `oct_audit.json` 已更新而报告旧 `SHA256SUMS.json` 的 size mismatch；未绕过检查，随后刷新清单。
+- 2026-10-23：刷新清单后再次执行分支内审计，发现 PowerShell UTF-8 写回的 `raw_rgb_manifest.json` 含 BOM，Python `json.loads` 拒绝读取；定位为编码格式问题，未修改实验数据。
+- 2026-10-23：去除 JSON BOM、刷新 `TEST_LOG_tail.txt` 和 SHA256 清单后，使用已验证 Python 3.11 执行 `reports/20261022/oct_three_group_79afacc/verify_supplement.py`，PASS；169 个清单文件、5 个 RGB、12 个 OCT 阶段、12 个无 pickle NPZ、6 个 PNG 和 6 个 HTML 标记通过。

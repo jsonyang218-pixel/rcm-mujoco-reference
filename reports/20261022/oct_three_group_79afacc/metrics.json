@@ -1,0 +1,425 @@
+{
+  "schema_version": 1,
+  "source_separation": {
+    "primary": "reports/20261022/meeting/evidence; original A/B/C paired evidence",
+    "local_diagnostic": "runs/oct_three_group_79afacc_20261022; replay after OCT wrapper connection"
+  },
+  "primary": {
+    "A_no_occlusion": {
+      "group": "A_no_occlusion",
+      "label": "A: no occlusion",
+      "requested_targets": 3,
+      "attempted_targets": 3,
+      "successful_targets": 3,
+      "not_run_targets": 0,
+      "success_over_requested": 1.0,
+      "endpoint_errors_um_successful_only": [
+        6.634482537712616,
+        6.085112747937411,
+        6.267575687082636
+      ],
+      "mean_endpoint_error_um_successful_only": 6.329056990910888,
+      "max_endpoint_error_um_successful_only": 6.634482537712616,
+      "all_three_successful_for_average": true,
+      "results": [
+        {
+          "group": "A_no_occlusion",
+          "primary_case": "strict_three",
+          "episode_index": 0,
+          "waypoint_id": "P1",
+          "attempted": true,
+          "result": "PASS",
+          "reason": "VISUAL_ARRIVAL_AND_STOP",
+          "true_endpoint_error_um": 6.634482537712616,
+          "terminal_stop_validated": true,
+          "settled_frames": 3,
+          "final_command_velocity": "[0.0, 0.0, 0.0]",
+          "independent_success": true,
+          "verification": "VERIFIED"
+        },
+        {
+          "group": "A_no_occlusion",
+          "primary_case": "strict_three",
+          "episode_index": 0,
+          "waypoint_id": "P2",
+          "attempted": true,
+          "result": "PASS",
+          "reason": "VISUAL_ARRIVAL_AND_STOP",
+          "true_endpoint_error_um": 6.085112747937411,
+          "terminal_stop_validated": true,
+          "settled_frames": 3,
+          "final_command_velocity": "[0.0, 0.0, 0.0]",
+          "independent_success": true,
+          "verification": "VERIFIED"
+        },
+        {
+          "group": "A_no_occlusion",
+          "primary_case": "strict_three",
+          "episode_index": 0,
+          "waypoint_id": "P3",
+          "attempted": true,
+          "result": "PASS",
+          "reason": "VISUAL_ARRIVAL_AND_STOP",
+          "true_endpoint_error_um": 6.267575687082636,
+          "terminal_stop_validated": true,
+          "settled_frames": 3,
+          "final_command_velocity": "[0.0, 0.0, 0.0]",
+          "independent_success": true,
+          "verification": "VERIFIED"
+        }
+      ]
+    },
+    "B_occlusion_stop": {
+      "group": "B_occlusion_stop",
+      "label": "B: occlusion stop",
+      "requested_targets": 3,
+      "attempted_targets": 1,
+      "successful_targets": 0,
+      "not_run_targets": 2,
+      "success_over_requested": 0.0,
+      "endpoint_errors_um_successful_only": [],
+      "mean_endpoint_error_um_successful_only": null,
+      "max_endpoint_error_um_successful_only": null,
+      "all_three_successful_for_average": false,
+      "results": [
+        {
+          "group": "B_occlusion_stop",
+          "primary_case": "strict_occlusion_stop",
+          "episode_index": 0,
+          "waypoint_id": "P1",
+          "attempted": true,
+          "result": "FAIL",
+          "reason": "TARGET_NOT_VISIBLE",
+          "true_endpoint_error_um": 1504.0512787027008,
+          "terminal_stop_validated": false,
+          "settled_frames": 0,
+          "final_command_velocity": "[0.0, 0.0, 0.0]",
+          "independent_success": false,
+          "verification": "VERIFIED"
+        },
+        {
+          "group": "B_occlusion_stop",
+          "primary_case": "strict_occlusion_stop",
+          "episode_index": 0,
+          "waypoint_id": "P2",
+          "attempted": false,
+          "result": "NOT_RUN",
+          "reason": "PREVIOUS_VISUAL_PHASE_FAILED",
+          "true_endpoint_error_um": null,
+          "terminal_stop_validated": false,
+          "settled_frames": null,
+          "final_command_velocity": "",
+          "independent_success": false,
+          "verification": "PHASE_DETAIL_MISSING"
+        },
+        {
+          "group": "B_occlusion_stop",
+          "primary_case": "strict_occlusion_stop",
+          "episode_index": 0,
+          "waypoint_id": "P3",
+          "attempted": false,
+          "result": "NOT_RUN",
+          "reason": "PREVIOUS_VISUAL_PHASE_FAILED",
+          "true_endpoint_error_um": null,
+          "terminal_stop_validated": false,
+          "settled_frames": null,
+          "final_command_velocity": "",
+          "independent_success": false,
+          "verification": "PHASE_DETAIL_MISSING"
+        }
+      ]
+    },
+    "C_occlusion_recovery": {
+      "group": "C_occlusion_recovery",
+      "label": "C: occlusion recovery",
+      "requested_targets": 3,
+      "attempted_targets": 3,
+      "successful_targets": 3,
+      "not_run_targets": 0,
+      "success_over_requested": 1.0,
+      "endpoint_errors_um_successful_only": [
+        6.381807367328575,
+        6.442211732963663,
+        6.282897544824121
+      ],
+      "mean_endpoint_error_um_successful_only": 6.368972215038785,
+      "max_endpoint_error_um_successful_only": 6.442211732963663,
+      "all_three_successful_for_average": true,
+      "results": [
+        {
+          "group": "C_occlusion_recovery",
+          "primary_case": "strict_occlusion_recovery",
+          "episode_index": 0,
+          "waypoint_id": "P1",
+          "attempted": true,
+          "result": "PASS",
+          "reason": "VISUAL_ARRIVAL_AND_STOP",
+          "true_endpoint_error_um": 6.381807367328575,
+          "terminal_stop_validated": true,
+          "settled_frames": 3,
+          "final_command_velocity": "[0.0, 0.0, 0.0]",
+          "independent_success": true,
+          "verification": "VERIFIED"
+        },
+        {
+          "group": "C_occlusion_recovery",
+          "primary_case": "strict_occlusion_recovery",
+          "episode_index": 0,
+          "waypoint_id": "P2",
+          "attempted": true,
+          "result": "PASS",
+          "reason": "VISUAL_ARRIVAL_AND_STOP",
+          "true_endpoint_error_um": 6.442211732963663,
+          "terminal_stop_validated": true,
+          "settled_frames": 3,
+          "final_command_velocity": "[0.0, 0.0, 0.0]",
+          "independent_success": true,
+          "verification": "VERIFIED"
+        },
+        {
+          "group": "C_occlusion_recovery",
+          "primary_case": "strict_occlusion_recovery",
+          "episode_index": 0,
+          "waypoint_id": "P3",
+          "attempted": true,
+          "result": "PASS",
+          "reason": "VISUAL_ARRIVAL_AND_STOP",
+          "true_endpoint_error_um": 6.282897544824121,
+          "terminal_stop_validated": true,
+          "settled_frames": 3,
+          "final_command_velocity": "[0.0, 0.0, 0.0]",
+          "independent_success": true,
+          "verification": "VERIFIED"
+        }
+      ]
+    }
+  },
+  "local_diagnostic": {
+    "A_no_occlusion": {
+      "group": "A_no_occlusion",
+      "label": "A: no occlusion",
+      "requested_targets": 3,
+      "attempted_targets": 1,
+      "successful_targets": 0,
+      "not_run_targets": 2,
+      "success_over_requested": 0.0,
+      "endpoint_errors_um_successful_only": [],
+      "mean_endpoint_error_um_successful_only": null,
+      "max_endpoint_error_um_successful_only": null,
+      "all_three_successful_for_average": false,
+      "results": [
+        {
+          "group": "A_no_occlusion",
+          "primary_case": "local_diagnostic_replay",
+          "episode_index": 0,
+          "waypoint_id": "P1",
+          "attempted": true,
+          "result": "FAIL",
+          "reason": "INDEPENDENT_ACCURACY_REJECTED",
+          "true_endpoint_error_um": 23.505620148926027,
+          "terminal_stop_validated": true,
+          "settled_frames": null,
+          "final_command_velocity": "",
+          "independent_success": false,
+          "verification": "LOCAL_REPLAY"
+        },
+        {
+          "group": "A_no_occlusion",
+          "primary_case": "local_diagnostic_replay",
+          "episode_index": 0,
+          "waypoint_id": "P2",
+          "attempted": false,
+          "result": "NOT_RUN",
+          "reason": "PREVIOUS_VISUAL_PHASE_FAILED",
+          "true_endpoint_error_um": null,
+          "terminal_stop_validated": false,
+          "settled_frames": null,
+          "final_command_velocity": "",
+          "independent_success": false,
+          "verification": "LOCAL_REPLAY"
+        },
+        {
+          "group": "A_no_occlusion",
+          "primary_case": "local_diagnostic_replay",
+          "episode_index": 0,
+          "waypoint_id": "P3",
+          "attempted": false,
+          "result": "NOT_RUN",
+          "reason": "PREVIOUS_VISUAL_PHASE_FAILED",
+          "true_endpoint_error_um": null,
+          "terminal_stop_validated": false,
+          "settled_frames": null,
+          "final_command_velocity": "",
+          "independent_success": false,
+          "verification": "LOCAL_REPLAY"
+        }
+      ]
+    },
+    "B_occlusion_stop": {
+      "group": "B_occlusion_stop",
+      "label": "B: occlusion stop",
+      "requested_targets": 3,
+      "attempted_targets": 1,
+      "successful_targets": 0,
+      "not_run_targets": 2,
+      "success_over_requested": 0.0,
+      "endpoint_errors_um_successful_only": [],
+      "mean_endpoint_error_um_successful_only": null,
+      "max_endpoint_error_um_successful_only": null,
+      "all_three_successful_for_average": false,
+      "results": [
+        {
+          "group": "B_occlusion_stop",
+          "primary_case": "local_diagnostic_replay",
+          "episode_index": 0,
+          "waypoint_id": "P1",
+          "attempted": true,
+          "result": "FAIL",
+          "reason": "TARGET_NOT_VISIBLE",
+          "true_endpoint_error_um": 19324.036817593427,
+          "terminal_stop_validated": false,
+          "settled_frames": null,
+          "final_command_velocity": "",
+          "independent_success": false,
+          "verification": "LOCAL_REPLAY"
+        },
+        {
+          "group": "B_occlusion_stop",
+          "primary_case": "local_diagnostic_replay",
+          "episode_index": 0,
+          "waypoint_id": "P2",
+          "attempted": false,
+          "result": "NOT_RUN",
+          "reason": "PREVIOUS_VISUAL_PHASE_FAILED",
+          "true_endpoint_error_um": null,
+          "terminal_stop_validated": false,
+          "settled_frames": null,
+          "final_command_velocity": "",
+          "independent_success": false,
+          "verification": "LOCAL_REPLAY"
+        },
+        {
+          "group": "B_occlusion_stop",
+          "primary_case": "local_diagnostic_replay",
+          "episode_index": 0,
+          "waypoint_id": "P3",
+          "attempted": false,
+          "result": "NOT_RUN",
+          "reason": "PREVIOUS_VISUAL_PHASE_FAILED",
+          "true_endpoint_error_um": null,
+          "terminal_stop_validated": false,
+          "settled_frames": null,
+          "final_command_velocity": "",
+          "independent_success": false,
+          "verification": "LOCAL_REPLAY"
+        }
+      ]
+    },
+    "C_occlusion_recovery": {
+      "group": "C_occlusion_recovery",
+      "label": "C: occlusion recovery",
+      "requested_targets": 3,
+      "attempted_targets": 3,
+      "successful_targets": 3,
+      "not_run_targets": 0,
+      "success_over_requested": 1.0,
+      "endpoint_errors_um_successful_only": [
+        10.917340385506057,
+        10.434203247632466,
+        11.243788829988148
+      ],
+      "mean_endpoint_error_um_successful_only": 10.865110821042222,
+      "max_endpoint_error_um_successful_only": 11.243788829988148,
+      "all_three_successful_for_average": true,
+      "results": [
+        {
+          "group": "C_occlusion_recovery",
+          "primary_case": "local_diagnostic_replay",
+          "episode_index": 0,
+          "waypoint_id": "P1",
+          "attempted": true,
+          "result": "PASS",
+          "reason": "VISUAL_ARRIVAL_AND_STOP",
+          "true_endpoint_error_um": 10.917340385506057,
+          "terminal_stop_validated": true,
+          "settled_frames": null,
+          "final_command_velocity": "",
+          "independent_success": true,
+          "verification": "LOCAL_REPLAY"
+        },
+        {
+          "group": "C_occlusion_recovery",
+          "primary_case": "local_diagnostic_replay",
+          "episode_index": 0,
+          "waypoint_id": "P2",
+          "attempted": true,
+          "result": "PASS",
+          "reason": "VISUAL_ARRIVAL_AND_STOP",
+          "true_endpoint_error_um": 10.434203247632466,
+          "terminal_stop_validated": true,
+          "settled_frames": null,
+          "final_command_velocity": "",
+          "independent_success": true,
+          "verification": "LOCAL_REPLAY"
+        },
+        {
+          "group": "C_occlusion_recovery",
+          "primary_case": "local_diagnostic_replay",
+          "episode_index": 0,
+          "waypoint_id": "P3",
+          "attempted": true,
+          "result": "PASS",
+          "reason": "VISUAL_ARRIVAL_AND_STOP",
+          "true_endpoint_error_um": 11.243788829988148,
+          "terminal_stop_validated": true,
+          "settled_frames": null,
+          "final_command_velocity": "",
+          "independent_success": true,
+          "verification": "LOCAL_REPLAY"
+        }
+      ]
+    }
+  },
+  "recovery_timing": {
+    "p2_approach_dataset_frames": [
+      308,
+      426
+    ],
+    "occlusion_frames": [
+      328,
+      362
+    ],
+    "first_braking_frame": 344,
+    "first_braking_time_s": 17.0,
+    "first_clear_frame": 363,
+    "first_reobserving_frame": 365,
+    "first_reobserving_time_s": 18.05,
+    "first_tracking_after_recovery_frame": 368,
+    "first_tracking_after_recovery_time_s": 18.200000000000003,
+    "recovery_duration_s_from_braking_to_tracking": 1.2000000000000028,
+    "retraction_distance_mm_start_to_min_c_axis": 0.024999618530273438,
+    "arrival_frame": 426,
+    "arrival_error_um": 10.434203247632466
+  },
+  "depth_audit_summary": {
+    "source": "mujoco_ideal_registered_oct_simulation",
+    "is_simulation": true,
+    "raw_oct_available": false,
+    "frame_id": "sim-oct-d842b0f8ad7e43a7a07072712376d372/00000082",
+    "depth_unit": "m",
+    "shape_hw": [
+      1440,
+      1920
+    ],
+    "feature_valid_pixels": 19898,
+    "npz": "runs/oct_three_group_79afacc_20261022/C_occlusion_recovery_local/visual_servo/P3/visual_approach/final_oct_frame.npz",
+    "warning": "ideal MuJoCo registered depth; not physical OCT"
+  },
+  "denominator_rule": "All three requested targets remain in the denominator. FAIL and NOT_RUN are not silently removed.",
+  "average_rule": "Three-point mean and maximum are reported only when all three targets are successful; otherwise null.",
+  "claim_limits": [
+    "Descriptive simulation pilot; no success-rate, generalization, or statistical-significance inference.",
+    "No hardware execution, tissue contact, physical OCT, or real-time 20 Hz guarantee.",
+    "B independent acceleration audit failed; the stop result is not described as safe braking."
+  ]
+}

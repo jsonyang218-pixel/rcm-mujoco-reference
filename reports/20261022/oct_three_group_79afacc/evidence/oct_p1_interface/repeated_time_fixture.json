@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "frame_id": "sim-oct-26195eb4e2954d33b4f8d69d6f289d2b/00000001",
+  "stream_id": "sim-oct-26195eb4e2954d33b4f8d69d6f289d2b",
+  "sequence_id": 1,
+  "timestamp_s": 0.0,
+  "clock_domain": "simulation",
+  "acquired_monotonic_s": 11.0,
+  "nominal_period_s": 0.05,
+  "nominal_frequency_hz": 20.0,
+  "nominal_rate_is_wall_clock_guarantee": false,
+  "source": "mujoco_ideal_registered_oct_simulation",
+  "is_simulation": true,
+  "raw_oct_available": false,
+  "realtime_validated": false,
+  "camera_name": "eye_internal",
+  "registration_frame": "eye_internal",
+  "registration_description": "Ideal renderer depth registered pixel-for-pixel to the named MuJoCo camera; scene includes fundus, feature pass excludes fundus backdrop. No physical OCT calibration or hardware registration is validated.",
+  "depth_unit": "m",
+  "depth_convention": "positive_camera_optical_axis_z_not_ray_range",
+  "shape_hw": [
+    1,
+    1
+  ],
+  "depth_dtype": "float32",
+  "validity_rule": "finite and strictly greater than min; strictly less than max when set",
+  "min_valid_depth_m": 0.0,
+  "max_valid_depth_m": null,
+  "scene_valid_pixels": 1,
+  "feature_valid_pixels": 1,
+  "timestamp_repeated": true,
+  "fresh_simulation_timestamp": false,
+  "extra": {
+    "acquisition_reason": "frozen_time_survey"
+  }
+}

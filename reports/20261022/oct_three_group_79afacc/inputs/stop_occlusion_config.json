@@ -1,0 +1,287 @@
+{
+  "schema_version": 1,
+  "kinematics": {
+    "link1_mm": 60.0,
+    "link2_mm": 52.0,
+    "offset_mm": 16.0,
+    "b_reference_mm": 98.48,
+    "tilt_offset_deg": 22.0,
+    "c_reference_mm": 14.0
+  },
+  "encoders": {
+    "a_counts_per_degree": 555.5555555555555,
+    "bc_counts_per_mm": 63822.71488,
+    "origin": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "direction": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "calibrated": false,
+    "conversion_formulas_confirmed_by_user": true,
+    "conversion_source": "user_supplied_2026-10-08"
+  },
+  "installation": {
+    "euler_xyz_deg": [
+      45.0,
+      0.0,
+      0.0
+    ],
+    "rcm_world_mm": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "calibrated": false
+  },
+  "needle": {
+    "distal_length_mm": 4.0,
+    "distal_tip_length_mm": 1.5,
+    "distal_tip_apex_radius_mm": 0.02,
+    "proximal_length_mm": 22.0,
+    "proximal_radius_mm": 0.25,
+    "distal_radius_mm": 0.03,
+    "tip_marker_radius_mm": 0.02,
+    "tip_visual_marker_radius_mm": 0.2,
+    "display_scale": 4.0,
+    "display_scale_note": "Viewer-only needle aid; physical needle geometry and sensor measurements are unchanged."
+  },
+  "needle_dimension_reference": {
+    "source": "user_corrected_2026-10-18: front fine-needle segment outer diameter 0.060 mm, radius 0.030 mm, length 4 mm; replaces previous 0.410 mm diameter and 12 mm segment",
+    "tip_shape": "eight_sided_tapered_bevel_approximation",
+    "scope": "proximal shaft retains previously supplied diameter 0.5 mm; reference tip-to-RCM distance remains provisional 4 mm, distinct from fine-needle segment length",
+    "diameters_metrologically_calibrated": false
+  },
+  "reference_scene": {
+    "eye_center_robot_mm": [
+      0.0,
+      2.8550776783695255,
+      11.655407819998238
+    ],
+    "eye_radii_robot_mm": [
+      12.0,
+      11.5,
+      12.0
+    ],
+    "target_robot_mm": [
+      1.9199999999999993,
+      8.477994401325262,
+      22.04300174384336
+    ],
+    "eye_quat_robot_wxyz": [
+      0.9927950405294773,
+      -0.11982490350537908,
+      0.0,
+      0.0
+    ],
+    "original_deep_target_robot_mm": [
+      9.5,
+      -1.5,
+      16.0
+    ],
+    "target_role": "fundus waypoint P3 on the posterior eye surface proxy; illustrative, not a measured retinal lesion",
+    "eye_camera": {
+      "mode": "external_pupil_monocular",
+      "position_robot_mm": [
+        -7.5,
+        -3.95,
+        -16.1
+      ],
+      "target_robot_mm": [
+        -3.0,
+        5.62,
+        22.94
+      ],
+      "pupil_robot_mm": [
+        -3.0,
+        0.09,
+        0.38
+      ],
+      "optical_axis": "pupil_to_posterior_fundus",
+      "fovy_deg": 45.0,
+      "resolution_px": [
+        1920,
+        1440
+      ],
+      "znear_mm": 0.1,
+      "zfar_mm": 60.0
+    },
+    "display_target_radius_mm": 1.0,
+    "display_target_note": "Viewer-only target aid; lesion geometry, segmentation and OCT depth retain the physical marker size.",
+    "occlusion_fixture": {
+      "enabled": true,
+      "radius_mm": 0.3,
+      "ray_fraction": 0.75,
+      "events": [
+        {
+          "id": "P1_short_full",
+          "waypoint_id": "P1",
+          "phase": "visual_approach",
+          "relative_to_phase": true,
+          "start_frame": 20,
+          "duration_frames": 8
+        },
+        {
+          "id": "P2_long_full",
+          "waypoint_id": "P2",
+          "phase": "visual_approach",
+          "relative_to_phase": true,
+          "start_frame": 20,
+          "duration_frames": 35
+        }
+      ]
+    }
+  },
+  "illustrative_linkage": {
+    "rear_distance_mm": 120.0,
+    "rear_pivot_spacing_mm": 24.0,
+    "upper_crank_mm": 70.0,
+    "lower_crank_mm": 48.0,
+    "guide_offset_mm": 12.0,
+    "visual_scale": 0.67,
+    "visual_scale_note": "Scales the illustrative external apparatus toward a 100 mm envelope; eye and needle geometry are not scaled.",
+    "measured": false
+  },
+  "demonstration": {
+    "a_amplitude_deg": 5.0,
+    "b_amplitude_deg": 2.0,
+    "c_stroke_mm": 2.0,
+    "ui_ranges": {
+      "A_deg": [
+        -180.0,
+        180.0
+      ],
+      "B_deg": [
+        -90.0,
+        120.0
+      ],
+      "C_mm": [
+        -4.0,
+        24.0
+      ]
+    }
+  },
+  "manual_steps": {
+    "A_deg": 0.5,
+    "B_deg": 0.5,
+    "C_mm": 0.02
+  },
+  "measurement_reference": {
+    "recorded_date": "2026-10-08",
+    "range_kind": "user_recorded_working_window_not_confirmed_full_travel",
+    "c_reported_step_mm_approx": 0.02,
+    "c_encoder_at_junction_rcm": null,
+    "reference_status": "user_confirmed_zero_pose_physical_needle_offset_unmeasured",
+    "reported_reset_robot_counts_ABCE": [
+      0,
+      1466018,
+      893518,
+      0
+    ],
+    "reported_reset_position_mm": [
+      0,
+      0,
+      0
+    ],
+    "reported_handle_counts_ABCE": [
+      147,
+      -13,
+      -30901,
+      -20
+    ],
+    "handle_counts_used_for_joint_mapping": false
+  },
+  "measured_limits": {
+    "enabled": false,
+    "scope": "simulation_recorded_window",
+    "disabled_reason": "user_requested_unlimited_eye_navigation; recorded counts are observations, not full travel limits",
+    "include_reported_reset_for_simulation": true,
+    "encoder_counts": {
+      "A": [
+        -3152,
+        3759
+      ],
+      "B": [
+        1282350,
+        1669860
+      ],
+      "C": [
+        895599,
+        1027792
+      ]
+    },
+    "reserve_counts": {
+      "A": 0.0,
+      "B": 0.0,
+      "C": 0.0
+    }
+  },
+  "navigation": {
+    "require_inside_eye": true,
+    "max_velocity_A_deg_B_deg_C_mm_per_s": [
+      4.0,
+      2.0,
+      0.6
+    ],
+    "max_acceleration_A_deg_B_deg_C_mm_per_s2": [
+      10.0,
+      5.0,
+      1.5
+    ],
+    "minimum_move_time_s": 0.3,
+    "dwell_time_s": 0.4,
+    "sample_period_s": 0.05,
+    "endpoint_tolerance_um": 20.0,
+    "geometry_tolerance_um": 1e-06,
+    "visual_servo": {
+      "camera_name": "eye_internal",
+      "target_material": "lesion",
+      "target_rgb_min": [
+        180,
+        35,
+        0
+      ],
+      "target_rgb_max": [
+        255,
+        180,
+        100
+      ],
+      "target_depth_weight": 0.35,
+      "pixel_tolerance": 0.5,
+      "depth_tolerance_mm": 0.05,
+      "endpoint_tolerance_um": 20.0,
+      "position_feedback": "geometry",
+      "position_tolerance_um": 8.0,
+      "max_geometry_fit_quality_um": 10.0,
+      "geometry_gain_per_s": 3.0,
+      "require_settled": true,
+      "settle_frames": 3,
+      "use_target_pose_calibration": false,
+      "max_iterations": 1600,
+      "step_gain": 0.65,
+      "finite_difference_A_deg": 0.5,
+      "finite_difference_B_deg": 0.5,
+      "finite_difference_C_mm": 0.05,
+      "damping": 0.02,
+      "sample_period_s": 0.05,
+      "save_diagnostics": true,
+      "occlusion_handling": "stop"
+    }
+  },
+  "encoder_reference": {
+    "enabled": true,
+    "zero_pose_confirmed_by_user": true,
+    "robot_counts_ABC": [
+      0,
+      1466018,
+      893518
+    ],
+    "needle_tip_distance_at_reference_mm": 4.0,
+    "physical_needle_reference_confirmed": false,
+    "reference_meaning": "user_confirmed_zero_pose at robot ABC=[0,1466018,893518]; needle geometry retains a provisional 4 mm offset"
+  }
+}

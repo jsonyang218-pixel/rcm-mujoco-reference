@@ -1,0 +1,613 @@
+{
+    "audit_scope":  "local replay logs plus the independent OCT interface/sensor checks",
+    "primary_episode_status":  {
+                                   "A_no_occlusion":  {
+                                                          "oct_log_available":  false,
+                                                          "status":  "PRE_OCT_WRAPPER_PRIMARY_EVIDENCE",
+                                                          "note":  "Primary episode was recorded before the OCT wrapper was connected; do not relabel it as physical OCT."
+                                                      },
+                                   "B_occlusion_stop":  {
+                                                            "oct_log_available":  false,
+                                                            "status":  "PRE_OCT_WRAPPER_PRIMARY_EVIDENCE",
+                                                            "note":  "Primary episode was recorded before the OCT wrapper was connected; do not relabel it as physical OCT."
+                                                        },
+                                   "C_occlusion_recovery":  {
+                                                                "oct_log_available":  false,
+                                                                "status":  "PRE_OCT_WRAPPER_PRIMARY_EVIDENCE",
+                                                                "note":  "Primary episode was recorded before the OCT wrapper was connected; do not relabel it as physical OCT."
+                                                            }
+                               },
+    "local_phase_audits":  [
+                               {
+                                   "group":  "A_no_occlusion",
+                                   "phase":  "P1\\visual_align",
+                                   "path":  "reports/20261022/oct_three_group_79afacc/evidence/local_diagnostic/oct/A_no_occlusion/P1/visual_align/oct_observations.jsonl",
+                                   "rows":  63,
+                                   "source":  [
+                                                  "mujoco_ideal_registered_oct_simulation"
+                                              ],
+                                   "depth_units":  [
+                                                       "m"
+                                                   ],
+                                   "navigation_depth_units":  [
+                                                                  "m"
+                                                              ],
+                                   "navigation_depth_missing_rows":  0,
+                                   "unique_frame_ids":  true,
+                                   "sequence_strictly_increasing":  true,
+                                   "timestamp_strictly_increasing":  true,
+                                   "first_timestamp_s":  0.0,
+                                   "last_timestamp_s":  3.1,
+                                   "first_sequence_id":  0,
+                                   "last_sequence_id":  62,
+                                   "npz":  {
+                                               "path":  "reports/20261022/oct_three_group_79afacc/evidence/local_diagnostic/oct/A_no_occlusion/P1/visual_align/final_oct_frame.npz",
+                                               "allow_pickle_false_loaded":  true,
+                                               "fields":  [
+                                                              "scene_surface_depth_m",
+                                                              "registered_feature_depth_m",
+                                                              "scene_valid_mask",
+                                                              "feature_valid_mask",
+                                                              "metadata_json"
+                                                          ],
+                                               "shape_hw":  [
+                                                                1440,
+                                                                1920
+                                                            ],
+                                               "feature_valid_pixels":  28616
+                                           }
+                               },
+                               {
+                                   "group":  "A_no_occlusion",
+                                   "phase":  "P1\\visual_approach",
+                                   "path":  "reports/20261022/oct_three_group_79afacc/evidence/local_diagnostic/oct/A_no_occlusion/P1/visual_approach/oct_observations.jsonl",
+                                   "rows":  683,
+                                   "source":  [
+                                                  "mujoco_ideal_registered_oct_simulation"
+                                              ],
+                                   "depth_units":  [
+                                                       "m"
+                                                   ],
+                                   "navigation_depth_units":  [
+                                                                  "m"
+                                                              ],
+                                   "navigation_depth_missing_rows":  0,
+                                   "unique_frame_ids":  true,
+                                   "sequence_strictly_increasing":  true,
+                                   "timestamp_strictly_increasing":  true,
+                                   "first_timestamp_s":  3.1,
+                                   "last_timestamp_s":  37.2,
+                                   "first_sequence_id":  0,
+                                   "last_sequence_id":  682,
+                                   "npz":  {
+                                               "path":  "reports/20261022/oct_three_group_79afacc/evidence/local_diagnostic/oct/A_no_occlusion/P1/visual_approach/final_oct_frame.npz",
+                                               "allow_pickle_false_loaded":  true,
+                                               "fields":  [
+                                                              "scene_surface_depth_m",
+                                                              "registered_feature_depth_m",
+                                                              "scene_valid_mask",
+                                                              "feature_valid_mask",
+                                                              "metadata_json"
+                                                          ],
+                                               "shape_hw":  [
+                                                                1440,
+                                                                1920
+                                                            ],
+                                               "feature_valid_pixels":  17276
+                                           }
+                               },
+                               {
+                                   "group":  "B_occlusion_stop",
+                                   "phase":  "P1\\visual_align",
+                                   "path":  "reports/20261022/oct_three_group_79afacc/evidence/local_diagnostic/oct/B_occlusion_stop/P1/visual_align/oct_observations.jsonl",
+                                   "rows":  63,
+                                   "source":  [
+                                                  "mujoco_ideal_registered_oct_simulation"
+                                              ],
+                                   "depth_units":  [
+                                                       "m"
+                                                   ],
+                                   "navigation_depth_units":  [
+                                                                  "m"
+                                                              ],
+                                   "navigation_depth_missing_rows":  0,
+                                   "unique_frame_ids":  true,
+                                   "sequence_strictly_increasing":  true,
+                                   "timestamp_strictly_increasing":  true,
+                                   "first_timestamp_s":  0.0,
+                                   "last_timestamp_s":  3.1,
+                                   "first_sequence_id":  0,
+                                   "last_sequence_id":  62,
+                                   "npz":  {
+                                               "path":  "reports/20261022/oct_three_group_79afacc/evidence/local_diagnostic/oct/B_occlusion_stop/P1/visual_align/final_oct_frame.npz",
+                                               "allow_pickle_false_loaded":  true,
+                                               "fields":  [
+                                                              "scene_surface_depth_m",
+                                                              "registered_feature_depth_m",
+                                                              "scene_valid_mask",
+                                                              "feature_valid_mask",
+                                                              "metadata_json"
+                                                          ],
+                                               "shape_hw":  [
+                                                                1440,
+                                                                1920
+                                                            ],
+                                               "feature_valid_pixels":  28616
+                                           }
+                               },
+                               {
+                                   "group":  "B_occlusion_stop",
+                                   "phase":  "P1\\visual_approach",
+                                   "path":  "reports/20261022/oct_three_group_79afacc/evidence/local_diagnostic/oct/B_occlusion_stop/P1/visual_approach/oct_observations.jsonl",
+                                   "rows":  21,
+                                   "source":  [
+                                                  "mujoco_ideal_registered_oct_simulation"
+                                              ],
+                                   "depth_units":  [
+                                                       "m"
+                                                   ],
+                                   "navigation_depth_units":  [
+                                                                  "m"
+                                                              ],
+                                   "navigation_depth_missing_rows":  1,
+                                   "unique_frame_ids":  true,
+                                   "sequence_strictly_increasing":  true,
+                                   "timestamp_strictly_increasing":  true,
+                                   "first_timestamp_s":  3.1,
+                                   "last_timestamp_s":  4.1,
+                                   "first_sequence_id":  0,
+                                   "last_sequence_id":  20,
+                                   "npz":  {
+                                               "path":  "reports/20261022/oct_three_group_79afacc/evidence/local_diagnostic/oct/B_occlusion_stop/P1/visual_approach/final_oct_frame.npz",
+                                               "allow_pickle_false_loaded":  true,
+                                               "fields":  [
+                                                              "scene_surface_depth_m",
+                                                              "registered_feature_depth_m",
+                                                              "scene_valid_mask",
+                                                              "feature_valid_mask",
+                                                              "metadata_json"
+                                                          ],
+                                               "shape_hw":  [
+                                                                1440,
+                                                                1920
+                                                            ],
+                                               "feature_valid_pixels":  30093
+                                           }
+                               },
+                               {
+                                   "group":  "C_occlusion_recovery",
+                                   "phase":  "P1\\visual_align",
+                                   "path":  "reports/20261022/oct_three_group_79afacc/evidence/local_diagnostic/oct/C_occlusion_recovery/P1/visual_align/oct_observations.jsonl",
+                                   "rows":  16,
+                                   "source":  [
+                                                  "mujoco_ideal_registered_oct_simulation"
+                                              ],
+                                   "depth_units":  [
+                                                       "m"
+                                                   ],
+                                   "navigation_depth_units":  [
+                                                                  "m"
+                                                              ],
+                                   "navigation_depth_missing_rows":  0,
+                                   "unique_frame_ids":  true,
+                                   "sequence_strictly_increasing":  true,
+                                   "timestamp_strictly_increasing":  true,
+                                   "first_timestamp_s":  0.0,
+                                   "last_timestamp_s":  0.75,
+                                   "first_sequence_id":  0,
+                                   "last_sequence_id":  15,
+                                   "npz":  {
+                                               "path":  "reports/20261022/oct_three_group_79afacc/evidence/local_diagnostic/oct/C_occlusion_recovery/P1/visual_align/final_oct_frame.npz",
+                                               "allow_pickle_false_loaded":  true,
+                                               "fields":  [
+                                                              "scene_surface_depth_m",
+                                                              "registered_feature_depth_m",
+                                                              "scene_valid_mask",
+                                                              "feature_valid_mask",
+                                                              "metadata_json"
+                                                          ],
+                                               "shape_hw":  [
+                                                                1440,
+                                                                1920
+                                                            ],
+                                               "feature_valid_pixels":  23501
+                                           }
+                               },
+                               {
+                                   "group":  "C_occlusion_recovery",
+                                   "phase":  "P1\\visual_approach",
+                                   "path":  "reports/20261022/oct_three_group_79afacc/evidence/local_diagnostic/oct/C_occlusion_recovery/P1/visual_approach/oct_observations.jsonl",
+                                   "rows":  89,
+                                   "source":  [
+                                                  "mujoco_ideal_registered_oct_simulation"
+                                              ],
+                                   "depth_units":  [
+                                                       "m"
+                                                   ],
+                                   "navigation_depth_units":  [
+                                                                  "m"
+                                                              ],
+                                   "navigation_depth_missing_rows":  8,
+                                   "unique_frame_ids":  true,
+                                   "sequence_strictly_increasing":  true,
+                                   "timestamp_strictly_increasing":  true,
+                                   "first_timestamp_s":  0.75,
+                                   "last_timestamp_s":  5.15,
+                                   "first_sequence_id":  0,
+                                   "last_sequence_id":  88,
+                                   "npz":  {
+                                               "path":  "reports/20261022/oct_three_group_79afacc/evidence/local_diagnostic/oct/C_occlusion_recovery/P1/visual_approach/final_oct_frame.npz",
+                                               "allow_pickle_false_loaded":  true,
+                                               "fields":  [
+                                                              "scene_surface_depth_m",
+                                                              "registered_feature_depth_m",
+                                                              "scene_valid_mask",
+                                                              "feature_valid_mask",
+                                                              "metadata_json"
+                                                          ],
+                                               "shape_hw":  [
+                                                                1440,
+                                                                1920
+                                                            ],
+                                               "feature_valid_pixels":  17276
+                                           }
+                               },
+                               {
+                                   "group":  "C_occlusion_recovery",
+                                   "phase":  "P1\\visual_retract",
+                                   "path":  "reports/20261022/oct_three_group_79afacc/evidence/local_diagnostic/oct/C_occlusion_recovery/P1/visual_retract/oct_observations.jsonl",
+                                   "rows":  89,
+                                   "source":  [
+                                                  "mujoco_ideal_registered_oct_simulation"
+                                              ],
+                                   "depth_units":  [
+                                                       "m"
+                                                   ],
+                                   "navigation_depth_units":  [
+                                                                  "m"
+                                                              ],
+                                   "navigation_depth_missing_rows":  0,
+                                   "unique_frame_ids":  true,
+                                   "sequence_strictly_increasing":  true,
+                                   "timestamp_strictly_increasing":  true,
+                                   "first_timestamp_s":  5.15,
+                                   "last_timestamp_s":  9.55,
+                                   "first_sequence_id":  0,
+                                   "last_sequence_id":  88,
+                                   "npz":  {
+                                               "path":  "reports/20261022/oct_three_group_79afacc/evidence/local_diagnostic/oct/C_occlusion_recovery/P1/visual_retract/final_oct_frame.npz",
+                                               "allow_pickle_false_loaded":  true,
+                                               "fields":  [
+                                                              "scene_surface_depth_m",
+                                                              "registered_feature_depth_m",
+                                                              "scene_valid_mask",
+                                                              "feature_valid_mask",
+                                                              "metadata_json"
+                                                          ],
+                                               "shape_hw":  [
+                                                                1440,
+                                                                1920
+                                                            ],
+                                               "feature_valid_pixels":  23505
+                                           }
+                               },
+                               {
+                                   "group":  "C_occlusion_recovery",
+                                   "phase":  "P2\\visual_align",
+                                   "path":  "reports/20261022/oct_three_group_79afacc/evidence/local_diagnostic/oct/C_occlusion_recovery/P2/visual_align/oct_observations.jsonl",
+                                   "rows":  114,
+                                   "source":  [
+                                                  "mujoco_ideal_registered_oct_simulation"
+                                              ],
+                                   "depth_units":  [
+                                                       "m"
+                                                   ],
+                                   "navigation_depth_units":  [
+                                                                  "m"
+                                                              ],
+                                   "navigation_depth_missing_rows":  0,
+                                   "unique_frame_ids":  true,
+                                   "sequence_strictly_increasing":  true,
+                                   "timestamp_strictly_increasing":  true,
+                                   "first_timestamp_s":  9.55,
+                                   "last_timestamp_s":  15.200000000000001,
+                                   "first_sequence_id":  0,
+                                   "last_sequence_id":  113,
+                                   "npz":  {
+                                               "path":  "reports/20261022/oct_three_group_79afacc/evidence/local_diagnostic/oct/C_occlusion_recovery/P2/visual_align/final_oct_frame.npz",
+                                               "allow_pickle_false_loaded":  true,
+                                               "fields":  [
+                                                              "scene_surface_depth_m",
+                                                              "registered_feature_depth_m",
+                                                              "scene_valid_mask",
+                                                              "feature_valid_mask",
+                                                              "metadata_json"
+                                                          ],
+                                               "shape_hw":  [
+                                                                1440,
+                                                                1920
+                                                            ],
+                                               "feature_valid_pixels":  33207
+                                           }
+                               },
+                               {
+                                   "group":  "C_occlusion_recovery",
+                                   "phase":  "P2\\visual_approach",
+                                   "path":  "reports/20261022/oct_three_group_79afacc/evidence/local_diagnostic/oct/C_occlusion_recovery/P2/visual_approach/oct_observations.jsonl",
+                                   "rows":  119,
+                                   "source":  [
+                                                  "mujoco_ideal_registered_oct_simulation"
+                                              ],
+                                   "depth_units":  [
+                                                       "m"
+                                                   ],
+                                   "navigation_depth_units":  [
+                                                                  "m"
+                                                              ],
+                                   "navigation_depth_missing_rows":  35,
+                                   "unique_frame_ids":  true,
+                                   "sequence_strictly_increasing":  true,
+                                   "timestamp_strictly_increasing":  true,
+                                   "first_timestamp_s":  15.200000000000001,
+                                   "last_timestamp_s":  21.1,
+                                   "first_sequence_id":  0,
+                                   "last_sequence_id":  118,
+                                   "npz":  {
+                                               "path":  "reports/20261022/oct_three_group_79afacc/evidence/local_diagnostic/oct/C_occlusion_recovery/P2/visual_approach/final_oct_frame.npz",
+                                               "allow_pickle_false_loaded":  true,
+                                               "fields":  [
+                                                              "scene_surface_depth_m",
+                                                              "registered_feature_depth_m",
+                                                              "scene_valid_mask",
+                                                              "feature_valid_mask",
+                                                              "metadata_json"
+                                                          ],
+                                               "shape_hw":  [
+                                                                1440,
+                                                                1920
+                                                            ],
+                                               "feature_valid_pixels":  24308
+                                           }
+                               },
+                               {
+                                   "group":  "C_occlusion_recovery",
+                                   "phase":  "P2\\visual_retract",
+                                   "path":  "reports/20261022/oct_three_group_79afacc/evidence/local_diagnostic/oct/C_occlusion_recovery/P2/visual_retract/oct_observations.jsonl",
+                                   "rows":  89,
+                                   "source":  [
+                                                  "mujoco_ideal_registered_oct_simulation"
+                                              ],
+                                   "depth_units":  [
+                                                       "m"
+                                                   ],
+                                   "navigation_depth_units":  [
+                                                                  "m"
+                                                              ],
+                                   "navigation_depth_missing_rows":  0,
+                                   "unique_frame_ids":  true,
+                                   "sequence_strictly_increasing":  true,
+                                   "timestamp_strictly_increasing":  true,
+                                   "first_timestamp_s":  21.1,
+                                   "last_timestamp_s":  25.5,
+                                   "first_sequence_id":  0,
+                                   "last_sequence_id":  88,
+                                   "npz":  {
+                                               "path":  "reports/20261022/oct_three_group_79afacc/evidence/local_diagnostic/oct/C_occlusion_recovery/P2/visual_retract/final_oct_frame.npz",
+                                               "allow_pickle_false_loaded":  true,
+                                               "fields":  [
+                                                              "scene_surface_depth_m",
+                                                              "registered_feature_depth_m",
+                                                              "scene_valid_mask",
+                                                              "feature_valid_mask",
+                                                              "metadata_json"
+                                                          ],
+                                               "shape_hw":  [
+                                                                1440,
+                                                                1920
+                                                            ],
+                                               "feature_valid_pixels":  32903
+                                           }
+                               },
+                               {
+                                   "group":  "C_occlusion_recovery",
+                                   "phase":  "P3\\visual_align",
+                                   "path":  "reports/20261022/oct_three_group_79afacc/evidence/local_diagnostic/oct/C_occlusion_recovery/P3/visual_align/oct_observations.jsonl",
+                                   "rows":  77,
+                                   "source":  [
+                                                  "mujoco_ideal_registered_oct_simulation"
+                                              ],
+                                   "depth_units":  [
+                                                       "m"
+                                                   ],
+                                   "navigation_depth_units":  [
+                                                                  "m"
+                                                              ],
+                                   "navigation_depth_missing_rows":  0,
+                                   "unique_frame_ids":  true,
+                                   "sequence_strictly_increasing":  true,
+                                   "timestamp_strictly_increasing":  true,
+                                   "first_timestamp_s":  25.5,
+                                   "last_timestamp_s":  29.3,
+                                   "first_sequence_id":  0,
+                                   "last_sequence_id":  76,
+                                   "npz":  {
+                                               "path":  "reports/20261022/oct_three_group_79afacc/evidence/local_diagnostic/oct/C_occlusion_recovery/P3/visual_align/final_oct_frame.npz",
+                                               "allow_pickle_false_loaded":  true,
+                                               "fields":  [
+                                                              "scene_surface_depth_m",
+                                                              "registered_feature_depth_m",
+                                                              "scene_valid_mask",
+                                                              "feature_valid_mask",
+                                                              "metadata_json"
+                                                          ],
+                                               "shape_hw":  [
+                                                                1440,
+                                                                1920
+                                                            ],
+                                               "feature_valid_pixels":  26281
+                                           }
+                               },
+                               {
+                                   "group":  "C_occlusion_recovery",
+                                   "phase":  "P3\\visual_approach",
+                                   "path":  "reports/20261022/oct_three_group_79afacc/evidence/local_diagnostic/oct/C_occlusion_recovery/P3/visual_approach/oct_observations.jsonl",
+                                   "rows":  83,
+                                   "source":  [
+                                                  "mujoco_ideal_registered_oct_simulation"
+                                              ],
+                                   "depth_units":  [
+                                                       "m"
+                                                   ],
+                                   "navigation_depth_units":  [
+                                                                  "m"
+                                                              ],
+                                   "navigation_depth_missing_rows":  0,
+                                   "unique_frame_ids":  true,
+                                   "sequence_strictly_increasing":  true,
+                                   "timestamp_strictly_increasing":  true,
+                                   "first_timestamp_s":  29.3,
+                                   "last_timestamp_s":  33.4,
+                                   "first_sequence_id":  0,
+                                   "last_sequence_id":  82,
+                                   "npz":  {
+                                               "path":  "reports/20261022/oct_three_group_79afacc/evidence/local_diagnostic/oct/C_occlusion_recovery/P3/visual_approach/final_oct_frame.npz",
+                                               "allow_pickle_false_loaded":  true,
+                                               "fields":  [
+                                                              "scene_surface_depth_m",
+                                                              "registered_feature_depth_m",
+                                                              "scene_valid_mask",
+                                                              "feature_valid_mask",
+                                                              "metadata_json"
+                                                          ],
+                                               "shape_hw":  [
+                                                                1440,
+                                                                1920
+                                                            ],
+                                               "feature_valid_pixels":  19898
+                                           }
+                               }
+                           ],
+    "oct_interface_verification":  {
+                                       "result":  "PASS",
+                                       "check_groups":  10,
+                                       "checks":  [
+                                                      "copy_inputs_float32_maps_and_finite_positive_validity",
+                                                      "metres_only_without_implicit_mm_conversion",
+                                                      "invalid_outside_subpixel_and_wrong_map_samples_rejected",
+                                                      "explicit_near_far_bounds_filter_masks_without_changing_values",
+                                                      "shape_numeric_and_bounds_validation_without_consuming_sequence",
+                                                      "simulation_clock_order_repetition_flags_and_sequence_order",
+                                                      "frame_identifiers_unique_across_provider_streams",
+                                                      "truthful_simulation_provenance_json_metadata_and_nominal_rate_only",
+                                                      "npz_json_roundtrip_without_pickle_preserves_masks_maps_and_clock",
+                                                      "signed_axial_and_along_needle_differences_distinct_without_input_mutation"
+                                                  ],
+                                       "scope":  "Numerical registered-depth adapter only; no hardware, physical OCT image formation, raw B-scan, or real-time validation.",
+                                       "fixture_frame_metadata":  {
+                                                                      "schema_version":  1,
+                                                                      "frame_id":  "sim-oct-26195eb4e2954d33b4f8d69d6f289d2b/00000000",
+                                                                      "stream_id":  "sim-oct-26195eb4e2954d33b4f8d69d6f289d2b",
+                                                                      "sequence_id":  0,
+                                                                      "timestamp_s":  0.0,
+                                                                      "clock_domain":  "simulation",
+                                                                      "acquired_monotonic_s":  10.0,
+                                                                      "nominal_period_s":  0.05,
+                                                                      "nominal_frequency_hz":  20.0,
+                                                                      "nominal_rate_is_wall_clock_guarantee":  false,
+                                                                      "source":  "mujoco_ideal_registered_oct_simulation",
+                                                                      "is_simulation":  true,
+                                                                      "raw_oct_available":  false,
+                                                                      "realtime_validated":  false,
+                                                                      "camera_name":  "eye_internal",
+                                                                      "registration_frame":  "eye_internal",
+                                                                      "registration_description":  "Ideal renderer depth registered pixel-for-pixel to the named MuJoCo camera; scene includes fundus, feature pass excludes fundus backdrop. No physical OCT calibration or hardware registration is validated.",
+                                                                      "depth_unit":  "m",
+                                                                      "depth_convention":  "positive_camera_optical_axis_z_not_ray_range",
+                                                                      "shape_hw":  [
+                                                                                       2,
+                                                                                       3
+                                                                                   ],
+                                                                      "depth_dtype":  "float32",
+                                                                      "validity_rule":  "finite and strictly greater than min; strictly less than max when set",
+                                                                      "min_valid_depth_m":  0.0,
+                                                                      "max_valid_depth_m":  null,
+                                                                      "scene_valid_pixels":  2,
+                                                                      "feature_valid_pixels":  2,
+                                                                      "timestamp_repeated":  false,
+                                                                      "fresh_simulation_timestamp":  true,
+                                                                      "extra":  {
+
+                                                                                }
+                                                                  }
+                                   },
+    "oct_sensor_verification":  {
+                                    "result":  "PASS",
+                                    "check_groups":  12,
+                                    "checks":  [
+                                                   "render_depth_values_unchanged_float32_metre_maps_and_identity_aliases",
+                                                   "configured_near_far_valid_masks_and_truthful_simulation_provenance",
+                                                   "reverse_z_far_background_roundoff_excluded_without_changing_raw_values",
+                                                   "three_waypoint_current_visible_target_minus_tip_optical_coordinates",
+                                                   "dynamic_truth_interfaces_forbidden_during_all_observations",
+                                                   "explicit_nonzero_simulation_clock_and_repeated_capture_marked_nonfresh",
+                                                   "legacy_depth_alias_perturbation_remains_causal",
+                                                   "axial_and_along_needle_signs_reverse_beyond_target",
+                                                   "actual_opaque_sphere_occlusion_never_invents_current_target_or_relative_depth",
+                                                   "missing_visible_shaft_support_never_invents_relative_depth",
+                                                   "custom_provider_invalid_depth_masks_are_consumed_by_legacy_fields_and_geometry",
+                                                   "actual_render_npz_json_roundtrip_without_pickle"
+                                               ],
+                                    "static_poses":  [
+                                                         {
+                                                             "target_id":  "P1",
+                                                             "pose":  "80_percent_insertion",
+                                                             "sequence_id":  0,
+                                                             "timestamp_s":  4.0,
+                                                             "target_pixels":  126,
+                                                             "tip_pixels":  26,
+                                                             "axial_depth_difference_m":  0.003959661343463497,
+                                                             "along_needle_difference_m":  0.003963888053557558,
+                                                             "truth_axial_error_um":  0.5088123344165058
+                                                         },
+                                                         {
+                                                             "target_id":  "P2",
+                                                             "pose":  "80_percent_insertion",
+                                                             "sequence_id":  1,
+                                                             "timestamp_s":  4.05,
+                                                             "target_pixels":  126,
+                                                             "tip_pixels":  38,
+                                                             "axial_depth_difference_m":  0.003910457782126439,
+                                                             "along_needle_difference_m":  0.003971817637246373,
+                                                             "truth_axial_error_um":  3.8941932720059844
+                                                         },
+                                                         {
+                                                             "target_id":  "P3",
+                                                             "pose":  "80_percent_insertion",
+                                                             "sequence_id":  2,
+                                                             "timestamp_s":  4.1,
+                                                             "target_pixels":  127,
+                                                             "tip_pixels":  28,
+                                                             "axial_depth_difference_m":  0.003905964584059715,
+                                                             "along_needle_difference_m":  0.003940288335765276,
+                                                             "truth_axial_error_um":  0.07842716415011608
+                                                         },
+                                                         {
+                                                             "target_id":  "P3",
+                                                             "pose":  "300_um_beyond",
+                                                             "axial_depth_difference_m":  -0.00029748122983679764,
+                                                             "along_needle_difference_m":  -0.0002988044774691875
+                                                         }
+                                                     ],
+                                    "depth_alias_perturbation":  {
+                                                                     "outcome":  "estimate_changed",
+                                                                     "tip_change_um":  19.85260856842706
+                                                                 },
+                                    "saved_frames":  [
+                                                         "visible_P3.npz",
+                                                         "occluded_P3.npz"
+                                                     ],
+                                    "scope":  "Static actual EGL-rendered sensor acceptance only; no closed-loop navigation, physical OCT scan, hardware registration or real-time validation."
+                                },
+    "association_policy":  "RGB and OCT are associated by phase and simulation timestamp; stage-boundary tolerance is 1 ns when required for strict ordering.",
+    "interpretation":  "All OCT-like data here are ideal MuJoCo registered depth in metres; raw physical OCT and hardware registration are absent."
+}

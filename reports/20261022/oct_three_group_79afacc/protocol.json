@@ -1,0 +1,83 @@
+{
+  "title": "Strict visual and occlusion-recovery three-group pilot",
+  "date": "2026-10-22",
+  "output_root": "runs/oct_three_group_79afacc_20261022/",
+  "groups": {
+    "A_no_occlusion": {
+      "config": "strict_config.json",
+      "start_pose_ABC_mm": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "order": [
+        "P1",
+        "P2",
+        "P3"
+      ]
+    },
+    "B_occlusion_stop": {
+      "config": "stop_occlusion_config.json",
+      "start_pose_ABC_mm": [
+        6.481389210293787,
+        2.847750084902797,
+        17.8199835578327
+      ],
+      "order": [
+        "P1",
+        "P2",
+        "P3"
+      ]
+    },
+    "C_occlusion_recovery": {
+      "config": "recovery_config.json",
+      "start_pose_ABC_mm": [
+        6.481389210293787,
+        2.847750084902797,
+        17.8199835578327
+      ],
+      "order": [
+        "P1",
+        "P2",
+        "P3"
+      ]
+    }
+  },
+  "common_cli_flags": [
+    "--strict-visual",
+    "--methods",
+    "visual_servo",
+    "--planner-feedback",
+    "vision",
+    "--profile",
+    "precision",
+    "--task-regime",
+    "visual_current_target",
+    "--sampling-frequency-hz",
+    "20",
+    "--retract-mm",
+    "2",
+    "--transfer-clearance-mm",
+    "1"
+  ],
+  "occlusion_plan": {
+    "P1": {
+      "start_frame": 20,
+      "duration_frames": 8
+    },
+    "P2": {
+      "start_frame": 20,
+      "duration_frames": 35
+    },
+    "relative_to_phase": true
+  },
+  "strict_config_structure_diff_stop_vs_recovery": [
+    "/navigation/visual_servo/occlusion_handling"
+  ],
+  "expected_diff_only": [
+    "/navigation/visual_servo/occlusion_handling"
+  ],
+  "planner_policy": "No RRT or PRM was run in this pilot.",
+  "evidence_policy": "Unexpected failures and occlusion failures are retained; reruns are diagnostic and never replace the original episode.",
+  "expansion_status": "Pause after three groups pending confirmation before adding the other two layouts."
+}

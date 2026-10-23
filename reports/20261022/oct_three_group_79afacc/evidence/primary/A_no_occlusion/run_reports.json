@@ -1,0 +1,1653 @@
+[
+  {
+    "method": "visual_servo",
+    "seed": null,
+    "episode_index": 0,
+    "result": "PASS",
+    "visit_order": [
+      "P1",
+      "P2",
+      "P3"
+    ],
+    "waypoints": [
+      {
+        "waypoint_id": "P1",
+        "result": "PASS",
+        "reason": "VISUAL_ARRIVAL_AND_STOP",
+        "tip_error_um": 6.634482537712616,
+        "motion_time_s": 37.2,
+        "algorithm_wall_s": 449.26215590599986,
+        "terminal_stop_validated": true,
+        "success_with_stop": true,
+        "arrival_task_A_deg_B_deg_C_mm": [
+          6.481389210293787,
+          2.847750084902797,
+          19.81277075827996
+        ],
+        "arrival_geometry_measurement": {
+          "target_world_mm": [
+            2.6403632303169093,
+            13.244764136140248,
+            -19.621321506862664
+          ],
+          "target_quality": {
+            "source": "target_sphere_fit",
+            "support": 101,
+            "residual_mm": 0.00044453801814786447,
+            "fit_quality_mm": 0.002
+          },
+          "tip_world_mm": [
+            2.6393475111330202,
+            13.239117891242039,
+            -19.616514922594103
+          ],
+          "tip_quality": {
+            "source": "shaft_end_plane",
+            "plane_end": "rear",
+            "support": 1453,
+            "residual_mm": 7.271315954876553e-07,
+            "axis_residual_mm": 0.000984760955325007,
+            "fit_quality_mm": 0.002569344039266834,
+            "axis_world": [
+              0.11083747993097433,
+              0.5559671310370269,
+              -0.8237812830169231
+            ]
+          }
+        },
+        "transition_to_next_result": "PASS",
+        "visibility_exposure": [
+          "visible",
+          "needle_occluded"
+        ],
+        "visibility_frame_counts": {
+          "clear": 737,
+          "partial_needle": 98,
+          "full_needle": 0,
+          "not_visible": 0,
+          "unknown": 0
+        }
+      },
+      {
+        "waypoint_id": "P2",
+        "result": "PASS",
+        "reason": "VISUAL_ARRIVAL_AND_STOP",
+        "tip_error_um": 6.085112747937411,
+        "motion_time_s": 14.549999999999997,
+        "algorithm_wall_s": 187.81281202300033,
+        "terminal_stop_validated": true,
+        "success_with_stop": true,
+        "arrival_task_A_deg_B_deg_C_mm": [
+          -2.433008908482686,
+          -4.960011673906726,
+          19.868183884032295
+        ],
+        "arrival_geometry_measurement": {
+          "target_world_mm": [
+            -0.9598754156456814,
+            10.554043726226691,
+            -21.394314314031057
+          ],
+          "target_quality": {
+            "source": "target_sphere_fit",
+            "support": 99,
+            "residual_mm": 0.0004144511409332142,
+            "fit_quality_mm": 0.002
+          },
+          "tip_world_mm": [
+            -0.9596120118800968,
+            10.551944054215392,
+            -21.387515911836125
+          ],
+          "tip_quality": {
+            "source": "shaft_end_plane",
+            "plane_end": "rear",
+            "support": 1337,
+            "residual_mm": 7.321806478416009e-07,
+            "axis_residual_mm": 0.0009750390690186905,
+            "fit_quality_mm": 0.0025732974472599734,
+            "axis_world": [
+              -0.04020465089333304,
+              0.44209245163004424,
+              -0.8960679942159981
+            ]
+          }
+        },
+        "transition_to_next_result": "PASS",
+        "visibility_exposure": [
+          "visible",
+          "needle_occluded"
+        ],
+        "visibility_frame_counts": {
+          "clear": 223,
+          "partial_needle": 71,
+          "full_needle": 0,
+          "not_visible": 0,
+          "unknown": 0
+        }
+      },
+      {
+        "waypoint_id": "P3",
+        "result": "PASS",
+        "reason": "VISUAL_ARRIVAL_AND_STOP",
+        "tip_error_um": 6.267575687082636,
+        "motion_time_s": 12.299999999999997,
+        "algorithm_wall_s": 183.68253721400106,
+        "terminal_stop_validated": true,
+        "success_with_stop": true,
+        "arrival_task_A_deg_B_deg_C_mm": [
+          4.9757788565868255,
+          -7.20120007167063,
+          19.688872805426048
+        ],
+        "arrival_geometry_measurement": {
+          "target_world_mm": [
+            1.920267510129401,
+            9.592163674340684,
+            -21.58260256319798
+          ],
+          "target_quality": {
+            "source": "target_sphere_fit",
+            "support": 104,
+            "residual_mm": 0.00042174691609818085,
+            "fit_quality_mm": 0.002
+          },
+          "tip_world_mm": [
+            1.9186164740966334,
+            9.589329957362407,
+            -21.576058207885982
+          ],
+          "tip_quality": {
+            "source": "shaft_end_plane",
+            "plane_end": "rear",
+            "support": 1444,
+            "residual_mm": 7.788803094929054e-07,
+            "axis_residual_mm": 0.0009890817712305776,
+            "fit_quality_mm": 0.002609863282332945,
+            "axis_world": [
+              0.08099231261284603,
+              0.4048031590159838,
+              -0.9108098856228466
+            ]
+          }
+        },
+        "visibility_exposure": [
+          "visible",
+          "needle_occluded"
+        ],
+        "visibility_frame_counts": {
+          "clear": 101,
+          "partial_needle": 59,
+          "full_needle": 0,
+          "not_visible": 0,
+          "unknown": 0
+        }
+      }
+    ],
+    "max_tip_error_um": 6.634482537712616,
+    "trajectory_rate_limits_pass": true,
+    "total_wall_s": 825.2682624010004,
+    "planning_domain_low_A_deg_B_deg_C_mm": [
+      -8.0,
+      -8.0,
+      -2.0
+    ],
+    "planning_domain_high_A_deg_B_deg_C_mm": [
+      8.0,
+      8.0,
+      2.0
+    ],
+    "visibility_summary": {
+      "known_frames": 1289,
+      "unknown_frames": 0,
+      "target_occlusion_state_frames": {
+        "clear": 1061,
+        "partial_needle": 228,
+        "full_needle": 0,
+        "not_visible": 0
+      },
+      "frames_with_needle_occlusion": 228,
+      "maximum_target_occlusion_fraction_by_needle": 0.09523809523809523,
+      "source": "MuJoCo geometry segmentation; offline no-needle counterfactual, not controller input"
+    },
+    "target_success_by_visibility": {
+      "unit": "attempted target visit, not frame",
+      "success_definition": "endpoint result PASS and terminal stop validated",
+      "condition_definition": "Conditions are exposure-based at target-visit level and may overlap. visible means at least one clear frame; needle_occluded means at least one partial/full needle-occlusion frame; other_visibility_issue means target absent even with the needle hidden; unknown means visibility could not be classified.",
+      "exclusive_visit_class_definition": "An auxiliary single-label summary prioritizes needle_occluded, then other_visibility_issue, then visible when every sampled frame is clear, otherwise unknown. It is not used for condition_exposure success rates; exposure groups may overlap.",
+      "attempted_target_visits": 3,
+      "not_attempted_target_visits": 0,
+      "condition_exposure": {
+        "visible": {
+          "target_visits": 3,
+          "successful_target_visits": 3,
+          "success_rate": 1.0
+        },
+        "needle_occluded": {
+          "target_visits": 3,
+          "successful_target_visits": 3,
+          "success_rate": 1.0
+        },
+        "other_visibility_issue": {
+          "target_visits": 0,
+          "successful_target_visits": 0,
+          "success_rate": null
+        },
+        "unknown": {
+          "target_visits": 0,
+          "successful_target_visits": 0,
+          "success_rate": null
+        }
+      },
+      "target_visits": [
+        {
+          "waypoint_id": "P1",
+          "attempted": true,
+          "result": "PASS",
+          "reason": "VISUAL_ARRIVAL_AND_STOP",
+          "endpoint_error_um": 6.634482537712616,
+          "terminal_stop_validated": true,
+          "success_with_stop": true,
+          "visibility_exposure": [
+            "visible",
+            "needle_occluded"
+          ],
+          "exclusive_visibility_class": "needle_occluded",
+          "visibility_frame_counts": {
+            "clear": 737,
+            "partial_needle": 98,
+            "full_needle": 0,
+            "not_visible": 0,
+            "unknown": 0
+          },
+          "visibility_issue_frame_counts": {
+            "target_not_visible_without_needle_frames": 0,
+            "tip_fully_occluded_frames": 0,
+            "unknown_visibility_frames": 0,
+            "approach_frames": 835
+          }
+        },
+        {
+          "waypoint_id": "P2",
+          "attempted": true,
+          "result": "PASS",
+          "reason": "VISUAL_ARRIVAL_AND_STOP",
+          "endpoint_error_um": 6.085112747937411,
+          "terminal_stop_validated": true,
+          "success_with_stop": true,
+          "visibility_exposure": [
+            "visible",
+            "needle_occluded"
+          ],
+          "exclusive_visibility_class": "needle_occluded",
+          "visibility_frame_counts": {
+            "clear": 223,
+            "partial_needle": 71,
+            "full_needle": 0,
+            "not_visible": 0,
+            "unknown": 0
+          },
+          "visibility_issue_frame_counts": {
+            "target_not_visible_without_needle_frames": 0,
+            "tip_fully_occluded_frames": 0,
+            "unknown_visibility_frames": 0,
+            "approach_frames": 294
+          }
+        },
+        {
+          "waypoint_id": "P3",
+          "attempted": true,
+          "result": "PASS",
+          "reason": "VISUAL_ARRIVAL_AND_STOP",
+          "endpoint_error_um": 6.267575687082636,
+          "terminal_stop_validated": true,
+          "success_with_stop": true,
+          "visibility_exposure": [
+            "visible",
+            "needle_occluded"
+          ],
+          "exclusive_visibility_class": "needle_occluded",
+          "visibility_frame_counts": {
+            "clear": 101,
+            "partial_needle": 59,
+            "full_needle": 0,
+            "not_visible": 0,
+            "unknown": 0
+          },
+          "visibility_issue_frame_counts": {
+            "target_not_visible_without_needle_frames": 0,
+            "tip_fully_occluded_frames": 0,
+            "unknown_visibility_frames": 0,
+            "approach_frames": 160
+          }
+        }
+      ],
+      "source": "frame visibility labels from MuJoCo segmentation plus per-waypoint endpoint and stop reports"
+    },
+    "stop_constraint_summary": {
+      "required_at_every_target": true,
+      "requested_targets": 3,
+      "attempted_targets": 3,
+      "not_attempted_targets": 0,
+      "targets_with_validated_stop": 3,
+      "target_stop_failures": 0,
+      "terminal_velocity_A_deg_B_deg_C_mm_per_s": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "terminal_velocity_zero": true,
+      "all_targets_reached_and_stopped": true,
+      "pass": true,
+      "stop_validation_source": "per-target controller stop reports or rest-to-rest planner endpoints; final command velocity must be zero"
+    },
+    "tip_path_length_mm": 35.84238865477014,
+    "joint_path_length_A_deg_B_deg_C_mm": [
+      22.804575094139764,
+      12.89670024147619,
+      27.660021045702468
+    ],
+    "max_geometry_errors_um": {
+      "rcm_drift_um": 0.0,
+      "needle_axis_rcm_distance_um": 7.844032093974736e-12,
+      "fk_agreement_um": 1.811569657848091e-11,
+      "upper_link_closure_um": 1.7933411587957658e-10,
+      "lower_link_closure_um": 1.7838019361183216e-10
+    },
+    "tip_outside_eye_samples": 0,
+    "max_proximal_centerline_inside_mm": 19.868183884032334,
+    "validation_samples": 3844,
+    "motion_time_s": 64.05,
+    "fundus_transition_constraints_pass": true,
+    "fundus_transition_violation_count": 0,
+    "minimum_transfer_clearance_lower_bound_mm": 1.7204806838300246,
+    "algorithm_wall_s": 820.7575051430013,
+    "execution_mode": "strict_visual_multitarget",
+    "known_target_pose_used_for_feature_calibration": false,
+    "ground_truth_used_for_fundus_transfer": false,
+    "visual_feedback_scope": "Measured shaft/tip retraction, measured target-direction alignment, and measured axial approach throughout.",
+    "fundus_command_guard_enabled": true,
+    "eye_containment_guard_enabled": true,
+    "max_velocity": [
+      4.0,
+      2.0,
+      0.6
+    ],
+    "max_acceleration": [
+      10.000000000000005,
+      5.000000000000003,
+      1.5
+    ],
+    "terminal_velocity": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "terminal_stop_validated": true,
+    "terminal_stop_scope": "Every successful visual phase requires consecutive zero-command-velocity observations; abort holds are not physical brakes.",
+    "control_details": [
+      {
+        "result": "PASS",
+        "reason": "POSITION_ERROR_AND_SETTLED",
+        "controller_result": "PASS",
+        "controller_reason": "POSITION_ERROR_AND_SETTLED",
+        "execution_mode": "visual_servo_kinematic",
+        "feedback_controller_used": true,
+        "position_feedback": "calibrated_visible_geometry",
+        "camera_name": "eye_internal",
+        "iterations": 63,
+        "initial_tip_world_mm": [
+          0.0,
+          2.0742577066086785,
+          -3.4201542314016327
+        ],
+        "final_tip_world_mm": [
+          0.44335164330469473,
+          2.2238662234908126,
+          -3.295126452868802
+        ],
+        "target_world_mm": [
+          2.640000000000001,
+          13.24440230063386,
+          -19.62046395741142
+        ],
+        "final_tip_target_error_um": 19819.03438787595,
+        "final_estimated_position_error_um": 0.8984450967378212,
+        "final_geometry_measurement": {
+          "target_world_mm": [
+            2.6402890749284103,
+            13.244790509078381,
+            -19.62134456319325
+          ],
+          "target_quality": {
+            "source": "target_sphere_fit",
+            "support": 113,
+            "residual_mm": 0.00043774930671396214,
+            "fit_quality_mm": 0.002
+          },
+          "tip_world_mm": [
+            0.44253539926796887,
+            2.2241613943451055,
+            -3.2953477276133643
+          ],
+          "tip_quality": {
+            "source": "apex_sphere_on_shaft_axis",
+            "support": 4,
+            "residual_mm": 0.0004414193675819078,
+            "axis_residual_mm": 0.000672541090926685,
+            "fit_quality_mm": 0.0027958965493573877,
+            "axis_world": [
+              0.11062676946850312,
+              0.5560047630991176,
+              -0.8237842079622896
+            ]
+          }
+        },
+        "final_visual_error": {
+          "calibrated_u_v_depth_mm": [
+            0.07092922124024881,
+            -0.019303832087302908,
+            9.966053000215469e-06
+          ]
+        },
+        "camera_resolution_px": [
+          1920,
+          1440
+        ],
+        "max_velocity_A_deg_B_deg_C_mm_per_s": [
+          4.0,
+          2.0,
+          0.0
+        ],
+        "max_acceleration_A_deg_B_deg_C_mm_per_s2": [
+          10.000000000000005,
+          5.000000000000003,
+          0.0
+        ],
+        "trajectory_rate_limits_pass": true,
+        "initial_command_velocity_A_deg_B_deg_C_mm_per_s": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "final_command_velocity_A_deg_B_deg_C_mm_per_s": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "simulation_abort_hold": false,
+        "velocity_before_abort_hold_A_deg_B_deg_C_mm_per_s": null,
+        "physical_braking_validated": false,
+        "settled_frames": 3,
+        "terminal_stop_validated": true,
+        "independent_accuracy_acceptance_pass": null,
+        "independent_endpoint_acceptance_required": false,
+        "measurement_goal_type": "transformed_measured_target",
+        "independent_accuracy_tolerance_um": 20.0,
+        "stop_condition": "measured controllable 3D error and consecutive zero-command-velocity observations",
+        "tip_detection": "visible shaft cylinder plus identified end plane or actual apex sphere; no taper-pixel substitution",
+        "target_detection": "current-frame RGB/segmentation and calibrated sphere depth fit",
+        "control_axes": [
+          true,
+          true,
+          false
+        ],
+        "completion_axes": [
+          true,
+          true,
+          false
+        ],
+        "known_target_pose_used_for_feature_calibration": false,
+        "ground_truth_used_for_stop": false,
+        "ground_truth_used_for_post_run_acceptance": false,
+        "calibration_inputs": "fixed camera, RCM, needle lengths/radii and target marker radius",
+        "scope": "MuJoCo RGB-D geometry and kinematic control; geometric calibration and ideal depth are simulation assumptions, not hardware accuracy.",
+        "waypoint_id": "P1",
+        "phase": "visual_align",
+        "start_s": 0.0,
+        "duration_s": 3.1,
+        "algorithm_wall_s": 39.39375807000033,
+        "virtual_goal_source": "observed_marker_direction_and_current_tip_radius",
+        "transition_to": null
+      },
+      {
+        "result": "PASS",
+        "reason": "POSITION_ERROR_AND_SETTLED",
+        "controller_result": "PASS",
+        "controller_reason": "POSITION_ERROR_AND_SETTLED",
+        "execution_mode": "visual_servo_kinematic",
+        "feedback_controller_used": true,
+        "position_feedback": "calibrated_visible_geometry",
+        "camera_name": "eye_internal",
+        "iterations": 683,
+        "initial_tip_world_mm": [
+          0.44335164330469473,
+          2.2238662234908126,
+          -3.295126452868802
+        ],
+        "final_tip_world_mm": [
+          2.6393577618303508,
+          13.239104144267127,
+          -19.61652271042724
+        ],
+        "target_world_mm": [
+          2.640000000000001,
+          13.24440230063386,
+          -19.62046395741142
+        ],
+        "final_tip_target_error_um": 6.634482537712616,
+        "final_estimated_position_error_um": 7.484318221578208,
+        "final_geometry_measurement": {
+          "target_world_mm": [
+            2.6403632303169093,
+            13.244764136140248,
+            -19.621321506862664
+          ],
+          "target_quality": {
+            "source": "target_sphere_fit",
+            "support": 101,
+            "residual_mm": 0.00044453801814786447,
+            "fit_quality_mm": 0.002
+          },
+          "tip_world_mm": [
+            2.6393475111330202,
+            13.239117891242039,
+            -19.616514922594103
+          ],
+          "tip_quality": {
+            "source": "shaft_end_plane",
+            "plane_end": "rear",
+            "support": 1453,
+            "residual_mm": 7.271315954876553e-07,
+            "axis_residual_mm": 0.000984760955325007,
+            "fit_quality_mm": 0.002569344039266834,
+            "axis_world": [
+              0.11083747993097433,
+              0.5559671310370269,
+              -0.8237812830169231
+            ]
+          }
+        },
+        "final_visual_error": {
+          "calibrated_u_v_depth_mm": [
+            -0.03384916400943894,
+            -0.08952328539987775,
+            -0.0071066846313722065
+          ]
+        },
+        "camera_resolution_px": [
+          1920,
+          1440
+        ],
+        "max_velocity_A_deg_B_deg_C_mm_per_s": [
+          0.0,
+          0.0,
+          0.6
+        ],
+        "max_acceleration_A_deg_B_deg_C_mm_per_s2": [
+          0.0,
+          0.0,
+          1.5
+        ],
+        "trajectory_rate_limits_pass": true,
+        "initial_command_velocity_A_deg_B_deg_C_mm_per_s": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "final_command_velocity_A_deg_B_deg_C_mm_per_s": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "simulation_abort_hold": false,
+        "velocity_before_abort_hold_A_deg_B_deg_C_mm_per_s": null,
+        "physical_braking_validated": false,
+        "settled_frames": 3,
+        "terminal_stop_validated": true,
+        "independent_accuracy_acceptance_pass": true,
+        "independent_endpoint_acceptance_required": true,
+        "measurement_goal_type": "physical_target",
+        "independent_accuracy_tolerance_um": 20.0,
+        "stop_condition": "measured controllable 3D error and consecutive zero-command-velocity observations",
+        "tip_detection": "visible shaft cylinder plus identified end plane or actual apex sphere; no taper-pixel substitution",
+        "target_detection": "current-frame RGB/segmentation and calibrated sphere depth fit",
+        "control_axes": [
+          false,
+          false,
+          true
+        ],
+        "completion_axes": [
+          false,
+          false,
+          true
+        ],
+        "known_target_pose_used_for_feature_calibration": false,
+        "ground_truth_used_for_stop": false,
+        "ground_truth_used_for_post_run_acceptance": true,
+        "calibration_inputs": "fixed camera, RCM, needle lengths/radii and target marker radius",
+        "scope": "MuJoCo RGB-D geometry and kinematic control; geometric calibration and ideal depth are simulation assumptions, not hardware accuracy.",
+        "waypoint_id": "P1",
+        "phase": "visual_approach",
+        "start_s": 3.1,
+        "duration_s": 34.1,
+        "algorithm_wall_s": 409.86839783599953,
+        "virtual_goal_source": "current_or_bounded_history_target_observation",
+        "transition_to": null
+      },
+      {
+        "result": "PASS",
+        "reason": "POSITION_ERROR_AND_SETTLED",
+        "controller_result": "PASS",
+        "controller_reason": "POSITION_ERROR_AND_SETTLED",
+        "execution_mode": "visual_servo_kinematic",
+        "feedback_controller_used": true,
+        "position_feedback": "calibrated_visible_geometry",
+        "camera_name": "eye_internal",
+        "iterations": 89,
+        "initial_tip_world_mm": [
+          2.6393577618303508,
+          13.239104144267127,
+          -19.61652271042724
+        ],
+        "final_tip_world_mm": [
+          2.4184813918116372,
+          12.131181107847258,
+          -17.974901255644212
+        ],
+        "target_world_mm": [
+          2.640000000000001,
+          13.24440230063386,
+          -19.62046395741142
+        ],
+        "final_tip_target_error_um": 1999.0519061020723,
+        "final_estimated_position_error_um": 7.213024989108197,
+        "final_geometry_measurement": {
+          "target_world_mm": [
+            2.6402890749284103,
+            13.244790509078381,
+            -19.62134456319325
+          ],
+          "target_quality": {
+            "source": "target_sphere_fit",
+            "support": 113,
+            "residual_mm": 0.00043774930671396214,
+            "fit_quality_mm": 0.002
+          },
+          "tip_world_mm": [
+            2.4184846161517823,
+            12.13118455684121,
+            -17.974898856192528
+          ],
+          "tip_quality": {
+            "source": "shaft_end_plane",
+            "plane_end": "rear",
+            "support": 1939,
+            "residual_mm": 6.556489373427194e-07,
+            "axis_residual_mm": 0.0011149513351293274,
+            "fit_quality_mm": 0.0025133731179393494,
+            "axis_world": [
+              0.11083805708106265,
+              0.5559667063384313,
+              -0.8237814919902553
+            ]
+          }
+        },
+        "final_visual_error": {
+          "calibrated_u_v_depth_mm": [
+            0.04558928534754614,
+            0.005191876191474876,
+            0.007205070582078088
+          ]
+        },
+        "camera_resolution_px": [
+          1920,
+          1440
+        ],
+        "max_velocity_A_deg_B_deg_C_mm_per_s": [
+          0.0,
+          0.0,
+          0.6
+        ],
+        "max_acceleration_A_deg_B_deg_C_mm_per_s2": [
+          0.0,
+          0.0,
+          1.5
+        ],
+        "trajectory_rate_limits_pass": true,
+        "initial_command_velocity_A_deg_B_deg_C_mm_per_s": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "final_command_velocity_A_deg_B_deg_C_mm_per_s": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "simulation_abort_hold": false,
+        "velocity_before_abort_hold_A_deg_B_deg_C_mm_per_s": null,
+        "physical_braking_validated": false,
+        "settled_frames": 3,
+        "terminal_stop_validated": true,
+        "independent_accuracy_acceptance_pass": null,
+        "independent_endpoint_acceptance_required": false,
+        "measurement_goal_type": "measured_tip_retraction_waypoint",
+        "independent_accuracy_tolerance_um": 20.0,
+        "stop_condition": "measured controllable 3D error and consecutive zero-command-velocity observations",
+        "tip_detection": "visible shaft cylinder plus identified end plane or actual apex sphere; no taper-pixel substitution",
+        "target_detection": "current-frame RGB/segmentation and calibrated sphere depth fit",
+        "control_axes": [
+          false,
+          false,
+          true
+        ],
+        "completion_axes": [
+          false,
+          false,
+          true
+        ],
+        "known_target_pose_used_for_feature_calibration": false,
+        "ground_truth_used_for_stop": false,
+        "ground_truth_used_for_post_run_acceptance": false,
+        "calibration_inputs": "fixed camera, RCM, needle lengths/radii and target marker radius",
+        "scope": "MuJoCo RGB-D geometry and kinematic control; geometric calibration and ideal depth are simulation assumptions, not hardware accuracy.",
+        "waypoint_id": "P1",
+        "phase": "visual_retract",
+        "start_s": 37.2,
+        "duration_s": 4.4,
+        "algorithm_wall_s": 54.508925517000534,
+        "virtual_goal_source": "observed_tip_and_shaft",
+        "transition_to": "P2"
+      },
+      {
+        "result": "PASS",
+        "reason": "POSITION_ERROR_AND_SETTLED",
+        "controller_result": "PASS",
+        "controller_reason": "POSITION_ERROR_AND_SETTLED",
+        "execution_mode": "visual_servo_kinematic",
+        "feedback_controller_used": true,
+        "position_feedback": "calibrated_visible_geometry",
+        "camera_name": "eye_internal",
+        "iterations": 114,
+        "initial_tip_world_mm": [
+          2.4184813918116372,
+          12.131181107847258,
+          -17.974901255644212
+        ],
+        "final_tip_world_mm": [
+          -0.8772628243645363,
+          9.646436644426782,
+          -19.552195591956863
+        ],
+        "target_world_mm": [
+          -0.9600000000000003,
+          10.553700341194235,
+          -21.393331569890616
+        ],
+        "final_tip_target_error_um": 2054.2041147233535,
+        "final_estimated_position_error_um": 0.9985695794268794,
+        "final_geometry_measurement": {
+          "target_world_mm": [
+            -0.9598881690650418,
+            10.554037693931033,
+            -21.39430617781664
+          ],
+          "target_quality": {
+            "source": "target_sphere_fit",
+            "support": 108,
+            "residual_mm": 0.00041042090844791996,
+            "fit_quality_mm": 0.002
+          },
+          "tip_world_mm": [
+            -0.8772562119005833,
+            9.64642138713264,
+            -19.55220144045232
+          ],
+          "tip_quality": {
+            "source": "shaft_end_plane",
+            "plane_end": "rear",
+            "support": 1750,
+            "residual_mm": 6.276542311774941e-07,
+            "axis_residual_mm": 0.0011063921688107628,
+            "fit_quality_mm": 0.002491453263011978,
+            "axis_world": [
+              -0.04020425958387118,
+              0.4420911750097002,
+              -0.8960686416172898
+            ]
+          }
+        },
+        "final_visual_error": {
+          "calibrated_u_v_depth_mm": [
+            0.0017524020241808103,
+            0.04472803257283431,
+            8.637457998839082e-05
+          ]
+        },
+        "camera_resolution_px": [
+          1920,
+          1440
+        ],
+        "max_velocity_A_deg_B_deg_C_mm_per_s": [
+          4.0,
+          2.0,
+          0.0
+        ],
+        "max_acceleration_A_deg_B_deg_C_mm_per_s2": [
+          10.000000000000005,
+          5.000000000000003,
+          0.0
+        ],
+        "trajectory_rate_limits_pass": true,
+        "initial_command_velocity_A_deg_B_deg_C_mm_per_s": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "final_command_velocity_A_deg_B_deg_C_mm_per_s": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "simulation_abort_hold": false,
+        "velocity_before_abort_hold_A_deg_B_deg_C_mm_per_s": null,
+        "physical_braking_validated": false,
+        "settled_frames": 3,
+        "terminal_stop_validated": true,
+        "independent_accuracy_acceptance_pass": null,
+        "independent_endpoint_acceptance_required": false,
+        "measurement_goal_type": "transformed_measured_target",
+        "independent_accuracy_tolerance_um": 20.0,
+        "stop_condition": "measured controllable 3D error and consecutive zero-command-velocity observations",
+        "tip_detection": "visible shaft cylinder plus identified end plane or actual apex sphere; no taper-pixel substitution",
+        "target_detection": "current-frame RGB/segmentation and calibrated sphere depth fit",
+        "control_axes": [
+          true,
+          true,
+          false
+        ],
+        "completion_axes": [
+          true,
+          true,
+          false
+        ],
+        "known_target_pose_used_for_feature_calibration": false,
+        "ground_truth_used_for_stop": false,
+        "ground_truth_used_for_post_run_acceptance": false,
+        "calibration_inputs": "fixed camera, RCM, needle lengths/radii and target marker radius",
+        "scope": "MuJoCo RGB-D geometry and kinematic control; geometric calibration and ideal depth are simulation assumptions, not hardware accuracy.",
+        "waypoint_id": "P2",
+        "phase": "visual_align",
+        "start_s": 41.6,
+        "duration_s": 5.65,
+        "algorithm_wall_s": 70.80554499299978,
+        "virtual_goal_source": "observed_marker_direction_and_current_tip_radius",
+        "transition_to": null
+      },
+      {
+        "result": "PASS",
+        "reason": "POSITION_ERROR_AND_SETTLED",
+        "controller_result": "PASS",
+        "controller_reason": "POSITION_ERROR_AND_SETTLED",
+        "execution_mode": "visual_servo_kinematic",
+        "feedback_controller_used": true,
+        "position_feedback": "calibrated_visible_geometry",
+        "camera_name": "eye_internal",
+        "iterations": 91,
+        "initial_tip_world_mm": [
+          -0.8772628243645363,
+          9.646436644426782,
+          -19.552195591956863
+        ],
+        "final_tip_world_mm": [
+          -0.9596098159772418,
+          10.551929291999663,
+          -21.387522978122046
+        ],
+        "target_world_mm": [
+          -0.9600000000000003,
+          10.553700341194235,
+          -21.393331569890616
+        ],
+        "final_tip_target_error_um": 6.085112747937411,
+        "final_estimated_position_error_um": 7.120131775663046,
+        "final_geometry_measurement": {
+          "target_world_mm": [
+            -0.9598754156456814,
+            10.554043726226691,
+            -21.394314314031057
+          ],
+          "target_quality": {
+            "source": "target_sphere_fit",
+            "support": 99,
+            "residual_mm": 0.0004144511409332142,
+            "fit_quality_mm": 0.002
+          },
+          "tip_world_mm": [
+            -0.9596120118800968,
+            10.551944054215392,
+            -21.387515911836125
+          ],
+          "tip_quality": {
+            "source": "shaft_end_plane",
+            "plane_end": "rear",
+            "support": 1337,
+            "residual_mm": 7.321806478416009e-07,
+            "axis_residual_mm": 0.0009750390690186905,
+            "fit_quality_mm": 0.0025732974472599734,
+            "axis_world": [
+              -0.04020465089333304,
+              0.44209245163004424,
+              -0.8960679942159981
+            ]
+          }
+        },
+        "final_visual_error": {
+          "calibrated_u_v_depth_mm": [
+            -0.05655512611338054,
+            0.06045247628492234,
+            -0.006829842926395213
+          ]
+        },
+        "camera_resolution_px": [
+          1920,
+          1440
+        ],
+        "max_velocity_A_deg_B_deg_C_mm_per_s": [
+          0.0,
+          0.0,
+          0.6
+        ],
+        "max_acceleration_A_deg_B_deg_C_mm_per_s2": [
+          0.0,
+          0.0,
+          1.5
+        ],
+        "trajectory_rate_limits_pass": true,
+        "initial_command_velocity_A_deg_B_deg_C_mm_per_s": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "final_command_velocity_A_deg_B_deg_C_mm_per_s": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "simulation_abort_hold": false,
+        "velocity_before_abort_hold_A_deg_B_deg_C_mm_per_s": null,
+        "physical_braking_validated": false,
+        "settled_frames": 3,
+        "terminal_stop_validated": true,
+        "independent_accuracy_acceptance_pass": true,
+        "independent_endpoint_acceptance_required": true,
+        "measurement_goal_type": "physical_target",
+        "independent_accuracy_tolerance_um": 20.0,
+        "stop_condition": "measured controllable 3D error and consecutive zero-command-velocity observations",
+        "tip_detection": "visible shaft cylinder plus identified end plane or actual apex sphere; no taper-pixel substitution",
+        "target_detection": "current-frame RGB/segmentation and calibrated sphere depth fit",
+        "control_axes": [
+          false,
+          false,
+          true
+        ],
+        "completion_axes": [
+          false,
+          false,
+          true
+        ],
+        "known_target_pose_used_for_feature_calibration": false,
+        "ground_truth_used_for_stop": false,
+        "ground_truth_used_for_post_run_acceptance": true,
+        "calibration_inputs": "fixed camera, RCM, needle lengths/radii and target marker radius",
+        "scope": "MuJoCo RGB-D geometry and kinematic control; geometric calibration and ideal depth are simulation assumptions, not hardware accuracy.",
+        "waypoint_id": "P2",
+        "phase": "visual_approach",
+        "start_s": 47.25,
+        "duration_s": 4.5,
+        "algorithm_wall_s": 62.498341513000014,
+        "virtual_goal_source": "current_or_bounded_history_target_observation",
+        "transition_to": null
+      },
+      {
+        "result": "PASS",
+        "reason": "POSITION_ERROR_AND_SETTLED",
+        "controller_result": "PASS",
+        "controller_reason": "POSITION_ERROR_AND_SETTLED",
+        "execution_mode": "visual_servo_kinematic",
+        "feedback_controller_used": true,
+        "position_feedback": "calibrated_visible_geometry",
+        "camera_name": "eye_internal",
+        "iterations": 89,
+        "initial_tip_world_mm": [
+          -0.9596098159772418,
+          10.551929291999663,
+          -21.387522978122046
+        ],
+        "final_tip_world_mm": [
+          -0.8794906959563086,
+          9.670934459180891,
+          -19.60184978897319
+        ],
+        "target_world_mm": [
+          -0.9600000000000003,
+          10.553700341194235,
+          -21.393331569890616
+        ],
+        "final_tip_target_error_um": 1998.7907148682345,
+        "final_estimated_position_error_um": 7.212414052779164,
+        "final_geometry_measurement": {
+          "target_world_mm": [
+            -0.9598881690650418,
+            10.554037693931033,
+            -21.39430617781664
+          ],
+          "target_quality": {
+            "source": "target_sphere_fit",
+            "support": 108,
+            "residual_mm": 0.00041042090844791996,
+            "fit_quality_mm": 0.002
+          },
+          "tip_world_mm": [
+            -0.8794816003638471,
+            9.670936750838154,
+            -19.6018486169098
+          ],
+          "tip_quality": {
+            "source": "shaft_end_plane",
+            "plane_end": "rear",
+            "support": 1735,
+            "residual_mm": 6.063087086211312e-07,
+            "axis_residual_mm": 0.0011039358946656824,
+            "fit_quality_mm": 0.0024747397188503457,
+            "axis_world": [
+              -0.04020414431756503,
+              0.44209195127662326,
+              -0.8960682638036681
+            ]
+          }
+        },
+        "final_visual_error": {
+          "calibrated_u_v_depth_mm": [
+            0.0666831575344986,
+            -0.014788299322276544,
+            0.007103281125568628
+          ]
+        },
+        "camera_resolution_px": [
+          1920,
+          1440
+        ],
+        "max_velocity_A_deg_B_deg_C_mm_per_s": [
+          0.0,
+          0.0,
+          0.6
+        ],
+        "max_acceleration_A_deg_B_deg_C_mm_per_s2": [
+          0.0,
+          0.0,
+          1.5
+        ],
+        "trajectory_rate_limits_pass": true,
+        "initial_command_velocity_A_deg_B_deg_C_mm_per_s": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "final_command_velocity_A_deg_B_deg_C_mm_per_s": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "simulation_abort_hold": false,
+        "velocity_before_abort_hold_A_deg_B_deg_C_mm_per_s": null,
+        "physical_braking_validated": false,
+        "settled_frames": 3,
+        "terminal_stop_validated": true,
+        "independent_accuracy_acceptance_pass": null,
+        "independent_endpoint_acceptance_required": false,
+        "measurement_goal_type": "measured_tip_retraction_waypoint",
+        "independent_accuracy_tolerance_um": 20.0,
+        "stop_condition": "measured controllable 3D error and consecutive zero-command-velocity observations",
+        "tip_detection": "visible shaft cylinder plus identified end plane or actual apex sphere; no taper-pixel substitution",
+        "target_detection": "current-frame RGB/segmentation and calibrated sphere depth fit",
+        "control_axes": [
+          false,
+          false,
+          true
+        ],
+        "completion_axes": [
+          false,
+          false,
+          true
+        ],
+        "known_target_pose_used_for_feature_calibration": false,
+        "ground_truth_used_for_stop": false,
+        "ground_truth_used_for_post_run_acceptance": false,
+        "calibration_inputs": "fixed camera, RCM, needle lengths/radii and target marker radius",
+        "scope": "MuJoCo RGB-D geometry and kinematic control; geometric calibration and ideal depth are simulation assumptions, not hardware accuracy.",
+        "waypoint_id": "P2",
+        "phase": "visual_retract",
+        "start_s": 51.75,
+        "duration_s": 4.4,
+        "algorithm_wall_s": 62.080430339000486,
+        "virtual_goal_source": "observed_tip_and_shaft",
+        "transition_to": "P3"
+      },
+      {
+        "result": "PASS",
+        "reason": "POSITION_ERROR_AND_SETTLED",
+        "controller_result": "PASS",
+        "controller_reason": "POSITION_ERROR_AND_SETTLED",
+        "execution_mode": "visual_servo_kinematic",
+        "feedback_controller_used": true,
+        "position_feedback": "calibrated_visible_geometry",
+        "camera_name": "eye_internal",
+        "iterations": 77,
+        "initial_tip_world_mm": [
+          -0.8794906959563086,
+          9.670934459180891,
+          -19.60184978897319
+        ],
+        "final_tip_world_mm": [
+          1.771745194928456,
+          8.855229877630876,
+          -19.924327218906935
+        ],
+        "target_world_mm": [
+          1.9200000000000006,
+          9.591908678739864,
+          -21.58160334281722
+        ],
+        "final_tip_target_error_um": 1819.681096817044,
+        "final_estimated_position_error_um": 0.9708514597281288,
+        "final_geometry_measurement": {
+          "target_world_mm": [
+            1.9202608452532255,
+            9.59215978003377,
+            -21.582583493190867
+          ],
+          "target_quality": {
+            "source": "target_sphere_fit",
+            "support": 112,
+            "residual_mm": 0.00043407018414944157,
+            "fit_quality_mm": 0.002
+          },
+          "tip_world_mm": [
+            1.7717518119390572,
+            8.855238775616943,
+            -19.92432162535168
+          ],
+          "tip_quality": {
+            "source": "shaft_end_plane",
+            "plane_end": "rear",
+            "support": 1866,
+            "residual_mm": 6.64045104363167e-07,
+            "axis_residual_mm": 0.0011066175745199987,
+            "fit_quality_mm": 0.0025199473167163595,
+            "axis_world": [
+              0.08099290231492319,
+              0.4048035872157093,
+              -0.9108096428737997
+            ]
+          }
+        },
+        "final_visual_error": {
+          "calibrated_u_v_depth_mm": [
+            0.04311271620770185,
+            0.0014116574963054518,
+            -2.1244222971061877e-05
+          ]
+        },
+        "camera_resolution_px": [
+          1920,
+          1440
+        ],
+        "max_velocity_A_deg_B_deg_C_mm_per_s": [
+          4.0,
+          2.0,
+          0.0
+        ],
+        "max_acceleration_A_deg_B_deg_C_mm_per_s2": [
+          10.000000000000005,
+          5.000000000000003,
+          0.0
+        ],
+        "trajectory_rate_limits_pass": true,
+        "initial_command_velocity_A_deg_B_deg_C_mm_per_s": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "final_command_velocity_A_deg_B_deg_C_mm_per_s": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "simulation_abort_hold": false,
+        "velocity_before_abort_hold_A_deg_B_deg_C_mm_per_s": null,
+        "physical_braking_validated": false,
+        "settled_frames": 3,
+        "terminal_stop_validated": true,
+        "independent_accuracy_acceptance_pass": null,
+        "independent_endpoint_acceptance_required": false,
+        "measurement_goal_type": "transformed_measured_target",
+        "independent_accuracy_tolerance_um": 20.0,
+        "stop_condition": "measured controllable 3D error and consecutive zero-command-velocity observations",
+        "tip_detection": "visible shaft cylinder plus identified end plane or actual apex sphere; no taper-pixel substitution",
+        "target_detection": "current-frame RGB/segmentation and calibrated sphere depth fit",
+        "control_axes": [
+          true,
+          true,
+          false
+        ],
+        "completion_axes": [
+          true,
+          true,
+          false
+        ],
+        "known_target_pose_used_for_feature_calibration": false,
+        "ground_truth_used_for_stop": false,
+        "ground_truth_used_for_post_run_acceptance": false,
+        "calibration_inputs": "fixed camera, RCM, needle lengths/radii and target marker radius",
+        "scope": "MuJoCo RGB-D geometry and kinematic control; geometric calibration and ideal depth are simulation assumptions, not hardware accuracy.",
+        "waypoint_id": "P3",
+        "phase": "visual_align",
+        "start_s": 56.15,
+        "duration_s": 3.8000000000000003,
+        "algorithm_wall_s": 54.14108730600037,
+        "virtual_goal_source": "observed_marker_direction_and_current_tip_radius",
+        "transition_to": null
+      },
+      {
+        "result": "PASS",
+        "reason": "POSITION_ERROR_AND_SETTLED",
+        "controller_result": "PASS",
+        "controller_reason": "POSITION_ERROR_AND_SETTLED",
+        "execution_mode": "visual_servo_kinematic",
+        "feedback_controller_used": true,
+        "position_feedback": "calibrated_visible_geometry",
+        "camera_name": "eye_internal",
+        "iterations": 83,
+        "initial_tip_world_mm": [
+          1.771745194928456,
+          8.855229877630876,
+          -19.924327218906935
+        ],
+        "final_tip_world_mm": [
+          1.9186233115998077,
+          9.589330633677136,
+          -21.57605889354821
+        ],
+        "target_world_mm": [
+          1.9200000000000006,
+          9.591908678739864,
+          -21.58160334281722
+        ],
+        "final_tip_target_error_um": 6.267575687082636,
+        "final_estimated_position_error_um": 7.320140595927863,
+        "final_geometry_measurement": {
+          "target_world_mm": [
+            1.920267510129401,
+            9.592163674340684,
+            -21.58260256319798
+          ],
+          "target_quality": {
+            "source": "target_sphere_fit",
+            "support": 104,
+            "residual_mm": 0.00042174691609818085,
+            "fit_quality_mm": 0.002
+          },
+          "tip_world_mm": [
+            1.9186164740966334,
+            9.589329957362407,
+            -21.576058207885982
+          ],
+          "tip_quality": {
+            "source": "shaft_end_plane",
+            "plane_end": "rear",
+            "support": 1444,
+            "residual_mm": 7.788803094929054e-07,
+            "axis_residual_mm": 0.0009890817712305776,
+            "fit_quality_mm": 0.002609863282332945,
+            "axis_world": [
+              0.08099231261284603,
+              0.4048031590159838,
+              -0.9108098856228466
+            ]
+          }
+        },
+        "final_visual_error": {
+          "calibrated_u_v_depth_mm": [
+            -1.4643636404798599e-05,
+            0.018824872445634355,
+            -0.007205127314460769
+          ]
+        },
+        "camera_resolution_px": [
+          1920,
+          1440
+        ],
+        "max_velocity_A_deg_B_deg_C_mm_per_s": [
+          0.0,
+          0.0,
+          0.6
+        ],
+        "max_acceleration_A_deg_B_deg_C_mm_per_s2": [
+          0.0,
+          0.0,
+          1.5
+        ],
+        "trajectory_rate_limits_pass": true,
+        "initial_command_velocity_A_deg_B_deg_C_mm_per_s": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "final_command_velocity_A_deg_B_deg_C_mm_per_s": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "simulation_abort_hold": false,
+        "velocity_before_abort_hold_A_deg_B_deg_C_mm_per_s": null,
+        "physical_braking_validated": false,
+        "settled_frames": 3,
+        "terminal_stop_validated": true,
+        "independent_accuracy_acceptance_pass": true,
+        "independent_endpoint_acceptance_required": true,
+        "measurement_goal_type": "physical_target",
+        "independent_accuracy_tolerance_um": 20.0,
+        "stop_condition": "measured controllable 3D error and consecutive zero-command-velocity observations",
+        "tip_detection": "visible shaft cylinder plus identified end plane or actual apex sphere; no taper-pixel substitution",
+        "target_detection": "current-frame RGB/segmentation and calibrated sphere depth fit",
+        "control_axes": [
+          false,
+          false,
+          true
+        ],
+        "completion_axes": [
+          false,
+          false,
+          true
+        ],
+        "known_target_pose_used_for_feature_calibration": false,
+        "ground_truth_used_for_stop": false,
+        "ground_truth_used_for_post_run_acceptance": true,
+        "calibration_inputs": "fixed camera, RCM, needle lengths/radii and target marker radius",
+        "scope": "MuJoCo RGB-D geometry and kinematic control; geometric calibration and ideal depth are simulation assumptions, not hardware accuracy.",
+        "waypoint_id": "P3",
+        "phase": "visual_approach",
+        "start_s": 59.949999999999996,
+        "duration_s": 4.1000000000000005,
+        "algorithm_wall_s": 67.4610195690002,
+        "virtual_goal_source": "current_or_bounded_history_target_observation",
+        "transition_to": null
+      }
+    ],
+    "transition_details": [
+      {
+        "result": "PASS",
+        "reason": "POSITION_ERROR_AND_SETTLED",
+        "controller_result": "PASS",
+        "controller_reason": "POSITION_ERROR_AND_SETTLED",
+        "execution_mode": "visual_servo_kinematic",
+        "feedback_controller_used": true,
+        "position_feedback": "calibrated_visible_geometry",
+        "camera_name": "eye_internal",
+        "iterations": 89,
+        "initial_tip_world_mm": [
+          2.6393577618303508,
+          13.239104144267127,
+          -19.61652271042724
+        ],
+        "final_tip_world_mm": [
+          2.4184813918116372,
+          12.131181107847258,
+          -17.974901255644212
+        ],
+        "target_world_mm": [
+          2.640000000000001,
+          13.24440230063386,
+          -19.62046395741142
+        ],
+        "final_tip_target_error_um": 1999.0519061020723,
+        "final_estimated_position_error_um": 7.213024989108197,
+        "final_geometry_measurement": {
+          "target_world_mm": [
+            2.6402890749284103,
+            13.244790509078381,
+            -19.62134456319325
+          ],
+          "target_quality": {
+            "source": "target_sphere_fit",
+            "support": 113,
+            "residual_mm": 0.00043774930671396214,
+            "fit_quality_mm": 0.002
+          },
+          "tip_world_mm": [
+            2.4184846161517823,
+            12.13118455684121,
+            -17.974898856192528
+          ],
+          "tip_quality": {
+            "source": "shaft_end_plane",
+            "plane_end": "rear",
+            "support": 1939,
+            "residual_mm": 6.556489373427194e-07,
+            "axis_residual_mm": 0.0011149513351293274,
+            "fit_quality_mm": 0.0025133731179393494,
+            "axis_world": [
+              0.11083805708106265,
+              0.5559667063384313,
+              -0.8237814919902553
+            ]
+          }
+        },
+        "final_visual_error": {
+          "calibrated_u_v_depth_mm": [
+            0.04558928534754614,
+            0.005191876191474876,
+            0.007205070582078088
+          ]
+        },
+        "camera_resolution_px": [
+          1920,
+          1440
+        ],
+        "max_velocity_A_deg_B_deg_C_mm_per_s": [
+          0.0,
+          0.0,
+          0.6
+        ],
+        "max_acceleration_A_deg_B_deg_C_mm_per_s2": [
+          0.0,
+          0.0,
+          1.5
+        ],
+        "trajectory_rate_limits_pass": true,
+        "initial_command_velocity_A_deg_B_deg_C_mm_per_s": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "final_command_velocity_A_deg_B_deg_C_mm_per_s": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "simulation_abort_hold": false,
+        "velocity_before_abort_hold_A_deg_B_deg_C_mm_per_s": null,
+        "physical_braking_validated": false,
+        "settled_frames": 3,
+        "terminal_stop_validated": true,
+        "independent_accuracy_acceptance_pass": null,
+        "independent_endpoint_acceptance_required": false,
+        "measurement_goal_type": "measured_tip_retraction_waypoint",
+        "independent_accuracy_tolerance_um": 20.0,
+        "stop_condition": "measured controllable 3D error and consecutive zero-command-velocity observations",
+        "tip_detection": "visible shaft cylinder plus identified end plane or actual apex sphere; no taper-pixel substitution",
+        "target_detection": "current-frame RGB/segmentation and calibrated sphere depth fit",
+        "control_axes": [
+          false,
+          false,
+          true
+        ],
+        "completion_axes": [
+          false,
+          false,
+          true
+        ],
+        "known_target_pose_used_for_feature_calibration": false,
+        "ground_truth_used_for_stop": false,
+        "ground_truth_used_for_post_run_acceptance": false,
+        "calibration_inputs": "fixed camera, RCM, needle lengths/radii and target marker radius",
+        "scope": "MuJoCo RGB-D geometry and kinematic control; geometric calibration and ideal depth are simulation assumptions, not hardware accuracy.",
+        "waypoint_id": "P1",
+        "phase": "visual_retract",
+        "start_s": 37.2,
+        "duration_s": 4.4,
+        "algorithm_wall_s": 54.508925517000534,
+        "virtual_goal_source": "observed_tip_and_shaft",
+        "transition_to": "P2"
+      },
+      {
+        "result": "PASS",
+        "reason": "POSITION_ERROR_AND_SETTLED",
+        "controller_result": "PASS",
+        "controller_reason": "POSITION_ERROR_AND_SETTLED",
+        "execution_mode": "visual_servo_kinematic",
+        "feedback_controller_used": true,
+        "position_feedback": "calibrated_visible_geometry",
+        "camera_name": "eye_internal",
+        "iterations": 89,
+        "initial_tip_world_mm": [
+          -0.9596098159772418,
+          10.551929291999663,
+          -21.387522978122046
+        ],
+        "final_tip_world_mm": [
+          -0.8794906959563086,
+          9.670934459180891,
+          -19.60184978897319
+        ],
+        "target_world_mm": [
+          -0.9600000000000003,
+          10.553700341194235,
+          -21.393331569890616
+        ],
+        "final_tip_target_error_um": 1998.7907148682345,
+        "final_estimated_position_error_um": 7.212414052779164,
+        "final_geometry_measurement": {
+          "target_world_mm": [
+            -0.9598881690650418,
+            10.554037693931033,
+            -21.39430617781664
+          ],
+          "target_quality": {
+            "source": "target_sphere_fit",
+            "support": 108,
+            "residual_mm": 0.00041042090844791996,
+            "fit_quality_mm": 0.002
+          },
+          "tip_world_mm": [
+            -0.8794816003638471,
+            9.670936750838154,
+            -19.6018486169098
+          ],
+          "tip_quality": {
+            "source": "shaft_end_plane",
+            "plane_end": "rear",
+            "support": 1735,
+            "residual_mm": 6.063087086211312e-07,
+            "axis_residual_mm": 0.0011039358946656824,
+            "fit_quality_mm": 0.0024747397188503457,
+            "axis_world": [
+              -0.04020414431756503,
+              0.44209195127662326,
+              -0.8960682638036681
+            ]
+          }
+        },
+        "final_visual_error": {
+          "calibrated_u_v_depth_mm": [
+            0.0666831575344986,
+            -0.014788299322276544,
+            0.007103281125568628
+          ]
+        },
+        "camera_resolution_px": [
+          1920,
+          1440
+        ],
+        "max_velocity_A_deg_B_deg_C_mm_per_s": [
+          0.0,
+          0.0,
+          0.6
+        ],
+        "max_acceleration_A_deg_B_deg_C_mm_per_s2": [
+          0.0,
+          0.0,
+          1.5
+        ],
+        "trajectory_rate_limits_pass": true,
+        "initial_command_velocity_A_deg_B_deg_C_mm_per_s": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "final_command_velocity_A_deg_B_deg_C_mm_per_s": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "simulation_abort_hold": false,
+        "velocity_before_abort_hold_A_deg_B_deg_C_mm_per_s": null,
+        "physical_braking_validated": false,
+        "settled_frames": 3,
+        "terminal_stop_validated": true,
+        "independent_accuracy_acceptance_pass": null,
+        "independent_endpoint_acceptance_required": false,
+        "measurement_goal_type": "measured_tip_retraction_waypoint",
+        "independent_accuracy_tolerance_um": 20.0,
+        "stop_condition": "measured controllable 3D error and consecutive zero-command-velocity observations",
+        "tip_detection": "visible shaft cylinder plus identified end plane or actual apex sphere; no taper-pixel substitution",
+        "target_detection": "current-frame RGB/segmentation and calibrated sphere depth fit",
+        "control_axes": [
+          false,
+          false,
+          true
+        ],
+        "completion_axes": [
+          false,
+          false,
+          true
+        ],
+        "known_target_pose_used_for_feature_calibration": false,
+        "ground_truth_used_for_stop": false,
+        "ground_truth_used_for_post_run_acceptance": false,
+        "calibration_inputs": "fixed camera, RCM, needle lengths/radii and target marker radius",
+        "scope": "MuJoCo RGB-D geometry and kinematic control; geometric calibration and ideal depth are simulation assumptions, not hardware accuracy.",
+        "waypoint_id": "P2",
+        "phase": "visual_retract",
+        "start_s": 51.75,
+        "duration_s": 4.4,
+        "algorithm_wall_s": 62.080430339000486,
+        "virtual_goal_source": "observed_tip_and_shaft",
+        "transition_to": "P3"
+      }
+    ],
+    "failure": null,
+    "retract_mm": 2.0,
+    "minimum_transfer_clearance_mm": 1.0,
+    "input_visit_order_preserved": true,
+    "fixture_visual_frame_counts": {
+      "P1": 835,
+      "P2": 294,
+      "P3": 160
+    },
+    "controlled_occlusion_fixture": null,
+    "occlusion_handling": "stop"
+  }
+]

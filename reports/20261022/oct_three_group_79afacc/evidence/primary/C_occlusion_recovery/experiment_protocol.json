@@ -1,0 +1,94 @@
+{
+  "profile": "precision",
+  "endpoint_tolerance_um": 20.0,
+  "occlusion_handling": "static_memory_reobserve",
+  "static_target_memory_assumption": "fixed camera and static registered target during bounded occlusion; current measured tip remains required",
+  "occlusion_fixture": {
+    "enabled": true,
+    "radius_mm": 0.3,
+    "ray_fraction": 0.75,
+    "events": [
+      {
+        "id": "P1_short_full",
+        "waypoint_id": "P1",
+        "phase": "visual_approach",
+        "relative_to_phase": true,
+        "start_frame": 20,
+        "duration_frames": 8
+      },
+      {
+        "id": "P2_long_full",
+        "waypoint_id": "P2",
+        "phase": "visual_approach",
+        "relative_to_phase": true,
+        "start_frame": 20,
+        "duration_frames": 35
+      }
+    ]
+  },
+  "visual_servo_position_feedback": "geometry",
+  "task_regime": "visual_current_target",
+  "task_regime_scope": "No goal coordinates or goal IDs in policy task text; one current target is presented at a time",
+  "required_stop_at_every_waypoint": true,
+  "guidance_mode": "strict_visual_multitarget",
+  "equation_navigation_used_for_control": false,
+  "scene_goal_inverse_runtime_guard": true,
+  "strict_visual_control_contract": {
+    "target_detection": "current-frame RGB segmentation and rendered feature depth",
+    "command_generation": "measured visible-geometry 3D error with a normalized coupled actuation Jacobian",
+    "disabled": [
+      "target inverse-kinematic goal for controller",
+      "target-pose feature calibration",
+      "scene-goal analytic retract/transfer path",
+      "RRT/PRM route planning",
+      "scene truth fallback"
+    ],
+    "retained": [
+      "joint limits",
+      "velocity/acceleration limits",
+      "eye-containment safety guard",
+      "fixed camera/RCM/needle calibration",
+      "actuation Jacobian",
+      "independent post-run geometric acceptance"
+    ],
+    "temporal_target_memory": "bounded registered measurements from earlier images; static target assumption; never a replacement for current tip measurement"
+  },
+  "target_pose_usage": "target world coordinates place the virtual marker and support independent post-run acceptance only; target inverse kinematics are not supplied to the visual controller or used to generate motion commands",
+  "episode_definition": "one reset start pose, sequential navigation to the supplied targets, then stop or failure hold",
+  "start_task_A_deg_B_deg_C_mm": [
+    6.481389210293787,
+    2.847750084902797,
+    17.8199835578327
+  ],
+  "scene_reset_scope": "fresh Reference/MuJoCo scene for each method run; target marker and robot task are reset to this episode's scenario",
+  "stop_constraint": {
+    "visual_controller": "measured controllable 3D error within 8 um for 3 consecutive zero-command-velocity observations",
+    "sampled_planners": "rest-to-rest trajectory with zero endpoint velocity at every target",
+    "independent_acceptance": "all targets reached, per-target stop reports valid, final command velocity is zero",
+    "scope": "kinematic command validation; no hardware braking or tissue-contact validation"
+  },
+  "velocity_limits_changed": false,
+  "dataset_sampling_period_s": 0.05,
+  "dataset_sampling_frequency_hz": 20.0,
+  "fundus_transition": null,
+  "planner_feedback": "vision",
+  "target_mapping_complete": null,
+  "perception": "simulated RGB + depth + geometry segmentation; calibrated fixed camera, RCM, needle and marker dimensions",
+  "expert_perception_privileges": {
+    "rgbd_mapping": false,
+    "segmentation_and_rendered_depth": true,
+    "visual_servo_known_target_pose_feature_calibration": false,
+    "visual_servo_fundus_transfer_uses_scene_goal_pose": false,
+    "visual_servo_fundus_feedback_scope": "current-frame visible-geometry 3D feedback throughout; no equation-generated target path or analytic transfer",
+    "model_planner_scene_target_coordinates": false,
+    "policy_exclusion": "expert depth, segmentation, feature calibration and scene poses are not policy input fields",
+    "multi_target_scope": "targets are presented sequentially; all methods share one script-selected order; this does not demonstrate a learned policy detecting or ordering multiple lesions"
+  },
+  "image_ablation": {
+    "status": "paired no-image inputs are exported; policy training/evaluation is not present in this repository",
+    "full_input_bundle": "dataset/policy_inputs/episode_*.npz",
+    "no_image_bundle": "dataset/policy_inputs_no_image/episode_*.npz",
+    "paired_action_labels": "dataset/action_labels/episode_*.npz",
+    "evaluation_requirement": "compare the same policy/splits with and without RGB; report success, endpoint error, constraint failures, and occlusion-stratified performance"
+  }
+}

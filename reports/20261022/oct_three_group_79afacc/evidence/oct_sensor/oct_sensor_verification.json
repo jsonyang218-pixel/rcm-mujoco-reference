@@ -1,0 +1,68 @@
+{
+  "result": "PASS",
+  "check_groups": 12,
+  "checks": [
+    "render_depth_values_unchanged_float32_metre_maps_and_identity_aliases",
+    "configured_near_far_valid_masks_and_truthful_simulation_provenance",
+    "reverse_z_far_background_roundoff_excluded_without_changing_raw_values",
+    "three_waypoint_current_visible_target_minus_tip_optical_coordinates",
+    "dynamic_truth_interfaces_forbidden_during_all_observations",
+    "explicit_nonzero_simulation_clock_and_repeated_capture_marked_nonfresh",
+    "legacy_depth_alias_perturbation_remains_causal",
+    "axial_and_along_needle_signs_reverse_beyond_target",
+    "actual_opaque_sphere_occlusion_never_invents_current_target_or_relative_depth",
+    "missing_visible_shaft_support_never_invents_relative_depth",
+    "custom_provider_invalid_depth_masks_are_consumed_by_legacy_fields_and_geometry",
+    "actual_render_npz_json_roundtrip_without_pickle"
+  ],
+  "static_poses": [
+    {
+      "target_id": "P1",
+      "pose": "80_percent_insertion",
+      "sequence_id": 0,
+      "timestamp_s": 4.0,
+      "target_pixels": 126,
+      "tip_pixels": 26,
+      "axial_depth_difference_m": 0.003959661343463497,
+      "along_needle_difference_m": 0.003963888053557558,
+      "truth_axial_error_um": 0.5088123344165058
+    },
+    {
+      "target_id": "P2",
+      "pose": "80_percent_insertion",
+      "sequence_id": 1,
+      "timestamp_s": 4.05,
+      "target_pixels": 126,
+      "tip_pixels": 38,
+      "axial_depth_difference_m": 0.003910457782126439,
+      "along_needle_difference_m": 0.003971817637246373,
+      "truth_axial_error_um": 3.8941932720059844
+    },
+    {
+      "target_id": "P3",
+      "pose": "80_percent_insertion",
+      "sequence_id": 2,
+      "timestamp_s": 4.1,
+      "target_pixels": 127,
+      "tip_pixels": 28,
+      "axial_depth_difference_m": 0.003905964584059715,
+      "along_needle_difference_m": 0.003940288335765276,
+      "truth_axial_error_um": 0.07842716415011608
+    },
+    {
+      "target_id": "P3",
+      "pose": "300_um_beyond",
+      "axial_depth_difference_m": -0.00029748122983679764,
+      "along_needle_difference_m": -0.0002988044774691875
+    }
+  ],
+  "depth_alias_perturbation": {
+    "outcome": "estimate_changed",
+    "tip_change_um": 19.85260856842706
+  },
+  "saved_frames": [
+    "visible_P3.npz",
+    "occluded_P3.npz"
+  ],
+  "scope": "Static actual EGL-rendered sensor acceptance only; no closed-loop navigation, physical OCT scan, hardware registration or real-time validation."
+}

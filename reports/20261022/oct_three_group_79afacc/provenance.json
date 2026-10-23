@@ -1,0 +1,63 @@
+{
+  "requested_commit_prefix": "79afacc",
+  "verified_commit": false,
+  "remote_fetch_status": "UNAVAILABLE_NETWORK",
+  "local_fallback": true,
+  "git_metadata": {
+    "rev_parse_exit": 128,
+    "head_or_error": "fatal: not a git repository (or any of the parent directories): .git",
+    "status_exit": 128,
+    "status_or_error": "fatal: not a git repository (or any of the parent directories): .git",
+    "repository_present": false
+  },
+  "source_note": "This checkout has no .git metadata and the remote could not be fetched; the report does not claim provenance at 79afacc.",
+  "generated_at_utc": "2026-10-23T00:54:39.240764+00:00",
+  "repository_root": "E:\\30_RESOURCES\\32_课程教程\\医学\\中科院\\rcm-mujoco-reference-main",
+  "input_sha256": {
+    "target_examples_three_waypoints.json": "7061c759c1f70a29ce242c86391317600f5aa80fbaa026437463633f34254bab",
+    "strict_config.json": "b5f0d1d97ce0f9c5c9273344bd209e8ff0c3790b0ad92699c41a3227e5dbc493",
+    "stop_occlusion_config.json": "cc884b9a5fad19489b8a0416970b550796bd715fc2c29d3fa358f2e8cff6d184",
+    "recovery_config.json": "4d884df94958f5bdc6713abcff8b928cb260143d720a3abb13ffae486c86214f"
+  },
+  "versions": {
+    "python": "3.11.0 (main, Oct 24 2022, 18:26:48) [MSC v.1933 64 bit (AMD64)]",
+    "python_executable": "E:\\30_RESOURCES\\32_课程教程\\医学\\中科院\\rcm-mujoco-reference-main\\.venv\\Scripts\\python.exe",
+    "mujoco": "3.3.7",
+    "numpy": "2.4.6",
+    "matplotlib": "3.11.2",
+    "pillow": "13.0.0",
+    "pip_freeze": [
+      "absl-py==2.5.1",
+      "contourpy==1.3.3",
+      "cycler==0.12.1",
+      "etils==1.14.0",
+      "fonttools==4.67.0",
+      "fsspec==2026.9.0",
+      "glfw==2.11.0",
+      "kiwisolver==1.5.1",
+      "matplotlib==3.11.2",
+      "mujoco==3.3.7",
+      "numpy==2.4.6",
+      "packaging==26.3",
+      "pillow==13.0.0",
+      "PyOpenGL==3.1.10",
+      "pyparsing==3.3.3",
+      "python-dateutil==3.0.0",
+      "six==1.17.0",
+      "typing_extensions==4.16.0",
+      "tzdata==2026.5",
+      "zipp==4.1.2"
+    ]
+  },
+  "primary_evidence_paths": {
+    "A_no_occlusion": "reports/20261022/meeting/evidence/strict_three",
+    "B_occlusion_stop": "reports/20261022/meeting/evidence/strict_occlusion_stop",
+    "C_occlusion_recovery": "reports/20261022/meeting/evidence/strict_occlusion_recovery"
+  },
+  "local_diagnostic_paths": {
+    "A_no_occlusion": "runs/oct_three_group_79afacc_20261022/A_no_occlusion",
+    "B_occlusion_stop": "runs/oct_three_group_79afacc_20261022/B_occlusion_stop_local",
+    "C_occlusion_recovery": "runs/oct_three_group_79afacc_20261022/C_occlusion_recovery_local"
+  },
+  "source_snapshot": "source_snapshot/local_current/"
+}
