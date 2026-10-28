@@ -35,3 +35,4 @@
 - 2026-10-22：接入明确标注的理想注册OCT仿真接口：verify_oct_interface.py 10组数值PASS；verify_oct_sensor.py 12组实际1920×1440 EGL传感器检查PASS。覆盖单位、有效mask、远裁剪背景拒绝、时钟、坐标符号、遮挡/无效测量拒绝、深度扰动因果性及真实深度帧NPZ/JSON往返。无真实OCT、无A/B-scan或设备实时性验证。
 - 2026-10-22：新OCT接口P1严格视觉闭环从此前实际视觉回撤姿态运行，PASS；8帧对准+89帧接近，共97帧、4.75s名义仿真时间，独立误差6.381807 μm，停稳、速率及dataset_verification均PASS。逐帧OCT来源/唯一ID/阶段仿真时钟及末帧完整深度归档审计PASS；实测渲染中位0.471s/帧，不支持实时20Hz。报告及快照说明见reports/20261022/。
 - 2026-10-22：发布审查修复虚拟回撤阶段针尖短暂丢失后重获不能恢复的问题；新增组合回归后verify_occlusion_recovery.py 10/10 PASS。标靶全程不可见仍保留原回撤虚拟点、target_observed始终false；针尖重获后连续有效测量恢复跟踪，停稳及速率通过。该恢复分支修复发生在上述stop模式OCT闭环之后，单独验证，未将旧采集源码副本冒充采集版本。
+- 2026-10-28：准备上传 `simulation_driver` 时做静态验证；直接在源树生成 `__pycache__` 受到 Windows 沙箱 WinError 5 限制，未修改源文件。将 Python 字节码缓存重定向到系统临时目录后，19 个 Python 文件编译 PASS；`ros_msg/package.xml` XML 解析 PASS，`CMakeLists.txt` 项目名检查 PASS。上传副本与原目录 29 个文件逐项 SHA-256 比对一致。

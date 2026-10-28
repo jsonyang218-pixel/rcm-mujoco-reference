@@ -1,0 +1,13 @@
+int32 handleEncoderA
+int32 handleEncoderB
+int32 handleEncoderC
+int32 handleEncoderE
+int32 robotEncoderA
+int32 robotEncoderB
+int32 robotEncoderC
+int32 robotEncoderE
+float32 posX
+float32 posY
+float32 posZ
+bool stepForward
+bool stepBackward

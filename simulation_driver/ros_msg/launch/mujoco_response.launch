@@ -1,0 +1,14 @@
+<launch>
+  <!-- MuJoCo owns the simulated feedback loop. The real RobotState topic is
+       intentionally not used by this controller. -->
+  <arg name="output" default="/tmp/mujoco-response" />
+  <arg name="feedback_topic" default="/simulation/RobotState" />
+  <arg name="control_topic" default="/simulation/controlSignal" />
+  <arg name="kind" default="sine" />
+
+  <node pkg="ros_msg"
+        type="base_position_response.py"
+        name="mujoco_response_controller"
+        output="screen"
+        args="--output $(arg output) --kind $(arg kind) --feedback-topic $(arg feedback_topic) --control-topic $(arg control_topic) --simulation-only --execute --confirm-safe" />
+</launch>
