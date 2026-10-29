@@ -126,7 +126,9 @@ def main():
             silver_geom = ident(after.model, mujoco.mjtObj.mjOBJ_GEOM, 'scan_parallel_cover')
             fixed_geom = ident(after.model, mujoco.mjtObj.mjOBJ_GEOM, 'scan_fixed_housing')
             assert after.model.geom_bodyid[silver_geom] == silver_body
-            assert after.model.geom_bodyid[fixed_geom] == installation
+            # The white shell follows A only; the installation stays fixed.
+            a_stage = ident(after.model, mujoco.mjtObj.mjOBJ_BODY, 'A_stage')
+            assert after.model.geom_bodyid[fixed_geom] == a_stage
             slider = ident(after.model, mujoco.mjtObj.mjOBJ_JOINT, 'silver_B_linear')
             assert after.model.jnt_bodyid[slider] == silver_body
             assert after.model.jnt_type[slider] == mujoco.mjtJoint.mjJNT_SLIDE

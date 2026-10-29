@@ -1,5 +1,23 @@
 # MuJoCo 机械臂 v9：银色圆角端盖与长罩整体运动
 
+## 闭合显示外壳
+
+当前显示使用 `assets/*_enclosed.obj`：清理底部扫描残留、独立碎片，按原边界补齐白壳、银罩、前端导向和 C 滑架的缺失表面。四件分别为闭合、有一致法线的网格，保持各自关节挂载；针具保持原尺寸。白壳随 A 旋转，不随 B/C 变化。
+
+补面参考用户上传的 `Fused_Project_20261028093616.stl`，其文件校验与对齐说明见 `enclosure_reference.json`。该 STL 自身仍有开口；新增面是外观重建，未经计量验证，不表示实机壁厚、内部结构或碰撞形状已准确建模。各活动部件之间仍有正常间隙，未合并为一块实体。原始 OBJ、源三角面归属、银罩归属证据保留不变；旧报告中“全部源三角面保留”描述原始网格，不描述补面后的显示网格。
+
+从仓库根目录安装可选工具和复验：
+
+```bash
+python -m pip install -r requirements-mesh.txt
+python mujoco_model/clean_display_mesh.py
+python mujoco_model/build_enclosed_shells.py
+python verify_enclosed_shells.py
+python mujoco_model/render_three_views.py --background black --robot-only --output-dir runs/enclosed_three_views
+```
+
+构建会更新独立显示网格及 `enclosed_shells_report.json`，不会改写源扫描。显示模型定义由 `DriverModel` 加载这些网格，直接打开 XML 时也使用同一版本。
+
 根据用户补充的视频，银色长罩左端的圆角封头、顶面、长侧面及端盖底缘属于同一个整体。本版将错误留在固定白壳上的端盖面归回银罩运动体，消除升降时端盖残留、分开的现象。
 
 ## 本次修正

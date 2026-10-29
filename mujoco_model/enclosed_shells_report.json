@@ -1,0 +1,102 @@
+{
+  "scope": "Closed visual skins, with inferred missing surfaces",
+  "hardware_geometry_calibrated": false,
+  "wall_thickness_modeled": false,
+  "joint_frames_changed": false,
+  "collision_enabled": false,
+  "reference": "enclosure_reference.json",
+  "parts": {
+    "fixed_housing": {
+      "source": "fixed_housing_clean.obj",
+      "source_sha256": "0273b21159098ffacc9e4a9f9633ca47fca17e0f839eef5a557293570a37a0c9",
+      "source_faces": 95606,
+      "output": "fixed_housing_enclosed.obj",
+      "output_sha256": "6c03fefe08fa99ff62cf85f8f33ac8db33344c9d61155f73fbf067ecf84ecf8c",
+      "faces": 110106,
+      "watertight": true,
+      "consistent_winding": true,
+      "enclosed_volume_m3": 0.0028191869258981754,
+      "bounds_m": [
+        [
+          0.07379474,
+          -0.0851297,
+          0.09578504
+        ],
+        [
+          0.33230507,
+          0.09169501,
+          0.37991209
+        ]
+      ]
+    },
+    "parallel_cover": {
+      "source": "parallel_cover.obj",
+      "source_sha256": "3ae0f11d30f66ec15190a81a03cb761bbc5ddfb96f6fe11d29bf4d86a7b6c9e1",
+      "source_faces": 34391,
+      "output": "parallel_cover_enclosed.obj",
+      "output_sha256": "0a652f79d117091ec7f8965c35deb7200ccc63326bf0d7fd10d84afb8dd081ce",
+      "faces": 46414,
+      "watertight": true,
+      "consistent_winding": true,
+      "enclosed_volume_m3": 0.0006203740653368714,
+      "bounds_m": [
+        [
+          0.00269848,
+          -0.11723511,
+          -0.12583745
+        ],
+        [
+          0.1578636,
+          0.01697532,
+          0.03714541
+        ]
+      ]
+    },
+    "distal_guide": {
+      "source": "distal_guide.obj",
+      "source_sha256": "7d0e16dfe66f687581476b1df9bb2f5fc27cd6c0b0c240368b92ec0cfee0fc11",
+      "source_faces": 36010,
+      "output": "distal_guide_enclosed.obj",
+      "output_sha256": "34851380c60f5521da9e6463fcd41c1b342a7d810f61279214873ef73d2c2884",
+      "faces": 46670,
+      "watertight": true,
+      "consistent_winding": true,
+      "enclosed_volume_m3": 0.0005410442724397944,
+      "bounds_m": [
+        [
+          -0.03985626,
+          -0.09569577,
+          0.0857237
+        ],
+        [
+          0.03990727,
+          0.02470386,
+          0.25307165
+        ]
+      ]
+    },
+    "C_carriage": {
+      "source": "C_carriage.obj",
+      "source_sha256": "a236d19e2bdd61efe356a215efecdec14b3a1b7d6db943ac326789d10c5c47a2",
+      "source_faces": 14974,
+      "output": "C_carriage_enclosed.obj",
+      "output_sha256": "b7227ff417afa8a62b7f4a61768ff8d0ab5a47c9842f1ba2f3119d93dfd95c6f",
+      "faces": 31794,
+      "watertight": true,
+      "consistent_winding": true,
+      "enclosed_volume_m3": 5.7369891424259826e-05,
+      "bounds_m": [
+        [
+          -0.04589799,
+          -0.09034286,
+          0.01492676
+        ],
+        [
+          0.03482936,
+          0.02468575,
+          0.09304257
+        ]
+      ]
+    }
+  }
+}

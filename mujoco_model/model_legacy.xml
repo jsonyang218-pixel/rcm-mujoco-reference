@@ -13,11 +13,11 @@
   <asset>
     <texture name="checker" type="2d" builtin="checker" rgb1=".88 .91 .94" rgb2=".96 .97 .98" width="512" height="512" />
     <material name="floor" texture="checker" texrepeat="6 6" reflectance="0" />
-    <mesh name="fixed_housing" file="fixed_housing.obj" />
-    <mesh name="parallel_cover" file="parallel_cover.obj" />
-    <mesh name="distal_guide" file="distal_guide.obj" />
-    <mesh name="C_carriage" file="C_carriage.obj" />
-    <material name="mat_scan_fixed_housing" rgba=".84 .86 .89 1" specular=".25" shininess=".35" />
+    <mesh name="fixed_housing" file="fixed_housing_enclosed.obj" />
+    <mesh name="parallel_cover" file="parallel_cover_enclosed.obj" />
+    <mesh name="distal_guide" file="distal_guide_enclosed.obj" />
+    <mesh name="C_carriage" file="C_carriage_enclosed.obj" />
+    <material name="mat_scan_fixed_housing" rgba=".84 .86 .89 1" specular=".4" shininess=".55" />
     <material name="mat_scan_distal" rgba=".72 .75 .79 1" specular=".25" shininess=".35" />
     <material name="mat_scan_C" rgba=".82 .85 .88 1" specular=".25" shininess=".35" />
     <material name="mat_scan_parallel_cover" rgba=".59 .64 .69 1" specular=".25" shininess=".35" />
@@ -33,7 +33,6 @@
     <geom name="target_tape_0.019" type="box" pos="0.351963020371 0.019 0.32583925232" size=".060 .003 .001" rgba=".94 .63 .03 1" />
     <geom name="target_tape_0.121" type="box" pos="0.351963020371 0.121 0.32583925232" size=".060 .003 .001" rgba=".94 .63 .03 1" />
     <body name="static_installation" pos="0.0829952055191 0 -0.0280274530868" quat="0.939692620786 0 -0.342020143326 0">
-      <geom name="scan_fixed_housing" type="mesh" mesh="fixed_housing" rgba=".84 .86 .89 1" material="mat_scan_fixed_housing" />
       <site name="base_reference" pos="0.16 0 0.2" size=".001" rgba=".1 .7 .8 .5" group="2" />
       <site name="rcm_site" pos="0.456 0.07 0.125" size=".001" rgba=".1 .7 .8 .5" group="2" />
       <geom name="rcm_cross_[0.01, 0, 0]" type="capsule" fromto="0.446 0.07 0.125 0.466 0.07 0.125" size="0.00035" rgba="1 .15 .22 1" group="2" />
@@ -49,7 +48,7 @@
           <site name="tool_frame" pos="0 0 0" size=".001" rgba=".1 .7 .8 .5" group="2" />
           <site name="front_upper" pos="-0.03 0 0.125" size=".001" rgba=".1 .7 .8 .5" group="2" />
           <site name="front_lower" pos="-0.03 0 0.095" size=".001" rgba=".1 .7 .8 .5" group="2" />
-          <geom name="guide_link" type="capsule" fromto="-0.03 0 0.095 -0.03 0 0.125" size="0.0025" rgba=".18 .55 .60 1" group="2" />
+          <geom name="guide_link" type="capsule" fromto="-0.03 0 0.095 -0.03 0 0.125" size="0.0025" rgba=".18 .55 .60 1" group="3" />
           <geom name="axis_aid" type="capsule" fromto="0 0 0.085 0 0 -0.012" size="0.0006" rgba=".10 .74 .82 .45" group="2" />
           <body name="C_translation">
             <inertial pos="0 0 0" mass="0.05" diaginertia=".001 .001 .001" />
@@ -66,22 +65,23 @@
         <body name="rear_crank" pos="-0.16 0 0.075">
           <inertial pos="0 0 0" mass="0.1" diaginertia=".001 .001 .001" />
           <joint name="rear_pitch" type="hinge" axis="0 1 0" range="-0.2851967714955154 0.7746029752191411" damping="1" armature=".005" />
-          <geom name="rear_link" type="capsule" fromto="0 0 0 -0.03 0 0.125" size="0.0025" rgba=".18 .55 .60 1" group="2" />
+          <geom name="rear_link" type="capsule" fromto="0 0 0 -0.03 0 0.125" size="0.0025" rgba=".18 .55 .60 1" group="3" />
           <site name="rear_upper" pos="-0.03 0 0.125" size=".001" rgba=".1 .7 .8 .5" group="2" />
           <site name="rear_lower" pos="-0.03 0 0.095" size=".001" rgba=".1 .7 .8 .5" group="2" />
           <body name="upper_bridge" pos="-0.03 0 0.125">
             <inertial pos="0 0 0" mass="0.1" diaginertia=".001 .001 .001" />
             <joint name="upper_counter_pitch" type="hinge" axis="0 1 0" range="-0.7746029752191411 0.2851967714955154" damping="1" armature=".005" />
-            <geom name="upper_link" type="capsule" fromto="0 0 0 0.16 -0 -0.075" size="0.002" rgba=".18 .55 .60 1" group="2" />
+            <geom name="upper_link" type="capsule" fromto="0 0 0 0.16 -0 -0.075" size="0.002" rgba=".18 .55 .60 1" group="3" />
             <site name="upper_bridge_end" pos="0.16 -0 -0.075" size=".001" rgba=".1 .7 .8 .5" group="2" />
           </body>
           <body name="lower_bridge" pos="-0.03 0 0.095">
             <inertial pos="0 0 0" mass="0.1" diaginertia=".001 .001 .001" />
             <joint name="lower_counter_pitch" type="hinge" axis="0 1 0" range="-0.7746029752191411 0.2851967714955154" damping="1" armature=".005" />
-            <geom name="lower_link" type="capsule" fromto="0 0 0 0.16 -0 -0.075" size="0.002" rgba=".18 .55 .60 1" group="2" />
+            <geom name="lower_link" type="capsule" fromto="0 0 0 0.16 -0 -0.075" size="0.002" rgba=".18 .55 .60 1" group="3" />
             <site name="lower_bridge_end" pos="0.16 -0 -0.075" size=".001" rgba=".1 .7 .8 .5" group="2" />
           </body>
         </body>
+        <geom name="scan_fixed_housing" type="mesh" mesh="fixed_housing" rgba=".84 .86 .89 1" material="mat_scan_fixed_housing" pos="-0.456 -0.07 -0.125" />
       </body>
       <body name="silver_linear_stage" pos="0.266 0.07 0.325">
         <inertial pos="0 0 0" mass=".01" diaginertia=".0001 .0001 .0001" />
