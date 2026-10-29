@@ -77,7 +77,13 @@ def validate_demo(scene, base, name):
 def export_scene(scene, destination):
     """Export the home/configuration model with destination-relative assets."""
     destination = Path(destination).expanduser().resolve()
-    meshdir = os.path.relpath(HERE / "assets", destination.parent)
+    try:
+        meshdir = os.path.relpath(HERE / "assets", destination.parent)
+    except ValueError:
+        # Windows cannot construct a relative path across drive letters.  An
+        # absolute mesh directory keeps the export loadable and makes the
+        # failure mode explicit; same-volume exports remain portable.
+        meshdir = str((HERE / "assets").resolve())
     root = ET.fromstring(scene.xml)
     root.find("compiler").set("meshdir", Path(meshdir).as_posix())
     ET.indent(root, space="  ")

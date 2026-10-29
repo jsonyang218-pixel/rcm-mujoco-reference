@@ -23,6 +23,7 @@ python verify_current_model.py
 根目录 `scene.xml` 和默认 `run_reference.py` 均使用当前扫描模型；`mujoco_model/` 保存网格、建模配置、修复脚本、驱动适配、证据及验证报告。直接查看 XML 可运行 `python -m mujoco.viewer --mjcf scene.xml`；从动关节的交互同步请使用默认 Python 入口。具体参数见 `python run_reference.py --help`。
 
 - [模型与修复说明](mujoco_model/README.md)
+- [实机标定工作流](mujoco_model/CALIBRATION.md)
 - [银罩整体运动修正对照](mujoco_model/outputs/silver_integral_comparison.gif)
 - [侧视图](mujoco_model/outputs/static_side_reference.png) · [三视图](mujoco_model/outputs/three_views/three_views.png)
 - [端盖整体运动验证](mujoco_model/outputs/silver_integral_validation.json) · [白壳修复验证](mujoco_model/outputs/seam_validation.json)

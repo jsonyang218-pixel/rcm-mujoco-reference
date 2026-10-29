@@ -221,6 +221,10 @@ class Reference:
         return np.array([math.radians(state.phi_deg-self.phi_home), math.radians(state.alpha_deg-self.alpha_home),
                          (state.length_mm-self.tip_reference_mm)*.001])
 
+    def forward_kinematics(self, q):
+        """Analytic needle tip in the shared robot frame (mm)."""
+        return self.nominal.forward(self.state_from_task(q), enforce_limits=False)
+
     def validate_task(self, q):
         q = _vec(q)
         state = self.state_from_task(q)

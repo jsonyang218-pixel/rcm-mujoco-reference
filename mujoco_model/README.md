@@ -61,4 +61,15 @@ python validate_driver_integration.py
 
 当前仍是外观与运动学原型。照片估计的安装角、真实 RCM、银色滑轨参数、质量惯量、摩擦、电机动态及 ROS 网络传输尚待实机验证；碰撞关闭。原扫描的其他毛边或开口未全面重建，参考板高度和靶体台尺寸仍为展示假设。
 
+## 实机标定
+
+下一阶段使用 [CALIBRATION.md](CALIBRATION.md) 和 `calibrate_model.py` 采集、拟合并审查真实编码器/量具数据：
+
+```powershell
+python calibrate_model.py --write-template calibration_samples_2026-10-29.csv
+python calibrate_model.py --input path\to\measurements.csv --output outputs\calibration_report.json
+```
+
+工具默认只生成 JSON 报告，不改变当前 v9 参数；确认 A/C 一次拟合后才显式添加 `--apply-config --config ..\config.json`。B 轴非线性修正、银罩传动、安装角和 RCM 始终需要人工审查及独立验证。
+
 仓库根目录的 `scene.xml` 指向本目录资产。`vendor/simulation_driver/` 是提交 `c2a3ffc` 的固定副本；根目录 `simulation_driver/` 保持原样，二者在本次导入时逐项核对 SHA-256 一致。历史导航/OCT 仍使用根目录的旧研究 API，未声称已迁移到本扫描模型。

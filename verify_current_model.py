@@ -33,7 +33,10 @@ def check_scene(path):
 def main():
     before = hashlib.sha256((HERE / 'scene.xml').read_bytes()).hexdigest()
     check_scene(HERE / 'scene.xml')
-    with tempfile.TemporaryDirectory(prefix='current-model-entry-') as work:
+    # Keep the temporary export on the checkout's volume so the normal export
+    # path remains relative on Windows; run_model.py also handles cross-drive
+    # callers by falling back to an absolute mesh directory.
+    with tempfile.TemporaryDirectory(prefix='current-model-entry-', dir=HERE) as work:
         home = run(work, '--no-viewer')
         assert home['profile'] == 'new' and home['installation_pitch_y_deg'] == -40
         assert home['max_fk_error_m'] < 1e-9
