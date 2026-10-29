@@ -1,0 +1,105 @@
+{
+  "installation": {
+    "pitch_y_deg": -40.0,
+    "pivot_reference_m": [
+      0.08,
+      0.015,
+      0.1
+    ],
+    "additional_translation_m": [
+      0,
+      0,
+      0
+    ],
+    "reference_plane_z_m": 0.1,
+    "reference": "User-marked red rectangle is horizontal; static pitch estimated from silver cover and needle in single photo",
+    "photo_estimate_only": true,
+    "estimated_pitch_uncertainty_deg": 5,
+    "silver_axis_frame": "installation_local; relative motion unchanged",
+    "world_gravity_up": [
+      0,
+      0,
+      1
+    ]
+  },
+  "rotation": [
+    [
+      0.766044443118978,
+      0.0,
+      -0.6427876096865393
+    ],
+    [
+      0.0,
+      1.0,
+      0.0
+    ],
+    [
+      0.6427876096865393,
+      0.0,
+      0.766044443118978
+    ]
+  ],
+  "translation_m": [
+    0.08299520551913568,
+    0.0,
+    -0.028027453086820947
+  ],
+  "rcm_world_m": [
+    0.35196302037057225,
+    0.07,
+    0.36083925232011316
+  ],
+  "robot_to_world": [
+    [
+      4.6906693763513654e-17,
+      -0.8969807457619727,
+      -0.44206961186253824
+    ],
+    [
+      1.0,
+      5.94739911646578e-17,
+      -1.456859058388456e-17
+    ],
+    [
+      3.9359389436709925e-17,
+      -0.4420696118625382,
+      0.8969807457619727
+    ]
+  ],
+  "joint_bounds_unchanged": {
+    "A": [
+      -2.352204667522286,
+      2.30285024693439
+    ],
+    "B": [
+      -0.2851967714955154,
+      0.7746029752191411
+    ],
+    "C": [
+      -0.014,
+      0.0322587968178893
+    ],
+    "rear_pitch": [
+      -0.2851967714955154,
+      0.7746029752191411
+    ],
+    "upper_counter_pitch": [
+      -0.7746029752191411,
+      0.2851967714955154
+    ],
+    "lower_counter_pitch": [
+      -0.7746029752191411,
+      0.2851967714955154
+    ],
+    "silver_B_linear": [
+      -0.01947361534740153,
+      0.055739872656448176
+    ]
+  },
+  "encoder_zero_changed": false,
+  "mesh_geometry_changed": false,
+  "visual_face_ownership_changed": true,
+  "all_robot_parts_share_rigid_installation": true,
+  "laboratory_planes_remain_horizontal": true,
+  "photo_estimate_not_metrological_calibration": true
+}

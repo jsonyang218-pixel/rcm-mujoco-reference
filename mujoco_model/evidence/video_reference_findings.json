@@ -1,0 +1,33 @@
+{
+  "source": "/workspace/attachments/4f336557-c477-40d0-8c91-e578a05457d0/1c43bd2d30e0637920275bf019c2bc03.mp4",
+  "sha256": "d4b12e9e1408506031a15b1c9179af470d5dd8dcf7f43f6b1eeb0023f62c9ba4",
+  "width": 1280,
+  "height": 720,
+  "fps": 30,
+  "duration_s": 9.233333,
+  "evidence": [
+    "contact_sheet.png",
+    "white_shell_detail.png",
+    "near_start.png",
+    "near_end.png"
+  ],
+  "exact_detail_sample_timestamps_s": [
+    0.5,
+    7.8
+  ],
+  "visible_observations_zh": [
+    "白色主壳上缘从后方斜边经圆角顶部到右侧圆弧端是一整条连续光滑轮廓，没有模型当前那种锯齿裂口或白色碎片被银罩带走。",
+    "银色长罩下方可见黑色/金属平行杆与真实机构开口；该开口位于白壳轮廓之内/后方，不能把所有黑区都填实。",
+    "白壳的凹凸箭头形压筋、上缘螺孔、右端圆弧位置随镜头移动保持同一刚体外观。该段视频足以支持白壳局部连贯，不足以证明它在世界坐标绝对固定。",
+    "白壳与银罩的材料边界清楚：白壳轮廓应属于白色主壳，银色罩不应携带白色三角面片或拉开白壳皮肤。银罩相对运动方向/行程不从单目画面作毫米标定。"
+  ],
+  "repair_implications_zh": [
+    "优先纠正切分标签：将误分到银罩的白壳上沿/前端白色皮肤归还主壳。",
+    "对扫描本身欠采样的局部裂口，可用小块内衬或局部边界补片恢复连续外观，保留真实机构开口与银罩独立运动。",
+    "整体安装角和驱动换算无须由本视频重定义。"
+  ],
+  "limits": [
+    "No camera stabilization or metric 3D calibration was performed for this visual seam review.",
+    "Frames include camera movement; global robot-fixed status is not established by raw image positions."
+  ]
+}

@@ -1,4 +1,43 @@
-# RCM A/B/C MuJoCo 导航工程
+# RCM 机械臂 MuJoCo 仿真
+
+当前默认模型为根据实物扫描、照片和运动视频修正的 **v9 模型**：白色主壳上缘保持固定，银色圆角端盖、底缘和长罩作为同一个部件升降；保留 A/B/C 编码器换算和驱动接口。整体静态姿态采用相对原扫描前端抬高约 40° 的照片估计修正，尚非实机标定。
+
+## 启动当前模型
+
+```bash
+python -m pip install -r requirements.txt
+python run_reference.py
+```
+
+无窗口检查及图像导出：
+
+```bash
+python run_reference.py --no-viewer
+python run_reference.py --demo abc --sample-time 5 --no-viewer
+python run_reference.py --export scene.xml --no-viewer
+python run_reference.py --render runs/current_model.png --no-viewer
+python run_reference.py --verify
+python verify_current_model.py
+```
+
+根目录 `scene.xml` 和默认 `run_reference.py` 均使用当前扫描模型；`mujoco_model/` 保存网格、建模配置、修复脚本、驱动适配、证据及验证报告。直接查看 XML 可运行 `python -m mujoco.viewer --mjcf scene.xml`；从动关节的交互同步请使用默认 Python 入口。具体参数见 `python run_reference.py --help`。
+
+- [模型与修复说明](mujoco_model/README.md)
+- [银罩整体运动修正对照](mujoco_model/outputs/silver_integral_comparison.gif)
+- [侧视图](mujoco_model/outputs/static_side_reference.png) · [三视图](mujoco_model/outputs/three_views/three_views.png)
+- [端盖整体运动验证](mujoco_model/outputs/silver_integral_validation.json) · [白壳修复验证](mujoco_model/outputs/seam_validation.json)
+
+`simulation_driver/` 原始 29 个文件保持不变。模型加载的是 `mujoco_model/vendor/simulation_driver/` 中提交 `c2a3ffc` 的固定副本，以便复现现有验证；修改根目录驱动不会自动改变该固定副本。仿真入口不连接设备或加载实验室 ROS 网络配置。
+
+当前模型仍为外观与运动学原型：银罩行程比例、电机一阶响应、质量惯量和 RCM 尚未实机标定，碰撞关闭，ROS 实机通信未验证。验证中的微米级误差描述的是软件模型内部一致性，不代表硬件精度。
+
+## 历史程序入口
+
+原模型和启动脚本保留为 `legacy_scene.xml` 与 `run_legacy_reference.py`，可复现此前的眼底导航、视觉伺服和 OCT 研究。`run_navigation.py`、`run_visual_servo.py`、`run_waypoint_comparison.py` 及 `rcm_reference.Reference` 继续使用旧研究场景；这些算法尚未迁移或验证到当前扫描模型。下面的历史结果与命令只适用于该旧场景。
+
+---
+
+## 历史导航与 OCT 研究记录
 
 2026-10-22 更新：已完成按给定顺序 P1→P2→P3 的严格视觉导航和实体遮挡恢复实验。零位出发三点独立终点误差为 **6.63 / 6.09 / 6.27 μm**；遮挡恢复组为 **6.38 / 6.44 / 6.28 μm**，均到达并停稳。目标在眼球后部内表面代理上，未建立独立视网膜层。这是理想 RGB、分割和深度的仿真结果。
 
@@ -159,11 +198,11 @@ alpha = degrees(gamma+beta) 或 degrees(gamma-beta)
 ## 三轴演示与手动操作
 
 ```bash
-python run_reference.py
-python run_reference.py --demo abc
-python run_reference.py --auto-reach --no-viewer
-python run_reference.py --pose 30.7 18.37 14.67 --no-viewer
-python run_reference.py --encoders 0 1466018 893518 --no-viewer
+python run_legacy_reference.py
+python run_legacy_reference.py --demo abc
+python run_legacy_reference.py --auto-reach --no-viewer
+python run_legacy_reference.py --pose 30.7 18.37 14.67 --no-viewer
+python run_legacy_reference.py --encoders 0 1466018 893518 --no-viewer
 ```
 
 | 按键 | 功能 |
@@ -193,8 +232,8 @@ R_install = Rz(z)*Ry(y)*Rx(x)
 
 ```bash
 python run_navigation.py --target-world 9.5 12.3743686708 -10.2530483272 --no-viewer
-python run_reference.py --export scene.xml --no-viewer
-python -m mujoco.viewer --mjcf scene.xml
+python run_legacy_reference.py --export legacy_scene.xml --no-viewer
+python -m mujoco.viewer --mjcf legacy_scene.xml
 ```
 
 眼球内部还提供固定虚拟相机和橙色目标标靶（中心小球及四个定位点）；全景视角中青色小球/短轴线表示相机位置与朝向，可运行仿真视觉伺服：
@@ -221,7 +260,7 @@ python run_visual_servo.py --camera free --output-dir runs/历史记录/04_sessi
 ## 验收
 
 ```bash
-python run_reference.py --verify --report verification.json
+python run_legacy_reference.py --verify --report verification.json
 python verify_navigation.py --output-dir acceptance
 ```
 
@@ -239,8 +278,8 @@ python verify_navigation.py --output-dir acceptance
 |---|---|
 | `config.json` | 已确认零位、换算公式、针/安装参考值及默认关闭的位置限位 |
 | `rcm_recovered_model.py` | 原公式和带参考角的 B 反解 |
-| `rcm_reference.py` / `scene.xml` | MuJoCo 生成、运动学、编码器和场景 |
-| `run_reference.py` | 单轴演示、手动控制、静态导航与导出 |
+| `rcm_reference.py` / `legacy_scene.xml` | MuJoCo 生成、运动学、编码器和场景 |
+| `run_legacy_reference.py` | 单轴演示、手动控制、静态导航与导出 |
 | `run_navigation.py` / `rcm_navigation.py` | 目标接口、整批预检、完整循环和日志 |
 | `verify_reference.py` / `verification.json` | 运动学与兼容性验证 |
 | `verify_navigation.py` / `acceptance` | 眼球空间验收、目标解和完整轨迹 |

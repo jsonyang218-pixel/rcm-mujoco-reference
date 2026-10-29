@@ -1,0 +1,68 @@
+{
+  "source_faces_retained": 240000,
+  "part_faces": {
+    "fixed_housing": 154561,
+    "parallel_cover": 34427,
+    "distal_guide": 36030,
+    "C_carriage": 14982
+  },
+  "all_visual_faces_accounted_for": true,
+  "novel_lower_faces_assigned_to_base": 55335,
+  "reference_distance_median_mm": 1.3665852415560586,
+  "uncertain_over_8mm_faces": 66231,
+  "method": "Nearest old scan surface plus normal agreement, after rigid registration; no new outer shell primitives",
+  "registration_status": "coarse visual alignment, not metrological calibration",
+  "original_new_scan_watertight": false,
+  "registered_bounds_installation_reference_m": [
+    [
+      0.0056000840617341785,
+      -0.09668890013025122,
+      0.09578504067316061
+    ],
+    [
+      0.4959072675942833,
+      0.0947038570226733,
+      0.3799120863016233
+    ]
+  ],
+  "mesh_frame": "uninstalled v6 reference; world transform is in installation_config.json and static_pose_parameters.json",
+  "local_ownership_repair": {
+    "version": 8,
+    "scope": "Local white shell skin reassigned from moving silver cover to fixed shell",
+    "returned_source_faces": 537,
+    "returned_bounds_reference_m": [
+      0.27120219,
+      -0.04943621,
+      0.25760959,
+      0.31521395,
+      -0.02775547,
+      0.32865464
+    ],
+    "original_triangles_retained": true,
+    "source_triangle_count": 240000,
+    "joint_topology_changed": false,
+    "installation_pitch_changed": false,
+    "source_mesh_has_open_boundaries": true,
+    "physical_transmission_calibrated": false
+  },
+  "silver_cap_ownership_repair": {
+    "version": 9,
+    "scope": "Round silver endcap and long cover share the same rigid slider body",
+    "reassigned_cap_faces": 1797,
+    "main_cap_faces": 1238,
+    "bottom_rim_faces": 559,
+    "bottom_rim_rule": "-.0925<u<-.088; -.0015<v<.005; -.0015<n<.0715; abs(normal dot u)>.55; exclude protected white faces",
+    "direction": "fixed_housing -> parallel_cover",
+    "protected_white_shell_faces": 537,
+    "white_shell_repair_preserved": true,
+    "source_triangle_count": 240000,
+    "all_source_triangle_positions_preserved": true,
+    "new_geometry_added": false,
+    "new_joints_added": false,
+    "installation_changed": false,
+    "driver_changed": false,
+    "source_scan_globally_watertight": false,
+    "video_calibrated_silver_travel": false,
+    "definition_file": "silver_cap_definition.json"
+  }
+}

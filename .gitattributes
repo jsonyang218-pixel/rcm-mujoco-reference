@@ -1,2 +1,6 @@
 # Preserve acquisition hashes, CSV line endings, and raw evidence on checkout.
 reports/** -text
+
+# Keep scan provenance and pinned driver SHA-256 stable across platforms.
+mujoco_model/** -text whitespace=-blank-at-eof,cr-at-eol
+simulation_driver/** -text

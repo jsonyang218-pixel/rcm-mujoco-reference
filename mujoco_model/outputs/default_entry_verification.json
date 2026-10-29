@@ -1,0 +1,154 @@
+{
+  "status": "PASS",
+  "model_version": 9,
+  "scope": "Current scanned-model kinematics and integral cover; not hardware calibration",
+  "checks": [
+    {
+      "script": "validate_frames.py",
+      "returncode": 0,
+      "result": {
+        "status": "PASS",
+        "scope": "Shared installation and exact source-encoder FK consistency, not hardware calibration",
+        "profile_names": [
+          "new",
+          "legacy"
+        ],
+        "poses_per_profile": 91,
+        "source_limits_corners_tested": true,
+        "installation_transform_identical": true,
+        "mechanical_joint_axes_identical": true,
+        "mechanical_joint_and_actuator_ranges_identical": true,
+        "max_mujoco_vs_source_fk_error_m": 3.238105109458058e-13,
+        "max_profile_junction_difference_m": 0.0,
+        "max_profile_mechanical_body_pose_difference": 0.0,
+        "max_signed_tip_delta_formula_error_m": 4.512212857124231e-15,
+        "tip_profile_separation_mm": [
+          7.999999999999943,
+          8.000000000000059
+        ],
+        "robot_to_world_shared": [
+          [
+            4.6906693763513654e-17,
+            -0.8969807457619727,
+            -0.44206961186253824
+          ],
+          [
+            1.0,
+            5.94739911646578e-17,
+            -1.456859058388456e-17
+          ],
+          [
+            3.9359389436709925e-17,
+            -0.4420696118625382,
+            0.8969807457619727
+          ]
+        ],
+        "source_encoder_bounds": {
+          "A": [
+            -74873,
+            73302
+          ],
+          "B": [
+            223159,
+            5023488
+          ],
+          "C": [
+            0,
+            2952362
+          ]
+        },
+        "joint_ranges_model_units": {
+          "A": [
+            -2.352204667522286,
+            2.30285024693439
+          ],
+          "B": [
+            -0.2851967714955154,
+            0.7746029752191411
+          ],
+          "C": [
+            -0.014,
+            0.0322587968178893
+          ],
+          "rear_pitch": [
+            -0.2851967714955154,
+            0.7746029752191411
+          ],
+          "upper_counter_pitch": [
+            -0.7746029752191411,
+            0.2851967714955154
+          ],
+          "lower_counter_pitch": [
+            -0.7746029752191411,
+            0.2851967714955154
+          ],
+          "silver_B_linear": [
+            -0.01947361534740153,
+            0.055739872656448176
+          ]
+        },
+        "rejected_without_state_mutation": {
+          "A_below_min": "A 轴当前机器人编码器 -74874 不在已确认安全范围 [-74873, 73302]；请先完成零点/限位标定",
+          "A_above_max": "A 轴当前机器人编码器 73303 不在已确认安全范围 [-74873, 73302]；请先完成零点/限位标定",
+          "B_below_min": "B 轴当前机器人编码器 223158 不在已确认安全范围 [223159, 5023488]；请先完成零点/限位标定",
+          "B_above_max": "B 轴当前机器人编码器 5023489 不在已确认安全范围 [223159, 5023488]；请先完成零点/限位标定",
+          "C_below_min": "C 轴当前机器人编码器 -1 不在已确认安全范围 [0, 2952362]；请先完成零点/限位标定",
+          "C_above_max": "C 轴当前机器人编码器 2952363 不在已确认安全范围 [0, 2952362]；请先完成零点/限位标定",
+          "noninteger_count": "Robot encoder values must be int32 integers",
+          "bool_count": "Robot encoder values must be int32 integers"
+        },
+        "physical_installation_calibrated": false,
+        "motor_dynamics_identified": false
+      },
+      "status": "PASS"
+    },
+    {
+      "script": "validate_silver_integral.py",
+      "returncode": 0,
+      "result": {
+        "status": "PASS",
+        "version": 9,
+        "scope": "Silver end cap and main cover share one visual rigid body; no hardware calibration",
+        "source_faces_verified": 240000,
+        "part_faces": {
+          "fixed_housing": 154561,
+          "parallel_cover": 34427,
+          "distal_guide": 36030,
+          "C_carriage": 14982
+        },
+        "source_face_multiplicities_preserved": true,
+        "source_faces_duplicated_by_repair": 0,
+        "reassigned_silver_cap_faces": 1797,
+        "only_declared_owner_changes": true,
+        "previous_white_shell_537_faces_still_fixed": true,
+        "distal_and_C_mesh_bytes_unchanged": true,
+        "installation_config_bytes_unchanged": true,
+        "verified_original_driver_files": 29,
+        "profiles": [
+          {
+            "profile": "new",
+            "pose_samples": 35,
+            "source_limit_corners_included": true,
+            "cap_and_cover_share_silver_body": true,
+            "observed_cap_motion_range_m": 0.07521348800384979
+          },
+          {
+            "profile": "legacy",
+            "pose_samples": 35,
+            "source_limit_corners_included": true,
+            "cap_and_cover_share_silver_body": true,
+            "observed_cap_motion_range_m": 0.07521348800384979
+          }
+        ],
+        "new_controlled_axes": 0,
+        "joint_axes_limits_and_actuator_parameters_unchanged": true,
+        "max_body_frame_difference": 0.0,
+        "max_world_joint_axis_difference": 0.0,
+        "max_feedback_difference_mm": 0.0,
+        "max_driver_fk_error_m": 3.135097671309983e-13,
+        "max_cap_to_cover_anchor_distance_error_m": 5.551115123125783e-17
+      },
+      "status": "PASS"
+    }
+  ]
+}
