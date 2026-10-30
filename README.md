@@ -63,7 +63,18 @@ MUJOCO_GL=egl python verify_rcm_scene_v9.py
 - [测试报告、轨迹与复现命令](reports/20261030/README.md)
 - [当前完整三视图](reports/20261030/v9_model/three_views.png) · [前端正面](reports/20261030/v9_model/front_tool.png) · [侧照修订](reports/20261030/v9_model/side_profile.png)
 
-该测试通过独立录制脚本直接驱动 v9；`run_visual_servo.py` 的控制后端仍为 legacy，选择 v9 viewer 只改变显示后端。
+该 41 秒录制属于清理前完成的 v9 运动学闭环测试。当前 `run_visual_servo.py` 已改为默认使用 v9 相机控制和 `MotorBackend` 电机执行；旧录制不作为电机执行的验证证据。
+
+## 电机执行与数据集采集
+
+当前新增采集入口将所有采集动作通过 `MotorBackend.consume/step` 执行，再用实际编码器反馈更新当前 v9 场景。默认每集从零位出发，采集同步的原始 RGB、实际状态、协议动作及独立审计记录：
+
+```bash
+MUJOCO_GL=egl python collect_v9_dataset.py --output-dir runs/v9_motor_dataset --episodes 1
+python verify_v9_dataset.py --run-dir runs/v9_motor_dataset
+```
+
+具体参数、随机目标采集、数据字段、原研究入口兼容性和仿真限制见 [电机执行与数据集说明](MOTOR_DATASET.md)。电机 τ=40 ms 为选定仿真值，未实机辨识；完整性验证不等同于导航或实际运动约束全部通过。
 
 - [模型与修复说明](mujoco_model/README.md)
 - [实机标定工作流](mujoco_model/CALIBRATION.md)
@@ -77,7 +88,7 @@ MUJOCO_GL=egl python verify_rcm_scene_v9.py
 
 ## 历史程序入口
 
-研究入口 `run_legacy_reference.py` 和生成场景所需的运动学模块仍保留，旧 `legacy_scene.xml` 导出文件已删除；需要查看时可按下文命令重新导出。`run_navigation.py`、`run_visual_servo.py`、`run_waypoint_comparison.py` 及 `rcm_reference.Reference` 继续动态生成旧研究场景；当前 v9 的独立单目标验证见上文，历史导航入口尚未切换到 v9。下面的历史结果与命令只适用于该研究场景。
+研究入口 `run_legacy_reference.py` 和生成场景所需的运动学模块仍保留，旧 `legacy_scene.xml` 导出文件已删除；需要查看时可按下文命令重新导出。`run_navigation.py`、`run_waypoint_comparison.py` 及 `rcm_reference.Reference` 继续动态生成旧研究场景。单目标 `run_visual_servo.py` 当前默认使用 v9 + 电机执行，复现旧研究需加 `--control-backend legacy --motion-backend kinematic`。下面的历史结果与命令只适用于旧研究场景。
 
 ---
 
@@ -110,7 +121,7 @@ python run_navigation.py
 
 ```bash
 python run_navigation.py --no-viewer
-python run_visual_servo.py
+python run_visual_servo.py --control-backend legacy --motion-backend kinematic
 python run_waypoint_comparison.py
 ```
 
@@ -131,7 +142,7 @@ python run_waypoint_comparison.py
 控制使用归一化的三轴耦合 Jacobian、限速/限加速度和接近减速。默认测得的位置误差阈值为 8 μm，并要求连续三帧误差达标且指令速度为零；结束后再用独立 MuJoCo 真值按 **<20 μm** 验收。测量阈值、停稳和独立验收是不同检查，不能只看视觉条件。这里仍是标定几何和理想 RGB-D 的运动学仿真，不是实机精度结果。历史 `image_depth` 模式保留，旧实验的像素/深度阈值及逐目标姿态标定只适用于该模式。
 
 ```bash
-python run_visual_servo.py --no-viewer --output-dir runs/geometry_navigation
+python run_visual_servo.py --control-backend legacy --motion-backend kinematic --no-viewer --output-dir runs/geometry_navigation
 python verify_visual_geometry.py --output-dir runs/geometry_checks
 python verify_visual_geometry_direction.py
 python verify_visual_motion.py
@@ -283,16 +294,16 @@ python -m mujoco.viewer --mjcf runs/legacy_scene.xml
 眼球内部还提供固定虚拟相机和橙色目标标靶（中心小球及四个定位点）；全景视角中青色小球/短轴线表示相机位置与朝向，可运行仿真视觉伺服：
 
 ```bash
-python run_visual_servo.py --no-viewer --output-dir runs/历史记录/04_sessions/demos/visual_servo_demo
+python run_visual_servo.py --control-backend legacy --motion-backend kinematic --no-viewer --output-dir runs/历史记录/04_sessions/demos/visual_servo_demo
 python verify_visual_servo.py --output-dir acceptance/visual_servo
 ```
 
 在有桌面环境时省略 `--no-viewer` 可直接打开 MuJoCo 窗口观察针尖运动：
 
 ```bash
-python run_visual_servo.py --output-dir runs/历史记录/04_sessions/demos/visual_servo_viewer
-python run_visual_servo.py --camera overview --output-dir runs/历史记录/04_sessions/demos/visual_servo_overview
-python run_visual_servo.py --camera free --output-dir runs/历史记录/04_sessions/demos/visual_servo_free
+python run_visual_servo.py --control-backend legacy --motion-backend kinematic --output-dir runs/历史记录/04_sessions/demos/visual_servo_viewer
+python run_visual_servo.py --control-backend legacy --motion-backend kinematic --camera overview --output-dir runs/历史记录/04_sessions/demos/visual_servo_overview
+python run_visual_servo.py --control-backend legacy --motion-backend kinematic --camera free --output-dir runs/历史记录/04_sessions/demos/visual_servo_free
 ```
 
 `--camera free` 支持鼠标旋转、平移和滚轮缩放；运行中按 `F` 切换自由/固定视角，按 `V` 循环固定视角。观察相机只影响显示，不影响眼内相机视觉控制。窗口右下角始终叠加控制相机画面：青色十字为目标中心、绿色十字为针尖、白线为图像误差；左上角显示实时像素误差、深度误差和 A/B/C 状态。

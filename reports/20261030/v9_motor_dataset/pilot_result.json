@@ -1,0 +1,68 @@
+{
+  "result": "PASS",
+  "reason": "POSITION_ERROR_AND_SETTLED",
+  "execution_mode": "visual_servo_motor",
+  "iterations": 683,
+  "initial_tip_world_mm": [
+    358.8466911537971,
+    -11.26075197528823,
+    357.63197044508485
+  ],
+  "final_tip_world_mm": [
+    372.43472640909505,
+    -9.3402237863532,
+    343.4372861126865
+  ],
+  "target_world_mm": [
+    372.43889732452203,
+    -9.340751975362211,
+    343.433194214214
+  ],
+  "final_tip_target_error_um": 5.866783806950037,
+  "final_estimated_position_error_um": 6.8752131928689435,
+  "motor_execution": {
+    "backend": "MotorBackend",
+    "tau_s": 0.04,
+    "control_period_s": 0.05,
+    "integration_step_s": 0.002,
+    "speed_limits_A_deg_B_deg_C_mm_per_s": [
+      10.0,
+      10.0,
+      2.0
+    ],
+    "timeout_s": 0.5,
+    "simulation_time_s": 34.1000000000002,
+    "control_steps": 682,
+    "robot_ABCE": [
+      2767,
+      875044,
+      2150143,
+      0
+    ],
+    "target_robot_ABCE": [
+      2767,
+      875044,
+      2150143,
+      0
+    ],
+    "encoder_settled": true,
+    "status": "holding",
+    "fault": null,
+    "physical_dynamics_identified": false,
+    "direct_pose_fallback_used": false
+  },
+  "settled_frames": 3,
+  "terminal_stop_validated": true,
+  "trajectory_rate_limits_pass": true,
+  "ground_truth_used_for_stop": false,
+  "known_target_pose_used_for_feature_calibration": false,
+  "reset_task_A_deg_B_deg_C_mm": [
+    0.0,
+    0.0,
+    0.0
+  ],
+  "collection_wall_s": 401.53949300299973,
+  "raw_dataset": "runs/v9_motor_dataset_home_20261030",
+  "validation_scope": "683 raw RGB/state/action frames; independent offline motor simulation, not hardware measurements",
+  "raw_images_in_repository": false
+}

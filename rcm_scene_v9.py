@@ -60,7 +60,9 @@ class RCMSceneV9:
             (ROOT / "config.json").read_text(encoding="utf-8"))
         if self.config.get("schema_version") != 1:
             raise ValueError("Unsupported config schema")
-        self._ref = Reference(self.config)
+        # The hidden reference is a coordinate/encoder calculator. Only this
+        # adapter advances a motor; otherwise a command would be applied twice.
+        self._ref = Reference({**self.config, 'motor_execution': {'enabled': False}})
         # Preserve the legacy kinematic model surface used by controller
         # Jacobian construction.
         self.nominal = self._ref.nominal
@@ -97,6 +99,9 @@ class RCMSceneV9:
                               @ self.scene.robot_to_installation @ np.diag([1., -1., -1.]))
         self._build_injected_model()
         self.set_task(np.zeros(3))
+        self.motor_execution = None
+        if self.config.get('motor_execution', {}).get('enabled', False):
+            self.enable_motor_execution()
 
     def _build_injected_model(self):
         root = ET.fromstring(self.scene.xml)
@@ -504,7 +509,37 @@ class RCMSceneV9:
     def validate_task(self, q):
         return self._ref.validate_task(q)
 
-    def set_task(self, q):
+    def set_task(self, q, motor_dt=None):
+        motor = getattr(self, 'motor_execution', None)
+        if motor is None:
+            if motor_dt is not None:
+                raise ValueError('Enable motor execution before passing motor_dt')
+            self._apply_task_pose(q)
+            return
+        previous = self.data.qpos.copy()
+        actual = motor.advance(q, motor_dt)
+        self._apply_task_pose(actual)
+        self.data.qvel[:] = (self.data.qpos - previous) / motor.last_record['duration_s']
+        mujoco.mj_forward(self.model, self.data)
+
+    def enable_motor_execution(self, settings=None):
+        if getattr(self, 'motor_execution', None) is not None:
+            raise ValueError('Motor execution is already enabled')
+        from rcm_motor_execution import MotorExecution
+        self.motor_execution = MotorExecution(self, settings or self.config.get('motor_execution'))
+        self._apply_task_pose(self.task_from_encoders(self.motor_execution.backend.robot[:3]))
+
+    def motor_robot(self):
+        if self.motor_execution is None:
+            raise RuntimeError('Motor execution is not enabled')
+        return self.motor_execution.backend.robot
+
+    def reset_motor_time(self, t=0.):
+        if self.motor_execution is None:
+            raise RuntimeError('Motor execution is not enabled')
+        self.motor_execution.reset_clock(t)
+
+    def _apply_task_pose(self, q):
         q = self._ref.validate_task(q)
         self._ref.set_task(q)
         robot = tuple(int(round(float(v))) for v in self._ref.encoders(q)) + (0,)

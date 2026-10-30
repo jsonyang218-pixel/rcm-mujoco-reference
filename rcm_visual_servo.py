@@ -409,6 +409,10 @@ class VisualServoController:
         self.use_target_pose_calibration = bool(
             self.settings.get('position_feedback') != 'geometry' and
             self.settings.get("use_target_pose_calibration", True))
+        if getattr(reference, 'motor_execution', None) is not None:
+            if (self.settings.get('position_feedback') != 'geometry'
+                    or self.settings.get('occlusion_handling', 'stop') != 'stop'):
+                raise ValueError('Motor execution currently requires geometry feedback with stop-on-observation-loss')
         self.command_validator = command_validator
         # Intermediate strict-visual goals are constructed from measured needle
         # geometry, never from an inverse solution of the scene target.
@@ -539,10 +543,18 @@ class VisualServoController:
         measured_error = None
         max_iterations = self.settings['max_iterations']
         iterations = count() if max_iterations is None else range(int(max_iterations))
+        motor = getattr(self.reference, 'motor_execution', None)
+        command_q = q.copy()
         try:
             for iteration in iterations:
-                self.reference.set_task(q)
-                self.sensor.observation_time_s = getattr(self.sensor, 'observation_time_origin_s', 0.)+iteration*dt
+                if motor is None:
+                    self.reference.set_task(q)
+                elif iteration > 0:
+                    self.reference.set_task(command_q, motor_dt=dt)
+                if motor is not None:
+                    q = self.reference.current_task().copy()
+                self.sensor.observation_time_s = (motor.time_s if motor is not None else
+                    getattr(self.sensor, 'observation_time_origin_s', 0.)+iteration*dt)
                 if self.observation_hook is not None:
                     self.observation_hook(iteration, {
                         'controller_state': 'tracking', 'time_s': iteration*dt,
@@ -644,7 +656,9 @@ class VisualServoController:
                 if self.iteration_callback is not None and self.iteration_callback(iteration, observation) is False:
                     reason = 'USER_ABORTED'
                     break
-                settled = settled+1 if in_tolerance and np.all(np.abs(previous_velocity) < 1e-12) else 0
+                motor_stopped = motor is None or motor.settled()
+                settled = settled+1 if (in_tolerance and motor_stopped
+                    and np.all(np.abs(previous_velocity) < 1e-12)) else 0
                 if settled >= int(self.settings['settle_frames']):
                     status, reason = 'PASS', 'POSITION_ERROR_AND_SETTLED'
                     break
@@ -656,7 +670,10 @@ class VisualServoController:
                 wanted[~active] = 0.
                 velocity = np.clip(wanted, previous_velocity-amax*dt, previous_velocity+amax*dt)
                 acceleration = (velocity-previous_velocity)/dt
-                candidate = q+velocity*dt
+                # Retain sub-handle increments in the requested command. If
+                # each increment is instead restarted at quantized feedback,
+                # small valid corrections disappear in a protocol dead zone.
+                candidate = (command_q if motor is not None else q)+velocity*dt
                 try:
                     candidate = self.reference.validate_task(candidate).copy()
                 except ValueError:
@@ -671,11 +688,15 @@ class VisualServoController:
                     command_velocity_A_deg_B_deg_C_mm_per_s=(velocity/unit).tolist(),
                     command_acceleration_A_deg_B_deg_C_mm_per_s2=(acceleration/unit).tolist())
                 q, previous_velocity = candidate, velocity
+                command_q = candidate.copy()
                 self.final_velocity = velocity.copy()
                 if self.output_dir is not None and self.settings['save_diagnostics'] and iteration == 0:
                     save_png(self.output_dir/'camera_0000.png', observation['rgb'])
                     save_png(self.output_dir/'guidance_0000.png', guidance_overlay(observation))
-            self.reference.set_task(q)
+            if motor is None:
+                self.reference.set_task(q)
+            elif status != 'PASS':
+                motor.hold()  # Offline simulator hold, not validated physical braking.
             if final_observation is not None and self.output_dir is not None and self.settings['save_diagnostics']:
                 save_png(self.output_dir/'camera_final.png', final_observation['rgb'])
                 save_png(self.output_dir/'guidance_final.png', guidance_overlay(final_observation))
@@ -951,7 +972,11 @@ class VisualServoController:
             'result': 'PASS' if overall else 'FAIL',
             'reason': ('INDEPENDENT_ACCURACY_REJECTED' if status == 'PASS' and self.independent_endpoint_acceptance and not acceptance else reason),
             'controller_result': status, 'controller_reason': reason,
-            'execution_mode': 'visual_servo_kinematic', 'feedback_controller_used': True,
+            'execution_mode': ('visual_servo_motor' if getattr(self.reference, 'motor_execution', None)
+                               is not None else 'visual_servo_kinematic'),
+            'motor_execution': (self.reference.motor_execution.summary()
+                                if getattr(self.reference, 'motor_execution', None) is not None else None),
+            'feedback_controller_used': True,
             'position_feedback': 'calibrated_visible_geometry', 'camera_name': self.sensor.camera_name,
             'iterations': len(self.rows), 'initial_tip_world_mm': initial['tip_world_mm'],
             'final_tip_world_mm': metrics['tip_world_mm'], 'target_world_mm': metrics['target_world_mm'],

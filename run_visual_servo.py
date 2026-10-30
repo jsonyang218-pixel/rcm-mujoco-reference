@@ -120,7 +120,8 @@ def run_viewer(view_reference, control_reference, controller, view_camera):
             if not viewer.is_running():
                 return False
             handle_camera_events()
-            view_reference.set_task(control_reference.current_task())
+            if view_reference is not control_reference:
+                view_reference.set_task(control_reference.current_task())
             view_observation = _v9_viewer_observation(view_reference)
             viewport = viewer.viewport
             # Keep the eye-internal camera readable in the main MuJoCo window.
@@ -173,27 +174,44 @@ def main(argv=None):
     parser.add_argument("--camera", choices=("free", "eye_internal", "overview", "side", "needle_close"),
                         default="eye_internal", help="Viewer camera; control still uses eye_internal")
     parser.add_argument("--viewer-backend", choices=("v9", "legacy"), default="v9",
-                        help="Model used only by the viewer; the controller remains legacy")
+                        help="Model used by the viewer; a separate viewer never advances a motor")
+    parser.add_argument("--control-backend", choices=("v9", "legacy"), default="v9")
+    parser.add_argument("--motion-backend", choices=("motor", "kinematic"), default="motor")
+    parser.add_argument("--max-iterations", type=int)
     args = parser.parse_args(argv)
     try:
         config = json.loads(args.config.read_text(encoding="utf-8"))
+        config['motor_execution'] = {**config.get('motor_execution', {}), 'enabled': False}
+        factory = RCMSceneV9 if args.control_backend == 'v9' else Reference
         if args.target_robot is not None:
             config["reference_scene"]["target_robot_mm"] = list(args.target_robot)
         elif args.target_world is not None:
-            reference = Reference(config)
-            config["reference_scene"]["target_robot_mm"] = reference.world_to_robot(args.target_world).tolist()
-        reference = Reference(config)
+            converter = factory(copy.deepcopy(config))
+            try:
+                config["reference_scene"]["target_robot_mm"] = converter.world_to_robot(args.target_world).tolist()
+            finally:
+                if isinstance(converter, RCMSceneV9):
+                    converter.close()
+        if args.max_iterations is not None:
+            if args.max_iterations < 1:
+                parser.error('--max-iterations must be positive')
+            config['navigation']['visual_servo']['max_iterations'] = args.max_iterations
+        reference = factory(config)
+        if args.motion_backend == 'motor':
+            reference.enable_motor_execution(config.get('motor_execution'))
         controller = VisualServoController(reference, output_dir=args.output_dir)
         view_reference = None
         if not args.no_viewer:
-            view_reference = (RCMSceneV9(copy.deepcopy(config))
-                              if args.viewer_backend == "v9" else reference)
+            view_reference = (reference if args.viewer_backend == args.control_backend else
+                (RCMSceneV9(copy.deepcopy(config)) if args.viewer_backend == 'v9' else Reference(copy.deepcopy(config))))
         try:
             report = (controller.run() if args.no_viewer else
                       run_viewer(view_reference, reference, controller, args.camera))
         finally:
-            if isinstance(view_reference, RCMSceneV9):
+            if isinstance(view_reference, RCMSceneV9) and view_reference is not reference:
                 view_reference.close()
+            if isinstance(reference, RCMSceneV9):
+                reference.close()
         controller.write(report, args.output_dir)
         print(json.dumps({**report, "output_dir": str(args.output_dir.resolve())}, ensure_ascii=False, indent=2))
         return 0 if report["result"] == "PASS" else 1

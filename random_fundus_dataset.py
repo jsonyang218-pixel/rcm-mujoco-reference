@@ -263,6 +263,8 @@ def main(argv=None):
         parser.error("Random posterior-fundus collection requires the precision profile to verify a stop at every target")
     config_bytes = args.config.read_bytes()
     config = json.loads(config_bytes.decode("utf-8"))
+    if config.get('motor_execution', {}).get('enabled', False):
+        parser.error('Use collect_v9_dataset.py for motor-backed v9 collection; this research collector is kinematic')
     reference = Reference(copy.deepcopy(config))
     split_names = ("train", "validation", "test")
     root = args.output_dir.resolve()
