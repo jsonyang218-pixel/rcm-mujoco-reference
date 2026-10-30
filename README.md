@@ -2,7 +2,7 @@
 
 当前默认模型为根据实物扫描、照片和运动视频修正的 **v9 模型**：白色主壳上缘保持固定，银色圆角端盖、底缘和长罩作为同一个部件升降；保留 A/B/C 编码器换算和驱动接口。整体静态姿态采用相对原扫描前端抬高约 40° 的照片估计修正，尚非实机标定。
 
-目录已清理旧运行结果、缓存和旧预览；研究代码、示例配置、网格重建及回归基线全部保留。当前模型预览与完整闭环测试集中在 [reports/20261030](reports/20261030/README.md)，旧结果可从 [清理前版本](https://github.com/jsonyang218-pixel/rcm-mujoco-reference/tree/42a0b2855b343d4efced99dee615cfa6a5d2be4c) 查看。
+目录已清理旧运行结果、旧 XML 导出及 v5–v8 模型快照；研究代码、示例配置、当前网格重建工具及源网格保留。当前模型预览与完整闭环测试集中在 [reports/20261030](reports/20261030/README.md)，旧模型和旧版对照验证可从 [清理前版本](https://github.com/jsonyang218-pixel/rcm-mujoco-reference/tree/64d866b104b519e7f0b26eb81913f26f98259080) 查看。`run_reference.py --verify` 现在检查当前模型的坐标、源面归属、闭合外壳及前端挂载，不再加载历史模型快照。
 
 ## 启动当前模型
 
@@ -77,7 +77,7 @@ MUJOCO_GL=egl python verify_rcm_scene_v9.py
 
 ## 历史程序入口
 
-原模型和启动脚本保留为 `legacy_scene.xml` 与 `run_legacy_reference.py`，可复现此前的眼底导航、视觉伺服和 OCT 研究。`run_navigation.py`、`run_visual_servo.py`、`run_waypoint_comparison.py` 及 `rcm_reference.Reference` 继续使用旧研究场景；当前 v9 的独立单目标验证见上文，历史导航入口尚未切换到 v9。下面的历史结果与命令只适用于该旧场景。
+研究入口 `run_legacy_reference.py` 和生成场景所需的运动学模块仍保留，旧 `legacy_scene.xml` 导出文件已删除；需要查看时可按下文命令重新导出。`run_navigation.py`、`run_visual_servo.py`、`run_waypoint_comparison.py` 及 `rcm_reference.Reference` 继续动态生成旧研究场景；当前 v9 的独立单目标验证见上文，历史导航入口尚未切换到 v9。下面的历史结果与命令只适用于该研究场景。
 
 ---
 
@@ -276,8 +276,8 @@ R_install = Rz(z)*Ry(y)*Rx(x)
 
 ```bash
 python run_navigation.py --target-world 9.5 12.3743686708 -10.2530483272 --no-viewer
-python run_legacy_reference.py --export legacy_scene.xml --no-viewer
-python -m mujoco.viewer --mjcf legacy_scene.xml
+python run_legacy_reference.py --export runs/legacy_scene.xml --no-viewer
+python -m mujoco.viewer --mjcf runs/legacy_scene.xml
 ```
 
 眼球内部还提供固定虚拟相机和橙色目标标靶（中心小球及四个定位点）；全景视角中青色小球/短轴线表示相机位置与朝向，可运行仿真视觉伺服：

@@ -59,7 +59,7 @@ reset_pose` 这些名字 **不是** 实际 API。实际公开方法是：
 - `DriverModel` 以编码器计数驱动，`sync(robot)` 写入 ABC 关节并算
   `diagnostics`（`A_deg / B_relative_deg / C_axial_mm / tip_world_m / junction_world_m`）。
 - `MotorBackend`（`motor_backend.py`）是离线协议电机，`tip_mm()` 用 vendor FK。
-- `DriverModel` **不读根 `config.json`**。它读 `assets/v6_template.xml`、
+- `DriverModel` **不读根 `config.json`**。它读 `assets/scan_template.xml`、
   `installation_config.json`、`silver_motion.py` 和 vendor 驱动
   `vendor/simulation_driver/ros_msg/src/robot_control/kinematics.py`。
 
@@ -70,7 +70,7 @@ reset_pose` 这些名字 **不是** 实际 API。实际公开方法是：
   - 眼球 sphere/ellipsoid geom（`eye_reference`）
   - 眼底靶点 site/marker（`lesion` / `lesion_marker` / `lesion_display_marker`）
   - 眼内相机 `<camera name="eye_internal">` 及其内参
-- legacy `legacy_scene.xml` 里有完整眼内场景，但其坐标在 legacy 机器人参考系，
+- legacy `Reference` 动态生成的场景里有完整眼内场景，但其坐标在 legacy 机器人参考系，
   **不能**直接复制到 v9 世界系。
 
 ## 5. 坐标与运动学结论（已用真实实现数值验证）

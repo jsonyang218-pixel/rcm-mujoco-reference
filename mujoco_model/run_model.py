@@ -102,30 +102,28 @@ def render_scene(scene, destination, camera):
 
 
 def verify_model(report_path):
-    """Run the current frame and complete-cover checks without editing evidence."""
-    import shutil
+    """Validate current assets and kinematics without historical model snapshots."""
     import subprocess
     import tempfile
     checks = []
-    # Both validators construct DriverModel themselves. A byte-for-byte copy
-    # lets their existing output conventions run without rewriting repository
-    # evidence, and keeps this command independent of the caller's cwd.
+    # Generated reports go to a temporary directory. Each check builds the
+    # current model; historical model implementations are not loaded.
     with tempfile.TemporaryDirectory(prefix="scan-model-verify-") as temp:
-        model_copy = Path(temp) / "model"
-        shutil.copytree(HERE, model_copy,
-                        ignore=shutil.ignore_patterns("outputs", "__pycache__", ".cache"))
-        (model_copy / "outputs").mkdir()
-        for script, report_name in (
-                ("validate_frames.py", "frame_consistency_validation.json"),
-                ("validate_silver_integral.py", "silver_integral_validation.json")):
-            command = [sys.executable, str(model_copy / script)]
-            completed = subprocess.run(command, cwd=temp, text=True,
+        for script, arguments in (
+                (HERE / "validate_frames.py", ["--output-dir", temp]),
+                (HERE / "validate_geometry.py", ["--output-dir", temp]),
+                (HERE.parent / "verify_enclosed_shells.py", []),
+                (HERE.parent / "verify_v9_front_tool.py", [])):
+            command = [sys.executable, str(script), *arguments]
+            completed = subprocess.run(command, cwd=HERE.parent, text=True,
                                        capture_output=True, timeout=180)
-            report = model_copy / "outputs" / report_name
-            item = {"script": script, "returncode": completed.returncode}
-            if report.exists():
-                item["result"] = json.loads(report.read_text(encoding="utf-8"))
-            if completed.returncode or item.get("result", {}).get("status") != "PASS":
+            item = {"script": script.name, "returncode": completed.returncode}
+            try:
+                item["result"] = json.loads(completed.stdout)
+            except json.JSONDecodeError:
+                item["result"] = {}
+            result = item["result"]
+            if completed.returncode or result.get("status", result.get("result")) != "PASS":
                 item["status"] = "FAIL"
                 item["stderr"] = completed.stderr[-4000:]
                 item["stdout"] = completed.stdout[-2000:]
@@ -134,7 +132,7 @@ def verify_model(report_path):
             checks.append(item)
     summary = {"status": "PASS" if all(c["status"] == "PASS" for c in checks) else "FAIL",
                "model_version": 9,
-               "scope": "Current scanned-model kinematics and integral cover; not hardware calibration",
+               "scope": "Current scanned-model frames, source ownership, closed skins and v9 tool; no historical snapshot comparison or hardware calibration",
                "checks": checks}
     content = json.dumps(summary, ensure_ascii=False, indent=2) + "\n"
     if report_path is not None:

@@ -51,8 +51,8 @@ class DriverModel:
         self.joint_bounds['lower_counter_pitch']=self.joint_bounds['upper_counter_pitch']
         cfg,self.silver_axis,self.silver_gain,self.silver_zero,silver_bounds=settings(self.root,self.kin)
         self.joint_bounds['silver_B_linear']=silver_bounds
-        # Build from the uninstalled v6 template so angle edits are idempotent.
-        tree=ET.parse(self.root/'assets/v6_template.xml');root=tree.getroot()
+        # Build from the current uninstalled template so angle edits are idempotent.
+        tree=ET.parse(self.root/'assets/scan_template.xml');root=tree.getroot()
         root.set('model','driver_integrated_'+needle_profile)
         root.find('compiler').set('meshdir',str((self.root/'assets').resolve()))
         # Separate closed display skins retain the original part frames and
