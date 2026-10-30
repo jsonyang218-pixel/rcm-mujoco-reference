@@ -67,16 +67,51 @@ class RCMSceneV9:
         from model_sync import DriverModel
         self.scene = DriverModel(model_dir=model_dir, needle_profile="legacy")
         self.eye_camera = self._ref.eye_camera
-        self.rcm_mm = self.scene.rcm_world * 1000.0
-        self.R_robot_world = self.scene.robot_to_world
+        self.alignment = json.loads((ROOT/"v9_alignment.json").read_text())
+        yaw = math.radians(float(self.alignment["yaw_world_deg"]))
+        if not math.isfinite(yaw):
+            raise ValueError("v9 alignment yaw must be finite")
+        c, s = math.cos(yaw), math.sin(yaw)
+        self.alignment_R = np.array([[c,-s,0.], [s,c,0.], [0.,0.,1.]])
+        pivot = _qvec(self.alignment["pivot_world_m"], 3)
+        self.alignment_t = pivot-self.alignment_R@pivot
+        self.tool_mount = json.loads((ROOT/"v9_tool_mount.json").read_text())
+        self.side_profile = json.loads((ROOT/"v9_side_profile.json").read_text())
+        if (not np.isclose(self.tool_mount["alignment_yaw_deg"], self.alignment["yaw_world_deg"])
+                or not np.isclose(self.tool_mount["installation_pitch_deg"], self.scene.installation["pitch_y_deg"])):
+            raise ValueError("Tool mount is stale; refit the registered STL for the current installation")
+        if not np.isclose(self.tool_mount["tool_side_pitch_deg"], self.side_profile["needle_pitch_from_horizontal_deg"]):
+            raise ValueError("Tool mount is stale; refit after changing the side profile")
+        self.mount_R = np.asarray(self.tool_mount["mount_rotation_registered"], dtype=float)
+        if (self.mount_R.shape != (3,3)
+                or not np.allclose(self.mount_R.T@self.mount_R, np.eye(3), atol=1e-10)
+                or not np.isclose(np.linalg.det(self.mount_R), 1.)):
+            raise ValueError("Invalid STL tool-mount rotation")
+        self.mount_rcm = _qvec(self.tool_mount["rcm_registered_m"], 3)
+        installed_rcm = self.scene.install_R@self.mount_rcm+self.scene.install_t
+        self.rcm_mm = (self.alignment_R@installed_rcm+self.alignment_t)*1000.
+        # Match the scan's outward (-local Z) tool direction. A proper half
+        # turn, with mirrored A/C presentation below, preserves the legacy task
+        # frame while putting the eye in front of the instrument, not its case.
+        self.R_robot_world = (self.alignment_R @ self.scene.install_R @ self.mount_R
+                              @ self.scene.robot_to_installation @ np.diag([1., -1., -1.]))
         self._build_injected_model()
         self.set_task(np.zeros(3))
 
     def _build_injected_model(self):
         root = ET.fromstring(self.scene.xml)
+        self._apply_stl_mount_frame(root)
+        self._align_installation(root)
+        # Keep the registered scan assets intact. Use deburred display skins
+        # only in this injected eye scene; all part/joint frames stay fixed.
+        for name in ("fixed_housing", "parallel_cover", "distal_guide"):
+            mesh = root.find(f"./asset/mesh[@name='{name}']")
+            mesh.set("file", name+"_smooth.obj")
         self._inject_assets(root)
         self._inject_eye_scene(root)
         self._inject_needle_sensor_geoms(root)
+        from v9_front_tool import add_side_cover_details
+        add_side_cover_details(root)
         self._classify_viewer_geometry(root)
         self._inject_position_sensors(root)
         ET.indent(root, space="  ")
@@ -101,6 +136,77 @@ class RCMSceneV9:
                 renderer.enable_segmentation_rendering()
             self._renderers[mode] = renderer
 
+    def _apply_stl_mount_frame(self, root):
+        """Fit the virtual RCM chain to the STL tool axis, preserving scan pose.
+
+        Conjugating A/B/C axes by one mount rotation keeps the shared logical
+        FK exact. Visual mesh offsets compensate the estimated RCM-origin
+        correction, so the registered scan itself does not move at zero pose.
+        This is a v9 simulation registration, never a hardware calibration.
+        """
+        stage = root.find(".//body[@name='A_stage']")
+        distal = stage.find("body[@name='distal_orientation']")
+        old_origin = np.fromstring(stage.get("pos"), sep=" ")
+        delta = self.mount_rcm-old_origin
+        stage.set("pos", _s(self.mount_rcm))
+
+        def compensate(node):
+            if node.tag not in ("geom", "site", "body"):
+                return
+            if node.get("fromto") is not None:
+                p = np.fromstring(node.get("fromto"), sep=" ").reshape(2,3)
+                node.set("fromto", _s((p-delta).ravel()))
+            else:
+                p = np.fromstring(node.get("pos", "0 0 0"), sep=" ")
+                node.set("pos", _s(p-delta))
+
+        for node in stage:
+            if node is not distal:
+                compensate(node)
+        for node in distal:
+            if node.get("name") != "C_translation":
+                compensate(node)
+        root.find(".//site[@name='rcm_site']").set("pos", _s(self.mount_rcm))
+        for joint in stage.iter("joint"):
+            axis = np.fromstring(joint.get("axis", "0 0 1"), sep=" ")
+            joint.set("axis", _s(self.mount_R@axis))
+
+    def _align_installation(self, root):
+        """Align robot geometry, task frame and cameras, keeping the lab level."""
+        world = root.find("worldbody")
+        installation = world.find("body[@name='static_installation']")
+        if installation is None:
+            raise ValueError("v9 model missing static installation")
+        world.remove(installation)
+        wrapper = ET.SubElement(world, "body", name="v9_horizontal_alignment",
+                                pos=_s(self.alignment_t),
+                                quat=_s(_quat_from_matrix(self.alignment_R)))
+        wrapper.append(installation)
+        # Reposition lab fixtures with the assembly. A pure world-Z yaw keeps
+        # all support faces horizontal; gravity is never rotated.
+        for geom in world.findall("geom"):
+            if geom.get("name") == "floor":
+                continue
+            if geom.get("pos") is not None:
+                p = np.fromstring(geom.get("pos"), sep=" ")
+                geom.set("pos", _s(self.alignment_R@p+self.alignment_t))
+                old_rotation = np.empty(9)
+                quat = np.fromstring(geom.get("quat", "1 0 0 0"), sep=" ")
+                mujoco.mju_quat2Mat(old_rotation, quat)
+                geom.set("quat", _s(_quat_from_matrix(
+                    self.alignment_R@old_rotation.reshape(3,3))))
+            if geom.get("fromto") is not None:
+                points = np.fromstring(geom.get("fromto"), sep=" ").reshape(2,3)
+                geom.set("fromto", _s((points@self.alignment_R.T+self.alignment_t).ravel()))
+        for camera in world.findall("camera"):
+            p = np.fromstring(camera.get("pos"), sep=" ")
+            camera.set("pos", _s(self.alignment_R@p+self.alignment_t))
+            axes = np.fromstring(camera.get("xyaxes"), sep=" ").reshape(2,3)
+            camera.set("xyaxes", _s((axes@self.alignment_R.T).ravel()))
+        statistic = root.find("statistic")
+        center = np.fromstring(statistic.get("center"), sep=" ")
+        statistic.set("center", _s(self.alignment_R@center+self.alignment_t))
+
     def _inject_assets(self, root):
         asset = root.find("asset")
         if asset is None:
@@ -112,13 +218,22 @@ class RCMSceneV9:
             "lesion": ".95 .37 .12 1", "tip_marker": ".15 1 .25 1",
             "display_target": "1 .88 .05 1", "camera_marker": ".05 .95 .95 1",
             "needle": ".80 .84 .90 1",
+            "needle_proximal_metal": ".45 .50 .58 1",
+            "tool_steel": ".72 .73 .70 1",
+            "tool_polymer": ".88 .90 .88 .72",
+            "tool_case": ".91 .92 .90 1",
+            "tool_clear": ".74 .84 .89 .22",
+            "tool_fastener": ".18 .19 .20 1",
+            "tool_panel_silver": ".61 .64 .66 1",
+            "tool_etch": ".87 .90 .92 1",
+            "tool_base_gray": ".43 .45 .45 1",
         }.items():
             if name not in existing:
                 ET.SubElement(asset, "material", name=name, rgba=rgba,
                               specular="0.4", shininess="0.45")
 
     def _to_world_m(self, point_robot_mm):
-        return self.scene.rcm_world + self.R_robot_world @ (np.asarray(point_robot_mm, dtype=float) * 0.001)
+        return self.rcm_mm*.001 + self.R_robot_world @ (np.asarray(point_robot_mm, dtype=float) * 0.001)
 
     def _inject_eye_scene(self, root):
         global_vis = root.find("./visual/global")
@@ -233,32 +348,57 @@ class RCMSceneV9:
         if body is None:
             raise ValueError("v9 model XML missing body 'C_translation'; cannot inject needle sensor geoms")
         needle = self.config["needle"]
+        # The source model's axis aid is wider than the physical needle and
+        # extends through the eye. Omit it from this injected eye scene so it
+        # cannot cover the shaft/tip or look like an extra needle segment.
+        for parent in root.iter():
+            for geom in list(parent.findall("geom")):
+                if geom.get("name") == "axis_aid":
+                    parent.remove(geom)
         proximal_z = float(needle["proximal_length_mm"]) * 0.001
         if not math.isfinite(proximal_z) or proximal_z <= 0:
             raise ValueError("needle.proximal_length_mm must be finite and positive")
-        tip_z = needle["distal_length_mm"] * 0.001
+        tip_z = -needle["distal_length_mm"] * 0.001
         distal_tip_length = needle["distal_tip_length_mm"] * 0.001
-        tube_end = tip_z - distal_tip_length
-        if tube_end < 0:
+        tube_end = tip_z + distal_tip_length
+        if tube_end > 0:
             raise ValueError("needle.distal_tip_length_mm cannot exceed distal_length_mm")
         for geom in body.findall("geom"):
             name = geom.get("name")
             if name == "needle_shaft":
                 geom.set("name", "needle_proximal")
+                geom.set("type", "cylinder")
                 geom.set("group", "3")
                 geom.attrib.pop("pos", None)
                 geom.attrib.pop("quat", None)
-                geom.set("fromto", f"0 0 {-proximal_z:.15g} 0 0 0")
+                geom.set("fromto", f"0 0 {proximal_z:.15g} 0 0 0")
+                geom.set("size", f"{needle['proximal_radius_mm'] * 0.001:.15g}")
+                geom.attrib.pop("rgba", None)
+                geom.set("material", "needle_proximal_metal")
             elif name == "needle_distal":
+                geom.set("type", "cylinder")
                 geom.set("group", "3")
                 geom.attrib.pop("pos", None)
                 geom.attrib.pop("quat", None)
                 geom.set("fromto", f"0 0 0 0 0 {tube_end:.15g}")
                 geom.set("size", f"{needle['distal_radius_mm'] * 0.001:.15g}")
+                geom.attrib.pop("rgba", None)
+                geom.set("material", "needle")
         base = next((site for site in body.findall("site") if site.get("name") == "needle_base"), None)
         if base is None:
             raise ValueError("v9 model XML missing site 'needle_base'")
-        base.set("pos", f"0 0 {-proximal_z:.15g}")
+        base.set("pos", f"0 0 {proximal_z:.15g}")
+        body.find("site[@name='needle_tip']").set("pos", f"0 0 {tip_z:.15g}")
+        from v9_front_tool import rebuild_front_tool
+        rebuild_front_tool(root, body, proximal_z, self.tool_mount["case_center_xy_tool_m"])
+        for joint in root.iter("joint"):
+            if joint.get("name") in ("A", "C") and joint.get("range"):
+                low, high = map(float, joint.get("range").split())
+                joint.set("range", _s([-high, -low]))
+        for actuator in root.findall("./actuator/position"):
+            if actuator.get("joint") in ("A", "C") and actuator.get("ctrlrange"):
+                low, high = map(float, actuator.get("ctrlrange").split())
+                actuator.set("ctrlrange", _s([-high, -low]))
 
         # Add a tapered tip mesh matching the legacy model. A capsule ends in a
         # hemisphere larger than the calibrated apex marker and hides it.
@@ -269,13 +409,13 @@ class RCMSceneV9:
         apex_radius = float(needle["distal_tip_apex_radius_mm"]) * 0.001
         poly_sides = 8
         vertices = []
-        for z, radius in ((0.0, base_radius), (distal_tip_length, apex_radius)):
+        for z, radius in ((0.0, base_radius), (-distal_tip_length, apex_radius)):
             for index in range(poly_sides):
                 angle = 2.0 * math.pi * index / poly_sides
                 vertices.extend((radius * math.cos(angle),
                                  radius * math.sin(angle), z))
         vertices.extend((0.0, 0.0, 0.0))
-        vertices.extend((0.0, 0.0, distal_tip_length))
+        vertices.extend((0.0, 0.0, -distal_tip_length))
         faces = []
         base_center = 2 * poly_sides
         apex_center = base_center + 1
@@ -293,10 +433,29 @@ class RCMSceneV9:
         ET.SubElement(body, "geom", name="needle_distal_tip", type="mesh",
                       mesh="needle_distal_tip_mesh", pos=f"0 0 {tube_end:.15g}",
                       material="needle", group="3")
+        # MuJoCo's default viewer enables groups 0..2, while sensor passes
+        # enable group 3 and exclude group 2. Same-size display copies make the
+        # actual stepped needle visible when opening the exported XML directly.
+        # Never enlarge these copies: the junction must remain at the eye port.
+        for name in ("needle_proximal", "needle_distal", "needle_distal_tip"):
+            physical = body.find(f"geom[@name='{name}']")
+            display = ET.fromstring(ET.tostring(physical))
+            display.set("name", name.replace("needle_", "needle_display_", 1))
+            display.set("group", "2")
+            body.append(display)
         ET.SubElement(body, "geom", name="needle_tip_marker", type="sphere",
                       pos=f"0 0 {tip_z:.15g}",
                       size=f"{needle['tip_marker_radius_mm'] * 0.001:.15g}",
                       material="tip_marker", group="4")
+        # Holder, both needle segments, metrology sites and display copies use
+        # one STL-derived frame. Rotating only their colors/visual copies would
+        # leave the C translation and optical geometry inconsistent.
+        mount = ET.SubElement(body, "body", name="needle_mount",
+                              quat=_s(_quat_from_matrix(self.mount_R)))
+        for node in list(body):
+            if node.tag in ("geom", "site"):
+                body.remove(node)
+                mount.append(node)
 
     def _inject_position_sensors(self, root):
         sensor = root.find("sensor")
@@ -351,6 +510,11 @@ class RCMSceneV9:
         robot = tuple(int(round(float(v))) for v in self._ref.encoders(q)) + (0,)
         self.scene.sync(robot)
         self.data.qpos[:] = self.scene.data.qpos
+        # Presentation conversion only; encoders()/task_from_encoders() retain
+        # the shared logical task convention, never hardware motor commands.
+        for name in ("A", "C"):
+            address = self.model.jnt_qposadr[self.model.joint(name).id]
+            self.data.qpos[address] *= -1
         self.data.qvel[:] = 0
         mujoco.mj_forward(self.model, self.data)
 

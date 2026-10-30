@@ -33,6 +33,36 @@ python -m mujoco.viewer --mjcf v9_eye_scene.xml
 
 `v9_eye_scene.xml` 使用相对路径 `mujoco_model/assets` 引用扫描网格，不依赖当前机器绝对路径。
 
+眼球场景的前端按实物照片重建为圆角白壳、金属套筒、浅色带筋连接件、六角针座和双段针具。细针长 4 mm、半径 0.03 mm，近端管长 22 mm、半径 0.25 mm；针座及壳体尺寸是照片估计，未实机标定。重建仅替换此注入场景的 C 滑台显示外形，原扫描网格保留。具体说明见 [前端建模说明](V9_FRONT_TOOL.md)。
+
+该眼球场景的扫描外壳采用去毛边、平滑后的 `*_smooth.obj` 显示网格，原扫描及封闭基线保留；小裂隙和碎片经显示重建处理，不作为测量或碰撞几何。
+
+俯视长罩长边已通过 `v9_alignment.json` 中约 -17.103° 的世界 Z 轴偏航对齐到世界 X 轴；三视图仍沿世界坐标轴正交投影。该刚体变换同步作用于针具、RCM、眼球和相机，原驱动安装配置与关节零位不变。
+
+前端安装方向进一步依据原始 STL 的套筒区域拟合，结合零位俯视平行约束记录在 `v9_tool_mount.json`。针座、粗细针及虚拟 C 轴使用同一安装坐标；参考 RCM 与眼球入口同步调整，原扫描壳体的零位姿态保留。拟合及照片尺寸均未实机标定，详情见前端建模说明。
+
+根据用户正面照片，前端白壳、金属套筒和针具采用同一中心线，壳体 XY 安装偏置为零；扫描网格面积中心不再用作偏置依据。
+
+按新增侧照，前端白壳改为正面宽、侧面薄的带底部开口结构，针座侧视倾角暂估 55°；补建透明侧夹、下支架、银罩侧面条纹/紧固件和灰色下机壳/接口座。参数在 `v9_side_profile.json`，均为照片外观估计，仍保留针具居中和软管删除状态。
+
+直接打开 XML 时默认显示与物理针同尺寸的 group 2 副本；传感器使用 group 3 的物理针。场景已将针尖改为朝向扫描壳体外侧，眼球、病灶和相机一并采用新的刚体坐标映射。v9 适配器将逻辑任务的 A/C 映射为反号显示关节（包含对应关节/执行器范围）；原驱动与 legacy 编码器约定保持原样。导出的 XML 原生关节滑块不是硬件指令，使用任务接口应通过 `RCMSceneV9`。
+
+```bash
+MUJOCO_GL=egl python export_v9_eye_scene.py
+MUJOCO_GL=egl python verify_v9_front_tool.py
+MUJOCO_GL=egl python verify_rcm_scene_v9.py
+```
+
+## 当前 v9 的视觉闭环测试
+
+2026-10-30，直接使用 `RCMSceneV9` 的相机观测和运动接口，完成单目标从零位到目标的闭环测试：A/B/C 初始均为零，针尖距目标约 19.75 mm；679 步、33.9 秒仿真后误差降至 6.03 μm，连续 3 帧停稳，速度和加速度检查通过。控制及停止使用当前图像、理想注册深度和分割重建的几何测量，场景真值仅用于记录及独立终点验收。此结果不代表真实硬件精度，也未验收 v9 多目标、组织接触或遮挡恢复。
+
+- [完整过程视频（41 秒，包含起止停留）](reports/20261030/v9_zero_to_target/v9_zero_to_target_full_test.mp4)
+- [测试报告、轨迹与复现命令](reports/20261030/README.md)
+- [当前完整三视图](reports/20261030/v9_model/three_views.png) · [前端正面](reports/20261030/v9_model/front_tool.png) · [侧照修订](reports/20261030/v9_model/side_profile.png)
+
+该测试通过独立录制脚本直接驱动 v9；`run_visual_servo.py` 的控制后端仍为 legacy，选择 v9 viewer 只改变显示后端。
+
 - [模型与修复说明](mujoco_model/README.md)
 - [实机标定工作流](mujoco_model/CALIBRATION.md)
 - [银罩整体运动修正对照](mujoco_model/outputs/silver_integral_comparison.gif)
@@ -45,7 +75,7 @@ python -m mujoco.viewer --mjcf v9_eye_scene.xml
 
 ## 历史程序入口
 
-原模型和启动脚本保留为 `legacy_scene.xml` 与 `run_legacy_reference.py`，可复现此前的眼底导航、视觉伺服和 OCT 研究。`run_navigation.py`、`run_visual_servo.py`、`run_waypoint_comparison.py` 及 `rcm_reference.Reference` 继续使用旧研究场景；这些算法尚未迁移或验证到当前扫描模型。下面的历史结果与命令只适用于该旧场景。
+原模型和启动脚本保留为 `legacy_scene.xml` 与 `run_legacy_reference.py`，可复现此前的眼底导航、视觉伺服和 OCT 研究。`run_navigation.py`、`run_visual_servo.py`、`run_waypoint_comparison.py` 及 `rcm_reference.Reference` 继续使用旧研究场景；当前 v9 的独立单目标验证见上文，历史导航入口尚未切换到 v9。下面的历史结果与命令只适用于该旧场景。
 
 ---
 

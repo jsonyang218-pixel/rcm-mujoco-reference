@@ -47,7 +47,7 @@ def verify():
     checks["needle_proximal_z_mm"] = float(
         scene.model.site_pos[scene.sites["needle_base"]][2] * 1000.0)
     checks["needle_proximal_matches_config"] = bool(
-        abs(checks["needle_proximal_z_mm"] + expected_proximal_m * 1000.0) < 1e-9)
+        abs(checks["needle_proximal_z_mm"] - expected_proximal_m * 1000.0) < 1e-9)
     checks["needle_tip_junction_distance_mm"] = float(np.linalg.norm(
         np.asarray(scene.site_mm("needle_tip"))
         - np.asarray(scene.site_mm("driver_junction"))))
