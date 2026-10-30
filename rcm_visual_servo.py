@@ -66,6 +66,17 @@ def _centroid(mask):
     return np.array([float(np.mean(cols)), float(np.mean(rows))])
 
 
+def _segmentation_geom_ids(segmentation):
+    """Return MuJoCo geom IDs, rejecting background and site IDs."""
+    segmentation = np.asarray(segmentation)
+    if segmentation.ndim != 3 or segmentation.shape[2] < 2:
+        raise ValueError("MuJoCo segmentation must contain object-ID and object-type channels")
+    import mujoco
+    object_ids = segmentation[:, :, 0].astype(np.int32)
+    object_types = segmentation[:, :, 1]
+    return np.where(object_types == int(mujoco.mjtObj.mjOBJ_GEOM), object_ids, -1)
+
+
 def _draw_line(image, start, end, color, thickness=2):
     start = np.rint(start).astype(int)
     end = np.rint(end).astype(int)
@@ -128,6 +139,7 @@ class VisualServoSensor:
         self.reference = reference
         self.settings = settings or visual_servo_settings(reference)
         self.camera_name = self.settings["camera_name"]
+        self.eye_group_visible = bool(getattr(reference, "sensor_eye_group_visible", False))
         self.width, self.height = reference.eye_camera["resolution_px"]
         self.oct_provider = depth_provider if depth_provider is not None else SyntheticOCTProvider(
             nominal_period_s=float(self.settings["sample_period_s"]),
@@ -173,8 +185,9 @@ class VisualServoSensor:
         # Two ideal registered depth passes; these are not physical OCT scans.
         depth = self._render("depth", include_fundus=True)
         oct_depth = self._render("depth", include_fundus=False)
-        # Normal scene segmentation gates visibility even in the feature pass.
-        segmentation = self._render("segmentation", include_fundus=True)
+        # Segmentation identifies physical scene objects. The retina is an
+        # RGB-only backdrop and must not occlude target/tip measurements.
+        segmentation = self._render("segmentation", include_fundus=False)
         timestamp = (self._oct_capture_count*float(self.settings["sample_period_s"])
                      if self.observation_time_s is None else float(self.observation_time_s))
         repeated = self.last_oct_frame is not None and timestamp == self.last_oct_frame.timestamp_s
@@ -193,20 +206,22 @@ class VisualServoSensor:
         self._oct_capture_count += 1
         self.last_oct_frame = frame
         depth, oct_depth = frame.scene_surface_depth_m, frame.registered_feature_depth_m
-        target_mask = np.isin(segmentation[:, :, 0], self.target_geom_ids)
+        segmentation_ids = _segmentation_geom_ids(segmentation)
+        target_mask = np.isin(segmentation_ids, self.target_geom_ids)
         target_pixel = _centroid(target_mask)
         target_depth_mask = target_mask & frame.feature_valid_mask
-        tip_mask = np.isin(segmentation[:, :, 0], self.tip_geom_ids)
-        needle_mask = np.isin(segmentation[:, :, 0], self.needle_geom_ids)
-        marker_mask = segmentation[:, :, 0] == self.tip_geom_id
+        tip_mask = np.isin(segmentation_ids, self.tip_geom_ids)
+        needle_mask = np.isin(segmentation_ids, self.needle_geom_ids)
+        marker_mask = segmentation_ids == self.tip_geom_id
         if marker_mask.any():
             tip_pixel = _centroid(marker_mask)
             tip_depth_mask = marker_mask
         else:
             # If the calibrated apex sphere is sub-pixel or occluded, use the
             # exposed endpoint of the real taper, away from its shaft.
-            cone_mask = segmentation[:, :, 0] == int(self.distal_geom_ids[1])
-            shaft_center = _centroid(segmentation[:, :, 0] == int(self.distal_geom_ids[0]))
+            cone_mask = segmentation_ids == int(self.distal_geom_ids[1])
+            shaft_center = _centroid(np.isin(segmentation_ids,
+                                             self.needle_geom_ids))
             if cone_mask.any() and shaft_center is not None:
                 rows, cols = np.where(cone_mask)
                 endpoint = int(np.argmax((cols-shaft_center[0])**2+(rows-shaft_center[1])**2))
@@ -287,8 +302,8 @@ class VisualServoSensor:
         This measurement is diagnostic only and never changes controller input.
         """
         if segmentation is None:
-            segmentation = self._render("segmentation", include_fundus=True)
-        ids = np.asarray(segmentation[:, :, 0])
+            segmentation = self._render("segmentation", include_fundus=False)
+        ids = _segmentation_geom_ids(segmentation)
         target_pixels = int(np.isin(ids, self.target_geom_ids).sum())
         tip_pixels = int(np.isin(ids, self.tip_geom_ids).sum())
         needle_pixels = int(np.isin(ids, self.needle_geom_ids).sum())
@@ -298,10 +313,12 @@ class VisualServoSensor:
         # ordinary perspective changes as occlusion (or miss real occlusion).
         groups = self.reference.model.geom_group[self.needle_geom_ids].copy()
         try:
-            # Group 2 is disabled by the microscope sensor render options.
-            self.reference.model.geom_group[self.needle_geom_ids] = 2
-            clear_segmentation = self._render("segmentation", include_fundus=True)
-            unoccluded_pixels = int(np.isin(clear_segmentation[:, :, 0],
+            # Hide the needle in the group disabled by this backend's mask.
+            hidden_group = 1 if self.eye_group_visible else 2
+            self.reference.model.geom_group[self.needle_geom_ids] = hidden_group
+            clear_segmentation = self._render("segmentation", include_fundus=False)
+            clear_ids = _segmentation_geom_ids(clear_segmentation)
+            unoccluded_pixels = int(np.isin(clear_ids,
                                              self.target_geom_ids).sum())
         finally:
             self.reference.model.geom_group[self.needle_geom_ids] = groups
@@ -343,12 +360,15 @@ class VisualServoSensor:
             option = __import__("mujoco").MjvOption()
             option.geomgroup[0] = 0  # mechanical housing is outside the microscope FOV
             option.geomgroup[1] = 0  # external robot housing is outside the microscope FOV
-            option.geomgroup[2] = 0  # eye shell and camera marker do not occlude sensor features
-            option.geomgroup[3] = 1  # optical contents: needle, retina and target markers
+            # The eye shell is a display-only element. It must be excluded from
+            # every sensor pass because it is a depth/segmentation occluder.
+            option.geomgroup[2] = 0
+            option.geomgroup[3] = 1  # optical contents: needle and target markers
             option.geomgroup[4] = 1  # calibrated physical tip marker
             # The fundus backdrop is shown in RGB and in the complete scene
             # depth image, but excluded from the feature/OCT pass.
             option.geomgroup[5] = int(bool(include_fundus))
+            option.sitegroup[:] = 0
             renderer.update_scene(self.reference.data, camera=self.camera_name, scene_option=option)
             return np.asarray(renderer.render()).copy()
         finally:

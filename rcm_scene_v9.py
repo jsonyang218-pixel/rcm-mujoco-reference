@@ -53,11 +53,17 @@ def _camera_axes(pos, target):
 
 class RCMSceneV9:
     def __init__(self, config=None, model_dir=None):
+        # The eye shell is display-only for this adapter. Sensor renders must
+        # exclude it so the shell cannot occlude intraocular geometry.
+        self.sensor_eye_group_visible = False
         self.config = config if config is not None else json.loads(
             (ROOT / "config.json").read_text(encoding="utf-8"))
         if self.config.get("schema_version") != 1:
             raise ValueError("Unsupported config schema")
         self._ref = Reference(self.config)
+        # Preserve the legacy kinematic model surface used by controller
+        # Jacobian construction.
+        self.nominal = self._ref.nominal
         from model_sync import DriverModel
         self.scene = DriverModel(model_dir=model_dir, needle_profile="legacy")
         self.eye_camera = self._ref.eye_camera
@@ -71,6 +77,8 @@ class RCMSceneV9:
         self._inject_assets(root)
         self._inject_eye_scene(root)
         self._inject_needle_sensor_geoms(root)
+        self._classify_viewer_geometry(root)
+        self._inject_position_sensors(root)
         ET.indent(root, space="  ")
         self.xml = ET.tostring(root, encoding="unicode")
         self.model = mujoco.MjModel.from_xml_string(self.xml)
@@ -119,6 +127,9 @@ class RCMSceneV9:
             global_vis.set("offwidth", str(max(int(global_vis.get("offwidth", "1280")), width)))
             global_vis.set("offheight", str(max(int(global_vis.get("offheight", "960")), height)))
         world = root.find("worldbody")
+        asset = root.find("asset")
+        if asset is None:
+            raise ValueError("v9 model XML missing 'asset' element")
         eye = self.config["reference_scene"]
         eye_center = self._to_world_m(eye["eye_center_robot_mm"])
         radii = np.asarray(eye["eye_radii_robot_mm"], dtype=float) * 0.001
@@ -130,6 +141,73 @@ class RCMSceneV9:
                       pos=_s(eye_center), size=_s(radii), quat=_s(world_quat),
                       material="eye", group="2")
 
+        camera = self.eye_camera
+        camera_pos = self._to_world_m(camera["position_robot_mm"])
+        camera_target = self._to_world_m(camera["target_robot_mm"])
+        raw_eye_camera = self.config["reference_scene"].get("eye_camera", {})
+        pupil_robot_mm = raw_eye_camera.get("pupil_robot_mm",
+                                            camera["position_robot_mm"])
+        pupil = self._to_world_m(pupil_robot_mm)
+        optical_axis = camera_target - pupil
+        optical_axis /= np.linalg.norm(optical_axis)
+        pupil_axes = _camera_axes(pupil, camera_target).reshape(2, 3)
+        for index, offset in enumerate((pupil_axes[0], -pupil_axes[0],
+                                        pupil_axes[1], -pupil_axes[1])):
+            ET.SubElement(world, "geom", name=f"pupil_ring_{index}", type="sphere",
+                          pos=_s(pupil + offset * 0.0025), size=".00025",
+                          material="pupil", group="2")
+        ET.SubElement(world, "geom", name="lens_visual", type="ellipsoid",
+                      pos=_s(pupil + optical_axis * 0.006),
+                      size=".003 .003 .0015", quat=_s(world_quat),
+                      material="lens", group="2")
+
+        # Match the legacy RGB-only posterior fundus backdrop. It is offset
+        # outward along the ellipsoid normal so the needle and lesion remain in
+        # front, and stays in group 5 so depth/segmentation callers can opt out.
+        retina_body = ET.SubElement(world, "body", name="retina_visual_frame",
+                                    pos=_s(eye_center), quat=_s(world_quat))
+        retina_offset_m = 0.008
+        retina_levels = np.linspace(0.55, 1.0, 10)
+        retina_azimuths = 32
+        retina_rings = [
+            [(math.sqrt(max(0.0, 1.0 - float(level) ** 2))
+              * math.cos(2.0 * math.pi * index / retina_azimuths),
+              math.sqrt(max(0.0, 1.0 - float(level) ** 2))
+              * math.sin(2.0 * math.pi * index / retina_azimuths),
+              float(level))
+             for index in range(retina_azimuths)]
+            for level in retina_levels
+        ]
+
+        def retina_vertex(unit):
+            point = radii * np.asarray(unit, dtype=float)
+            normal = np.asarray(unit, dtype=float) / radii
+            normal /= np.linalg.norm(normal)
+            return tuple(point + retina_offset_m * normal)
+
+        mesh_vertices = [retina_vertex(value) for ring in retina_rings for value in ring]
+        mesh_faces = []
+        for ring_index in range(len(retina_rings) - 1):
+            for index in range(retina_azimuths):
+                next_index = (index + 1) % retina_azimuths
+                a = ring_index * retina_azimuths + index
+                b = ring_index * retina_azimuths + next_index
+                c = (ring_index + 1) * retina_azimuths + index
+                d = (ring_index + 1) * retina_azimuths + next_index
+                mesh_faces.extend(((a, d, b), (a, c, d)))
+        apex_vertex = len(mesh_vertices)
+        mesh_vertices.append(retina_vertex((0.0, 0.0, 1.0)))
+        last_ring_start = (len(retina_rings) - 1) * retina_azimuths
+        for index in range(retina_azimuths):
+            mesh_faces.append((last_ring_start + index, apex_vertex,
+                               last_ring_start + (index + 1) % retina_azimuths))
+        ET.SubElement(asset, "mesh", name="retina_visual_mesh",
+                      vertex=_s(value for vertex in mesh_vertices for value in vertex),
+                      face=" ".join(" ".join(str(value) for value in face)
+                                    for face in mesh_faces))
+        ET.SubElement(retina_body, "geom", name="retina_visual", type="mesh",
+                      mesh="retina_visual_mesh", material="retina", group="5")
+
         target = self._to_world_m(eye["target_robot_mm"])
         ET.SubElement(world, "geom", name="lesion_marker", type="sphere",
                       pos=_s(target), size=".00015", material="lesion", group="3")
@@ -139,8 +217,6 @@ class RCMSceneV9:
                       pos=_s(target), size=str(display * 0.001),
                       material="display_target", group="2")
 
-        camera = self.eye_camera
-        camera_pos = self._to_world_m(camera["position_robot_mm"])
         camera_target_robot = np.asarray(camera["target_robot_mm"], dtype=float) * 0.001
         camera_pos_robot = np.asarray(camera["position_robot_mm"], dtype=float) * 0.001
         local_xy = _camera_axes(camera_pos_robot, camera_target_robot)
@@ -157,23 +233,105 @@ class RCMSceneV9:
         if body is None:
             raise ValueError("v9 model XML missing body 'C_translation'; cannot inject needle sensor geoms")
         needle = self.config["needle"]
+        proximal_z = float(needle["proximal_length_mm"]) * 0.001
+        if not math.isfinite(proximal_z) or proximal_z <= 0:
+            raise ValueError("needle.proximal_length_mm must be finite and positive")
         tip_z = needle["distal_length_mm"] * 0.001
-        taper_start = tip_z + needle["distal_tip_length_mm"] * 0.001
+        distal_tip_length = needle["distal_tip_length_mm"] * 0.001
+        tube_end = tip_z - distal_tip_length
+        if tube_end < 0:
+            raise ValueError("needle.distal_tip_length_mm cannot exceed distal_length_mm")
         for geom in body.findall("geom"):
             name = geom.get("name")
             if name == "needle_shaft":
                 geom.set("name", "needle_proximal")
                 geom.set("group", "3")
+                geom.attrib.pop("pos", None)
+                geom.attrib.pop("quat", None)
+                geom.set("fromto", f"0 0 {-proximal_z:.15g} 0 0 0")
             elif name == "needle_distal":
                 geom.set("group", "3")
-        ET.SubElement(body, "geom", name="needle_distal_tip", type="capsule",
-                      fromto=f"0 0 {taper_start:.15g} 0 0 {tip_z:.15g}",
-                      size=f"{needle['distal_radius_mm'] * 0.001:.15g}",
+                geom.attrib.pop("pos", None)
+                geom.attrib.pop("quat", None)
+                geom.set("fromto", f"0 0 0 0 0 {tube_end:.15g}")
+                geom.set("size", f"{needle['distal_radius_mm'] * 0.001:.15g}")
+        base = next((site for site in body.findall("site") if site.get("name") == "needle_base"), None)
+        if base is None:
+            raise ValueError("v9 model XML missing site 'needle_base'")
+        base.set("pos", f"0 0 {-proximal_z:.15g}")
+
+        # Add a tapered tip mesh matching the legacy model. A capsule ends in a
+        # hemisphere larger than the calibrated apex marker and hides it.
+        asset = root.find("asset")
+        if asset is None:
+            raise ValueError("v9 model XML missing 'asset' element")
+        base_radius = float(needle["distal_radius_mm"]) * 0.001
+        apex_radius = float(needle["distal_tip_apex_radius_mm"]) * 0.001
+        poly_sides = 8
+        vertices = []
+        for z, radius in ((0.0, base_radius), (distal_tip_length, apex_radius)):
+            for index in range(poly_sides):
+                angle = 2.0 * math.pi * index / poly_sides
+                vertices.extend((radius * math.cos(angle),
+                                 radius * math.sin(angle), z))
+        vertices.extend((0.0, 0.0, 0.0))
+        vertices.extend((0.0, 0.0, distal_tip_length))
+        faces = []
+        base_center = 2 * poly_sides
+        apex_center = base_center + 1
+        for index in range(poly_sides):
+            next_index = (index + 1) % poly_sides
+            faces.extend(((index, next_index, poly_sides + next_index),
+                          (index, poly_sides + next_index, poly_sides + index),
+                          (base_center, next_index, index),
+                          (apex_center, poly_sides + index,
+                           poly_sides + next_index)))
+        ET.SubElement(asset, "mesh", name="needle_distal_tip_mesh",
+                      vertex=_s(vertices),
+                      face=" ".join(" ".join(str(value) for value in face)
+                                    for face in faces))
+        ET.SubElement(body, "geom", name="needle_distal_tip", type="mesh",
+                      mesh="needle_distal_tip_mesh", pos=f"0 0 {tube_end:.15g}",
                       material="needle", group="3")
         ET.SubElement(body, "geom", name="needle_tip_marker", type="sphere",
                       pos=f"0 0 {tip_z:.15g}",
                       size=f"{needle['tip_marker_radius_mm'] * 0.001:.15g}",
                       material="tip_marker", group="4")
+
+    def _inject_position_sensors(self, root):
+        sensor = root.find("sensor")
+        if sensor is None:
+            sensor = ET.SubElement(root, "sensor")
+        mapping = {
+            "rcm_world_position": "rcm_site",
+            "needle_tip_world_position": "needle_tip",
+            "needle_junction_world_position": "driver_junction",
+            "lesion_world_position": "lesion",
+        }
+        existing = {node.get("name"): node for node in sensor.findall("framepos")}
+        for name, site_name in mapping.items():
+            node = existing.get(name)
+            if node is None:
+                node = ET.SubElement(sensor, "framepos", name=name)
+            node.set("objtype", "site")
+            node.set("objname", site_name)
+
+    def _classify_viewer_geometry(self, root):
+        """Separate display-only environment and linkage aids from CAD."""
+        environment_names = {
+            "floor", "support", "phantom", "phantom_pad",
+            "horizontal_mount_plate", "target_table_top",
+        }
+        environment_prefixes = (
+            "target_tape_", "horizontal_reference_edge_",
+            "target_table_leg_",
+        )
+        linkage_aids = {"guide_link", "rear_link", "upper_link", "lower_link"}
+        for geom in root.iter("geom"):
+            name = geom.get("name", "")
+            if (name in environment_names or name.startswith(environment_prefixes)
+                    or name in linkage_aids):
+                geom.set("group", "1")
 
     def build_xml(self):
         return self.xml
@@ -244,10 +402,11 @@ class RCMSceneV9:
             option = mujoco.MjvOption()
             option.geomgroup[0] = 0
             option.geomgroup[1] = 0
-            option.geomgroup[2] = 0
+            option.geomgroup[2] = 1
             option.geomgroup[3] = 1
             option.geomgroup[4] = 1
             option.geomgroup[5] = 1
+            option.sitegroup[:] = 0
             self._renderers[mode].update_scene(self.data, camera=name, scene_option=option)
             return np.asarray(self._renderers[mode].render()).copy()
         finally:
@@ -262,19 +421,23 @@ class RCMSceneV9:
         return self.data.cam_xpos[cid].copy(), self.data.cam_xmat[cid].reshape(3, 3).copy()
 
     def needle_eye_geometry(self):
-        tip, junction, rcm = [self.site_mm(name) for name in
-                              ("needle_tip", "driver_junction", "rcm_site")]
-        back = self.site_mm("needle_base")
-        axis = tip - back
+        tip, junction, back, rcm = [self.site_mm(name) for name in
+                                    ("needle_tip", "driver_junction", "needle_base", "rcm_site")]
+        axis = tip - junction
         axis /= np.linalg.norm(axis)
         gid = mujoco.mj_name2id(self.model, mujoco.mjtObj.mjOBJ_GEOM, "eye_reference")
         rotation = self.data.geom_xmat[gid].reshape(3, 3)
         center = self.data.geom_xpos[gid] * 1000.0
         radii = self.model.geom_size[gid] * 1000.0
-        origin = rotation.T @ (rcm - center) / radii
+        # The junction is the modeled eye-entry point. Intersect from there
+        # toward the tip and use the root nearest the junction, which tolerates
+        # sub-micrometre surface residuals without borrowing direction from the
+        # proximal end.
+        origin = rotation.T @ (junction - center) / radii
         direction = rotation.T @ axis / radii
         a, b, c = float(direction @ direction), float(2 * origin @ direction), float(origin @ origin - 1)
         discriminant = b * b - 4 * a * c
+        rcm_origin = rotation.T @ (rcm - center) / radii
         result = {"tip_inside_eye": bool(np.sum((rotation.T @ (tip - center) / radii) ** 2) <= 1 + 1e-9),
                   "junction_inside_eye": bool(np.sum((rotation.T @ (junction - center) / radii) ** 2) <= 1 + 1e-9),
                   "junction_rcm_axial_offset_mm": float((junction - rcm) @ axis),
@@ -283,21 +446,24 @@ class RCMSceneV9:
                   "entry_needle_part": "no_eye_intersection",
                   "distal_centerline_inside_mm": 0.0, "proximal_centerline_inside_mm": 0.0,
                   "entry_needle_diameter_mm": None, "entry_aperture_validated": False,
-                  "rcm_eye_surface_value": float(origin @ origin),
-                  "rcm_on_eye_surface": abs(c) < 1e-8}
+                  "rcm_eye_surface_value": float(rcm_origin @ rcm_origin),
+                  "rcm_on_eye_surface": bool(abs(float(rcm_origin @ rcm_origin) - 1) < 1e-8)}
         if discriminant < -1e-12:
             return result
         roots = sorted([(-b - math.sqrt(max(0.0, discriminant))) / (2 * a),
                         (-b + math.sqrt(max(0.0, discriminant))) / (2 * a)])
-        entry, exit_ = roots
-        locations = [float((p - rcm) @ axis) for p in (back, junction, tip)]
+        entry, exit_ = sorted(roots, key=abs)
+        if entry > exit_:
+            entry, exit_ = exit_, entry
+        locations = [float((p - junction) @ axis) for p in (back, junction, tip)]
         def overlap(lo, hi):
             return max(0.0, min(hi, exit_) - max(lo, entry))
-        result.update(entry_world_mm=(rcm + entry * axis).tolist(),
-                      entry_rcm_distance_mm=abs(entry),
+        entry_world = junction + entry * axis
+        result.update(entry_world_mm=entry_world.tolist(),
+                      entry_rcm_distance_mm=float(np.linalg.norm(entry_world - rcm)),
                       distal_centerline_inside_mm=overlap(locations[1], locations[2]),
                       proximal_centerline_inside_mm=overlap(locations[0], locations[1]))
-        if abs(entry - locations[1]) < 1e-8:
+        if abs(entry - locations[1]) < 1e-5:
             part = "junction"
         elif locations[1] < entry < locations[2] + 1e-8:
             part = "distal"

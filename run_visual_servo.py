@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import argparse
+import copy
 import json
 import queue
 import time
@@ -13,7 +14,13 @@ import numpy as np
 import mujoco
 
 from rcm_reference import HERE, Reference
-from rcm_visual_servo import VisualServoController, guidance_overlay
+from rcm_scene_v9 import RCMSceneV9
+from rcm_visual_servo import (
+    VisualServoController,
+    _centroid,
+    _segmentation_geom_ids,
+    guidance_overlay,
+)
 
 
 def resize_nearest(image, width, height):
@@ -23,24 +30,67 @@ def resize_nearest(image, width, height):
     return np.ascontiguousarray(image[rows[:, None], cols])
 
 
-def run_viewer(reference, controller, view_camera):
+def _v9_viewer_observation(reference):
+    """Build a display-only v9 eye view matching the visible sensor groups."""
+    rgb = reference.render_camera("eye_internal", "rgb")
+    segmentation = reference.render_camera("eye_internal", "segmentation")
+    geom_ids = _segmentation_geom_ids(segmentation)
+    target_id = int(reference.model.geom("lesion_marker").id)
+    marker_id = int(reference.model.geom("needle_tip_marker").id)
+    cone_id = int(reference.model.geom("needle_distal_tip").id)
+    needle_ids = np.asarray([
+        int(reference.model.geom(name).id)
+        for name in ("needle_proximal", "needle_distal",
+                     "needle_distal_tip", "needle_tip_marker")
+    ])
+    target_mask = geom_ids == target_id
+    marker_mask = geom_ids == marker_id
+    cone_mask = geom_ids == cone_id
+    needle_mask = np.isin(geom_ids, needle_ids)
+    tip_pixel = _centroid(marker_mask)
+    if tip_pixel is None and cone_mask.any():
+        shaft_center = _centroid(needle_mask)
+        if shaft_center is not None:
+            rows, cols = np.where(cone_mask)
+            endpoint = int(np.argmax(
+                (cols - shaft_center[0]) ** 2
+                + (rows - shaft_center[1]) ** 2))
+            tip_pixel = np.array([float(cols[endpoint]), float(rows[endpoint])])
+    return {
+        "rgb": rgb,
+        "target_pixel": _centroid(target_mask),
+        "tip_pixel": tip_pixel,
+        "needle_mask": needle_mask,
+    }
+
+
+def run_viewer(view_reference, control_reference, controller, view_camera):
     """Run the visual servo loop while keeping a MuJoCo viewer responsive."""
     import mujoco.viewer
 
     events = queue.SimpleQueue()
-    camera_names = ("overview", "side", "needle_close", "eye_internal")
+    available_cameras = tuple(
+        name for name in ("overview", "side", "needle_close", "eye_internal")
+        if mujoco.mj_name2id(
+            view_reference.model, mujoco.mjtObj.mjOBJ_CAMERA, name) >= 0)
+    if view_camera != "free" and view_camera not in available_cameras:
+        view_camera = "overview"
+    camera_names = available_cameras
+    hidden_environment_group = 1 if isinstance(view_reference, RCMSceneV9) else 0
+    viewer_groups = np.ones(6, dtype=np.uint8)
+    viewer_groups[hidden_environment_group] = 0
     camera_index = 0 if view_camera == "free" else camera_names.index(view_camera)
     camera_free = view_camera == "free"
-    with mujoco.viewer.launch_passive(reference.model, reference.data, key_callback=events.put,
+    with mujoco.viewer.launch_passive(view_reference.model, view_reference.data, key_callback=events.put,
                                      show_left_ui=False, show_right_ui=False) as viewer:
         with viewer.lock():
             if camera_free:
-                mujoco.mjv_defaultFreeCamera(reference.model, viewer.cam)
+                mujoco.mjv_defaultFreeCamera(view_reference.model, viewer.cam)
             else:
                 viewer.cam.type = mujoco.mjtCamera.mjCAMERA_FIXED
-                viewer.cam.fixedcamid = reference.camera_id(view_camera)
+                viewer.cam.fixedcamid = view_reference.camera_id(view_camera)
             viewer.opt.sitegroup[:] = 0
-            viewer.opt.geomgroup[2] = 1
+            viewer.opt.geomgroup[:] = viewer_groups
         original_run = controller.run
 
         def handle_camera_events():
@@ -52,32 +102,35 @@ def run_viewer(reference, controller, view_camera):
                         if camera_free:
                             camera_free = False
                             viewer.cam.type = mujoco.mjtCamera.mjCAMERA_FIXED
-                            viewer.cam.fixedcamid = reference.camera_id(camera_names[camera_index])
+                            viewer.cam.fixedcamid = view_reference.camera_id(camera_names[camera_index])
                             print("Camera:", camera_names[camera_index])
                         else:
                             camera_free = True
-                            mujoco.mjv_defaultFreeCamera(reference.model, viewer.cam)
+                            mujoco.mjv_defaultFreeCamera(view_reference.model, viewer.cam)
                             print("Camera: free (mouse rotate/pan/zoom)")
                     elif key == 86:  # V
                         camera_index = (camera_index+1) % len(camera_names)
                         camera_free = False
                         viewer.cam.type = mujoco.mjtCamera.mjCAMERA_FIXED
-                        viewer.cam.fixedcamid = reference.camera_id(camera_names[camera_index])
+                        viewer.cam.fixedcamid = view_reference.camera_id(camera_names[camera_index])
                         print("Camera:", camera_names[camera_index])
-                viewer.opt.geomgroup[2] = 1
+                viewer.opt.geomgroup[:] = viewer_groups
 
         def update_view(iteration, observation):
             if not viewer.is_running():
                 return False
             handle_camera_events()
+            view_reference.set_task(control_reference.current_task())
+            view_observation = _v9_viewer_observation(view_reference)
             viewport = viewer.viewport
             # Keep the eye-internal camera readable in the main MuJoCo window.
             # The physical 60 um distal segment is sub-pixel at the native
             # sensor scale, so a larger inset is a viewer aid only; it does
             # not change the geometry or the controller measurements.
             inset_width = min(480, max(1, int(viewport.width*.42)))
-            inset_height = max(1, int(inset_width*controller.sensor.height/controller.sensor.width))
-            inset = resize_nearest(guidance_overlay(observation), inset_width, inset_height)
+            inset_height = max(1, int(inset_width*view_reference.eye_camera["resolution_px"][1]
+                                       / view_reference.eye_camera["resolution_px"][0]))
+            inset = resize_nearest(guidance_overlay(view_observation), inset_width, inset_height)
             image_rect = mujoco.MjrRect(max(0, viewport.width-inset_width-10), 10,
                                        inset_width, inset_height)
             row = controller.rows[-1]
@@ -100,7 +153,7 @@ def run_viewer(reference, controller, view_camera):
         report = original_run()
         if viewer.is_running():
             with viewer.lock():
-                viewer.opt.geomgroup[2] = 1
+                viewer.opt.geomgroup[:] = viewer_groups
             viewer.sync()
             print("Visual servo finished. Close the viewer window to exit.")
             while viewer.is_running():
@@ -119,6 +172,8 @@ def main(argv=None):
     parser.add_argument("--no-viewer", action="store_true", help="Run headlessly without opening a GUI")
     parser.add_argument("--camera", choices=("free", "eye_internal", "overview", "side", "needle_close"),
                         default="eye_internal", help="Viewer camera; control still uses eye_internal")
+    parser.add_argument("--viewer-backend", choices=("v9", "legacy"), default="v9",
+                        help="Model used only by the viewer; the controller remains legacy")
     args = parser.parse_args(argv)
     try:
         config = json.loads(args.config.read_text(encoding="utf-8"))
@@ -129,7 +184,16 @@ def main(argv=None):
             config["reference_scene"]["target_robot_mm"] = reference.world_to_robot(args.target_world).tolist()
         reference = Reference(config)
         controller = VisualServoController(reference, output_dir=args.output_dir)
-        report = controller.run() if args.no_viewer else run_viewer(reference, controller, args.camera)
+        view_reference = None
+        if not args.no_viewer:
+            view_reference = (RCMSceneV9(copy.deepcopy(config))
+                              if args.viewer_backend == "v9" else reference)
+        try:
+            report = (controller.run() if args.no_viewer else
+                      run_viewer(view_reference, reference, controller, args.camera))
+        finally:
+            if isinstance(view_reference, RCMSceneV9):
+                view_reference.close()
         controller.write(report, args.output_dir)
         print(json.dumps({**report, "output_dir": str(args.output_dir.resolve())}, ensure_ascii=False, indent=2))
         return 0 if report["result"] == "PASS" else 1

@@ -332,6 +332,7 @@ class Reference:
                     renderer.enable_segmentation_rendering()
                 option = mujoco.MjvOption()
                 option.geomgroup[2] = 0  # viewer-only geometry is never a sensor input
+                option.sitegroup[:] = 0
                 renderer.update_scene(self.data, camera=name, scene_option=option)
                 return np.asarray(renderer.render()).copy()
             finally:
