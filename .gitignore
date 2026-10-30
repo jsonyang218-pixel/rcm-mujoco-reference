@@ -27,3 +27,7 @@ needle_geometry_verification.json
 
 # Offscreen renderer caches for the current scan model.
 mujoco_model/.cache/
+
+# Generated model previews and validation outputs; publish selected evidence in reports/.
+mujoco_model/outputs/*
+!mujoco_model/outputs/README.md

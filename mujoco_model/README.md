@@ -1,5 +1,7 @@
 # MuJoCo 机械臂 v9：银色圆角端盖与长罩整体运动
 
+旧 `outputs/` 预览、动画和检查结果已清理，下文这些路径指重新运行脚本后生成的文件。当前 v9 眼球模型预览、完整测试视频和报告见 [2026-10-30 交付](../reports/20261030/README.md)；历史预览可从 [清理前 outputs](https://github.com/jsonyang218-pixel/rcm-mujoco-reference/tree/42a0b2855b343d4efced99dee615cfa6a5d2be4c/mujoco_model/outputs) 查看。`evidence/` 中被现有修复和验证脚本读取的基线仍保留。
+
 ## 闭合显示外壳
 
 当前显示使用 `assets/*_enclosed.obj`：清理底部扫描残留、独立碎片，按原边界补齐白壳、银罩、前端导向和 C 滑架的缺失表面。四件分别为闭合、有一致法线的网格，保持各自关节挂载；针具保持原尺寸。白壳随 A 旋转，不随 B/C 变化。

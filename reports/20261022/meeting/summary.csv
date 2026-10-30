@@ -1,5 +1,0 @@
-﻿case,label,evidence_status,episode_results,episodes,requested_targets,attempted_targets,successful_targets,success_over_requested,success_over_attempted,max_attempted_endpoint_error_um,frames,dataset_size_bytes,dataset_png_count,visit_orders,motion_times_s,independent_rate_audit,audit_pass
-baseline_three,混合三点对照（场景解析转移 + 视觉接近）,COMPLETE,['PASS'],1,3,3,3,1.0,1.0,6.300581089538309,1146,358511892,1146,"[['P3', 'P2', 'P1']]",[57.119012789154596],PASS,True
-strict_three,严格 RGB-D 三点（零位起始）,COMPLETE,['PASS'],1,3,3,3,1.0,1.0,6.634482537712616,1289,403027403,1289,"[['P1', 'P2', 'P3']]",[64.05],PASS,True
-strict_occlusion_stop,严格视觉 + 实体遮挡 / stop,COMPLETE,['FAIL'],1,3,1,0,0.0,0.0,1504.0512787027008,29,9063419,29,"[['P1', 'P2', 'P3']]",[1.35],FAIL,True
-strict_occlusion_recovery,严格视觉 + 实体遮挡 / static_memory_reobserve,COMPLETE,['PASS'],1,3,3,3,1.0,1.0,6.442211732963663,669,209683060,669,"[['P1', 'P2', 'P3']]",[33.05],PASS,True

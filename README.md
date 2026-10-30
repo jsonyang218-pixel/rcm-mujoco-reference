@@ -2,6 +2,8 @@
 
 当前默认模型为根据实物扫描、照片和运动视频修正的 **v9 模型**：白色主壳上缘保持固定，银色圆角端盖、底缘和长罩作为同一个部件升降；保留 A/B/C 编码器换算和驱动接口。整体静态姿态采用相对原扫描前端抬高约 40° 的照片估计修正，尚非实机标定。
 
+目录已清理旧运行结果、缓存和旧预览；研究代码、示例配置、网格重建及回归基线全部保留。当前模型预览与完整闭环测试集中在 [reports/20261030](reports/20261030/README.md)，旧结果可从 [清理前版本](https://github.com/jsonyang218-pixel/rcm-mujoco-reference/tree/42a0b2855b343d4efced99dee615cfa6a5d2be4c) 查看。
+
 ## 启动当前模型
 
 ```bash
@@ -65,9 +67,9 @@ MUJOCO_GL=egl python verify_rcm_scene_v9.py
 
 - [模型与修复说明](mujoco_model/README.md)
 - [实机标定工作流](mujoco_model/CALIBRATION.md)
-- [银罩整体运动修正对照](mujoco_model/outputs/silver_integral_comparison.gif)
-- [侧视图](mujoco_model/outputs/static_side_reference.png) · [三视图](mujoco_model/outputs/three_views/three_views.png)
-- [端盖整体运动验证](mujoco_model/outputs/silver_integral_validation.json) · [白壳修复验证](mujoco_model/outputs/seam_validation.json)
+- [银罩整体运动修正对照](https://github.com/jsonyang218-pixel/rcm-mujoco-reference/blob/42a0b2855b343d4efced99dee615cfa6a5d2be4c/mujoco_model/outputs/silver_integral_comparison.gif)
+- [侧视图](https://github.com/jsonyang218-pixel/rcm-mujoco-reference/blob/42a0b2855b343d4efced99dee615cfa6a5d2be4c/mujoco_model/outputs/static_side_reference.png) · [三视图](https://github.com/jsonyang218-pixel/rcm-mujoco-reference/blob/42a0b2855b343d4efced99dee615cfa6a5d2be4c/mujoco_model/outputs/three_views/three_views.png)
+- [端盖整体运动验证](https://github.com/jsonyang218-pixel/rcm-mujoco-reference/blob/42a0b2855b343d4efced99dee615cfa6a5d2be4c/mujoco_model/outputs/silver_integral_validation.json) · [白壳修复验证](https://github.com/jsonyang218-pixel/rcm-mujoco-reference/blob/42a0b2855b343d4efced99dee615cfa6a5d2be4c/mujoco_model/outputs/seam_validation.json)
 
 `simulation_driver/` 原始 29 个文件保持不变。模型加载的是 `mujoco_model/vendor/simulation_driver/` 中提交 `c2a3ffc` 的固定副本，以便复现现有验证；修改根目录驱动不会自动改变该固定副本。仿真入口不连接设备或加载实验室 ROS 网络配置。
 
