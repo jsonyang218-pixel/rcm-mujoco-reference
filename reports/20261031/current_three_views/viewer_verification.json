@@ -1,0 +1,40 @@
+{
+  "result": "PASS",
+  "tests": 4,
+  "failures": 0,
+  "errors": 0,
+  "scope": "Real injected v9 model and real viewer setup/update filtering; headless window boundary, rendered visibility and strict RGB/depth invariance; not a complete navigation or physical/OCT validation",
+  "viewer_groups": [
+    1,
+    0,
+    1,
+    1,
+    1,
+    1
+  ],
+  "photo_display_geom_count": 63,
+  "visible_photo_pixels_by_camera": {
+    "overview": {
+      "scan_C": 1236,
+      "tool_metal_sleeve": 116,
+      "tool_hex_nut": 6,
+      "environment_and_linkage": 0
+    }
+  },
+  "strict_optical_comparison": [
+    {
+      "pose": "home",
+      "rgb_equal": true,
+      "depth_equal": true,
+      "rgb_sha256": "11ae54718d253de90dc7b09a27e2a774be4554391df297515a7d4d9cba16de44",
+      "depth_sha256": "970af9ef0041625f4bd92d3e22ed8da915b6e803ee45b2330d2b8f691d1453a6"
+    },
+    {
+      "pose": "screenshot_pose",
+      "rgb_equal": true,
+      "depth_equal": true,
+      "rgb_sha256": "f46271c278157f4f5bb84e4232fe7b21a0c9250ee1d34aa57226000393c3148c",
+      "depth_sha256": "d2bcb5bf88a776757c44c6b0a3ac86fc455ffa741a64538925bd03b8f0d4a280"
+    }
+  ]
+}

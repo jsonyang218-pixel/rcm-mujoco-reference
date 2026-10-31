@@ -29,9 +29,18 @@ def build():
     assert case.is_watertight and case.is_volume
     output = HERE/"assets"/profile["case_mesh"]
     case.export(output)
-    ring = box(-.008,-.024,.008,.024).difference(Point(0,0).buffer(.0055,quad_segs=32))
-    bracket = trimesh.creation.extrude_polygon(ring,height=.0034,engine="earcut")
-    bracket.vertices[:,2] -= .0017
+    bracket_width = profile.get("bracket_width_mm", 68.0)*.001
+    bracket_depth = profile.get("bracket_depth_mm", 20.0)*.001
+    bracket_thickness = profile.get("bracket_thickness_mm", 4.0)*.001
+    bore_radius = profile.get("bracket_bore_radius_mm", 8.2)*.001
+    if not (0 < bore_radius < min(bracket_width,bracket_depth)/2
+            and bracket_thickness > 0):
+        raise ValueError("Bracket dimensions must leave material around the sleeve bore")
+    ring = box(-bracket_depth/2,-bracket_width/2,
+               bracket_depth/2,bracket_width/2).difference(
+                   Point(0,0).buffer(bore_radius,quad_segs=32))
+    bracket = trimesh.creation.extrude_polygon(ring,height=bracket_thickness,engine="earcut")
+    bracket.vertices[:,2] -= bracket_thickness/2
     assert bracket.is_watertight and bracket.is_volume
     bracket.export(HERE/"assets/photo_tool_bracket_side_r3.obj")
     # Conform etch marks and screw heads to the retained scan surface instead

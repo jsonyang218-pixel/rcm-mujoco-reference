@@ -61,40 +61,54 @@ def rebuild_front_tool(root, body, shaft_base, case_center_xy):
     # Work backwards from the measured shaft attachment: the visual head stays
     # connected even if the configured proximal shaft length is changed.
     z = shaft_base
+    sleeve_start = profile.get("sleeve_start_from_shaft_base_mm", 17.0)*.001
+    sleeve_length = profile.get("sleeve_length_mm", 26.0)*.001
+    sleeve_radius = profile.get("sleeve_radius_mm", 7.2)*.001
+    sleeve_top = sleeve_start+sleeve_length
+    case_start = profile.get("case_from_shaft_base_mm", 40.0)*.001
+    bracket_z = profile.get("bracket_from_shaft_base_mm", 18.0)*.001
+    guide_spacing = profile.get("guide_spacing_mm", 58.0)*.001
+    guide_radius = profile.get("guide_radius_mm", 2.5)*.001
     turned("tool_taper", [(z, .00025), (z+.0015, .0018),
                            (z+.003, .0021)], "tool_steel")
     turned("tool_hex_nut", [(z+.003, .0023), (z+.006, .0023)],
            "tool_steel", sides=6)
     cylinder("tool_luer_neck", z+.006, z+.008, .0018, "tool_polymer")
-    cylinder("tool_luer_collar", z+.008, z+.014, .0030, "tool_polymer")
+    cylinder("tool_luer_collar", z+.008, z+sleeve_start, .0040, "tool_polymer")
     for k in range(6):
-        cylinder(f"tool_collar_rib_{k}", z+.008+k*.0009,
-                 z+.0083+k*.0009, .00325, "tool_polymer")
-    cylinder("tool_metal_sleeve", z+.014, z+.032, .0048, "tool_steel")
-    cylinder("tool_sleeve_top", z+.031, z+.034, .0052, "tool_steel")
-    cylinder("tool_white_socket", z+.034, z+.054, .0058, "tool_case")
-    housing(z+.040, z+.040+profile["case_height_axial_mm"]*.001)
+        rib_z = .008+k*(sleeve_start-.008)/6
+        cylinder(f"tool_collar_rib_{k}", z+rib_z,
+                 z+rib_z+.0004, .0043, "tool_polymer")
+    cylinder("tool_metal_sleeve", z+sleeve_start, z+sleeve_top,
+             sleeve_radius, "tool_steel")
+    cylinder("tool_sleeve_top", z+sleeve_top-.001, z+sleeve_top+.003,
+             sleeve_radius+.0003, "tool_steel")
+    cylinder("tool_white_socket", z+sleeve_top+.003, z+sleeve_top+.015,
+             .0080, "tool_case")
+    housing(z+case_start, z+case_start+profile["case_height_axial_mm"]*.001)
     for sign in (-1, 1):
-        cylinder(f"tool_guide_rail_{sign}", z+.031, z+.047, .0018,
-                 "tool_steel", x=case_x-.006, y=case_y+sign*.020)
+        cylinder(f"tool_guide_rail_{sign}", z+bracket_z, z+case_start+.008,
+                 guide_radius, "tool_steel", x=case_x-.006,
+                 y=case_y+sign*guide_spacing/2)
     ET.SubElement(asset, "mesh", name="photo_tool_bracket_mesh", file="photo_tool_bracket_side_r3.obj")
     geom("tool_bottom_bridge", "mesh", "tool_steel", mesh="photo_tool_bracket_mesh",
-         pos=f"0 0 {z+.032}")
+         pos=f"{case_x} {case_y} {z+bracket_z}")
     # The side attachment is a rigid transparent clamp, not the deleted tube.
     clip_y = case_y-profile["case_width_transverse_mm"]*.0005-.007
+    clip_center = z+case_start+.024
     for sign in (-1,1):
         geom(f"tool_clip_post_{sign}", "box", "tool_clear",
-             pos=f"{case_x+sign*.013} {clip_y} {z+.067}", size=".0015 .008 .018")
+             pos=f"{case_x+sign*.013} {clip_y} {clip_center}", size=".0015 .008 .024")
         geom(f"tool_clip_end_{sign}", "box", "tool_clear",
-             pos=f"{case_x} {clip_y} {z+.067+sign*.018}", size=".014 .008 .0015")
+             pos=f"{case_x} {clip_y} {clip_center+sign*.024}", size=".014 .008 .0015")
     geom("tool_clear_clip", "box", "tool_clear",
-         pos=f"{case_x+.014} {clip_y} {z+.067}", size=".0005 .007 .016", rgba=".74 .84 .89 .08")
-    for k, z_offset in enumerate((.052,.082)):
+         pos=f"{case_x+.014} {clip_y} {clip_center}", size=".0005 .007 .022", rgba=".74 .84 .89 .08")
+    for k, z_offset in enumerate((-.018,.018)):
         geom(f"tool_clip_screw_{k}", "cylinder", "tool_fastener",
-             fromto=f"{case_x+.014} {clip_y} {z+z_offset} {case_x+.017} {clip_y} {z+z_offset}",
+             fromto=f"{case_x+.014} {clip_y} {clip_center+z_offset} {case_x+.017} {clip_y} {clip_center+z_offset}",
              size=".0023")
-    for k, z_offset in enumerate((.052,.067,.082)):
-        geom(f"tool_clip_rim_{k}", "box", "tool_clear", pos=f"{case_x+.012} {clip_y} {z+z_offset}",
+    for k, z_offset in enumerate((-.018,0.,.018)):
+        geom(f"tool_clip_rim_{k}", "box", "tool_clear", pos=f"{case_x+.012} {clip_y} {clip_center+z_offset}",
              size=".002 .009 .0012")
 
 

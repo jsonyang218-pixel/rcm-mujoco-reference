@@ -81,6 +81,10 @@ class RCMSceneV9:
         self.alignment_t = pivot-self.alignment_R@pivot
         self.tool_mount = json.loads((ROOT/"v9_tool_mount.json").read_text())
         self.side_profile = json.loads((ROOT/"v9_side_profile.json").read_text())
+        expected_axial_offset = (float(self.side_profile["reference_shaft_attachment_from_rcm_mm"])
+                                 - float(self.config["needle"]["proximal_length_mm"]))
+        if not np.isclose(self.tool_mount["front_axial_registration_offset_mm"], expected_axial_offset):
+            raise ValueError("Tool mount is stale; refit after changing the proximal needle attachment")
         if (not np.isclose(self.tool_mount["alignment_yaw_deg"], self.alignment["yaw_world_deg"])
                 or not np.isclose(self.tool_mount["installation_pitch_deg"], self.scene.installation["pitch_y_deg"])):
             raise ValueError("Tool mount is stale; refit the registered STL for the current installation")
@@ -113,8 +117,12 @@ class RCMSceneV9:
         # only in this injected eye scene; all part/joint frames stay fixed.
         for name in ("fixed_housing", "parallel_cover", "distal_guide"):
             mesh = root.find(f"./asset/mesh[@name='{name}']")
-            mesh.set("file", name+"_smooth.obj")
+            mesh.set("file", self.side_profile["scan_guide_mesh"] if name == "distal_guide"
+                     else name+"_smooth.obj")
         self._inject_assets(root)
+        cap = root.find(".//geom[@name='scan_distal']")
+        cap.attrib.pop("rgba", None)
+        cap.set("material", "tool_panel_silver")
         self._inject_eye_scene(root)
         self._inject_needle_sensor_geoms(root)
         from v9_front_tool import add_side_cover_details

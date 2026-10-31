@@ -1,8 +1,10 @@
 """Estimate a v9 tool frame from the uploaded binary STL's metal sleeve.
 
 The sparse sleeve scan does not determine a calibrated shaft axis. Fit its
-radial surface subject to the user's front/side photograph constraints, keeping
-the nominal RCM reference height. No source mesh or hardware driver is changed.
+radial surface subject to the user's front/side photograph constraints. An
+explicit axial datum keeps the source head attachment when the physical
+proximal needle replaces the old 60 mm display shaft. No source scan or
+hardware driver is changed; this is not a measured RCM calibration.
 """
 import argparse
 import hashlib
@@ -65,7 +67,11 @@ def fit(path):
     if not fitted.success:
         raise ValueError(f"Sleeve fit failed: {fitted.message}")
     point = np.array([fitted.x[0],fitted.x[1],.16])
-    rcm = point+direction*((.125-point[2])/direction[2])
+    fit_plane = point+direction*((.125-point[2])/direction[2])
+    config = json.loads((ROOT/"config.json").read_text())
+    source_attachment_mm = float(side["reference_shaft_attachment_from_rcm_mm"])
+    axial_offset_mm = source_attachment_mm-float(config["needle"]["proximal_length_mm"])
+    rcm = fit_plane+direction*(axial_offset_mm*.001)
     y_axis = (rz@ry).T@np.array([0,1.,0])
     x_axis = np.cross(y_axis,direction);x_axis /= np.linalg.norm(x_axis)
     y_axis = np.cross(direction,x_axis)
@@ -86,6 +92,9 @@ def fit(path):
             "constraint": "User side-photo pitch estimate and zero-pose XY parallelism; sleeve position/radius fitted to STL",
             "tool_side_pitch_deg": float(side["needle_pitch_from_horizontal_deg"]),
             "mount_rotation_registered": rotation.tolist(), "rcm_registered_m": rcm.tolist(),
+            "rcm_fit_plane_registered_m": fit_plane.tolist(),
+            "front_axial_registration_offset_mm": axial_offset_mm,
+            "front_axial_registration_reference": "Preserve source 60 mm shaft attachment with configured physical proximal needle; photo-estimated datum, not hardware calibration",
             "rcm_z_reference_m": .125, "installation_pitch_deg": float(installation["pitch_y_deg"]),
             "alignment_yaw_deg": float(alignment["yaw_world_deg"]),
             "case_reference_mesh_sha256": hashlib.sha256(case_path.read_bytes()).hexdigest(),

@@ -37,9 +37,14 @@
 
 结果保存在 `v9_tool_mount.json`，包括区域范围、拟合点数、半径、残差、
 安装旋转及参考原点。侧照约束版本的套筒拟合半径约 4.55 mm，径向残差
-中位数约 0.56 mm、90 分位约 2.73 mm；外观套筒仍使用照片估计半径 4.8 mm。
-RCM 参考高度仍沿用装配坐标 Z=125 mm，平面位置取拟合轴线外推值
-（约 X=456.108、Y=71.232 mm），不是实测 RCM。
+中位数约 0.56 mm、90 分位约 2.73 mm；这是扫描区域的轴线诊断，
+外观套筒当前按正面照片比例使用估计半径 7.2 mm。
+轴线先外推至装配坐标 Z=125 mm 的参考平面
+（约 X=456.108、Y=71.232 mm），再沿针座 +Z 加上 38 mm 的轴向装配修正。
+该修正将源模型 60 mm 示意针的连接基准换算为 22 mm 物理近端针，
+使照片前端回到原头部的安装位置；它不是实测 RCM 标定。
+参考平面点与当前原点分别保存在 `rcm_fit_plane_registered_m` 和
+`rcm_registered_m`，当前后者约为 `[460.158,64.822,162.236] mm`。
 原虚拟原点为 [456,70,125] mm；调整原点时补偿扫描部件的局部偏置，使三个
 扫描外壳的零位世界姿态保持一致。
 
@@ -62,10 +67,12 @@ MUJOCO_GL=egl python verify_v9_alignment.py
 ### 侧照修订
 
 `v9_side_profile.json` 保存侧照外形估计：针座向下倾角 55°（目测不确定度约
-±7°），白壳侧厚 28 mm、正面宽 52 mm、轴向高 52 mm。针座和白壳依旧居中，
+±7°），白壳侧厚 28 mm。依据正面照，白壳正面宽修正为 76 mm、轴向高 72 mm，
+与保留的扫描银帽宽度接近；套管、68 mm 下支架及对称导杆按相同照片比例修订。
+针座和白壳依旧居中，
 针具的 0.5/0.06 mm 外径、22/4 mm 长度保持不变。
 
-`build_side_profile.py` 生成独立显示资产：带 16 mm 宽底部拱形开口的白壳、
+`build_side_profile.py` 生成独立显示资产：带 24 mm 宽底部拱形开口的白壳、
 有中心通孔的下支架及照片估计的灰色下机壳。透明侧夹、紧固件、银罩条纹和
 螺钉、灰壳接口座与警示图形属于外观补建。银罩刻线投射到原曲面，随银罩运动；
 下机壳随 A 阶段运动，前端组件随 C 轴运动。已删除的软管保持删除。
@@ -75,6 +82,7 @@ MUJOCO_GL=egl python verify_v9_alignment.py
 
 ```bash
 python mujoco_model/fit_v9_tool_mount.py --stl /path/to/Fused_Project_20261028093616.stl
+python mujoco_model/build_v9_front_display.py
 python mujoco_model/build_side_profile.py
 MUJOCO_GL=egl python export_v9_eye_scene.py
 python verify_v9_side_profile.py
@@ -93,6 +101,28 @@ viewer 使用 group 2 的同尺寸副本。原有遮挡针管的 `axis_aid` 已�
 group 0，确保隐藏环境时白壳、套筒、针座和支架仍完整显示；严格 RGB-D
 观测继续只使用 group 3/4/5。可用 `python verify_v9_viewer.py` 检查实际
 窗口选项、模型可见性和光学观测隔离。
+
+### 正面装配与旧扫描前壳替换
+
+`build_v9_front_display.py` 从 `distal_guide_smooth.obj` 派生闭合上帽/导轨网格，
+以当前针座坐标 Z=117 mm 为替换边界，移除会遮住新白壳的旧前面板和旧左夹。
+派生文件为 `distal_guide_front_display.obj`；原扫描资产保留，保留部分的零位
+世界位置保持。切面和源/输出哈希记录在 `mujoco_model/v9_front_display_build.json`。
+白壳、套管和针具跟随 C，银帽/导轨仍跟随原 B 部件，左侧透明夹保持独立外观。
+
+轴向基准修正同时更新场景中的虚拟 RCM、眼球和相机位置；逻辑 A/B/C、
+编码器接口和物理针尺寸保持一致。旧版本的世界坐标及标定快照属于其原版本，
+新采集应使用当前模型与标定；不能将本次外观修正表述为实机标定。
+
+使用 `render_v9_three_views.py` 导出当前实际模型的完整世界三视图：正视沿
+世界 +X、侧视沿世界 −Y、俯视沿世界 +Z，三者同零位、同尺度且相互正交。
+`front_assembly.png` 和 `front_detail.png` 另沿针座局部 +X 核对照片正面，
+分别标注为前端组件和针座局部图，不能混作世界工程三视。
+
+```bash
+MUJOCO_GL=egl python render_v9_three_views.py --output-dir runs/current_three_views --size 1200
+MUJOCO_GL=egl python verify_v9_front_registration.py
+```
 
 ## 俯视轴向对齐
 

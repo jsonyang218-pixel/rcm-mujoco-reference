@@ -1,0 +1,72 @@
+{
+  "result": "PASS",
+  "scope": "Photo-estimated display-envelope replacement only; no source scan overwrite, physical needle change or hardware calibration",
+  "units": "metres",
+  "source": "mujoco_model/assets/distal_guide_smooth.obj",
+  "source_sha256": "56e0a44314af3b66371a54c11f048db3331b134e26fa44d17483bb1d030d6385",
+  "source_faces": 59984,
+  "source_bounds_m": [
+    [
+      -0.03839648,
+      -0.09573315,
+      0.08619865
+    ],
+    [
+      0.04029794,
+      0.02528981,
+      0.25338115
+    ]
+  ],
+  "source_unchanged": true,
+  "output": "mujoco_model/assets/distal_guide_front_display.obj",
+  "output_sha256": "32c30c7f2b5f1c5560462d69d9bae3ef555a9c3a51b8bface5abeac1e1308655",
+  "output_faces": 27350,
+  "output_bounds_m": [
+    [
+      -0.03485955,
+      -0.08441047,
+      0.145890725902
+    ],
+    [
+      0.0268051,
+      0.00677918,
+      0.25338115
+    ]
+  ],
+  "output_watertight": true,
+  "output_positive_volume": true,
+  "output_volume_m3": 0.0002456001526937439,
+  "source_coordinate_frame_preserved": true,
+  "original_A_stage_origin_registered_m": [
+    0.456,
+    0.07,
+    0.125
+  ],
+  "rcm_fit_plane_registered_m": [
+    0.45610785241365065,
+    0.07123183001228613,
+    0.125
+  ],
+  "new_rcm_registered_m": [
+    0.46015813321981547,
+    0.06482187389546806,
+    0.1622358387574616
+  ],
+  "front_axial_registration_offset_mm": 38.0,
+  "tool_cut_height_mm": 117.0,
+  "cut_height_relative_to_original_fit_plane_mm": 155.0,
+  "plane_normal_in_source_frame": [
+    0.1065863370043374,
+    -0.16868305570573852,
+    0.9798904936174104
+  ],
+  "plane_origin_in_source_frame_m": [
+    0.016628734649322928,
+    -0.024914043622103352,
+    0.15188302651069863
+  ],
+  "kept_halfspace": "dot(vertex - plane_origin, plane_normal) >= 0",
+  "retained_min_signed_distance_m": -5.217364223639493e-13,
+  "cap_enabled": true,
+  "photo_dimensions_calibrated": false
+}
