@@ -1,10 +1,10 @@
 """RGB-D visual servoing for the fixed intraocular MuJoCo camera.
 
-The controller is deliberately simulation-only: orange target detection comes
-from RGB, while the needle tip is measured from MuJoCo geom segmentation and
-depth. The default uses calibrated visible geometry and a coupled actuation
-Jacobian to drive the kinematic A/B/C task joints. The historical image/depth
-controller remains available through position_feedback='image_depth'.
+Current v9 defaults to RGB-derived feature masks and one normally visible
+depth map. Historical simulator-ID perception is an explicit separate backend.
+Calibrated geometry and an actuation Jacobian drive the A/B/C task interfaces;
+MotorBackend execution is selected independently from perception. Historical
+image/depth control remains available through position_feedback='image_depth'.
 """
 from __future__ import annotations
 
@@ -34,11 +34,14 @@ DEFAULT_SERVO = {
     "position_feedback": "geometry", "position_tolerance_um": 8.,
     "max_geometry_fit_quality_um": 10., "geometry_gain_per_s": 3.,
     "occlusion_handling": "stop",
+    "perception_backend": "simulation_ids",
 }
 
 
 def visual_servo_settings(reference):
-    settings = {**DEFAULT_SERVO, **reference.config.get("navigation", {}).get("visual_servo", {})}
+    settings = {**DEFAULT_SERVO,
+                'perception_backend': getattr(reference, 'visual_perception_backend', 'simulation_ids'),
+                **reference.config.get("navigation", {}).get("visual_servo", {})}
     if settings.get('occlusion_handling', 'stop') not in ('stop', 'static_memory_reobserve'):
         raise ValueError('visual_servo.occlusion_handling must be stop or static_memory_reobserve')
     if settings.get('occlusion_handling') == 'static_memory_reobserve' and settings['position_feedback'] != 'geometry':
@@ -409,6 +412,12 @@ class VisualServoController:
         self.use_target_pose_calibration = bool(
             self.settings.get('position_feedback') != 'geometry' and
             self.settings.get("use_target_pose_calibration", True))
+        if self.settings.get('perception_backend') == 'strict_rgbd':
+            if (self.settings.get('position_feedback') != 'geometry' or
+                    self.settings.get('occlusion_handling', 'stop') != 'stop'):
+                raise ValueError('Strict RGB-D navigation requires current geometry feedback and stop-on-observation-loss')
+            if measurement_goal is not None or target_transform is not None:
+                raise ValueError('Strict RGB-D navigation requires the currently observed target; external measurement_goal/target_transform injection is unsupported')
         if getattr(reference, 'motor_execution', None) is not None:
             if (self.settings.get('position_feedback') != 'geometry'
                     or self.settings.get('occlusion_handling', 'stop') != 'stop'):
@@ -438,7 +447,13 @@ class VisualServoController:
                 and np.any(np.abs(self.initial_velocity[~self.control_axes]) > 1e-12)):
             raise ValueError('initial_velocity on disabled control axes must be zero')
         self.final_velocity = self.initial_velocity.copy()
-        self.sensor = VisualServoSensor(reference, self.settings)
+        if self.settings.get('perception_backend') == 'strict_rgbd':
+            from rcm_strict_rgbd import StrictRGBDSensor
+            self.sensor = StrictRGBDSensor(reference, self.settings)
+        elif self.settings.get('perception_backend', 'simulation_ids') == 'simulation_ids':
+            self.sensor = VisualServoSensor(reference, self.settings)
+        else:
+            raise ValueError('Unknown visual perception backend')
         self.output_dir = None if output_dir is None else Path(output_dir)
         if self.output_dir is not None and self.settings["save_diagnostics"]:
             self.output_dir.mkdir(parents=True, exist_ok=True)
@@ -1005,8 +1020,15 @@ class VisualServoController:
                                       'transformed_measured_target' if self.target_transform is not None else 'physical_target'),
             'independent_accuracy_tolerance_um': float(self.settings['endpoint_tolerance_um']),
             'stop_condition': 'measured controllable 3D error and consecutive zero-command-velocity observations',
-            'tip_detection': 'visible shaft cylinder plus identified end plane or actual apex sphere; no taper-pixel substitution',
-            'target_detection': 'current-frame RGB/segmentation and calibrated sphere depth fit',
+            'tip_detection': ('RGB-observed shaft/end plane or calibrated visible artificial green fiducial' if
+                self.settings.get('perception_backend') == 'strict_rgbd' else
+                'visible shaft cylinder plus identified end plane or actual apex sphere; no taper-pixel substitution'),
+            'perception_backend': self.settings.get('perception_backend','simulation_ids'),
+            'simulator_ids_used_for_control': self.settings.get('perception_backend') != 'strict_rgbd',
+            'hidden_geometry_render_used_for_control': self.settings.get('perception_backend') != 'strict_rgbd',
+            'target_detection': ('current RGB detector and single visible-scene depth' if
+                self.settings.get('perception_backend') == 'strict_rgbd' else
+                'current-frame RGB/segmentation and calibrated sphere depth fit'),
             'control_axes': self.control_axes.tolist(), 'completion_axes': self.completion_axes.tolist(),
             'known_target_pose_used_for_feature_calibration': False,
             'ground_truth_used_for_stop': False,

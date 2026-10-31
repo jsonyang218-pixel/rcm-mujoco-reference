@@ -169,7 +169,9 @@ class NeedleGeometry:
     def target(self, observation):
         if observation['target_pixel'] is None:
             raise RuntimeError('TARGET_NOT_VISIBLE')
-        mask = observation['segmentation'][:, :, 0] == self.target_id
+        masks = observation.get('feature_masks')
+        mask = (np.asarray(masks['target'], dtype=bool).copy() if masks is not None else
+                observation['segmentation'][:, :, 0] == self.target_id)
         rgb = observation['rgb']
         mask &= np.all((rgb >= self.target_rgb_min) & (rgb <= self.target_rgb_max), axis=2)
         points = self.points(observation, mask)
@@ -179,15 +181,20 @@ class NeedleGeometry:
                         'residual_mm': residual, 'fit_quality_mm': max(.002, residual*3)}
 
     def tip(self, observation):
-        ids = observation['segmentation'][:, :, 0]
-        points = self.points(observation, ids == self.proximal_id)
+        masks = observation.get('feature_masks')
+        ids = None if masks is not None else observation['segmentation'][:, :, 0]
+        proximal = masks['proximal'] if masks is not None else ids == self.proximal_id
+        distal_mask = (masks['distal'] | masks['apex'] if masks is not None else
+                       np.isin(ids, (*self.distal_ids, self.apex_id)))
+        apex = masks['apex'] if masks is not None else ids == self.apex_id
+        points = self.points(observation, proximal)
         axis, side_residual, angle_quality = fit_shaft_axis(
             points, self.rcm_mm, self.proximal_radius_mm,
             self.rcm_mm-self.camera_position_mm)
         # A cylinder axis is an unoriented line. Camera position cannot tell
         # which end is the needle tip: viewing from the opposite side reverses
         # that heuristic. Resolve sign from ordered, observed physical parts.
-        distal = self.points(observation, np.isin(ids, (*self.distal_ids, self.apex_id)))
+        distal = self.points(observation, distal_mask)
         if not len(distal):
             raise RuntimeError('NEEDLE_DIRECTION_NOT_OBSERVABLE')
         shaft_middle = float(np.median((points-self.rcm_mm)@axis))
@@ -243,7 +250,7 @@ class NeedleGeometry:
                                      'fit_quality_mm': quality, 'axis_world': axis.tolist()}
         # A true sphere sample constrains position along the measured shaft
         # axis. A visible taper point does not, and is never substituted here.
-        marker = self.points(observation, ids == self.apex_id)
+        marker = self.points(observation, apex)
         if not len(marker):
             raise RuntimeError('TIP_NOT_OBSERVABLE')
         d = marker-self.rcm_mm

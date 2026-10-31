@@ -2,6 +2,8 @@
 
 `collect_v9_dataset.py` 使用当前照片前端/眼球模型和原始 `eye_internal` 相机，直接执行单目标视觉闭环并保存 RGB/state/action episode。实际运动经过离线 `MotorBackend`，没有失败后直接写目标位姿的回退。
 
+当前新采集固定采用 [严格 RGB-D 观测](STRICT_RGBD_NAVIGATION.md)：RGB 计算掩码，正常可见深度参与几何估计，仿真 ID 与隐藏物体重渲染不进入导航。2026-10-30 的 683 帧试采是此前的仿真 ID 辅助版本，不应追溯标成当前严格 RGB-D 数据。
+
 ## 采集
 
 从仓库根目录执行，输出目录必须尚不存在：

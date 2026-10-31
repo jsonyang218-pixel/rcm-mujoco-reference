@@ -122,7 +122,8 @@ def run_viewer(view_reference, control_reference, controller, view_camera):
             handle_camera_events()
             if view_reference is not control_reference:
                 view_reference.set_task(control_reference.current_task())
-            view_observation = _v9_viewer_observation(view_reference)
+            view_observation = (observation if view_reference is control_reference else
+                                _v9_viewer_observation(view_reference))
             viewport = viewer.viewport
             # Keep the eye-internal camera readable in the main MuJoCo window.
             # The physical 60 um distal segment is sub-pixel at the native
@@ -178,10 +179,13 @@ def main(argv=None):
     parser.add_argument("--control-backend", choices=("v9", "legacy"), default="v9")
     parser.add_argument("--motion-backend", choices=("motor", "kinematic"), default="motor")
     parser.add_argument("--max-iterations", type=int)
+    parser.add_argument("--perception-backend", choices=("strict_rgbd", "simulation_ids"))
     args = parser.parse_args(argv)
     try:
         config = json.loads(args.config.read_text(encoding="utf-8"))
         config['motor_execution'] = {**config.get('motor_execution', {}), 'enabled': False}
+        config['navigation']['visual_servo']['perception_backend'] = (args.perception_backend or
+            ('strict_rgbd' if args.control_backend == 'v9' else 'simulation_ids'))
         factory = RCMSceneV9 if args.control_backend == 'v9' else Reference
         if args.target_robot is not None:
             config["reference_scene"]["target_robot_mm"] = list(args.target_robot)

@@ -69,6 +69,8 @@ MUJOCO_GL=egl python verify_rcm_scene_v9.py
 
 当前新增采集入口将所有采集动作通过 `MotorBackend.consume/step` 执行，再用实际编码器反馈更新当前 v9 场景。默认每集从零位出发，采集同步的原始 RGB、实际状态、协议动作及独立审计记录：
 
+当前默认导航观测为 **严格 RGB＋深度**：像素掩码由 RGB 检测得到，深度来自同一可见场景；不使用仿真物体 ID 或隐藏几何重渲染的测量。人工标靶/针尖标记假设及 OCT 接入边界见 [严格 RGB-D 导航](STRICT_RGBD_NAVIGATION.md)。此前 2026-10-30 的视频和 683 帧电机试采仍使用仿真 ID 辅助，应作为历史结果单独判读。
+
 ```bash
 MUJOCO_GL=egl python collect_v9_dataset.py --output-dir runs/v9_motor_dataset --episodes 1
 python verify_v9_dataset.py --run-dir runs/v9_motor_dataset

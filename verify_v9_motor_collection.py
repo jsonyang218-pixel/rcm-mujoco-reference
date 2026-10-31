@@ -49,6 +49,16 @@ def fixture(out):
 
 
 class MotorDatasetTests(unittest.TestCase):
+    def test_strict_claim_rejects_simulator_identity_control(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            out=fixture(Path(tmp));path=out/'dataset/manifest.json'
+            manifest=json.loads(path.read_text());manifest['perception_backend']='strict_rgbd';write(path,manifest)
+            write(out/'report.json',{'result':'FAIL','perception_backend':'strict_rgbd',
+                'simulator_ids_used_for_control':True,'hidden_geometry_render_used_for_control':False,
+                'final_oct_metadata':{'extra':{'rgb_and_depth_share_visibility':True,
+                    'feature_pass_excludes_fundus_backdrop':False,'simulator_object_ids_used':False}}})
+            with self.assertRaises(AssertionError):verify(out)
+
     def test_exact_replay_and_failed_navigation_are_separate(self):
         with tempfile.TemporaryDirectory() as tmp:
             report=verify(fixture(Path(tmp)))

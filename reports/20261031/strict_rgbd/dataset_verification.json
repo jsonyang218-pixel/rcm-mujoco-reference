@@ -1,0 +1,34 @@
+{
+  "result": "PASS",
+  "scope": "Dataset alignment and exact offline motor replay; not physical motor validation",
+  "perception_backend": "strict_rgbd",
+  "episodes": 1,
+  "navigation_successes": 1,
+  "total_frames": 682,
+  "transitions_with_measured_motor_lag": 677,
+  "raw_rgb_hashes_match": true,
+  "state_matches_actual_encoders": true,
+  "actions_are_protocol_targets_not_next_states": true,
+  "policy_inputs_exclude_audit_fields": true,
+  "episode_results": [
+    {
+      "episode_index": 0,
+      "frames": 682,
+      "navigation_result": "PASS",
+      "final_error_um": 5.866783806950037,
+      "max_actual_velocity_A_deg_B_deg_C_mm_per_s": [
+        4.140000343322754,
+        2.0598602294921875,
+        0.6095123291015625
+      ],
+      "max_actual_acceleration_A_deg_B_deg_C_mm_per_s2": [
+        14.400100708007812,
+        5.82275390625,
+        1.7485976219177246
+      ],
+      "actual_acceleration_is_explicitly_limited_by_motor_model": false,
+      "actual_velocity_within_nominal_controller_limits": false,
+      "actual_acceleration_within_nominal_controller_limits": false
+    }
+  ]
+}

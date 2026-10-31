@@ -1,0 +1,39 @@
+{
+  "result": "PASS",
+  "tests": 10,
+  "failures": 0,
+  "errors": 0,
+  "scope": "Current visible RGB plus ideal registered simulation depth; fixed colored fiducials and calibration, not real OCT or clinical perception",
+  "simulator_object_identity_needed": false,
+  "hidden_object_or_fundus_removed_measurement_pass_needed": false,
+  "pose_accuracy": [
+    {
+      "pose": "home",
+      "tip_error_um": 1.3166770834469264,
+      "target_error_um": 1.1243313281940457,
+      "tip_source": "apex_sphere_on_shaft_axis",
+      "apex_rgb_pixels": 194
+    },
+    {
+      "pose": "C8",
+      "tip_error_um": 1.958878658318645,
+      "target_error_um": 1.1243313281940457,
+      "tip_source": "apex_sphere_on_shaft_axis",
+      "apex_rgb_pixels": 102
+    },
+    {
+      "pose": "near",
+      "tip_error_um": 0.02609144711266724,
+      "target_error_um": 1.1243313281940457,
+      "tip_source": "shaft_end_plane",
+      "apex_rgb_pixels": 52
+    },
+    {
+      "pose": "goal",
+      "tip_error_um": 0.020966526448564178,
+      "target_error_um": 1.048877250509874,
+      "tip_source": "shaft_end_plane",
+      "apex_rgb_pixels": 0
+    }
+  ]
+}

@@ -50,7 +50,8 @@ def collect_episode(config, out, dataset, index, seed, start_task, random_target
     motor = scene.motor_execution
     settings = visual_servo_settings(scene)
     settings.update(max_iterations=max_iterations, save_diagnostics=True,
-                    position_feedback='geometry', occlusion_handling='stop')
+                    position_feedback='geometry', occlusion_handling='stop',
+                    perception_backend='strict_rgbd')
     if not np.isclose(settings['sample_period_s'], motor.control_period_s):
         scene.close()
         raise ValueError('Motor and visual control sample periods must match')
@@ -138,6 +139,7 @@ def main():
     dataset = out/'dataset'
     config = json.loads(args.config.read_text())
     config['motor_execution'] = {**config.get('motor_execution', {}), 'enabled': True}
+    config['navigation']['visual_servo']['perception_backend'] = 'strict_rgbd'
     write_json(out/'config_snapshot.json', config)
     provenance = {'scene': 'RCMSceneV9', 'execution': 'MotorBackend consume/step -> feedback -> qpos',
         'scope': 'Single-target independent episodes; no RRT/PRM/multitarget motor validation or hardware data',
@@ -145,7 +147,8 @@ def main():
         'source_sha256': {n: hashlib.sha256((HERE/n).read_bytes()).hexdigest() for n in (
             'collect_v9_dataset.py','rcm_motor_execution.py','rcm_reference.py','rcm_scene_v9.py',
             'rcm_visual_servo.py','rcm_visual_geometry.py','rcm_waypoint_dataset.py',
-            'mujoco_model/motor_backend.py','mujoco_model/model_sync.py','v9_eye_scene.xml')},
+            'mujoco_model/motor_backend.py','mujoco_model/model_sync.py','v9_eye_scene.xml',
+            'rcm_strict_rgbd.py','rcm_rgb_features.py')},
         'motor_parameters_are_identified': False, 'clock': 'simulation; not realtime acquisition'}
     write_json(out/'collection_protocol.json', provenance)
     episodes = []
@@ -157,6 +160,8 @@ def main():
             float(config['navigation']['visual_servo']['sample_period_s']), 'visual_current_target')
         manifest.update(source='Current v9 offline MotorBackend first-order simulation; no hardware measurements',
             execution_backend='MotorBackend',
+            perception_backend='strict_rgbd',
+            visibility_semantics='Occlusion cause is unknown; navigation uses RGB-derived masks and normal visible depth without simulator IDs or counterfactual rendering',
             action_semantics='Quantized protocol target as absolute logical A/B/C task position for the following control interval; never the following actual state',
             state_semantics='Actual encoder feedback decoded into logical A/B/C at the same simulation instant as raw RGB',
             audit_path_base='Parent of this dataset directory',

@@ -52,6 +52,8 @@ def _camera_axes(pos, target):
 
 
 class RCMSceneV9:
+    visual_perception_backend = 'strict_rgbd'
+
     def __init__(self, config=None, model_dir=None):
         # The eye shell is display-only for this adapter. Sensor renders must
         # exclude it so the shell cannot occlude intraocular geometry.

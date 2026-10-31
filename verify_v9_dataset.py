@@ -107,6 +107,14 @@ def verify(directory):
                 np.testing.assert_array_equal(row['action'],row['observation.state'])
         report=json.loads(inside(out,episode['servo_report']).read_text())
         assert report['result']==episode['result']
+        if manifest.get('perception_backend')=='strict_rgbd':
+            assert report['perception_backend']=='strict_rgbd'
+            assert report['simulator_ids_used_for_control'] is False
+            assert report['hidden_geometry_render_used_for_control'] is False
+            metadata=report['final_oct_metadata']
+            assert metadata['extra']['rgb_and_depth_share_visibility'] is True
+            assert metadata['extra']['feature_pass_excludes_fundus_backdrop'] is False
+            assert metadata['extra']['simulator_object_ids_used'] is False
         assert len(steps)==settings['control_steps']
         assert np.isclose(settings['simulation_time_s'],rows[-1]['timestamp'],atol=1e-8,rtol=0)
         if episode['result']=='PASS':
@@ -125,6 +133,7 @@ def verify(directory):
             'actual_acceleration_within_nominal_controller_limits':bool(np.all(max_acceleration<=np.asarray(config['navigation']['max_acceleration_A_deg_B_deg_C_mm_per_s2'])+1e-6))})
     assert total==manifest['total_frames']
     return {'result':'PASS','scope':'Dataset alignment and exact offline motor replay; not physical motor validation',
+        'perception_backend':manifest.get('perception_backend','historical_simulation_ids'),
         'episodes':len(episode_results),'navigation_successes':successes,'total_frames':total,
         'transitions_with_measured_motor_lag':lag_frames,
         'raw_rgb_hashes_match':True,'state_matches_actual_encoders':True,

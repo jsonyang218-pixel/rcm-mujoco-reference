@@ -1,0 +1,96 @@
+{
+  "result": "PASS",
+  "reason": "POSITION_ERROR_AND_SETTLED",
+  "perception_backend": "strict_rgbd",
+  "simulator_ids_used_for_control": false,
+  "hidden_geometry_render_used_for_control": false,
+  "iterations": 682,
+  "final_tip_target_error_um": 5.866783806950037,
+  "final_estimated_position_error_um": 6.873953933497313,
+  "settled_frames": 3,
+  "terminal_stop_validated": true,
+  "motor_execution": {
+    "backend": "MotorBackend",
+    "tau_s": 0.04,
+    "control_period_s": 0.05,
+    "integration_step_s": 0.002,
+    "speed_limits_A_deg_B_deg_C_mm_per_s": [
+      10.0,
+      10.0,
+      2.0
+    ],
+    "timeout_s": 0.5,
+    "simulation_time_s": 34.0500000000002,
+    "control_steps": 681,
+    "robot_ABCE": [
+      2767,
+      875044,
+      2150143,
+      0
+    ],
+    "target_robot_ABCE": [
+      2767,
+      875044,
+      2150143,
+      0
+    ],
+    "encoder_settled": true,
+    "status": "holding",
+    "fault": null,
+    "physical_dynamics_identified": false,
+    "direct_pose_fallback_used": false
+  },
+  "ground_truth_used_for_stop": false,
+  "known_target_pose_used_for_feature_calibration": false,
+  "reset_task_A_deg_B_deg_C_mm": [
+    0.0,
+    0.0,
+    0.0
+  ],
+  "collection_wall_s": 501.73468673200114,
+  "final_oct_metadata": {
+    "schema_version": 1,
+    "frame_id": "sim-oct-bd2f314148ec4053a073367cf971fca3/00000681",
+    "stream_id": "sim-oct-bd2f314148ec4053a073367cf971fca3",
+    "sequence_id": 681,
+    "timestamp_s": 34.0500000000002,
+    "clock_domain": "simulation",
+    "acquired_monotonic_s": 56525.806768049,
+    "nominal_period_s": 0.05,
+    "nominal_frequency_hz": 20.0,
+    "nominal_rate_is_wall_clock_guarantee": false,
+    "source": "mujoco_visible_scene_depth_simulation",
+    "is_simulation": true,
+    "raw_oct_available": false,
+    "realtime_validated": false,
+    "camera_name": "eye_internal",
+    "registration_frame": "eye_internal",
+    "registration_description": "One normally visible, registered metric depth map; no hidden-feature render or object-ID segmentation.",
+    "depth_unit": "m",
+    "depth_convention": "positive_camera_optical_axis_z_not_ray_range",
+    "shape_hw": [
+      1440,
+      1920
+    ],
+    "depth_dtype": "float32",
+    "validity_rule": "finite and strictly greater than min; strictly less than max when set",
+    "min_valid_depth_m": 0.0001,
+    "max_valid_depth_m": 0.059994,
+    "scene_valid_pixels": 1585315,
+    "feature_valid_pixels": 1585315,
+    "timestamp_repeated": false,
+    "fresh_simulation_timestamp": true,
+    "extra": {
+      "source": "mujoco_visible_scene_depth_simulation",
+      "is_simulation": true,
+      "raw_oct_available": false,
+      "realtime_validated": false,
+      "feature_pass_excludes_fundus_backdrop": false,
+      "visibility_gated_by_normal_scene_segmentation": false,
+      "rgb_and_depth_share_visibility": true,
+      "simulator_object_ids_used": false
+    }
+  },
+  "scope": "Colored fiducial benchmark with current RGB and one visible simulated depth map; no real OCT, no marker-free clinical claim",
+  "raw_dataset": "runs/v9_strict_rgbd_home_20261031"
+}
