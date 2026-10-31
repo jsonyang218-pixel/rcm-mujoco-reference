@@ -1,0 +1,182 @@
+{
+  "source_commit": "9265dde559238c8232ca888de56403e8bc0e0881",
+  "scope": "Motor activation and one control interval only; bounded navigation intentionally reaches MAX_ITERATIONS, not a full navigation success",
+  "source_config_sha256": "72e42acb575f174baefd36063a637c9d8814782ed13c7ad7e234a3ade53997db",
+  "source_config_has_motor_execution_key": false,
+  "plain_reference_motor_enabled": false,
+  "explicit_config_reference_motor_enabled": true,
+  "explicit_config_one_tick_matches_encoder_feedback": true,
+  "explicit_config_one_tick_lags_requested_target": true,
+  "entrypoints": {
+    "visual_servo": {
+      "command": [
+        "run_visual_servo.py",
+        "--no-viewer",
+        "--max-iterations",
+        "2",
+        "--output-dir",
+        "/tmp/rcm_motor_entrypoint_kfqn1ok7/visual_servo"
+      ],
+      "process_exit_code": 1,
+      "navigation_result": "FAIL",
+      "navigation_reason": "MAX_ITERATIONS",
+      "iterations": 2,
+      "motor_execution": {
+        "backend": "MotorBackend",
+        "tau_s": 0.04,
+        "control_period_s": 0.05,
+        "integration_step_s": 0.002,
+        "speed_limits_A_deg_B_deg_C_mm_per_s": [
+          10.0,
+          10.0,
+          2.0
+        ],
+        "timeout_s": 0.5,
+        "simulation_time_s": 0.05,
+        "control_steps": 1,
+        "robot_ABCE": [
+          12,
+          1465100,
+          893679,
+          0
+        ],
+        "target_robot_ABCE": [
+          12,
+          1465100,
+          893679,
+          0
+        ],
+        "encoder_settled": false,
+        "status": "simulation_hold",
+        "fault": null,
+        "physical_dynamics_identified": false,
+        "direct_pose_fallback_used": false
+      },
+      "perception_backend": "strict_rgbd",
+      "simulator_ids_used_for_control": false,
+      "activation_and_one_tick_check": "PASS"
+    },
+    "dataset_collection": {
+      "command": [
+        "collect_v9_dataset.py",
+        "--episodes",
+        "1",
+        "--max-iterations",
+        "2",
+        "--output-dir",
+        "/tmp/rcm_motor_entrypoint_kfqn1ok7/dataset_collection"
+      ],
+      "process_exit_code": 1,
+      "navigation_result": "FAIL",
+      "navigation_reason": "MAX_ITERATIONS",
+      "iterations": 2,
+      "motor_execution": {
+        "backend": "MotorBackend",
+        "tau_s": 0.04,
+        "control_period_s": 0.05,
+        "integration_step_s": 0.002,
+        "speed_limits_A_deg_B_deg_C_mm_per_s": [
+          10.0,
+          10.0,
+          2.0
+        ],
+        "timeout_s": 0.5,
+        "simulation_time_s": 0.05,
+        "control_steps": 1,
+        "robot_ABCE": [
+          12,
+          1465100,
+          893679,
+          0
+        ],
+        "target_robot_ABCE": [
+          12,
+          1465100,
+          893679,
+          0
+        ],
+        "encoder_settled": false,
+        "status": "simulation_hold",
+        "fault": null,
+        "physical_dynamics_identified": false,
+        "direct_pose_fallback_used": false
+      },
+      "perception_backend": "strict_rgbd",
+      "simulator_ids_used_for_control": false,
+      "activation_and_one_tick_check": "PASS",
+      "bounded_dataset_integrity_and_replay": "PASS",
+      "first_motor_interval": {
+        "step_index": 0,
+        "start_time_s": 0.0,
+        "end_time_s": 0.05,
+        "duration_s": 0.05,
+        "integration_steps": 25,
+        "tau_s": 0.04,
+        "requested_task_rad_rad_m": [
+          0.0004363323129985824,
+          -0.0002181661564992912,
+          3.7500000000000005e-06
+        ],
+        "commanded_task_rad_rad_m": [
+          0.0005340707511102649,
+          -0.0002618154815006526,
+          3.5253906140321184e-06
+        ],
+        "requested_robot_ABCE": [
+          14,
+          1464946,
+          893757,
+          0
+        ],
+        "handles_ABCE": [
+          2,
+          -2,
+          3,
+          0
+        ],
+        "quantized_target_robot_ABCE": [
+          17,
+          1464731,
+          893743,
+          0
+        ],
+        "actual_before_robot_ABCE": [
+          0,
+          1466018,
+          893518,
+          0
+        ],
+        "actual_after_robot_ABCE": [
+          12,
+          1465100,
+          893679,
+          0
+        ],
+        "actual_before_task_rad_rad_m": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "actual_after_task_rad_rad_m": [
+          0.0003769911184307752,
+          -0.0001867453168470347,
+          2.5226128393740932e-06
+        ],
+        "actual_velocity_rad_rad_m_per_s": [
+          0.007539822368615503,
+          -0.003734906336940694,
+          5.045225678748186e-05
+        ],
+        "status": "moving",
+        "fault": null
+      },
+      "actual_feedback_differs_from_quantized_command": true
+    }
+  },
+  "motor_regression": {
+    "process_exit_code": 0,
+    "tests": 7,
+    "result": "PASS"
+  },
+  "result": "PASS"
+}

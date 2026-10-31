@@ -46,6 +46,25 @@ python collect_v9_dataset.py --output-dir runs/v9_motor_random --episodes 10 --r
 python run_visual_servo.py --no-viewer --max-iterations 1600 --output-dir runs/v9_motor_servo
 ```
 
+根目录 `config.json` 没有 `motor_execution.enabled=true`，只表示直接构造 `Reference()` 或 `RCMSceneV9()` 时不自动启动电机。正式视觉伺服入口默认选择 `--motion-backend motor`，在创建场景后显式调用 `enable_motor_execution()`；采集入口也在 episode 初始化完成后显式开启。因此，判断正式入口是否使用电机，应检查实际对象和报告中的 `motor_execution.backend`、`control_steps`，不能只看根配置里的自动开启开关。
+
+直接调用 Python API 时，需要显式开启，例如：
+
+```python
+from rcm_scene_v9 import RCMSceneV9
+
+scene = RCMSceneV9()
+try:
+    scene.enable_motor_execution()
+    # q 的单位为 rad、rad、m；以下调用推进一个 50 ms 电机控制周期。
+    scene.set_task([0.01, -0.005, 0.0005], motor_dt=0.05)
+    print(scene.motor_execution.summary())
+finally:
+    scene.close()
+```
+
+也可以向构造器传入含 `motor_execution.enabled=true` 的独立配置，使用自动开启方式；两种方式选择一种，重复开启会报错。全局修改根配置还会影响运动学研究入口，其中的规划探测及测试不能据此自动迁移到电机执行。
+
 复现旧研究时显式选择 `--control-backend legacy --motion-backend kinematic`。原 RRT/PRM、多目标规划器与随机数据集研究入口仍保留其运动学语义；它们会拒绝打开电机执行的配置，避免把规划用位姿探测误作真实动作。当前新增采集入口验证的是独立单目标 episode，尚未验证这些规划器的电机执行版本。
 
 ## 文件与时间对应
