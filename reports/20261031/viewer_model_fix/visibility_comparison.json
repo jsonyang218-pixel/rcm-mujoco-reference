@@ -1,0 +1,253 @@
+{
+  "scope": "Display-only visibility comparison; no physical geometry, pose, calibration, sensor visibility or needle dimensions changed. Before restores only photo display geoms to their former group 1.",
+  "source_commit_before_uncommitted_fix": "53953f5b0d45d94602caa35861b9cf1698501907",
+  "working_tree_fix": "v9_front_tool.py photo display groups 1 -> 0; not committed when rendered",
+  "v9_front_tool_sha256": "8d795d5165f0c2f2ba2fa770a85f5f3b3c4c77c0a1aa154f82df85af389d74de",
+  "photo_geom_count": 63,
+  "photo_geom_names": [
+    "side_lower_skirt",
+    "side_base_port_0_rim",
+    "side_base_port_0_socket",
+    "side_base_port_1_rim",
+    "side_base_port_1_socket",
+    "side_base_port_2_rim",
+    "side_base_port_2_socket",
+    "side_base_warning",
+    "side_base_warning_bolt_0",
+    "side_base_warning_bolt_1",
+    "side_base_warning_bolt_2",
+    "tool_taper",
+    "tool_hex_nut",
+    "tool_luer_neck",
+    "tool_luer_collar",
+    "tool_collar_rib_0",
+    "tool_collar_rib_1",
+    "tool_collar_rib_2",
+    "tool_collar_rib_3",
+    "tool_collar_rib_4",
+    "tool_collar_rib_5",
+    "tool_metal_sleeve",
+    "tool_sleeve_top",
+    "tool_white_socket",
+    "scan_C",
+    "tool_guide_rail_-1",
+    "tool_guide_rail_1",
+    "tool_bottom_bridge",
+    "tool_clip_post_-1",
+    "tool_clip_end_-1",
+    "tool_clip_post_1",
+    "tool_clip_end_1",
+    "tool_clear_clip",
+    "tool_clip_screw_0",
+    "tool_clip_screw_1",
+    "tool_clip_rim_0",
+    "tool_clip_rim_1",
+    "tool_clip_rim_2",
+    "side_cover_etch_0",
+    "side_cover_etch_1",
+    "side_cover_etch_2",
+    "side_cover_etch_3",
+    "side_cover_etch_4",
+    "side_cover_etch_5",
+    "side_cover_etch_6",
+    "side_cover_etch_7",
+    "side_cover_etch_8",
+    "side_cover_etch_9",
+    "side_cover_etch_10",
+    "side_cover_etch_11",
+    "side_cover_etch_12",
+    "side_cover_etch_13",
+    "side_cover_etch_14",
+    "side_cover_etch_15",
+    "side_cover_etch_16",
+    "side_cover_etch_17",
+    "side_cover_etch_18",
+    "side_cover_etch_19",
+    "side_cover_etch_20",
+    "side_cover_etch_21",
+    "side_cover_etch_22",
+    "side_cover_fastener_0",
+    "side_cover_fastener_1"
+  ],
+  "viewer_geom_groups": [
+    1,
+    0,
+    1,
+    1,
+    1,
+    1
+  ],
+  "site_groups": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "camera_parameters": {
+    "full": {
+      "width": 900,
+      "height": 1000,
+      "position_world_m": [
+        0.9506298742516437,
+        -0.007864837810029595,
+        0.9072354335771644
+      ],
+      "right_world": [
+        -6.780694152089137e-16,
+        0.9999999999999988,
+        -1.6509963160754845e-13
+      ],
+      "up_world": [
+        -0.5735764363514837,
+        1.3485277610385762e-13,
+        0.8191520442886838
+      ],
+      "vertical_span_m": 0.3325471840268563,
+      "projection": "orthographic",
+      "view_direction": "along tool-local +X toward -X at home; world camera fixed across all panels"
+    },
+    "front": {
+      "width": 800,
+      "height": 1000,
+      "position_world_m": [
+        0.9829539267396126,
+        -0.02649700205558054,
+        0.8610719024466995
+      ],
+      "right_world": [
+        -6.780694152089137e-16,
+        0.9999999999999988,
+        -1.6509963160754845e-13
+      ],
+      "up_world": [
+        -0.5735764363514837,
+        1.3485277610385762e-13,
+        0.8191520442886838
+      ],
+      "vertical_span_m": 0.18675479399380984,
+      "projection": "orthographic",
+      "view_direction": "along tool-local +X toward -X at home; world camera fixed across all panels"
+    }
+  },
+  "poses": {
+    "home": {
+      "A_deg_B_deg_C_mm": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "qpos_sha256": "a2efe11410b02498910fde3d6bcd366e7365760481a42b6b08a601cbd5856265",
+      "views": {
+        "full": {
+          "before": {
+            "photo_pixels": 0,
+            "white_case_pixels": 0,
+            "metal_sleeve_pixels": 0,
+            "photo_geom_group": 1,
+            "qpos_sha256": "a2efe11410b02498910fde3d6bcd366e7365760481a42b6b08a601cbd5856265",
+            "rgb_sha256": "3598c87e48d54057baa868325cab3ea5d29c602d038f8d8e36c5ade1e37d98a4",
+            "raw_png": "full_home_before.png"
+          },
+          "after": {
+            "photo_pixels": 157970,
+            "white_case_pixels": 11596,
+            "metal_sleeve_pixels": 1421,
+            "photo_geom_group": 0,
+            "qpos_sha256": "a2efe11410b02498910fde3d6bcd366e7365760481a42b6b08a601cbd5856265",
+            "rgb_sha256": "e812ac4e2c07a6e9b5e58e0e36de49434aca261d674b686b4b3c34c478fa81be",
+            "raw_png": "full_home_after.png"
+          },
+          "same_qpos_before_after": true
+        },
+        "front": {
+          "before": {
+            "photo_pixels": 0,
+            "white_case_pixels": 0,
+            "metal_sleeve_pixels": 0,
+            "photo_geom_group": 1,
+            "qpos_sha256": "a2efe11410b02498910fde3d6bcd366e7365760481a42b6b08a601cbd5856265",
+            "rgb_sha256": "363bc5d7b3db8ca66da2256c11a94834622f80863ed157dfd21a532ada01b85a",
+            "raw_png": "front_home_before.png"
+          },
+          "after": {
+            "photo_pixels": 380996,
+            "white_case_pixels": 36769,
+            "metal_sleeve_pixels": 4437,
+            "photo_geom_group": 0,
+            "qpos_sha256": "a2efe11410b02498910fde3d6bcd366e7365760481a42b6b08a601cbd5856265",
+            "rgb_sha256": "a03876724418524c263df1f352099ff7d4c13c2a9c2f7af2f4d5957363a42d57",
+            "raw_png": "front_home_after.png"
+          },
+          "same_qpos_before_after": true
+        }
+      }
+    },
+    "screenshot_pose": {
+      "A_deg_B_deg_C_mm": [
+        4.97,
+        -7.22,
+        19.29
+      ],
+      "qpos_sha256": "48518964f78706ce97031e222af95bc2c7aa0662486f5b1465ea00657eda0fb5",
+      "views": {
+        "full": {
+          "before": {
+            "photo_pixels": 0,
+            "white_case_pixels": 0,
+            "metal_sleeve_pixels": 0,
+            "photo_geom_group": 1,
+            "qpos_sha256": "48518964f78706ce97031e222af95bc2c7aa0662486f5b1465ea00657eda0fb5",
+            "rgb_sha256": "6338b1e45b57b68dd583c4a39466d49c8d29769a52ad4619083af32fabb545d8",
+            "raw_png": "full_screenshot_pose_before.png"
+          },
+          "after": {
+            "photo_pixels": 170841,
+            "white_case_pixels": 21850,
+            "metal_sleeve_pixels": 1446,
+            "photo_geom_group": 0,
+            "qpos_sha256": "48518964f78706ce97031e222af95bc2c7aa0662486f5b1465ea00657eda0fb5",
+            "rgb_sha256": "af4dc991603e8410de4dd8fa58930de01b086a5715cb075af8d07afea3603d53",
+            "raw_png": "full_screenshot_pose_after.png"
+          },
+          "same_qpos_before_after": true
+        },
+        "front": {
+          "before": {
+            "photo_pixels": 0,
+            "white_case_pixels": 0,
+            "metal_sleeve_pixels": 0,
+            "photo_geom_group": 1,
+            "qpos_sha256": "48518964f78706ce97031e222af95bc2c7aa0662486f5b1465ea00657eda0fb5",
+            "rgb_sha256": "b8c6a319e6319c5df97886e25abcbff3a1cb8dff255be96e8cd6db148f8f648d",
+            "raw_png": "front_screenshot_pose_before.png"
+          },
+          "after": {
+            "photo_pixels": 407749,
+            "white_case_pixels": 69349,
+            "metal_sleeve_pixels": 4593,
+            "photo_geom_group": 0,
+            "qpos_sha256": "48518964f78706ce97031e222af95bc2c7aa0662486f5b1465ea00657eda0fb5",
+            "rgb_sha256": "0a57d217a10c9dadd062678af5ad75f605572ccbe3cf4eec18f3f2c7164ec34d",
+            "raw_png": "front_screenshot_pose_after.png"
+          },
+          "same_qpos_before_after": true
+        }
+      }
+    }
+  },
+  "result": "PASS",
+  "comparison_invariants": {
+    "same_model_instance_before_after": true,
+    "only_mutated_model_array": "geom_group for the named 63 photo display geoms",
+    "same_geometry_materials_lights": true,
+    "same_camera_parameters_before_after": true,
+    "physical_needle_size_enlargement": false,
+    "same_viewer_filter_before_after": true
+  },
+  "composite_images": [
+    "full_before_after.png",
+    "front_before_after.png"
+  ]
+}

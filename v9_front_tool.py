@@ -10,6 +10,11 @@ from pathlib import Path
 import xml.etree.ElementTree as ET
 
 
+# Group 0 holds robot display geometry. Group 1 holds the environment and
+# linkage aids hidden by the v9 viewer. Optical measurements exclude both.
+ROBOT_DISPLAY_GROUP = "0"
+
+
 def rebuild_front_tool(root, body, shaft_base, case_center_xy):
     profile = json.loads(Path(__file__).with_name("v9_side_profile.json").read_text())
     asset = root.find("asset")
@@ -20,7 +25,7 @@ def rebuild_front_tool(root, body, shaft_base, case_center_xy):
 
     def geom(name, kind, material, **attributes):
         return ET.SubElement(body, "geom", name=name, type=kind,
-                             material=material, group="1", **attributes)
+                             material=material, group=ROBOT_DISPLAY_GROUP, **attributes)
 
     def cylinder(name, z0, z1, radius, material, x=0, y=0):
         geom(name, "cylinder", material,
@@ -102,7 +107,7 @@ def add_side_cover_details(root):
     quat = np.empty(4); mujoco.mju_mat2Quat(quat, rotation.ravel())
     panel = ET.SubElement(parent, "body", name="photo_cover_side_panel")
     def geom(name, kind, material, **kw):
-        ET.SubElement(panel, "geom", name=name, type=kind, group="1", material=material, **kw)
+        ET.SubElement(panel, "geom", name=name, type=kind, group=ROBOT_DISPLAY_GROUP, material=material, **kw)
     for k, endpoints in enumerate(profile["cover_etch_endpoints_local_m"]):
         geom(f"side_cover_etch_{k}", "capsule", "tool_etch",
              fromto=" ".join(map(str, endpoints[0]+endpoints[1])), size=".00023")
@@ -113,7 +118,7 @@ def add_side_cover_details(root):
     ET.SubElement(asset,"mesh",name="photo_lower_skirt_mesh",file=profile["base_skirt_mesh"])
     base = root.find(".//body[@name='A_stage']")
     ET.SubElement(base,"geom",name="side_lower_skirt",type="mesh",mesh="photo_lower_skirt_mesh",
-                  material="tool_base_gray",group="1")
+                  material="tool_base_gray",group=ROBOT_DISPLAY_GROUP)
     normal = np.asarray(profile["base_front_normal_local"])
     for k, position in enumerate(profile["base_ports_local_m"]):
         p = np.asarray(position)
@@ -121,14 +126,14 @@ def add_side_cover_details(root):
                                                 ("socket",.0045,"tool_fastener",.004)):
             endpoints = np.r_[p-normal*.002,p+normal*depth]
             ET.SubElement(base,"geom",name=f"side_base_port_{k}_{suffix}",type="cylinder",
-                          fromto=" ".join(map(str,endpoints)),size=str(radius),material=material,group="1")
+                          fromto=" ".join(map(str,endpoints)),size=str(radius),material=material,group=ROBOT_DISPLAY_GROUP)
     tri = np.asarray(profile["base_warning_triangle_local"])
     vertices = np.vstack([tri,tri.mean(axis=0)-normal*.0001])
     ET.SubElement(asset,"mesh",name="photo_base_warning_mesh",
                   vertex=" ".join(str(v) for xyz in vertices for v in xyz),face="0 1 2 0 3 1 1 3 2 2 3 0")
     ET.SubElement(base,"geom",name="side_base_warning",type="mesh",mesh="photo_base_warning_mesh",
-                  rgba=".96 .76 .16 1",group="1")
+                  rgba=".96 .76 .16 1",group=ROBOT_DISPLAY_GROUP)
     bolt = profile["base_warning_bolt_local"]
     for k, (a,b) in enumerate(zip(bolt,bolt[1:])):
         ET.SubElement(base,"geom",name=f"side_base_warning_bolt_{k}",type="capsule",
-                      fromto=" ".join(map(str,a+b)),size=".00055",material="tool_fastener",group="1")
+                      fromto=" ".join(map(str,a+b)),size=".00055",material="tool_fastener",group=ROBOT_DISPLAY_GROUP)

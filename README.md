@@ -35,6 +35,11 @@ python -m mujoco.viewer --mjcf v9_eye_scene.xml
 
 `v9_eye_scene.xml` 使用相对路径 `mujoco_model/assets` 引用扫描网格，不依赖当前机器绝对路径。
 
+完整的照片前端、针座和眼球使用本节的 `v9_eye_scene.xml`，动态视觉伺服使用
+`python run_visual_servo.py --camera overview`。`run_reference.py`/`scene.xml`
+用于基础机械模型检查。视觉伺服窗口将机器人外观放在 group 0，仅隐藏
+group 1 的环境和示意连杆；照片前端随 C 轴运动时保持可见。
+
 眼球场景的前端按实物照片重建为圆角白壳、金属套筒、浅色带筋连接件、六角针座和双段针具。细针长 4 mm、半径 0.03 mm，近端管长 22 mm、半径 0.25 mm；针座及壳体尺寸是照片估计，未实机标定。重建仅替换此注入场景的 C 滑台显示外形，原扫描网格保留。具体说明见 [前端建模说明](V9_FRONT_TOOL.md)。
 
 该眼球场景的扫描外壳采用去毛边、平滑后的 `*_smooth.obj` 显示网格，原扫描及封闭基线保留；小裂隙和碎片经显示重建处理，不作为测量或碰撞几何。

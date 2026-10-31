@@ -35,7 +35,7 @@ def verify():
         name = mujoco.mj_id2name(model,mujoco.mjtObj.mjOBJ_GEOM,i) or ""
         assert not name.startswith("tool_fluid_line_")
         if name.startswith(("side_","tool_")):
-            assert model.geom_group[i] == 1
+            assert model.geom_group[i] == 0
     return {"result":"PASS","closed_case_bracket_and_skirt":True,
             "center_notch_and_shaft_bore_open":True,
             "decorations_attached_and_sensor_excluded":True,

@@ -40,11 +40,11 @@ def verify():
             name = mujoco.mj_id2name(m,mujoco.mjtObj.mjOBJ_GEOM,i) or ""
             assert not name.startswith("tool_fluid_line_")
             if name.startswith("side_cover_"):
-                assert m.geom_group[i] == 1
+                assert m.geom_group[i] == 0
         for g in range(m.ngeom):
             name = mujoco.mj_id2name(m, mujoco.mjtObj.mjOBJ_GEOM, g) or ""
             if name.startswith("tool_"):
-                assert m.geom_group[g] == 1
+                assert m.geom_group[g] == 0
                 assert m.geom_bodyid[g] == mount
         assert mujoco.mj_name2id(m, mujoco.mjtObj.mjOBJ_GEOM, "axis_aid") < 0
         assert np.isclose(m.geom("needle_proximal").size[0], .00025)

@@ -96,33 +96,33 @@
                 <site name="needle_base" pos="0 0 0.022" size=".001" rgba=".1 .7 .8 .5" group="2" />
                 <site name="needle_tip" pos="0 0 -0.004" size=".001" rgba=".1 .7 .8 .5" group="2" />
                 <site name="driver_junction" pos="0 0 0" size=".0004" rgba="0 .9 .3 1" />
-                <geom name="tool_taper" type="mesh" material="tool_steel" group="1" mesh="tool_taper_mesh" />
-                <geom name="tool_hex_nut" type="mesh" material="tool_steel" group="1" mesh="tool_hex_nut_mesh" />
-                <geom name="tool_luer_neck" type="cylinder" material="tool_polymer" group="1" fromto="0 0 0.027999999999999997 0 0 0.03" size="0.0018" />
-                <geom name="tool_luer_collar" type="cylinder" material="tool_polymer" group="1" fromto="0 0 0.03 0 0 0.036" size="0.003" />
-                <geom name="tool_collar_rib_0" type="cylinder" material="tool_polymer" group="1" fromto="0 0 0.03 0 0 0.0303" size="0.00325" />
-                <geom name="tool_collar_rib_1" type="cylinder" material="tool_polymer" group="1" fromto="0 0 0.0309 0 0 0.031200000000000002" size="0.00325" />
-                <geom name="tool_collar_rib_2" type="cylinder" material="tool_polymer" group="1" fromto="0 0 0.0318 0 0 0.032100000000000004" size="0.00325" />
-                <geom name="tool_collar_rib_3" type="cylinder" material="tool_polymer" group="1" fromto="0 0 0.0327 0 0 0.033" size="0.00325" />
-                <geom name="tool_collar_rib_4" type="cylinder" material="tool_polymer" group="1" fromto="0 0 0.0336 0 0 0.0339" size="0.00325" />
-                <geom name="tool_collar_rib_5" type="cylinder" material="tool_polymer" group="1" fromto="0 0 0.034499999999999996 0 0 0.0348" size="0.00325" />
-                <geom name="tool_metal_sleeve" type="cylinder" material="tool_steel" group="1" fromto="0 0 0.036 0 0 0.054" size="0.0048" />
-                <geom name="tool_sleeve_top" type="cylinder" material="tool_steel" group="1" fromto="0 0 0.053 0 0 0.056" size="0.0052" />
-                <geom name="tool_white_socket" type="cylinder" material="tool_case" group="1" fromto="0 0 0.056 0 0 0.076" size="0.0058" />
-                <geom name="scan_C" type="mesh" material="tool_case" group="1" mesh="photo_tool_case_mesh" pos="0.0 0.0 0.062" />
-                <geom name="tool_guide_rail_-1" type="cylinder" material="tool_steel" group="1" fromto="-0.006 -0.02 0.053 -0.006 -0.02 0.069" size="0.0018" />
-                <geom name="tool_guide_rail_1" type="cylinder" material="tool_steel" group="1" fromto="-0.006 0.02 0.053 -0.006 0.02 0.069" size="0.0018" />
-                <geom name="tool_bottom_bridge" type="mesh" material="tool_steel" group="1" mesh="photo_tool_bracket_mesh" pos="0 0 0.054" />
-                <geom name="tool_clip_post_-1" type="box" material="tool_clear" group="1" pos="-0.013 -0.033 0.089" size=".0015 .008 .018" />
-                <geom name="tool_clip_end_-1" type="box" material="tool_clear" group="1" pos="0.0 -0.033 0.071" size=".014 .008 .0015" />
-                <geom name="tool_clip_post_1" type="box" material="tool_clear" group="1" pos="0.013 -0.033 0.089" size=".0015 .008 .018" />
-                <geom name="tool_clip_end_1" type="box" material="tool_clear" group="1" pos="0.0 -0.033 0.107" size=".014 .008 .0015" />
-                <geom name="tool_clear_clip" type="box" material="tool_clear" group="1" pos="0.014 -0.033 0.089" size=".0005 .007 .016" rgba=".74 .84 .89 .08" />
-                <geom name="tool_clip_screw_0" type="cylinder" material="tool_fastener" group="1" fromto="0.014 -0.033 0.074 0.017 -0.033 0.074" size=".0023" />
-                <geom name="tool_clip_screw_1" type="cylinder" material="tool_fastener" group="1" fromto="0.014 -0.033 0.10400000000000001 0.017 -0.033 0.10400000000000001" size=".0023" />
-                <geom name="tool_clip_rim_0" type="box" material="tool_clear" group="1" pos="0.012 -0.033 0.074" size=".002 .009 .0012" />
-                <geom name="tool_clip_rim_1" type="box" material="tool_clear" group="1" pos="0.012 -0.033 0.089" size=".002 .009 .0012" />
-                <geom name="tool_clip_rim_2" type="box" material="tool_clear" group="1" pos="0.012 -0.033 0.10400000000000001" size=".002 .009 .0012" />
+                <geom name="tool_taper" type="mesh" material="tool_steel" group="0" mesh="tool_taper_mesh" />
+                <geom name="tool_hex_nut" type="mesh" material="tool_steel" group="0" mesh="tool_hex_nut_mesh" />
+                <geom name="tool_luer_neck" type="cylinder" material="tool_polymer" group="0" fromto="0 0 0.027999999999999997 0 0 0.03" size="0.0018" />
+                <geom name="tool_luer_collar" type="cylinder" material="tool_polymer" group="0" fromto="0 0 0.03 0 0 0.036" size="0.003" />
+                <geom name="tool_collar_rib_0" type="cylinder" material="tool_polymer" group="0" fromto="0 0 0.03 0 0 0.0303" size="0.00325" />
+                <geom name="tool_collar_rib_1" type="cylinder" material="tool_polymer" group="0" fromto="0 0 0.0309 0 0 0.031200000000000002" size="0.00325" />
+                <geom name="tool_collar_rib_2" type="cylinder" material="tool_polymer" group="0" fromto="0 0 0.0318 0 0 0.032100000000000004" size="0.00325" />
+                <geom name="tool_collar_rib_3" type="cylinder" material="tool_polymer" group="0" fromto="0 0 0.0327 0 0 0.033" size="0.00325" />
+                <geom name="tool_collar_rib_4" type="cylinder" material="tool_polymer" group="0" fromto="0 0 0.0336 0 0 0.0339" size="0.00325" />
+                <geom name="tool_collar_rib_5" type="cylinder" material="tool_polymer" group="0" fromto="0 0 0.034499999999999996 0 0 0.0348" size="0.00325" />
+                <geom name="tool_metal_sleeve" type="cylinder" material="tool_steel" group="0" fromto="0 0 0.036 0 0 0.054" size="0.0048" />
+                <geom name="tool_sleeve_top" type="cylinder" material="tool_steel" group="0" fromto="0 0 0.053 0 0 0.056" size="0.0052" />
+                <geom name="tool_white_socket" type="cylinder" material="tool_case" group="0" fromto="0 0 0.056 0 0 0.076" size="0.0058" />
+                <geom name="scan_C" type="mesh" material="tool_case" group="0" mesh="photo_tool_case_mesh" pos="0.0 0.0 0.062" />
+                <geom name="tool_guide_rail_-1" type="cylinder" material="tool_steel" group="0" fromto="-0.006 -0.02 0.053 -0.006 -0.02 0.069" size="0.0018" />
+                <geom name="tool_guide_rail_1" type="cylinder" material="tool_steel" group="0" fromto="-0.006 0.02 0.053 -0.006 0.02 0.069" size="0.0018" />
+                <geom name="tool_bottom_bridge" type="mesh" material="tool_steel" group="0" mesh="photo_tool_bracket_mesh" pos="0 0 0.054" />
+                <geom name="tool_clip_post_-1" type="box" material="tool_clear" group="0" pos="-0.013 -0.033 0.089" size=".0015 .008 .018" />
+                <geom name="tool_clip_end_-1" type="box" material="tool_clear" group="0" pos="0.0 -0.033 0.071" size=".014 .008 .0015" />
+                <geom name="tool_clip_post_1" type="box" material="tool_clear" group="0" pos="0.013 -0.033 0.089" size=".0015 .008 .018" />
+                <geom name="tool_clip_end_1" type="box" material="tool_clear" group="0" pos="0.0 -0.033 0.107" size=".014 .008 .0015" />
+                <geom name="tool_clear_clip" type="box" material="tool_clear" group="0" pos="0.014 -0.033 0.089" size=".0005 .007 .016" rgba=".74 .84 .89 .08" />
+                <geom name="tool_clip_screw_0" type="cylinder" material="tool_fastener" group="0" fromto="0.014 -0.033 0.074 0.017 -0.033 0.074" size=".0023" />
+                <geom name="tool_clip_screw_1" type="cylinder" material="tool_fastener" group="0" fromto="0.014 -0.033 0.10400000000000001 0.017 -0.033 0.10400000000000001" size=".0023" />
+                <geom name="tool_clip_rim_0" type="box" material="tool_clear" group="0" pos="0.012 -0.033 0.074" size=".002 .009 .0012" />
+                <geom name="tool_clip_rim_1" type="box" material="tool_clear" group="0" pos="0.012 -0.033 0.089" size=".002 .009 .0012" />
+                <geom name="tool_clip_rim_2" type="box" material="tool_clear" group="0" pos="0.012 -0.033 0.10400000000000001" size=".002 .009 .0012" />
                 <geom name="needle_distal_tip" type="mesh" mesh="needle_distal_tip_mesh" pos="0 0 -0.0025" material="needle" group="3" />
                 <geom name="needle_display_proximal" type="cylinder" fromto="0 0 0.022 0 0 0" size="0.00025" group="2" material="needle_proximal_metal" />
                 <geom name="needle_display_distal" type="cylinder" fromto="0 0 0 0 0 -0.0025" size="3e-05" group="2" material="needle" />
@@ -151,48 +151,48 @@
             </body>
           </body>
           <geom name="scan_fixed_housing" type="mesh" mesh="fixed_housing" rgba=".84 .86 .89 1" material="mat_scan_fixed_housing" pos="-0.456107852413651 -0.0712318300122861 -0.125" />
-          <geom name="side_lower_skirt" type="mesh" mesh="photo_lower_skirt_mesh" material="tool_base_gray" group="1" />
-          <geom name="side_base_port_0_rim" type="cylinder" fromto="-0.2635375257809243 -0.14401625105561525 0.03458034058218238 -0.2624110959863727 -0.1487951398159338 0.033635153757027025" size="0.006" material="tool_steel" group="1" />
-          <geom name="side_base_port_0_socket" type="cylinder" fromto="-0.2635375257809243 -0.14401625105561525 0.03458034058218238 -0.2621858100274624 -0.14975091756799752 0.03344611639199596" size="0.0045" material="tool_fastener" group="1" />
-          <geom name="side_base_port_1_rim" type="cylinder" fromto="-0.2380903987793211 -0.13431128326840566 0.015838480279280257 -0.23696396898476949 -0.13909017202872423 0.014893293454124906" size="0.006" material="tool_steel" group="1" />
-          <geom name="side_base_port_1_socket" type="cylinder" fromto="-0.2380903987793211 -0.13431128326840566 0.015838480279280257 -0.23673868302585918 -0.14004594978078794 0.014704256089093837" size="0.0045" material="tool_fastener" group="1" />
-          <geom name="side_base_port_2_rim" type="cylinder" fromto="-0.21264327177771783 -0.12460631548119606 -0.002903380023621863 -0.21151684198316623 -0.12938520424151465 -0.003848566848777213" size="0.006" material="tool_steel" group="1" />
-          <geom name="side_base_port_2_socket" type="cylinder" fromto="-0.21264327177771783 -0.12460631548119606 -0.002903380023621863 -0.21129155602425592 -0.13034098199357835 -0.004037604213808283" size="0.0045" material="tool_fastener" group="1" />
-          <geom name="side_base_warning" type="mesh" mesh="photo_base_warning_mesh" rgba=".96 .76 .16 1" group="1" />
-          <geom name="side_base_warning_bolt_0" type="capsule" fromto="-0.1614251036713938 -0.1145484049024277 -0.005412900021913663 -0.16821050227281364 -0.11572476463421068 -0.007551718294065099" size=".00055" material="tool_fastener" group="1" />
-          <geom name="side_base_warning_bolt_1" type="capsule" fromto="-0.16821050227281364 -0.11572476463421068 -0.007551718294065099 -0.16454966109368788 -0.11425431496948195 -0.010623528777268154" size=".00055" material="tool_fastener" group="1" />
-          <geom name="side_base_warning_bolt_2" type="capsule" fromto="-0.16454966109368788 -0.11425431496948195 -0.010623528777268154 -0.16996010384959603 -0.11513658476831919 -0.012610664702941218" size=".00055" material="tool_fastener" group="1" />
+          <geom name="side_lower_skirt" type="mesh" mesh="photo_lower_skirt_mesh" material="tool_base_gray" group="0" />
+          <geom name="side_base_port_0_rim" type="cylinder" fromto="-0.2635375257809243 -0.14401625105561525 0.03458034058218238 -0.2624110959863727 -0.1487951398159338 0.033635153757027025" size="0.006" material="tool_steel" group="0" />
+          <geom name="side_base_port_0_socket" type="cylinder" fromto="-0.2635375257809243 -0.14401625105561525 0.03458034058218238 -0.2621858100274624 -0.14975091756799752 0.03344611639199596" size="0.0045" material="tool_fastener" group="0" />
+          <geom name="side_base_port_1_rim" type="cylinder" fromto="-0.2380903987793211 -0.13431128326840566 0.015838480279280257 -0.23696396898476949 -0.13909017202872423 0.014893293454124906" size="0.006" material="tool_steel" group="0" />
+          <geom name="side_base_port_1_socket" type="cylinder" fromto="-0.2380903987793211 -0.13431128326840566 0.015838480279280257 -0.23673868302585918 -0.14004594978078794 0.014704256089093837" size="0.0045" material="tool_fastener" group="0" />
+          <geom name="side_base_port_2_rim" type="cylinder" fromto="-0.21264327177771783 -0.12460631548119606 -0.002903380023621863 -0.21151684198316623 -0.12938520424151465 -0.003848566848777213" size="0.006" material="tool_steel" group="0" />
+          <geom name="side_base_port_2_socket" type="cylinder" fromto="-0.21264327177771783 -0.12460631548119606 -0.002903380023621863 -0.21129155602425592 -0.13034098199357835 -0.004037604213808283" size="0.0045" material="tool_fastener" group="0" />
+          <geom name="side_base_warning" type="mesh" mesh="photo_base_warning_mesh" rgba=".96 .76 .16 1" group="0" />
+          <geom name="side_base_warning_bolt_0" type="capsule" fromto="-0.1614251036713938 -0.1145484049024277 -0.005412900021913663 -0.16821050227281364 -0.11572476463421068 -0.007551718294065099" size=".00055" material="tool_fastener" group="0" />
+          <geom name="side_base_warning_bolt_1" type="capsule" fromto="-0.16821050227281364 -0.11572476463421068 -0.007551718294065099 -0.16454966109368788 -0.11425431496948195 -0.010623528777268154" size=".00055" material="tool_fastener" group="0" />
+          <geom name="side_base_warning_bolt_2" type="capsule" fromto="-0.16454966109368788 -0.11425431496948195 -0.010623528777268154 -0.16996010384959603 -0.11513658476831919 -0.012610664702941218" size=".00055" material="tool_fastener" group="0" />
         </body>
         <body name="silver_linear_stage" pos="0.266 0.07 0.325">
           <inertial pos="0 0 0" mass=".01" diaginertia=".0001 .0001 .0001" />
           <joint name="silver_B_linear" type="slide" axis="0.0 0.0 1.0" range="-0.01947361534740153 0.055739872656448176" damping="1" armature=".001" />
           <geom name="scan_parallel_cover" type="mesh" mesh="parallel_cover" rgba=".59 .64 .69 1" material="mat_scan_parallel_cover" />
           <body name="photo_cover_side_panel">
-            <geom name="side_cover_etch_0" type="capsule" group="1" material="tool_etch" fromto="0.06851617955823712 -0.0985104609683591 -0.03003921399769518 0.07289815526721978 -0.09863228001961823 -0.024900641430958218" size=".00023" />
-            <geom name="side_cover_etch_1" type="capsule" group="1" material="tool_etch" fromto="0.07204231703837044 -0.09756729462776328 -0.030940357408272123 0.07437046454619899 -0.09760276226900155 -0.028192982637935116" size=".00023" />
-            <geom name="side_cover_etch_2" type="capsule" group="1" material="tool_etch" fromto="0.07302603965668383 -0.09651860848009815 -0.03480235226940078 0.07837293335115089 -0.0966381675348283 -0.02851511152608906" size=".00023" />
-            <geom name="side_cover_etch_3" type="capsule" group="1" material="tool_etch" fromto="0.0768130333054453 -0.0956079057904949 -0.035412462960397184 0.07961224691852882 -0.09566847614915698 -0.03211976582157776" size=".00023" />
-            <geom name="side_cover_etch_4" type="capsule" group="1" material="tool_etch" fromto="0.07753702703202993 -0.0945304901876873 -0.03956635157753102 0.083857681502238 -0.09467708170340024 -0.03213719695599867" size=".00023" />
-            <geom name="side_cover_etch_5" type="capsule" group="1" material="tool_etch" fromto="0.08156085975301233 -0.09357269257586061 -0.0398670848149854 0.08483275395985652 -0.09366371377562505 -0.03603029848598365" size=".00023" />
-            <geom name="side_cover_etch_6" type="capsule" group="1" material="tool_etch" fromto="0.08203986523350319 -0.0925153770981028 -0.04432412638524005 0.08934012518086214 -0.09270836212066176 -0.03575752218419455" size=".00023" />
-            <geom name="side_cover_etch_7" type="capsule" group="1" material="tool_etch" fromto="0.08632835710595547 -0.09160264082533733 -0.04433673169673708 0.09003520866074045 -0.09159915156515348 -0.03992704241518159" size=".00023" />
-            <geom name="side_cover_etch_8" type="capsule" group="1" material="tool_etch" fromto="0.08655234375404043 -0.09053219834467087 -0.04908926465960356 0.09481959723615505 -0.09072979879543422 -0.03937557762762873" size=".00023" />
-            <geom name="side_cover_etch_9" type="capsule" group="1" material="tool_etch" fromto="0.09107334780915166 -0.08955803397825368 -0.048789187553605014 0.0952500012441612 -0.08957545958788964 -0.043833210263447366" size=".00023" />
-            <geom name="side_cover_etch_10" type="capsule" group="1" material="tool_etch" fromto="0.0910489001036139 -0.0884962761128892 -0.053842241264401916 0.10027065957144156 -0.08865712597625075 -0.04297193316418823" size=".00023" />
-            <geom name="side_cover_etch_11" type="capsule" group="1" material="tool_etch" fromto="0.09582639555515467 -0.0875401167367403 -0.05324779753936102 0.10048759679345803 -0.08762730427831593 -0.04775679546872568" size=".00023" />
-            <geom name="side_cover_etch_12" type="capsule" group="1" material="tool_etch" fromto="0.09604847744345378 -0.08652733716172403 -0.058036589441909626 0.10523896543266656 -0.08658459772441533 -0.04714239556691097" size=".00023" />
-            <geom name="side_cover_etch_13" type="capsule" group="1" material="tool_etch" fromto="0.10102916486180155 -0.0854765966832889 -0.057144781770672344 0.10523515485484476 -0.085591202012765 -0.052211212324633244" size=".00023" />
-            <geom name="side_cover_etch_14" type="capsule" group="1" material="tool_etch" fromto="0.10150175072907705 -0.08446198829424816 -0.06163463374613038 0.10976091771123045 -0.08463280156023631 -0.051914770085309474" size=".00023" />
-            <geom name="side_cover_etch_15" type="capsule" group="1" material="tool_etch" fromto="0.10624490318761916 -0.0834560375541616 -0.06105167199571391 0.10995943723726927 -0.0834779971792154 -0.05664785075590966" size=".00023" />
-            <geom name="side_cover_etch_16" type="capsule" group="1" material="tool_etch" fromto="0.10696273408575632 -0.08242217966037128 -0.0652385671553432 0.11423027931927227 -0.08250679454890623 -0.05664697480785817" size=".00023" />
-            <geom name="side_cover_etch_17" type="capsule" group="1" material="tool_etch" fromto="0.1114573296233023 -0.08142450752125482 -0.06495603253346954 0.11468642483264185 -0.08137375358222605 -0.06108655548242014" size=".00023" />
-            <geom name="side_cover_etch_18" type="capsule" group="1" material="tool_etch" fromto="0.11242245847639476 -0.08037820059971855 -0.06884153894135668 0.11871624351051194 -0.08043578493645097 -0.06139186091231392" size=".00023" />
-            <geom name="side_cover_etch_19" type="capsule" group="1" material="tool_etch" fromto="0.11664914062400833 -0.07932468719358475 -0.06884464659364342 0.11945895517959493 -0.07942037403119119 -0.06556004666468909" size=".00023" />
-            <geom name="side_cover_etch_20" type="capsule" group="1" material="tool_etch" fromto="0.11786921904501584 -0.07829127783073227 -0.07243460870332862 0.12319364670985795 -0.07833641634633973 -0.06613020796158693" size=".00023" />
-            <geom name="side_cover_etch_21" type="capsule" group="1" material="tool_etch" fromto="0.12185882404807051 -0.0772840707129585 -0.07274691196478995 0.12418144460372561 -0.07730122987836367 -0.06999531559890616" size=".00023" />
-            <geom name="side_cover_etch_22" type="capsule" group="1" material="tool_etch" fromto="0.12334514948255147 -0.07630098261040527 -0.07604995898896817 0.1276847824015173 -0.07628253774705092 -0.07087904416049919" size=".00023" />
-            <geom name="side_cover_fastener_0" type="cylinder" group="1" material="tool_fastener" pos="0.06958935352126973 -0.10444612241484204 -0.003015750920685872" quat="0.6155439539029964 0.6920099482126727 0.3590249020971304 -0.11545125405254154" size=".0018 .0005" />
-            <geom name="side_cover_fastener_1" type="cylinder" group="1" material="tool_fastener" pos="0.1500599435871888 -0.07125429018396497 -0.07055621056105374" quat="0.6155439539029964 0.6920099482126727 0.3590249020971304 -0.11545125405254154" size=".0018 .0005" />
+            <geom name="side_cover_etch_0" type="capsule" group="0" material="tool_etch" fromto="0.06851617955823712 -0.0985104609683591 -0.03003921399769518 0.07289815526721978 -0.09863228001961823 -0.024900641430958218" size=".00023" />
+            <geom name="side_cover_etch_1" type="capsule" group="0" material="tool_etch" fromto="0.07204231703837044 -0.09756729462776328 -0.030940357408272123 0.07437046454619899 -0.09760276226900155 -0.028192982637935116" size=".00023" />
+            <geom name="side_cover_etch_2" type="capsule" group="0" material="tool_etch" fromto="0.07302603965668383 -0.09651860848009815 -0.03480235226940078 0.07837293335115089 -0.0966381675348283 -0.02851511152608906" size=".00023" />
+            <geom name="side_cover_etch_3" type="capsule" group="0" material="tool_etch" fromto="0.0768130333054453 -0.0956079057904949 -0.035412462960397184 0.07961224691852882 -0.09566847614915698 -0.03211976582157776" size=".00023" />
+            <geom name="side_cover_etch_4" type="capsule" group="0" material="tool_etch" fromto="0.07753702703202993 -0.0945304901876873 -0.03956635157753102 0.083857681502238 -0.09467708170340024 -0.03213719695599867" size=".00023" />
+            <geom name="side_cover_etch_5" type="capsule" group="0" material="tool_etch" fromto="0.08156085975301233 -0.09357269257586061 -0.0398670848149854 0.08483275395985652 -0.09366371377562505 -0.03603029848598365" size=".00023" />
+            <geom name="side_cover_etch_6" type="capsule" group="0" material="tool_etch" fromto="0.08203986523350319 -0.0925153770981028 -0.04432412638524005 0.08934012518086214 -0.09270836212066176 -0.03575752218419455" size=".00023" />
+            <geom name="side_cover_etch_7" type="capsule" group="0" material="tool_etch" fromto="0.08632835710595547 -0.09160264082533733 -0.04433673169673708 0.09003520866074045 -0.09159915156515348 -0.03992704241518159" size=".00023" />
+            <geom name="side_cover_etch_8" type="capsule" group="0" material="tool_etch" fromto="0.08655234375404043 -0.09053219834467087 -0.04908926465960356 0.09481959723615505 -0.09072979879543422 -0.03937557762762873" size=".00023" />
+            <geom name="side_cover_etch_9" type="capsule" group="0" material="tool_etch" fromto="0.09107334780915166 -0.08955803397825368 -0.048789187553605014 0.0952500012441612 -0.08957545958788964 -0.043833210263447366" size=".00023" />
+            <geom name="side_cover_etch_10" type="capsule" group="0" material="tool_etch" fromto="0.0910489001036139 -0.0884962761128892 -0.053842241264401916 0.10027065957144156 -0.08865712597625075 -0.04297193316418823" size=".00023" />
+            <geom name="side_cover_etch_11" type="capsule" group="0" material="tool_etch" fromto="0.09582639555515467 -0.0875401167367403 -0.05324779753936102 0.10048759679345803 -0.08762730427831593 -0.04775679546872568" size=".00023" />
+            <geom name="side_cover_etch_12" type="capsule" group="0" material="tool_etch" fromto="0.09604847744345378 -0.08652733716172403 -0.058036589441909626 0.10523896543266656 -0.08658459772441533 -0.04714239556691097" size=".00023" />
+            <geom name="side_cover_etch_13" type="capsule" group="0" material="tool_etch" fromto="0.10102916486180155 -0.0854765966832889 -0.057144781770672344 0.10523515485484476 -0.085591202012765 -0.052211212324633244" size=".00023" />
+            <geom name="side_cover_etch_14" type="capsule" group="0" material="tool_etch" fromto="0.10150175072907705 -0.08446198829424816 -0.06163463374613038 0.10976091771123045 -0.08463280156023631 -0.051914770085309474" size=".00023" />
+            <geom name="side_cover_etch_15" type="capsule" group="0" material="tool_etch" fromto="0.10624490318761916 -0.0834560375541616 -0.06105167199571391 0.10995943723726927 -0.0834779971792154 -0.05664785075590966" size=".00023" />
+            <geom name="side_cover_etch_16" type="capsule" group="0" material="tool_etch" fromto="0.10696273408575632 -0.08242217966037128 -0.0652385671553432 0.11423027931927227 -0.08250679454890623 -0.05664697480785817" size=".00023" />
+            <geom name="side_cover_etch_17" type="capsule" group="0" material="tool_etch" fromto="0.1114573296233023 -0.08142450752125482 -0.06495603253346954 0.11468642483264185 -0.08137375358222605 -0.06108655548242014" size=".00023" />
+            <geom name="side_cover_etch_18" type="capsule" group="0" material="tool_etch" fromto="0.11242245847639476 -0.08037820059971855 -0.06884153894135668 0.11871624351051194 -0.08043578493645097 -0.06139186091231392" size=".00023" />
+            <geom name="side_cover_etch_19" type="capsule" group="0" material="tool_etch" fromto="0.11664914062400833 -0.07932468719358475 -0.06884464659364342 0.11945895517959493 -0.07942037403119119 -0.06556004666468909" size=".00023" />
+            <geom name="side_cover_etch_20" type="capsule" group="0" material="tool_etch" fromto="0.11786921904501584 -0.07829127783073227 -0.07243460870332862 0.12319364670985795 -0.07833641634633973 -0.06613020796158693" size=".00023" />
+            <geom name="side_cover_etch_21" type="capsule" group="0" material="tool_etch" fromto="0.12185882404807051 -0.0772840707129585 -0.07274691196478995 0.12418144460372561 -0.07730122987836367 -0.06999531559890616" size=".00023" />
+            <geom name="side_cover_etch_22" type="capsule" group="0" material="tool_etch" fromto="0.12334514948255147 -0.07630098261040527 -0.07604995898896817 0.1276847824015173 -0.07628253774705092 -0.07087904416049919" size=".00023" />
+            <geom name="side_cover_fastener_0" type="cylinder" group="0" material="tool_fastener" pos="0.06958935352126973 -0.10444612241484204 -0.003015750920685872" quat="0.6155439539029964 0.6920099482126727 0.3590249020971304 -0.11545125405254154" size=".0018 .0005" />
+            <geom name="side_cover_fastener_1" type="cylinder" group="0" material="tool_fastener" pos="0.1500599435871888 -0.07125429018396497 -0.07055621056105374" quat="0.6155439539029964 0.6920099482126727 0.3590249020971304 -0.11545125405254154" size=".0018 .0005" />
           </body>
         </body>
       </body>
