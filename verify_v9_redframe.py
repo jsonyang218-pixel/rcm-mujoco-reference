@@ -64,6 +64,8 @@ def verify(baseline):
         m, d = scene.model, scene.data
         guide = m.geom('redframe_guide_plate')
         assert m.body_parentid[int(guide.bodyid[0])] == m.body('distal_orientation').id
+        support = m.geom('redframe_rear_support')
+        assert support.bodyid == guide.bodyid
         for name in ('scan_C', 'tool_clear_clip', 'tool_bottom_bridge', 'redframe_clip_crossbar_0',
                      'redframe_socket_shoulder'):
             assert m.geom(name).bodyid == m.body('needle_mount').id
@@ -87,6 +89,23 @@ def verify(baseline):
         probes = np.array([[x,y,z] for x in (-.021,-.020,-.019)
                            for y in (-.020,0.,.020) for z in (.118,.120,.121)])
         assert cap_mesh.contains(probes).all(), 'The lower plate must join the retained silver guide'
+        mid = m.geom_dataid[support.id]
+        begin = m.mesh_faceadr[mid]
+        support_mesh = trimesh.Trimesh(GeometryBounds(m,d).mesh_vertices(support.id),
+            m.mesh_face[begin:begin+m.mesh_facenum[mid]], process=False)
+        assert support_mesh.is_watertight and support_mesh.is_volume
+        # These are points inside the side-view void reported by the user,
+        # not probes in the already filled upper scan or the thin front plate.
+        side_hits = []
+        for x,z in ((-.045,.065),(-.045,.085),(-.035,.105)):
+            origin = d.xpos[mount] + rotation @ np.array([x,-.2,z])
+            hit = np.full(1,-1,dtype=np.int32)
+            distance = mujoco.mj_ray(m,d,origin,rotation[:,1],
+                np.array([1,0,0,0,0,0],dtype=np.uint8),1,-1,hit)
+            assert hit[0] >= 0 and m.geom(hit[0]).name == 'redframe_rear_support'
+            assert distance > 0
+            side_hits.append({'tool_x_mm':x*1000,'tool_z_mm':z*1000,
+                              'first_hit':m.geom(hit[0]).name})
         minimum_clearance = float('inf')
         samples = 0
         # Actual compiled bounds in the shared B tool frame, across the full
@@ -99,14 +118,16 @@ def verify(baseline):
                 gid = guide.id
                 origin = d.geom_xpos[gid]
                 normal = d.geom_xmat[gid].reshape(3, 3)[:, 0]
-                front = float(guide.size[0])
+                bounds = GeometryBounds(m,d)
+                front = max(bounds.interval(gid,normal)[1],
+                            bounds.interval(support.id,normal)[1])
                 from render_v9_three_views import GeometryBounds
                 bounds = GeometryBounds(m, d)
                 for i in range(m.ngeom):
                     if m.geom_bodyid[i] != m.body('needle_mount').id:
                         continue
                     lo, _ = bounds.interval(i, normal)
-                    gap = lo - float(origin @ normal) - front
+                    gap = lo - front
                     minimum_clearance = min(minimum_clearance, gap)
                     assert gap > .0005, (m.geom(i).name, gap)
                 samples += 1
@@ -119,6 +140,8 @@ def verify(baseline):
                 'case_closed_positive_volume': True,
                 'upper_case_vertices_preserved': True,
                 'upper_plate_connection_internal_probes': len(probes),
+                'rear_support_closed_positive_volume': True,
+                'reported_side_void_first_hit_rays': side_hits,
                 'B_C_full_range_samples': samples,
                 'minimum_backplate_to_C_geometry_clearance_mm': minimum_clearance*1000,
                 'scope': 'Display geometry and geometric clearance only; collisions remain disabled; no hardware calibration'}

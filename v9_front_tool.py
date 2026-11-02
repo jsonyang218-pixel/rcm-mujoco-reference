@@ -148,6 +148,31 @@ def add_side_cover_details(root):
                   pos="-.020 0 .080", size=".002 .038 .042",
                   material="tool_panel_silver", group=ROBOT_DISPLAY_GROUP,
                   contype="0", conaffinity="0", mass="0")
+    # The photo also shows a substantial white carrier behind the silver
+    # guide. A thin front plate alone leaves the entire side silhouette open.
+    # This closed tapered carrier joins the retained cap to the guide's rear
+    # face; it stays behind X=-22 mm, clear of the translating C assembly.
+    outline = np.array([[-.022,.045],[-.042,.045],[-.052,.055],
+                        [-.052,.098],[-.042,.117],[-.022,.119]])
+    area = np.sum(outline[:,0]*np.roll(outline[:,1],-1)
+                  -outline[:,1]*np.roll(outline[:,0],-1))
+    if area < 0:
+        outline = outline[::-1]
+    count = len(outline)
+    vertices = [[x,y,z] for y in (-.024,.024) for x,z in outline]
+    center = outline.mean(axis=0)
+    vertices.extend([[center[0],-.024,center[1]], [center[0],.024,center[1]]])
+    faces = []
+    for a in range(count):
+        b = (a+1)%count
+        faces.extend(((2*count,a,b),(2*count+1,b+count,a+count),
+                      (a,a+count,b+count),(a,b+count,b)))
+    ET.SubElement(root.find('asset'), 'mesh', name='redframe_rear_support_mesh',
+                  vertex=' '.join(str(v) for point in vertices for v in point),
+                  face=' '.join(str(v) for face in faces for v in face))
+    ET.SubElement(guide, 'geom', name='redframe_rear_support', type='mesh',
+                  mesh='redframe_rear_support_mesh', material='tool_case',
+                  group=ROBOT_DISPLAY_GROUP, contype='0', conaffinity='0', mass='0')
     parent = root.find(".//body[@name='silver_linear_stage']")
     rotation = np.asarray(profile["cover_panel_basis_local"])
     quat = np.empty(4); mujoco.mju_mat2Quat(quat, rotation.ravel())

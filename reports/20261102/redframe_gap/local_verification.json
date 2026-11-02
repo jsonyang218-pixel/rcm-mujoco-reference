@@ -1,0 +1,33 @@
+{
+  "result": "PASS",
+  "baseline_commit": "ffd7b15",
+  "outside_allowlist_exactly_unchanged": true,
+  "exported_MJCF_outside_allowlist_exactly_unchanged": true,
+  "unchanged_mesh_assets": 6,
+  "body_mass_inertia_and_frames_unchanged": true,
+  "registration_38mm_not_reapplied": true,
+  "case_closed_positive_volume": true,
+  "upper_case_vertices_preserved": true,
+  "upper_plate_connection_internal_probes": 27,
+  "rear_support_closed_positive_volume": true,
+  "reported_side_void_first_hit_rays": [
+    {
+      "tool_x_mm": -45.0,
+      "tool_z_mm": 65.0,
+      "first_hit": "redframe_rear_support"
+    },
+    {
+      "tool_x_mm": -45.0,
+      "tool_z_mm": 85.0,
+      "first_hit": "redframe_rear_support"
+    },
+    {
+      "tool_x_mm": -35.0,
+      "tool_z_mm": 105.0,
+      "first_hit": "redframe_rear_support"
+    }
+  ],
+  "B_C_full_range_samples": 45,
+  "minimum_backplate_to_C_geometry_clearance_mm": 3.499999999999892,
+  "scope": "Display geometry and geometric clearance only; collisions remain disabled; no hardware calibration"
+}

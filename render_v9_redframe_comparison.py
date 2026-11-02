@@ -17,7 +17,7 @@ from render_v9_three_views import GeometryBounds, camera, font
 ROOT = Path(__file__).resolve().parent
 
 
-def render(baseline, output):
+def render(baseline, output, baseline_label='ffd7b15'):
     output.mkdir(parents=True, exist_ok=True)
     scene = RCMSceneV9()
     try:
@@ -57,10 +57,11 @@ def render(baseline, output):
             image.save(output/(label+'_side_detail.png'))
             images.append(image)
         sheet = Image.new('RGB',(2400,1280),'#10161d');draw=ImageDraw.Draw(sheet)
-        for i, (image, title) in enumerate(zip(images, ('Before: ffd7b15', 'After: local red-frame geometry'))):
+        for i, (image, title) in enumerate(zip(images, ('Before: '+baseline_label, 'After: local red-frame geometry'))):
             sheet.paste(image,(1200*i,80));draw.text((1200*i+24,20),title,font=font(32),fill='white')
         sheet.save(output/'local_before_after.png')
         metadata.update(scope='Matched world side view; isolated front assembly, unscaled physical needle',
+                        baseline_label=baseline_label,
                         mm_per_pixel=span*1000/1200,
                         baseline_xml_sha256=hashlib.sha256(baseline.read_bytes()).hexdigest())
         (output/'comparison_camera.json').write_text(json.dumps(metadata,indent=2)+'\n')
@@ -72,4 +73,5 @@ if __name__=='__main__':
     p=argparse.ArgumentParser(description=__doc__)
     p.add_argument('--baseline-xml',type=Path,required=True)
     p.add_argument('--output-dir',type=Path,required=True)
-    args=p.parse_args();render(args.baseline_xml,args.output_dir)
+    p.add_argument('--baseline-label',default='ffd7b15')
+    args=p.parse_args();render(args.baseline_xml,args.output_dir,args.baseline_label)
