@@ -228,7 +228,7 @@ def render(output_dir, size=1000):
         mount = scene.model.body('needle_mount').id
         tool_rotation = scene.data.xmat[mount].reshape(3, 3).copy()
         detail_ids = [i for i, name in enumerate(names)
-                      if name == 'scan_C' or name.startswith(('tool_', 'needle_'))]
+                      if name == 'scan_C' or name.startswith(('tool_', 'needle_', 'redframe_'))]
         detail_lower, detail_upper = bounds.bounds(detail_ids, tool_rotation)
         detail_center = tool_rotation @ ((detail_lower + detail_upper) * .5)
         detail_span = float(max((detail_upper - detail_lower)[1:]) * 1.12)

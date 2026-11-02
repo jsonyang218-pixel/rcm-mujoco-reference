@@ -54,7 +54,7 @@ def rebuild_front_tool(root, body, shaft_base, case_center_xy):
 
     def housing(z0, z1):
         assert abs((z1-z0)-profile["case_height_axial_mm"]*.001) < 1e-12
-        ET.SubElement(asset, "mesh", name="photo_tool_case_mesh", file=profile["case_mesh"])
+        ET.SubElement(asset, "mesh", name="photo_tool_case_mesh", file="photo_tool_case_redframe.obj")
         geom("scan_C", "mesh", "tool_case", mesh="photo_tool_case_mesh",
              pos=f"{case_x} {case_y} {z0}")
 
@@ -110,12 +110,44 @@ def rebuild_front_tool(root, body, shaft_base, case_center_xy):
     for k, z_offset in enumerate((-.018,0.,.018)):
         geom(f"tool_clip_rim_{k}", "box", "tool_clear", pos=f"{case_x+.012} {clip_y} {clip_center+z_offset}",
              size=".002 .009 .0012")
+    # Local photo correction: connected cross-ribs and recessed screw seats.
+    # Existing clamp envelope, case origin and C-axis attachment stay fixed.
+    for k, offset in enumerate((-.018, 0., .018)):
+        geom(f"redframe_clip_crossbar_{k}", "box", "tool_clear",
+             pos=f"{case_x} {clip_y} {clip_center+offset}",
+             size=".013 .007 .0012")
+    for k, offset in enumerate((-.018, .018)):
+        geom(f"redframe_clip_washer_{k}", "cylinder", "tool_steel",
+             fromto=f"{case_x+.0138} {clip_y} {clip_center+offset} {case_x+.0145} {clip_y} {clip_center+offset}",
+             size=".0032")
+        geom(f"redframe_clip_drive_{k}", "box", "tool_steel",
+             pos=f"{case_x+.0171} {clip_y} {clip_center+offset}",
+             size=".00015 .0014 .0003")
+    # A shoulder joins the already existing socket and sleeve, without
+    # changing either the physical needle or the bored lower bridge.
+    turned("redframe_socket_shoulder", [(z+sleeve_top-.001, .0072),
+           (z+sleeve_top+.003, .008), (z+sleeve_top+.005, .008)], "tool_case")
 
 
 def add_side_cover_details(root):
     import numpy as np
     import mujoco
     profile = json.loads(Path(__file__).with_name("v9_side_profile.json").read_text())
+    # The continuous lower guide belongs to B, not to the C carriage. Reuse
+    # the existing tool rotation without repeating the 38 mm registration.
+    distal = root.find(".//body[@name='distal_orientation']")
+    mount = root.find(".//body[@name='needle_mount']")
+    # Freeze the baseline's previously mesh-inferred inertia. Display-only
+    # edits must not change the existing motor model's mass or COM.
+    ET.SubElement(mount, "inertial", mass="0.16918158442608724",
+                  pos="5.509929404451257e-05 -0.002268894324930635 0.0944369836014369",
+                  quat="0.9693384068802876 -0.24568745914351822 -0.00013293994708336656 0.004550570662979622",
+                  diaginertia="0.00018875819361581007 0.00010917720512166675 0.00010144764619717677")
+    guide = ET.SubElement(distal, "body", name="redframe_B_guide", quat=mount.get("quat"))
+    ET.SubElement(guide, "geom", name="redframe_guide_plate", type="box",
+                  pos="-.020 0 .080", size=".002 .038 .042",
+                  material="tool_panel_silver", group=ROBOT_DISPLAY_GROUP,
+                  contype="0", conaffinity="0", mass="0")
     parent = root.find(".//body[@name='silver_linear_stage']")
     rotation = np.asarray(profile["cover_panel_basis_local"])
     quat = np.empty(4); mujoco.mju_mat2Quat(quat, rotation.ravel())
