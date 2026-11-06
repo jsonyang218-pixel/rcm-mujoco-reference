@@ -5,3 +5,6 @@ reports/20261030/v9_zero_to_target/visual_servo.csv whitespace=cr-at-eol
 # Keep scan provenance and pinned driver SHA-256 stable across platforms.
 mujoco_model/** -text whitespace=-blank-at-eof,cr-at-eol
 simulation_driver/** -text
+
+# Preserve byte-exact frozen checkpoints, logs, and evaluation evidence.
+outputs/** -text
