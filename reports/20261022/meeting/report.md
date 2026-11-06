@@ -1,5 +1,7 @@
 # 2026-10-23 组会：多目标严格视觉控制与实体遮挡
 
+> 历史记录：旧运行产物已清理，源码与复现配置仍保留。图表、日志和当时数据目录请参阅[清理前归档](https://github.com/jsonyang218-pixel/rcm-mujoco-reference/tree/42a0b2855b343d4efced99dee615cfa6a5d2be4c/reports/20261022)，文中本地数据路径不表示当前仍有这些文件。
+
 生成时间：2026-10-22T12:40:36.551544+00:00。记录状态：**完整最终证据**。所有结果数字读取本地最终 JSON/JSONL；本脚本不启动导航、不补写结果。
 
 ## 真实结果与分母
@@ -13,7 +15,7 @@
 
 成功定义：真实终点误差严格小于 20 µm，且该目标 phase report 记录至少 3 帧零命令速度停稳；失败 episode、未运行目标均保留。成功/计划将失败后未尝试目标计入分母；成功/已尝试只描述实际尝试，二者不能互换。结果 FAIL 表示实验结局，不表示材料构建失败。
 
-![True endpoint errors](figures/endpoint_errors.png)
+![True endpoint errors](https://github.com/jsonyang218-pixel/rcm-mujoco-reference/raw/42a0b2855b343d4efced99dee615cfa6a5d2be4c/reports/20261022/meeting/figures/endpoint_errors.png)
 
 真实误差仅用于独立验收。回撤和方向对准的控制误差指各自视觉构造的阶段目标，不能把它解释为到物理标靶的真实误差。
 
@@ -29,7 +31,7 @@
 
 导出帧 visibility：`{"clear": 995, "partial_needle": 151, "full_needle": 0, "not_visible": 0, "unknown": 0}`；控制阶段计数：`{"memory_frame_count": null, "recovery_attempt_count": null, "recovery_success_count": null}`。这些计数不直接等价于成功率。
 
-![Time series](figures/timeline_baseline_three_ep000000.png)
+![Time series](https://github.com/jsonyang218-pixel/rcm-mujoco-reference/raw/42a0b2855b343d4efced99dee615cfa6a5d2be4c/reports/20261022/meeting/figures/timeline_baseline_three_ep000000.png)
 
 
 
@@ -45,7 +47,7 @@
 
 导出帧 visibility：`{"clear": 1061, "partial_needle": 228, "full_needle": 0, "not_visible": 0, "unknown": 0}`；控制阶段计数：`{"memory_frame_count": null, "recovery_attempt_count": null, "recovery_success_count": null}`。这些计数不直接等价于成功率。
 
-![Time series](figures/timeline_strict_three_ep000000.png)
+![Time series](https://github.com/jsonyang218-pixel/rcm-mujoco-reference/raw/42a0b2855b343d4efced99dee615cfa6a5d2be4c/reports/20261022/meeting/figures/timeline_strict_three_ep000000.png)
 
 
 
@@ -63,7 +65,7 @@
 
 导出帧 visibility：`{"clear": 28, "partial_needle": 0, "full_needle": 0, "not_visible": 1, "unknown": 0}`；控制阶段计数：`{"memory_frame_count": null, "recovery_attempt_count": null, "recovery_success_count": null}`。这些计数不直接等价于成功率。
 
-![Time series](figures/timeline_strict_occlusion_stop_ep000000.png)
+![Time series](https://github.com/jsonyang218-pixel/rcm-mujoco-reference/raw/42a0b2855b343d4efced99dee615cfa6a5d2be4c/reports/20261022/meeting/figures/timeline_strict_occlusion_stop_ep000000.png)
 
 
 
@@ -79,19 +81,19 @@
 
 导出帧 visibility：`{"clear": 398, "partial_needle": 228, "full_needle": 0, "not_visible": 43, "unknown": 0}`；控制阶段计数：`{"memory_frame_count": 24, "recovery_attempt_count": 1, "recovery_success_count": 1}`。这些计数不直接等价于成功率。
 
-![Time series](figures/timeline_strict_occlusion_recovery_ep000000.png)
+![Time series](https://github.com/jsonyang218-pixel/rcm-mujoco-reference/raw/42a0b2855b343d4efced99dee615cfa6a5d2be4c/reports/20261022/meeting/figures/timeline_strict_occlusion_recovery_ep000000.png)
 
 
 
 ## 已执行轨迹与协议可比性
 
-![Executed tip path from independent evaluation](figures/executed_strict_path.png)
+![Executed tip path from independent evaluation](https://github.com/jsonyang218-pixel/rcm-mujoco-reference/raw/42a0b2855b343d4efced99dee615cfa6a5d2be4c/reports/20261022/meeting/figures/executed_strict_path.png)
 
 严格三点图取 `visual_servo/trajectory.csv` 的已执行 world XYZ，目标散点取验收报告；这是 independent evaluation 的执行轨迹，不是模型规划路径。展示跨点轴向回撤、转向、接近的实际日志。
 
 混合对照访问顺序为 P3→P2→P1，严格三点为 P1→P2→P3，且控制权限不同。不能把总运动时间差单独归因于严格视觉控制。
 
-[严格三点派生视频预览（若文件已生成）](strict_three_preview.mp4)：20 fps 展示预览；事件与端点的精确时间以原始 JSONL timestamp 为准。预览不替代 raw RGB、state/action 或真实误差验收。
+[严格三点派生视频预览（若文件已生成）](https://github.com/jsonyang218-pixel/rcm-mujoco-reference/blob/42a0b2855b343d4efced99dee615cfa6a5d2be4c/reports/20261022/meeting/strict_three_preview.mp4)：20 fps 展示预览；事件与端点的精确时间以原始 JSONL timestamp 为准。预览不替代 raw RGB、state/action 或真实误差验收。
 
 ## 实体球计划事件
 
@@ -137,7 +139,7 @@ Policy 输入严格为 RGB路径、state、task；action 监督单列保存，ph
 
 ## 原始图像证据
 
-![Raw RGB montage](figures/raw_frame_montage.png)
+![Raw RGB montage](https://github.com/jsonyang218-pixel/rcm-mujoco-reference/raw/42a0b2855b343d4efced99dee615cfa6a5d2be4c/reports/20261022/meeting/figures/raw_frame_montage.png)
 
 截图是控制器所用 raw RGB PNG 的逐字节副本；拼图仅按显示比例缩放，未裁剪、未叠加标注或修改像素。每张原始图、SHA256、帧索引和可见性/控制状态见 rawframes.json。Viewer 的放大针/目标辅助不属于这些 raw 传感器截图。
 

@@ -159,6 +159,9 @@ class Reference:
                 raise ValueError("Enabled limits exclude reported reset after reserves; adjust the explicit reset inclusion policy")
             self.home = self.joint_bounds.mean(axis=1)
         self.set_task(self.home)
+        self.motor_execution = None
+        if self.config.get('motor_execution', {}).get('enabled', False):
+            self.enable_motor_execution()
 
     def _read_limits(self):
         spec = self.config["measured_limits"]
@@ -221,6 +224,10 @@ class Reference:
         return np.array([math.radians(state.phi_deg-self.phi_home), math.radians(state.alpha_deg-self.alpha_home),
                          (state.length_mm-self.tip_reference_mm)*.001])
 
+    def forward_kinematics(self, q):
+        """Analytic needle tip in the shared robot frame (mm)."""
+        return self.nominal.forward(self.state_from_task(q), enforce_limits=False)
+
     def validate_task(self, q):
         q = _vec(q)
         state = self.state_from_task(q)
@@ -232,7 +239,37 @@ class Reference:
             raise ValueError("Requested pose exceeds measured encoder limits (including reserves)")
         return q
 
-    def set_task(self, q):
+    def set_task(self, q, motor_dt=None):
+        motor = getattr(self, 'motor_execution', None)
+        if motor is None:
+            if motor_dt is not None:
+                raise ValueError('Enable motor execution before passing motor_dt')
+            self._apply_task_pose(q)
+            return
+        previous = self.data.qpos.copy()
+        actual = motor.advance(q, motor_dt)
+        self._apply_task_pose(actual)
+        self.data.qvel[:] = (self.data.qpos - previous) / motor.last_record['duration_s']
+        mujoco.mj_forward(self.model, self.data)
+
+    def enable_motor_execution(self, settings=None):
+        if getattr(self, 'motor_execution', None) is not None:
+            raise ValueError('Motor execution is already enabled')
+        from rcm_motor_execution import MotorExecution
+        self.motor_execution = MotorExecution(self, settings or self.config.get('motor_execution'))
+        self._apply_task_pose(self.task_from_encoders(self.motor_execution.backend.robot[:3]))
+
+    def motor_robot(self):
+        if self.motor_execution is None:
+            raise RuntimeError('Motor execution is not enabled')
+        return self.motor_execution.backend.robot
+
+    def reset_motor_time(self, t=0.):
+        if self.motor_execution is None:
+            raise RuntimeError('Motor execution is not enabled')
+        self.motor_execution.reset_clock(t)
+
+    def _apply_task_pose(self, q):
         q = self.validate_task(q)
         for name, value in zip(TASK_JOINTS, q):
             self.data.qpos[self.qaddr[name]] = value
@@ -328,6 +365,7 @@ class Reference:
                     renderer.enable_segmentation_rendering()
                 option = mujoco.MjvOption()
                 option.geomgroup[2] = 0  # viewer-only geometry is never a sensor input
+                option.sitegroup[:] = 0
                 renderer.update_scene(self.data, camera=name, scene_option=option)
                 return np.asarray(renderer.render()).copy()
             finally:

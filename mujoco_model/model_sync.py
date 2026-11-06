@@ -51,10 +51,29 @@ class DriverModel:
         self.joint_bounds['lower_counter_pitch']=self.joint_bounds['upper_counter_pitch']
         cfg,self.silver_axis,self.silver_gain,self.silver_zero,silver_bounds=settings(self.root,self.kin)
         self.joint_bounds['silver_B_linear']=silver_bounds
-        # Build from the uninstalled v6 template so angle edits are idempotent.
-        tree=ET.parse(self.root/'assets/v6_template.xml');root=tree.getroot()
+        # Build from the current uninstalled template so angle edits are idempotent.
+        tree=ET.parse(self.root/'assets/scan_template.xml');root=tree.getroot()
         root.set('model','driver_integrated_'+needle_profile)
         root.find('compiler').set('meshdir',str((self.root/'assets').resolve()))
+        # Separate closed display skins retain the original part frames and
+        # articulation; raw scan meshes remain untouched as source evidence.
+        for name in ('fixed_housing', 'parallel_cover', 'distal_guide', 'C_carriage'):
+            root.find(f"./asset/mesh[@name='{name}']").set('file', f'{name}_enclosed.obj')
+        # Opaque white plastic shell follows A only. Mesh vertices are in the
+        # installation frame; compensate for A_stage's origin at encoder zero.
+        shell = root.find("./worldbody/geom[@name='scan_fixed_housing']")
+        a_body = root.find(".//body[@name='A_stage']")
+        root.find('worldbody').remove(shell)
+        shell.set('pos', ' '.join(map(str, -RCM)))
+        a_body.append(shell)
+        material = root.find("./asset/material[@name='mat_scan_fixed_housing']")
+        material.set('rgba', '.84 .86 .89 1')
+        material.set('specular', '.4')
+        material.set('shininess', '.55')
+        # MuJoCo's default visible geom groups are 0, 1, 2. Keep needle
+        # geometry in its original group while hiding internal visual links.
+        for name in ('guide_link', 'rear_link', 'upper_link', 'lower_link'):
+            root.find(f".//geom[@name='{name}']").set('group', '3')
         axis=self.robot_to_installation@np.array([0,1,0])
         for joint in root.findall('.//joint'):
             name=joint.get('name')

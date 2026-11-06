@@ -1,0 +1,29 @@
+{
+  "video": "v9_zero_to_target_full_test.mp4",
+  "result": "PASS",
+  "reason": "POSITION_ERROR_AND_SETTLED",
+  "fps": 20,
+  "frames": 822,
+  "duration_s": 41.1,
+  "playback_speed": 1.0,
+  "simulation_duration_s": 33.9,
+  "initial_task_A_deg_B_deg_C_mm": [
+    0,
+    0,
+    0
+  ],
+  "initial_error_um": 19749.42315718492,
+  "final_error_um": 6.033234824187607,
+  "iterations": 679,
+  "max_rcm_drift_um": 3.060468795121479e-07,
+  "max_fk_error_um": 0.33931662645800487,
+  "control_feedback": "Current RCMSceneV9 RGB-D geometry; no legacy camera feedback",
+  "recording": "Sensor frames captured during the actual closed-loop run; every fourth step sampled",
+  "display_only": [
+    "Transparent eye shell",
+    "Enlarged tip/target/RCM spheres in side view",
+    "Needle highlight and geometry projection crosshairs",
+    "Fixed camera crop"
+  ],
+  "report": "visual_servo_report.json"
+}

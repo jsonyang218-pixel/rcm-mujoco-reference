@@ -1,5 +1,7 @@
 # 随机眼底目标数据集
 
+> 当前 v9 电机执行与单目标采集见 [MOTOR_DATASET.md](MOTOR_DATASET.md)。本文件记录旧运动学研究；使用 `run_visual_servo.py` 重现时需显式添加 `--control-backend legacy --motion-backend kinematic`。
+
 `random_fundus_dataset.py` 在编译后的眼球后部曲面上生成可复现的随机目标集合。目标位于归一化后部坐标 `z >= 0.9`，并按毫米距离执行最小间隔检查。目标 JSON、曲面验证和每个 episode 的 seed 都会保存。
 
 只生成目标文件：

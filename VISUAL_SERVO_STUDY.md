@@ -1,5 +1,7 @@
 # 视觉伺服使用与研究笔记
 
+> 当前 v9 电机执行与单目标采集见 [MOTOR_DATASET.md](MOTOR_DATASET.md)。本文件记录旧运动学研究；使用 `run_visual_servo.py` 重现时需显式添加 `--control-backend legacy --motion-backend kinematic`。
+
 ## 当前实现补充（2026-10-22）
 
 本节描述当前默认 `geometry` 模式。下方自“2026-10-16 历史研究记录”起保留当时的 `image_depth` 实现、参数和实验，不作为当前默认行为说明；其中旧分辨率、逐目标姿态标定及停止阈值不能直接套用于新模式。

@@ -79,6 +79,43 @@ class MotorBackend:
                 round(self.kin.b_distance_from_alpha(alpha) * self.kin.ENCODER_COUNTS_PER_MM),
                 round(c_mm * self.kin.ENCODER_COUNTS_PER_MM), self.initial_robot[3])
 
+    def command_for_robot_target(self, robot):
+        """Convert absolute robot counts to cumulative handles in this session.
+
+        A/C have protocol gear ratios; B handles encode angular increments,
+        not differences in the nonlinear B encoder coordinate.
+        """
+        robot = self._integers(robot)
+        self._check_robot(robot)
+        if robot[3] != self.initial_robot[3]:
+            raise ValueError('E-axis targets are unsupported')
+        delta = self.kin.virtual_handles_from_robot_encoders(robot, self._anchor_robot)
+        handles = tuple(a + b for a, b in zip(self._anchor_handles, delta))
+        self._integers(handles)
+        self.kin.validate_manual_jog(self._anchor_robot, delta)
+        return self.kin.make_control_message(handles, 'hold')
+
+    def hold(self):
+        """Freeze this offline simulator at its feedback state; not a physical brake."""
+        self.target = self.robot
+        self._native = self._to_native(self.robot)
+        self._target_native = self._native
+        self._anchor_robot = self.robot
+        self._anchor_handles = self.handles
+        self.status = 'simulation_hold'
+        self.history.append({'event': 'simulation_hold', 'time_s': self.now_s,
+                             'robot': self.robot, 'physical_braking_validated': False})
+
+    def reset_clock(self, time_s=0.):
+        """Begin a new clock epoch with a held, reanchored session."""
+        time_s = float(time_s)
+        if not math.isfinite(time_s) or time_s < 0:
+            raise ValueError('Clock origin must be finite and nonnegative')
+        self.hold()
+        self.now_s = time_s
+        self.last_command_s = None
+        self.fault = None
+
     def consume(self, command, now_s):
         now_s = float(now_s)
         if not math.isfinite(now_s) or (self.now_s is not None and now_s < self.now_s - 1e-12):

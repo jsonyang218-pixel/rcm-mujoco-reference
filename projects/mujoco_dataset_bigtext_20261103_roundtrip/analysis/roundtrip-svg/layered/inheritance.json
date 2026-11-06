@@ -1,0 +1,35 @@
+{
+  "masters": [
+    {
+      "file": "master_01_slideMaster1.svg",
+      "partPath": "ppt/slideMasters/slideMaster1.xml",
+      "themePath": "ppt/theme/theme1.xml"
+    }
+  ],
+  "layouts": [
+    {
+      "file": "layout_01_slideLayout7.svg",
+      "partPath": "ppt/slideLayouts/slideLayout7.xml",
+      "master": "master_01_slideMaster1.svg",
+      "parentPartPath": "ppt/slideMasters/slideMaster1.xml",
+      "themePath": "ppt/theme/theme1.xml",
+      "showMasterShapes": true
+    }
+  ],
+  "slides": [
+    {
+      "file": "slide_01.svg",
+      "index": 1,
+      "layout": "layout_01_slideLayout7.svg",
+      "master": "master_01_slideMaster1.svg",
+      "showInheritedShapes": true
+    },
+    {
+      "file": "slide_02.svg",
+      "index": 2,
+      "layout": "layout_01_slideLayout7.svg",
+      "master": "master_01_slideMaster1.svg",
+      "showInheritedShapes": true
+    }
+  ]
+}

@@ -1,0 +1,79 @@
+{
+  "result": "PASS",
+  "tests": 6,
+  "failures": 0,
+  "errors": 0,
+  "scope": "Real compiled front geometry, retained source scan, photo-frame first-hit rays and RCM registration; not navigation or metrological hardware validation",
+  "checks": {
+    "case_depth_width_height_mm": [
+      28.0000008642674,
+      75.99999755620948,
+      71.99999690055844
+    ],
+    "case_to_cap_width_ratio": 0.9437038045362404,
+    "case_upper_overlap_with_rear_guide_mm": 17.000005886549403,
+    "symmetric_rail_spacing_mm": 57.999999999999865,
+    "clear_clip_left_of_center": true,
+    "source_scan_unchanged": true,
+    "retained_original_vertex_max_error_m": 0.0,
+    "derived_guide_closed_positive_volume": true,
+    "guide_minimum_tool_z_mm": 116.99999160487151,
+    "front_case_first_hit_rays": [
+      {
+        "transverse_y_mm": -28.0,
+        "axial_z_mm": 87.00000059086248,
+        "first_hit": "scan_C",
+        "distance_m": 0.2359999995678663
+      },
+      {
+        "transverse_y_mm": 28.0,
+        "axial_z_mm": 87.00000059086248,
+        "first_hit": "scan_C",
+        "distance_m": 0.23599999956786635
+      },
+      {
+        "transverse_y_mm": -28.0,
+        "axial_z_mm": 120.00000059086248,
+        "first_hit": "scan_C",
+        "distance_m": 0.2359999995678663
+      },
+      {
+        "transverse_y_mm": 28.0,
+        "axial_z_mm": 120.00000059086248,
+        "first_hit": "scan_C",
+        "distance_m": 0.23599999956786624
+      },
+      {
+        "transverse_y_mm": 0.0,
+        "axial_z_mm": 122.00000059086247,
+        "first_hit": "scan_C",
+        "distance_m": 0.23599999956786624
+      },
+      {
+        "transverse_y_mm": -20.0,
+        "axial_z_mm": 72.00000059086248,
+        "first_hit": "scan_C",
+        "distance_m": 0.23599999956786627
+      },
+      {
+        "transverse_y_mm": 20.0,
+        "axial_z_mm": 72.00000059086248,
+        "first_hit": "scan_C",
+        "distance_m": 0.23599999956786633
+      }
+    ],
+    "center_notch_ray_first_hit": "tool_white_socket",
+    "center_notch_symmetric_half_width_bound_mm": [
+      11.5,
+      12.5
+    ],
+    "ray_scope": "Display group 0 geometry audit only; not control input",
+    "axial_registration_offset_mm": 38.0,
+    "physical_proximal_distal_lengths_mm": [
+      22.0,
+      4.0
+    ],
+    "sleeve_needle_C_coaxial": true,
+    "sleeve_axis_lateral_error_mm": 1.3093428034928198e-13
+  }
+}

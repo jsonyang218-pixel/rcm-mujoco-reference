@@ -1,0 +1,24 @@
+{
+  "scene": "RCMSceneV9",
+  "execution": "MotorBackend consume/step -> feedback -> qpos",
+  "scope": "Single-target independent episodes; no RRT/PRM/multitarget motor validation or hardware data",
+  "seed": 20261030,
+  "requested_episodes": 1,
+  "random_targets": false,
+  "source_sha256": {
+    "collect_v9_dataset.py": "42ffcd7e94933452b73ee25141c5221cc833456685c32c9a8cfcef05a8c98e37",
+    "rcm_motor_execution.py": "caab5e5fc588c994bfdbb9b60afd65f8b32709b006b8629f5a85fd60c9cc39bb",
+    "rcm_reference.py": "00b3999136d14cc976de16559b21c5d689738402e4ec832176f2e1b08d976f3b",
+    "rcm_scene_v9.py": "b8234d6b02318fe3d41603da269ffc87b46e31e24014121c847fecbf3269471c",
+    "rcm_visual_servo.py": "10db740f76f23da4f0aa3f75ac2741999530f2fee6252ae69bad3da99bf1d8f4",
+    "rcm_visual_geometry.py": "d1250e484fa38c2fe0c9d7e9c6a614747d22348ced2e8845195106dbcc8eded5",
+    "rcm_waypoint_dataset.py": "ad641cc25e0fea10d9f05c15b75d798fbd746722a73c77003b294c5089cb8bfc",
+    "mujoco_model/motor_backend.py": "1bc2a5b79eceda9cc31bfaa49be20986e680784ad15e5ebc35fe629a453302e4",
+    "mujoco_model/model_sync.py": "3fdc6b0f74becb15ceeed1b5d1c2973cd74fbad174fb67dce2852dc0c67ba66d",
+    "v9_eye_scene.xml": "c83ef1a7af9df8ee964fafe5e1196c025aed39de2a338f5c6fe18138ba676a5a",
+    "rcm_strict_rgbd.py": "e392ba8f73b1782f6c229f906730f79bea3a20dd35e602f760d74af3d959c7b2",
+    "rcm_rgb_features.py": "dcf8a569ec05edf44dfa53bb4c65793863938761678a07260a6c09069c347a70"
+  },
+  "motor_parameters_are_identified": false,
+  "clock": "simulation; not realtime acquisition"
+}

@@ -777,6 +777,8 @@ def main():
     if len(targets) < 1:
         parser.error("Provide at least one unordered target point")
     config = json.loads(args.config.read_text(encoding="utf-8"))
+    if config.get('motor_execution', {}).get('enabled', False):
+        parser.error('This research planner uses kinematic pose probes; use collect_v9_dataset.py for current-v9 motor datasets')
     occlusion_handling = config.get("navigation", {}).get("visual_servo", {}).get("occlusion_handling", "stop")
     fixture_enabled = config.get("reference_scene", {}).get("occlusion_fixture", {}).get("enabled", False)
     if fixture_enabled and args.methods != ["visual_servo"]:

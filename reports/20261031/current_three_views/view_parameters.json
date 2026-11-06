@@ -1,0 +1,466 @@
+{
+  "result": "PASS",
+  "scene": "RCMSceneV9",
+  "source_commit": "50c4d59d44da4268ef797ddcdfbdf76c2f841bdd",
+  "source_tree_dirty": true,
+  "source_commit_is_baseline": true,
+  "source_tree_status_porcelain": [
+    " M README.md",
+    " M V9_FRONT_TOOL.md",
+    " M mujoco_model/assets/photo_lower_skirt_side_r3.obj",
+    " M mujoco_model/assets/photo_tool_bracket_side_r3.obj",
+    " M mujoco_model/assets/photo_tool_case_side_r3.obj",
+    " M mujoco_model/build_side_profile.py",
+    " M mujoco_model/fit_v9_tool_mount.py",
+    " M rcm_scene_v9.py",
+    " M v9_eye_scene.xml",
+    " M v9_front_tool.py",
+    " M v9_side_profile.json",
+    " M v9_tool_mount.json",
+    "?? mujoco_model/assets/distal_guide_front_display.obj",
+    "?? mujoco_model/build_v9_front_display.py",
+    "?? mujoco_model/v9_front_display_build.json",
+    "?? render_v9_three_views.py",
+    "?? reports/20261031/current_three_views/",
+    "?? verify_v9_front_registration.py"
+  ],
+  "source_files_sha256": {
+    "render_v9_three_views.py": "5ac289839dd656007dde4f0b88eac99be9329c36a9f0e111df879fa4e3aa290a",
+    "rcm_scene_v9.py": "5a952d2e6ef5a1299ae3f94935e71409f265b00ddc9730a206aa7b2e7af21c0c",
+    "v9_front_tool.py": "91d1c5928aa83de6dd5a4334e2a6558bcb0427a6fb10055fa840704a953d80ef",
+    "v9_alignment.json": "13954376243c1503490d43dfee451aa4498984a948cd51644dfd4dae1e06427d",
+    "v9_tool_mount.json": "6504207f7415780ab73530b25c483b6db2fb0bc27bbec8e39b2ddec000abb5e2",
+    "v9_side_profile.json": "8cc5bf048c883ba7c70630791b6319f263e7a17a85220406aad00e96e10d8f9f",
+    "config.json": "72e42acb575f174baefd36063a637c9d8814782ed13c7ad7e234a3ade53997db"
+  },
+  "mesh_assets_sha256": {
+    "mujoco_model/assets/fixed_housing_smooth.obj": "9e027d677c728a779e5a3abc6b94868414701291fe9728a46f0bf13b7fb6469d",
+    "mujoco_model/assets/parallel_cover_smooth.obj": "045a0567b559bb967f83a6137461fa0a64424ed44e7528e3dbc38b810864546a",
+    "mujoco_model/assets/distal_guide_front_display.obj": "32c30c7f2b5f1c5560462d69d9bae3ef555a9c3a51b8bface5abeac1e1308655",
+    "mujoco_model/assets/C_carriage_enclosed.obj": "b7227ff417afa8a62b7f4a61768ff8d0ab5a47c9842f1ba2f3119d93dfd95c6f",
+    "mujoco_model/assets/photo_tool_case_side_r3.obj": "a5c9ffce69f7414332caf20266a8e56bad78e1687e2bf44afbdf7584bb15b69a",
+    "mujoco_model/assets/photo_tool_bracket_side_r3.obj": "630d61b14f2f9436d4cc86398269835ebbfbc62bb9c9d120a3b667109d78db39",
+    "mujoco_model/assets/photo_lower_skirt_side_r3.obj": "838e6e4206510e4214207de98be2015ed3d0568b52a125ca33f445d81316af1e"
+  },
+  "runtime_xml_sha256": "49ffe3f97ff252a0b82bcc4d3555f4e9bbdc4286c0ce20a51364ca6d7c5b38e9",
+  "task_A_deg_B_deg_C_mm": [
+    0.0,
+    0.0,
+    0.0
+  ],
+  "qpos": [
+    -0.0,
+    0.0,
+    1.3036111035091836e-10,
+    0.0,
+    -0.0,
+    -0.0,
+    0.0
+  ],
+  "whole_robot_geoms_not_rearranged_or_hidden": true,
+  "viewer_geom_groups": [
+    1,
+    0,
+    1,
+    1,
+    1,
+    1
+  ],
+  "hidden_reference_geoms": [
+    "rcm_cross_[0.01, 0, 0]",
+    "rcm_cross_[0, 0.01, 0]"
+  ],
+  "metrology_sites_visible": false,
+  "render_copy_headlight": {
+    "ambient": [
+      0.45,
+      0.45,
+      0.45
+    ],
+    "diffuse": [
+      0.55,
+      0.55,
+      0.55
+    ]
+  },
+  "render_copy_skybox_rgb": [
+    0.04,
+    0.055,
+    0.07
+  ],
+  "visible_geom_count": 82,
+  "visible_geom_names": [
+    "eye_reference",
+    "pupil_ring_0",
+    "pupil_ring_1",
+    "pupil_ring_2",
+    "pupil_ring_3",
+    "lens_visual",
+    "lesion_marker",
+    "lesion_display_marker",
+    "scan_fixed_housing",
+    "side_lower_skirt",
+    "side_base_port_0_rim",
+    "side_base_port_0_socket",
+    "side_base_port_1_rim",
+    "side_base_port_1_socket",
+    "side_base_port_2_rim",
+    "side_base_port_2_socket",
+    "side_base_warning",
+    "side_base_warning_bolt_0",
+    "side_base_warning_bolt_1",
+    "side_base_warning_bolt_2",
+    "scan_distal",
+    "needle_proximal",
+    "needle_distal",
+    "tool_taper",
+    "tool_hex_nut",
+    "tool_luer_neck",
+    "tool_luer_collar",
+    "tool_collar_rib_0",
+    "tool_collar_rib_1",
+    "tool_collar_rib_2",
+    "tool_collar_rib_3",
+    "tool_collar_rib_4",
+    "tool_collar_rib_5",
+    "tool_metal_sleeve",
+    "tool_sleeve_top",
+    "tool_white_socket",
+    "scan_C",
+    "tool_guide_rail_-1",
+    "tool_guide_rail_1",
+    "tool_bottom_bridge",
+    "tool_clip_post_-1",
+    "tool_clip_end_-1",
+    "tool_clip_post_1",
+    "tool_clip_end_1",
+    "tool_clear_clip",
+    "tool_clip_screw_0",
+    "tool_clip_screw_1",
+    "tool_clip_rim_0",
+    "tool_clip_rim_1",
+    "tool_clip_rim_2",
+    "needle_distal_tip",
+    "needle_display_proximal",
+    "needle_display_distal",
+    "needle_display_distal_tip",
+    "needle_tip_marker",
+    "scan_parallel_cover",
+    "side_cover_etch_0",
+    "side_cover_etch_1",
+    "side_cover_etch_2",
+    "side_cover_etch_3",
+    "side_cover_etch_4",
+    "side_cover_etch_5",
+    "side_cover_etch_6",
+    "side_cover_etch_7",
+    "side_cover_etch_8",
+    "side_cover_etch_9",
+    "side_cover_etch_10",
+    "side_cover_etch_11",
+    "side_cover_etch_12",
+    "side_cover_etch_13",
+    "side_cover_etch_14",
+    "side_cover_etch_15",
+    "side_cover_etch_16",
+    "side_cover_etch_17",
+    "side_cover_etch_18",
+    "side_cover_etch_19",
+    "side_cover_etch_20",
+    "side_cover_etch_21",
+    "side_cover_etch_22",
+    "side_cover_fastener_0",
+    "side_cover_fastener_1",
+    "retina_visual"
+  ],
+  "world_aabb_m": {
+    "lower": [
+      -0.05422244938733739,
+      -0.08899999999994938,
+      0.19002243395524024
+    ],
+    "upper": [
+      0.36130473921574613,
+      0.07300000769091232,
+      0.5570208551445166
+    ]
+  },
+  "shared_main_view_span_m": 0.4653904512354536,
+  "shared_main_view_mm_per_pixel": 0.3878253760295447,
+  "main_camera_normals_orthogonal": true,
+  "views": {
+    "front": {
+      "position_world_m": [
+        1.549712498620565,
+        -0.007999996154518532,
+        0.3735216445498784
+      ],
+      "center_world_m": [
+        0.15354114491420437,
+        -0.007999996154518532,
+        0.3735216445498784
+      ],
+      "image_right_world": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "image_up_world": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "view_direction_world": [
+        -1.0,
+        -0.0,
+        -0.0
+      ],
+      "rotation_determinant": 1.0,
+      "orthographic": true,
+      "vertical_span_m": 0.4653904512354536,
+      "image_axes": [
+        "+Y",
+        "+Z"
+      ],
+      "mm_per_pixel": 0.3878253760295447,
+      "framing_margin_px": 126.85094391384244,
+      "all_visible_geometry_inside_frame": true
+    },
+    "side": {
+      "position_world_m": [
+        0.15354114491420437,
+        -1.4041713498608792,
+        0.3735216445498784
+      ],
+      "center_world_m": [
+        0.15354114491420437,
+        -0.007999996154518532,
+        0.3735216445498784
+      ],
+      "image_right_world": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "image_up_world": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "view_direction_world": [
+        -0.0,
+        1.0,
+        -0.0
+      ],
+      "rotation_determinant": 1.0,
+      "orthographic": true,
+      "vertical_span_m": 0.4653904512354536,
+      "image_axes": [
+        "+X",
+        "+Z"
+      ],
+      "mm_per_pixel": 0.3878253760295447,
+      "framing_margin_px": 64.28571428571433,
+      "all_visible_geometry_inside_frame": true
+    },
+    "top": {
+      "position_world_m": [
+        0.15354114491420437,
+        -0.007999996154518532,
+        1.769692998256239
+      ],
+      "center_world_m": [
+        0.15354114491420437,
+        -0.007999996154518532,
+        0.3735216445498784
+      ],
+      "image_right_world": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "image_up_world": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "view_direction_world": [
+        -0.0,
+        -0.0,
+        -1.0
+      ],
+      "rotation_determinant": 1.0,
+      "orthographic": true,
+      "vertical_span_m": 0.4653904512354536,
+      "image_axes": [
+        "+X",
+        "+Y"
+      ],
+      "mm_per_pixel": 0.3878253760295447,
+      "framing_margin_px": 64.28571428571433,
+      "all_visible_geometry_inside_frame": true
+    },
+    "front_detail": {
+      "position_world_m": [
+        1.11767867634948,
+        -0.019260752586125647,
+        1.0195336874512289
+      ],
+      "center_world_m": [
+        0.29852663206079605,
+        -0.0192607525862209,
+        0.44595725109974527
+      ],
+      "image_right_world": [
+        -6.780694152089137e-16,
+        0.9999999999999988,
+        -1.6509963160754845e-13
+      ],
+      "image_up_world": [
+        -0.5735764363514837,
+        1.3485277610385762e-13,
+        0.8191520442886838
+      ],
+      "view_direction_world": [
+        -0.8191520442886838,
+        -9.525270028803854e-14,
+        -0.5735764363514837
+      ],
+      "rotation_determinant": 0.9999999999999962,
+      "orthographic": true,
+      "vertical_span_m": 0.15467199719039146,
+      "scope": "Labelled front-tool part view, not a world-axis engineering view",
+      "image_axes": [
+        "tool +Y",
+        "tool +Z"
+      ],
+      "mm_per_pixel": 0.12889333099199288,
+      "included_geoms": [
+        "needle_proximal",
+        "needle_distal",
+        "tool_taper",
+        "tool_hex_nut",
+        "tool_luer_neck",
+        "tool_luer_collar",
+        "tool_collar_rib_0",
+        "tool_collar_rib_1",
+        "tool_collar_rib_2",
+        "tool_collar_rib_3",
+        "tool_collar_rib_4",
+        "tool_collar_rib_5",
+        "tool_metal_sleeve",
+        "tool_sleeve_top",
+        "tool_white_socket",
+        "scan_C",
+        "tool_guide_rail_-1",
+        "tool_guide_rail_1",
+        "tool_bottom_bridge",
+        "tool_clip_post_-1",
+        "tool_clip_end_-1",
+        "tool_clip_post_1",
+        "tool_clip_end_1",
+        "tool_clear_clip",
+        "tool_clip_screw_0",
+        "tool_clip_screw_1",
+        "tool_clip_rim_0",
+        "tool_clip_rim_1",
+        "tool_clip_rim_2",
+        "needle_distal_tip",
+        "needle_display_proximal",
+        "needle_display_distal",
+        "needle_display_distal_tip",
+        "needle_tip_marker"
+      ],
+      "whole_robot": false
+    },
+    "front_assembly": {
+      "position_world_m": [
+        1.0776096291405388,
+        -0.01837546336284167,
+        1.04228230733373
+      ],
+      "center_world_m": [
+        0.25845758485185494,
+        -0.018375463362936925,
+        0.4687058709822463
+      ],
+      "image_right_world": [
+        -6.780694152089137e-16,
+        0.9999999999999988,
+        -1.6509963160754845e-13
+      ],
+      "image_up_world": [
+        -0.5735764363514837,
+        1.3485277610385762e-13,
+        0.8191520442886838
+      ],
+      "view_direction_world": [
+        -0.8191520442886838,
+        -9.525270028803854e-14,
+        -0.5735764363514837
+      ],
+      "rotation_determinant": 0.9999999999999962,
+      "orthographic": true,
+      "vertical_span_m": 0.24789461431461762,
+      "scope": "Labelled front-assembly part view including the silver cap, not a complete robot view",
+      "image_axes": [
+        "tool +Y",
+        "tool +Z"
+      ],
+      "mm_per_pixel": 0.20657884526218134,
+      "included_geoms": [
+        "scan_distal",
+        "needle_proximal",
+        "needle_distal",
+        "tool_taper",
+        "tool_hex_nut",
+        "tool_luer_neck",
+        "tool_luer_collar",
+        "tool_collar_rib_0",
+        "tool_collar_rib_1",
+        "tool_collar_rib_2",
+        "tool_collar_rib_3",
+        "tool_collar_rib_4",
+        "tool_collar_rib_5",
+        "tool_metal_sleeve",
+        "tool_sleeve_top",
+        "tool_white_socket",
+        "scan_C",
+        "tool_guide_rail_-1",
+        "tool_guide_rail_1",
+        "tool_bottom_bridge",
+        "tool_clip_post_-1",
+        "tool_clip_end_-1",
+        "tool_clip_post_1",
+        "tool_clip_end_1",
+        "tool_clear_clip",
+        "tool_clip_screw_0",
+        "tool_clip_screw_1",
+        "tool_clip_rim_0",
+        "tool_clip_rim_1",
+        "tool_clip_rim_2",
+        "needle_distal_tip",
+        "needle_display_proximal",
+        "needle_display_distal",
+        "needle_display_distal_tip",
+        "needle_tip_marker"
+      ],
+      "whole_robot": false
+    }
+  },
+  "needle_display_geometry_same_size_as_physical": true,
+  "needle_dimensions_mm": {
+    "proximal_length_mm": 22.0,
+    "proximal_radius_mm": 0.25,
+    "distal_length_mm": 4.0,
+    "distal_radius_mm": 0.03
+  },
+  "axis_checks": {
+    "result": "PASS",
+    "top_needle_angle_deg": -1.3441389951282943e-11,
+    "top_cover_long_axis_angle_deg": 1.509132804867857e-06,
+    "side_needle_downward_pitch_deg": 54.99999999996922,
+    "expected_side_needle_downward_pitch_deg": 55.0
+  },
+  "scope": "Geometric orthographic rendering; dimensions other than configured needle remain photo estimates"
+}

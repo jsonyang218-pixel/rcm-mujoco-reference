@@ -1,5 +1,6 @@
 # Preserve acquisition hashes, CSV line endings, and raw evidence on checkout.
 reports/** -text
+reports/20261030/v9_zero_to_target/visual_servo.csv whitespace=cr-at-eol
 
 # Keep scan provenance and pinned driver SHA-256 stable across platforms.
 mujoco_model/** -text whitespace=-blank-at-eof,cr-at-eol

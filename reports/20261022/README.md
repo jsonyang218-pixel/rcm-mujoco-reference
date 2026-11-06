@@ -1,5 +1,7 @@
 # 2026-10-22 实验记录与组会材料
 
+**归档说明：** 本目录的旧图表、视频、深度帧和运行日志已从当前下载包清理；研究源码、当时源码快照、文档、复现配置及目标文件仍保留。下文历史产物链接指向 [清理前完整记录](https://github.com/jsonyang218-pixel/rcm-mujoco-reference/tree/42a0b2855b343d4efced99dee615cfa6a5d2be4c/reports/20261022)。文中“随目录提供”“已采集”等描述记录的是当时归档状态；当前 v9 的测试证据见 [2026-10-30 记录](../20261030/README.md)。
+
 已完成给定三个眼底目标的连续严格视觉导航、数据采集和实体遮挡恢复。目标位于仿真眼球后部内表面代理；没有独立视网膜层。所有精度均是理想 RGB、分割、配准深度与运动学控制下的仿真结果。
 
 ## 已完成实验
@@ -18,10 +20,10 @@
 ## 组会材料
 
 - [完整中文报告](meeting/report.md)
-- [六页离线 HTML 幻灯片](meeting/slides.html)：下载后用浏览器打开，方向键切换，可打印为 PDF。
-- [指标与协议 JSON](meeting/metrics.json)、[逐目标 CSV](meeting/endpoint_metrics.csv)
-- [严格三点预览视频](meeting/strict_three_preview.mp4)：按名义20 fps播放，不表示计算或设备实时速率。
-- [误差图](meeting/figures/endpoint_errors.png)、[实际执行轨迹](meeting/figures/executed_strict_path.png)、[遮挡恢复时间图](meeting/figures/timeline_strict_occlusion_recovery_ep000000.png)
+- [六页离线 HTML 幻灯片](https://github.com/jsonyang218-pixel/rcm-mujoco-reference/blob/42a0b2855b343d4efced99dee615cfa6a5d2be4c/reports/20261022/meeting/slides.html)：下载后用浏览器打开，方向键切换，可打印为 PDF。
+- [指标与协议 JSON](https://github.com/jsonyang218-pixel/rcm-mujoco-reference/blob/42a0b2855b343d4efced99dee615cfa6a5d2be4c/reports/20261022/meeting/metrics.json)、[逐目标 CSV](https://github.com/jsonyang218-pixel/rcm-mujoco-reference/blob/42a0b2855b343d4efced99dee615cfa6a5d2be4c/reports/20261022/meeting/endpoint_metrics.csv)
+- [严格三点预览视频](https://github.com/jsonyang218-pixel/rcm-mujoco-reference/blob/42a0b2855b343d4efced99dee615cfa6a5d2be4c/reports/20261022/meeting/strict_three_preview.mp4)：按名义20 fps播放，不表示计算或设备实时速率。
+- [误差图](https://github.com/jsonyang218-pixel/rcm-mujoco-reference/blob/42a0b2855b343d4efced99dee615cfa6a5d2be4c/reports/20261022/meeting/figures/endpoint_errors.png)、[实际执行轨迹](https://github.com/jsonyang218-pixel/rcm-mujoco-reference/blob/42a0b2855b343d4efced99dee615cfa6a5d2be4c/reports/20261022/meeting/figures/executed_strict_path.png)、[遮挡恢复时间图](https://github.com/jsonyang218-pixel/rcm-mujoco-reference/blob/42a0b2855b343d4efced99dee615cfa6a5d2be4c/reports/20261022/meeting/figures/timeline_strict_occlusion_recovery_ep000000.png)
 
 `meeting/evidence/` 包含配置、控制报告、原始 JSONL、小型 NPZ 和代码快照；`rawframes/` 保存11张未经修改的代表性 RGB 图像。完整四组数据共3,133帧、约935 MiB，完整 RGB 库仍在云工作区 `runs/multitarget_occlusion_20261022/`，不包含在 GitHub 下载包中。[原始目录索引](meeting/DATASET_LINKS.md) 是云工作区路径，下载到本机后需要重新采集或另行复制完整数据。策略输入仍为 RGB/state/task，深度和真值审计不进入这些输入包。
 
@@ -29,13 +31,13 @@
 
 ## 新 OCT 接口闭环验证
 
-[OCT 闭环审计](oct_p1_final/oct_closed_loop_verification.json) 和 [导航数据审计](oct_p1_final/dataset_verification.json) 均为 PASS。本次从此前 P1 实际视觉回撤位置出发，运行 A/B 视觉对准及 C 视觉接近，8+89=97帧，仿真时间4.75秒，P1真实终点误差6.381807 μm。这不是重新完成一整轮零位三目标实验。
+[OCT 闭环审计](https://github.com/jsonyang218-pixel/rcm-mujoco-reference/blob/42a0b2855b343d4efced99dee615cfa6a5d2be4c/reports/20261022/oct_p1_final/oct_closed_loop_verification.json) 和 [导航数据审计](https://github.com/jsonyang218-pixel/rcm-mujoco-reference/blob/42a0b2855b343d4efced99dee615cfa6a5d2be4c/reports/20261022/oct_p1_final/dataset_verification.json) 均为 PASS。本次从此前 P1 实际视觉回撤位置出发，运行 A/B 视觉对准及 C 视觉接近，8+89=97帧，仿真时间4.75秒，P1真实终点误差6.381807 μm。这不是重新完成一整轮零位三目标实验。
 
-每帧深度均经 `SyntheticOCTProvider` 传递，并记录明确的仿真来源、唯一帧 ID、米单位、有效掩码和带阶段起始偏移的仿真时间。[逐阶段记录](oct_p1_final/visual_servo/P1/visual_approach/oct_observations.jsonl) 可复核。各阶段最后一帧 NPZ/JSON 随此目录提供，可用 `RegisteredOCTFrame.load()` 加载；全程原始深度序列没有导出。
+每帧深度均经 `SyntheticOCTProvider` 传递，并记录明确的仿真来源、唯一帧 ID、米单位、有效掩码和带阶段起始偏移的仿真时间。[逐阶段记录](https://github.com/jsonyang218-pixel/rcm-mujoco-reference/blob/42a0b2855b343d4efced99dee615cfa6a5d2be4c/reports/20261022/oct_p1_final/visual_servo/P1/visual_approach/oct_observations.jsonl) 可复核。各阶段最后一帧 NPZ/JSON 随此目录提供，可用 `RegisteredOCTFrame.load()` 加载；全程原始深度序列没有导出。
 
 实测渲染耗时中位数0.471秒/帧，最大0.578秒/帧；这只是本次机器上的渲染耗时，不是设备延迟，也不支持实时20 Hz结论。接口不是 OCT 成像物理仿真，没有真实 A/B-scan、设备 SDK、眼底层分割或硬件标定。接真实设备前仍需建立相机/探头注册、设备时钟和延迟接口，见 [OCT 接口说明](../../OCT_SIMULATION.md)。
 
-该闭环的16份源码快照均与采集哈希匹配。[快照说明](oct_p1_final/snapshot_status.json) 记录了随后独立修复的一个恢复分支：虚拟回撤目标下，短暂针尖丢失后只需重获针尖即可恢复，不应要求标靶可见；该修复由完整10项恢复回归覆盖，本次 `stop` 模式闭环未执行该分支。
+该闭环的16份源码快照均与采集哈希匹配。[快照说明](https://github.com/jsonyang218-pixel/rcm-mujoco-reference/blob/42a0b2855b343d4efced99dee615cfa6a5d2be4c/reports/20261022/oct_p1_final/snapshot_status.json) 记录了随后独立修复的一个恢复分支：虚拟回撤目标下，短暂针尖丢失后只需重获针尖即可恢复，不应要求标靶可见；该修复由完整10项恢复回归覆盖，本次 `stop` 模式闭环未执行该分支。
 
 ## 复现
 

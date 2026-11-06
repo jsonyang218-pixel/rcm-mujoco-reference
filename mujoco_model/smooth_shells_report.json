@@ -1,0 +1,115 @@
+{
+  "scope": "Deburred display reconstruction; not measured CAD or collision geometry",
+  "voxel_pitch_mm": 0.8,
+  "morphology_radius_mm": 1.6,
+  "gaussian_sigma_voxels": 0.5,
+  "taubin_iterations": 80,
+  "humphrey_iterations": 120,
+  "humphrey_alpha": 0.01,
+  "humphrey_beta": 0.5,
+  "joint_frames_changed": false,
+  "parts": {
+    "fixed_housing": {
+      "source": "fixed_housing_enclosed.obj",
+      "source_sha256": "6c03fefe08fa99ff62cf85f8f33ac8db33344c9d61155f73fbf067ecf84ecf8c",
+      "output": "fixed_housing_smooth.obj",
+      "output_sha256": "9e027d677c728a779e5a3abc6b94868414701291fe9728a46f0bf13b7fb6469d",
+      "faces": 119988,
+      "watertight": true,
+      "face_budget": 120000,
+      "consistent_winding": true,
+      "max_bounds_change_mm": 21.50336777636691,
+      "max_main_component_bounds_change_mm": 0.657920931216277,
+      "retained_volume_ratio": 1.0319822871827595,
+      "output_to_source_surface_distance_mm": {
+        "p95": 0.7966968157874315,
+        "max": 2.0968146590038352
+      },
+      "sampled_source_to_output_vertex_distance_mm": {
+        "median": 0.9495497000068382,
+        "p95": 16.710205157024674,
+        "max": 36.32610668841678
+      },
+      "bounds_m": [
+        [
+          0.09529811,
+          -0.08515748,
+          0.09618198
+        ],
+        [
+          0.33243351,
+          0.09103709,
+          0.38045128
+        ]
+      ]
+    },
+    "parallel_cover": {
+      "source": "parallel_cover_enclosed.obj",
+      "source_sha256": "0a652f79d117091ec7f8965c35deb7200ccc63326bf0d7fd10d84afb8dd081ce",
+      "output": "parallel_cover_smooth.obj",
+      "output_sha256": "045a0567b559bb967f83a6137461fa0a64424ed44e7528e3dbc38b810864546a",
+      "faces": 265580,
+      "watertight": true,
+      "face_budget": 60000,
+      "consistent_winding": true,
+      "max_bounds_change_mm": 15.516074864703171,
+      "max_main_component_bounds_change_mm": 16.956848398563817,
+      "retained_volume_ratio": 1.055364889874188,
+      "output_to_source_surface_distance_mm": {
+        "p95": 0.6765316304956766,
+        "max": 1.6203406829797162
+      },
+      "sampled_source_to_output_vertex_distance_mm": {
+        "median": 0.5993403333178465,
+        "p95": 2.092021119441681,
+        "max": 19.546890153824172
+      },
+      "bounds_m": [
+        [
+          0.00233652,
+          -0.11721942,
+          -0.12590615
+        ],
+        [
+          0.15775639,
+          0.00145925,
+          0.03735401
+        ]
+      ]
+    },
+    "distal_guide": {
+      "source": "distal_guide_enclosed.obj",
+      "source_sha256": "34851380c60f5521da9e6463fcd41c1b342a7d810f61279214873ef73d2c2884",
+      "output": "distal_guide_smooth.obj",
+      "output_sha256": "56e0a44314af3b66371a54c11f048db3331b134e26fa44d17483bb1d030d6385",
+      "faces": 59984,
+      "watertight": true,
+      "face_budget": 60000,
+      "consistent_winding": true,
+      "max_bounds_change_mm": 1.4597763611372827,
+      "max_main_component_bounds_change_mm": 1.4597763611372827,
+      "retained_volume_ratio": 1.0481935497736938,
+      "output_to_source_surface_distance_mm": {
+        "p95": 0.8126390367097258,
+        "max": 2.1052671766418567
+      },
+      "sampled_source_to_output_vertex_distance_mm": {
+        "median": 0.8189673390335978,
+        "p95": 4.921111967229021,
+        "max": 22.303091659306684
+      },
+      "bounds_m": [
+        [
+          -0.03839648,
+          -0.09573315,
+          0.08619865
+        ],
+        [
+          0.04029794,
+          0.02528981,
+          0.25338115
+        ]
+      ]
+    }
+  }
+}

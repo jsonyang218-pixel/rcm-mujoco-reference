@@ -1,0 +1,55 @@
+{
+  "result": "PASS",
+  "episodes": 20,
+  "shards": [
+    {
+      "path": "outputs\\evaluation_v7_guided_dagger1_cached_20261106\\g1\\evaluation_results.json",
+      "episodes": 7,
+      "success_rate": 0.8571428571428571
+    },
+    {
+      "path": "outputs\\evaluation_v7_guided_dagger1_cached_20261106\\g2\\evaluation_results.json",
+      "episodes": 7,
+      "success_rate": 1.0
+    },
+    {
+      "path": "outputs\\evaluation_v7_guided_dagger1_cached_20261106\\g3\\evaluation_results.json",
+      "episodes": 6,
+      "success_rate": 1.0
+    }
+  ],
+  "successes": 19,
+  "success_rate": 0.95,
+  "strict_all_episodes_success": false,
+  "acceptance_gates": {
+    "uncontrolled": {
+      "threshold_count": 5,
+      "actual_count": 0,
+      "pass": true
+    },
+    "median_per_episode_minimum_error": {
+      "threshold_mm": 1.0,
+      "actual_mm": 0.009919960351399922,
+      "pass": true
+    }
+  },
+  "uncontrolled_over_threshold": 0,
+  "uncontrolled_threshold_mm": 30.0,
+  "final_error_mm": {
+    "mean": 0.011249254647528647,
+    "median": 0.009919960351399922,
+    "minimum": 0.00462373266247157,
+    "maximum": 0.047926174537278175
+  },
+  "per_episode_minimum_error_mm": {
+    "mean": 0.01099178797458281,
+    "median": 0.009919960351399922,
+    "minimum": 0.0045562839390768835,
+    "maximum": 0.047926174537278175
+  },
+  "safety_limited_steps": {
+    "total": 0,
+    "maximum_per_episode": 0,
+    "episodes_with_any": 0
+  }
+}

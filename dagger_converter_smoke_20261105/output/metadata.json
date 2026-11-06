@@ -1,0 +1,56 @@
+{
+  "num_episodes": 1,
+  "num_frames": 2,
+  "fps": 20,
+  "observation_space": {
+    "image": {
+      "shape": [
+        480,
+        640,
+        3
+      ],
+      "dtype": "uint8"
+    },
+    "state": {
+      "shape": [
+        3
+      ],
+      "dtype": "float32",
+      "names": [
+        "A_deg",
+        "B_deg",
+        "C_mm"
+      ]
+    },
+    "oct_navigation": {
+      "shape": [
+        3
+      ],
+      "dtype": "float32",
+      "units": "mm",
+      "frame": "camera_optical",
+      "definition": "target_minus_tip"
+    }
+  },
+  "action_space": {
+    "shape": [
+      3
+    ],
+    "dtype": "float32",
+    "names": [
+      "dA_deg",
+      "dB_deg",
+      "dC_mm"
+    ],
+    "type": "delta"
+  },
+  "action_source": "teacher",
+  "episodes": [
+    {
+      "episode_index": 0,
+      "num_frames": 2,
+      "success": false,
+      "final_error_um": null
+    }
+  ]
+}

@@ -1,0 +1,128 @@
+{
+  "schema": "ppt-master.native-structure.v1",
+  "source": {
+    "name": "MuJoCo建模优化_大字修订版.pptx",
+    "templateFile": "sources/source.pptx",
+    "sha256": "94ceaa8bc948b489b61d540609f8418c213ab561c197b0391902f6f3e9fd5b22"
+  },
+  "slideSize": {
+    "width_emu": 12192000,
+    "height_emu": 6858000,
+    "width_px": 1280.0,
+    "height_px": 720.0
+  },
+  "strategy": {
+    "preservationEligible": true,
+    "reusableStructureDetected": false,
+    "recommendedMode": "template",
+    "recommendationScope": "source-structure-assessment",
+    "templateOutputMode": "template",
+    "downstreamTemplateAdherence": "strategist-confirmed-explicit-structure",
+    "hasMultipleMasters": false,
+    "reasonCodes": [
+      "source-structure-is-minimal"
+    ]
+  },
+  "masters": [
+    {
+      "key": "master_01",
+      "name": "mujoco_model_optimization — Master",
+      "packagePart": "ppt/slideMasters/slideMaster1.xml",
+      "themePart": null,
+      "theme": {
+        "colors": {},
+        "fonts": {}
+      },
+      "backgroundAsset": null,
+      "imageAssets": [],
+      "shapeImageAssets": [],
+      "drawableShapeCount": 0,
+      "placeholders": [],
+      "layoutKeys": [
+        "layout_01"
+      ]
+    }
+  ],
+  "layouts": [
+    {
+      "key": "layout_01",
+      "name": "mujoco_model_optimization — Blank",
+      "type": null,
+      "packagePart": "ppt/slideLayouts/slideLayout7.xml",
+      "masterKey": "master_01",
+      "showMasterShapes": true,
+      "backgroundAsset": null,
+      "imageAssets": [],
+      "shapeImageAssets": [],
+      "drawableShapeCount": 0,
+      "placeholders": [
+        {
+          "type": "dt",
+          "idx": "10",
+          "size": "half",
+          "orient": null,
+          "semanticRole": "date",
+          "shapeId": "2",
+          "shapeName": "Date Placeholder 1",
+          "geometry": null,
+          "textSamples": [
+            "1/27/13"
+          ]
+        },
+        {
+          "type": "ftr",
+          "idx": "11",
+          "size": "quarter",
+          "orient": null,
+          "semanticRole": "footer",
+          "shapeId": "3",
+          "shapeName": "Footer Placeholder 2",
+          "geometry": null,
+          "textSamples": []
+        },
+        {
+          "type": "sldNum",
+          "idx": "12",
+          "size": "quarter",
+          "orient": null,
+          "semanticRole": "slide-number",
+          "shapeId": "4",
+          "shapeName": "Slide Number Placeholder 3",
+          "geometry": null,
+          "textSamples": [
+            "‹#›"
+          ]
+        }
+      ],
+      "usedBySlides": [
+        1,
+        2
+      ],
+      "svgFile": null
+    }
+  ],
+  "slides": [
+    {
+      "index": 1,
+      "packagePart": "ppt/slides/slide1.xml",
+      "pageType": null,
+      "layoutKey": "layout_01",
+      "masterKey": "master_01",
+      "showInheritedShapes": true,
+      "placeholders": [],
+      "layeredSvgFile": "slide_01.svg",
+      "flatSvgFile": null
+    },
+    {
+      "index": 2,
+      "packagePart": "ppt/slides/slide2.xml",
+      "pageType": null,
+      "layoutKey": "layout_01",
+      "masterKey": "master_01",
+      "showInheritedShapes": true,
+      "placeholders": [],
+      "layeredSvgFile": "slide_02.svg",
+      "flatSvgFile": null
+    }
+  ]
+}
