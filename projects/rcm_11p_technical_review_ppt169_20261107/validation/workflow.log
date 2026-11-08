@@ -1,0 +1,460 @@
+
+=== 2026-11-07T12:58:04.449Z NOTE id=434b46b3b285 ===
+Project initialized: profile=default; canvas=ppt169; path=E:\30_RESOURCES\32_课程教程\医学\中科院\rcm-mujoco-reference-ffd7b15d41c51c2d2f8a15596e9575106f81c225\projects\rcm_11p_technical_review_ppt169_20261107
+
+=== 2026-11-07T12:58:09.692Z PYTHON run=63c3ee1b2b1d ===
+cwd: E:\30_RESOURCES\32_课程教程\医学\中科院\rcm-mujoco-reference-ffd7b15d41c51c2d2f8a15596e9575106f81c225
+argv: ["C:\\Users\\Lenovo\\AppData\\Local\\Programs\\Python\\Python311\\python.exe", "C:\\Users\\Lenovo\\.codex\\skills\\ppt-master\\scripts\\project_manager.py", "import-sources", "projects\\rcm_11p_technical_review_ppt169_20261107", "RESTRICTED_PERCEPTION.md", "STAGE4_FAILURE_ANALYSIS.md", "outputs\\restricted_stage2_acceptance_v5_20261106\\summary.json", "outputs\\restricted_stage3_summary_20261106.json", "outputs\\restricted_stage4_summary_20261106.json", "outputs\\restricted_stage4_failure_analysis_20261107.json", "configs\\restricted_perception.json", "configs\\stage34_protocol.json"]
+stdout:
+  [OK] Imported sources into: projects\rcm_11p_technical_review_ppt169_20261107
+=== 2026-11-07T12:58:11.156Z END run=63c3ee1b2b1d elapsed_ms=1453 output_lines=20 retained=1 omitted=19 ===
+
+=== 2026-11-07T13:00:52.065Z PYTHON run=a63fac537a80 ===
+cwd: E:\30_RESOURCES\32_课程教程\医学\中科院\rcm-mujoco-reference-ffd7b15d41c51c2d2f8a15596e9575106f81c225
+argv: ["C:\\Users\\Lenovo\\AppData\\Local\\Programs\\Python\\Python311\\python.exe", "C:\\Users\\Lenovo\\.codex\\skills\\ppt-master\\scripts\\icon_sync.py", "projects\\rcm_11p_technical_review_ppt169_20261107", "tabler-outline/eye", "tabler-outline/target", "tabler-outline/route", "tabler-outline/cpu", "tabler-outline/database", "tabler-outline/git-branch", "tabler-outline/chart-bar", "tabler-outline/chart-line", "tabler-outline/alert-triangle", "tabler-outline/circle-check", "tabler-outline/clock", "tabler-outline/compare"]
+stderr:
+  [OK] 11 icon(s) in projects\rcm_11p_technical_review_ppt169_20261107\icons:
+       + tabler-outline/eye
+       + tabler-outline/target
+       + tabler-outline/route
+       + tabler-outline/cpu
+       + tabler-outline/database
+       + tabler-outline/git-branch
+       + tabler-outline/chart-bar
+       + tabler-outline/chart-line
+stderr-tail:
+       + tabler-outline/circle-check
+       + tabler-outline/clock
+  [MISSING] 1 icon(s) not in the library — re-pick before continuing:
+       ✗ tabler-outline/compare   (search: rg --files "C:\Users\Lenovo\.codex\skills\ppt-master\templates\icons\tabler-outline" -g '*<keyword>*.svg')
+=== 2026-11-07T13:00:52.211Z END run=a63fac537a80 elapsed_ms=155 output_lines=14 retained=13 omitted=1 ===
+
+=== 2026-11-07T13:00:53.096Z PYTHON run=4033ca246b5c ===
+cwd: E:\30_RESOURCES\32_课程教程\医学\中科院\rcm-mujoco-reference-ffd7b15d41c51c2d2f8a15596e9575106f81c225
+argv: ["C:\\Users\\Lenovo\\AppData\\Local\\Programs\\Python\\Python311\\python.exe", "C:\\Users\\Lenovo\\.codex\\skills\\ppt-master\\scripts\\project_manager.py", "validate", "projects\\rcm_11p_technical_review_ppt169_20261107"]
+stdout:
+  [ERROR]
+    - design_spec.md schema: 'Slide 05 - 距离门控残差' is missing field 'Audience move'
+  [WARN]
+    - svg_output directory is empty, no SVG files found
+  [ERROR] Project structure is invalid.
+=== 2026-11-07T13:00:55.751Z END run=4033ca246b5c elapsed_ms=2655 output_lines=7 retained=5 omitted=2 ===
+
+=== 2026-11-07T13:01:16.474Z PYTHON run=74c8e7fff8ac ===
+cwd: E:\30_RESOURCES\32_课程教程\医学\中科院\rcm-mujoco-reference-ffd7b15d41c51c2d2f8a15596e9575106f81c225
+argv: ["C:\\Users\\Lenovo\\AppData\\Local\\Programs\\Python\\Python311\\python.exe", "C:\\Users\\Lenovo\\.codex\\skills\\ppt-master\\scripts\\icon_sync.py", "projects\\rcm_11p_technical_review_ppt169_20261107", "tabler-outline/git-compare"]
+stderr:
+  [OK] 1 icon(s) in projects\rcm_11p_technical_review_ppt169_20261107\icons:
+       + tabler-outline/git-compare
+=== 2026-11-07T13:01:16.506Z END run=74c8e7fff8ac elapsed_ms=30 output_lines=2 retained=2 omitted=0 ===
+
+=== 2026-11-07T13:01:17.284Z PYTHON run=5ed607527314 ===
+cwd: E:\30_RESOURCES\32_课程教程\医学\中科院\rcm-mujoco-reference-ffd7b15d41c51c2d2f8a15596e9575106f81c225
+argv: ["C:\\Users\\Lenovo\\AppData\\Local\\Programs\\Python\\Python311\\python.exe", "C:\\Users\\Lenovo\\.codex\\skills\\ppt-master\\scripts\\project_manager.py", "validate", "projects\\rcm_11p_technical_review_ppt169_20261107"]
+stdout:
+  [WARN]
+  [OK] Project structure is valid, with warnings.
+=== 2026-11-07T13:01:19.758Z END run=5ed607527314 elapsed_ms=2484 output_lines=5 retained=2 omitted=3 ===
+
+=== 2026-11-07T13:03:03.338Z PYTHON run=c670cb96b96c ===
+cwd: E:\30_RESOURCES\32_课程教程\医学\中科院\rcm-mujoco-reference-ffd7b15d41c51c2d2f8a15596e9575106f81c225
+argv: ["C:\\Users\\Lenovo\\AppData\\Local\\Programs\\Python\\Python311\\python.exe", "C:\\Users\\Lenovo\\.codex\\skills\\ppt-master\\scripts\\text_measure.py", "calibrate", "projects\\rcm_11p_technical_review_ppt169_20261107", "--outline"]
+=== 2026-11-07T13:03:03.823Z END run=c670cb96b96c elapsed_ms=483 output_lines=17 retained=0 omitted=17 ===
+
+=== 2026-11-07T13:03:53.179Z PYTHON run=24bc4d60671e ===
+cwd: E:\30_RESOURCES\32_课程教程\医学\中科院\rcm-mujoco-reference-ffd7b15d41c51c2d2f8a15596e9575106f81c225
+argv: ["C:\\Users\\Lenovo\\AppData\\Local\\Programs\\Python\\Python311\\python.exe", "C:\\Users\\Lenovo\\.codex\\skills\\ppt-master\\scripts\\svg_editor\\server.py", "projects\\rcm_11p_technical_review_ppt169_20261107", "--live", "--daemon"]
+stderr:
+  [21:03:55] [INFO] svg_editor: started live preview in background: http://127.0.0.1:6060 (pid=26092)
+  [21:03:55] [INFO] svg_editor: log: E:\30_RESOURCES\32_课程教程\医学\中科院\rcm-mujoco-reference-ffd7b15d41c51c2d2f8a15596e9575106f81c225\projects\rcm_11p_technical_review_ppt169_20261107\live_preview\server.log
+  [21:03:55] [INFO] svg_editor: browser launch request accepted by OS: http://127.0.0.1:6060
+=== 2026-11-07T13:03:55.907Z END run=24bc4d60671e elapsed_ms=2717 output_lines=3 retained=3 omitted=0 ===
+
+=== 2026-11-07T13:05:43.306Z PYTHON run=9cbd1b2b6e65 ===
+cwd: E:\30_RESOURCES\32_课程教程\医学\中科院\rcm-mujoco-reference-ffd7b15d41c51c2d2f8a15596e9575106f81c225
+argv: ["C:\\Users\\Lenovo\\AppData\\Local\\Programs\\Python\\Python311\\python.exe", "C:\\Users\\Lenovo\\.codex\\skills\\ppt-master\\scripts\\stamp_native_fallbacks.py", "projects\\rcm_11p_technical_review_ppt169_20261107\\svg_output\\03_three_bases.svg", "--write"]
+stderr:
+  Error: 03_three_bases.svg: invalid table marker base-role-matrix: Native PPTX table metadata requires schema 'ppt-master.semantic-table.v2'
+=== 2026-11-07T13:05:43.321Z END run=9cbd1b2b6e65 elapsed_ms=14 output_lines=2 retained=1 omitted=1 ===
+
+=== 2026-11-07T13:05:59.082Z PYTHON run=886de5ded8bb ===
+cwd: E:\30_RESOURCES\32_课程教程\医学\中科院\rcm-mujoco-reference-ffd7b15d41c51c2d2f8a15596e9575106f81c225
+argv: ["C:\\Users\\Lenovo\\AppData\\Local\\Programs\\Python\\Python311\\python.exe", "C:\\Users\\Lenovo\\.codex\\skills\\ppt-master\\scripts\\stamp_native_fallbacks.py", "projects\\rcm_11p_technical_review_ppt169_20261107\\svg_output\\03_three_bases.svg", "--write"]
+=== 2026-11-07T13:05:59.126Z END run=886de5ded8bb elapsed_ms=30 output_lines=2 retained=0 omitted=2 ===
+
+=== 2026-11-07T13:06:09.072Z PYTHON run=3307cb6ce9c0 ===
+cwd: E:\30_RESOURCES\32_课程教程\医学\中科院\rcm-mujoco-reference-ffd7b15d41c51c2d2f8a15596e9575106f81c225
+argv: ["C:\\Users\\Lenovo\\AppData\\Local\\Programs\\Python\\Python311\\python.exe", "C:\\Users\\Lenovo\\.codex\\skills\\ppt-master\\scripts\\svg_quality_checker.py", "projects\\rcm_11p_technical_review_ppt169_20261107", "--canonical-authoring", "--stage", "early", "--json"]
+stdout:
+  [ERROR] 01_cover.svg - Failed
+     viewBox: 0 0 1280 720
+     [ERROR] <text> (x=72, y=694; text='RCM 眼内注射机器人 · 技术评审') exceeds <g id="page-footer"> data-pptx-bounds on the vertical axis: content (72.0, 677.0)-(377.7, 701.0), container (72.0, 668.0)-(1208.0, 696.0), overflow horizontal 0.0%, vertical 17.9% (error above 5%); expand the root module bounds into available non-overlapping space; otherwise reflow the text
+     [ERROR] <text> (x=1208, y=694; text='P01 / 11') exceeds <g id="page-footer"> data-pptx-bounds on the vertical axis: content (1120.6, 677.0)-(1208.0, 701.0), container (72.0, 668.0)-(1208.0, 696.0), overflow horizontal 0.0%, vertical 17.9% (error above 5%); expand the root module bounds into available non-overlapping space; otherwise reflow the text
+     [WARN] Noncanonical compact authoring: Authoring SVG contains noncanonical or redundant inherited style declarations (10 change(s)); examples (group:attr None -> value hoists the shared value onto that group; child:attr value -> None drops the copy the child now inherits): tspan[8]:fill '#172633' -> None; tspan[8]:font-size '44' -> None; tspan[8]:font-weight 'bold' -> None (advisory; normalize with `python3 scripts/compact_svg_styles.py <svg_output> --inplace`, re-stamp pages that carry Chart/Table fallbacks, and rerun the final gate, or leave the explicit form)
+     [WARN] Cannot verify root viewBox bounds for visible text with unsupported or unresolved geometry: <text> (x=96, y=88; text='20 µm 闭环控制已在开发集达成，外围…'), <text> (x=72, y=548; text='机制已在开发集成立，但尚不能外推为部署能…'); use supported explicit text positioning when page fit matters (continuation <tspan> lines repeat the parent x; a hanging indent needs its own <text>)
+  [ERROR] 02_closed_loop.svg - Failed
+     viewBox: 0 0 1280 720
+     [ERROR] <path> marker-end=url(#flowArrow) marker fill '#0B4F8A' does not match effective line stroke '#14988F'
+     [ERROR] <g id="fallback-states"> data-pptx-bounds overlaps <g id="page-takeaway"> data-pptx-bounds by 1136.0px x 12.0px; keep ordinary direct-root module zones disjoint beyond the 1px tolerance
+     [ERROR] <text> (x=72, y=694; text='技术评审 · 系统闭环') exceeds <g id="page-footer"> data-pptx-bounds on the vertical axis: content (72.0, 677.0)-(266.0, 701.0), container (72.0, 668.0)-(1208.0, 696.0), overflow horizontal 0.0%, vertical 17.9% (error above 5%); expand the root module bounds into available non-overlapping space; otherwise reflow the text
+     [ERROR] <text> (x=1208, y=694; text='P02 / 11') exceeds <g id="page-footer"> data-pptx-bounds on the vertical axis: content (1120.6, 677.0)-(1208.0, 701.0), container (72.0, 668.0)-(1208.0, 696.0), overflow horizontal 0.0%, vertical 17.9% (error above 5%); expand the root module bounds into available non-overlapping space; otherwise reflow the text
+     [WARN] Noncanonical compact authoring: Authoring SVG contains noncanonical or redundant inherited style declarations (3 change(s)); examples (group:attr None -> value hoists the shared value onto that group; child:attr value -> None drops the copy the child now inherits): tspan[10]:fill '#172633' -> None; tspan[10]:font-size '44' -> None; tspan[10]:font-weight 'bold' -> None (advisory; normalize with `python3 scripts/compact_svg_styles.py <svg_output> --inplace`, re-stamp pages that carry Chart/Table fallbacks, and rerun the final gate, or leave the explicit form)
+     [WARN] Cannot verify root viewBox bounds for visible text with unsupported or unresolved geometry: <text> (x=96, y=88; text='受限感知把远场 RGB 与近场 OCT接…'); use supported explicit text positioning when page fit matters (continuation <tspan> lines repeat the parent x; a hanging indent needs its own <text>)
+  [ERROR] 03_three_bases.svg - Failed
+     viewBox: 0 0 1280 720
+     [ERROR] <text> (x=866, y=590; text='学习 base：接管学生，是最终动作主干…') exceeds <g id="role-explanation"> data-pptx-bounds on the horizontal axis: content (866.0, 571.3)-(1297.4, 597.7), container (72.0, 512.0)-(1208.0, 618.0), overflow horizontal 7.9%, vertical 0.0% (error above 5%); expand the root module bounds into available non-overlapping space; otherwise reflow the text; ≈21.6 px per mixed char at 22px incl. headroom; ≈52 chars fit in 1136 px
+     [ERROR] <text> (x=72, y=616; text='关键差别：几何教师先饱和再乘增益；解析 …') exceeds <g id="role-explanation"> data-pptx-bounds on the vertical axis: content (72.0, 597.3)-(766.9, 623.7), container (72.0, 512.0)-(1208.0, 618.0), overflow horizontal 0.0%, vertical 5.4% (error above 5%); expand the root module bounds into available non-overlapping space; otherwise reflow the text
+     [ERROR] <text> (x=72, y=694; text='技术评审 · 动作先验') exceeds <g id="page-footer"> data-pptx-bounds on the vertical axis: content (72.0, 677.0)-(266.0, 701.0), container (72.0, 668.0)-(1208.0, 696.0), overflow horizontal 0.0%, vertical 17.9% (error above 5%); expand the root module bounds into available non-overlapping space; otherwise reflow the text
+     [ERROR] <text> (x=1208, y=694; text='P03 / 11') exceeds <g id="page-footer"> data-pptx-bounds on the vertical axis: content (1120.6, 677.0)-(1208.0, 701.0), container (72.0, 668.0)-(1208.0, 696.0), overflow horizontal 0.0%, vertical 17.9% (error above 5%); expand the root module bounds into available non-overlapping space; otherwise reflow the text
+     [WARN] Noncanonical compact authoring: Authoring SVG contains noncanonical or redundant inherited style declarations (3 change(s)); examples (group:attr None -> value hoists the shared value onto that group; child:attr value -> None drops the copy the child now inherits): tspan[7]:fill '#172633' -> None; tspan[7]:font-size '44' -> None; tspan[7]:font-weight 'bold' -> None (advisory; normalize with `python3 scripts/compact_svg_styles.py <svg_output> --inplace`, re-stamp pages that carry Chart/Table fallbacks, and rerun the final gate, or leave the explicit form)
+     [WARN] Cannot verify root viewBox bounds for visible text with unsupported or unresolved geometry: <text> (x=96, y=88; text='三种“基”承担不同职责，不能混为一种控制…'); use supported explicit text positioning when page fit matters (continuation <tspan> lines repeat the parent x; a hanging indent needs its own <text>)
+     [WARN] data-pptx-replace-with marker base-role-matrix: Native PPTX table header style not projected from fallback: columns[].bold (blocks --native-charts-and-tables export)
+     [WARN] data-pptx-replace-with marker base-role-matrix: Native PPTX table whole row 3 fill #F5F9FB is not projected to cell fill (blocks --native-charts-and-tables export)
+     [WARN] data-pptx-replace-with marker base-role-matrix: Native PPTX table whole row 4 fill #EAF2F7 is not projected to cell fill (blocks --native-charts-and-tables export)
+     [WARN] data-pptx-replace-with marker base-role-matrix: Native PPTX table first-column text style not projected from fallback: bold, color #14988F (blocks --native-charts-and-tables export)
+     [WARN] data-pptx-replace-with marker base-role-matrix: Native PPTX table body text color #14988F/#B42318 is not projected to cell color, defaults.run.color, or style.body_text (blocks --native-charts-and-tables export)
+     [WARN] data-pptx-replace-with marker base-role-matrix: Native PPTX table border topology not projected: fallback rules cover only 28 of 40 cardinal cell edges, but payload has only a uniform border (blocks --native-charts-and-tables export)
+  [ERROR] 04_diffusion_teacher.svg - Failed
+     viewBox: 0 0 1280 720
+     [ERROR] <text> (x=360, y=288; text='状态 3 + OCT 方向/log d/…') exceeds <g id="observation-tower"> data-pptx-bounds on the horizontal axis: content (360.0, 269.3)-(686.1, 295.7), container (72.0, 172.0)-(592.0, 568.0), overflow horizontal 18.1%, vertical 0.0% (error above 5%); expand the root module bounds into available non-overlapping space; otherwise reflow the text; ≈16.3 px per mixed char at 22px incl. headroom; ≈31 chars fit in 520 px
+     [ERROR] <text> (x=72, y=694; text='技术评审 · 扩散教师') exceeds <g id="page-footer"> data-pptx-bounds on the vertical axis: content (72.0, 677.0)-(266.0, 701.0), container (72.0, 668.0)-(1208.0, 696.0), overflow horizontal 0.0%, vertical 17.9% (error above 5%); expand the root module bounds into available non-overlapping space; otherwise reflow the text
+     [ERROR] <text> (x=1208, y=694; text='P04 / 11') exceeds <g id="page-footer"> data-pptx-bounds on the vertical axis: content (1120.6, 677.0)-(1208.0, 701.0), container (72.0, 668.0)-(1208.0, 696.0), overflow horizontal 0.0%, vertical 17.9% (error above 5%); expand the root module bounds into available non-overlapping space; otherwise reflow the text
+  [ERROR] 05_guided_residual.svg - Failed
+     viewBox: 0 0 1280 720
+     [ERROR] <text> (x=72, y=694; text='技术评审 · 距离门控') exceeds <g id="page-footer"> data-pptx-bounds on the vertical axis: content (72.0, 677.0)-(266.0, 701.0), container (72.0, 668.0)-(1208.0, 696.0), overflow horizontal 0.0%, vertical 17.9% (error above 5%); expand the root module bounds into available non-overlapping space; otherwise reflow the text
+     [ERROR] <text> (x=1208, y=694; text='P05 / 11') exceeds <g id="page-footer"> data-pptx-bounds on the vertical axis: content (1120.6, 677.0)-(1208.0, 701.0), container (72.0, 668.0)-(1208.0, 696.0), overflow horizontal 0.0%, vertical 17.9% (error above 5%); expand the root module bounds into available non-overlapping space; otherwise reflow the text
+     [WARN] Noncanonical compact authoring: Authoring SVG contains noncanonical or redundant inherited style declarations (3 change(s)); examples (group:attr None -> value hoists the shared value onto that group; child:attr value -> None drops the copy the child now inherits): tspan[7]:fill '#172633' -> None; tspan[7]:font-size '44' -> None; tspan[7]:font-weight 'bold' -> None (advisory; normalize with `python3 scripts/compact_svg_styles.py <svg_output> --inplace`, re-stamp pages that carry Chart/Table fallbacks, and rerun the final gate, or leave the explicit form)
+     [WARN] Cannot verify root viewBox bounds for visible text with unsupported or unresolved geometry: <text> (x=96, y=88; text='距离门控只在远场放开残差，近场把权限收至…'); use supported explicit text positioning when page fit matters (continuation <tspan> lines repeat the parent x; a hanging indent needs its own <text>)
+     [WARN] <text> (x=222, y=536; text='OCT 方向 3 维 · log d ·…') exceeds <g id="distance-authority-map"> data-pptx-bounds on the horizontal axis: content (67.8, 517.3)-(376.2, 543.7), container (72.0, 326.0)-(1208.0, 556.0), overflow horizontal 0.4%, vertical 0.0% (error above 5%); expand the root module bounds into available non-overlapping space; otherwise reflow the text; ≈17.1 px per mixed char at 22px incl. headroom; ≈66 chars fit in 1136 px
+     [WARN] <text> (x=1033, y=536; text='L = [0.2898, 0.1443,…') exceeds <g id="distance-authority-map"> data-pptx-bounds on the horizontal axis: content (855.6, 517.3)-(1210.4, 543.7), container (72.0, 326.0)-(1208.0, 556.0), overflow horizontal 0.2%, vertical 0.0% (error above 5%); expand the root module bounds into available non-overlapping space; otherwise reflow the text; ≈14.8 px per Latin char at 22px incl. headroom; ≈76 chars fit in 1136 px
+  [SUMMARY] Check Summary
+  Total files: 5
+    [OK] Fully passed: 0 (0%)
+    [WARN] With warnings: 0 (0%)
+    [ERROR] With errors: 5 (100%)
+  Provenance categories:
+    blocking: 15         hard findings; gate also requires exit 0
+    introduced: 17       advisory; new or changed
+    inherited: 0         informational; prototype-identical
+    source-import: 0     informational; source-conversion loss
+  [CARRIERS] Actual-use receipt (informational; not a quota)
+    Pages: 5 | text: 111 | images: 0 | icons: 1
+    Geometry: SVG elements 84 | native presets 0 | page-frame elements 16 | marker uses 13
+  [REPORT] JSON quality report exported: projects\rcm_11p_technical_review_ppt169_20261107\validation\svg_quality_early_report.json
+=== 2026-11-07T13:06:12.826Z END run=3307cb6ce9c0 elapsed_ms=3750 output_lines=79 retained=55 omitted=24 ===
+
+=== 2026-11-07T13:06:51.892Z PYTHON run=7c957ce2016b ===
+cwd: E:\30_RESOURCES\32_课程教程\医学\中科院\rcm-mujoco-reference-ffd7b15d41c51c2d2f8a15596e9575106f81c225
+argv: ["C:\\Users\\Lenovo\\AppData\\Local\\Programs\\Python\\Python311\\python.exe", "C:\\Users\\Lenovo\\.codex\\skills\\ppt-master\\scripts\\svg_quality_checker.py", "projects\\rcm_11p_technical_review_ppt169_20261107", "--canonical-authoring", "--stage", "early", "--json"]
+stdout:
+  [ERROR] 01_cover.svg - Failed
+     viewBox: 0 0 1280 720
+     [ERROR] <text> (x=72, y=548; text='机制已在开发集成立，但尚不能外推为部署能…') exceeds <g id="global-verdict"> data-pptx-bounds on the vertical axis: content (72.0, 524.2)-(428.2, 593.8), container (72.0, 468.0)-(816.0, 584.0), overflow horizontal 0.0%, vertical 8.4% (error above 5%); expand the root module bounds into available non-overlapping space; otherwise reflow the text
+     [WARN] Noncanonical compact authoring: Authoring SVG contains noncanonical or redundant inherited style declarations (4 change(s)); examples (group:attr None -> value hoists the shared value onto that group; child:attr value -> None drops the copy the child now inherits): tspan[15]:font-size '96' -> None; global-verdict:font-weight None -> 'bold'; text[28]:font-weight 'bold' -> None (advisory; normalize with `python3 scripts/compact_svg_styles.py <svg_output> --inplace`, re-stamp pages that carry Chart/Table fallbacks, and rerun the final gate, or leave the explicit form)
+  [OK] 02_closed_loop.svg - Passed
+     viewBox: 0 0 1280 720
+  [WARN] 03_three_bases.svg - Passed (with warnings)
+     [WARN] data-pptx-replace-with marker base-role-matrix: Native PPTX table header style not projected from fallback: columns[].bold (blocks --native-charts-and-tables export)
+     [WARN] data-pptx-replace-with marker base-role-matrix: Native PPTX table whole row 3 fill #F5F9FB is not projected to cell fill (blocks --native-charts-and-tables export)
+     [WARN] data-pptx-replace-with marker base-role-matrix: Native PPTX table whole row 4 fill #EAF2F7 is not projected to cell fill (blocks --native-charts-and-tables export)
+     [WARN] data-pptx-replace-with marker base-role-matrix: Native PPTX table first-column text style not projected from fallback: bold, color #14988F (blocks --native-charts-and-tables export)
+  [OK] 05_guided_residual.svg - Passed
+  [SUMMARY] Check Summary
+  Total files: 5
+    [OK] Fully passed: 2 (40%)
+    [WARN] With warnings: 2 (40%)
+    [ERROR] With errors: 1 (20%)
+  Provenance categories:
+    blocking: 1          hard findings; gate also requires exit 0
+    introduced: 8        advisory; new or changed
+    inherited: 0         informational; prototype-identical
+    source-import: 0     informational; source-conversion loss
+  [CARRIERS] Actual-use receipt (informational; not a quota)
+    Pages: 5 | text: 113 | images: 0 | icons: 1
+    Geometry: SVG elements 84 | native presets 0 | page-frame elements 16 | marker uses 13
+  [REPORT] JSON quality report exported: projects\rcm_11p_technical_review_ppt169_20261107\validation\svg_quality_early_report.json
+=== 2026-11-07T13:06:56.344Z END run=7c957ce2016b elapsed_ms=4453 output_lines=56 retained=26 omitted=30 ===
+
+=== 2026-11-07T13:07:21.969Z PYTHON run=9988e0fc28f3 ===
+cwd: E:\30_RESOURCES\32_课程教程\医学\中科院\rcm-mujoco-reference-ffd7b15d41c51c2d2f8a15596e9575106f81c225
+argv: ["C:\\Users\\Lenovo\\AppData\\Local\\Programs\\Python\\Python311\\python.exe", "C:\\Users\\Lenovo\\.codex\\skills\\ppt-master\\scripts\\svg_quality_checker.py", "projects\\rcm_11p_technical_review_ppt169_20261107", "--canonical-authoring", "--stage", "early", "--json"]
+stdout:
+  [WARN] 01_cover.svg - Passed (with warnings)
+     [WARN] Noncanonical compact authoring: Authoring SVG contains noncanonical or redundant inherited style declarations (4 change(s)); examples (group:attr None -> value hoists the shared value onto that group; child:attr value -> None drops the copy the child now inherits): tspan[15]:font-size '96' -> None; global-verdict:font-weight None -> 'bold'; text[28]:font-weight 'bold' -> None (advisory; normalize with `python3 scripts/compact_svg_styles.py <svg_output> --inplace`, re-stamp pages that carry Chart/Table fallbacks, and rerun the final gate, or leave the explicit form)
+  [OK] 02_closed_loop.svg - Passed
+  [WARN] 03_three_bases.svg - Passed (with warnings)
+     [WARN] data-pptx-replace-with marker base-role-matrix: Native PPTX table header style not projected from fallback: columns[].bold (blocks --native-charts-and-tables export)
+  [SUMMARY] Check Summary
+  Total files: 5
+    [OK] Fully passed: 3 (60%)
+    [WARN] With warnings: 2 (40%)
+    [ERROR] With errors: 0 (0%)
+  Provenance categories:
+    blocking: 0          hard findings; gate also requires exit 0
+    introduced: 7        advisory; new or changed
+    inherited: 0         informational; prototype-identical
+    source-import: 0     informational; source-conversion loss
+  [CARRIERS] Actual-use receipt (informational; not a quota)
+    Pages: 5 | text: 112 | images: 0 | icons: 1
+    Geometry: SVG elements 84 | native presets 0 | page-frame elements 16 | marker uses 13
+  [REPORT] JSON quality report exported: projects\rcm_11p_technical_review_ppt169_20261107\validation\svg_quality_early_report.json
+=== 2026-11-07T13:07:26.389Z END run=9988e0fc28f3 elapsed_ms=4421 output_lines=52 retained=19 omitted=33 ===
+
+=== 2026-11-07T13:09:52.221Z PYTHON run=c29b7b8f5a70 ===
+cwd: E:\30_RESOURCES\32_课程教程\医学\中科院\rcm-mujoco-reference-ffd7b15d41c51c2d2f8a15596e9575106f81c225
+argv: ["C:\\Users\\Lenovo\\AppData\\Local\\Programs\\Python\\Python311\\python.exe", "C:\\Users\\Lenovo\\.codex\\skills\\ppt-master\\scripts\\stamp_native_fallbacks.py", "projects\\rcm_11p_technical_review_ppt169_20261107\\svg_output", "--write"]
+stderr:
+  Error: 10_failure_modes.svg: invalid chart marker failure-mode-bars: Native PPTX chart plot_area must be fully contained within the chart frame
+=== 2026-11-07T13:09:52.296Z END run=c29b7b8f5a70 elapsed_ms=77 output_lines=12 retained=1 omitted=11 ===
+
+=== 2026-11-07T13:10:11.222Z PYTHON run=371478ccb161 ===
+cwd: E:\30_RESOURCES\32_课程教程\医学\中科院\rcm-mujoco-reference-ffd7b15d41c51c2d2f8a15596e9575106f81c225
+argv: ["C:\\Users\\Lenovo\\AppData\\Local\\Programs\\Python\\Python311\\python.exe", "C:\\Users\\Lenovo\\.codex\\skills\\ppt-master\\scripts\\stamp_native_fallbacks.py", "projects\\rcm_11p_technical_review_ppt169_20261107\\svg_output\\10_failure_modes.svg", "--write"]
+=== 2026-11-07T13:10:11.251Z END run=371478ccb161 elapsed_ms=15 output_lines=2 retained=0 omitted=2 ===
+
+=== 2026-11-07T13:10:20.224Z PYTHON run=5a69b99dcada ===
+cwd: E:\30_RESOURCES\32_课程教程\医学\中科院\rcm-mujoco-reference-ffd7b15d41c51c2d2f8a15596e9575106f81c225
+argv: ["C:\\Users\\Lenovo\\AppData\\Local\\Programs\\Python\\Python311\\python.exe", "C:\\Users\\Lenovo\\.codex\\skills\\ppt-master\\scripts\\svg_quality_checker.py", "projects\\rcm_11p_technical_review_ppt169_20261107", "--canonical-authoring", "--stage", "final", "--json"]
+stdout:
+  [WARN] 01_cover.svg - Passed (with warnings)
+     [WARN] Noncanonical compact authoring: Authoring SVG contains noncanonical or redundant inherited style declarations (4 change(s)); examples (group:attr None -> value hoists the shared value onto that group; child:attr value -> None drops the copy the child now inherits): tspan[15]:font-size '96' -> None; global-verdict:font-weight None -> 'bold'; text[28]:font-weight 'bold' -> None (advisory; normalize with `python3 scripts/compact_svg_styles.py <svg_output> --inplace`, re-stamp pages that carry Chart/Table fallbacks, and rerun the final gate, or leave the explicit form)
+  [OK] 02_closed_loop.svg - Passed
+  [WARN] 03_three_bases.svg - Passed (with warnings)
+     [WARN] data-pptx-replace-with marker base-role-matrix: Native PPTX table header style not projected from fallback: columns[].bold (blocks --native-charts-and-tables export)
+  [ERROR] 06_single_step_student.svg - Failed
+     viewBox: 0 0 1280 720
+     [ERROR] <line> marker-end=url(#downArrow) marker fill '#0B4F8A' does not match effective line stroke '#14988F'
+     [WARN] Detected 1 paragraph-like line run(s) split across sibling <text> elements (<g id="student-architecture"> x=96.0, y=452.0..484.0, 2 lines). If each run is one prose paragraph, combine it into one <text>: keep its first line as direct text and use direct <tspan> children with the parent x and positive relative dy values for later lines. An all-<tspan> form may start with dy="0". Keep semantically independent text frames separate.
+  [OK] 07_data_loop.svg - Passed
+     viewBox: 0 0 1280 720
+  [WARN] 08_development_evidence.svg - Passed (with warnings)
+  [ERROR] 10_failure_modes.svg - Failed
+     viewBox: 0 0 1280 720
+     [ERROR] <text> (x=250, y=578; text='0') exceeds <g id="failure-mode-bars"> data-pptx-bounds on the vertical axis: content (243.6, 559.3)-(256.4, 585.7), container (72.0, 190.0)-(752.0, 560.0), overflow horizontal 0.0%, vertical 6.9% (error above 5%); expand the root module bounds into available non-overlapping space; otherwise reflow the text
+     [ERROR] <text> (x=397, y=578; text='20') exceeds <g id="failure-mode-bars"> data-pptx-bounds on the vertical axis: content (384.2, 559.3)-(409.8, 585.7), container (72.0, 190.0)-(752.0, 560.0), overflow horizontal 0.0%, vertical 6.9% (error above 5%); expand the root module bounds into available non-overlapping space; otherwise reflow the text
+     [ERROR] <text> (x=544, y=578; text='40') exceeds <g id="failure-mode-bars"> data-pptx-bounds on the vertical axis: content (531.2, 559.3)-(556.8, 585.7), container (72.0, 190.0)-(752.0, 560.0), overflow horizontal 0.0%, vertical 6.9% (error above 5%); expand the root module bounds into available non-overlapping space; otherwise reflow the text
+     [ERROR] <text> (x=690, y=578; text='60') exceeds <g id="failure-mode-bars"> data-pptx-bounds on the vertical axis: content (677.2, 559.3)-(702.8, 585.7), container (72.0, 190.0)-(752.0, 560.0), overflow horizontal 0.0%, vertical 6.9% (error above 5%); expand the root module bounds into available non-overlapping space; otherwise reflow the text
+     [WARN] <text> (x=808, y=532; text='问题更像终端稳定性，而非通道不可用。') exceeds <g id="hold-failure-story"> data-pptx-bounds on the horizontal axis: content (808.0, 513.3)-(1227.8, 539.7), container (784.0, 190.0)-(1208.0, 550.0), overflow horizontal 4.7%, vertical 0.0% (error above 5%); expand the root module bounds into available non-overlapping space; otherwise reflow the text; ≈23.3 px per CJK char at 22px incl. headroom; ≈18 chars fit in 424 px
+     [WARN] data-pptx-replace-with marker failure-mode-bars: Native PPTX chart visible text not projected: '180 个 episode 的互斥结果'. Use categories/data labels/axis labels/legend or companion text. For formatted value labels, set data_labels.number_format to match the fallback. (blocks --native-charts-and-tables export)
+  [ERROR] 11_next_steps.svg - Failed
+     viewBox: 0 0 1280 720
+     [ERROR] <text> (x=1088, y=430; text='滞回或保持目标，') exceeds <g id="action-sequence"> data-pptx-bounds on the horizontal axis: content (1088.0, 411.3)-(1274.6, 437.7), container (72.0, 188.0)-(1208.0, 474.0), overflow horizontal 5.9%, vertical 0.0% (error above 5%); expand the root module bounds into available non-overlapping space; otherwise reflow the text; ≈23.3 px per CJK char at 22px incl. headroom; ≈48 chars fit in 1136 px
+     [WARN] <text> (x=1088, y=396; text='显式终端保持') exceeds <g id="action-sequence"> data-pptx-bounds on the horizontal axis: content (1088.0, 375.6)-(1240.6, 404.4), container (72.0, 188.0)-(1208.0, 474.0), overflow horizontal 2.9%, vertical 0.0% (error above 5%); expand the root module bounds into available non-overlapping space; otherwise reflow the text; ≈25.4 px per CJK char at 24px incl. headroom; ≈44 chars fit in 1136 px
+     [WARN] <text> (x=1088, y=458; text='约束到达后动作') exceeds <g id="action-sequence"> data-pptx-bounds on the horizontal axis: content (1088.0, 439.3)-(1251.2, 465.7), container (72.0, 188.0)-(1208.0, 474.0), overflow horizontal 3.8%, vertical 0.0% (error above 5%); expand the root module bounds into available non-overlapping space; otherwise reflow the text; ≈23.3 px per CJK char at 22px incl. headroom; ≈48 chars fit in 1136 px
+  [SUMMARY] Check Summary
+  Total files: 11
+    [OK] Fully passed: 4 (36%)
+    [WARN] With warnings: 4 (36%)
+    [ERROR] With errors: 3 (27%)
+  Provenance categories:
+    blocking: 6          hard findings; gate also requires exit 0
+    introduced: 17       advisory; new or changed
+    inherited: 0         informational; prototype-identical
+    source-import: 0     informational; source-conversion loss
+  [CARRIERS] Actual-use receipt (informational; not a quota)
+    Pages: 11 | text: 263 | images: 0 | icons: 11
+    Geometry: SVG elements 183 | native presets 0 | page-frame elements 34 | marker uses 21
+    Effects: inline emphasis 2 (pages 1) | gradients 0 (pages 0) | filters 0 (pages 0) | text effects 0 (pages 0)
+    Native objects: charts 3 | tables 1 | formulas 0
+  [REPORT] JSON quality report exported: projects\rcm_11p_technical_review_ppt169_20261107\validation\svg_quality_report.json
+=== 2026-11-07T13:10:23.763Z END run=5a69b99dcada elapsed_ms=3530 output_lines=82 retained=41 omitted=41 ===
+
+=== 2026-11-07T13:11:22.654Z PYTHON run=077060ef7b28 ===
+cwd: E:\30_RESOURCES\32_课程教程\医学\中科院\rcm-mujoco-reference-ffd7b15d41c51c2d2f8a15596e9575106f81c225
+argv: ["C:\\Users\\Lenovo\\AppData\\Local\\Programs\\Python\\Python311\\python.exe", "C:\\Users\\Lenovo\\.codex\\skills\\ppt-master\\scripts\\stamp_native_fallbacks.py", "projects\\rcm_11p_technical_review_ppt169_20261107\\svg_output\\10_failure_modes.svg", "--write"]
+=== 2026-11-07T13:11:22.668Z END run=077060ef7b28 elapsed_ms=15 output_lines=2 retained=0 omitted=2 ===
+
+=== 2026-11-07T13:11:33.299Z PYTHON run=c7f67d8ca922 ===
+cwd: E:\30_RESOURCES\32_课程教程\医学\中科院\rcm-mujoco-reference-ffd7b15d41c51c2d2f8a15596e9575106f81c225
+argv: ["C:\\Users\\Lenovo\\AppData\\Local\\Programs\\Python\\Python311\\python.exe", "C:\\Users\\Lenovo\\.codex\\skills\\ppt-master\\scripts\\svg_quality_checker.py", "projects\\rcm_11p_technical_review_ppt169_20261107", "--canonical-authoring", "--stage", "final", "--json"]
+stdout:
+  [WARN] 01_cover.svg - Passed (with warnings)
+     [WARN] Noncanonical compact authoring: Authoring SVG contains noncanonical or redundant inherited style declarations (4 change(s)); examples (group:attr None -> value hoists the shared value onto that group; child:attr value -> None drops the copy the child now inherits): tspan[15]:font-size '96' -> None; global-verdict:font-weight None -> 'bold'; text[28]:font-weight 'bold' -> None (advisory; normalize with `python3 scripts/compact_svg_styles.py <svg_output> --inplace`, re-stamp pages that carry Chart/Table fallbacks, and rerun the final gate, or leave the explicit form)
+  [OK] 02_closed_loop.svg - Passed
+  [WARN] 03_three_bases.svg - Passed (with warnings)
+     [WARN] data-pptx-replace-with marker base-role-matrix: Native PPTX table header style not projected from fallback: columns[].bold (blocks --native-charts-and-tables export)
+  [SUMMARY] Check Summary
+  Total files: 11
+    [OK] Fully passed: 5 (45%)
+    [WARN] With warnings: 6 (54%)
+    [ERROR] With errors: 0 (0%)
+  Provenance categories:
+    blocking: 0          hard findings; gate also requires exit 0
+    introduced: 13       advisory; new or changed
+    inherited: 0         informational; prototype-identical
+    source-import: 0     informational; source-conversion loss
+  [CARRIERS] Actual-use receipt (informational; not a quota)
+    Pages: 11 | text: 263 | images: 0 | icons: 11
+    Geometry: SVG elements 183 | native presets 0 | page-frame elements 34 | marker uses 21
+  [REPORT] JSON quality report exported: projects\rcm_11p_technical_review_ppt169_20261107\validation\svg_quality_report.json
+=== 2026-11-07T13:11:38.071Z END run=c7f67d8ca922 elapsed_ms=4780 output_lines=70 retained=19 omitted=51 ===
+
+=== 2026-11-07T13:12:29.090Z PYTHON run=99d44b8efcf0 ===
+cwd: E:\30_RESOURCES\32_课程教程\医学\中科院\rcm-mujoco-reference-ffd7b15d41c51c2d2f8a15596e9575106f81c225
+argv: ["C:\\Users\\Lenovo\\AppData\\Local\\Programs\\Python\\Python311\\python.exe", "C:\\Users\\Lenovo\\.codex\\skills\\ppt-master\\scripts\\stamp_native_fallbacks.py", "projects\\rcm_11p_technical_review_ppt169_20261107\\svg_output", "--write"]
+=== 2026-11-07T13:12:29.212Z END run=99d44b8efcf0 elapsed_ms=125 output_lines=12 retained=0 omitted=12 ===
+
+=== 2026-11-07T13:12:39.567Z PYTHON run=ebcaa7613ca9 ===
+cwd: E:\30_RESOURCES\32_课程教程\医学\中科院\rcm-mujoco-reference-ffd7b15d41c51c2d2f8a15596e9575106f81c225
+argv: ["C:\\Users\\Lenovo\\AppData\\Local\\Programs\\Python\\Python311\\python.exe", "C:\\Users\\Lenovo\\.codex\\skills\\ppt-master\\scripts\\svg_quality_checker.py", "projects\\rcm_11p_technical_review_ppt169_20261107", "--canonical-authoring", "--stage", "final", "--json"]
+stdout:
+  [WARN] 01_cover.svg - Passed (with warnings)
+     [WARN] Noncanonical compact authoring: Authoring SVG contains noncanonical or redundant inherited style declarations (4 change(s)); examples (group:attr None -> value hoists the shared value onto that group; child:attr value -> None drops the copy the child now inherits): tspan[15]:font-size '96' -> None; global-verdict:font-weight None -> 'bold'; text[28]:font-weight 'bold' -> None (advisory; normalize with `python3 scripts/compact_svg_styles.py <svg_output> --inplace`, re-stamp pages that carry Chart/Table fallbacks, and rerun the final gate, or leave the explicit form)
+  [OK] 02_closed_loop.svg - Passed
+  [WARN] 03_three_bases.svg - Passed (with warnings)
+     [WARN] data-pptx-replace-with marker base-role-matrix: Native PPTX table header style not projected from fallback: columns[].bold (blocks --native-charts-and-tables export)
+  [SUMMARY] Check Summary
+  Total files: 11
+    [OK] Fully passed: 5 (45%)
+    [WARN] With warnings: 6 (54%)
+    [ERROR] With errors: 0 (0%)
+  Provenance categories:
+    blocking: 0          hard findings; gate also requires exit 0
+    introduced: 13       advisory; new or changed
+    inherited: 0         informational; prototype-identical
+    source-import: 0     informational; source-conversion loss
+  [CARRIERS] Actual-use receipt (informational; not a quota)
+    Pages: 11 | text: 263 | images: 0 | icons: 11
+    Geometry: SVG elements 183 | native presets 0 | page-frame elements 34 | marker uses 21
+  [REPORT] JSON quality report exported: projects\rcm_11p_technical_review_ppt169_20261107\validation\svg_quality_report.json
+=== 2026-11-07T13:12:44.481Z END run=ebcaa7613ca9 elapsed_ms=4907 output_lines=70 retained=19 omitted=51 ===
+
+=== 2026-11-07T13:13:39.450Z PYTHON run=84dc4a3ea1df ===
+cwd: E:\30_RESOURCES\32_课程教程\医学\中科院\rcm-mujoco-reference-ffd7b15d41c51c2d2f8a15596e9575106f81c225
+argv: ["C:\\Users\\Lenovo\\AppData\\Local\\Programs\\Python\\Python311\\python.exe", "C:\\Users\\Lenovo\\.codex\\skills\\ppt-master\\scripts\\total_md_split.py", "projects\\rcm_11p_technical_review_ppt169_20261107"]
+stdout:
+  [OK] SVG files and notes have one-to-one correspondence
+  [Done] Successfully generated 11/11 file(s)
+  [Done] Notes splitting complete
+=== 2026-11-07T13:13:39.524Z END run=84dc4a3ea1df elapsed_ms=78 output_lines=20 retained=3 omitted=17 ===
+
+=== 2026-11-07T13:13:52.612Z PYTHON run=cca26c95ab78 ===
+cwd: E:\30_RESOURCES\32_课程教程\医学\中科院\rcm-mujoco-reference-ffd7b15d41c51c2d2f8a15596e9575106f81c225
+argv: ["C:\\Users\\Lenovo\\AppData\\Local\\Programs\\Python\\Python311\\python.exe", "C:\\Users\\Lenovo\\.codex\\skills\\ppt-master\\scripts\\finalize_svg.py", "projects\\rcm_11p_technical_review_ppt169_20261107"]
+stdout:
+  [OK] 02_closed_loop.svg (1 icons)
+  [OK] Done!
+=== 2026-11-07T13:13:54.058Z END run=cca26c95ab78 elapsed_ms=1438 output_lines=17 retained=2 omitted=15 ===
+
+=== 2026-11-07T13:14:03.561Z PYTHON run=420d12e321dd ===
+cwd: E:\30_RESOURCES\32_课程教程\医学\中科院\rcm-mujoco-reference-ffd7b15d41c51c2d2f8a15596e9575106f81c225
+argv: ["C:\\Users\\Lenovo\\AppData\\Local\\Programs\\Python\\Python311\\python.exe", "C:\\Users\\Lenovo\\.codex\\skills\\ppt-master\\scripts\\svg_to_pptx.py", "projects\\rcm_11p_technical_review_ppt169_20261107", "--no-animations"]
+stderr:
+  Traceback (most recent call last):
+    File "C:\Users\Lenovo\.codex\skills\ppt-master\scripts\svg_to_pptx.py", line 25, in <module>
+      from svg_to_pptx import main
+    File "C:\Users\Lenovo\.codex\skills\ppt-master\scripts\svg_to_pptx\__init__.py", line 23, in __getattr__
+      from .pptx_package.cli import main
+    File "C:\Users\Lenovo\.codex\skills\ppt-master\scripts\svg_to_pptx\pptx_package\cli.py", line 87, in <module>
+      from .builder import RoundtripSlidePatch, create_pptx_with_native_svg
+    File "C:\Users\Lenovo\.codex\skills\ppt-master\scripts\svg_to_pptx\pptx_package\builder.py", line 27, in <module>
+stderr-tail:
+      from pptx import Presentation
+  ModuleNotFoundError: No module named 'pptx'
+=== 2026-11-07T13:14:04.410Z END run=420d12e321dd elapsed_ms=858 output_lines=10 retained=10 omitted=0 ===
+
+=== 2026-11-07T13:15:05.636Z PYTHON run=c2247d15dbbd ===
+cwd: E:\30_RESOURCES\32_课程教程\医学\中科院\rcm-mujoco-reference-ffd7b15d41c51c2d2f8a15596e9575106f81c225
+argv: ["C:\\Users\\Lenovo\\AppData\\Local\\Programs\\Python\\Python311\\python.exe", "C:\\Users\\Lenovo\\.codex\\skills\\ppt-master\\scripts\\svg_to_pptx.py", "projects\\rcm_11p_technical_review_ppt169_20261107", "--no-animations"]
+stdout:
+  [Done] Saved: projects\rcm_11p_technical_review_ppt169_20261107\exports\rcm_11p_technical_review_20261107_211507.pptx
+    [POSTFLIGHT] status=passed-with-warnings quality_gate=passed slides=11 warning_categories=1
+    [POSTFLIGHT][WARNING] quality_introduced_warnings=13
+    [PPTX] projects\rcm_11p_technical_review_ppt169_20261107\exports\rcm_11p_technical_review_20261107_211507.pptx
+    [REPORT] projects\rcm_11p_technical_review_ppt169_20261107\validation\rcm_11p_technical_review_20261107_211507.report.json
+=== 2026-11-07T13:15:10.508Z END run=c2247d15dbbd elapsed_ms=4875 output_lines=60 retained=5 omitted=55 ===
+
+=== 2026-11-07T13:17:44.366Z PYTHON run=29ccc6c38fb0 ===
+cwd: E:\30_RESOURCES\32_课程教程\医学\中科院\rcm-mujoco-reference-ffd7b15d41c51c2d2f8a15596e9575106f81c225
+argv: ["C:\\Users\\Lenovo\\AppData\\Local\\Programs\\Python\\Python311\\python.exe", "C:\\Users\\Lenovo\\.codex\\skills\\ppt-master\\scripts\\svg_quality_checker.py", "projects\\rcm_11p_technical_review_ppt169_20261107", "--canonical-authoring", "--stage", "final", "--json"]
+stdout:
+  [WARN] 01_cover.svg - Passed (with warnings)
+     [WARN] Noncanonical compact authoring: Authoring SVG contains noncanonical or redundant inherited style declarations (4 change(s)); examples (group:attr None -> value hoists the shared value onto that group; child:attr value -> None drops the copy the child now inherits): tspan[15]:font-size '96' -> None; global-verdict:font-weight None -> 'bold'; text[28]:font-weight 'bold' -> None (advisory; normalize with `python3 scripts/compact_svg_styles.py <svg_output> --inplace`, re-stamp pages that carry Chart/Table fallbacks, and rerun the final gate, or leave the explicit form)
+  [OK] 02_closed_loop.svg - Passed
+  [WARN] 03_three_bases.svg - Passed (with warnings)
+     [WARN] data-pptx-replace-with marker base-role-matrix: Native PPTX table header style not projected from fallback: columns[].bold (blocks --native-charts-and-tables export)
+  [SUMMARY] Check Summary
+  Total files: 11
+    [OK] Fully passed: 5 (45%)
+    [WARN] With warnings: 6 (54%)
+    [ERROR] With errors: 0 (0%)
+  Provenance categories:
+    blocking: 0          hard findings; gate also requires exit 0
+    introduced: 13       advisory; new or changed
+    inherited: 0         informational; prototype-identical
+    source-import: 0     informational; source-conversion loss
+  [CARRIERS] Actual-use receipt (informational; not a quota)
+    Pages: 11 | text: 263 | images: 0 | icons: 11
+    Geometry: SVG elements 183 | native presets 0 | page-frame elements 34 | marker uses 21
+  [REPORT] JSON quality report exported: projects\rcm_11p_technical_review_ppt169_20261107\validation\svg_quality_report.json
+=== 2026-11-07T13:17:49.420Z END run=29ccc6c38fb0 elapsed_ms=5046 output_lines=70 retained=19 omitted=51 ===
+
+=== 2026-11-07T13:18:03.420Z PYTHON run=5608eca1f97b ===
+cwd: E:\30_RESOURCES\32_课程教程\医学\中科院\rcm-mujoco-reference-ffd7b15d41c51c2d2f8a15596e9575106f81c225
+argv: ["C:\\Users\\Lenovo\\AppData\\Local\\Programs\\Python\\Python311\\python.exe", "C:\\Users\\Lenovo\\.codex\\skills\\ppt-master\\scripts\\finalize_svg.py", "projects\\rcm_11p_technical_review_ppt169_20261107"]
+stdout:
+  [OK] 02_closed_loop.svg (1 icons)
+  [OK] Done!
+=== 2026-11-07T13:18:04.742Z END run=5608eca1f97b elapsed_ms=1328 output_lines=17 retained=2 omitted=15 ===
+
+=== 2026-11-07T13:18:18.739Z PYTHON run=e976eb0c27f7 ===
+cwd: E:\30_RESOURCES\32_课程教程\医学\中科院\rcm-mujoco-reference-ffd7b15d41c51c2d2f8a15596e9575106f81c225
+argv: ["C:\\Users\\Lenovo\\AppData\\Local\\Programs\\Python\\Python311\\python.exe", "C:\\Users\\Lenovo\\.codex\\skills\\ppt-master\\scripts\\svg_to_pptx.py", "projects\\rcm_11p_technical_review_ppt169_20261107", "--no-animations"]
+stdout:
+  [Done] Saved: projects\rcm_11p_technical_review_ppt169_20261107\exports\rcm_11p_technical_review_20261107_211822.pptx
+    [POSTFLIGHT] status=passed-with-warnings quality_gate=passed slides=11 warning_categories=1
+    [POSTFLIGHT][WARNING] quality_introduced_warnings=13
+    [PPTX] projects\rcm_11p_technical_review_ppt169_20261107\exports\rcm_11p_technical_review_20261107_211822.pptx
+    [REPORT] projects\rcm_11p_technical_review_ppt169_20261107\validation\rcm_11p_technical_review_20261107_211822.report.json
+=== 2026-11-07T13:18:25.329Z END run=e976eb0c27f7 elapsed_ms=6577 output_lines=60 retained=5 omitted=55 ===
+
+=== 2026-11-07T13:19:35.348Z PYTHON run=e9cd744e5668 ===
+cwd: E:\30_RESOURCES\32_课程教程\医学\中科院\rcm-mujoco-reference-ffd7b15d41c51c2d2f8a15596e9575106f81c225
+argv: ["C:\\Users\\Lenovo\\AppData\\Local\\Programs\\Python\\Python311\\python.exe", "C:\\Users\\Lenovo\\.codex\\skills\\ppt-master\\scripts\\svg_quality_checker.py", "projects\\rcm_11p_technical_review_ppt169_20261107", "--canonical-authoring", "--stage", "final", "--json"]
+stdout:
+  [WARN] 01_cover.svg - Passed (with warnings)
+     [WARN] Noncanonical compact authoring: Authoring SVG contains noncanonical or redundant inherited style declarations (4 change(s)); examples (group:attr None -> value hoists the shared value onto that group; child:attr value -> None drops the copy the child now inherits): tspan[15]:font-size '96' -> None; global-verdict:font-weight None -> 'bold'; text[28]:font-weight 'bold' -> None (advisory; normalize with `python3 scripts/compact_svg_styles.py <svg_output> --inplace`, re-stamp pages that carry Chart/Table fallbacks, and rerun the final gate, or leave the explicit form)
+  [OK] 02_closed_loop.svg - Passed
+  [WARN] 03_three_bases.svg - Passed (with warnings)
+     [WARN] data-pptx-replace-with marker base-role-matrix: Native PPTX table header style not projected from fallback: columns[].bold (blocks --native-charts-and-tables export)
+  [SUMMARY] Check Summary
+  Total files: 11
+    [OK] Fully passed: 5 (45%)
+    [WARN] With warnings: 6 (54%)
+    [ERROR] With errors: 0 (0%)
+  Provenance categories:
+    blocking: 0          hard findings; gate also requires exit 0
+    introduced: 14       advisory; new or changed
+    inherited: 0         informational; prototype-identical
+    source-import: 0     informational; source-conversion loss
+  [CARRIERS] Actual-use receipt (informational; not a quota)
+    Pages: 11 | text: 263 | images: 0 | icons: 11
+    Geometry: SVG elements 183 | native presets 0 | page-frame elements 34 | marker uses 21
+  [REPORT] JSON quality report exported: projects\rcm_11p_technical_review_ppt169_20261107\validation\svg_quality_report.json
+=== 2026-11-07T13:19:40.602Z END run=e9cd744e5668 elapsed_ms=5250 output_lines=71 retained=19 omitted=52 ===
+
+=== 2026-11-07T13:19:56.600Z PYTHON run=37a49ccbc5b3 ===
+cwd: E:\30_RESOURCES\32_课程教程\医学\中科院\rcm-mujoco-reference-ffd7b15d41c51c2d2f8a15596e9575106f81c225
+argv: ["C:\\Users\\Lenovo\\AppData\\Local\\Programs\\Python\\Python311\\python.exe", "C:\\Users\\Lenovo\\.codex\\skills\\ppt-master\\scripts\\finalize_svg.py", "projects\\rcm_11p_technical_review_ppt169_20261107"]
+stdout:
+  [OK] 02_closed_loop.svg (1 icons)
+  [OK] Done!
+=== 2026-11-07T13:19:58.007Z END run=37a49ccbc5b3 elapsed_ms=1405 output_lines=17 retained=2 omitted=15 ===
+
+=== 2026-11-07T13:20:12.305Z PYTHON run=1d4bafc58054 ===
+cwd: E:\30_RESOURCES\32_课程教程\医学\中科院\rcm-mujoco-reference-ffd7b15d41c51c2d2f8a15596e9575106f81c225
+argv: ["C:\\Users\\Lenovo\\AppData\\Local\\Programs\\Python\\Python311\\python.exe", "C:\\Users\\Lenovo\\.codex\\skills\\ppt-master\\scripts\\svg_to_pptx.py", "projects\\rcm_11p_technical_review_ppt169_20261107", "--no-animations"]
+stdout:
+  [Done] Saved: projects\rcm_11p_technical_review_ppt169_20261107\exports\rcm_11p_technical_review_20261107_212016.pptx
+    [POSTFLIGHT] status=passed-with-warnings quality_gate=passed slides=11 warning_categories=1
+    [POSTFLIGHT][WARNING] quality_introduced_warnings=14
+    [PPTX] projects\rcm_11p_technical_review_ppt169_20261107\exports\rcm_11p_technical_review_20261107_212016.pptx
+    [REPORT] projects\rcm_11p_technical_review_ppt169_20261107\validation\rcm_11p_technical_review_20261107_212016.report.json
+=== 2026-11-07T13:20:19.040Z END run=1d4bafc58054 elapsed_ms=6733 output_lines=60 retained=5 omitted=55 ===
+
+=== 2026-11-07T13:23:22.006Z PYTHON run=bf647b1b51e8 ===
+cwd: E:\30_RESOURCES\32_课程教程\医学\中科院\rcm-mujoco-reference-ffd7b15d41c51c2d2f8a15596e9575106f81c225
+argv: ["C:\\Users\\Lenovo\\AppData\\Local\\Programs\\Python\\Python311\\python.exe", "C:\\Users\\Lenovo\\.codex\\skills\\ppt-master\\scripts\\project_manager.py", "validate", "projects\\rcm_11p_technical_review_ppt169_20261107"]
+stdout:
+  [OK] Project structure is complete.
+=== 2026-11-07T13:23:24.572Z END run=bf647b1b51e8 elapsed_ms=2561 output_lines=3 retained=1 omitted=2 ===

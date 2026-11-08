@@ -24,7 +24,10 @@ from rcm_fundus import make_random_fundus_targets
 from rcm_strict_rgbd import StrictRGBDSensor
 from rcm_visual_servo import visual_servo_settings
 from train_diffusion_policy import SimpleDiffusionPolicy
-from train_oct_guided_regression import proportional_guided_action
+from train_oct_guided_regression import (
+    GuidedOCTResidualPolicy,
+    proportional_guided_action,
+)
 from rcm_reference import Reference
 
 
@@ -81,6 +84,9 @@ class PolicyEvaluator:
             'oct_diffusion_policy',
         )
         self.is_regression = self.policy_type == 'state_oct_mse_regression'
+        self.is_guided_regression = (
+            self.policy_type == 'oct_guided_residual_regression'
+        )
         self.n_obs_steps = int(config.get('n_obs_steps', 2))
         self.n_action_steps = int(config.get('n_action_steps', 8))
         self.num_diffusion_iters = int(config.get('num_diffusion_iters', 10))
@@ -106,6 +112,24 @@ class PolicyEvaluator:
                 previous_action_std=config.get('previous_action_std'),
                 action_mean=config.get('action_mean'),
                 action_std=config.get('action_std'),
+            ).to(self.device)
+        elif self.is_guided_regression:
+            self.n_obs_steps = 1
+            self.use_oct = True
+            self.model = GuidedOCTResidualPolicy(
+                state_mean=config['state_mean'],
+                state_std=config['state_std'],
+                log_distance_mean=config['log_distance_mean'],
+                log_distance_std=config['log_distance_std'],
+                base_mean=config['base_mean'],
+                base_std=config['base_std'],
+                far_residual_limit=config['far_residual_limit'],
+                full_effect_distance_mm=config.get(
+                    'full_effect_distance_mm',
+                    1.0,
+                ),
+                near_fraction=config.get('near_fraction', 0.1),
+                hidden_dim=config.get('hidden_dim', 128),
             ).to(self.device)
         else:
             self.model = SimpleDiffusionPolicy(
@@ -168,7 +192,7 @@ class PolicyEvaluator:
         self.regression_previous_action = np.zeros(3, dtype=np.float32)
         self.reference = None
         self.camera_rotation = None
-        if self.guided_oct:
+        if self.guided_oct or self.is_guided_regression:
             self.reference = Reference()
             _, self.camera_rotation = self.reference.camera_pose()
 
@@ -208,7 +232,11 @@ class PolicyEvaluator:
             action: [3] numpy array [dA_deg, dB_deg, dC_mm]
         """
         # 预处理
-        img_tensor = None if self.is_regression else self.preprocess_image(rgb)
+        img_tensor = (
+            None
+            if self.is_regression or self.is_guided_regression
+            else self.preprocess_image(rgb)
+        )
         state_tensor = torch.from_numpy(state).float()
 
         # 添加到缓冲
@@ -249,6 +277,34 @@ class PolicyEvaluator:
                     ).unsqueeze(0).to(self.device),
                 )[0].cpu().numpy()
             self.regression_previous_state = state_array.copy()
+            return action
+        if self.is_guided_regression:
+            base = proportional_guided_action(
+                self.reference,
+                np.asarray(state, dtype=np.float64),
+                np.asarray(oct_feature[:3], dtype=np.float64),
+                self.camera_rotation,
+                valid=bool(oct_feature[3] > 0.5),
+                gain=float(self.checkpoint['config']['gain']),
+                saturation=np.asarray(
+                    self.checkpoint['config']['base_saturation'],
+                    dtype=np.float64,
+                ),
+                relative_damping=float(
+                    self.checkpoint['config'].get(
+                        'relative_damping',
+                        1e-3,
+                    )
+                ),
+            )
+            with torch.no_grad():
+                action = self.model(
+                    obs_states[:, -1],
+                    obs_oct[:, -1],
+                    torch.from_numpy(base.astype(np.float32))
+                    .unsqueeze(0)
+                    .to(self.device),
+                )[0][0].cpu().numpy()
             return action
 
         obs_images = torch.stack([obs['image'] for obs in self.obs_buffer])
@@ -312,6 +368,8 @@ class PolicyEvaluator:
         max_consecutive_safety_limited=20,
         seed=0,
         sensor=None,
+        start_error_mm=None,
+        stagnation_steps=0,
     ):
         """
         评估单个 episode
@@ -326,6 +384,11 @@ class PolicyEvaluator:
             result: dict with success, steps, final_error, trajectory
         """
         self.reset_buffer(seed=seed)
+        if start_error_mm is not None:
+            target_task_units = scene.target_task(validate=True) * TASK_TO_DEG_DEG_MM
+            start_task_units = target_task_units.copy()
+            start_task_units[2] -= float(start_error_mm)
+            scene.set_task(start_task_units / TASK_TO_DEG_DEG_MM)
         if scene.motor_execution is None:
             scene.enable_motor_execution()
             scene.reset_motor_time(0.0)
@@ -370,6 +433,8 @@ class PolicyEvaluator:
         safety_limited_streak = 0
         last_safety_error = None
         early_stop_reason = None
+        best_error_mm = float('inf')
+        last_improvement_step = 0
 
         for step in range(max_steps):
             # 获取与训练数据同源的控制观测。OCT navigation 由当前 RGB-D
@@ -409,6 +474,18 @@ class PolicyEvaluator:
             )
             trajectory['oct_navigation_valid'].append(bool(oct_feature[3] > 0.5))
             trajectory['simulation_time_s'].append(float(motor.time_s))
+
+            if error < best_error_mm - 0.0005:
+                best_error_mm = error
+                last_improvement_step = step
+            if (
+                int(stagnation_steps) > 0
+                and step - last_improvement_step >= int(stagnation_steps)
+            ):
+                early_stop_reason = (
+                    f"STAGNATION_{int(stagnation_steps)}_STEPS"
+                )
+                break
 
             if error > float(early_stop_error_mm):
                 early_stop_reason = (
@@ -525,6 +602,10 @@ class PolicyEvaluator:
         settled_velocity_deg_deg_mm_per_s=(0.05, 0.05, 0.01),
         early_stop_error_mm=30.0,
         max_consecutive_safety_limited=20,
+        target_episodes=None,
+        target_start=0,
+        target_end=None,
+        start_error_mm=None,
     ):
         """
         评估多个 episodes
@@ -543,7 +624,14 @@ class PolicyEvaluator:
         results = []
         rng = np.random.default_rng(seed)
 
-        for ep_idx in tqdm(range(num_episodes), desc="评估 episodes"):
+        if target_episodes is None:
+            selected_targets = [None] * int(num_episodes)
+        else:
+            end = len(target_episodes) if target_end is None else int(target_end)
+            selected_targets = list(target_episodes[int(target_start):end])[: int(num_episodes)]
+            num_episodes = len(selected_targets)
+        for local_ep_idx, target_entry in enumerate(tqdm(selected_targets, desc="评估 episodes")):
+            ep_idx = int(target_start) + local_ep_idx
             print(f"\nEpisode {ep_idx + 1}/{num_episodes}")
 
             # 创建场景
@@ -552,7 +640,12 @@ class PolicyEvaluator:
 
             try:
                 # 选择目标
-                if random_targets:
+                if target_entry is not None:
+                    target_robot_mm = np.asarray(
+                        target_entry["point_mm"],
+                        dtype=np.float64,
+                    )
+                elif random_targets:
                     target_spec = make_random_fundus_targets(scene, rng, 1)
                     target_robot_mm = np.asarray(
                         target_spec['targets'][0]['point_mm'],
@@ -587,11 +680,24 @@ class PolicyEvaluator:
                     max_consecutive_safety_limited=max_consecutive_safety_limited,
                     seed=seed + ep_idx,
                     sensor=sensor,
+                    start_error_mm=start_error_mm,
                 )
                 result['episode_index'] = ep_idx
+                result['target_id'] = (
+                    target_entry.get('id') if target_entry is not None else None
+                )
+                result['seed'] = seed + ep_idx
                 result['target_robot_mm'] = target_robot_mm.tolist()
 
                 results.append(result)
+                if output_dir:
+                    partial = {
+                        'result': 'IN_PROGRESS',
+                        'episodes': results,
+                        'completed': len(results),
+                    }
+                    with open(output_dir / 'evaluation_results.json', 'w') as stream:
+                        json.dump(partial, stream, indent=2)
 
                 # 打印结果
                 if result['success']:
@@ -699,6 +805,15 @@ def main():
         type=int,
         default=20,
     )
+    parser.add_argument("--target-manifest", type=Path, default=None)
+    parser.add_argument(
+        "--target-split",
+        choices=("development", "final_test"),
+        default="development",
+    )
+    parser.add_argument("--target-start", type=int, default=0)
+    parser.add_argument("--target-end", type=int, default=None)
+    parser.add_argument("--start-error-um", type=float, default=None)
 
     args = parser.parse_args()
     if args.num_action_samples < 1:
@@ -716,6 +831,15 @@ def main():
     )
 
     # 评估
+    target_episodes = None
+    if args.target_manifest is not None:
+        manifest = json.loads(args.target_manifest.read_text(encoding="utf-8"))
+        key = (
+            "development_targets"
+            if args.target_split == "development"
+            else "final_test_targets"
+        )
+        target_episodes = manifest[key]
     evaluator.evaluate(
         num_episodes=args.episodes,
         output_dir=args.output_dir,
@@ -728,6 +852,12 @@ def main():
         settled_velocity_deg_deg_mm_per_s=args.settled_velocity_deg_deg_mm_per_s,
         early_stop_error_mm=args.early_stop_error_mm,
         max_consecutive_safety_limited=args.max_consecutive_safety_limited,
+        target_episodes=target_episodes,
+        target_start=args.target_start,
+        target_end=args.target_end,
+        start_error_mm=(
+            None if args.start_error_um is None else args.start_error_um / 1000.0
+        ),
     )
 
 

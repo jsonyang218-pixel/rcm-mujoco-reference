@@ -1,0 +1,912 @@
+{
+  "schema": "ppt-master.svg-quality-report.v1",
+  "stage": "final",
+  "target": "E:\\30_RESOURCES\\32_课程教程\\医学\\中科院\\rcm-mujoco-reference-ffd7b15d41c51c2d2f8a15596e9575106f81c225\\projects\\rcm_11p_technical_review_ppt169_20261107",
+  "source_fingerprint": {
+    "algorithm": "sha256",
+    "digest": "cc6f1627d619cb68f686387b6d30b8f720eb4ac75925e78b36633cacc2e73faa",
+    "file_count": 11,
+    "files": [
+      {
+        "file": "01_cover.svg",
+        "sha256": "dec88f3d7a13a24553b7a2047c5ddc2685fe01a14ed6e98412779a6087c9e673"
+      },
+      {
+        "file": "02_closed_loop.svg",
+        "sha256": "d1b679f469197dd8a09c258b0097875e8eb16118db16613711e589a453a87c3e"
+      },
+      {
+        "file": "03_three_bases.svg",
+        "sha256": "abf178b6e2e9120295cc91a36f6837181bc67dd56712d8130fda3a6785c36bf6"
+      },
+      {
+        "file": "04_diffusion_teacher.svg",
+        "sha256": "8f28616e4b8dd233d6423b3390c9e940abade1663f4a0a0f3d7637f7c91fb3da"
+      },
+      {
+        "file": "05_guided_residual.svg",
+        "sha256": "3074e734c65e26a5154c55b75bd8a8d90f022e5aa01a7a00eac351cd79865ca4"
+      },
+      {
+        "file": "06_single_step_student.svg",
+        "sha256": "568a77d05246fdd9c5a6ea8bec33e64e3e74d09cd64f40612a1f86ec669d5311"
+      },
+      {
+        "file": "07_data_loop.svg",
+        "sha256": "6bc3d58a9037c5935bf398f8ed05aa1c1524f5e0c5598d58f64a3e40c41ca7d5"
+      },
+      {
+        "file": "08_development_evidence.svg",
+        "sha256": "331d7106c81842f2c76a60dfed14fc568e205d2a22610446d0dc2f4f1a83298d"
+      },
+      {
+        "file": "09_final_test_gap.svg",
+        "sha256": "6b896d5450d23411ebeb8cecc2cd33e752d1e30a4c39115b0871c17aa11ab096"
+      },
+      {
+        "file": "10_failure_modes.svg",
+        "sha256": "a97fdb5b29da3d29678f0130e958bab622656d6cb9c1080626557aac3fe873f7"
+      },
+      {
+        "file": "11_next_steps.svg",
+        "sha256": "5c70cdbdad117fe9af9ada6b4049040ab72210af5507b15d816fba5e0a6d3105"
+      }
+    ]
+  },
+  "summary": {
+    "total": 11,
+    "passed": 5,
+    "warnings": 6,
+    "errors": 0
+  },
+  "issue_types": {},
+  "categories": {
+    "blocking": {
+      "count": 0,
+      "issues": []
+    },
+    "introduced": {
+      "count": 14,
+      "issues": [
+        {
+          "file": "01_cover.svg",
+          "message": "Noncanonical compact authoring: Authoring SVG contains noncanonical or redundant inherited style declarations (4 change(s)); examples (group:attr None -> value hoists the shared value onto that group; child:attr value -> None drops the copy the child now inherits): tspan[15]:font-size '96' -> None; global-verdict:font-weight None -> 'bold'; text[28]:font-weight 'bold' -> None (advisory; normalize with `python3 scripts/compact_svg_styles.py <svg_output> --inplace`, re-stamp pages that carry Chart/Table fallbacks, and rerun the final gate, or leave the explicit form)"
+        },
+        {
+          "file": "03_three_bases.svg",
+          "message": "data-pptx-replace-with marker base-role-matrix: Native PPTX table header style not projected from fallback: columns[].bold (blocks --native-charts-and-tables export)"
+        },
+        {
+          "file": "03_three_bases.svg",
+          "message": "data-pptx-replace-with marker base-role-matrix: Native PPTX table whole row 3 fill #F5F9FB is not projected to cell fill (blocks --native-charts-and-tables export)"
+        },
+        {
+          "file": "03_three_bases.svg",
+          "message": "data-pptx-replace-with marker base-role-matrix: Native PPTX table whole row 4 fill #EAF2F7 is not projected to cell fill (blocks --native-charts-and-tables export)"
+        },
+        {
+          "file": "03_three_bases.svg",
+          "message": "data-pptx-replace-with marker base-role-matrix: Native PPTX table first-column text style not projected from fallback: bold, color #14988F (blocks --native-charts-and-tables export)"
+        },
+        {
+          "file": "03_three_bases.svg",
+          "message": "data-pptx-replace-with marker base-role-matrix: Native PPTX table body text color #14988F/#B42318 is not projected to cell color, defaults.run.color, or style.body_text (blocks --native-charts-and-tables export)"
+        },
+        {
+          "file": "03_three_bases.svg",
+          "message": "data-pptx-replace-with marker base-role-matrix: Native PPTX table border topology not projected: fallback rules cover only 28 of 40 cardinal cell edges, but payload has only a uniform border (blocks --native-charts-and-tables export)"
+        },
+        {
+          "file": "06_single_step_student.svg",
+          "message": "Detected 1 paragraph-like line run(s) split across sibling <text> elements (<g id=\"student-architecture\"> x=96.0, y=452.0..484.0, 2 lines). If each run is one prose paragraph, combine it into one <text>: keep its first line as direct text and use direct <tspan> children with the parent x and positive relative dy values for later lines. An all-<tspan> form may start with dy=\"0\". Keep semantically independent text frames separate."
+        },
+        {
+          "file": "08_development_evidence.svg",
+          "message": "data-pptx-replace-with marker development-success-bars: Native PPTX chart visible text not projected: '开发集成功数 / 40'. Use categories/data labels/axis labels/legend or companion text. For formatted value labels, set data_labels.number_format to match the fallback. (blocks --native-charts-and-tables export)"
+        },
+        {
+          "file": "09_final_test_gap.svg",
+          "message": "Noncanonical compact authoring: Authoring SVG contains noncanonical or redundant inherited style declarations (9 change(s)); examples (group:attr None -> value hoists the shared value onto that group; child:attr value -> None drops the copy the child now inherits): distribution-reading:fill None -> '#172633'; distribution-reading:font-size None -> '28'; distribution-reading:font-weight None -> 'bold' (advisory; normalize with `python3 scripts/compact_svg_styles.py <svg_output> --inplace`, re-stamp pages that carry Chart/Table fallbacks, and rerun the final gate, or leave the explicit form)"
+        },
+        {
+          "file": "09_final_test_gap.svg",
+          "message": "data-pptx-replace-with marker final-success-bars: Native PPTX chart style.text_color #172633 differs from fallback dominant text_color #526571; set style.text_color to #526571 or repaint the fallback so #172633 is its dominant text_color (blocks --native-charts-and-tables export)"
+        },
+        {
+          "file": "09_final_test_gap.svg",
+          "message": "data-pptx-replace-with marker final-success-bars: Native PPTX chart visible text not projected: '最终测试：20 µm 成功率', '0%', '10%', '20%', '30%', '蒸馏', '20/180', '七样本', and 1 more. Use categories/data labels/axis labels/legend or companion text. For formatted value labels, set data_labels.number_format to match the fallback. (blocks --native-charts-and-tables export)"
+        },
+        {
+          "file": "10_failure_modes.svg",
+          "message": "Detected 1 paragraph-like line run(s) split across sibling <text> elements (<g id=\"hold-failure-story\"> x=808.0, y=488.0..510.0, 2 lines). If each run is one prose paragraph, combine it into one <text>: keep its first line as direct text and use direct <tspan> children with the parent x and positive relative dy values for later lines. An all-<tspan> form may start with dy=\"0\". Keep semantically independent text frames separate."
+        },
+        {
+          "file": "10_failure_modes.svg",
+          "message": "data-pptx-replace-with marker failure-mode-bars: Native PPTX chart visible text not projected: '180 个 episode 的互斥结果'. Use categories/data labels/axis labels/legend or companion text. For formatted value labels, set data_labels.number_format to match the fallback. (blocks --native-charts-and-tables export)"
+        }
+      ]
+    },
+    "inherited": {
+      "count": 0,
+      "issues": []
+    },
+    "source-import": {
+      "count": 0,
+      "summary": {
+        "warning_count": 0,
+        "by_code": {}
+      }
+    }
+  },
+  "drift": {
+    "colors": {
+      "#F5F9FB": [
+        "03_three_bases.svg"
+      ],
+      "#F8FBFD": [
+        "04_diffusion_teacher.svg",
+        "05_guided_residual.svg",
+        "06_single_step_student.svg",
+        "09_final_test_gap.svg"
+      ]
+    },
+    "fonts": {},
+    "sizes": {
+      "40": [
+        "01_cover.svg"
+      ]
+    }
+  },
+  "carrier_receipt": {
+    "scope": "informational-not-a-quota",
+    "pages": 11,
+    "totals": {
+      "text_elements": 263,
+      "image_placements": 0,
+      "icons": 11,
+      "svg_geometry_elements": 183,
+      "preset_shapes": 0,
+      "page_frame_elements": 34,
+      "marker_uses": 21,
+      "inline_emphasis_runs": 2,
+      "gradient_uses": 0,
+      "filter_uses": 0,
+      "text_effects": 0
+    },
+    "pages_with": {
+      "images": 0,
+      "icons": 5,
+      "presets": 0,
+      "charts": 3,
+      "tables": 1,
+      "formulas": 0,
+      "inline_emphasis_runs": 1,
+      "gradient_uses": 0,
+      "filter_uses": 0,
+      "text_effects": 0
+    },
+    "relationship_pages": 5,
+    "geometry_elements": {
+      "circle": 5,
+      "ellipse": 0,
+      "line": 79,
+      "path": 13,
+      "polygon": 0,
+      "polyline": 0,
+      "rect": 86
+    },
+    "preset_names": {},
+    "native_objects": {
+      "chart": 3,
+      "formula_block": 0,
+      "formula_inline": 0,
+      "other": 0,
+      "table": 1
+    },
+    "image_page_max_frame_share_range": []
+  },
+  "project_issues": {
+    "template": [],
+    "animation": [],
+    "illustration": [],
+    "communication_trace": [],
+    "pptx_structure": []
+  },
+  "files": [
+    {
+      "file": "01_cover.svg",
+      "path": "projects\\rcm_11p_technical_review_ppt169_20261107\\svg_output\\01_cover.svg",
+      "exists": true,
+      "errors": [],
+      "warnings": [
+        "Noncanonical compact authoring: Authoring SVG contains noncanonical or redundant inherited style declarations (4 change(s)); examples (group:attr None -> value hoists the shared value onto that group; child:attr value -> None drops the copy the child now inherits): tspan[15]:font-size '96' -> None; global-verdict:font-weight None -> 'bold'; text[28]:font-weight 'bold' -> None (advisory; normalize with `python3 scripts/compact_svg_styles.py <svg_output> --inplace`, re-stamp pages that carry Chart/Table fallbacks, and rerun the final gate, or leave the explicit form)"
+      ],
+      "info": {
+        "viewbox": "0 0 1280 720",
+        "carrier_receipt": {
+          "text_elements": 20,
+          "images": {
+            "placements": 0,
+            "files": [],
+            "max_frame_share": 0.0
+          },
+          "icons": 0,
+          "effects": {
+            "inline_emphasis_runs": 2,
+            "gradient_uses": 0,
+            "filter_uses": 0,
+            "text_effects": 0
+          },
+          "geometry": {
+            "svg_elements": {
+              "rect": 4,
+              "circle": 0,
+              "ellipse": 0,
+              "line": 4,
+              "polyline": 0,
+              "polygon": 0,
+              "path": 1
+            },
+            "preset_shapes": 0,
+            "preset_names": {},
+            "page_frame_elements": 4,
+            "marker_uses": {
+              "start": 0,
+              "mid": 0,
+              "end": 0
+            }
+          },
+          "native_objects": {
+            "chart": 0,
+            "table": 0,
+            "formula_block": 0,
+            "formula_inline": 0,
+            "other": 0
+          }
+        },
+        "fonts": [
+          "Microsoft YaHei, Arial",
+          "Microsoft YaHei, Consolas"
+        ],
+        "text_elements": 20,
+        "tspan_elements": 4,
+        "sparse_typography_sizes": {
+          "40": 1
+        }
+      },
+      "passed": true,
+      "source_sha256": "dec88f3d7a13a24553b7a2047c5ddc2685fe01a14ed6e98412779a6087c9e673"
+    },
+    {
+      "file": "02_closed_loop.svg",
+      "path": "projects\\rcm_11p_technical_review_ppt169_20261107\\svg_output\\02_closed_loop.svg",
+      "exists": true,
+      "errors": [],
+      "warnings": [],
+      "info": {
+        "viewbox": "0 0 1280 720",
+        "carrier_receipt": {
+          "text_elements": 27,
+          "images": {
+            "placements": 0,
+            "files": [],
+            "max_frame_share": 0.0
+          },
+          "icons": 1,
+          "effects": {
+            "inline_emphasis_runs": 0,
+            "gradient_uses": 0,
+            "filter_uses": 0,
+            "text_effects": 0
+          },
+          "geometry": {
+            "svg_elements": {
+              "rect": 8,
+              "circle": 0,
+              "ellipse": 0,
+              "line": 11,
+              "polyline": 0,
+              "polygon": 0,
+              "path": 2
+            },
+            "preset_shapes": 0,
+            "preset_names": {},
+            "page_frame_elements": 3,
+            "marker_uses": {
+              "start": 0,
+              "mid": 0,
+              "end": 7
+            }
+          },
+          "native_objects": {
+            "chart": 0,
+            "table": 0,
+            "formula_block": 0,
+            "formula_inline": 0,
+            "other": 0
+          }
+        },
+        "fonts": [
+          "Microsoft YaHei, Arial"
+        ],
+        "text_elements": 27,
+        "tspan_elements": 1
+      },
+      "passed": true,
+      "source_sha256": "d1b679f469197dd8a09c258b0097875e8eb16118db16613711e589a453a87c3e"
+    },
+    {
+      "file": "03_three_bases.svg",
+      "path": "projects\\rcm_11p_technical_review_ppt169_20261107\\svg_output\\03_three_bases.svg",
+      "exists": true,
+      "errors": [],
+      "warnings": [
+        "data-pptx-replace-with marker base-role-matrix: Native PPTX table header style not projected from fallback: columns[].bold (blocks --native-charts-and-tables export)",
+        "data-pptx-replace-with marker base-role-matrix: Native PPTX table whole row 3 fill #F5F9FB is not projected to cell fill (blocks --native-charts-and-tables export)",
+        "data-pptx-replace-with marker base-role-matrix: Native PPTX table whole row 4 fill #EAF2F7 is not projected to cell fill (blocks --native-charts-and-tables export)",
+        "data-pptx-replace-with marker base-role-matrix: Native PPTX table first-column text style not projected from fallback: bold, color #14988F (blocks --native-charts-and-tables export)",
+        "data-pptx-replace-with marker base-role-matrix: Native PPTX table body text color #14988F/#B42318 is not projected to cell color, defaults.run.color, or style.body_text (blocks --native-charts-and-tables export)",
+        "data-pptx-replace-with marker base-role-matrix: Native PPTX table border topology not projected: fallback rules cover only 28 of 40 cardinal cell edges, but payload has only a uniform border (blocks --native-charts-and-tables export)"
+      ],
+      "info": {
+        "viewbox": "0 0 1280 720",
+        "carrier_receipt": {
+          "text_elements": 24,
+          "images": {
+            "placements": 0,
+            "files": [],
+            "max_frame_share": 0.0
+          },
+          "icons": 0,
+          "effects": {
+            "inline_emphasis_runs": 0,
+            "gradient_uses": 0,
+            "filter_uses": 0,
+            "text_effects": 0
+          },
+          "geometry": {
+            "svg_elements": {
+              "rect": 6,
+              "circle": 0,
+              "ellipse": 0,
+              "line": 9,
+              "polyline": 0,
+              "polygon": 0,
+              "path": 1
+            },
+            "preset_shapes": 0,
+            "preset_names": {},
+            "page_frame_elements": 3,
+            "marker_uses": {
+              "start": 0,
+              "mid": 0,
+              "end": 0
+            }
+          },
+          "native_objects": {
+            "chart": 0,
+            "table": 1,
+            "formula_block": 0,
+            "formula_inline": 0,
+            "other": 0
+          }
+        },
+        "fonts": [
+          "Microsoft YaHei, Arial",
+          "Microsoft YaHei, Cambria Math",
+          "Microsoft YaHei, Consolas"
+        ],
+        "text_elements": 24,
+        "tspan_elements": 1,
+        "contextual_values": {
+          "colors": [
+            "#F5F9FB"
+          ]
+        }
+      },
+      "passed": true,
+      "source_sha256": "abf178b6e2e9120295cc91a36f6837181bc67dd56712d8130fda3a6785c36bf6"
+    },
+    {
+      "file": "04_diffusion_teacher.svg",
+      "path": "projects\\rcm_11p_technical_review_ppt169_20261107\\svg_output\\04_diffusion_teacher.svg",
+      "exists": true,
+      "errors": [],
+      "warnings": [],
+      "info": {
+        "viewbox": "0 0 1280 720",
+        "carrier_receipt": {
+          "text_elements": 20,
+          "images": {
+            "placements": 0,
+            "files": [],
+            "max_frame_share": 0.0
+          },
+          "icons": 0,
+          "effects": {
+            "inline_emphasis_runs": 0,
+            "gradient_uses": 0,
+            "filter_uses": 0,
+            "text_effects": 0
+          },
+          "geometry": {
+            "svg_elements": {
+              "rect": 13,
+              "circle": 0,
+              "ellipse": 0,
+              "line": 7,
+              "polyline": 0,
+              "polygon": 0,
+              "path": 1
+            },
+            "preset_shapes": 0,
+            "preset_names": {},
+            "page_frame_elements": 3,
+            "marker_uses": {
+              "start": 0,
+              "mid": 0,
+              "end": 6
+            }
+          },
+          "native_objects": {
+            "chart": 0,
+            "table": 0,
+            "formula_block": 0,
+            "formula_inline": 0,
+            "other": 0
+          }
+        },
+        "fonts": [
+          "Microsoft YaHei, Arial"
+        ],
+        "text_elements": 20,
+        "tspan_elements": 1,
+        "contextual_values": {
+          "colors": [
+            "#F8FBFD"
+          ]
+        }
+      },
+      "passed": true,
+      "source_sha256": "8f28616e4b8dd233d6423b3390c9e940abade1663f4a0a0f3d7637f7c91fb3da"
+    },
+    {
+      "file": "05_guided_residual.svg",
+      "path": "projects\\rcm_11p_technical_review_ppt169_20261107\\svg_output\\05_guided_residual.svg",
+      "exists": true,
+      "errors": [],
+      "warnings": [],
+      "info": {
+        "viewbox": "0 0 1280 720",
+        "carrier_receipt": {
+          "text_elements": 21,
+          "images": {
+            "placements": 0,
+            "files": [],
+            "max_frame_share": 0.0
+          },
+          "icons": 0,
+          "effects": {
+            "inline_emphasis_runs": 0,
+            "gradient_uses": 0,
+            "filter_uses": 0,
+            "text_effects": 0
+          },
+          "geometry": {
+            "svg_elements": {
+              "rect": 7,
+              "circle": 0,
+              "ellipse": 0,
+              "line": 9,
+              "polyline": 0,
+              "polygon": 0,
+              "path": 1
+            },
+            "preset_shapes": 0,
+            "preset_names": {},
+            "page_frame_elements": 3,
+            "marker_uses": {
+              "start": 0,
+              "mid": 0,
+              "end": 0
+            }
+          },
+          "native_objects": {
+            "chart": 0,
+            "table": 0,
+            "formula_block": 0,
+            "formula_inline": 0,
+            "other": 0
+          }
+        },
+        "fonts": [
+          "Microsoft YaHei, Arial",
+          "Microsoft YaHei, Cambria Math"
+        ],
+        "text_elements": 21,
+        "tspan_elements": 1,
+        "contextual_values": {
+          "colors": [
+            "#F8FBFD"
+          ]
+        }
+      },
+      "passed": true,
+      "source_sha256": "3074e734c65e26a5154c55b75bd8a8d90f022e5aa01a7a00eac351cd79865ca4"
+    },
+    {
+      "file": "06_single_step_student.svg",
+      "path": "projects\\rcm_11p_technical_review_ppt169_20261107\\svg_output\\06_single_step_student.svg",
+      "exists": true,
+      "errors": [],
+      "warnings": [
+        "Detected 1 paragraph-like line run(s) split across sibling <text> elements (<g id=\"student-architecture\"> x=96.0, y=452.0..484.0, 2 lines). If each run is one prose paragraph, combine it into one <text>: keep its first line as direct text and use direct <tspan> children with the parent x and positive relative dy values for later lines. An all-<tspan> form may start with dy=\"0\". Keep semantically independent text frames separate."
+      ],
+      "info": {
+        "viewbox": "0 0 1280 720",
+        "carrier_receipt": {
+          "text_elements": 20,
+          "images": {
+            "placements": 0,
+            "files": [],
+            "max_frame_share": 0.0
+          },
+          "icons": 0,
+          "effects": {
+            "inline_emphasis_runs": 0,
+            "gradient_uses": 0,
+            "filter_uses": 0,
+            "text_effects": 0
+          },
+          "geometry": {
+            "svg_elements": {
+              "rect": 11,
+              "circle": 1,
+              "ellipse": 0,
+              "line": 4,
+              "polyline": 0,
+              "polygon": 0,
+              "path": 1
+            },
+            "preset_shapes": 0,
+            "preset_names": {},
+            "page_frame_elements": 3,
+            "marker_uses": {
+              "start": 0,
+              "mid": 0,
+              "end": 2
+            }
+          },
+          "native_objects": {
+            "chart": 0,
+            "table": 0,
+            "formula_block": 0,
+            "formula_inline": 0,
+            "other": 0
+          }
+        },
+        "fonts": [
+          "Microsoft YaHei, Arial"
+        ],
+        "text_elements": 20,
+        "tspan_elements": 2,
+        "contextual_values": {
+          "colors": [
+            "#F8FBFD"
+          ]
+        }
+      },
+      "passed": true,
+      "source_sha256": "568a77d05246fdd9c5a6ea8bec33e64e3e74d09cd64f40612a1f86ec669d5311"
+    },
+    {
+      "file": "07_data_loop.svg",
+      "path": "projects\\rcm_11p_technical_review_ppt169_20261107\\svg_output\\07_data_loop.svg",
+      "exists": true,
+      "errors": [],
+      "warnings": [],
+      "info": {
+        "viewbox": "0 0 1280 720",
+        "carrier_receipt": {
+          "text_elements": 25,
+          "images": {
+            "placements": 0,
+            "files": [],
+            "max_frame_share": 0.0
+          },
+          "icons": 4,
+          "effects": {
+            "inline_emphasis_runs": 0,
+            "gradient_uses": 0,
+            "filter_uses": 0,
+            "text_effects": 0
+          },
+          "geometry": {
+            "svg_elements": {
+              "rect": 8,
+              "circle": 0,
+              "ellipse": 0,
+              "line": 5,
+              "polyline": 0,
+              "polygon": 0,
+              "path": 2
+            },
+            "preset_shapes": 0,
+            "preset_names": {},
+            "page_frame_elements": 3,
+            "marker_uses": {
+              "start": 0,
+              "mid": 0,
+              "end": 4
+            }
+          },
+          "native_objects": {
+            "chart": 0,
+            "table": 0,
+            "formula_block": 0,
+            "formula_inline": 0,
+            "other": 0
+          }
+        },
+        "fonts": [
+          "Microsoft YaHei, Arial",
+          "Microsoft YaHei, Consolas"
+        ],
+        "text_elements": 25,
+        "tspan_elements": 1
+      },
+      "passed": true,
+      "source_sha256": "6bc3d58a9037c5935bf398f8ed05aa1c1524f5e0c5598d58f64a3e40c41ca7d5"
+    },
+    {
+      "file": "08_development_evidence.svg",
+      "path": "projects\\rcm_11p_technical_review_ppt169_20261107\\svg_output\\08_development_evidence.svg",
+      "exists": true,
+      "errors": [],
+      "warnings": [
+        "data-pptx-replace-with marker development-success-bars: Native PPTX chart visible text not projected: '开发集成功数 / 40'. Use categories/data labels/axis labels/legend or companion text. For formatted value labels, set data_labels.number_format to match the fallback. (blocks --native-charts-and-tables export)"
+      ],
+      "info": {
+        "viewbox": "0 0 1280 720",
+        "carrier_receipt": {
+          "text_elements": 25,
+          "images": {
+            "placements": 0,
+            "files": [],
+            "max_frame_share": 0.0
+          },
+          "icons": 1,
+          "effects": {
+            "inline_emphasis_runs": 0,
+            "gradient_uses": 0,
+            "filter_uses": 0,
+            "text_effects": 0
+          },
+          "geometry": {
+            "svg_elements": {
+              "rect": 9,
+              "circle": 0,
+              "ellipse": 0,
+              "line": 7,
+              "polyline": 0,
+              "polygon": 0,
+              "path": 1
+            },
+            "preset_shapes": 0,
+            "preset_names": {},
+            "page_frame_elements": 3,
+            "marker_uses": {
+              "start": 0,
+              "mid": 0,
+              "end": 0
+            }
+          },
+          "native_objects": {
+            "chart": 1,
+            "table": 0,
+            "formula_block": 0,
+            "formula_inline": 0,
+            "other": 0
+          }
+        },
+        "fonts": [
+          "Microsoft YaHei, Arial",
+          "Microsoft YaHei, Consolas"
+        ],
+        "text_elements": 25,
+        "tspan_elements": 0
+      },
+      "passed": true,
+      "source_sha256": "331d7106c81842f2c76a60dfed14fc568e205d2a22610446d0dc2f4f1a83298d"
+    },
+    {
+      "file": "09_final_test_gap.svg",
+      "path": "projects\\rcm_11p_technical_review_ppt169_20261107\\svg_output\\09_final_test_gap.svg",
+      "exists": true,
+      "errors": [],
+      "warnings": [
+        "Noncanonical compact authoring: Authoring SVG contains noncanonical or redundant inherited style declarations (9 change(s)); examples (group:attr None -> value hoists the shared value onto that group; child:attr value -> None drops the copy the child now inherits): distribution-reading:fill None -> '#172633'; distribution-reading:font-size None -> '28'; distribution-reading:font-weight None -> 'bold' (advisory; normalize with `python3 scripts/compact_svg_styles.py <svg_output> --inplace`, re-stamp pages that carry Chart/Table fallbacks, and rerun the final gate, or leave the explicit form)",
+        "data-pptx-replace-with marker final-success-bars: Native PPTX chart style.text_color #172633 differs from fallback dominant text_color #526571; set style.text_color to #526571 or repaint the fallback so #172633 is its dominant text_color (blocks --native-charts-and-tables export)",
+        "data-pptx-replace-with marker final-success-bars: Native PPTX chart visible text not projected: '最终测试：20 µm 成功率', '0%', '10%', '20%', '30%', '蒸馏', '20/180', '七样本', and 1 more. Use categories/data labels/axis labels/legend or companion text. For formatted value labels, set data_labels.number_format to match the fallback. (blocks --native-charts-and-tables export)"
+      ],
+      "info": {
+        "viewbox": "0 0 1280 720",
+        "carrier_receipt": {
+          "text_elements": 27,
+          "images": {
+            "placements": 0,
+            "files": [],
+            "max_frame_share": 0.0
+          },
+          "icons": 0,
+          "effects": {
+            "inline_emphasis_runs": 0,
+            "gradient_uses": 0,
+            "filter_uses": 0,
+            "text_effects": 0
+          },
+          "geometry": {
+            "svg_elements": {
+              "rect": 7,
+              "circle": 0,
+              "ellipse": 0,
+              "line": 10,
+              "polyline": 0,
+              "polygon": 0,
+              "path": 1
+            },
+            "preset_shapes": 0,
+            "preset_names": {},
+            "page_frame_elements": 3,
+            "marker_uses": {
+              "start": 0,
+              "mid": 0,
+              "end": 0
+            }
+          },
+          "native_objects": {
+            "chart": 1,
+            "table": 0,
+            "formula_block": 0,
+            "formula_inline": 0,
+            "other": 0
+          }
+        },
+        "fonts": [
+          "Microsoft YaHei, Arial",
+          "Microsoft YaHei, Consolas"
+        ],
+        "text_elements": 27,
+        "tspan_elements": 1,
+        "contextual_values": {
+          "colors": [
+            "#F8FBFD"
+          ]
+        }
+      },
+      "passed": true,
+      "source_sha256": "6b896d5450d23411ebeb8cecc2cd33e752d1e30a4c39115b0871c17aa11ab096"
+    },
+    {
+      "file": "10_failure_modes.svg",
+      "path": "projects\\rcm_11p_technical_review_ppt169_20261107\\svg_output\\10_failure_modes.svg",
+      "exists": true,
+      "errors": [],
+      "warnings": [
+        "Detected 1 paragraph-like line run(s) split across sibling <text> elements (<g id=\"hold-failure-story\"> x=808.0, y=488.0..510.0, 2 lines). If each run is one prose paragraph, combine it into one <text>: keep its first line as direct text and use direct <tspan> children with the parent x and positive relative dy values for later lines. An all-<tspan> form may start with dy=\"0\". Keep semantically independent text frames separate.",
+        "data-pptx-replace-with marker failure-mode-bars: Native PPTX chart visible text not projected: '180 个 episode 的互斥结果'. Use categories/data labels/axis labels/legend or companion text. For formatted value labels, set data_labels.number_format to match the fallback. (blocks --native-charts-and-tables export)"
+      ],
+      "info": {
+        "viewbox": "0 0 1280 720",
+        "carrier_receipt": {
+          "text_elements": 32,
+          "images": {
+            "placements": 0,
+            "files": [],
+            "max_frame_share": 0.0
+          },
+          "icons": 1,
+          "effects": {
+            "inline_emphasis_runs": 0,
+            "gradient_uses": 0,
+            "filter_uses": 0,
+            "text_effects": 0
+          },
+          "geometry": {
+            "svg_elements": {
+              "rect": 10,
+              "circle": 0,
+              "ellipse": 0,
+              "line": 10,
+              "polyline": 0,
+              "polygon": 0,
+              "path": 1
+            },
+            "preset_shapes": 0,
+            "preset_names": {},
+            "page_frame_elements": 3,
+            "marker_uses": {
+              "start": 0,
+              "mid": 0,
+              "end": 2
+            }
+          },
+          "native_objects": {
+            "chart": 1,
+            "table": 0,
+            "formula_block": 0,
+            "formula_inline": 0,
+            "other": 0
+          }
+        },
+        "fonts": [
+          "Microsoft YaHei, Arial",
+          "Microsoft YaHei, Consolas"
+        ],
+        "text_elements": 32,
+        "tspan_elements": 1
+      },
+      "passed": true,
+      "source_sha256": "a97fdb5b29da3d29678f0130e958bab622656d6cb9c1080626557aac3fe873f7"
+    },
+    {
+      "file": "11_next_steps.svg",
+      "path": "projects\\rcm_11p_technical_review_ppt169_20261107\\svg_output\\11_next_steps.svg",
+      "exists": true,
+      "errors": [],
+      "warnings": [],
+      "info": {
+        "viewbox": "0 0 1280 720",
+        "carrier_receipt": {
+          "text_elements": 22,
+          "images": {
+            "placements": 0,
+            "files": [],
+            "max_frame_share": 0.0
+          },
+          "icons": 4,
+          "effects": {
+            "inline_emphasis_runs": 0,
+            "gradient_uses": 0,
+            "filter_uses": 0,
+            "text_effects": 0
+          },
+          "geometry": {
+            "svg_elements": {
+              "rect": 3,
+              "circle": 4,
+              "ellipse": 0,
+              "line": 3,
+              "polyline": 0,
+              "polygon": 0,
+              "path": 1
+            },
+            "preset_shapes": 0,
+            "preset_names": {},
+            "page_frame_elements": 3,
+            "marker_uses": {
+              "start": 0,
+              "mid": 0,
+              "end": 0
+            }
+          },
+          "native_objects": {
+            "chart": 0,
+            "table": 0,
+            "formula_block": 0,
+            "formula_inline": 0,
+            "other": 0
+          }
+        },
+        "fonts": [
+          "Microsoft YaHei, Arial",
+          "Microsoft YaHei, Consolas"
+        ],
+        "text_elements": 22,
+        "tspan_elements": 1
+      },
+      "passed": true,
+      "source_sha256": "5c70cdbdad117fe9af9ada6b4049040ab72210af5507b15d816fba5e0a6d3105"
+    }
+  ]
+}

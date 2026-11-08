@@ -1,0 +1,486 @@
+{
+  "act_decision": {
+    "reason": "The repository has an eight-step action-chunk MLP baseline but no standalone ACT transformer; it is reported under its actual architecture name.",
+    "status": "DEFERRED_NO_DISTINCT_IMPLEMENTATION"
+  },
+  "checks": {
+    "distilled_single_step_noninferior": true,
+    "inherited_stage1_primary_gate": true,
+    "robust_learning_value_at_least_two_scenarios": true,
+    "safety_within_bounds": true
+  },
+  "comparisons": {
+    "candidate_vs_guided_no_dagger": {
+      "baseline_final_error_p95_um": 17.014465061545128,
+      "baseline_success_rate": 0.975,
+      "candidate_final_error_p95_um": 16.67408901753854,
+      "candidate_success_rate": 1.0,
+      "exact_mcnemar_p": 1.0,
+      "mcnemar_baseline_only": 0,
+      "mcnemar_candidate_only": 1,
+      "paired_episodes": 40,
+      "paired_error_difference_bootstrap_95_um": [
+        -3.8024753501204507,
+        1.3006470949701716
+      ],
+      "paired_error_difference_mean_um": -1.4867141309676208,
+      "paired_targets": 40,
+      "relative_mean_error_improvement": 0.1755956365220792,
+      "relative_p95_error_improvement": 0.02000509817824836,
+      "success_difference_bootstrap_95": [
+        0.0,
+        0.045454545454545456
+      ],
+      "success_rate_difference": 0.025
+    },
+    "candidate_vs_guided_oct_regression": {
+      "baseline_final_error_p95_um": 11.693354180730564,
+      "baseline_success_rate": 1.0,
+      "candidate_final_error_p95_um": 16.67408901753854,
+      "candidate_success_rate": 1.0,
+      "exact_mcnemar_p": 1.0,
+      "mcnemar_baseline_only": 0,
+      "mcnemar_candidate_only": 0,
+      "paired_episodes": 40,
+      "paired_error_difference_bootstrap_95_um": [
+        -3.5530911867739876,
+        -1.2645736611458027
+      ],
+      "paired_error_difference_mean_um": -2.3919519072018334,
+      "paired_targets": 40,
+      "relative_mean_error_improvement": 0.25522512678440057,
+      "relative_p95_error_improvement": -0.4259457773900077,
+      "success_difference_bootstrap_95": [
+        0.0,
+        0.0
+      ],
+      "success_rate_difference": 0.0
+    },
+    "candidate_vs_old_structure_with_dagger_7_median": {
+      "baseline_final_error_p95_um": 10.46333560398835,
+      "baseline_success_rate": 0.975,
+      "candidate_final_error_p95_um": 16.67408901753854,
+      "candidate_success_rate": 1.0,
+      "exact_mcnemar_p": 1.0,
+      "mcnemar_baseline_only": 0,
+      "mcnemar_candidate_only": 1,
+      "paired_episodes": 40,
+      "paired_error_difference_bootstrap_95_um": [
+        -3.208660971535553,
+        -0.7722358561246179
+      ],
+      "paired_error_difference_mean_um": -2.021948167034119,
+      "paired_targets": 40,
+      "relative_mean_error_improvement": 0.2246128450856265,
+      "relative_p95_error_improvement": -0.5935729913109942,
+      "success_difference_bootstrap_95": [
+        0.0,
+        0.045454545454545456
+      ],
+      "success_rate_difference": 0.025
+    },
+    "candidate_vs_raw_diffusion_7_median": {
+      "baseline_final_error_p95_um": 6520.547493245654,
+      "baseline_success_rate": 0.0,
+      "candidate_final_error_p95_um": 16.67408901753854,
+      "candidate_success_rate": 1.0,
+      "exact_mcnemar_p": 1.8189894035458565e-12,
+      "mcnemar_baseline_only": 0,
+      "mcnemar_candidate_only": 40,
+      "paired_episodes": 40,
+      "paired_error_difference_bootstrap_95_um": [
+        -6420.872350241763,
+        -5674.920884604932
+      ],
+      "paired_error_difference_mean_um": -6091.923071499807,
+      "paired_targets": 40,
+      "relative_mean_error_improvement": 0.9988555355635356,
+      "relative_p95_error_improvement": 0.9974428391120822,
+      "success_difference_bootstrap_95": [
+        1.0,
+        1.0
+      ],
+      "success_rate_difference": 1.0
+    }
+  },
+  "distillation": {
+    "comparison": {
+      "baseline_final_error_p95_um": 10.46333560398835,
+      "baseline_success_rate": 0.975,
+      "candidate_final_error_p95_um": 14.318754102880247,
+      "candidate_success_rate": 1.0,
+      "exact_mcnemar_p": 1.0,
+      "mcnemar_baseline_only": 0,
+      "mcnemar_candidate_only": 1,
+      "paired_episodes": 40,
+      "paired_error_difference_bootstrap_95_um": [
+        -2.713900420904942,
+        0.06652205900471293
+      ],
+      "paired_error_difference_mean_um": -1.388099150272377,
+      "paired_targets": 40,
+      "relative_mean_error_improvement": 0.15420024335290372,
+      "relative_p95_error_improvement": -0.36846935287274096,
+      "success_difference_bootstrap_95": [
+        0.0,
+        0.045454545454545456
+      ],
+      "success_rate_difference": 0.025
+    },
+    "distilled": {
+      "episodes": 40,
+      "final_error_p50_um": 7.230041914805116,
+      "final_error_p95_um": 14.318754102880247,
+      "minimum_error_p50_um": 3.194976638117013,
+      "safety_limited_steps": 0,
+      "steps_p50": 32.0,
+      "steps_p95": 37.54999999999997,
+      "success_rate": 1.0,
+      "successes": 40,
+      "uncontrolled_over_30mm": 0
+    },
+    "noninferiority_margin": 0.05,
+    "result": "PASS",
+    "success_difference_lower": 0.0,
+    "teacher_7_median": {
+      "episodes": 40,
+      "final_error_p50_um": 7.909020130395072,
+      "final_error_p95_um": 10.46333560398835,
+      "minimum_error_p50_um": 7.909020130395072,
+      "safety_limited_steps": 0,
+      "steps_p50": 29.0,
+      "steps_p95": 37.0,
+      "success_rate": 0.975,
+      "successes": 39,
+      "uncontrolled_over_30mm": 0
+    }
+  },
+  "primary_gate": {
+    "pass": true,
+    "source": "stage1_corrected_primary_gate",
+    "stage1_result": "PASS"
+  },
+  "result": "PASS",
+  "robustness": {
+    "default": {
+      "comparison": {
+        "baseline_final_error_p95_um": 100.00641640260946,
+        "baseline_success_rate": 0.2,
+        "candidate_final_error_p95_um": 16.67408901753854,
+        "candidate_success_rate": 1.0,
+        "exact_mcnemar_p": 4.656612873077393e-10,
+        "mcnemar_baseline_only": 0,
+        "mcnemar_candidate_only": 32,
+        "paired_episodes": 40,
+        "paired_error_difference_bootstrap_95_um": [
+          -67.46617748576811,
+          -50.44252647009153
+        ],
+        "paired_error_difference_mean_um": -58.73728793978328,
+        "paired_targets": 40,
+        "relative_mean_error_improvement": 0.8937877652169451,
+        "relative_p95_error_improvement": 0.8332698079050109,
+        "success_difference_bootstrap_95": [
+          0.7083333333333334,
+          0.8928571428571429
+        ],
+        "success_rate_difference": 0.8
+      },
+      "geometric_teacher": {
+        "episodes": 40,
+        "final_error_p50_um": 70.60304160475124,
+        "final_error_p95_um": 100.00641640260946,
+        "minimum_error_p50_um": 70.60183004206586,
+        "safety_limited_steps": 0,
+        "steps_p50": 201.0,
+        "steps_p95": 217.29999999999998,
+        "success_rate": 0.2,
+        "successes": 8,
+        "uncontrolled_over_30mm": 0
+      },
+      "student": {
+        "episodes": 40,
+        "final_error_p50_um": 5.7507451124912485,
+        "final_error_p95_um": 16.67408901753854,
+        "minimum_error_p50_um": 3.1418690759375902,
+        "safety_limited_steps": 0,
+        "steps_p50": 32.5,
+        "steps_p95": 39.29999999999998,
+        "success_rate": 1.0,
+        "successes": 40,
+        "uncontrolled_over_30mm": 0
+      },
+      "student_significant_gain": true
+    },
+    "delay": {
+      "comparison": {
+        "baseline_final_error_p95_um": 100.00641640260946,
+        "baseline_success_rate": 0.275,
+        "candidate_final_error_p95_um": 18.72219409138604,
+        "candidate_success_rate": 0.975,
+        "exact_mcnemar_p": 7.450580596923828e-09,
+        "mcnemar_baseline_only": 0,
+        "mcnemar_candidate_only": 28,
+        "paired_episodes": 40,
+        "paired_error_difference_bootstrap_95_um": [
+          -60.89973532482816,
+          -42.22091221670467
+        ],
+        "paired_error_difference_mean_um": -51.511478562194156,
+        "paired_targets": 40,
+        "relative_mean_error_improvement": 0.8557014822289792,
+        "relative_p95_error_improvement": 0.8127900712288945,
+        "success_difference_bootstrap_95": [
+          0.5909090909090909,
+          0.8076923076923077
+        ],
+        "success_rate_difference": 0.7
+      },
+      "geometric_teacher": {
+        "episodes": 40,
+        "final_error_p50_um": 56.29376172008577,
+        "final_error_p95_um": 100.00641640260946,
+        "minimum_error_p50_um": 56.07620049492352,
+        "safety_limited_steps": 0,
+        "steps_p50": 201.0,
+        "steps_p95": 216.59999999999997,
+        "success_rate": 0.275,
+        "successes": 11,
+        "uncontrolled_over_30mm": 0
+      },
+      "student": {
+        "episodes": 40,
+        "final_error_p50_um": 5.781693524946075,
+        "final_error_p95_um": 18.72219409138604,
+        "minimum_error_p50_um": 3.139631441927887,
+        "safety_limited_steps": 0,
+        "steps_p50": 30.5,
+        "steps_p95": 43.54999999999997,
+        "success_rate": 0.975,
+        "successes": 39,
+        "uncontrolled_over_30mm": 0
+      },
+      "student_significant_gain": true
+    },
+    "noise": {
+      "comparison": {
+        "baseline_final_error_p95_um": 100.00641640260946,
+        "baseline_success_rate": 0.275,
+        "candidate_final_error_p95_um": 16.673240111175453,
+        "candidate_success_rate": 1.0,
+        "exact_mcnemar_p": 3.725290298461914e-09,
+        "mcnemar_baseline_only": 0,
+        "mcnemar_candidate_only": 29,
+        "paired_episodes": 40,
+        "paired_error_difference_bootstrap_95_um": [
+          -63.145909047501625,
+          -44.57585802519599
+        ],
+        "paired_error_difference_mean_um": -53.81571374707003,
+        "paired_targets": 40,
+        "relative_mean_error_improvement": 0.885770128551779,
+        "relative_p95_error_improvement": 0.8332782964239842,
+        "success_difference_bootstrap_95": [
+          0.6206896551724138,
+          0.8333333333333334
+        ],
+        "success_rate_difference": 0.725
+      },
+      "geometric_teacher": {
+        "episodes": 40,
+        "final_error_p50_um": 65.2054551383703,
+        "final_error_p95_um": 100.00641640260946,
+        "minimum_error_p50_um": 65.20188661790706,
+        "safety_limited_steps": 0,
+        "steps_p50": 201.0,
+        "steps_p95": 213.05,
+        "success_rate": 0.275,
+        "successes": 11,
+        "uncontrolled_over_30mm": 0
+      },
+      "student": {
+        "episodes": 40,
+        "final_error_p50_um": 5.757050454678736,
+        "final_error_p95_um": 16.673240111175453,
+        "minimum_error_p50_um": 3.14914339933177,
+        "safety_limited_steps": 0,
+        "steps_p50": 32.0,
+        "steps_p95": 38.34999999999998,
+        "success_rate": 1.0,
+        "successes": 40,
+        "uncontrolled_over_30mm": 0
+      },
+      "student_significant_gain": true
+    },
+    "occlusion": {
+      "comparison": {
+        "baseline_final_error_p95_um": 100.00641640260946,
+        "baseline_success_rate": 0.175,
+        "candidate_final_error_p95_um": 4613.628345057049,
+        "candidate_success_rate": 0.0,
+        "exact_mcnemar_p": 0.015625,
+        "mcnemar_baseline_only": 7,
+        "mcnemar_candidate_only": 0,
+        "paired_episodes": 40,
+        "paired_error_difference_bootstrap_95_um": [
+          3991.683055342177,
+          4101.665569973502
+        ],
+        "paired_error_difference_mean_um": 4048.2461713746043,
+        "paired_targets": 40,
+        "relative_mean_error_improvement": -66.02680323999051,
+        "relative_p95_error_improvement": -45.13332335080718,
+        "success_difference_bootstrap_95": [
+          -0.2608695652173913,
+          -0.08
+        ],
+        "success_rate_difference": -0.175
+      },
+      "geometric_teacher": {
+        "episodes": 40,
+        "final_error_p50_um": 65.81805051821415,
+        "final_error_p95_um": 100.00641640260946,
+        "minimum_error_p50_um": 65.59490404511618,
+        "safety_limited_steps": 0,
+        "steps_p50": 201.0,
+        "steps_p95": 229.2,
+        "success_rate": 0.175,
+        "successes": 7,
+        "uncontrolled_over_30mm": 0
+      },
+      "student": {
+        "episodes": 40,
+        "final_error_p50_um": 4023.721626741492,
+        "final_error_p95_um": 4613.628345057049,
+        "minimum_error_p50_um": 36.68601898483347,
+        "safety_limited_steps": 0,
+        "steps_p50": 205.0,
+        "steps_p95": 206.0,
+        "success_rate": 0.0,
+        "successes": 0,
+        "uncontrolled_over_30mm": 0
+      },
+      "student_significant_gain": false
+    },
+    "oct_loss": {
+      "comparison": {
+        "baseline_final_error_p95_um": 100.00641640260946,
+        "baseline_success_rate": 0.075,
+        "candidate_final_error_p95_um": 16.632877107604077,
+        "candidate_success_rate": 1.0,
+        "exact_mcnemar_p": 1.4551915228366852e-11,
+        "mcnemar_baseline_only": 0,
+        "mcnemar_candidate_only": 37,
+        "paired_episodes": 40,
+        "paired_error_difference_bootstrap_95_um": [
+          -66.88400540205434,
+          -50.44803370939524
+        ],
+        "paired_error_difference_mean_um": -58.581452279122175,
+        "paired_targets": 40,
+        "relative_mean_error_improvement": 0.8944512426754735,
+        "relative_p95_error_improvement": 0.8336819005628315,
+        "success_difference_bootstrap_95": [
+          0.8695652173913043,
+          1.0
+        ],
+        "success_rate_difference": 0.925
+      },
+      "geometric_teacher": {
+        "episodes": 40,
+        "final_error_p50_um": 65.22710058557533,
+        "final_error_p95_um": 100.00641640260946,
+        "minimum_error_p50_um": 64.98587381831119,
+        "safety_limited_steps": 0,
+        "steps_p50": 205.0,
+        "steps_p95": 233.3499999999999,
+        "success_rate": 0.075,
+        "successes": 3,
+        "uncontrolled_over_30mm": 0
+      },
+      "student": {
+        "episodes": 40,
+        "final_error_p50_um": 5.7536606405410495,
+        "final_error_p95_um": 16.632877107604077,
+        "minimum_error_p50_um": 3.142151947495958,
+        "safety_limited_steps": 0,
+        "steps_p50": 33.0,
+        "steps_p95": 38.449999999999974,
+        "success_rate": 1.0,
+        "successes": 40,
+        "uncontrolled_over_30mm": 0
+      },
+      "student_significant_gain": true
+    }
+  },
+  "scenario_gains": 4,
+  "schema_version": 1,
+  "source_sha256": {
+    "distilled_residual": "202FFDB08AF82F67E92F4DFC1018CF657FF7BA25AA7D03F0F1500E420F867BC7",
+    "guided_no_dagger": "D88F9FC414CB8880F08AAFD23D49EC6B62DA6DABF1819D019A7FFF321B77741C",
+    "selected_student": "F9793C7D908D0C87C8935A5D57DACF62A3D9B3CAA90E36DC8A9EF7D388AFC3B7"
+  },
+  "stage": 3,
+  "variants": {
+    "guided_no_dagger_action_chunk_mlp": {
+      "episodes": 40,
+      "final_error_p50_um": 5.880112397280709,
+      "final_error_p95_um": 17.014465061545128,
+      "minimum_error_p50_um": 5.290740267877387,
+      "safety_limited_steps": 0,
+      "steps_p50": 31.0,
+      "steps_p95": 34.05,
+      "success_rate": 0.975,
+      "successes": 39,
+      "uncontrolled_over_30mm": 0
+    },
+    "guided_oct_regression": {
+      "episodes": 40,
+      "final_error_p50_um": 9.485971704293927,
+      "final_error_p95_um": 11.693354180730564,
+      "minimum_error_p50_um": 9.485971704293927,
+      "safety_limited_steps": 0,
+      "steps_p50": 23.0,
+      "steps_p95": 35.05,
+      "success_rate": 1.0,
+      "successes": 40,
+      "uncontrolled_over_30mm": 0
+    },
+    "old_structure_with_dagger_7_median": {
+      "episodes": 40,
+      "final_error_p50_um": 7.909020130395072,
+      "final_error_p95_um": 10.46333560398835,
+      "minimum_error_p50_um": 7.909020130395072,
+      "safety_limited_steps": 0,
+      "steps_p50": 29.0,
+      "steps_p95": 37.0,
+      "success_rate": 0.975,
+      "successes": 39,
+      "uncontrolled_over_30mm": 0
+    },
+    "raw_diffusion_7_median": {
+      "episodes": 40,
+      "final_error_p50_um": 6116.155854909373,
+      "final_error_p95_um": 6520.547493245654,
+      "minimum_error_p50_um": 6116.155854909373,
+      "safety_limited_steps": 40,
+      "steps_p50": 206.0,
+      "steps_p95": 218.74999999999932,
+      "success_rate": 0.0,
+      "successes": 0,
+      "uncontrolled_over_30mm": 0
+    },
+    "selected_restricted_student": {
+      "episodes": 40,
+      "final_error_p50_um": 5.7507451124912485,
+      "final_error_p95_um": 16.67408901753854,
+      "minimum_error_p50_um": 3.1418690759375902,
+      "safety_limited_steps": 0,
+      "steps_p50": 32.5,
+      "steps_p95": 39.29999999999998,
+      "success_rate": 1.0,
+      "successes": 40,
+      "uncontrolled_over_30mm": 0
+    }
+  }
+}

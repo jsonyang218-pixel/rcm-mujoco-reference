@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" font-family="Microsoft YaHei, Arial" data-pptx-page-role="ending">
+  <rect id="page-bg" data-pptx-role="background" x="0" y="0" width="1280" height="720" fill="#FFFFFF"/>
+  <path id="header-grid" data-pptx-role="decoration" d="M72 154H1208 M72 182H1208 M72 646H1208" fill="none" stroke="#CBD9E2" stroke-width="1"/>
+  <rect id="header-tick" data-pptx-role="decoration" x="72" y="50" width="8" height="92" rx="4" fill="#14988F"/>
+
+  <g id="page-title" data-pptx-bounds="96 44 1112 116">
+    <text x="96" y="88" font-size="44" font-weight="bold" fill="#172633">下一阶段先修协议和终端保持，<tspan x="96" dy="52">再增加模型复杂度</tspan></text>
+  </g>
+
+  <g id="action-sequence" data-pptx-bounds="72 188 1136 286">
+    <line x1="152" y1="278" x2="1128" y2="278" stroke="#0B4F8A" stroke-width="2"/>
+    <g id="step-safe-init">
+      <circle cx="152" cy="278" r="30" fill="#0B4F8A"/>
+      <text x="152" y="286" font-family="Microsoft YaHei, Consolas" font-size="24" font-weight="bold" fill="#FFFFFF" text-anchor="middle">01</text>
+      <use data-icon="tabler-outline/circle-check" x="130" y="324" width="44" height="44" fill="#0B4F8A" stroke-width="2"/>
+      <text x="116" y="396" font-size="24" font-weight="bold" fill="#0B4F8A">安全初始化筛选</text>
+      <text x="116" y="430" font-size="22" fill="#172633">拒绝编码器越界的</text>
+      <text x="116" y="458" font-size="22" fill="#172633">100 µm 起始姿态</text>
+    </g>
+    <g id="step-angle-split">
+      <circle cx="476" cy="278" r="30" fill="#0B4F8A"/>
+      <text x="476" y="286" font-family="Microsoft YaHei, Consolas" font-size="24" font-weight="bold" fill="#FFFFFF" text-anchor="middle">02</text>
+      <use data-icon="tabler-outline/target" x="454" y="324" width="44" height="44" fill="#0B4F8A" stroke-width="2"/>
+      <text x="440" y="396" font-size="24" font-weight="bold" fill="#0B4F8A">按极角重划测试</text>
+      <text x="440" y="430" font-size="22" fill="#172633">覆盖开发与扩展</text>
+      <text x="440" y="458" font-size="22" fill="#172633">后极角带</text>
+    </g>
+    <g id="step-periphery-train">
+      <circle cx="800" cy="278" r="30" fill="#0B4F8A"/>
+      <text x="800" y="286" font-family="Microsoft YaHei, Consolas" font-size="24" font-weight="bold" fill="#FFFFFF" text-anchor="middle">03</text>
+      <use data-icon="tabler-outline/route" x="778" y="324" width="44" height="44" fill="#0B4F8A" stroke-width="2"/>
+      <text x="764" y="396" font-size="24" font-weight="bold" fill="#0B4F8A">外围目标补训</text>
+      <text x="764" y="430" font-size="22" fill="#172633">扩展训练分布，</text>
+      <text x="764" y="458" font-size="22" fill="#172633">不污染冻结测试集</text>
+    </g>
+    <g id="step-terminal-hold">
+      <circle cx="1124" cy="278" r="30" fill="#14988F"/>
+      <text x="1124" y="286" font-family="Microsoft YaHei, Consolas" font-size="24" font-weight="bold" fill="#FFFFFF" text-anchor="middle">04</text>
+      <use data-icon="tabler-outline/target" x="1102" y="324" width="44" height="44" fill="#14988F" stroke-width="2"/>
+      <text x="1040" y="396" font-size="24" font-weight="bold" fill="#14988F">显式终端保持</text>
+      <text x="1040" y="430" font-size="22" fill="#172633">保持目标或滞回</text>
+      <text x="1040" y="458" font-size="22" fill="#172633">约束到达后动作</text>
+    </g>
+  </g>
+
+  <g id="follow-up-evidence" data-pptx-bounds="72 500 1136 88">
+    <text x="72" y="530" font-size="24" font-weight="bold" fill="#0B4F8A">随后补齐证据</text>
+    <line x1="72" y1="544" x2="1208" y2="544" stroke="#CBD9E2" stroke-width="1"/>
+    <text x="72" y="578" font-size="22" fill="#172633">几何教师外围对照 · 图像分支闭环消融 · residual-off 对照</text>
+  </g>
+
+  <g id="closing-gate" data-pptx-bounds="72 598 1136 46">
+    <rect x="72" y="598" width="1136" height="46" rx="12" fill="#0B4F8A"/>
+    <text x="96" y="630" font-size="28" font-weight="bold" fill="#FFFFFF">下一门槛：20 µm 连续 3 帧停稳；按极角分层报告；结论仍限仿真。</text>
+  </g>
+
+  <g id="page-footer" data-pptx-bounds="72 666 1136 36">
+    <line x1="72" y1="672" x2="1208" y2="672" stroke="#CBD9E2" stroke-width="1"/>
+    <text x="72" y="694" font-size="20" fill="#526571">技术评审 · 下一阶段</text>
+    <text x="1208" y="694" font-size="20" fill="#526571" text-anchor="end">P11 / 11</text>
+  </g>
+</svg>

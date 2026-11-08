@@ -1,0 +1,101 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" font-family="Microsoft YaHei, Arial" data-pptx-page-role="content">
+  <rect id="page-bg" data-pptx-role="background" x="0" y="0" width="1280" height="720" fill="#FFFFFF" />
+  <path id="header-grid" data-pptx-role="decoration" d="M72 154H1208 M72 182H1208 M72 632H1208" fill="none" stroke="#CBD9E2" stroke-width="1" />
+  <rect id="header-tick" data-pptx-role="decoration" x="72" y="50" width="8" height="92" rx="4" fill="#14988F" />
+
+  <g id="page-title" data-pptx-bounds="96 44 1112 116">
+    <text fill="#172633" font-size="44" font-weight="bold" x="96" y="88">独立测试失败，首先因为目标</text><text fill="#172633" font-size="44" font-weight="bold" x="96" y="140">完全位于开发分布之外</text></g>
+
+  <g id="final-success-bars" data-pptx-replace-with="chart" data-pptx-bounds="72 190 548 320" data-pptx-fallback-sha256="6705a4a584c28013a587649a522b6f0fbd25be302039640e21786abbfd73d50c">
+    <metadata type="application/json">
+      {
+        "x": 72, "y": 190, "width": 520, "height": 320,
+        "name": "final-success-bars",
+        "type": "bar",
+        "grouping": "clustered",
+        "categories": ["蒸馏 20/180", "七样本 18/60"],
+        "series": [
+          {
+            "name": "20 µm 成功率",
+            "values": [11.1, 30.0],
+            "point_colors": ["#B42318", "#0B4F8A"]
+          }
+        ],
+        "gap_width": 50,
+        "plot_area": {"x": 220, "y": 232, "width": 340, "height": 198},
+        "axes": {
+          "category": {"kind": "text", "visible": true},
+          "value": {
+            "kind": "value", "minimum": 0, "maximum": 35, "major_unit": 10,
+            "visible": true, "major_gridlines": true, "number_format": "0"
+          }
+        },
+        "data_labels": {
+          "show_value": true, "position": "outside_end", "number_format": "0.0\"%\""
+        },
+        "style": {
+          "font_family": "Microsoft YaHei, Arial",
+          "font_size": 22,
+          "text_color": "#172633",
+          "axis_color": "#526571",
+          "grid_color": "#CBD9E2",
+          "chart_area_fill": "#FFFFFF",
+          "plot_area_fill": "#FFFFFF"
+        }
+      }
+    </metadata>
+    <text x="72" y="218" font-size="24" font-weight="bold" fill="#0B4F8A">最终测试：20 µm 成功率</text>
+    <g id="final-success-bars-chartArea">
+      <line x1="220" y1="232" x2="220" y2="430" id="value-axis" stroke="#526571" stroke-width="2" />
+      <line x1="220" y1="430" x2="560" y2="430" id="category-axis" stroke="#526571" stroke-width="2" />
+      <line x1="317" y1="232" x2="317" y2="430" id="grid-10" stroke="#CBD9E2" stroke-width="1" />
+      <line x1="414" y1="232" x2="414" y2="430" id="grid-20" stroke="#CBD9E2" stroke-width="1" />
+      <line x1="511" y1="232" x2="511" y2="430" id="grid-30" stroke="#CBD9E2" stroke-width="1" />
+      <text x="220" y="458" font-size="22" fill="#526571" text-anchor="middle">0%</text>
+      <text x="317" y="458" font-size="22" fill="#526571" text-anchor="middle">10%</text>
+      <text x="414" y="458" font-size="22" fill="#526571" text-anchor="middle">20%</text>
+      <text x="511" y="458" font-size="22" fill="#526571" text-anchor="middle">30%</text>
+      
+      <text x="202" y="292" font-size="22" fill="#B42318" text-anchor="end">蒸馏</text>
+      <text x="202" y="316" font-size="22" fill="#526571" text-anchor="end">20/180</text>
+      <rect x="220" y="248.5" width="107.8" height="66" rx="4" fill="#B42318" />
+      <text x="340" y="297" font-family="Microsoft YaHei, Consolas" font-size="22" font-weight="bold" fill="#B42318">11.1%</text>
+      <text x="202" y="382" font-size="22" font-weight="bold" fill="#0B4F8A" text-anchor="end">七样本</text>
+      <text x="202" y="406" font-size="22" fill="#526571" text-anchor="end">18/60</text>
+      <rect x="220" y="347.5" width="291.4" height="66" rx="4" fill="#0B4F8A" />
+      <text x="523" y="387" font-family="Microsoft YaHei, Consolas" font-size="22" font-weight="bold" fill="#0B4F8A">30.0%</text>
+    </g>
+  </g>
+
+  <g id="target-angle-distribution" data-pptx-bounds="640 190 568 320">
+    <rect x="640" y="190" width="568" height="320" rx="16" fill="#F8FBFD" stroke="#CBD9E2" stroke-width="1" />
+    <text x="664" y="218" font-size="24" font-weight="bold" fill="#0B4F8A">目标极角分布</text>
+    <line x1="704" y1="420" x2="1168" y2="420" stroke="#526571" stroke-width="2" />
+    <line x1="704" y1="292" x2="704" y2="420" stroke="#526571" stroke-width="2" />
+    <line x1="704" y1="394" x2="1168" y2="394" stroke="#CBD9E2" stroke-width="1" stroke-dasharray="4,4" />
+    <line x1="820" y1="342" x2="1168" y2="342" stroke="#CBD9E2" stroke-width="1" stroke-dasharray="4,4" />
+    <rect x="704" y="380" width="256" height="28" rx="6" fill="#0B4F8A" />
+    <rect x="990" y="328" width="176" height="28" rx="6" fill="#B42318" />
+    <text x="832" y="370" font-size="22" font-weight="bold" fill="#0B4F8A" text-anchor="middle">开发集 · 40 目标</text>
+    <text x="1078" y="318" font-size="22" font-weight="bold" fill="#B42318" text-anchor="middle">最终测试 · 60 目标</text>
+    <text x="960" y="382" font-size="22" font-weight="bold" fill="#D97706" text-anchor="middle">无交集</text>
+    <text x="704" y="446" font-size="22" fill="#526571" text-anchor="middle">0°</text>
+    <text x="820" y="446" font-size="22" fill="#526571" text-anchor="middle">10°</text>
+    <text x="936" y="446" font-size="22" fill="#526571" text-anchor="middle">20°</text>
+    <text x="1052" y="446" font-size="22" fill="#526571" text-anchor="middle">30°</text>
+    <text x="1168" y="446" font-size="22" fill="#526571" text-anchor="middle">40°</text>
+    <text x="664" y="482" font-size="22" fill="#172633">开发 1.71–25.76°</text>
+    <text x="1028" y="482" font-size="22" fill="#172633" text-anchor="end">最终 28.10–36.86°</text>
+  </g>
+
+  <g id="distribution-reading" data-pptx-bounds="72 526 1136 78">
+    <text x="72" y="558" font-size="28" font-weight="bold" fill="#172633">最终集整体落在开发集未覆盖的外围后极角带；</text>
+    <text x="72" y="592" font-size="28" font-weight="bold" fill="#172633">细通道偏置没有整体上移，不能解释全部失败。</text>
+  </g>
+
+  <g id="page-footer" data-pptx-bounds="72 666 1136 36">
+    <line x1="72" y1="672" x2="1208" y2="672" stroke="#CBD9E2" stroke-width="1" />
+    <text x="72" y="694" font-size="20" fill="#526571">技术评审 · 独立测试</text>
+    <text x="1208" y="694" font-size="20" fill="#526571" text-anchor="end">P09 / 11</text>
+  </g>
+</svg>

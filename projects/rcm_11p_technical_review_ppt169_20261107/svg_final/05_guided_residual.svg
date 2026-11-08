@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" font-family="Microsoft YaHei, Arial" data-pptx-page-role="content">
+  <rect id="page-bg" data-pptx-role="background" x="0" y="0" width="1280" height="720" fill="#FFFFFF" />
+  <path id="header-grid" data-pptx-role="decoration" d="M72 154H1208 M72 182H1208 M72 634H1208" fill="none" stroke="#CBD9E2" stroke-width="1" />
+  <rect id="header-tick" data-pptx-role="decoration" x="72" y="50" width="8" height="92" rx="4" fill="#14988F" />
+
+  <g id="page-title" data-pptx-bounds="96 44 1112 116">
+    <text fill="#172633" font-size="44" font-weight="bold" x="96" y="88">距离门控只在远场放开残差，</text><text fill="#172633" font-size="44" font-weight="bold" x="96" y="140">近场把权限收至 10%</text></g>
+
+  <g id="action-equation" data-pptx-bounds="72 190 1136 110">
+    <text x="72" y="224" font-size="24" font-weight="bold" fill="#0B4F8A">最终动作分解</text>
+    <rect x="72" y="242" width="1136" height="54" rx="12" fill="#EAF2F7" />
+    <text x="640" y="280" font-family="Microsoft YaHei, Cambria Math" font-size="32" fill="#172633" text-anchor="middle">a = a_base(d) + clip(rθ(x), ±s(d)L)</text>
+  </g>
+
+  <g id="distance-authority-map" data-pptx-bounds="72 326 1136 230">
+    <text x="72" y="358" font-size="24" font-weight="bold" fill="#0B4F8A">距离 → 残差预算</text>
+    <line x1="164" y1="462" x2="1092" y2="462" stroke="#526571" stroke-width="2" />
+    <line x1="164" y1="376" x2="164" y2="462" stroke="#526571" stroke-width="2" />
+    <line x1="164" y1="436" x2="440" y2="376" stroke="#14988F" stroke-width="4" />
+    <line x1="440" y1="376" x2="1092" y2="376" stroke="#14988F" stroke-width="4" />
+    <line x1="164" y1="436" x2="164" y2="462" stroke="#14988F" stroke-width="4" />
+    <line x1="440" y1="376" x2="440" y2="462" stroke="#CBD9E2" stroke-width="1" stroke-dasharray="4,4" />
+    <line x1="604" y1="376" x2="604" y2="462" stroke="#CBD9E2" stroke-width="1" stroke-dasharray="4,4" />
+    <line x1="1092" y1="376" x2="1092" y2="462" stroke="#CBD9E2" stroke-width="1" stroke-dasharray="4,4" />
+    <text x="132" y="442" font-size="22" fill="#526571" text-anchor="end">10%</text>
+    <text x="132" y="382" font-size="22" fill="#526571" text-anchor="end">100%</text>
+    <text x="164" y="490" font-size="22" fill="#526571" text-anchor="middle">0</text>
+    <text x="440" y="490" font-size="22" fill="#526571" text-anchor="middle">1 mm</text>
+    <text x="604" y="490" font-size="22" fill="#526571" text-anchor="middle">2 mm</text>
+    <text x="1092" y="490" font-size="22" fill="#526571" text-anchor="middle">3.5 mm</text>
+    <text x="302" y="350" font-size="22" font-weight="bold" fill="#14988F" text-anchor="middle">近场：线性收缩</text>
+    <text x="766" y="350" font-size="22" font-weight="bold" fill="#14988F" text-anchor="middle">远场：完整残差权限</text>
+    <text x="302" y="416" font-size="22" fill="#172633" text-anchor="middle">s(d) = clamp(d / 1 mm, 0.1, 1)</text>
+    <text x="766" y="416" font-size="22" fill="#172633" text-anchor="middle">OCT 无效时 s(d) = 0</text>
+    <rect x="72" y="512" width="336" height="34" rx="10" fill="#F8FBFD" stroke="#CBD9E2" stroke-width="1" />
+    <text x="240" y="536" font-size="22" fill="#172633" text-anchor="middle">OCT 方向 3 维 · log d · valid</text>
+    <rect x="424" y="512" width="128" height="34" rx="10" fill="#F8FBFD" stroke="#CBD9E2" stroke-width="1" />
+    <text x="488" y="536" font-size="22" fill="#172633" text-anchor="middle">K = 0.15</text>
+    <rect x="568" y="512" width="180" height="34" rx="10" fill="#F8FBFD" stroke="#CBD9E2" stroke-width="1" />
+    <text x="658" y="536" font-size="22" fill="#172633" text-anchor="middle">λrel = 0.001</text>
+    <rect x="764" y="512" width="444" height="34" rx="10" fill="#F8FBFD" stroke="#CBD9E2" stroke-width="1" />
+    <text x="986" y="536" font-size="22" fill="#172633" text-anchor="middle">L = [0.2898, 0.1443, 0.0427]</text>
+  </g>
+
+  <g id="page-takeaway" data-pptx-bounds="72 584 1136 42">
+    <text x="72" y="614" font-size="28" font-weight="bold" fill="#172633">近目标时解析先验获得最高权限，残差只在有界范围内修正。</text>
+  </g>
+
+  <g id="page-footer" data-pptx-bounds="72 666 1136 36">
+    <line x1="72" y1="672" x2="1208" y2="672" stroke="#CBD9E2" stroke-width="1" />
+    <text x="72" y="694" font-size="20" fill="#526571">技术评审 · 距离门控</text>
+    <text x="1208" y="694" font-size="20" fill="#526571" text-anchor="end">P05 / 11</text>
+  </g>
+</svg>

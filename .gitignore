@@ -24,6 +24,7 @@ needle_geometry_verification.json
 .env.*
 .vscode/
 .idea/
+~$*
 
 # Offscreen renderer caches for the current scan model.
 mujoco_model/.cache/
@@ -37,3 +38,11 @@ mujoco_model/outputs/*
 /mujoco_model/model.xml
 /mujoco_model/model_new.xml
 /mujoco_model/model_legacy.xml
+
+# Large generated training datasets, checkpoints, evaluation artifacts, and
+# local tool state. Keep source, configs, tests, reports, and presentation
+# deliverables in version control.
+/data/
+/outputs/
+/test-logs/
+/.claude/

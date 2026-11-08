@@ -341,3 +341,2084 @@
 - 2026-11-06：v7 冻结包完整性与上传前校验 PASS。保存 checkpoint `outputs/diffusion_policy_v7_guided_dagger1_cached/best_model.pth`（`60,608,666` bytes，SHA-256 `59C8B186F83CD434B7F09C669FE9CC0F7AF9B8E0C0B8C477B8FDC9E439C2BDEB`）；两组评估目录各含 `7` 个文件，两个 `aggregate_summary.json` 均为 `PASS`，逐文件哈希已记录于 `FREEZE_MANIFEST_20261106.json`。Git 冻结分支基于远端 `main@50b18b6e18cb0d9864cd7fb04b45a5090e14d387`，目标分支为 `freeze/v7-guided-dagger1-20261106`；上传代理为 `127.0.0.1:26800`。24.0 GB 原始 `data/` 与无关历史训练输出不纳入分支。测试记录已追加。
 - 2026-11-06：冻结分支远端逐字节校验 FAIL→修复（systematic-debugging）。独立从已推送提交下载后，checkpoint、TEST_LOG 与冻结清单 SHA-256 一致；两组 `aggregate_summary.json` 因 Git 自动文本规范化将本地 CRLF 转为 LF，远端哈希分别为 `D8DDD0E9…`、`CC52C308…`，与本地 `4FCDB919…`、`212C4ABC…` 不一致，字节数各少 `55`。已在 `.gitattributes` 对 `outputs/**` 禁用文本转换并重新登记全部冻结输出，后续将重新提交并复验。测试记录已追加。
 - 2026-11-06：冻结分支远端逐字节复验 PASS（systematic-debugging 结案）。通过 `127.0.0.1:26800` 重新读取远端分支与 Raw 内容：ref、本地 HEAD 和远端广告 SHA 均为 `7cb14d3a4d95829b303cf13b70049816f47794a8`；checkpoint 远端/本地 SHA-256 均为 `59C8B186…`，两组汇总远端/本地 SHA-256 分别为 `4FCDB919…` 与 `212C4ABC…`，全部逐字节一致。`.gitattributes` 的 `outputs/** -text` 已消除 CRLF/LF 转换。测试记录已追加。
+
+## 2026-11-06T16:31:02+08:00 | UNKNOWN
+<!-- codex-test:b17b7aa01556dc2f6c14d0bc -->
+
+- 来源：PostToolUse
+- 工作目录："E:\\30_RESOURCES\\32_课程教程\\医学\\中科院\\rcm-mujoco-reference-ffd7b15d41c51c2d2f8a15596e9575106f81c225"
+- 退出码：未知，不能据此断言测试通过
+- 输出记录：[test-logs/b17b7aa01556dc2f6c14d0bc.log](test-logs/b17b7aa01556dc2f6c14d0bc.log)
+
+### 命令
+
+```text
+$py='C:\ProgramData\Miniconda3\envs\rcm_mujoco\python.exe'; & $py -m unittest -v tests.test_restricted_perception
+```
+
+### 输出末尾摘要
+
+```text
+test_coarse_bias_is_fixed_per_episode_and_varies_by_seed (tests.test_restricted_perception.RestrictedPerceptionTests.test_coarse_bias_is_fixed_per_episode_and_varies_by_seed) ... ok
+test_coarse_sigma_increases_with_distance (tests.test_restricted_perception.RestrictedPerceptionTests.test_coarse_sigma_increases_with_distance) ... ok
+test_config_round_trip (tests.test_restricted_perception.RestrictedPerceptionTests.test_config_round_trip) ... ok
+test_fine_loss_coasts_two_frames_then_falls_back (tests.test_restricted_perception.RestrictedPerceptionTests.test_fine_loss_coasts_two_frames_then_falls_back) ... FAIL
+test_imprecise_coarse_fallback_holds_then_requests_bounded_retraction (tests.test_restricted_perception.RestrictedPerceptionTests.test_imprecise_coarse_fallback_holds_then_requests_bounded_retraction) ... ok
+test_precision_floor_requires_both_accuracy_and_closed_loop (tests.test_restricted_perception.RestrictedPerceptionTests.test_precision_floor_requires_both_accuracy_and_closed_loop) ... ok
+test_switch_gate_rejects_insufficient_reduction (tests.test_restricted_perception.RestrictedPerceptionTests.test_switch_gate_rejects_insufficient_reduction) ... ok
+test_truth_is_not_in_policy_features (tests.test_restricted_perception.RestrictedPerceptionTests.test_truth_is_not_in_policy_features) ... ok
+
+======================================================================
+FAIL: test_fine_loss_coasts_two_frames_then_falls_back (tests.test_restricted_perception.RestrictedPerceptionTests.test_fine_loss_coasts_two_frames_then_falls_back)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "E:\30_RESOURCES\32_课程教程\医学\中科院\rcm-mujoco-reference-ffd7b15d41c51c2d2f8a15596e9575106f81c225\tests\test_restricted_perception.py", line 77, in test_fine_loss_coasts_two_frames_then_falls_back
+    self.assertEqual(states[0], FallbackState.FINE_TRACKING)
+AssertionError: <FallbackState.PRECISION_HOLD: 'PRECISION_HOLD'> != <FallbackState.FINE_TRACKING: 'FINE_TRACKING'>
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.045s
+
+FAILED (failures=1)
+```
+
+## 2026-11-06T16:36:35+08:00 | UNKNOWN
+<!-- codex-test:999f6e56e0a6ed1adc5eede5 -->
+
+- 来源：PostToolUse
+- 工作目录："E:\\30_RESOURCES\\32_课程教程\\医学\\中科院\\rcm-mujoco-reference-ffd7b15d41c51c2d2f8a15596e9575106f81c225"
+- 退出码：未知，不能据此断言测试通过
+- 输出记录：[test-logs/999f6e56e0a6ed1adc5eede5.log](test-logs/999f6e56e0a6ed1adc5eede5.log)
+
+### 命令
+
+```text
+$env:PYTHONPATH='.'; & 'C:\ProgramData\Miniconda3\envs\rcm_mujoco\python.exe' -m unittest -v tests.test_restricted_perception
+```
+
+### 输出末尾摘要
+
+```text
+test_coarse_bias_is_fixed_per_episode_and_varies_by_seed (tests.test_restricted_perception.RestrictedPerceptionTests.test_coarse_bias_is_fixed_per_episode_and_varies_by_seed) ... ok
+test_coarse_sigma_increases_with_distance (tests.test_restricted_perception.RestrictedPerceptionTests.test_coarse_sigma_increases_with_distance) ... ok
+test_config_round_trip (tests.test_restricted_perception.RestrictedPerceptionTests.test_config_round_trip) ... ok
+test_fine_loss_coasts_two_frames_then_falls_back (tests.test_restricted_perception.RestrictedPerceptionTests.test_fine_loss_coasts_two_frames_then_falls_back) ... ok
+test_imprecise_coarse_fallback_holds_then_requests_bounded_retraction (tests.test_restricted_perception.RestrictedPerceptionTests.test_imprecise_coarse_fallback_holds_then_requests_bounded_retraction) ... ok
+test_precision_floor_requires_both_accuracy_and_closed_loop (tests.test_restricted_perception.RestrictedPerceptionTests.test_precision_floor_requires_both_accuracy_and_closed_loop) ... ok
+test_switch_gate_rejects_insufficient_reduction (tests.test_restricted_perception.RestrictedPerceptionTests.test_switch_gate_rejects_insufficient_reduction) ... ok
+test_truth_is_not_in_policy_features (tests.test_restricted_perception.RestrictedPerceptionTests.test_truth_is_not_in_policy_features) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.062s
+
+OK
+```
+
+## 2026-11-06 Stage 1 restricted-perception gate PASS
+
+- Normal restricted closed loop: 37/40 successes at the 20 um threshold, target-clustered 95% success interval available in `outputs/restricted_stage1_closed_loop_20261106/stage1_summary.json`.
+- Zero restricted vector: 11/40 successes; success drop 65.0 percentage points, exact McNemar p=2.98e-8.
+- Same-distance cross-episode mismatched restricted vector: 12/40 successes; success drop 62.5 percentage points, exact McNemar p=4.17e-7.
+- Image causal gate PASS. Both zeroing and mismatching the restricted vector significantly degraded success and final-error P95.
+- Primary comparison against v4 no-DAgger diffusion: candidate 37/40 (92.5%), baseline 13/40 (32.5%); paired success-risk difference 60.0 percentage points, target-clustered bootstrap 95% CI [47.83, 73.08] percentage points, exact McNemar p=8.05e-7. Final-error P95 improved 79.1%.
+- No normal, zero, mismatch, or baseline episode exceeded 30 mm; all safety-limited counts were zero.
+- Final summary SHA-256: `303118CC25CE567D487B2ACDBD2CA293209AD77CF4280FF8D6C541F5B5C0BDAD`.
+- Fresh tests: 26 passed, 0 failures, 0 errors, exit code 0. Static compile passed. Training and validation sidecar verification both PASS.
+
+## 2026-11-06T16:43:01+08:00 | UNKNOWN
+<!-- codex-test:80774e410570fb5b211192e9 -->
+
+- 来源：PostToolUse
+- 工作目录："E:\\30_RESOURCES\\32_课程教程\\医学\\中科院\\rcm-mujoco-reference-ffd7b15d41c51c2d2f8a15596e9575106f81c225"
+- 退出码：未知，不能据此断言测试通过
+- 输出记录：[test-logs/80774e410570fb5b211192e9.log](test-logs/80774e410570fb5b211192e9.log)
+
+### 命令
+
+```text
+$env:PYTHONPATH='.'; & 'C:\ProgramData\Miniconda3\envs\rcm_mujoco\python.exe' -m unittest -v tests.test_restricted_perception
+```
+
+### 输出末尾摘要
+
+```text
+test_coarse_bias_is_fixed_per_episode_and_varies_by_seed (tests.test_restricted_perception.RestrictedPerceptionTests.test_coarse_bias_is_fixed_per_episode_and_varies_by_seed) ... ok
+test_coarse_sigma_increases_with_distance (tests.test_restricted_perception.RestrictedPerceptionTests.test_coarse_sigma_increases_with_distance) ... ok
+test_config_round_trip (tests.test_restricted_perception.RestrictedPerceptionTests.test_config_round_trip) ... ok
+test_fine_loss_coasts_two_frames_then_falls_back (tests.test_restricted_perception.RestrictedPerceptionTests.test_fine_loss_coasts_two_frames_then_falls_back) ... ok
+test_imprecise_coarse_fallback_holds_then_requests_bounded_retraction (tests.test_restricted_perception.RestrictedPerceptionTests.test_imprecise_coarse_fallback_holds_then_requests_bounded_retraction) ... ok
+test_precision_floor_requires_both_accuracy_and_closed_loop (tests.test_restricted_perception.RestrictedPerceptionTests.test_precision_floor_requires_both_accuracy_and_closed_loop) ... ok
+test_switch_gate_rejects_insufficient_reduction (tests.test_restricted_perception.RestrictedPerceptionTests.test_switch_gate_rejects_insufficient_reduction) ... ok
+test_truth_is_not_in_policy_features (tests.test_restricted_perception.RestrictedPerceptionTests.test_truth_is_not_in_policy_features) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.044s
+
+OK
+```
+
+## 2026-11-06T16:54:54+08:00 | UNKNOWN
+<!-- codex-test:a8d9ace81a3a9bf7fafa4f87 -->
+
+- 来源：PostToolUse
+- 工作目录："E:\\30_RESOURCES\\32_课程教程\\医学\\中科院\\rcm-mujoco-reference-ffd7b15d41c51c2d2f8a15596e9575106f81c225"
+- 退出码：未知，不能据此断言测试通过
+- 输出记录：[test-logs/a8d9ace81a3a9bf7fafa4f87.log](test-logs/a8d9ace81a3a9bf7fafa4f87.log)
+
+### 命令
+
+```text
+$env:PYTHONPATH='.'; & 'C:\ProgramData\Miniconda3\envs\rcm_mujoco\python.exe' -m unittest -v tests.test_restricted_perception tests.test_restricted_perception_experiments
+```
+
+### 输出末尾摘要
+
+```text
+test_coarse_bias_is_fixed_per_episode_and_varies_by_seed (tests.test_restricted_perception.RestrictedPerceptionTests.test_coarse_bias_is_fixed_per_episode_and_varies_by_seed) ... ok
+test_coarse_sigma_increases_with_distance (tests.test_restricted_perception.RestrictedPerceptionTests.test_coarse_sigma_increases_with_distance) ... ok
+test_config_round_trip (tests.test_restricted_perception.RestrictedPerceptionTests.test_config_round_trip) ... ok
+test_fine_loss_coasts_two_frames_then_falls_back (tests.test_restricted_perception.RestrictedPerceptionTests.test_fine_loss_coasts_two_frames_then_falls_back) ... ok
+test_imprecise_coarse_fallback_holds_then_requests_bounded_retraction (tests.test_restricted_perception.RestrictedPerceptionTests.test_imprecise_coarse_fallback_holds_then_requests_bounded_retraction) ... ok
+test_precision_floor_requires_both_accuracy_and_closed_loop (tests.test_restricted_perception.RestrictedPerceptionTests.test_precision_floor_requires_both_accuracy_and_closed_loop) ... ok
+test_switch_gate_rejects_insufficient_reduction (tests.test_restricted_perception.RestrictedPerceptionTests.test_switch_gate_rejects_insufficient_reduction) ... ok
+test_truth_is_not_in_policy_features (tests.test_restricted_perception.RestrictedPerceptionTests.test_truth_is_not_in_policy_features) ... ok
+test_closed_loop_is_deterministic (tests.test_restricted_perception_experiments.RestrictedPerceptionExperimentTests.test_closed_loop_is_deterministic) ... ok
+test_precision_scan_exposes_all_levels (tests.test_restricted_perception_experiments.RestrictedPerceptionExperimentTests.test_precision_scan_exposes_all_levels) ... ok
+test_switch_scan_has_required_distances_and_gate (tests.test_restricted_perception_experiments.RestrictedPerceptionExperimentTests.test_switch_scan_has_required_distances_and_gate) ... ok
+
+----------------------------------------------------------------------
+Ran 11 tests in 5.392s
+
+OK
+```
+
+## 2026-11-06T16:56:10+08:00 | UNKNOWN
+<!-- codex-test:c8125ee2ac3db589aaad68ba -->
+
+- 来源：PostToolUse
+- 工作目录："E:\\30_RESOURCES\\32_课程教程\\医学\\中科院\\rcm-mujoco-reference-ffd7b15d41c51c2d2f8a15596e9575106f81c225"
+- 退出码：未知，不能据此断言测试通过
+- 输出记录：[test-logs/c8125ee2ac3db589aaad68ba.log](test-logs/c8125ee2ac3db589aaad68ba.log)
+
+### 命令
+
+```text
+$env:PYTHONPATH='.'; & 'C:\ProgramData\Miniconda3\envs\rcm_mujoco\python.exe' -m unittest -v tests.test_restricted_perception tests.test_restricted_perception_experiments
+```
+
+### 输出末尾摘要
+
+```text
+test_coarse_bias_is_fixed_per_episode_and_varies_by_seed (tests.test_restricted_perception.RestrictedPerceptionTests.test_coarse_bias_is_fixed_per_episode_and_varies_by_seed) ... ok
+test_coarse_sigma_increases_with_distance (tests.test_restricted_perception.RestrictedPerceptionTests.test_coarse_sigma_increases_with_distance) ... ok
+test_config_round_trip (tests.test_restricted_perception.RestrictedPerceptionTests.test_config_round_trip) ... ok
+test_delayed_fine_measurement_is_aligned_to_current_kinematic_tip (tests.test_restricted_perception.RestrictedPerceptionTests.test_delayed_fine_measurement_is_aligned_to_current_kinematic_tip) ... ok
+test_fine_loss_coasts_two_frames_then_falls_back (tests.test_restricted_perception.RestrictedPerceptionTests.test_fine_loss_coasts_two_frames_then_falls_back) ... ok
+test_imprecise_coarse_fallback_holds_then_requests_bounded_retraction (tests.test_restricted_perception.RestrictedPerceptionTests.test_imprecise_coarse_fallback_holds_then_requests_bounded_retraction) ... ok
+test_precision_floor_requires_both_accuracy_and_closed_loop (tests.test_restricted_perception.RestrictedPerceptionTests.test_precision_floor_requires_both_accuracy_and_closed_loop) ... ok
+test_switch_gate_rejects_insufficient_reduction (tests.test_restricted_perception.RestrictedPerceptionTests.test_switch_gate_rejects_insufficient_reduction) ... ok
+test_truth_is_not_in_policy_features (tests.test_restricted_perception.RestrictedPerceptionTests.test_truth_is_not_in_policy_features) ... ok
+test_closed_loop_is_deterministic (tests.test_restricted_perception_experiments.RestrictedPerceptionExperimentTests.test_closed_loop_is_deterministic) ... ok
+test_precision_scan_exposes_all_levels (tests.test_restricted_perception_experiments.RestrictedPerceptionExperimentTests.test_precision_scan_exposes_all_levels) ... ok
+test_switch_scan_has_required_distances_and_gate (tests.test_restricted_perception_experiments.RestrictedPerceptionExperimentTests.test_switch_scan_has_required_distances_and_gate) ... ok
+
+----------------------------------------------------------------------
+Ran 12 tests in 5.440s
+
+OK
+```
+
+## 2026-11-06T16:57:27+08:00 | UNKNOWN
+<!-- codex-test:1311cd653fcf2c19fe32d673 -->
+
+- 来源：PostToolUse
+- 工作目录："E:\\30_RESOURCES\\32_课程教程\\医学\\中科院\\rcm-mujoco-reference-ffd7b15d41c51c2d2f8a15596e9575106f81c225"
+- 退出码：未知，不能据此断言测试通过
+- 输出记录：[test-logs/1311cd653fcf2c19fe32d673.log](test-logs/1311cd653fcf2c19fe32d673.log)
+
+### 命令
+
+```text
+$env:PYTHONPATH='.'; & 'C:\ProgramData\Miniconda3\envs\rcm_mujoco\python.exe' -m unittest -v tests.test_restricted_perception tests.test_restricted_perception_experiments
+```
+
+### 输出末尾摘要
+
+```text
+ames_then_falls_back (tests.test_restricted_perception.RestrictedPerceptionTests.test_fine_loss_coasts_two_frames_then_falls_back) ... ok
+test_imprecise_coarse_fallback_holds_then_requests_bounded_retraction (tests.test_restricted_perception.RestrictedPerceptionTests.test_imprecise_coarse_fallback_holds_then_requests_bounded_retraction) ... ok
+test_precision_floor_requires_both_accuracy_and_closed_loop (tests.test_restricted_perception.RestrictedPerceptionTests.test_precision_floor_requires_both_accuracy_and_closed_loop) ... ok
+test_switch_gate_rejects_insufficient_reduction (tests.test_restricted_perception.RestrictedPerceptionTests.test_switch_gate_rejects_insufficient_reduction) ... ok
+test_truth_is_not_in_policy_features (tests.test_restricted_perception.RestrictedPerceptionTests.test_truth_is_not_in_policy_features) ... ok
+test_closed_loop_does_not_stop_on_early_precision_hold (tests.test_restricted_perception_experiments.RestrictedPerceptionExperimentTests.test_closed_loop_does_not_stop_on_early_precision_hold) ... FAIL
+test_closed_loop_is_deterministic (tests.test_restricted_perception_experiments.RestrictedPerceptionExperimentTests.test_closed_loop_is_deterministic) ... ok
+test_precision_scan_exposes_all_levels (tests.test_restricted_perception_experiments.RestrictedPerceptionExperimentTests.test_precision_scan_exposes_all_levels) ... ok
+test_switch_scan_has_required_distances_and_gate (tests.test_restricted_perception_experiments.RestrictedPerceptionExperimentTests.test_switch_scan_has_required_distances_and_gate) ... ok
+
+======================================================================
+FAIL: test_closed_loop_does_not_stop_on_early_precision_hold (tests.test_restricted_perception_experiments.RestrictedPerceptionExperimentTests.test_closed_loop_does_not_stop_on_early_precision_hold)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "E:\30_RESOURCES\32_课程教程\医学\中科院\rcm-mujoco-reference-ffd7b15d41c51c2d2f8a15596e9575106f81c225\tests\test_restricted_perception_experiments.py", line 61, in test_closed_loop_does_not_stop_on_early_precision_hold
+    self.assertGreaterEqual(report["success_rate"], 0.8)
+AssertionError: 0.65 not greater than or equal to 0.8
+
+----------------------------------------------------------------------
+Ran 13 tests in 6.854s
+
+FAILED (failures=1)
+```
+
+## 2026-11-06T16:57:55+08:00 | UNKNOWN
+<!-- codex-test:c11d52260e82cde76f839528 -->
+
+- 来源：PostToolUse
+- 工作目录："E:\\30_RESOURCES\\32_课程教程\\医学\\中科院\\rcm-mujoco-reference-ffd7b15d41c51c2d2f8a15596e9575106f81c225"
+- 退出码：未知，不能据此断言测试通过
+- 输出记录：[test-logs/c11d52260e82cde76f839528.log](test-logs/c11d52260e82cde76f839528.log)
+
+### 命令
+
+```text
+$env:PYTHONPATH='.'; & 'C:\ProgramData\Miniconda3\envs\rcm_mujoco\python.exe' -m unittest -v tests.test_restricted_perception tests.test_restricted_perception_experiments
+```
+
+### 输出末尾摘要
+
+```text
+ames_then_falls_back (tests.test_restricted_perception.RestrictedPerceptionTests.test_fine_loss_coasts_two_frames_then_falls_back) ... ok
+test_imprecise_coarse_fallback_holds_then_requests_bounded_retraction (tests.test_restricted_perception.RestrictedPerceptionTests.test_imprecise_coarse_fallback_holds_then_requests_bounded_retraction) ... ok
+test_precision_floor_requires_both_accuracy_and_closed_loop (tests.test_restricted_perception.RestrictedPerceptionTests.test_precision_floor_requires_both_accuracy_and_closed_loop) ... ok
+test_switch_gate_rejects_insufficient_reduction (tests.test_restricted_perception.RestrictedPerceptionTests.test_switch_gate_rejects_insufficient_reduction) ... ok
+test_truth_is_not_in_policy_features (tests.test_restricted_perception.RestrictedPerceptionTests.test_truth_is_not_in_policy_features) ... ok
+test_closed_loop_does_not_stop_on_early_precision_hold (tests.test_restricted_perception_experiments.RestrictedPerceptionExperimentTests.test_closed_loop_does_not_stop_on_early_precision_hold) ... FAIL
+test_closed_loop_is_deterministic (tests.test_restricted_perception_experiments.RestrictedPerceptionExperimentTests.test_closed_loop_is_deterministic) ... ok
+test_precision_scan_exposes_all_levels (tests.test_restricted_perception_experiments.RestrictedPerceptionExperimentTests.test_precision_scan_exposes_all_levels) ... ok
+test_switch_scan_has_required_distances_and_gate (tests.test_restricted_perception_experiments.RestrictedPerceptionExperimentTests.test_switch_scan_has_required_distances_and_gate) ... ok
+
+======================================================================
+FAIL: test_closed_loop_does_not_stop_on_early_precision_hold (tests.test_restricted_perception_experiments.RestrictedPerceptionExperimentTests.test_closed_loop_does_not_stop_on_early_precision_hold)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "E:\30_RESOURCES\32_课程教程\医学\中科院\rcm-mujoco-reference-ffd7b15d41c51c2d2f8a15596e9575106f81c225\tests\test_restricted_perception_experiments.py", line 61, in test_closed_loop_does_not_stop_on_early_precision_hold
+    self.assertGreaterEqual(report["success_rate"], 0.8)
+AssertionError: 0.75 not greater than or equal to 0.8
+
+----------------------------------------------------------------------
+Ran 13 tests in 6.433s
+
+FAILED (failures=1)
+```
+
+## 2026-11-06T16:59:19+08:00 | UNKNOWN
+<!-- codex-test:149e4976ea79f2366b45e565 -->
+
+- 来源：PostToolUse
+- 工作目录："E:\\30_RESOURCES\\32_课程教程\\医学\\中科院\\rcm-mujoco-reference-ffd7b15d41c51c2d2f8a15596e9575106f81c225"
+- 退出码：未知，不能据此断言测试通过
+- 输出记录：[test-logs/149e4976ea79f2366b45e565.log](test-logs/149e4976ea79f2366b45e565.log)
+
+### 命令
+
+```text
+$env:PYTHONPATH='.'; & 'C:\ProgramData\Miniconda3\envs\rcm_mujoco\python.exe' -m unittest -v tests.test_restricted_perception tests.test_restricted_perception_experiments
+```
+
+### 输出末尾摘要
+
+```text
+test_coarse_bias_is_fixed_per_episode_and_varies_by_seed (tests.test_restricted_perception.RestrictedPerceptionTests.test_coarse_bias_is_fixed_per_episode_and_varies_by_seed) ... ok
+test_coarse_sigma_increases_with_distance (tests.test_restricted_perception.RestrictedPerceptionTests.test_coarse_sigma_increases_with_distance) ... ok
+test_config_round_trip (tests.test_restricted_perception.RestrictedPerceptionTests.test_config_round_trip) ... ok
+test_delayed_fine_measurement_is_aligned_to_current_kinematic_tip (tests.test_restricted_perception.RestrictedPerceptionTests.test_delayed_fine_measurement_is_aligned_to_current_kinematic_tip) ... ok
+test_fine_loss_coasts_two_frames_then_falls_back (tests.test_restricted_perception.RestrictedPerceptionTests.test_fine_loss_coasts_two_frames_then_falls_back) ... ok
+test_imprecise_coarse_fallback_holds_then_requests_bounded_retraction (tests.test_restricted_perception.RestrictedPerceptionTests.test_imprecise_coarse_fallback_holds_then_requests_bounded_retraction) ... ok
+test_precision_floor_requires_both_accuracy_and_closed_loop (tests.test_restricted_perception.RestrictedPerceptionTests.test_precision_floor_requires_both_accuracy_and_closed_loop) ... ok
+test_switch_gate_rejects_insufficient_reduction (tests.test_restricted_perception.RestrictedPerceptionTests.test_switch_gate_rejects_insufficient_reduction) ... ok
+test_truth_is_not_in_policy_features (tests.test_restricted_perception.RestrictedPerceptionTests.test_truth_is_not_in_policy_features) ... ok
+test_closed_loop_does_not_stop_on_early_precision_hold (tests.test_restricted_perception_experiments.RestrictedPerceptionExperimentTests.test_closed_loop_does_not_stop_on_early_precision_hold) ... ok
+test_closed_loop_is_deterministic (tests.test_restricted_perception_experiments.RestrictedPerceptionExperimentTests.test_closed_loop_is_deterministic) ... ok
+test_precision_scan_exposes_all_levels (tests.test_restricted_perception_experiments.RestrictedPerceptionExperimentTests.test_precision_scan_exposes_all_levels) ... ok
+test_switch_scan_has_required_distances_and_gate (tests.test_restricted_perception_experiments.RestrictedPerceptionExperimentTests.test_switch_scan_has_required_distances_and_gate) ... ok
+
+----------------------------------------------------------------------
+Ran 13 tests in 6.401s
+
+OK
+```
+
+## 2026-11-06T17:08:24+08:00 | UNKNOWN
+<!-- codex-test:fd9afa0eab0fcc59b41a35e2 -->
+
+- 来源：PostToolUse
+- 工作目录："E:\\30_RESOURCES\\32_课程教程\\医学\\中科院\\rcm-mujoco-reference-ffd7b15d41c51c2d2f8a15596e9575106f81c225"
+- 退出码：未知，不能据此断言测试通过
+- 输出记录：[test-logs/fd9afa0eab0fcc59b41a35e2.log](test-logs/fd9afa0eab0fcc59b41a35e2.log)
+
+### 命令
+
+```text
+$env:PYTHONPATH='.'; & 'C:\ProgramData\Miniconda3\envs\rcm_mujoco\python.exe' -m unittest -v tests.test_restricted_perception tests.test_restricted_perception_experiments tests.test_target_split
+```
+
+### 输出末尾摘要
+
+```text
+ok
+test_checked_in_manifest_has_frozen_separation (tests.test_target_split.TargetSplitTests.test_checked_in_manifest_has_frozen_separation) ... ok
+test_hash_is_stable_and_seed_sensitive (tests.test_target_split.TargetSplitTests.test_hash_is_stable_and_seed_sensitive) ... ok
+test_nearest_neighbor_and_self_exclusion (tests.test_target_split.TargetSplitTests.test_nearest_neighbor_and_self_exclusion) ... ok
+
+----------------------------------------------------------------------
+Ran 16 tests in 32.141s
+
+OK
+```
+
+## 2026-11-06T17:09:31+08:00 | UNKNOWN
+<!-- codex-test:801ac33976fde096346309eb -->
+
+- 来源：PostToolUse
+- 工作目录："E:\\30_RESOURCES\\32_课程教程\\医学\\中科院\\rcm-mujoco-reference-ffd7b15d41c51c2d2f8a15596e9575106f81c225"
+- 退出码：未知，不能据此断言测试通过
+- 输出记录：[test-logs/801ac33976fde096346309eb.log](test-logs/801ac33976fde096346309eb.log)
+
+### 命令
+
+```text
+$env:PYTHONPATH='.'; & 'C:\ProgramData\Miniconda3\envs\rcm_mujoco\python.exe' -m unittest -v tests.test_restricted_sidecar
+```
+
+### 输出末尾摘要
+
+```text
+.ZipFile(file, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Miniconda3\envs\rcm_mujoco\Lib\zipfile.py", line 1337, in __init__
+    self.fp = io.open(file, filemode)
+              ^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [Errno 13] Permission denied: 'C:\\Users\\Lenovo\\AppData\\Local\\Temp\\tmpd1cithp1\\dataset.npz'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\ProgramData\Miniconda3\envs\rcm_mujoco\Lib\shutil.py", line 612, in _rmtree_unsafe
+    with os.scandir(path) as scandir_it:
+         ^^^^^^^^^^^^^^^^
+PermissionError: [WinError 5] 拒绝访问。: 'C:\\Users\\Lenovo\\AppData\\Local\\Temp\\tmpd1cithp1'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\30_RESOURCES\32_课程教程\医学\中科院\rcm-mujoco-reference-ffd7b15d41c51c2d2f8a15596e9575106f81c225\tests\test_restricted_sidecar.py", line 20, in test_sidecar_schema_and_truth_omission
+    with tempfile.TemporaryDirectory() as temporary:
+  File "C:\ProgramData\Miniconda3\envs\rcm_mujoco\Lib\tempfile.py", line 943, in __exit__
+    self.cleanup()
+  File "C:\ProgramData\Miniconda3\envs\rcm_mujoco\Lib\tempfile.py", line 947, in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+  File "C:\ProgramData\Miniconda3\envs\rcm_mujoco\Lib\tempfile.py", line 929, in _rmtree
+    _shutil.rmtree(name, onerror=onerror)
+  File "C:\ProgramData\Miniconda3\envs\rcm_mujoco\Lib\shutil.py", line 787, in rmtree
+    return _rmtree_unsafe(path, onerror)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Miniconda3\envs\rcm_mujoco\Lib\shutil.py", line 615, in _rmtree_unsafe
+    onerror(os.scandir, path, sys.exc_info())
+  File "C:\ProgramData\Miniconda3\envs\rcm_mujoco\Lib\tempfile.py", line 890, in onerror
+    _resetperms(path)
+  File "C:\ProgramData\Miniconda3\envs\rcm_mujoco\Lib\tempfile.py", line 287, in _resetperms
+    _dont_follow_symlinks(_os.chmod, path, 0o700)
+  File "C:\ProgramData\Miniconda3\envs\rcm_mujoco\Lib\tempfile.py", line 278, in _dont_follow_symlinks
+    func(path, *args)
+PermissionError: [WinError 5] 拒绝访问。: 'C:\\Users\\Lenovo\\AppData\\Local\\Temp\\tmpd1cithp1'
+
+----------------------------------------------------------------------
+Ran 1 test in 0.061s
+
+FAILED (errors=1)
+```
+
+## 2026-11-06T17:09:40+08:00 | UNKNOWN
+<!-- codex-test:2b6a9a3675623fe958f8006a -->
+
+- 来源：PostToolUse
+- 工作目录："E:\\30_RESOURCES\\32_课程教程\\医学\\中科院\\rcm-mujoco-reference-ffd7b15d41c51c2d2f8a15596e9575106f81c225"
+- 退出码：未知，不能据此断言测试通过
+- 输出记录：[test-logs/2b6a9a3675623fe958f8006a.log](test-logs/2b6a9a3675623fe958f8006a.log)
+
+### 命令
+
+```text
+$env:PYTHONPATH='.'; & 'C:\ProgramData\Miniconda3\envs\rcm_mujoco\python.exe' -m unittest -v tests.test_restricted_sidecar
+```
+
+### 输出末尾摘要
+
+```text
+   ^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [Errno 13] Permission denied: 'E:\\30_RESOURCES\\32_课程教程\\医学\\中科院\\rcm-mujoco-reference-ffd7b15d41c51c2d2f8a15596e9575106f81c225\\.test-tmp\\tmpyiezt_wy\\dataset.npz'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\ProgramData\Miniconda3\envs\rcm_mujoco\Lib\shutil.py", line 612, in _rmtree_unsafe
+    with os.scandir(path) as scandir_it:
+         ^^^^^^^^^^^^^^^^
+PermissionError: [WinError 5] 拒绝访问。: 'E:\\30_RESOURCES\\32_课程教程\\医学\\中科院\\rcm-mujoco-reference-ffd7b15d41c51c2d2f8a15596e9575106f81c225\\.test-tmp\\tmpyiezt_wy'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\30_RESOURCES\32_课程教程\医学\中科院\rcm-mujoco-reference-ffd7b15d41c51c2d2f8a15596e9575106f81c225\tests\test_restricted_sidecar.py", line 22, in test_sidecar_schema_and_truth_omission
+    with tempfile.TemporaryDirectory(dir=temporary_root) as temporary:
+  File "C:\ProgramData\Miniconda3\envs\rcm_mujoco\Lib\tempfile.py", line 943, in __exit__
+    self.cleanup()
+  File "C:\ProgramData\Miniconda3\envs\rcm_mujoco\Lib\tempfile.py", line 947, in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+  File "C:\ProgramData\Miniconda3\envs\rcm_mujoco\Lib\tempfile.py", line 929, in _rmtree
+    _shutil.rmtree(name, onerror=onerror)
+  File "C:\ProgramData\Miniconda3\envs\rcm_mujoco\Lib\shutil.py", line 787, in rmtree
+    return _rmtree_unsafe(path, onerror)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Miniconda3\envs\rcm_mujoco\Lib\shutil.py", line 615, in _rmtree_unsafe
+    onerror(os.scandir, path, sys.exc_info())
+  File "C:\ProgramData\Miniconda3\envs\rcm_mujoco\Lib\tempfile.py", line 890, in onerror
+    _resetperms(path)
+  File "C:\ProgramData\Miniconda3\envs\rcm_mujoco\Lib\tempfile.py", line 287, in _resetperms
+    _dont_follow_symlinks(_os.chmod, path, 0o700)
+  File "C:\ProgramData\Miniconda3\envs\rcm_mujoco\Lib\tempfile.py", line 278, in _dont_follow_symlinks
+    func(path, *args)
+PermissionError: [WinError 5] 拒绝访问。: 'E:\\30_RESOURCES\\32_课程教程\\医学\\中科院\\rcm-mujoco-reference-ffd7b15d41c51c2d2f8a15596e9575106f81c225\\.test-tmp\\tmpyiezt_wy'
+
+----------------------------------------------------------------------
+Ran 1 test in 0.023s
+
+FAILED (errors=1)
+```
+
+## 2026-11-06T17:09:51+08:00 | UNKNOWN
+<!-- codex-test:3e8162b137cbb478f657a2b9 -->
+
+- 来源：PostToolUse
+- 工作目录："E:\\30_RESOURCES\\32_课程教程\\医学\\中科院\\rcm-mujoco-reference-ffd7b15d41c51c2d2f8a15596e9575106f81c225"
+- 退出码：未知，不能据此断言测试通过
+- 输出记录：[test-logs/3e8162b137cbb478f657a2b9.log](test-logs/3e8162b137cbb478f657a2b9.log)
+
+### 命令
+
+```text
+$env:PYTHONPATH='.'; & 'C:\ProgramData\Miniconda3\envs\rcm_mujoco\python.exe' -m unittest -v tests.test_restricted_sidecar
+```
+
+### 输出末尾摘要
+
+```text
+r: [Errno 13] Permission denied: 'E:\\30_RESOURCES\\32_课程教程\\医学\\中科院\\rcm-mujoco-reference-ffd7b15d41c51c2d2f8a15596e9575106f81c225\\outputs\\test_artifacts\\tmpt_e8vbre\\dataset.npz'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\ProgramData\Miniconda3\envs\rcm_mujoco\Lib\shutil.py", line 612, in _rmtree_unsafe
+    with os.scandir(path) as scandir_it:
+         ^^^^^^^^^^^^^^^^
+PermissionError: [WinError 5] 拒绝访问。: 'E:\\30_RESOURCES\\32_课程教程\\医学\\中科院\\rcm-mujoco-reference-ffd7b15d41c51c2d2f8a15596e9575106f81c225\\outputs\\test_artifacts\\tmpt_e8vbre'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\30_RESOURCES\32_课程教程\医学\中科院\rcm-mujoco-reference-ffd7b15d41c51c2d2f8a15596e9575106f81c225\tests\test_restricted_sidecar.py", line 22, in test_sidecar_schema_and_truth_omission
+    with tempfile.TemporaryDirectory(dir=temporary_root) as temporary:
+  File "C:\ProgramData\Miniconda3\envs\rcm_mujoco\Lib\tempfile.py", line 943, in __exit__
+    self.cleanup()
+  File "C:\ProgramData\Miniconda3\envs\rcm_mujoco\Lib\tempfile.py", line 947, in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+  File "C:\ProgramData\Miniconda3\envs\rcm_mujoco\Lib\tempfile.py", line 929, in _rmtree
+    _shutil.rmtree(name, onerror=onerror)
+  File "C:\ProgramData\Miniconda3\envs\rcm_mujoco\Lib\shutil.py", line 787, in rmtree
+    return _rmtree_unsafe(path, onerror)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Miniconda3\envs\rcm_mujoco\Lib\shutil.py", line 615, in _rmtree_unsafe
+    onerror(os.scandir, path, sys.exc_info())
+  File "C:\ProgramData\Miniconda3\envs\rcm_mujoco\Lib\tempfile.py", line 890, in onerror
+    _resetperms(path)
+  File "C:\ProgramData\Miniconda3\envs\rcm_mujoco\Lib\tempfile.py", line 287, in _resetperms
+    _dont_follow_symlinks(_os.chmod, path, 0o700)
+  File "C:\ProgramData\Miniconda3\envs\rcm_mujoco\Lib\tempfile.py", line 278, in _dont_follow_symlinks
+    func(path, *args)
+PermissionError: [WinError 5] 拒绝访问。: 'E:\\30_RESOURCES\\32_课程教程\\医学\\中科院\\rcm-mujoco-reference-ffd7b15d41c51c2d2f8a15596e9575106f81c225\\outputs\\test_artifacts\\tmpt_e8vbre'
+
+----------------------------------------------------------------------
+Ran 1 test in 0.030s
+
+FAILED (errors=1)
+```
+
+## 2026-11-06T17:10:12+08:00 | UNKNOWN
+<!-- codex-test:2ed75d350042d38ab3883c9c -->
+
+- 来源：PostToolUse
+- 工作目录："E:\\30_RESOURCES\\32_课程教程\\医学\\中科院\\rcm-mujoco-reference-ffd7b15d41c51c2d2f8a15596e9575106f81c225"
+- 退出码：未知，不能据此断言测试通过
+- 输出记录：[test-logs/2ed75d350042d38ab3883c9c.log](test-logs/2ed75d350042d38ab3883c9c.log)
+
+### 命令
+
+```text
+$env:PYTHONPATH='.'; & 'C:\ProgramData\Miniconda3\envs\rcm_mujoco\python.exe' -m unittest -v tests.test_restricted_sidecar
+```
+
+### 输出末尾摘要
+
+```text
+test_sidecar_schema_and_truth_omission (tests.test_restricted_sidecar.RestrictedSidecarTests.test_sidecar_schema_and_truth_omission) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.558s
+
+OK
+```
+
+## 2026-11-06T17:13:22+08:00 | UNKNOWN
+<!-- codex-test:79f8c593a94f7aca20a9605b -->
+
+- 来源：PostToolUse
+- 工作目录："E:\\30_RESOURCES\\32_课程教程\\医学\\中科院\\rcm-mujoco-reference-ffd7b15d41c51c2d2f8a15596e9575106f81c225"
+- 退出码：未知，不能据此断言测试通过
+- 输出记录：[test-logs/79f8c593a94f7aca20a9605b.log](test-logs/79f8c593a94f7aca20a9605b.log)
+
+### 命令
+
+```text
+$env:PYTHONPATH='.'; & 'C:\ProgramData\Miniconda3\envs\rcm_mujoco\python.exe' -m unittest -v tests.test_restricted_sidecar
+```
+
+### 输出末尾摘要
+
+```text
+test_batched_kinematics_matches_reference (tests.test_restricted_sidecar.RestrictedSidecarTests.test_batched_kinematics_matches_reference) ... FAIL
+test_sidecar_schema_and_truth_omission (tests.test_restricted_sidecar.RestrictedSidecarTests.test_sidecar_schema_and_truth_omission) ... ok
+
+======================================================================
+FAIL: test_batched_kinematics_matches_reference (tests.test_restricted_sidecar.RestrictedSidecarTests.test_batched_kinematics_matches_reference)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "E:\30_RESOURCES\32_课程教程\医学\中科院\rcm-mujoco-reference-ffd7b15d41c51c2d2f8a15596e9575106f81c225\tests\test_restricted_sidecar.py", line 30, in test_batched_kinematics_matches_reference
+    self.assertTrue(np.allclose(batched, expected, atol=1e-10))
+AssertionError: False is not true
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.667s
+
+FAILED (failures=1)
+```
+
+## 2026-11-06T17:13:52+08:00 | UNKNOWN
+<!-- codex-test:f6ae1d840f0f8211aae54ca2 -->
+
+- 来源：PostToolUse
+- 工作目录："E:\\30_RESOURCES\\32_课程教程\\医学\\中科院\\rcm-mujoco-reference-ffd7b15d41c51c2d2f8a15596e9575106f81c225"
+- 退出码：未知，不能据此断言测试通过
+- 输出记录：[test-logs/f6ae1d840f0f8211aae54ca2.log](test-logs/f6ae1d840f0f8211aae54ca2.log)
+
+### 命令
+
+```text
+$env:PYTHONPATH='.'; & 'C:\ProgramData\Miniconda3\envs\rcm_mujoco\python.exe' -m unittest -v tests.test_restricted_sidecar
+```
+
+### 输出末尾摘要
+
+```text
+test_batched_kinematics_matches_reference (tests.test_restricted_sidecar.RestrictedSidecarTests.test_batched_kinematics_matches_reference) ... ok
+test_sidecar_schema_and_truth_omission (tests.test_restricted_sidecar.RestrictedSidecarTests.test_sidecar_schema_and_truth_omission) ... ok
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.636s
+
+OK
+```
+
+## 2026-11-06T17:19:37+08:00 | UNKNOWN
+<!-- codex-test:d090c3d66bac9b8351d0ca28 -->
+
+- 来源：PostToolUse
+- 工作目录："E:\\30_RESOURCES\\32_课程教程\\医学\\中科院\\rcm-mujoco-reference-ffd7b15d41c51c2d2f8a15596e9575106f81c225"
+- 退出码：未知，不能据此断言测试通过
+- 输出记录：[test-logs/d090c3d66bac9b8351d0ca28.log](test-logs/d090c3d66bac9b8351d0ca28.log)
+
+### 命令
+
+```text
+$env:PYTHONPATH='.'; & 'C:\ProgramData\Miniconda3\envs\rcm_mujoco\python.exe' -m unittest -v tests.test_restricted_sidecar
+```
+
+### 输出末尾摘要
+
+```text
+test_batched_kinematics_matches_reference (tests.test_restricted_sidecar.RestrictedSidecarTests.test_batched_kinematics_matches_reference) ... ok
+test_sidecar_schema_and_truth_omission (tests.test_restricted_sidecar.RestrictedSidecarTests.test_sidecar_schema_and_truth_omission) ... ok
+
+----------------------------------------------------------------------
+Ran 2 tests in 5.990s
+
+OK
+```
+
+## 2026-11-06T17:32:25+08:00 | UNKNOWN
+<!-- codex-test:c938bf4b00ae571ec5819855 -->
+
+- 来源：PostToolUse
+- 工作目录："E:\\30_RESOURCES\\32_课程教程\\医学\\中科院\\rcm-mujoco-reference-ffd7b15d41c51c2d2f8a15596e9575106f81c225"
+- 退出码：未知，不能据此断言测试通过
+- 输出记录：[test-logs/c938bf4b00ae571ec5819855.log](test-logs/c938bf4b00ae571ec5819855.log)
+
+### 命令
+
+```text
+$env:PYTHONPATH='.'; & 'C:\ProgramData\Miniconda3\envs\rcm_mujoco\python.exe' -m unittest -v tests.test_restricted_sidecar
+```
+
+### 输出末尾摘要
+
+```text
+�b�~���0 ��
+����Nx:� �B�a�s�h�/�S�e�r�v�i�c�e�/�C�r�e�a�t�e�I�n�s�t�a�n�c�e�/�E�_�A�C�C�E�S�S�D�E�N�I�E�D��
+�
+```
+
+## 2026-11-06T17:32:36+08:00 | UNKNOWN
+<!-- codex-test:ca3daba458720aeac054ccaa -->
+
+- 来源：PostToolUse
+- 工作目录："E:\\30_RESOURCES\\32_课程教程\\医学\\中科院\\rcm-mujoco-reference-ffd7b15d41c51c2d2f8a15596e9575106f81c225"
+- 退出码：未知，不能据此断言测试通过
+- 输出记录：[test-logs/ca3daba458720aeac054ccaa.log](test-logs/ca3daba458720aeac054ccaa.log)
+
+### 命令
+
+```text
+$env:PYTHONPATH='.'; & 'C:\ProgramData\Miniconda3\envs\rcm_mujoco\python.exe' -m unittest -v tests.test_restricted_sidecar
+```
+
+### 输出末尾摘要
+
+```text
+test_batched_kinematics_matches_reference (tests.test_restricted_sidecar.RestrictedSidecarTests.test_batched_kinematics_matches_reference) ... ok
+test_sidecar_schema_and_truth_omission (tests.test_restricted_sidecar.RestrictedSidecarTests.test_sidecar_schema_and_truth_omission) ... ok
+
+----------------------------------------------------------------------
+Ran 2 tests in 5.491s
+
+OK
+```
+
+## 2026-11-06T17:34:41+08:00 | UNKNOWN
+<!-- codex-test:cb50663c8913dd5198ca7597 -->
+
+- 来源：PostToolUse
+- 工作目录："E:\\30_RESOURCES\\32_课程教程\\医学\\中科院\\rcm-mujoco-reference-ffd7b15d41c51c2d2f8a15596e9575106f81c225"
+- 退出码：未知，不能据此断言测试通过
+- 输出记录：[test-logs/cb50663c8913dd5198ca7597.log](test-logs/cb50663c8913dd5198ca7597.log)
+
+### 命令
+
+```text
+$env:PYTHONPATH='.'; & 'C:\ProgramData\Miniconda3\envs\rcm_mujoco\python.exe' -m unittest -v tests.test_restricted_policy tests.test_restricted_sidecar
+```
+
+### 输出末尾摘要
+
+```text
+test_feature_matrix_shape (tests.test_restricted_policy.RestrictedPolicyTests.test_feature_matrix_shape) ... ok
+test_policy_output_shape_and_action_clip (tests.test_restricted_policy.RestrictedPolicyTests.test_policy_output_shape_and_action_clip) ... ok
+test_batched_kinematics_matches_reference (tests.test_restricted_sidecar.RestrictedSidecarTests.test_batched_kinematics_matches_reference) ... ok
+test_sidecar_schema_and_truth_omission (tests.test_restricted_sidecar.RestrictedSidecarTests.test_sidecar_schema_and_truth_omission) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 1.969s
+
+OK
+```
+
+## 2026-11-06T17:35:55+08:00 | UNKNOWN
+<!-- codex-test:b1b88e62b4017abb48006ebe -->
+
+- 来源：PostToolUse
+- 工作目录："E:\\30_RESOURCES\\32_课程教程\\医学\\中科院\\rcm-mujoco-reference-ffd7b15d41c51c2d2f8a15596e9575106f81c225"
+- 退出码：未知，不能据此断言测试通过
+- 输出记录：[test-logs/b1b88e62b4017abb48006ebe.log](test-logs/b1b88e62b4017abb48006ebe.log)
+
+### 命令
+
+```text
+$env:PYTHONPATH='.'; & 'C:\ProgramData\Miniconda3\envs\rcm_mujoco\python.exe' -m unittest -v tests.test_causal_and_degradation tests.test_restricted_policy
+```
+
+### 输出末尾摘要
+
+```text
+test_counterfactual_contribution_and_gate (tests.test_causal_and_degradation.CausalGateTests.test_counterfactual_contribution_and_gate) ... ok
+test_no_effect_is_leakage (tests.test_causal_and_degradation.CausalGateTests.test_no_effect_is_leakage) ... ok
+test_one_factor_degradation (tests.test_causal_and_degradation.CausalGateTests.test_one_factor_degradation) ... ok
+test_feature_matrix_shape (tests.test_restricted_policy.RestrictedPolicyTests.test_feature_matrix_shape) ... ok
+test_policy_output_shape_and_action_clip (tests.test_restricted_policy.RestrictedPolicyTests.test_policy_output_shape_and_action_clip) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 1.675s
+
+OK
+```
+
+## 2026-11-06T17:36:43+08:00 | UNKNOWN
+<!-- codex-test:90dd46c9b229f2224be6e328 -->
+
+- 来源：PostToolUse
+- 工作目录："E:\\30_RESOURCES\\32_课程教程\\医学\\中科院\\rcm-mujoco-reference-ffd7b15d41c51c2d2f8a15596e9575106f81c225"
+- 退出码：未知，不能据此断言测试通过
+- 输出记录：[test-logs/90dd46c9b229f2224be6e328.log](test-logs/90dd46c9b229f2224be6e328.log)
+
+### 命令
+
+```text
+$env:PYTHONPATH='.'; & 'C:\ProgramData\Miniconda3\envs\rcm_mujoco\python.exe' -m unittest -v tests.test_restricted_policy tests.test_causal_and_degradation tests.test_restricted_sidecar
+```
+
+### 输出末尾摘要
+
+```text
+test_feature_matrix_shape (tests.test_restricted_policy.RestrictedPolicyTests.test_feature_matrix_shape) ... ok
+test_policy_output_shape_and_action_clip (tests.test_restricted_policy.RestrictedPolicyTests.test_policy_output_shape_and_action_clip) ... ok
+test_source_filter_returns_boolean_mask (tests.test_restricted_policy.RestrictedPolicyTests.test_source_filter_returns_boolean_mask) ... ok
+test_counterfactual_contribution_and_gate (tests.test_causal_and_degradation.CausalGateTests.test_counterfactual_contribution_and_gate) ... ok
+test_no_effect_is_leakage (tests.test_causal_and_degradation.CausalGateTests.test_no_effect_is_leakage) ... ok
+test_one_factor_degradation (tests.test_causal_and_degradation.CausalGateTests.test_one_factor_degradation) ... ok
+test_batched_kinematics_matches_reference (tests.test_restricted_sidecar.RestrictedSidecarTests.test_batched_kinematics_matches_reference) ... ok
+test_sidecar_schema_and_truth_omission (tests.test_restricted_sidecar.RestrictedSidecarTests.test_sidecar_schema_and_truth_omission) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 2.279s
+
+OK
+```
+
+## 2026-11-06T18:01:31+08:00 | UNKNOWN
+<!-- codex-test:bbae22d2b1b2648120e14902 -->
+
+- 来源：PostToolUse
+- 工作目录："E:\\30_RESOURCES\\32_课程教程\\医学\\中科院\\rcm-mujoco-reference-ffd7b15d41c51c2d2f8a15596e9575106f81c225"
+- 退出码：未知，不能据此断言测试通过
+- 输出记录：[test-logs/bbae22d2b1b2648120e14902.log](test-logs/bbae22d2b1b2648120e14902.log)
+
+### 命令
+
+```text
+$env:PYTHONPATH='.'; & 'C:\ProgramData\Miniconda3\envs\rcm_mujoco\python.exe' -m unittest -v tests.test_statistics tests.test_target_split tests.test_causal_and_degradation
+```
+
+### 输出末尾摘要
+
+```text
+test_pairs_by_target_and_seed (tests.test_statistics.PairedStatisticsTests.test_pairs_by_target_and_seed) ... ok
+test_checked_in_manifest_has_frozen_separation (tests.test_target_split.TargetSplitTests.test_checked_in_manifest_has_frozen_separation) ... ok
+test_hash_is_stable_and_seed_sensitive (tests.test_target_split.TargetSplitTests.test_hash_is_stable_and_seed_sensitive) ... ok
+test_nearest_neighbor_and_self_exclusion (tests.test_target_split.TargetSplitTests.test_nearest_neighbor_and_self_exclusion) ... ok
+test_counterfactual_contribution_and_gate (tests.test_causal_and_degradation.CausalGateTests.test_counterfactual_contribution_and_gate) ... ok
+test_no_effect_is_leakage (tests.test_causal_and_degradation.CausalGateTests.test_no_effect_is_leakage) ... ok
+test_one_factor_degradation (tests.test_causal_and_degradation.CausalGateTests.test_one_factor_degradation) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.203s
+
+OK
+```
+
+## 2026-11-06T18:02:02+08:00 | UNKNOWN
+<!-- codex-test:dcc82def592ca4478df0fb8f -->
+
+- 来源：PostToolUse
+- 工作目录："E:\\30_RESOURCES\\32_课程教程\\医学\\中科院\\rcm-mujoco-reference-ffd7b15d41c51c2d2f8a15596e9575106f81c225"
+- 退出码：未知，不能据此断言测试通过
+- 输出记录：[test-logs/dcc82def592ca4478df0fb8f.log](test-logs/dcc82def592ca4478df0fb8f.log)
+
+### 命令
+
+```text
+$env:PYTHONPATH='.'; & 'C:\ProgramData\Miniconda3\envs\rcm_mujoco\python.exe' -m unittest -v tests.test_restricted_perception tests.test_restricted_perception_experiments tests.test_restricted_sidecar tests.test_restricted_policy tests.test_target_split tests.test_causal_and_degradation tests.test_statistics
+```
+
+### 输出末尾摘要
+
+```text
+test_closed_loop_does_not_stop_on_early_precision_hold (tests.test_restricted_perception_experiments.RestrictedPerceptionExperimentTests.test_closed_loop_does_not_stop_on_early_precision_hold) ... ok
+test_closed_loop_is_deterministic (tests.test_restricted_perception_experiments.RestrictedPerceptionExperimentTests.test_closed_loop_is_deterministic) ... ok
+test_precision_scan_exposes_all_levels (tests.test_restricted_perception_experiments.RestrictedPerceptionExperimentTests.test_precision_scan_exposes_all_levels) ... ok
+test_switch_scan_has_required_distances_and_gate (tests.test_restricted_perception_experiments.RestrictedPerceptionExperimentTests.test_switch_scan_has_required_distances_and_gate) ... ok
+test_batched_kinematics_matches_reference (tests.test_restricted_sidecar.RestrictedSidecarTests.test_batched_kinematics_matches_reference) ... ok
+test_sidecar_schema_and_truth_omission (tests.test_restricted_sidecar.RestrictedSidecarTests.test_sidecar_schema_and_truth_omission) ... ok
+test_feature_matrix_shape (tests.test_restricted_policy.RestrictedPolicyTests.test_feature_matrix_shape) ... ok
+test_policy_output_shape_and_action_clip (tests.test_restricted_policy.RestrictedPolicyTests.test_policy_output_shape_and_action_clip) ... ok
+test_source_filter_returns_boolean_mask (tests.test_restricted_policy.RestrictedPolicyTests.test_source_filter_returns_boolean_mask) ... ok
+test_checked_in_manifest_has_frozen_separation (tests.test_target_split.TargetSplitTests.test_checked_in_manifest_has_frozen_separation) ... ok
+test_hash_is_stable_and_seed_sensitive (tests.test_target_split.TargetSplitTests.test_hash_is_stable_and_seed_sensitive) ... ok
+test_nearest_neighbor_and_self_exclusion (tests.test_target_split.TargetSplitTests.test_nearest_neighbor_and_self_exclusion) ... ok
+test_counterfactual_contribution_and_gate (tests.test_causal_and_degradation.CausalGateTests.test_counterfactual_contribution_and_gate) ... ok
+test_no_effect_is_leakage (tests.test_causal_and_degradation.CausalGateTests.test_no_effect_is_leakage) ... ok
+test_one_factor_degradation (tests.test_causal_and_degradation.CausalGateTests.test_one_factor_degradation) ... ok
+test_pairs_by_target_and_seed (tests.test_statistics.PairedStatisticsTests.test_pairs_by_target_and_seed) ... ok
+
+----------------------------------------------------------------------
+Ran 26 tests in 7.726s
+
+OK
+```
+
+## 2026-11-06 restricted perception implementation
+
+- Stage 0 PASS. Report `outputs/restricted_perception_stage0_20261106/stage0_report.json`; Python exit code 0; config SHA-256 `74C966EBE685F0AEAFAA4A2A12932CAF9EC2B4EC7FDF0BE176CF226A200F9FE5`. Switch scan passed at 1/2/3 mm; selected 2 mm switch and 0.2 mm half-width. Fused P95 perception error was 4.00 um, closed-loop success 99.5%/89%/65% at 20/10/5 um, and blended P50 arrival did not exceed hard switching.
+- Target split PASS. `configs/target_split_manifest.json` contains 254 training, 59 DAgger, 40 development, and 60 final targets. Final nearest-neighbor minima were 1.000167 mm to final, 1.001074 mm to training, 1.104997 mm to DAgger, and 1.018658 mm to development. The predeclared `z>=0.8` extended posterior region was required because `z>=0.9` admitted no additional 1 mm-separated targets.
+- Restricted sidecars PASS. Training sidecar covers 195,578/195,578 frames and 608/608 episodes; validation covers 29,000/29,000 frames and 100/100 episodes. Verification reports confirm row alignment, schema, finite valid measurements, fallback codes, and absence of truth fields.
+- Added and exercised one-factor image ladder: full 224, 112, 112+blur 1.5, and 112+blur 1.5+25% center occlusion. Offline near-target zero-vector action-error increase rose from 4.84% to 17.73%; mismatch-vector increase rose from 7.89% to 38.12%. These are offline diagnostics only.
+- Closed-loop integration smoke completed on one development target with the real v9 renderer and MotorBackend; 5 steps completed through online restricted perception, frozen image encoding, policy inference, and safety hold. It is not a success-rate result.
+- Latest combined test command: 26 tests, 0 failures, 0 errors, exit code 0. Static `compileall` over the new package, scripts, tests, and modified dataset loader passed.
+- Stage 1 remains IN_PROGRESS because the 40-target paired closed-loop normal/zero/mismatch gate has not been completed. Stages 2-4 remain blocked and were not represented as passed.
+
+## 2026-11-06T18:03:05+08:00 | UNKNOWN
+<!-- codex-test:2ea8441c6b55632034dc469e -->
+
+- 来源：PostToolUse
+- 工作目录："E:\\30_RESOURCES\\32_课程教程\\医学\\中科院\\rcm-mujoco-reference-ffd7b15d41c51c2d2f8a15596e9575106f81c225"
+- 退出码：未知，不能据此断言测试通过
+- 输出记录：[test-logs/2ea8441c6b55632034dc469e.log](test-logs/2ea8441c6b55632034dc469e.log)
+
+### 命令
+
+```text
+$env:PYTHONPATH='.'; & 'C:\ProgramData\Miniconda3\envs\rcm_mujoco\python.exe' -m unittest -v tests.test_restricted_perception tests.test_restricted_perception_experiments tests.test_restricted_sidecar tests.test_restricted_policy tests.test_target_split tests.test_causal_and_degradation tests.test_statistics
+```
+
+### 输出末尾摘要
+
+```text
+test_closed_loop_does_not_stop_on_early_precision_hold (tests.test_restricted_perception_experiments.RestrictedPerceptionExperimentTests.test_closed_loop_does_not_stop_on_early_precision_hold) ... ok
+test_closed_loop_is_deterministic (tests.test_restricted_perception_experiments.RestrictedPerceptionExperimentTests.test_closed_loop_is_deterministic) ... ok
+test_precision_scan_exposes_all_levels (tests.test_restricted_perception_experiments.RestrictedPerceptionExperimentTests.test_precision_scan_exposes_all_levels) ... ok
+test_switch_scan_has_required_distances_and_gate (tests.test_restricted_perception_experiments.RestrictedPerceptionExperimentTests.test_switch_scan_has_required_distances_and_gate) ... ok
+test_batched_kinematics_matches_reference (tests.test_restricted_sidecar.RestrictedSidecarTests.test_batched_kinematics_matches_reference) ... ok
+test_sidecar_schema_and_truth_omission (tests.test_restricted_sidecar.RestrictedSidecarTests.test_sidecar_schema_and_truth_omission) ... ok
+test_feature_matrix_shape (tests.test_restricted_policy.RestrictedPolicyTests.test_feature_matrix_shape) ... ok
+test_policy_output_shape_and_action_clip (tests.test_restricted_policy.RestrictedPolicyTests.test_policy_output_shape_and_action_clip) ... ok
+test_source_filter_returns_boolean_mask (tests.test_restricted_policy.RestrictedPolicyTests.test_source_filter_returns_boolean_mask) ... ok
+test_checked_in_manifest_has_frozen_separation (tests.test_target_split.TargetSplitTests.test_checked_in_manifest_has_frozen_separation) ... ok
+test_hash_is_stable_and_seed_sensitive (tests.test_target_split.TargetSplitTests.test_hash_is_stable_and_seed_sensitive) ... ok
+test_nearest_neighbor_and_self_exclusion (tests.test_target_split.TargetSplitTests.test_nearest_neighbor_and_self_exclusion) ... ok
+test_counterfactual_contribution_and_gate (tests.test_causal_and_degradation.CausalGateTests.test_counterfactual_contribution_and_gate) ... ok
+test_no_effect_is_leakage (tests.test_causal_and_degradation.CausalGateTests.test_no_effect_is_leakage) ... ok
+test_one_factor_degradation (tests.test_causal_and_degradation.CausalGateTests.test_one_factor_degradation) ... ok
+test_pairs_by_target_and_seed (tests.test_statistics.PairedStatisticsTests.test_pairs_by_target_and_seed) ... ok
+
+----------------------------------------------------------------------
+Ran 26 tests in 6.713s
+
+OK
+```
+
+## 2026-11-06T18:33:24+08:00 | UNKNOWN
+<!-- codex-test:b1a47d78affd2f3355ab4490 -->
+
+- 来源：PostToolUse
+- 工作目录："E:\\30_RESOURCES\\32_课程教程\\医学\\中科院\\rcm-mujoco-reference-ffd7b15d41c51c2d2f8a15596e9575106f81c225"
+- 退出码：未知，不能据此断言测试通过
+- 输出记录：[test-logs/b1a47d78affd2f3355ab4490.log](test-logs/b1a47d78affd2f3355ab4490.log)
+
+### 命令
+
+```text
+$env:PYTHONPATH='.'; & 'C:\ProgramData\Miniconda3\envs\rcm_mujoco\python.exe' -m unittest -v tests.test_causal_and_degradation tests.test_statistics
+```
+
+### 输出末尾摘要
+
+```text
+<3>WSL (11 - Relay) ERROR: CreateProcessCommon:735: execvpe(/bin/bash) failed: No such file or directory
+```
+
+## 2026-11-06T18:33:34+08:00 | UNKNOWN
+<!-- codex-test:d36c92723c90ed8013181ee1 -->
+
+- 来源：PostToolUse
+- 工作目录："E:\\30_RESOURCES\\32_课程教程\\医学\\中科院\\rcm-mujoco-reference-ffd7b15d41c51c2d2f8a15596e9575106f81c225"
+- 退出码：未知，不能据此断言测试通过
+- 输出记录：[test-logs/d36c92723c90ed8013181ee1.log](test-logs/d36c92723c90ed8013181ee1.log)
+
+### 命令
+
+```text
+$env:PYTHONPATH='.'; & 'C:\ProgramData\Miniconda3\envs\rcm_mujoco\python.exe' -m unittest -v tests.test_causal_and_degradation tests.test_statistics
+```
+
+### 输出末尾摘要
+
+```text
+test_counterfactual_contribution_and_gate (tests.test_causal_and_degradation.CausalGateTests.test_counterfactual_contribution_and_gate) ... ok
+test_no_effect_is_leakage (tests.test_causal_and_degradation.CausalGateTests.test_no_effect_is_leakage) ... ok
+test_one_factor_degradation (tests.test_causal_and_degradation.CausalGateTests.test_one_factor_degradation) ... ok
+test_pairs_by_target_and_seed (tests.test_statistics.PairedStatisticsTests.test_pairs_by_target_and_seed) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 2.966s
+
+OK
+```
+
+## 2026-11-06T19:42:49+08:00 | UNKNOWN
+<!-- codex-test:5bd5302cd74971105a6ec781 -->
+
+- 来源：PostToolUse
+- 工作目录："E:\\30_RESOURCES\\32_课程教程\\医学\\中科院\\rcm-mujoco-reference-ffd7b15d41c51c2d2f8a15596e9575106f81c225"
+- 退出码：未知，不能据此断言测试通过
+- 输出记录：[test-logs/5bd5302cd74971105a6ec781.log](test-logs/5bd5302cd74971105a6ec781.log)
+
+### 命令
+
+```text
+$env:PYTHONPATH='.'; & 'C:\ProgramData\Miniconda3\envs\rcm_mujoco\python.exe' -m unittest -v tests.test_restricted_perception tests.test_restricted_perception_experiments tests.test_restricted_sidecar tests.test_restricted_policy tests.test_target_split tests.test_causal_and_degradation tests.test_statistics
+```
+
+### 输出末尾摘要
+
+```text
+test_closed_loop_does_not_stop_on_early_precision_hold (tests.test_restricted_perception_experiments.RestrictedPerceptionExperimentTests.test_closed_loop_does_not_stop_on_early_precision_hold) ... ok
+test_closed_loop_is_deterministic (tests.test_restricted_perception_experiments.RestrictedPerceptionExperimentTests.test_closed_loop_is_deterministic) ... ok
+test_precision_scan_exposes_all_levels (tests.test_restricted_perception_experiments.RestrictedPerceptionExperimentTests.test_precision_scan_exposes_all_levels) ... ok
+test_switch_scan_has_required_distances_and_gate (tests.test_restricted_perception_experiments.RestrictedPerceptionExperimentTests.test_switch_scan_has_required_distances_and_gate) ... ok
+test_batched_kinematics_matches_reference (tests.test_restricted_sidecar.RestrictedSidecarTests.test_batched_kinematics_matches_reference) ... ok
+test_sidecar_schema_and_truth_omission (tests.test_restricted_sidecar.RestrictedSidecarTests.test_sidecar_schema_and_truth_omission) ... ok
+test_feature_matrix_shape (tests.test_restricted_policy.RestrictedPolicyTests.test_feature_matrix_shape) ... ok
+test_policy_output_shape_and_action_clip (tests.test_restricted_policy.RestrictedPolicyTests.test_policy_output_shape_and_action_clip) ... ok
+test_source_filter_returns_boolean_mask (tests.test_restricted_policy.RestrictedPolicyTests.test_source_filter_returns_boolean_mask) ... ok
+test_checked_in_manifest_has_frozen_separation (tests.test_target_split.TargetSplitTests.test_checked_in_manifest_has_frozen_separation) ... ok
+test_hash_is_stable_and_seed_sensitive (tests.test_target_split.TargetSplitTests.test_hash_is_stable_and_seed_sensitive) ... ok
+test_nearest_neighbor_and_self_exclusion (tests.test_target_split.TargetSplitTests.test_nearest_neighbor_and_self_exclusion) ... ok
+test_counterfactual_contribution_and_gate (tests.test_causal_and_degradation.CausalGateTests.test_counterfactual_contribution_and_gate) ... ok
+test_no_effect_is_leakage (tests.test_causal_and_degradation.CausalGateTests.test_no_effect_is_leakage) ... ok
+test_one_factor_degradation (tests.test_causal_and_degradation.CausalGateTests.test_one_factor_degradation) ... ok
+test_pairs_by_target_and_seed (tests.test_statistics.PairedStatisticsTests.test_pairs_by_target_and_seed) ... ok
+
+----------------------------------------------------------------------
+Ran 26 tests in 8.155s
+
+OK
+```
+
+## 2026-11-06 Stage 1 restricted-perception gate PASS
+
+- Closed-loop paired evaluation completed on all 40 development targets with a 100 um initial error and a 200-frame budget.
+- Normal restricted candidate: 37/40 successes (92.5%), final-error P95 22.97 um.
+- Zero restricted vector: 11/40 successes (27.5%), final-error P95 228.77 um; success drop 65.0 percentage points, exact McNemar p=2.98e-8.
+- Same-distance cross-episode mismatched vector: 12/40 successes (30.0%), final-error P95 294.51 um; success drop 62.5 percentage points, exact McNemar p=4.17e-7.
+- Image causal gate PASS: both zeroing and mismatching the restricted vector produced significant paired success and final-error degradation.
+- Primary v4 no-DAgger baseline: 13/40 successes (32.5%), final-error P95 110.00 um. Candidate-minus-baseline success difference was 60.0 percentage points, target-clustered bootstrap 95% CI [47.83, 73.08], exact McNemar p=8.05e-7; final-error P95 improved 79.1%.
+- No normal, zero, mismatch, or baseline episode exceeded 30 mm; all safety-limited counts were zero.
+- `stage1_summary.json` SHA-256: `303118CC25CE567D487B2ACDBD2CA293209AD77CF4280FF8D6C541F5B5C0BDAD`.
+- Final unit suite: 26/26 PASS, exit code 0. Static compile PASS. Train and validation sidecar verification PASS.
+
+## 2026-11-06 Stage 2 restricted DAgger result
+
+- Collected 120 episodes (2,160 frames) over 60 fresh training targets with two starts per target in the 20-200 um range. One episode had insufficient teacher-valid frames; all recorded files were retained.
+- DAgger-only: 38/40 successes, final-error P95 20.00 um.
+- DAgger plus velocity: 40/40 successes, final-error P95 11.99 um.
+- DAgger plus velocity plus distance-scaled residual cap: 39/40 successes, final-error P95 14.29 um.
+- DAgger plus velocity plus residual cap plus stop head: 26/40 successes, final-error P95 731.01 um.
+- All variants had zero >30 mm uncontrolled episodes and zero safety-limited steps.
+- Stage 2 result: FAIL. Velocity input improved the policy, but the residual cap failed to retain the gain and the stop head caused severe false stopping. Stages 3-4 remain blocked.
+
+## 2026-11-06 Stage 2 corrected 20 um residual-scale result
+
+- Corrected the distance scale from 1 mm to 20 um and moved action clipping to deployment-time inference, avoiding zero gradients during training.
+- Corrected residual-cap variant: 40/40 successes, final-error P50/P95 6.75/13.06 um, zero >30 mm and zero safety-limited steps.
+- Corrected stop-head variant: 40/40 successes, final-error P50/P95 11.33/15.51 um, zero >30 mm and zero safety-limited steps.
+- Velocity-only remains selected: 40/40, final-error P95 11.99 um.
+- Paired against velocity-only, residual cap changes mean error by +1.07 um and stop head by +4.94 um; the corresponding 95% bootstrap intervals exclude improvement.
+- Stage 2 result: PASS with `velocity` selected. Residual cap and stop head are recorded as rejected no-accuracy-gain features. Stage 3 is ready.
+- Summary SHA-256: `546F21DF7D68A504C9DDF6D650A495515F45E21F7B1C43E1D1B0424C591E7A81`.
+
+## 2026-11-06 Stage 2 final 10 um residual-scale retest
+
+- Changed the residual-cap distance scale from 20 um to 10 um and retrained the residual-cap and stop-head variants.
+- Residual-cap variant: 40/40 successes, final-error P50/P95 6.75/13.06 um.
+- Residual-cap plus stop-head variant: 40/40 successes, final-error P50/P95 11.33/15.51 um.
+- Both variants had zero >30 mm uncontrolled episodes and zero safety-limited steps.
+- Results are unchanged from the 20 um retest; the stop head acts before the cap in the tested trajectories.
+- Velocity-only remains selected at 40/40 with final-error P95 11.99 um. Residual cap and stop head remain rejected because paired mean errors increased by 1.07 um and 4.94 um respectively.
+- Final 10 um summary SHA-256: `3554DDB2104B02E98A2D33FB362E4489D886242E9FD35F51EAD99458C2BAD240`.
+
+## 2026-11-06T21:24:32+08:00 | UNKNOWN
+<!-- codex-test:1dacd897b50e10345e877df9 -->
+
+- 来源：PostToolUse
+- 工作目录："E:\\30_RESOURCES\\32_课程教程\\医学\\中科院\\rcm-mujoco-reference-ffd7b15d41c51c2d2f8a15596e9575106f81c225"
+- 退出码：未知，不能据此断言测试通过
+- 输出记录：[test-logs/1dacd897b50e10345e877df9.log](test-logs/1dacd897b50e10345e877df9.log)
+
+### 命令
+
+```text
+$env:PYTHONPATH='.'; & 'C:\ProgramData\Miniconda3\envs\rcm_mujoco\python.exe' -m unittest -v tests.test_restricted_policy tests.test_causal_and_degradation tests.test_statistics
+```
+
+### 输出末尾摘要
+
+```text
+test_feature_matrix_shape (tests.test_restricted_policy.RestrictedPolicyTests.test_feature_matrix_shape) ... ok
+test_policy_output_shape_and_action_clip (tests.test_restricted_policy.RestrictedPolicyTests.test_policy_output_shape_and_action_clip) ... ok
+test_residual_cap_uses_twenty_micrometre_scale (tests.test_restricted_policy.RestrictedPolicyTests.test_residual_cap_uses_twenty_micrometre_scale) ... ok
+test_source_filter_returns_boolean_mask (tests.test_restricted_policy.RestrictedPolicyTests.test_source_filter_returns_boolean_mask) ... ok
+test_counterfactual_contribution_and_gate (tests.test_causal_and_degradation.CausalGateTests.test_counterfactual_contribution_and_gate) ... ok
+test_no_effect_is_leakage (tests.test_causal_and_degradation.CausalGateTests.test_no_effect_is_leakage) ... ok
+test_one_factor_degradation (tests.test_causal_and_degradation.CausalGateTests.test_one_factor_degradation) ... ok
+test_pairs_by_target_and_seed (tests.test_statistics.PairedStatisticsTests.test_pairs_by_target_and_seed) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 2.188s
+
+OK
+```
+
+## 2026-11-06T21:36:35+08:00 | UNKNOWN
+<!-- codex-test:2b1d413bf6ebad9570803509 -->
+
+- 来源：PostToolUse
+- 工作目录："E:\\30_RESOURCES\\32_课程教程\\医学\\中科院\\rcm-mujoco-reference-ffd7b15d41c51c2d2f8a15596e9575106f81c225"
+- 退出码：未知，不能据此断言测试通过
+- 输出记录：[test-logs/2b1d413bf6ebad9570803509.log](test-logs/2b1d413bf6ebad9570803509.log)
+
+### 命令
+
+```text
+$env:PYTHONPATH='.'; & 'C:\ProgramData\Miniconda3\envs\rcm_mujoco\python.exe' -m unittest -v tests.test_restricted_perception tests.test_restricted_perception_experiments tests.test_restricted_sidecar tests.test_restricted_policy tests.test_target_split tests.test_causal_and_degradation tests.test_statistics
+```
+
+### 输出末尾摘要
+
+```text
+oes_not_stop_on_early_precision_hold) ... ok
+test_closed_loop_is_deterministic (tests.test_restricted_perception_experiments.RestrictedPerceptionExperimentTests.test_closed_loop_is_deterministic) ... ok
+test_precision_scan_exposes_all_levels (tests.test_restricted_perception_experiments.RestrictedPerceptionExperimentTests.test_precision_scan_exposes_all_levels) ... ok
+test_switch_scan_has_required_distances_and_gate (tests.test_restricted_perception_experiments.RestrictedPerceptionExperimentTests.test_switch_scan_has_required_distances_and_gate) ... ok
+test_batched_kinematics_matches_reference (tests.test_restricted_sidecar.RestrictedSidecarTests.test_batched_kinematics_matches_reference) ... ok
+test_sidecar_schema_and_truth_omission (tests.test_restricted_sidecar.RestrictedSidecarTests.test_sidecar_schema_and_truth_omission) ... ok
+test_feature_matrix_shape (tests.test_restricted_policy.RestrictedPolicyTests.test_feature_matrix_shape) ... ok
+test_policy_output_shape_and_action_clip (tests.test_restricted_policy.RestrictedPolicyTests.test_policy_output_shape_and_action_clip) ... ok
+test_residual_cap_uses_twenty_micrometre_scale (tests.test_restricted_policy.RestrictedPolicyTests.test_residual_cap_uses_twenty_micrometre_scale) ... ok
+test_source_filter_returns_boolean_mask (tests.test_restricted_policy.RestrictedPolicyTests.test_source_filter_returns_boolean_mask) ... ok
+test_checked_in_manifest_has_frozen_separation (tests.test_target_split.TargetSplitTests.test_checked_in_manifest_has_frozen_separation) ... ok
+test_hash_is_stable_and_seed_sensitive (tests.test_target_split.TargetSplitTests.test_hash_is_stable_and_seed_sensitive) ... ok
+test_nearest_neighbor_and_self_exclusion (tests.test_target_split.TargetSplitTests.test_nearest_neighbor_and_self_exclusion) ... ok
+test_counterfactual_contribution_and_gate (tests.test_causal_and_degradation.CausalGateTests.test_counterfactual_contribution_and_gate) ... ok
+test_no_effect_is_leakage (tests.test_causal_and_degradation.CausalGateTests.test_no_effect_is_leakage) ... ok
+test_one_factor_degradation (tests.test_causal_and_degradation.CausalGateTests.test_one_factor_degradation) ... ok
+test_pairs_by_target_and_seed (tests.test_statistics.PairedStatisticsTests.test_pairs_by_target_and_seed) ... ok
+
+----------------------------------------------------------------------
+Ran 27 tests in 8.175s
+
+OK
+```
+
+## 2026-11-06T21:39:38+08:00 | UNKNOWN
+<!-- codex-test:80a5fd9a724b1ec105de29c8 -->
+
+- 来源：PostToolUse
+- 工作目录："E:\\30_RESOURCES\\32_课程教程\\医学\\中科院\\rcm-mujoco-reference-ffd7b15d41c51c2d2f8a15596e9575106f81c225"
+- 退出码：未知，不能据此断言测试通过
+- 输出记录：[test-logs/80a5fd9a724b1ec105de29c8.log](test-logs/80a5fd9a724b1ec105de29c8.log)
+
+### 命令
+
+```text
+$env:PYTHONPATH='.'; & 'C:\ProgramData\Miniconda3\envs\rcm_mujoco\python.exe' -m unittest -v tests.test_restricted_policy tests.test_causal_and_degradation tests.test_statistics
+```
+
+### 输出末尾摘要
+
+```text
+test_feature_matrix_shape (tests.test_restricted_policy.RestrictedPolicyTests.test_feature_matrix_shape) ... ok
+test_policy_output_shape_and_action_clip (tests.test_restricted_policy.RestrictedPolicyTests.test_policy_output_shape_and_action_clip) ... ok
+test_residual_cap_uses_ten_micrometre_scale (tests.test_restricted_policy.RestrictedPolicyTests.test_residual_cap_uses_ten_micrometre_scale) ... ok
+test_source_filter_returns_boolean_mask (tests.test_restricted_policy.RestrictedPolicyTests.test_source_filter_returns_boolean_mask) ... ok
+test_counterfactual_contribution_and_gate (tests.test_causal_and_degradation.CausalGateTests.test_counterfactual_contribution_and_gate) ... ok
+test_no_effect_is_leakage (tests.test_causal_and_degradation.CausalGateTests.test_no_effect_is_leakage) ... ok
+test_one_factor_degradation (tests.test_causal_and_degradation.CausalGateTests.test_one_factor_degradation) ... ok
+test_pairs_by_target_and_seed (tests.test_statistics.PairedStatisticsTests.test_pairs_by_target_and_seed) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 2.165s
+
+OK
+```
+
+## 2026-11-06T21:51:24+08:00 | UNKNOWN
+<!-- codex-test:cc154c56c84d65a83b195fb2 -->
+
+- 来源：PostToolUse
+- 工作目录："E:\\30_RESOURCES\\32_课程教程\\医学\\中科院\\rcm-mujoco-reference-ffd7b15d41c51c2d2f8a15596e9575106f81c225"
+- 退出码：未知，不能据此断言测试通过
+- 输出记录：[test-logs/cc154c56c84d65a83b195fb2.log](test-logs/cc154c56c84d65a83b195fb2.log)
+
+### 命令
+
+```text
+$env:PYTHONPATH='.'; & 'C:\ProgramData\Miniconda3\envs\rcm_mujoco\python.exe' -m unittest -v tests.test_restricted_perception tests.test_restricted_perception_experiments tests.test_restricted_sidecar tests.test_restricted_policy tests.test_target_split tests.test_causal_and_degradation tests.test_statistics
+```
+
+### 输出末尾摘要
+
+```text
+loop_does_not_stop_on_early_precision_hold) ... ok
+test_closed_loop_is_deterministic (tests.test_restricted_perception_experiments.RestrictedPerceptionExperimentTests.test_closed_loop_is_deterministic) ... ok
+test_precision_scan_exposes_all_levels (tests.test_restricted_perception_experiments.RestrictedPerceptionExperimentTests.test_precision_scan_exposes_all_levels) ... ok
+test_switch_scan_has_required_distances_and_gate (tests.test_restricted_perception_experiments.RestrictedPerceptionExperimentTests.test_switch_scan_has_required_distances_and_gate) ... ok
+test_batched_kinematics_matches_reference (tests.test_restricted_sidecar.RestrictedSidecarTests.test_batched_kinematics_matches_reference) ... ok
+test_sidecar_schema_and_truth_omission (tests.test_restricted_sidecar.RestrictedSidecarTests.test_sidecar_schema_and_truth_omission) ... ok
+test_feature_matrix_shape (tests.test_restricted_policy.RestrictedPolicyTests.test_feature_matrix_shape) ... ok
+test_policy_output_shape_and_action_clip (tests.test_restricted_policy.RestrictedPolicyTests.test_policy_output_shape_and_action_clip) ... ok
+test_residual_cap_uses_ten_micrometre_scale (tests.test_restricted_policy.RestrictedPolicyTests.test_residual_cap_uses_ten_micrometre_scale) ... ok
+test_source_filter_returns_boolean_mask (tests.test_restricted_policy.RestrictedPolicyTests.test_source_filter_returns_boolean_mask) ... ok
+test_checked_in_manifest_has_frozen_separation (tests.test_target_split.TargetSplitTests.test_checked_in_manifest_has_frozen_separation) ... ok
+test_hash_is_stable_and_seed_sensitive (tests.test_target_split.TargetSplitTests.test_hash_is_stable_and_seed_sensitive) ... ok
+test_nearest_neighbor_and_self_exclusion (tests.test_target_split.TargetSplitTests.test_nearest_neighbor_and_self_exclusion) ... ok
+test_counterfactual_contribution_and_gate (tests.test_causal_and_degradation.CausalGateTests.test_counterfactual_contribution_and_gate) ... ok
+test_no_effect_is_leakage (tests.test_causal_and_degradation.CausalGateTests.test_no_effect_is_leakage) ... ok
+test_one_factor_degradation (tests.test_causal_and_degradation.CausalGateTests.test_one_factor_degradation) ... ok
+test_pairs_by_target_and_seed (tests.test_statistics.PairedStatisticsTests.test_pairs_by_target_and_seed) ... ok
+
+----------------------------------------------------------------------
+Ran 27 tests in 8.124s
+
+OK
+```
+
+## 2026-11-06T22:14:34+08:00 | UNKNOWN
+<!-- codex-test:1dbe18c0e9d7f1b4f4e615de -->
+
+- 来源：PostToolUse
+- 工作目录："E:\\30_RESOURCES\\32_课程教程\\医学\\中科院\\rcm-mujoco-reference-ffd7b15d41c51c2d2f8a15596e9575106f81c225"
+- 退出码：未知，不能据此断言测试通过
+- 输出记录：[test-logs/1dbe18c0e9d7f1b4f4e615de.log](test-logs/1dbe18c0e9d7f1b4f4e615de.log)
+
+### 命令
+
+```text
+$env:PYTHONPATH='.'; & 'C:\ProgramData\Miniconda3\envs\rcm_mujoco\python.exe' -m unittest -v tests.test_restricted_perception
+```
+
+### 输出末尾摘要
+
+```text
+test_coarse_bias_is_fixed_per_episode_and_varies_by_seed (tests.test_restricted_perception.RestrictedPerceptionTests.test_coarse_bias_is_fixed_per_episode_and_varies_by_seed) ... ok
+test_coarse_sigma_increases_with_distance (tests.test_restricted_perception.RestrictedPerceptionTests.test_coarse_sigma_increases_with_distance) ... ok
+test_config_round_trip (tests.test_restricted_perception.RestrictedPerceptionTests.test_config_round_trip) ... ok
+test_delayed_fine_measurement_is_aligned_to_current_kinematic_tip (tests.test_restricted_perception.RestrictedPerceptionTests.test_delayed_fine_measurement_is_aligned_to_current_kinematic_tip) ... ok
+test_extrinsic_matches_rcm_scene_v9_optical_camera_snapshot (tests.test_restricted_perception.RestrictedPerceptionTests.test_extrinsic_matches_rcm_scene_v9_optical_camera_snapshot) ... ok
+test_fine_loss_coasts_two_frames_then_falls_back (tests.test_restricted_perception.RestrictedPerceptionTests.test_fine_loss_coasts_two_frames_then_falls_back) ... ok
+test_fine_optical_vector_rotates_back_to_target_minus_tip (tests.test_restricted_perception.RestrictedPerceptionTests.test_fine_optical_vector_rotates_back_to_target_minus_tip) ... ok
+test_imprecise_coarse_fallback_holds_then_requests_bounded_retraction (tests.test_restricted_perception.RestrictedPerceptionTests.test_imprecise_coarse_fallback_holds_then_requests_bounded_retraction) ... ok
+test_precision_floor_requires_both_accuracy_and_closed_loop (tests.test_restricted_perception.RestrictedPerceptionTests.test_precision_floor_requires_both_accuracy_and_closed_loop) ... ok
+test_switch_gate_rejects_insufficient_reduction (tests.test_restricted_perception.RestrictedPerceptionTests.test_switch_gate_rejects_insufficient_reduction) ... ok
+test_truth_is_not_in_policy_features (tests.test_restricted_perception.RestrictedPerceptionTests.test_truth_is_not_in_policy_features) ... ok
+
+----------------------------------------------------------------------
+Ran 11 tests in 3.694s
+
+OK
+```
+
+## 2026-11-06T22:38:43+08:00 | UNKNOWN
+<!-- codex-test:94143305470d113bca64e308 -->
+
+- 来源：PostToolUse
+- 工作目录："E:\\30_RESOURCES\\32_课程教程\\医学\\中科院\\rcm-mujoco-reference-ffd7b15d41c51c2d2f8a15596e9575106f81c225"
+- 退出码：未知，不能据此断言测试通过
+- 输出记录：[test-logs/94143305470d113bca64e308.log](test-logs/94143305470d113bca64e308.log)
+
+### 命令
+
+```text
+$env:PYTHONPATH='.'; & 'C:\ProgramData\Miniconda3\envs\rcm_mujoco\python.exe' -m unittest -v tests.test_stage34
+```
+
+### 输出末尾摘要
+
+```text
+<3>WSL (11 - Relay) ERROR: CreateProcessCommon:735: execvpe(/bin/bash) failed: No such file or directory
+```
+
+## 2026-11-06T22:38:51+08:00 | UNKNOWN
+<!-- codex-test:040a48ae52f76610d3d8ea02 -->
+
+- 来源：PostToolUse
+- 工作目录："E:\\30_RESOURCES\\32_课程教程\\医学\\中科院\\rcm-mujoco-reference-ffd7b15d41c51c2d2f8a15596e9575106f81c225"
+- 退出码：未知，不能据此断言测试通过
+- 输出记录：[test-logs/040a48ae52f76610d3d8ea02.log](test-logs/040a48ae52f76610d3d8ea02.log)
+
+### 命令
+
+```text
+$env:PYTHONPATH='.'; & 'C:\ProgramData\Miniconda3\envs\rcm_mujoco\python.exe' -m unittest -v tests.test_stage34
+```
+
+### 输出末尾摘要
+
+```text
+test_geometric_action_moves_toward_target_minus_tip (tests.test_stage34.Stage34Tests.test_geometric_action_moves_toward_target_minus_tip) ... FAIL
+test_perturbations_change_one_sensor_factor (tests.test_stage34.Stage34Tests.test_perturbations_change_one_sensor_factor) ... ok
+test_run_specs_are_frozen_and_pairing_safe (tests.test_stage34.Stage34Tests.test_run_specs_are_frozen_and_pairing_safe) ... ok
+
+======================================================================
+FAIL: test_geometric_action_moves_toward_target_minus_tip (tests.test_stage34.Stage34Tests.test_geometric_action_moves_toward_target_minus_tip)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "E:\30_RESOURCES\32_课程教程\医学\中科院\rcm-mujoco-reference-ffd7b15d41c51c2d2f8a15596e9575106f81c225\tests\test_stage34.py", line 86, in test_geometric_action_moves_toward_target_minus_tip
+    self.assertGreater(backward[2], 0.0)
+AssertionError: np.float64(-0.014569245205752127) not greater than 0.0
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.507s
+
+FAILED (failures=1)
+```
+
+## 2026-11-06T22:39:03+08:00 | UNKNOWN
+<!-- codex-test:27f67b93c790b04614f8ec8a -->
+
+- 来源：PostToolUse
+- 工作目录："E:\\30_RESOURCES\\32_课程教程\\医学\\中科院\\rcm-mujoco-reference-ffd7b15d41c51c2d2f8a15596e9575106f81c225"
+- 退出码：未知，不能据此断言测试通过
+- 输出记录：[test-logs/27f67b93c790b04614f8ec8a.log](test-logs/27f67b93c790b04614f8ec8a.log)
+
+### 命令
+
+```text
+$env:PYTHONPATH='.'; & 'C:\ProgramData\Miniconda3\envs\rcm_mujoco\python.exe' -m unittest -v tests.test_stage34
+```
+
+### 输出末尾摘要
+
+```text
+test_geometric_action_moves_toward_target_minus_tip (tests.test_stage34.Stage34Tests.test_geometric_action_moves_toward_target_minus_tip) ... ok
+test_perturbations_change_one_sensor_factor (tests.test_stage34.Stage34Tests.test_perturbations_change_one_sensor_factor) ... ok
+test_run_specs_are_frozen_and_pairing_safe (tests.test_stage34.Stage34Tests.test_run_specs_are_frozen_and_pairing_safe) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.328s
+
+OK
+```
+
+## 2026-11-07T03:41:26+08:00 | UNKNOWN
+<!-- codex-test:5aa4d3b5d27367405b5df226 -->
+
+- 来源：PostToolUse
+- 工作目录："E:\\30_RESOURCES\\32_课程教程\\医学\\中科院\\rcm-mujoco-reference-ffd7b15d41c51c2d2f8a15596e9575106f81c225"
+- 退出码：未知，不能据此断言测试通过
+- 输出记录：[test-logs/5aa4d3b5d27367405b5df226.log](test-logs/5aa4d3b5d27367405b5df226.log)
+
+### 命令
+
+```text
+$env:PYTHONPATH='.'; & 'C:\ProgramData\Miniconda3\envs\rcm_mujoco\python.exe' -m unittest -v tests.test_stage3_policy tests.test_stage34
+```
+
+### 输出末尾摘要
+
+```text
+test_residual_is_bounded (tests.test_stage3_policy.Stage3PolicyTests.test_residual_is_bounded) ... ok
+test_zero_initialized_residual_preserves_base_action (tests.test_stage3_policy.Stage3PolicyTests.test_zero_initialized_residual_preserves_base_action) ... ok
+test_geometric_action_moves_toward_target_minus_tip (tests.test_stage34.Stage34Tests.test_geometric_action_moves_toward_target_minus_tip) ... ok
+test_perturbations_change_one_sensor_factor (tests.test_stage34.Stage34Tests.test_perturbations_change_one_sensor_factor) ... ok
+test_run_specs_are_frozen_and_pairing_safe (tests.test_stage34.Stage34Tests.test_run_specs_are_frozen_and_pairing_safe) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.242s
+
+OK
+```
+
+## 2026-11-07T07:21:27+08:00 | UNKNOWN
+<!-- codex-test:0c17e4d411d1afda6b2adf70 -->
+
+- 来源：PostToolUse
+- 工作目录："E:\\30_RESOURCES\\32_课程教程\\医学\\中科院\\rcm-mujoco-reference-ffd7b15d41c51c2d2f8a15596e9575106f81c225"
+- 退出码：未知，不能据此断言测试通过
+- 输出记录：[test-logs/0c17e4d411d1afda6b2adf70.log](test-logs/0c17e4d411d1afda6b2adf70.log)
+
+### 命令
+
+```text
+$env:PYTHONPATH='.'; & 'C:\ProgramData\Miniconda3\envs\rcm_mujoco\python.exe' -m unittest discover -s tests -v
+```
+
+### 输出末尾摘要
+
+```text
+icrometre_scale) ... ok
+test_source_filter_returns_boolean_mask (test_restricted_policy.RestrictedPolicyTests.test_source_filter_returns_boolean_mask) ... ok
+test_batched_kinematics_matches_reference (test_restricted_sidecar.RestrictedSidecarTests.test_batched_kinematics_matches_reference) ... ok
+test_sidecar_schema_and_truth_omission (test_restricted_sidecar.RestrictedSidecarTests.test_sidecar_schema_and_truth_omission) ... ok
+test_geometric_action_moves_toward_target_minus_tip (test_stage34.Stage34Tests.test_geometric_action_moves_toward_target_minus_tip) ... ok
+test_perturbations_change_one_sensor_factor (test_stage34.Stage34Tests.test_perturbations_change_one_sensor_factor) ... ok
+test_run_specs_are_frozen_and_pairing_safe (test_stage34.Stage34Tests.test_run_specs_are_frozen_and_pairing_safe) ... ok
+test_residual_is_bounded (test_stage3_policy.Stage3PolicyTests.test_residual_is_bounded) ... ok
+test_zero_initialized_residual_preserves_base_action (test_stage3_policy.Stage3PolicyTests.test_zero_initialized_residual_preserves_base_action) ... ok
+test_pairs_by_target_and_seed (test_statistics.PairedStatisticsTests.test_pairs_by_target_and_seed) ... ok
+test_checked_in_manifest_has_frozen_separation (test_target_split.TargetSplitTests.test_checked_in_manifest_has_frozen_separation) ... ok
+test_hash_is_stable_and_seed_sensitive (test_target_split.TargetSplitTests.test_hash_is_stable_and_seed_sensitive) ... ok
+test_nearest_neighbor_and_self_exclusion (test_target_split.TargetSplitTests.test_nearest_neighbor_and_self_exclusion) ... ok
+
+======================================================================
+FAIL: test_closed_loop_does_not_stop_on_early_precision_hold (test_restricted_perception_experiments.RestrictedPerceptionExperimentTests.test_closed_loop_does_not_stop_on_early_precision_hold)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "E:\30_RESOURCES\32_课程教程\医学\中科院\rcm-mujoco-reference-ffd7b15d41c51c2d2f8a15596e9575106f81c225\tests\test_restricted_perception_experiments.py", line 62, in test_closed_loop_does_not_stop_on_early_precision_hold
+    self.assertLess(report["final_error_p95_um"], 100.0)
+AssertionError: 114.75082182071675 not less than 100.0
+
+----------------------------------------------------------------------
+Ran 33 tests in 12.048s
+
+FAILED (failures=1)
+```
+
+## 2026-11-07T07:22:20+08:00 | UNKNOWN
+<!-- codex-test:984c719f9bc076071c5d7910 -->
+
+- 来源：PostToolUse
+- 工作目录："E:\\30_RESOURCES\\32_课程教程\\医学\\中科院\\rcm-mujoco-reference-ffd7b15d41c51c2d2f8a15596e9575106f81c225"
+- 退出码：未知，不能据此断言测试通过
+- 输出记录：[test-logs/984c719f9bc076071c5d7910.log](test-logs/984c719f9bc076071c5d7910.log)
+
+### 命令
+
+```text
+$env:PYTHONPATH='.'; & 'C:\ProgramData\Miniconda3\envs\rcm_mujoco\python.exe' -m py_compile restricted_perception\stage34.py restricted_perception\stage3_policy.py run_stage3_robustness.py run_stage3_legacy_baseline.py collect_stage3_distillation.py finalize_stage3_distillation.py train_stage3_distillation.py train_stage3_residual_distillation.py run_stage4_distilled.py run_stage4_median_control.py summarize_stage1_corrected.py summarize_stage2_corrected.py summarize_stage3.py summarize_stage4.py benchmark_stage3_latency.py train_restricted_policy.py train_stage2_variants.py evaluate_restricted_policy.py lerobot_training\eval_policy.py tests\test_stage3_policy.py tests\test_stage34.py
+```
+
+### 输出末尾摘要
+
+```text
+(无输出)
+```
+
+## 2026-11-07T07:22:39+08:00 | UNKNOWN
+<!-- codex-test:6242442ecce3944812ef3f9d -->
+
+- 来源：PostToolUse
+- 工作目录："E:\\30_RESOURCES\\32_课程教程\\医学\\中科院\\rcm-mujoco-reference-ffd7b15d41c51c2d2f8a15596e9575106f81c225"
+- 退出码：未知，不能据此断言测试通过
+- 输出记录：[test-logs/6242442ecce3944812ef3f9d.log](test-logs/6242442ecce3944812ef3f9d.log)
+
+### 命令
+
+```text
+$env:PYTHONPATH='.'; & 'C:\ProgramData\Miniconda3\envs\rcm_mujoco\python.exe' -m unittest discover -s tests -v
+```
+
+### 输出末尾摘要
+
+```text
+ministic) ... ok
+test_precision_scan_exposes_all_levels (test_restricted_perception_experiments.RestrictedPerceptionExperimentTests.test_precision_scan_exposes_all_levels) ... ok
+test_switch_scan_has_required_distances_and_gate (test_restricted_perception_experiments.RestrictedPerceptionExperimentTests.test_switch_scan_has_required_distances_and_gate) ... ok
+test_feature_matrix_shape (test_restricted_policy.RestrictedPolicyTests.test_feature_matrix_shape) ... ok
+test_policy_output_shape_and_action_clip (test_restricted_policy.RestrictedPolicyTests.test_policy_output_shape_and_action_clip) ... ok
+test_residual_cap_uses_ten_micrometre_scale (test_restricted_policy.RestrictedPolicyTests.test_residual_cap_uses_ten_micrometre_scale) ... ok
+test_source_filter_returns_boolean_mask (test_restricted_policy.RestrictedPolicyTests.test_source_filter_returns_boolean_mask) ... ok
+test_batched_kinematics_matches_reference (test_restricted_sidecar.RestrictedSidecarTests.test_batched_kinematics_matches_reference) ... ok
+test_sidecar_schema_and_truth_omission (test_restricted_sidecar.RestrictedSidecarTests.test_sidecar_schema_and_truth_omission) ... ok
+test_geometric_action_moves_toward_target_minus_tip (test_stage34.Stage34Tests.test_geometric_action_moves_toward_target_minus_tip) ... ok
+test_perturbations_change_one_sensor_factor (test_stage34.Stage34Tests.test_perturbations_change_one_sensor_factor) ... ok
+test_run_specs_are_frozen_and_pairing_safe (test_stage34.Stage34Tests.test_run_specs_are_frozen_and_pairing_safe) ... ok
+test_residual_is_bounded (test_stage3_policy.Stage3PolicyTests.test_residual_is_bounded) ... ok
+test_zero_initialized_residual_preserves_base_action (test_stage3_policy.Stage3PolicyTests.test_zero_initialized_residual_preserves_base_action) ... ok
+test_pairs_by_target_and_seed (test_statistics.PairedStatisticsTests.test_pairs_by_target_and_seed) ... ok
+test_checked_in_manifest_has_frozen_separation (test_target_split.TargetSplitTests.test_checked_in_manifest_has_frozen_separation) ... ok
+test_hash_is_stable_and_seed_sensitive (test_target_split.TargetSplitTests.test_hash_is_stable_and_seed_sensitive) ... ok
+test_nearest_neighbor_and_self_exclusion (test_target_split.TargetSplitTests.test_nearest_neighbor_and_self_exclusion) ... ok
+
+----------------------------------------------------------------------
+Ran 33 tests in 11.910s
+
+OK
+```
+
+## 2026-11-07T19:54:07+08:00 | UNKNOWN
+<!-- codex-test:48d937c5737c2f395aef0a9e -->
+
+- 来源：PostToolUse
+- 工作目录："E:\\30_RESOURCES\\32_课程教程\\医学\\中科院\\rcm-mujoco-reference-ffd7b15d41c51c2d2f8a15596e9575106f81c225"
+- 退出码：未知，不能据此断言测试通过
+- 输出记录：[test-logs/48d937c5737c2f395aef0a9e.log](test-logs/48d937c5737c2f395aef0a9e.log)
+
+### 命令
+
+```text
+$env:PYTHONPATH='.'; & 'C:\ProgramData\Miniconda3\envs\rcm_mujoco\python.exe' -m unittest -v tests.test_stage4_analysis tests.test_stage34 tests.test_stage3_policy
+```
+
+### 输出末尾摘要
+
+```text
+test_failure_classification_separates_hold_and_initialization (tests.test_stage4_analysis.Stage4AnalysisTests.test_failure_classification_separates_hold_and_initialization) ... ok
+test_value_summary_uses_requested_population_statistics (tests.test_stage4_analysis.Stage4AnalysisTests.test_value_summary_uses_requested_population_statistics) ... ok
+test_geometric_action_moves_toward_target_minus_tip (tests.test_stage34.Stage34Tests.test_geometric_action_moves_toward_target_minus_tip) ... ok
+test_perturbations_change_one_sensor_factor (tests.test_stage34.Stage34Tests.test_perturbations_change_one_sensor_factor) ... ok
+test_run_specs_are_frozen_and_pairing_safe (tests.test_stage34.Stage34Tests.test_run_specs_are_frozen_and_pairing_safe) ... ok
+test_residual_is_bounded (tests.test_stage3_policy.Stage3PolicyTests.test_residual_is_bounded) ... ok
+test_zero_initialized_residual_preserves_base_action (tests.test_stage3_policy.Stage3PolicyTests.test_zero_initialized_residual_preserves_base_action) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.386s
+
+OK
+```
+
+## 2026-11-07T19:54:49+08:00 | UNKNOWN
+<!-- codex-test:2fa2531b7f26ecc4a73e22df -->
+
+- 来源：PostToolUse
+- 工作目录："E:\\30_RESOURCES\\32_课程教程\\医学\\中科院\\rcm-mujoco-reference-ffd7b15d41c51c2d2f8a15596e9575106f81c225"
+- 退出码：未知，不能据此断言测试通过
+- 输出记录：[test-logs/2fa2531b7f26ecc4a73e22df.log](test-logs/2fa2531b7f26ecc4a73e22df.log)
+
+### 命令
+
+```text
+$env:PYTHONPATH='.'; & 'C:\ProgramData\Miniconda3\envs\rcm_mujoco\python.exe' -m py_compile restricted_perception\stage4_analysis.py analyze_stage4_failure_modes.py tests\test_stage4_analysis.py
+```
+
+### 输出末尾摘要
+
+```text
+(无输出)
+```
+
+## 2026-11-07T19:55:09+08:00 | UNKNOWN
+<!-- codex-test:b0a5e1f3bd30dfcda1dcc67c -->
+
+- 来源：PostToolUse
+- 工作目录："E:\\30_RESOURCES\\32_课程教程\\医学\\中科院\\rcm-mujoco-reference-ffd7b15d41c51c2d2f8a15596e9575106f81c225"
+- 退出码：未知，不能据此断言测试通过
+- 输出记录：[test-logs/b0a5e1f3bd30dfcda1dcc67c.log](test-logs/b0a5e1f3bd30dfcda1dcc67c.log)
+
+### 命令
+
+```text
+$env:PYTHONPATH='.'; & 'C:\ProgramData\Miniconda3\envs\rcm_mujoco\python.exe' -m unittest discover -s tests -v
+```
+
+### 输出末尾摘要
+
+```text
+stances_and_gate) ... ok
+test_feature_matrix_shape (test_restricted_policy.RestrictedPolicyTests.test_feature_matrix_shape) ... ok
+test_policy_output_shape_and_action_clip (test_restricted_policy.RestrictedPolicyTests.test_policy_output_shape_and_action_clip) ... ok
+test_residual_cap_uses_ten_micrometre_scale (test_restricted_policy.RestrictedPolicyTests.test_residual_cap_uses_ten_micrometre_scale) ... ok
+test_source_filter_returns_boolean_mask (test_restricted_policy.RestrictedPolicyTests.test_source_filter_returns_boolean_mask) ... ok
+test_batched_kinematics_matches_reference (test_restricted_sidecar.RestrictedSidecarTests.test_batched_kinematics_matches_reference) ... ok
+test_sidecar_schema_and_truth_omission (test_restricted_sidecar.RestrictedSidecarTests.test_sidecar_schema_and_truth_omission) ... ok
+test_geometric_action_moves_toward_target_minus_tip (test_stage34.Stage34Tests.test_geometric_action_moves_toward_target_minus_tip) ... ok
+test_perturbations_change_one_sensor_factor (test_stage34.Stage34Tests.test_perturbations_change_one_sensor_factor) ... ok
+test_run_specs_are_frozen_and_pairing_safe (test_stage34.Stage34Tests.test_run_specs_are_frozen_and_pairing_safe) ... ok
+test_residual_is_bounded (test_stage3_policy.Stage3PolicyTests.test_residual_is_bounded) ... ok
+test_zero_initialized_residual_preserves_base_action (test_stage3_policy.Stage3PolicyTests.test_zero_initialized_residual_preserves_base_action) ... ok
+test_failure_classification_separates_hold_and_initialization (test_stage4_analysis.Stage4AnalysisTests.test_failure_classification_separates_hold_and_initialization) ... ok
+test_value_summary_uses_requested_population_statistics (test_stage4_analysis.Stage4AnalysisTests.test_value_summary_uses_requested_population_statistics) ... ok
+test_pairs_by_target_and_seed (test_statistics.PairedStatisticsTests.test_pairs_by_target_and_seed) ... ok
+test_checked_in_manifest_has_frozen_separation (test_target_split.TargetSplitTests.test_checked_in_manifest_has_frozen_separation) ... ok
+test_hash_is_stable_and_seed_sensitive (test_target_split.TargetSplitTests.test_hash_is_stable_and_seed_sensitive) ... ok
+test_nearest_neighbor_and_self_exclusion (test_target_split.TargetSplitTests.test_nearest_neighbor_and_self_exclusion) ... ok
+
+----------------------------------------------------------------------
+Ran 35 tests in 14.069s
+
+OK
+```
+
+## 2026-11-07T19:59:18+08:00 | UNKNOWN
+<!-- codex-test:12018d365b1f2aae9f92191c -->
+
+- 来源：PostToolUse
+- 工作目录："E:\\30_RESOURCES\\32_课程教程\\医学\\中科院\\rcm-mujoco-reference-ffd7b15d41c51c2d2f8a15596e9575106f81c225"
+- 退出码：未知，不能据此断言测试通过
+- 输出记录：[test-logs/12018d365b1f2aae9f92191c.log](test-logs/12018d365b1f2aae9f92191c.log)
+
+### 命令
+
+```text
+$before=(Get-Item -LiteralPath 'TEST_LOG.md').Length; Write-Output "BEFORE=$before"; $env:PYTHONPATH='.'; & 'C:\ProgramData\Miniconda3\envs\rcm_mujoco\python.exe' -m unittest -v tests.test_stage4_analysis.Stage4AnalysisTests.test_value_summary_uses_requested_population_statistics; $code=$LASTEXITCODE; Start-Sleep -Seconds 2; $after=(Get-Item -LiteralPath 'TEST_LOG.md').Length; Write-Output "EXIT=$code"; Write-Output "AFTER=$after"; Write-Output "DELTA=$($after-$before)"
+```
+
+### 输出末尾摘要
+
+```text
+BEFORE=289134
+test_value_summary_uses_requested_population_statistics (tests.test_stage4_analysis.Stage4AnalysisTests.test_value_summary_uses_requested_population_statistics) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.012s
+
+OK
+EXIT=0
+AFTER=289134
+DELTA=0
+```
+
+## 2026-11-07T20:00:01+08:00 | SUCCESS
+<!-- codex-test:91f56231f8ffe44a2885da44 -->
+
+- 来源：PostToolUse
+- 工作目录："E:\\30_RESOURCES\\32_课程教程\\医学\\中科院\\rcm-mujoco-reference-ffd7b15d41c51c2d2f8a15596e9575106f81c225"
+- 退出码：0
+- 输出记录：[test-logs/91f56231f8ffe44a2885da44.log](test-logs/91f56231f8ffe44a2885da44.log)
+
+### 命令
+
+```text
+Write-Output "# codex-test manual hook probe"
+```
+
+### 输出末尾摘要
+
+```text
+manual probe completed
+```
+
+## 2026-11-07T20:00:03+08:00 | UNKNOWN
+<!-- codex-test:028f7678543463a0730b8343 -->
+
+- 来源：PostToolUse
+- 工作目录："E:\\30_RESOURCES\\32_课程教程\\医学\\中科院\\rcm-mujoco-reference-ffd7b15d41c51c2d2f8a15596e9575106f81c225"
+- 退出码：未知，不能据此断言测试通过
+- 输出记录：[test-logs/028f7678543463a0730b8343.log](test-logs/028f7678543463a0730b8343.log)
+
+### 命令
+
+```text
+$before=(Get-Item -LiteralPath 'TEST_LOG.md').Length; $payload=@{session_id='manual-hook-probe';tool_use_id='manual-hook-probe-001';cwd=(Get-Location).Path;tool_input=@{command='Write-Output "# codex-test manual hook probe"';workdir=(Get-Location).Path};tool_response=@{exit_code=0;output='manual probe completed'}} | ConvertTo-Json -Depth 8 -Compress; $payload | py -3.11 -X utf8 'C:\Users\Lenovo\.codex\hooks\research_hook.py' test-log; $hookExit=$LASTEXITCODE; Start-Sleep -Milliseconds 500; $after=(Get-Item -LiteralPath 'TEST_LOG.md').Length; Write-Output "HOOK_EXIT=$hookExit BEFORE=$before AFTER=$after DELTA=$($after-$before)"; Get-Content -LiteralPath 'TEST_LOG.md' -Tail 25
+```
+
+### 输出末尾摘要
+
+````text
+HOOK_EXIT=0 BEFORE=290383 AFTER=290872 DELTA=489
+OK
+EXIT=0
+AFTER=289134
+DELTA=0
+```
+
+## 2026-11-07T20:00:01+08:00 | SUCCESS
+<!-- codex-test:91f56231f8ffe44a2885da44 -->
+
+- 来源：PostToolUse
+- 工作目录："E:\\30_RESOURCES\\32_课程教程\\医学\\中科院\\rcm-mujoco-reference-ffd7b15d41c51c2d2f8a15596e9575106f81c225"
+- 退出码：0
+- 输出记录：[test-logs/91f56231f8ffe44a2885da44.log](test-logs/91f56231f8ffe44a2885da44.log)
+
+### 命令
+
+```text
+Write-Output "# codex-test manual hook probe"
+```
+
+### 输出末尾摘要
+
+```text
+manual probe completed
+```
+````
+
+## 2026-11-07T21:20:16+08:00 | SUCCESS
+<!-- codex-test:pptmaster-20261107-212016 -->
+
+- 来源：Manual verification record
+- 工作目录："E:\\30_RESOURCES\\32_课程教程\\医学\\中科院\\rcm-mujoco-reference-ffd7b15d41c51c2d2f8a15596e9575106f81c225"
+- 退出码：0
+- 输出记录：[rcm 11p final quality report](projects/rcm_11p_technical_review_ppt169_20261107/validation/final_quality_report.md)
+
+### 命令
+
+```text
+py -3.11 svg_quality_checker.py projects/rcm_11p_technical_review_ppt169_20261107 --canonical-authoring --stage final --json
+py -3.11 project_manager.py validate projects/rcm_11p_technical_review_ppt169_20261107
+PowerPoint COM export: 11 slides -> 1600x900 PNG
+python-pptx readback: slide count + per-slide notes
+py -3.11 svg_to_pptx.py projects/rcm_11p_technical_review_ppt169_20261107 --no-animations
+```
+
+### 输出末尾摘要
+
+```text
+Final SVG quality gate: 11 files, blocking errors=0, advisory warning files=6
+Project validation: complete
+Charts: 3/3 horizontal bars coordinate-verified against declared plot areas
+Speaker notes: 11/11 non-empty
+PPTX postflight: passed-with-warnings, zip integrity=passed, slides=11, notes=11
+Render review: 11/11 pages at 1600x900; P07 and P10 overlap issues repaired before final export
+Earlier export dependency failure: ModuleNotFoundError pptx; minimal fix installed python-pptx; import and export then passed
+```
+
+## 2026-11-08T15:45:53+08:00 | UNKNOWN
+<!-- codex-test:69cc96542d01c33535922c25 -->
+
+- 来源：PostToolUse
+- 工作目录："E:\\30_RESOURCES\\32_课程教程\\医学\\中科院\\rcm-mujoco-reference-ffd7b15d41c51c2d2f8a15596e9575106f81c225"
+- 退出码：未知，不能据此断言测试通过
+- 输出记录：[test-logs/69cc96542d01c33535922c25.log](test-logs/69cc96542d01c33535922c25.log)
+
+### 命令
+
+```text
+$env:PYTHONPATH='.'; & 'C:\ProgramData\Miniconda3\envs\rcm_mujoco\python.exe' -m unittest discover -s tests -v
+```
+
+### 输出末尾摘要
+
+```text
+stances_and_gate) ... ok
+test_feature_matrix_shape (test_restricted_policy.RestrictedPolicyTests.test_feature_matrix_shape) ... ok
+test_policy_output_shape_and_action_clip (test_restricted_policy.RestrictedPolicyTests.test_policy_output_shape_and_action_clip) ... ok
+test_residual_cap_uses_ten_micrometre_scale (test_restricted_policy.RestrictedPolicyTests.test_residual_cap_uses_ten_micrometre_scale) ... ok
+test_source_filter_returns_boolean_mask (test_restricted_policy.RestrictedPolicyTests.test_source_filter_returns_boolean_mask) ... ok
+test_batched_kinematics_matches_reference (test_restricted_sidecar.RestrictedSidecarTests.test_batched_kinematics_matches_reference) ... ok
+test_sidecar_schema_and_truth_omission (test_restricted_sidecar.RestrictedSidecarTests.test_sidecar_schema_and_truth_omission) ... ok
+test_geometric_action_moves_toward_target_minus_tip (test_stage34.Stage34Tests.test_geometric_action_moves_toward_target_minus_tip) ... ok
+test_perturbations_change_one_sensor_factor (test_stage34.Stage34Tests.test_perturbations_change_one_sensor_factor) ... ok
+test_run_specs_are_frozen_and_pairing_safe (test_stage34.Stage34Tests.test_run_specs_are_frozen_and_pairing_safe) ... ok
+test_residual_is_bounded (test_stage3_policy.Stage3PolicyTests.test_residual_is_bounded) ... ok
+test_zero_initialized_residual_preserves_base_action (test_stage3_policy.Stage3PolicyTests.test_zero_initialized_residual_preserves_base_action) ... ok
+test_failure_classification_separates_hold_and_initialization (test_stage4_analysis.Stage4AnalysisTests.test_failure_classification_separates_hold_and_initialization) ... ok
+test_value_summary_uses_requested_population_statistics (test_stage4_analysis.Stage4AnalysisTests.test_value_summary_uses_requested_population_statistics) ... ok
+test_pairs_by_target_and_seed (test_statistics.PairedStatisticsTests.test_pairs_by_target_and_seed) ... ok
+test_checked_in_manifest_has_frozen_separation (test_target_split.TargetSplitTests.test_checked_in_manifest_has_frozen_separation) ... ok
+test_hash_is_stable_and_seed_sensitive (test_target_split.TargetSplitTests.test_hash_is_stable_and_seed_sensitive) ... ok
+test_nearest_neighbor_and_self_exclusion (test_target_split.TargetSplitTests.test_nearest_neighbor_and_self_exclusion) ... ok
+
+----------------------------------------------------------------------
+Ran 35 tests in 23.462s
+
+OK
+```
+
+## 2026-11-08 最近实验补记：受限感知、Stage 0–4 与失败分析
+
+本节补齐 2026-11-06 至 2026-11-07 已产生正式产物但尚未形成完整审计结论的实验。内容依据 machine-readable JSON、阶段总结、失败分析报告及现有分片日志整理；除本节末尾的单元测试外，没有重新执行昂贵的闭环或训练实验，因此不将历史产物冒充本次新运行结果。
+
+### 关键外参缺陷与重跑范围
+
+- 发现并修正一项影响 Stage 0–2 的外参缺陷：早期受限感知配置使用了 legacy `Reference` 相机位姿，而实际 RGB-D/OCT 闭环观测使用 `RCMSceneV9.eye_internal`；两套位姿矩阵最大差异为 `1.091838353470798`。修正后重建训练/验证 sidecar、重训 Stage 1，并重新采集 120 条 Stage 2 DAgger episode。
+- 修正后的 Stage 0–4 状态记录在 `outputs/restricted_experiment_status_20261107.json`：Stage 0/1/2/3 为 PASS，Stage 4 评估为 COMPLETE、性能为 FAIL，`deployment_claim_supported=false`。审计确认未使用冻结 final-test targets 参与训练。
+- 当前状态文件 SHA-256 为 `EEA80478E1C1C27B03C2A68EDAF377DF1D6D18D1C354CC32D5170E2FA44A26EF`。
+
+### Stage 0：外参修正后的感知与控制门限
+
+- 正式报告：`outputs/restricted_perception_stage0_v2_20261106/stage0_report.json`，结果 PASS，报告 SHA-256 `D5030A529EE5B9A151187927328924212931FA8C5B28AE94E8857575D733FB06`。
+- 配置 SHA-256 为 `02B2FD1E4193BDD0FDF9771318D9B356288D2366406772443B24F1A698611464`。选定粗/细切换距离 `2 mm`、过渡半宽 `0.2 mm`、精度门限 `20 µm`。
+- 在 `1/2/3 mm` 切换距离下，continuous blending 相对 hard switching 的事件级 P95 步长降幅约为 `90.6%–91.7%`，达到 `>=80%` 要求。
+- 近目标 fused P95 感知误差为 `3.7323280031177974 µm`；确定性闭环成功率在 `20/10/5 µm` 分别为 `96.5% / 85.0% / 64.5%`，因此只有 `20 µm` 同时通过感知精度和闭环成功率门限。
+- Blended P50 到达/停止时间为 `7.475 s`，hard switching 为 `7.75 s`，增加量为 `-0.275 s`，通过 `+0.5 s` 非劣约束。
+
+### Stage 1：修正后的配对闭环因果门
+
+- 正式报告：`outputs/restricted_stage1_summary_v2_20261106.json`，结果 PASS，报告 SHA-256 `70EBAD2CE6EE67FB1A2EFDF0D92B9CC6C3C2F3386AC6C0E945F2B474722D509A`。旧的 offline causal ladder 因使用错误外参被标记为 superseded。
+- 使用最终冻结开发集 40 个目标、`100 µm` 初始误差和 `200` 帧预算，三组正常/零向量/同距离错配向量均在相同目标与 episode 配对下运行。
+
+| 变体 | 成功数 | 成功率 | 最终误差 P95 | 失败/安全说明 |
+| --- | ---: | ---: | ---: | --- |
+| normal restricted vector | 39/40 | 97.5% | 18.0678 µm | 0 个 >30 mm、0 安全限幅步 |
+| zero vector | 10/40 | 25.0% | 100.1065 µm | 0 个 >30 mm、0 安全限幅步 |
+| cross-episode mismatch vector | 9/40 | 22.5% | 82.7147 µm | 0 个 >30 mm、0 安全限幅步 |
+| v4 no-DAgger diffusion baseline | 13/40 | 32.5% | 110.0044 µm | 0 个 >30 mm、0 安全限幅步 |
+
+- 相对 zero vector，成功率提高 `72.5` 个百分点，target-clustered bootstrap 95% CI `[62.5, 83.33]` 个百分点，exact McNemar `p=3.73e-9`；相对 mismatch，提高 `75.0` 个百分点，CI `[65.22, 85.19]`，`p=1.86e-9`。图像因果门 PASS。
+- 相对 v4 no-DAgger baseline，成功率提高 `65.0` 个百分点，CI `[53.85, 76.92]`，`p=2.98e-8`；最终误差 P95 相对改善 `83.58%`。
+
+### Stage 2：修正外参后的 DAgger 变体排序
+
+- 修正后重新采集 `120` 条受限 DAgger episode，共 `3,064` 帧。正式报告为 `outputs/restricted_stage2_acceptance_v5_20261106/summary.json`，结果 PASS，SHA-256 `12B33D100629E29128BA31BF12B706A652285AED5110116DFB82CEC06632A5CB`。
+- 外参修正改变了单因素排序，最终选择 `dagger_only`，不再沿用修正前选择的 velocity-only 结论。
+
+| 变体 | 成功数 | 成功率 | 最终误差 P50 | 最终误差 P95 | 安全限幅步 |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| DAgger only（selected） | 40/40 | 100% | 5.7537 µm | 16.6741 µm | 0 |
+| + velocity | 34/40 | 85.0% | 11.1290 µm | 83.5997 µm | 0 |
+| + velocity + residual cap | 38/40 | 95.0% | 5.7547 µm | 17.1161 µm | 0 |
+| + velocity + residual cap + stop head | 38/40 | 95.0% | 10.6775 µm | 20.3407 µm | 0 |
+
+- 相对 DAgger-only，velocity 的成功率下降 `15.0` 个百分点，残差上限和 stop-head 各下降 `5.0` 个百分点；所有变体均无 >30 mm uncontrolled episode。Stage 3 因此继承 DAgger-only 的 Stage 2 结论，而不是旧的 velocity-only 结论。
+
+### Stage 3：基线、鲁棒性、蒸馏与延迟
+
+- 协议：`configs/stage34_protocol.json`，seed `20270301`，40 个开发目标，`100 µm` 初始误差，`1600` 帧上限。正式报告为 `outputs/restricted_stage3_summary_20261106.json`，结果 PASS，SHA-256 `C43D344E1E6C683A4768DDB67F647B2E90BDE287B35B130F4B93CCA9C648BA9A`。
+
+| Stage 3 变体 | 成功数 | 最终误差 P95 | 结论 |
+| --- | ---: | ---: | --- |
+| selected restricted student | 40/40 | 16.6741 µm | 选中基线 |
+| guided no-DAgger action-chunk MLP | 39/40 | 17.0145 µm | 学习价值对照 |
+| old diffusion structure + DAgger, 7-median | 39/40 | 10.4633 µm | 蒸馏教师 |
+| guided OCT regression | 40/40 | 11.6934 µm | 通过但非主方案 |
+| raw diffusion, 7-median | 0/40 | 6520.5475 µm | 失败；40 个 episode 触发安全限制 |
+
+- 学习价值鲁棒性对比覆盖 default、2× noise、45% center occlusion、20% OCT dropout 和 3-frame delay。Student / geometric teacher 成功数分别为 `40/8`、`40/11`、`0/7`、`40/3`、`39/11`。四个非遮挡场景的 target-clustered bootstrap 成功差下界均大于 0；遮挡场景 student 为 `0/40`，是明确失败案例，不是通过项。
+- 单步蒸馏尝试及处置如下；只有最后采用协议 seed 重跑的 residual single-step head 进入正式 Stage 3 汇总。
+
+| 尝试 | 产物目录 | 成功数 | 处置 |
+| --- | --- | ---: | --- |
+| anchor v3 | `outputs/restricted_stage3_distilled_anchor_eval_v3_20261106/` | 32/40 | 淘汰 |
+| anchor novel v4 | `outputs/restricted_stage3_distilled_anchor_eval_v4_20261106/` | 34/40 | 淘汰 |
+| anchor strong v5 | `outputs/restricted_stage3_distilled_anchor_strong_eval_v5_20261106/` | 31/39 | 分片不完整，淘汰 |
+| preserve v6 | `outputs/restricted_stage3_distilled_preserve_eval_v6_20261106/` | 19/25 | 分片不完整，淘汰 |
+| residual distillation v7 | `outputs/restricted_stage3_residual_distilled_eval_v7_20261106/` | 40/40 | 候选 |
+| residual distillation, protocol seed | `outputs/restricted_stage3_residual_distilled_protocol_seed_20261106/` | 40/40 | 正式汇总 |
+| no-DAgger protocol seed | `outputs/restricted_stage3_nodagger_protocol_seed_20261106/` | 39/40 | 协议重跑对照 |
+
+- 正式蒸馏使用 `2,270` 个 training-target 状态的 on-policy 标签，教师为 7-sample median diffusion；未使用 development 或 final-test 目标生成标签。Selected checkpoint 为 `outputs/restricted_stage3_residual_distilled_v7_20261106/best_model.pth`，`2,990,045` bytes，SHA-256 `202FFDB08AF82F67E92F4DFC1018CF657FF7BA25AA7D03F0F1500E420F867BC7`。
+- 蒸馏结果 40/40，最终误差 P50/P95 为 `7.2300/14.3188 µm`；教师 39/40，P95 `10.4633 µm`。成功率差 bootstrap 下界为 `0.0`，超过预注册的非劣边界 `-5` 个百分点，故 `distilled_single_step_noninferior=true`。
+- 延迟报告：`outputs/restricted_stage3_latency_20261106.json`，SHA-256 `03A719DB1B95C7AABDBACA598745118B374F6E1E627C1578496EA8ED2AD0085A`。CUDA batch-1 学生单步推理为 P50/P95 `0.38375/0.41338 ms`；7-sample diffusion median 为 `288.715/343.346 ms`。CPU batch-1 对应为 `0.37695/0.47028 ms` 与 `726.416/860.888 ms`。延迟只描述模型推理，不包含完整感知和渲染控制链。
+
+### Stage 4：冻结 final test 完成但性能失败
+
+- 正式报告：`outputs/restricted_stage4_summary_20261106.json`，`completion=COMPLETE`、`result=FAIL`，SHA-256 `5763CC8DBF45FC51DE912C1937E061137710BA1F159FA081A0417EBD144C5B19`。
+- Primary distilled single-step policy 使用 60 个冻结 final-test targets × 3 seeds，共 180 episodes。All episodes present、same-target/same-seed pairing、无 residual resource exception；`uncontrolled_over_30mm=0`、`safety_limited_steps=0`。
+
+| 策略 | Episode | 20 µm 成功 | 10 µm 成功 | 5 µm 成功 | 最终误差 P50/P95 |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| distilled single-step primary | 180 | 20 (11.11%) | 14 (7.78%) | 7 (3.89%) | 103.9037 / 3734.7234 µm |
+| 7-sample diffusion median control | 60 | 18 (30.0%) | 17 (28.33%) | 6 (10.0%) | 26.0911 / 50.1229 µm |
+
+- 在 hash-selected paired 60 episodes 上，`20 µm` 成功差为 `-15.0` 个百分点，target-cluster 95% CI `[-30.77, 0.0]`；`10 µm` 差为 `-18.33` 个百分点，95% CI `[-30.56, -5.56]`。Distilled head 更快，但在 final targets 上没有达到 20 µm 非劣或 95% 成功率目标。
+
+### Stage 4 失败归因
+
+- 正式分析：`outputs/restricted_stage4_failure_analysis_20261107.json`（SHA-256 `473E5C8C29EA90941994440F05E832EB7AFDD23097168FB8C36EE390E84FD8D7`）及叙述版 `STAGE4_FAILURE_ANALYSIS.md`。
+- 目标分布存在完全分离：development 的 normalized posterior 范围为 `0.9006366–0.9995540`、极角 `1.7114–25.7581°`；final 为 `0.8000630–0.8821612`、`28.0958–36.8639°`。两个坐标的 KS statistic 均为 `1.0`，因此该结果主要是分布外泛化测试。
+- Fine fixed-bias 没有解释失败：final-test P95/max 为 `2.8610/3.3115 µm`，全部 180 个 episode 均低于 `20 µm`；development P95 为 `2.6540 µm`，两分布 KS 检验不显著。Stage 0 fused near-target P95 `3.7323 µm` 也表明 `20 µm` 阈值本身可达。
+- 180 个 primary episodes 的失败模式为：20 个在 20 µm 成功；51 个至少一次进入 20 µm 但未完成三帧稳定 hold；8 个最小误差为 20–30 µm；41 个为 30–50 µm；45 个为 50–100 µm；6 个没有从 100 µm start 接近（2 个目标 × 3 seeds）；9 个在首帧前因 B 轴编码器超出标定安全范围而无效初始化（3 个目标 × 3 seeds）。
+- 51 个 hold 失败 episode 的中位最小误差为 `5.54 µm`，但中位最终误差回升至 `96.29 µm`；fine channel 在控制帧中的中位可用率为 `99.52%`，coarse fallback 从未发生。主要已学习策略问题是 OOD 目标位置下的终点稳定和 hold 后继续动作，而不是 fine 通道缺失或 bias 超限。
+
+### 本次测试与日志追加核验
+
+- 2026-11-08 重新执行 `python -m unittest discover -s tests -v`，35 个测试全部通过（`Ran 35 tests in 23.462s`，`OK`，退出码 0）。
+- 自动钩子已将本次执行追加到 `TEST_LOG.md`，记录 ID `69cc96542d01c33535922c25`，输出文件 `test-logs/69cc96542d01c33535922c25.log`；本节再次确认该测试记录已追加。
+- 本轮只是补齐既有实验日志并复跑单元测试。所有精度、成功率和延迟结论均来自 MuJoCo 仿真及冻结产物，不支持真实 OCT、临床精度、组织接触或硬件安全声明。
+
+## 2026-11-08T15:53:20+08:00 | UNKNOWN
+<!-- codex-test:ad093c1c4a093938e4dd184c -->
+
+- 来源：PostToolUse
+- 工作目录："E:\\30_RESOURCES\\32_课程教程\\医学\\中科院\\rcm-mujoco-reference-ffd7b15d41c51c2d2f8a15596e9575106f81c225"
+- 退出码：未知，不能据此断言测试通过
+- 输出记录：[test-logs/ad093c1c4a093938e4dd184c.log](test-logs/ad093c1c4a093938e4dd184c.log)
+
+### 命令
+
+```text
+Get-Content README.md -TotalCount 230; Write-Output '--- pytest availability ---'; py -3.11 -m pytest --version; Write-Output '--- CI/config ---'; rg --files -g 'pyproject.toml' -g 'pytest.ini' -g 'tox.ini' -g 'setup.cfg' -g '.github/**' -g 'requirements*.txt'
+```
+
+### 输出末尾摘要
+
+````text
+692 帧。三种仿真导航轨迹均 PASS；遮挡标签显示有部分针体遮挡，但没有完全遮挡帧。
+
+| 方法 | 结果 | 帧数 | 运动时间 (s) | 最大到达误差 (μm) | 部分遮挡帧 | 完全遮挡帧 |
+|---|---:|---:|---:|---:|---:|---:|
+| 视觉伺服 | PASS | 1,580 | 78.739 | 5.30 | 604 | 0 |
+| RRT（seed 7） | PASS | 2,056 | 102.750 | 14.60 | 979 | 0 |
+| PRM（seed 7） | PASS | 2,056 | 102.750 | 14.60 | 979 | 0 |
+
+任务模式有两种：`registered_coordinate_prior` 会将假设已配准的机器人坐标写入任务文本（当前示例坐标来自仿真，不是实测 OCT）；默认 `visual_current_target` 的策略输入文本不含目标坐标、目标 ID 或访问顺序。这个 pilot 中标靶逐个呈现，访问顺序由脚本依据测量选定并由各方法共享，不能证明策略自主识别并排序多个病灶。
+
+专家与策略输入也要区分：专家使用仿真分割/渲染深度和标定信息；眼底视觉伺服还按已知目标姿态标定特征，并在回撤/转移阶段使用解析运动，RGB 在该阶段只记录、不参与纠偏，最后的 C 轴接近才使用视觉深度闭环。因此示范不是全程纯单目导航。已导出去图像输入包和对应动作标签，但项目尚未实现策略训练/推理或去图像消融；该 pilot 只有一个目标集合，不是完整 train/validation/test 数据集。
+
+字段、轨迹、输入泄漏及遮挡标签验证结果见 `runs/历史记录/05_random_datasets/pilot_n5_visual_current_target_v1/episodes/train/episode_000000/dataset_verification.json`。复验命令（从本目录运行）：
+
+```powershell
+.\.venv\Scripts\python.exe verify_waypoint_comparison.py --run-dir runs\历史记录\05_random_datasets\pilot_n5_visual_current_target_v1\episodes\train\episode_000000
+```
+
+本版默认不启用 A/B/C 位置限位，默认针尖目标改为眼底路径点 P3 `[1.92,8.478,22.043]` mm；原深部示例 `[9.5,-1.5,16]` mm 仅作为历史回归目标保留。此前记录的编码器区间仅保留为观测数据；它们不能代表全行程，也不能用来判断眼底目标不可达。
+
+```bash
+python -m pip install -r requirements.txt
+python run_navigation.py
+```
+
+程序执行：瞄准 → 进针 → 停留 → C 回零 → A/B 复位。P 暂停/继续，关闭窗口保存报告和 CSV。无窗口运行：
+
+```bash
+python run_navigation.py --no-viewer
+python run_navigation.py --target-robot 9.5 -1.5 16 --solve-only
+python run_navigation.py --targets examples/targets.json --no-viewer
+```
+
+执行方式是运动学回放 `mj_forward`，用于核对目标求解、针轴与 RCM 的关系及导航流程。反馈控制、驱动器响应和实机通信还没有接入。完整接口说明见 [NAVIGATION.md](NAVIGATION.md)。
+
+## 零位、针和编码器
+
+已确认的零位 ABC 编码器为 `[0,1466018,893518]`，E 为 0。启动和 R 复位都回到这个状态，相对任务坐标为 `[0,0,0]`。
+
+| 轴 | 换算与相对坐标 |
+|---|---|
+| A | `A_deg = EA*0.0018`；相对零位角度写入 `A_azimuth`，单位 rad |
+| B | `dB_mm = EB/K`；经连杆公式求 alpha；`qB = radians(alpha-alpha_zero)` |
+| C | `insertion_mm = (EC-893518)/K`；`qC = insertion_mm/1000`，单位 m |
+
+`K=63822.71488 count/mm`，当前 B 零位角 `alpha_zero≈54.236005250°`。默认正向计数，原点/反向参数仍在配置文件中。
+
+针尖到 RCM 的距离：
+
+```text
+L_tip_mm = needle_tip_distance_at_reference_mm + insertion_mm
+--- pytest availability ---
+C:\Users\Lenovo\AppData\Local\Programs\Python\Python311\python.exe: No module named pytest
+--- CI/config ---
+requirements-mesh.txt
+requirements.txt
+mujoco_model\requirements.txt
+lerobot_training\requirements.txt
+````
+
+## 2026-11-08T15:55:10+08:00 | UNKNOWN
+<!-- codex-test:c9ef450edd66c103581a8a62 -->
+
+- 来源：PostToolUse
+- 工作目录："E:\\30_RESOURCES\\32_课程教程\\医学\\中科院\\rcm-mujoco-reference-ffd7b15d41c51c2d2f8a15596e9575106f81c225"
+- 退出码：未知，不能据此断言测试通过
+- 输出记录：[test-logs/c9ef450edd66c103581a8a62.log](test-logs/c9ef450edd66c103581a8a62.log)
+
+### 命令
+
+```text
+Get-Command python,py,pytest -ErrorAction SilentlyContinue | Select-Object Name,Source,Version; py -0p; Get-ChildItem -Force -Directory | Where-Object Name -Match 'venv|env' | Select-Object FullName; Get-Content requirements.txt; Write-Output '--- test imports ---'; Get-ChildItem tests -File | ForEach-Object { Write-Output "### $($_.Name)"; Get-Content $_.FullName -TotalCount 35 }
+```
+
+### 输出末尾摘要
+
+```text
+w s l :   �hKm0R  l o c a l h o s t   �NtM�n�FO*g\��P0R  W S L 0N A T   !j_N�v  W S L   N/ec  l o c a l h o s t   �Nt0 
+ <3>WSL (13 - Relay) ERROR: CreateProcessCommon:735: execvpe(/bin/bash) failed: No such file or directory
+```
+
+## 2026-11-08T15:55:21+08:00 | UNKNOWN
+<!-- codex-test:850f13bf7c5eca33c8475849 -->
+
+- 来源：PostToolUse
+- 工作目录："E:\\30_RESOURCES\\32_课程教程\\医学\\中科院\\rcm-mujoco-reference-ffd7b15d41c51c2d2f8a15596e9575106f81c225"
+- 退出码：未知，不能据此断言测试通过
+- 输出记录：[test-logs/850f13bf7c5eca33c8475849.log](test-logs/850f13bf7c5eca33c8475849.log)
+
+### 命令
+
+```text
+Get-Command python,py,pytest -ErrorAction SilentlyContinue | Select-Object Name,Source,Version; py -0p; Get-ChildItem -Force -Directory | Where-Object Name -Match 'venv|env' | Select-Object FullName; Write-Output '--- requirements ---'; Get-Content requirements.txt; Write-Output '--- test imports ---'; Get-ChildItem tests -File | ForEach-Object { Write-Output "### $($_.Name)"; Get-Content $_.FullName -TotalCount 35 }
+```
+
+### 输出末尾摘要
+
+```text
+T_DID_NOT_HOLD",
+        )
+        self.assertEqual(
+            classify_failure(_episode(minimum_um=39.0, final_um=100.0)),
+### test_statistics.py
+from __future__ import annotations
+
+import unittest
+
+from restricted_perception.statistics import paired_comparison
+
+
+def _episode(target, seed, success, error):
+    return {
+        "target_robot_mm": list(target),
+        "seed": seed,
+        "success": success,
+        "final_error_mm": error,
+    }
+
+
+class PairedStatisticsTests(unittest.TestCase):
+    def test_pairs_by_target_and_seed(self):
+        baseline = [
+            _episode([0, 0, 2], 1, False, 0.5),
+            _episode([1, 0, 2], 1, True, 0.01),
+        ]
+        candidate = [
+            _episode([1, 0, 2], 1, True, 0.005),
+            _episode([0, 0, 2], 1, True, 0.01),
+            _episode([2, 0, 2], 1, True, 0.01),
+        ]
+        report = paired_comparison(
+            candidate,
+            baseline,
+            bootstrap_samples=100,
+        )
+        self.assertEqual(report["paired_episodes"], 2)
+        self.assertAlmostEqual(report["success_rate_difference"], 0.5)
+        self.assertLess(report["paired_error_difference_mean_um"], 0.0)
+### test_target_split.py
+from __future__ import annotations
+
+from pathlib import Path
+import unittest
+
+import numpy as np
+
+from restricted_perception.target_split import (
+    canonical_point,
+    nearest_neighbor_distances,
+    target_hash,
+)
+
+
+ROOT = Path(__file__).resolve().parents[1]
+
+
+class TargetSplitTests(unittest.TestCase):
+    def test_hash_is_stable_and_seed_sensitive(self):
+        point = [1.0, 2.0, 3.0]
+        self.assertEqual(target_hash(point, 7), target_hash(point, 7))
+        self.assertNotEqual(target_hash(point, 7), target_hash(point, 8))
+        self.assertEqual(canonical_point([1.0 + 1e-9, 2.0, 3.0]), (1.0, 2.0, 3.0))
+
+    def test_nearest_neighbor_and_self_exclusion(self):
+        points = [[0, 0, 0], [0, 0, 1.2], [0, 0, 3.0]]
+        self.assertEqual(
+            nearest_neighbor_distances(points, points, exclude_self=True),
+            [1.2, 1.2, 1.8],
+        )
+
+    def test_checked_in_manifest_has_frozen_separation(self):
+        manifest_path = ROOT / "configs" / "target_split_manifest.json"
+        self.assertTrue(manifest_path.exists())
+        self.assertGreater(manifest_path.stat().st_size, 0)
+```
+
+## 2026-11-08T15:56:56+08:00 | UNKNOWN
+<!-- codex-test:40cc15806cc60d703c0ac278 -->
+
+- 来源：PostToolUse
+- 工作目录："E:\\30_RESOURCES\\32_课程教程\\医学\\中科院\\rcm-mujoco-reference-ffd7b15d41c51c2d2f8a15596e9575106f81c225"
+- 退出码：未知，不能据此断言测试通过
+- 输出记录：[test-logs/40cc15806cc60d703c0ac278.log](test-logs/40cc15806cc60d703c0ac278.log)
+
+### 命令
+
+```text
+$before = (Get-Item -LiteralPath TEST_LOG.md).Length; Write-Output "TEST_LOG_BEFORE=$before"; py -3.11 -m unittest discover -s tests -v; $testExit = $LASTEXITCODE; Write-Output "UNITTEST_EXIT=$testExit"; $after = (Get-Item -LiteralPath TEST_LOG.md).Length; Write-Output "TEST_LOG_IMMEDIATE_AFTER=$after"; exit $testExit
+```
+
+### 输出末尾摘要
+
+```text
+UNITTEST_EXIT=1
+TEST_LOG_IMMEDIATE_AFTER=317126
+```
+
+## 2026-11-08T15:58:59+08:00 | FAILED
+<!-- codex-test:368146dc9c77af34fe0a8633 -->
+
+- 来源：PostToolUse
+- 工作目录："E:\\30_RESOURCES\\32_课程教程\\医学\\中科院\\rcm-mujoco-reference-ffd7b15d41c51c2d2f8a15596e9575106f81c225"
+- 退出码：未提供，由测试输出末尾判定为失败（推断）
+- 输出记录：[test-logs/368146dc9c77af34fe0a8633.log](test-logs/368146dc9c77af34fe0a8633.log)
+
+### 命令
+
+```text
+Write-Output 'PYTHON_ENV:'; python -c 'import sys, torch, numpy, PIL; print(sys.version); print(torch.__version__)'; python -m unittest discover -s tests -v; $testExit = $LASTEXITCODE; Write-Output "UNITTEST_EXIT=$testExit"; exit $testExit
+```
+
+### 输出末尾摘要
+
+```text
+atics_matches_reference (test_restricted_sidecar.RestrictedSidecarTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "E:\30_RESOURCES\32_课程教程\医学\中科院\rcm-mujoco-reference-ffd7b15d41c51c2d2f8a15596e9575106f81c225\tests\test_restricted_sidecar.py", line 23, in test_batched_kinematics_matches_reference
+    from rcm_reference import Reference
+  File "E:\30_RESOURCES\32_课程教程\医学\中科院\rcm-mujoco-reference-ffd7b15d41c51c2d2f8a15596e9575106f81c225\rcm_reference.py", line 15, in <module>
+    import mujoco
+ModuleNotFoundError: No module named 'mujoco'
+
+======================================================================
+ERROR: test_sidecar_schema_and_truth_omission (test_restricted_sidecar.RestrictedSidecarTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "E:\30_RESOURCES\32_课程教程\医学\中科院\rcm-mujoco-reference-ffd7b15d41c51c2d2f8a15596e9575106f81c225\tests\test_restricted_sidecar.py", line 74, in test_sidecar_schema_and_truth_omission
+    metadata = build_restricted_sidecar(
+  File "E:\30_RESOURCES\32_课程教程\医学\中科院\rcm-mujoco-reference-ffd7b15d41c51c2d2f8a15596e9575106f81c225\restricted_perception\sidecar.py", line 134, in build_restricted_sidecar
+    from rcm_reference import Reference
+  File "E:\30_RESOURCES\32_课程教程\医学\中科院\rcm-mujoco-reference-ffd7b15d41c51c2d2f8a15596e9575106f81c225\rcm_reference.py", line 15, in <module>
+    import mujoco
+ModuleNotFoundError: No module named 'mujoco'
+
+======================================================================
+ERROR: test_geometric_action_moves_toward_target_minus_tip (test_stage34.Stage34Tests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "E:\30_RESOURCES\32_课程教程\医学\中科院\rcm-mujoco-reference-ffd7b15d41c51c2d2f8a15596e9575106f81c225\tests\test_stage34.py", line 70, in test_geometric_action_moves_toward_target_minus_tip
+    from rcm_reference import Reference
+  File "E:\30_RESOURCES\32_课程教程\医学\中科院\rcm-mujoco-reference-ffd7b15d41c51c2d2f8a15596e9575106f81c225\rcm_reference.py", line 15, in <module>
+    import mujoco
+ModuleNotFoundError: No module named 'mujoco'
+
+----------------------------------------------------------------------
+Ran 35 tests in 25.495s
+
+FAILED (errors=5)
+UNITTEST_EXIT=1
+```
+
+## 2026-11-08T16:08:58+08:00 | SUCCESS
+<!-- codex-test:952ad992efb78dcbf400d7cc -->
+
+- 来源：PostToolUse
+- 工作目录："E:\\30_RESOURCES\\32_课程教程\\医学\\中科院\\rcm-mujoco-reference-ffd7b15d41c51c2d2f8a15596e9575106f81c225"
+- 退出码：未提供，由测试输出末尾判定为通过（推断）
+- 输出记录：[test-logs/952ad992efb78dcbf400d7cc.log](test-logs/952ad992efb78dcbf400d7cc.log)
+
+### 命令
+
+```text
+py -3.11 -c 'import sys, torch, mujoco, numpy, PIL; print(sys.version); print("torch", torch.__version__); print("mujoco", mujoco.__version__)'; py -3.11 -m unittest discover -s tests -v; $testExit = $LASTEXITCODE; Write-Output "UNITTEST_EXIT=$testExit"; exit $testExit
+```
+
+### 输出末尾摘要
+
+```text
+ok
+test_feature_matrix_shape (test_restricted_policy.RestrictedPolicyTests.test_feature_matrix_shape) ... ok
+test_policy_output_shape_and_action_clip (test_restricted_policy.RestrictedPolicyTests.test_policy_output_shape_and_action_clip) ... ok
+test_residual_cap_uses_ten_micrometre_scale (test_restricted_policy.RestrictedPolicyTests.test_residual_cap_uses_ten_micrometre_scale) ... ok
+test_source_filter_returns_boolean_mask (test_restricted_policy.RestrictedPolicyTests.test_source_filter_returns_boolean_mask) ... ok
+test_batched_kinematics_matches_reference (test_restricted_sidecar.RestrictedSidecarTests.test_batched_kinematics_matches_reference) ... ok
+test_sidecar_schema_and_truth_omission (test_restricted_sidecar.RestrictedSidecarTests.test_sidecar_schema_and_truth_omission) ... ok
+test_geometric_action_moves_toward_target_minus_tip (test_stage34.Stage34Tests.test_geometric_action_moves_toward_target_minus_tip) ... ok
+test_perturbations_change_one_sensor_factor (test_stage34.Stage34Tests.test_perturbations_change_one_sensor_factor) ... ok
+test_run_specs_are_frozen_and_pairing_safe (test_stage34.Stage34Tests.test_run_specs_are_frozen_and_pairing_safe) ... ok
+test_residual_is_bounded (test_stage3_policy.Stage3PolicyTests.test_residual_is_bounded) ... ok
+test_zero_initialized_residual_preserves_base_action (test_stage3_policy.Stage3PolicyTests.test_zero_initialized_residual_preserves_base_action) ... ok
+test_failure_classification_separates_hold_and_initialization (test_stage4_analysis.Stage4AnalysisTests.test_failure_classification_separates_hold_and_initialization) ... ok
+test_value_summary_uses_requested_population_statistics (test_stage4_analysis.Stage4AnalysisTests.test_value_summary_uses_requested_population_statistics) ... ok
+test_pairs_by_target_and_seed (test_statistics.PairedStatisticsTests.test_pairs_by_target_and_seed) ... ok
+test_checked_in_manifest_has_frozen_separation (test_target_split.TargetSplitTests.test_checked_in_manifest_has_frozen_separation) ... ok
+test_hash_is_stable_and_seed_sensitive (test_target_split.TargetSplitTests.test_hash_is_stable_and_seed_sensitive) ... ok
+test_nearest_neighbor_and_self_exclusion (test_target_split.TargetSplitTests.test_nearest_neighbor_and_self_exclusion) ... ok
+
+----------------------------------------------------------------------
+Ran 35 tests in 80.858s
+
+OK
+UNITTEST_EXIT=0
+```

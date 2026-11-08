@@ -284,12 +284,14 @@ class RCMDataset(Dataset):
         n_obs_steps=2,
         n_action_steps=8,
         use_vision_feature_cache=False,
+        use_restricted_sidecar=False,
     ):
         self.data_dir = data_dir
         self.transform = transform
         self.n_obs_steps = n_obs_steps  # 观测历史帧数
         self.n_action_steps = n_action_steps  # 预测未来动作步数
         self.use_vision_feature_cache = bool(use_vision_feature_cache)
+        self.use_restricted_sidecar = bool(use_restricted_sidecar)
 
         # 加载元数据
         with open(data_dir / "metadata.json", 'r') as f:
@@ -363,6 +365,24 @@ class RCMDataset(Dataset):
         else:
             self.vision_features = None
             self.vision_feature_metadata = {}
+        restricted_path = data_dir / "restricted_sidecar" / "restricted_sidecar.npz"
+        self.has_restricted_sidecar = restricted_path.is_file()
+        if self.use_restricted_sidecar and not self.has_restricted_sidecar:
+            raise FileNotFoundError(restricted_path)
+        if self.has_restricted_sidecar:
+            with np.load(restricted_path) as restricted:
+                if (
+                    not np.array_equal(restricted["episode_index"], self.episode_indices)
+                    or not np.array_equal(restricted["frame_index"], self.frame_indices)
+                ):
+                    raise ValueError("restricted sidecar row order does not match dataset")
+                from restricted_perception.sidecar import restricted_feature_matrix
+
+                self.restricted_features = restricted_feature_matrix(restricted)
+                self.restricted_feature_metadata = restricted_path
+        else:
+            self.restricted_features = None
+            self.restricted_feature_metadata = None
 
         # 加载图像路径
         with open(data_dir / "data" / "image_paths.json", 'r') as f:
@@ -424,6 +444,7 @@ class RCMDataset(Dataset):
         obs_vision_features = []
         obs_states = []
         obs_oct = []
+        obs_restricted = []
 
         for j in range(self.n_obs_steps):
             hist_idx = i - (self.n_obs_steps - 1 - j)
@@ -448,6 +469,10 @@ class RCMDataset(Dataset):
 
             # 加载状态
             obs_states.append(torch.from_numpy(self.states[hist_idx]))
+            if self.use_restricted_sidecar:
+                obs_restricted.append(
+                    torch.from_numpy(self.restricted_features[hist_idx].copy())
+                )
             oct_feature = np.r_[
                 self.oct_navigation[hist_idx],
                 float(self.oct_navigation_valid[hist_idx]),
@@ -467,6 +492,11 @@ class RCMDataset(Dataset):
         )
         obs_states = torch.stack(obs_states)  # [n_obs_steps, 3]
         obs_oct = torch.stack(obs_oct)  # [n_obs_steps, 4]
+        obs_restricted = (
+            torch.stack(obs_restricted)
+            if self.use_restricted_sidecar
+            else None
+        )
 
         # 加载未来动作序列
         actions = []
@@ -485,6 +515,8 @@ class RCMDataset(Dataset):
             ),
             'action': actions,
         }
+        if self.use_restricted_sidecar:
+            sample['observation.restricted'] = obs_restricted
         if self.use_vision_feature_cache:
             sample['observation.vision_feature'] = obs_vision_features
         else:

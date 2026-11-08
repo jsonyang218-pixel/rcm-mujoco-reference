@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" font-family="Microsoft YaHei, Arial" data-pptx-page-role="cover">
+  <rect id="page-bg" data-pptx-role="background" x="0" y="0" width="1280" height="720" fill="#FFFFFF"/>
+  <path id="measure-grid" data-pptx-role="decoration" d="M72 164H1208 M72 196H1208 M72 464H1208 M72 584H1208 M72 648H1208" fill="none" stroke="#CBD9E2" stroke-width="1"/>
+  <rect id="verdict-band" data-pptx-role="decoration" x="0" y="596" width="1280" height="10" fill="#0B4F8A"/>
+  <rect id="accent-tick" data-pptx-role="decoration" x="72" y="54" width="8" height="92" rx="4" fill="#14988F"/>
+
+  <g id="page-title" data-pptx-bounds="96 44 1112 116">
+    <text x="96" y="88" font-size="44" font-weight="bold" fill="#172633">20 µm 闭环控制已在开发集达成，<tspan x="96" dy="52">外围泛化仍未成立</tspan></text>
+  </g>
+
+  <g id="hero-outcome" data-pptx-bounds="72 196 1136 244">
+    <line x1="72" y1="216" x2="1208" y2="216" stroke="#CBD9E2" stroke-width="1"/>
+    <line x1="446" y1="216" x2="446" y2="416" stroke="#CBD9E2" stroke-width="1"/>
+    <line x1="814" y1="216" x2="814" y2="416" stroke="#CBD9E2" stroke-width="1"/>
+    <text x="72" y="252" font-size="24" font-weight="bold" fill="#526571">闭环精度</text>
+    <text x="72" y="342" font-family="Microsoft YaHei, Consolas" font-size="96" font-weight="bold" fill="#0B4F8A"><tspan font-size="96">20</tspan><tspan font-size="40"> µm</tspan></text>
+    <text x="72" y="386" font-size="28" fill="#172633">连续 3 帧停稳</text>
+    <text x="72" y="418" font-size="22" fill="#526571">20 Hz 单步闭环</text>
+
+    <text x="478" y="252" font-size="24" font-weight="bold" fill="#526571">开发集</text>
+    <text x="478" y="342" font-family="Microsoft YaHei, Consolas" font-size="96" font-weight="bold" fill="#14988F">40/40</text>
+    <text x="478" y="386" font-size="28" fill="#172633">40 个目标全部成功</text>
+    <text x="478" y="418" font-size="22" fill="#526571">样本内机制验证通过</text>
+
+    <text x="846" y="252" font-size="24" font-weight="bold" fill="#526571">最终测试</text>
+    <text x="846" y="342" font-family="Microsoft YaHei, Consolas" font-size="96" font-weight="bold" fill="#B42318">20/180</text>
+    <text x="846" y="386" font-size="28" fill="#172633">外围目标外推失败</text>
+    <text x="846" y="418" font-size="22" fill="#B42318">同一 20 µm 判据，结果反转</text>
+  </g>
+
+  <g id="global-verdict" data-pptx-bounds="72 468 744 136">
+    <text x="72" y="506" font-size="24" font-weight="bold" fill="#0B4F8A">当前判断</text>
+    <text x="72" y="548" font-size="28" font-weight="bold" fill="#172633">机制已在开发集成立，<tspan x="72" dy="36">但尚不能外推为部署能力。</tspan></text>
+  </g>
+
+  <g id="simulation-boundary" data-pptx-bounds="852 468 356 116">
+    <rect x="852" y="472" width="356" height="104" rx="16" fill="#EAF2F7"/>
+    <text x="876" y="510" font-size="22" font-weight="bold" fill="#0B4F8A">证据边界</text>
+    <text x="876" y="544" font-size="22" fill="#172633">MuJoCo 仿真 · 模拟 OCT</text>
+    <text x="876" y="574" font-size="22" fill="#526571">不延伸到真实设备或临床精度</text>
+  </g>
+
+  <g id="page-footer" data-pptx-bounds="72 666 1136 36">
+    <line x1="72" y1="672" x2="1208" y2="672" stroke="#CBD9E2" stroke-width="1"/>
+    <text x="72" y="694" font-size="20" fill="#526571">RCM 眼内注射机器人 · 技术评审</text>
+    <text x="1208" y="694" font-size="20" fill="#526571" text-anchor="end">P01 / 11</text>
+  </g>
+</svg>

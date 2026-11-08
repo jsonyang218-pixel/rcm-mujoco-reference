@@ -1,0 +1,484 @@
+{
+  "schema": "ppt-master.svg-quality-report.v1",
+  "stage": "early",
+  "target": "E:\\30_RESOURCES\\32_课程教程\\医学\\中科院\\rcm-mujoco-reference-ffd7b15d41c51c2d2f8a15596e9575106f81c225\\projects\\rcm_11p_technical_review_ppt169_20261107",
+  "source_fingerprint": {
+    "algorithm": "sha256",
+    "digest": "4934a4e46695a6bf3a4d7f329b11891568ce9edae39868d67eeefe6553d46cea",
+    "file_count": 5,
+    "files": [
+      {
+        "file": "01_cover.svg",
+        "sha256": "dec88f3d7a13a24553b7a2047c5ddc2685fe01a14ed6e98412779a6087c9e673"
+      },
+      {
+        "file": "02_closed_loop.svg",
+        "sha256": "d1b679f469197dd8a09c258b0097875e8eb16118db16613711e589a453a87c3e"
+      },
+      {
+        "file": "03_three_bases.svg",
+        "sha256": "abf178b6e2e9120295cc91a36f6837181bc67dd56712d8130fda3a6785c36bf6"
+      },
+      {
+        "file": "04_diffusion_teacher.svg",
+        "sha256": "8f28616e4b8dd233d6423b3390c9e940abade1663f4a0a0f3d7637f7c91fb3da"
+      },
+      {
+        "file": "05_guided_residual.svg",
+        "sha256": "3074e734c65e26a5154c55b75bd8a8d90f022e5aa01a7a00eac351cd79865ca4"
+      }
+    ]
+  },
+  "summary": {
+    "total": 5,
+    "passed": 3,
+    "warnings": 2,
+    "errors": 0
+  },
+  "issue_types": {},
+  "categories": {
+    "blocking": {
+      "count": 0,
+      "issues": []
+    },
+    "introduced": {
+      "count": 7,
+      "issues": [
+        {
+          "file": "01_cover.svg",
+          "message": "Noncanonical compact authoring: Authoring SVG contains noncanonical or redundant inherited style declarations (4 change(s)); examples (group:attr None -> value hoists the shared value onto that group; child:attr value -> None drops the copy the child now inherits): tspan[15]:font-size '96' -> None; global-verdict:font-weight None -> 'bold'; text[28]:font-weight 'bold' -> None (advisory; normalize with `python3 scripts/compact_svg_styles.py <svg_output> --inplace`, re-stamp pages that carry Chart/Table fallbacks, and rerun the final gate, or leave the explicit form)"
+        },
+        {
+          "file": "03_three_bases.svg",
+          "message": "data-pptx-replace-with marker base-role-matrix: Native PPTX table header style not projected from fallback: columns[].bold (blocks --native-charts-and-tables export)"
+        },
+        {
+          "file": "03_three_bases.svg",
+          "message": "data-pptx-replace-with marker base-role-matrix: Native PPTX table whole row 3 fill #F5F9FB is not projected to cell fill (blocks --native-charts-and-tables export)"
+        },
+        {
+          "file": "03_three_bases.svg",
+          "message": "data-pptx-replace-with marker base-role-matrix: Native PPTX table whole row 4 fill #EAF2F7 is not projected to cell fill (blocks --native-charts-and-tables export)"
+        },
+        {
+          "file": "03_three_bases.svg",
+          "message": "data-pptx-replace-with marker base-role-matrix: Native PPTX table first-column text style not projected from fallback: bold, color #14988F (blocks --native-charts-and-tables export)"
+        },
+        {
+          "file": "03_three_bases.svg",
+          "message": "data-pptx-replace-with marker base-role-matrix: Native PPTX table body text color #14988F/#B42318 is not projected to cell color, defaults.run.color, or style.body_text (blocks --native-charts-and-tables export)"
+        },
+        {
+          "file": "03_three_bases.svg",
+          "message": "data-pptx-replace-with marker base-role-matrix: Native PPTX table border topology not projected: fallback rules cover only 28 of 40 cardinal cell edges, but payload has only a uniform border (blocks --native-charts-and-tables export)"
+        }
+      ]
+    },
+    "inherited": {
+      "count": 0,
+      "issues": []
+    },
+    "source-import": {
+      "count": 0,
+      "summary": {
+        "warning_count": 0,
+        "by_code": {}
+      }
+    }
+  },
+  "drift": {
+    "colors": {
+      "#F5F9FB": [
+        "03_three_bases.svg"
+      ],
+      "#F8FBFD": [
+        "04_diffusion_teacher.svg",
+        "05_guided_residual.svg"
+      ]
+    },
+    "fonts": {},
+    "sizes": {
+      "40": [
+        "01_cover.svg"
+      ]
+    }
+  },
+  "carrier_receipt": {
+    "scope": "informational-not-a-quota",
+    "pages": 5,
+    "totals": {
+      "text_elements": 112,
+      "image_placements": 0,
+      "icons": 1,
+      "svg_geometry_elements": 84,
+      "preset_shapes": 0,
+      "page_frame_elements": 16,
+      "marker_uses": 13,
+      "inline_emphasis_runs": 2,
+      "gradient_uses": 0,
+      "filter_uses": 0,
+      "text_effects": 0
+    },
+    "pages_with": {
+      "images": 0,
+      "icons": 1,
+      "presets": 0,
+      "charts": 0,
+      "tables": 1,
+      "formulas": 0,
+      "inline_emphasis_runs": 1,
+      "gradient_uses": 0,
+      "filter_uses": 0,
+      "text_effects": 0
+    },
+    "relationship_pages": 5,
+    "geometry_elements": {
+      "circle": 0,
+      "ellipse": 0,
+      "line": 40,
+      "path": 6,
+      "polygon": 0,
+      "polyline": 0,
+      "rect": 38
+    },
+    "preset_names": {},
+    "native_objects": {
+      "chart": 0,
+      "formula_block": 0,
+      "formula_inline": 0,
+      "other": 0,
+      "table": 1
+    },
+    "image_page_max_frame_share_range": []
+  },
+  "project_issues": {
+    "template": [],
+    "animation": [],
+    "illustration": [],
+    "communication_trace": [],
+    "pptx_structure": []
+  },
+  "files": [
+    {
+      "file": "01_cover.svg",
+      "path": "projects\\rcm_11p_technical_review_ppt169_20261107\\svg_output\\01_cover.svg",
+      "exists": true,
+      "errors": [],
+      "warnings": [
+        "Noncanonical compact authoring: Authoring SVG contains noncanonical or redundant inherited style declarations (4 change(s)); examples (group:attr None -> value hoists the shared value onto that group; child:attr value -> None drops the copy the child now inherits): tspan[15]:font-size '96' -> None; global-verdict:font-weight None -> 'bold'; text[28]:font-weight 'bold' -> None (advisory; normalize with `python3 scripts/compact_svg_styles.py <svg_output> --inplace`, re-stamp pages that carry Chart/Table fallbacks, and rerun the final gate, or leave the explicit form)"
+      ],
+      "info": {
+        "viewbox": "0 0 1280 720",
+        "carrier_receipt": {
+          "text_elements": 20,
+          "images": {
+            "placements": 0,
+            "files": [],
+            "max_frame_share": 0.0
+          },
+          "icons": 0,
+          "effects": {
+            "inline_emphasis_runs": 2,
+            "gradient_uses": 0,
+            "filter_uses": 0,
+            "text_effects": 0
+          },
+          "geometry": {
+            "svg_elements": {
+              "rect": 4,
+              "circle": 0,
+              "ellipse": 0,
+              "line": 4,
+              "polyline": 0,
+              "polygon": 0,
+              "path": 1
+            },
+            "preset_shapes": 0,
+            "preset_names": {},
+            "page_frame_elements": 4,
+            "marker_uses": {
+              "start": 0,
+              "mid": 0,
+              "end": 0
+            }
+          },
+          "native_objects": {
+            "chart": 0,
+            "table": 0,
+            "formula_block": 0,
+            "formula_inline": 0,
+            "other": 0
+          }
+        },
+        "fonts": [
+          "Microsoft YaHei, Arial",
+          "Microsoft YaHei, Consolas"
+        ],
+        "text_elements": 20,
+        "tspan_elements": 4,
+        "sparse_typography_sizes": {
+          "40": 1
+        }
+      },
+      "passed": true,
+      "source_sha256": "dec88f3d7a13a24553b7a2047c5ddc2685fe01a14ed6e98412779a6087c9e673"
+    },
+    {
+      "file": "02_closed_loop.svg",
+      "path": "projects\\rcm_11p_technical_review_ppt169_20261107\\svg_output\\02_closed_loop.svg",
+      "exists": true,
+      "errors": [],
+      "warnings": [],
+      "info": {
+        "viewbox": "0 0 1280 720",
+        "carrier_receipt": {
+          "text_elements": 27,
+          "images": {
+            "placements": 0,
+            "files": [],
+            "max_frame_share": 0.0
+          },
+          "icons": 1,
+          "effects": {
+            "inline_emphasis_runs": 0,
+            "gradient_uses": 0,
+            "filter_uses": 0,
+            "text_effects": 0
+          },
+          "geometry": {
+            "svg_elements": {
+              "rect": 8,
+              "circle": 0,
+              "ellipse": 0,
+              "line": 11,
+              "polyline": 0,
+              "polygon": 0,
+              "path": 2
+            },
+            "preset_shapes": 0,
+            "preset_names": {},
+            "page_frame_elements": 3,
+            "marker_uses": {
+              "start": 0,
+              "mid": 0,
+              "end": 7
+            }
+          },
+          "native_objects": {
+            "chart": 0,
+            "table": 0,
+            "formula_block": 0,
+            "formula_inline": 0,
+            "other": 0
+          }
+        },
+        "fonts": [
+          "Microsoft YaHei, Arial"
+        ],
+        "text_elements": 27,
+        "tspan_elements": 1
+      },
+      "passed": true,
+      "source_sha256": "d1b679f469197dd8a09c258b0097875e8eb16118db16613711e589a453a87c3e"
+    },
+    {
+      "file": "03_three_bases.svg",
+      "path": "projects\\rcm_11p_technical_review_ppt169_20261107\\svg_output\\03_three_bases.svg",
+      "exists": true,
+      "errors": [],
+      "warnings": [
+        "data-pptx-replace-with marker base-role-matrix: Native PPTX table header style not projected from fallback: columns[].bold (blocks --native-charts-and-tables export)",
+        "data-pptx-replace-with marker base-role-matrix: Native PPTX table whole row 3 fill #F5F9FB is not projected to cell fill (blocks --native-charts-and-tables export)",
+        "data-pptx-replace-with marker base-role-matrix: Native PPTX table whole row 4 fill #EAF2F7 is not projected to cell fill (blocks --native-charts-and-tables export)",
+        "data-pptx-replace-with marker base-role-matrix: Native PPTX table first-column text style not projected from fallback: bold, color #14988F (blocks --native-charts-and-tables export)",
+        "data-pptx-replace-with marker base-role-matrix: Native PPTX table body text color #14988F/#B42318 is not projected to cell color, defaults.run.color, or style.body_text (blocks --native-charts-and-tables export)",
+        "data-pptx-replace-with marker base-role-matrix: Native PPTX table border topology not projected: fallback rules cover only 28 of 40 cardinal cell edges, but payload has only a uniform border (blocks --native-charts-and-tables export)"
+      ],
+      "info": {
+        "viewbox": "0 0 1280 720",
+        "carrier_receipt": {
+          "text_elements": 24,
+          "images": {
+            "placements": 0,
+            "files": [],
+            "max_frame_share": 0.0
+          },
+          "icons": 0,
+          "effects": {
+            "inline_emphasis_runs": 0,
+            "gradient_uses": 0,
+            "filter_uses": 0,
+            "text_effects": 0
+          },
+          "geometry": {
+            "svg_elements": {
+              "rect": 6,
+              "circle": 0,
+              "ellipse": 0,
+              "line": 9,
+              "polyline": 0,
+              "polygon": 0,
+              "path": 1
+            },
+            "preset_shapes": 0,
+            "preset_names": {},
+            "page_frame_elements": 3,
+            "marker_uses": {
+              "start": 0,
+              "mid": 0,
+              "end": 0
+            }
+          },
+          "native_objects": {
+            "chart": 0,
+            "table": 1,
+            "formula_block": 0,
+            "formula_inline": 0,
+            "other": 0
+          }
+        },
+        "fonts": [
+          "Microsoft YaHei, Arial",
+          "Microsoft YaHei, Cambria Math",
+          "Microsoft YaHei, Consolas"
+        ],
+        "text_elements": 24,
+        "tspan_elements": 1,
+        "contextual_values": {
+          "colors": [
+            "#F5F9FB"
+          ]
+        }
+      },
+      "passed": true,
+      "source_sha256": "abf178b6e2e9120295cc91a36f6837181bc67dd56712d8130fda3a6785c36bf6"
+    },
+    {
+      "file": "04_diffusion_teacher.svg",
+      "path": "projects\\rcm_11p_technical_review_ppt169_20261107\\svg_output\\04_diffusion_teacher.svg",
+      "exists": true,
+      "errors": [],
+      "warnings": [],
+      "info": {
+        "viewbox": "0 0 1280 720",
+        "carrier_receipt": {
+          "text_elements": 20,
+          "images": {
+            "placements": 0,
+            "files": [],
+            "max_frame_share": 0.0
+          },
+          "icons": 0,
+          "effects": {
+            "inline_emphasis_runs": 0,
+            "gradient_uses": 0,
+            "filter_uses": 0,
+            "text_effects": 0
+          },
+          "geometry": {
+            "svg_elements": {
+              "rect": 13,
+              "circle": 0,
+              "ellipse": 0,
+              "line": 7,
+              "polyline": 0,
+              "polygon": 0,
+              "path": 1
+            },
+            "preset_shapes": 0,
+            "preset_names": {},
+            "page_frame_elements": 3,
+            "marker_uses": {
+              "start": 0,
+              "mid": 0,
+              "end": 6
+            }
+          },
+          "native_objects": {
+            "chart": 0,
+            "table": 0,
+            "formula_block": 0,
+            "formula_inline": 0,
+            "other": 0
+          }
+        },
+        "fonts": [
+          "Microsoft YaHei, Arial"
+        ],
+        "text_elements": 20,
+        "tspan_elements": 1,
+        "contextual_values": {
+          "colors": [
+            "#F8FBFD"
+          ]
+        }
+      },
+      "passed": true,
+      "source_sha256": "8f28616e4b8dd233d6423b3390c9e940abade1663f4a0a0f3d7637f7c91fb3da"
+    },
+    {
+      "file": "05_guided_residual.svg",
+      "path": "projects\\rcm_11p_technical_review_ppt169_20261107\\svg_output\\05_guided_residual.svg",
+      "exists": true,
+      "errors": [],
+      "warnings": [],
+      "info": {
+        "viewbox": "0 0 1280 720",
+        "carrier_receipt": {
+          "text_elements": 21,
+          "images": {
+            "placements": 0,
+            "files": [],
+            "max_frame_share": 0.0
+          },
+          "icons": 0,
+          "effects": {
+            "inline_emphasis_runs": 0,
+            "gradient_uses": 0,
+            "filter_uses": 0,
+            "text_effects": 0
+          },
+          "geometry": {
+            "svg_elements": {
+              "rect": 7,
+              "circle": 0,
+              "ellipse": 0,
+              "line": 9,
+              "polyline": 0,
+              "polygon": 0,
+              "path": 1
+            },
+            "preset_shapes": 0,
+            "preset_names": {},
+            "page_frame_elements": 3,
+            "marker_uses": {
+              "start": 0,
+              "mid": 0,
+              "end": 0
+            }
+          },
+          "native_objects": {
+            "chart": 0,
+            "table": 0,
+            "formula_block": 0,
+            "formula_inline": 0,
+            "other": 0
+          }
+        },
+        "fonts": [
+          "Microsoft YaHei, Arial",
+          "Microsoft YaHei, Cambria Math"
+        ],
+        "text_elements": 21,
+        "tspan_elements": 1,
+        "contextual_values": {
+          "colors": [
+            "#F8FBFD"
+          ]
+        }
+      },
+      "passed": true,
+      "source_sha256": "3074e734c65e26a5154c55b75bd8a8d90f022e5aa01a7a00eac351cd79865ca4"
+    }
+  ]
+}

@@ -1,0 +1,732 @@
+{
+  "interpretation": {
+    "fine_channel_bias_is_above_20um": false,
+    "fine_channel_was_available_inside_episodes": true,
+    "primary_issue_is_policy_hold_stability": true,
+    "target_location_is_out_of_development_distribution": true
+  },
+  "question": "Is the final-test failure explained by target distribution shift, fine-channel bias above 20 um, or hold failure?",
+  "restricted_bias": {
+    "development": {
+      "coarse_bias_norm_um": {
+        "count": 40,
+        "max": 466.23118093083986,
+        "mean": 295.2122661792956,
+        "min": 66.69708355556956,
+        "p05": 169.08308576319794,
+        "p50": 299.21286911376296,
+        "p95": 420.93764426071135
+      },
+      "fine_bias_above_20um_episodes": 0,
+      "fine_bias_norm_um": {
+        "count": 40,
+        "max": 3.2438788606829427,
+        "mean": 2.0544775451354247,
+        "min": 0.794387270884212,
+        "p05": 1.2258455599840739,
+        "p50": 2.118813121275175,
+        "p95": 2.653986564327701
+      }
+    },
+    "final_test": {
+      "coarse_bias_norm_um": {
+        "count": 180,
+        "max": 477.33913020488995,
+        "mean": 278.28452307338216,
+        "min": 49.06424894698467,
+        "p05": 99.1854833557338,
+        "p50": 284.97870249682046,
+        "p95": 412.4113407558665
+      },
+      "fine_bias_above_20um_episodes": 0,
+      "fine_bias_norm_um": {
+        "count": 180,
+        "max": 3.31152180269434,
+        "mean": 1.9345255947524493,
+        "min": 0.4905313997988366,
+        "p05": 0.9446492457561931,
+        "p50": 1.9980148568659435,
+        "p95": 2.860989226174716
+      }
+    },
+    "ks_tests": {
+      "coarse_bias_norm_um": {
+        "pvalue": 0.5660058880245756,
+        "statistic": 0.13333333333333333
+      },
+      "fine_bias_norm_um": {
+        "pvalue": 0.18547806614370058,
+        "statistic": 0.18611111111111112
+      }
+    }
+  },
+  "schema_version": 1,
+  "scope": "Simulation-only post-hoc failure analysis. It does not tune or retest the already-used final targets.",
+  "source_sha256": {
+    "stage4_episodes": [
+      {
+        "path": "outputs\\restricted_stage4_20261106\\distilled_shard1.json",
+        "sha256": "E9272005558967ACA0B795DAFF807C690EE17E3DF95812831159902D8F390DDC"
+      },
+      {
+        "path": "outputs\\restricted_stage4_20261106\\distilled_shard2.json",
+        "sha256": "6C93F4BABD1AB66DF3C58166A52120B76AABBAEDEB4C506C3083804270D7E0C1"
+      },
+      {
+        "path": "outputs\\restricted_stage4_20261106\\distilled_shard3.json",
+        "sha256": "5AC81D78690C1E7FC9F33C67B9EC4F95EF66CC64BDC9EBD93CDC53AC6A089F33"
+      }
+    ],
+    "stage4_summary": "5763CC8DBF45FC51DE912C1937E061137710BA1F159FA081A0417EBD144C5B19",
+    "target_manifest": "F9DBED6BED720D4B4C931E411F8C5B324ADF397F68D5B8AEF7BD177D4D8CB7BB"
+  },
+  "stage0_perception_floor": {
+    "closed_loop_success_rate_at_20um": 0.965,
+    "fine_p95_um": 4.9796105108320665,
+    "near_target_p95_um": 3.7323280031177974,
+    "selected_threshold_um": 20.0
+  },
+  "stage4_failure_modes": {
+    "NEAR_20_TO_30UM": {
+      "episodes": 8,
+      "fallback_fraction": {
+        "COARSE_FALLBACK": {
+          "median_fraction": 0.0,
+          "p95_fraction": 0.0
+        },
+        "FINE_COAST": {
+          "median_fraction": 0.0,
+          "p95_fraction": 0.0
+        },
+        "FINE_TRACKING": {
+          "median_fraction": 0.9955849674476629,
+          "p95_fraction": 0.9966264367816092
+        },
+        "PRECISION_HOLD": {
+          "median_fraction": 0.004415032552337141,
+          "p95_fraction": 0.004642614312425633
+        }
+      },
+      "final_error_um": {
+        "count": 8,
+        "max": 1805.5999948304893,
+        "mean": 250.77153890515737,
+        "min": 22.448370820923767,
+        "p05": 22.859660216465947,
+        "p50": 29.363552889538234,
+        "p95": 1186.502573215862
+      },
+      "minimum_error_um": {
+        "count": 8,
+        "max": 27.831128175711964,
+        "mean": 24.377796494926532,
+        "min": 21.78069308739744,
+        "p05": 22.014380294131655,
+        "p50": 24.25279125019408,
+        "p95": 27.14854460120945
+      },
+      "steps": {
+        "count": 8,
+        "max": 300.0,
+        "mean": 242.375,
+        "min": 212.0,
+        "p05": 215.5,
+        "p50": 226.5,
+        "p95": 296.5
+      },
+      "target_ids": [
+        "target_3e74816640a0",
+        "target_75ae291081cf",
+        "target_82490af1aa88",
+        "target_d6e6c91b1c41"
+      ]
+    },
+    "NEAR_30_TO_50UM": {
+      "episodes": 41,
+      "fallback_fraction": {
+        "COARSE_FALLBACK": {
+          "median_fraction": 0.0,
+          "p95_fraction": 0.0
+        },
+        "FINE_COAST": {
+          "median_fraction": 0.0,
+          "p95_fraction": 0.32599118942731276
+        },
+        "FINE_TRACKING": {
+          "median_fraction": 0.9951690821256038,
+          "p95_fraction": 0.9952830188679245
+        },
+        "PRECISION_HOLD": {
+          "median_fraction": 0.004830917874396135,
+          "p95_fraction": 0.7942583732057417
+        }
+      },
+      "final_error_um": {
+        "count": 41,
+        "max": 2352.340454515103,
+        "mean": 720.341366742805,
+        "min": 39.53083616195611,
+        "p05": 44.745954353221464,
+        "p50": 106.14629396861251,
+        "p95": 2343.8534063335487
+      },
+      "minimum_error_um": {
+        "count": 41,
+        "max": 49.64351819580386,
+        "mean": 39.52020078017728,
+        "min": 30.239027784846556,
+        "p05": 32.78634749037559,
+        "p50": 39.757348461665835,
+        "p95": 48.672381968160806
+      },
+      "steps": {
+        "count": 41,
+        "max": 330.0,
+        "mean": 215.58536585365854,
+        "min": 206.0,
+        "p05": 206.0,
+        "p50": 208.0,
+        "p95": 234.0
+      },
+      "target_ids": [
+        "target_0c2e20651ed6",
+        "target_0c52aa02714f",
+        "target_17f39d8d46df",
+        "target_26c937eebf31",
+        "target_3723a3ffa293",
+        "target_3e74816640a0",
+        "target_50abbc5eff3a",
+        "target_7af5cc6629ff",
+        "target_82619e7f93ca",
+        "target_a682c2fe6a5f",
+        "target_a8c378952d2d",
+        "target_b8a5ad98b82e",
+        "target_c37d280aa908",
+        "target_cb235bdd5bb9",
+        "target_e829407031c2",
+        "target_ec4904699a2c"
+      ]
+    },
+    "NEAR_50_TO_100UM": {
+      "episodes": 45,
+      "fallback_fraction": {
+        "COARSE_FALLBACK": {
+          "median_fraction": 0.0,
+          "p95_fraction": 0.0
+        },
+        "FINE_COAST": {
+          "median_fraction": 0.0,
+          "p95_fraction": 0.00980392156862745
+        },
+        "FINE_TRACKING": {
+          "median_fraction": 0.9951456310679612,
+          "p95_fraction": 0.9952153110047847
+        },
+        "PRECISION_HOLD": {
+          "median_fraction": 0.0048543689320388345,
+          "p95_fraction": 0.9803921568627451
+        }
+      },
+      "final_error_um": {
+        "count": 45,
+        "max": 2215.744728275716,
+        "mean": 751.4292011648942,
+        "min": 77.57753701564928,
+        "p05": 82.56211177374269,
+        "p50": 138.33120401032653,
+        "p95": 2179.945248841552
+      },
+      "minimum_error_um": {
+        "count": 45,
+        "max": 83.46355170399387,
+        "mean": 70.19010333651279,
+        "min": 50.689848816443764,
+        "p05": 52.98481785097963,
+        "p50": 73.08477575707528,
+        "p95": 83.07635554336275
+      },
+      "steps": {
+        "count": 45,
+        "max": 209.0,
+        "mean": 206.46666666666667,
+        "min": 204.0,
+        "p05": 204.0,
+        "p50": 206.0,
+        "p95": 209.0
+      },
+      "target_ids": [
+        "target_298f384b76a0",
+        "target_3723a3ffa293",
+        "target_4886c8469100",
+        "target_53a7c55d273a",
+        "target_55ca762f6845",
+        "target_6015156f6453",
+        "target_82576b94274b",
+        "target_82619e7f93ca",
+        "target_8ad2e8b7e534",
+        "target_8e4ff1b37ffc",
+        "target_9af5fd3ae09f",
+        "target_a260626f17e7",
+        "target_d0f32f384c67",
+        "target_eee3e177bfc6",
+        "target_f483815e470e",
+        "target_fee4dcd3a3ba"
+      ]
+    },
+    "NO_APPROACH": {
+      "episodes": 6,
+      "fallback_fraction": {
+        "COARSE_FALLBACK": {
+          "median_fraction": 0.0,
+          "p95_fraction": 0.0
+        },
+        "FINE_COAST": {
+          "median_fraction": 0.0,
+          "p95_fraction": 0.0
+        },
+        "FINE_TRACKING": {
+          "median_fraction": 0.4975124378109453,
+          "p95_fraction": 0.9950248756218906
+        },
+        "PRECISION_HOLD": {
+          "median_fraction": 0.5024875621890548,
+          "p95_fraction": 1.0
+        }
+      },
+      "final_error_um": {
+        "count": 6,
+        "max": 1867.1741501506726,
+        "mean": 976.7521660661947,
+        "min": 100.00535148014042,
+        "p05": 100.00535148014042,
+        "p50": 969.5703433094048,
+        "p95": 1863.927476779856
+      },
+      "minimum_error_um": {
+        "count": 6,
+        "max": 100.00535148014042,
+        "mean": 100.00411069987821,
+        "min": 100.002869919616,
+        "p05": 100.002869919616,
+        "p50": 100.00411069987821,
+        "p95": 100.00535148014042
+      },
+      "steps": {
+        "count": 6,
+        "max": 201.0,
+        "mean": 201.0,
+        "min": 201.0,
+        "p05": 201.0,
+        "p50": 201.0,
+        "p95": 201.0
+      },
+      "target_ids": [
+        "target_1f816fef9298",
+        "target_6d9506dc6591"
+      ]
+    },
+    "REACHED_20UM_BUT_DID_NOT_HOLD": {
+      "episodes": 51,
+      "fallback_fraction": {
+        "COARSE_FALLBACK": {
+          "median_fraction": 0.0,
+          "p95_fraction": 0.0
+        },
+        "FINE_COAST": {
+          "median_fraction": 0.0,
+          "p95_fraction": 0.0
+        },
+        "FINE_TRACKING": {
+          "median_fraction": 0.9952153110047847,
+          "p95_fraction": 0.9953488372093023
+        },
+        "PRECISION_HOLD": {
+          "median_fraction": 0.004784688995215311,
+          "p95_fraction": 0.004866208856263319
+        }
+      },
+      "final_error_um": {
+        "count": 51,
+        "max": 653.0945748685559,
+        "mean": 206.26505445545408,
+        "min": 21.439189288845913,
+        "p05": 25.33204048752617,
+        "p50": 96.29399041289506,
+        "p95": 588.9503300108993
+      },
+      "minimum_error_um": {
+        "count": 51,
+        "max": 19.68744671761217,
+        "mean": 8.423761040311142,
+        "min": 1.1621243466172977,
+        "p05": 2.3366834434072925,
+        "p50": 5.542640963028488,
+        "p95": 18.23975420972567
+      },
+      "steps": {
+        "count": 51,
+        "max": 255.0,
+        "mean": 210.80392156862746,
+        "min": 205.0,
+        "p05": 205.5,
+        "p50": 209.0,
+        "p95": 215.0
+      },
+      "target_ids": [
+        "target_01926700705b",
+        "target_2699bf8c03e3",
+        "target_2bb098b1f192",
+        "target_5a89bf6d89f5",
+        "target_642b059d2269",
+        "target_6e0b8e35a70c",
+        "target_6ecbefa47f0c",
+        "target_75ae291081cf",
+        "target_7a06180dc320",
+        "target_811563633800",
+        "target_855f27682bd9",
+        "target_9d8a7bee7c19",
+        "target_c44936528a65",
+        "target_cba92745a478",
+        "target_d6e6c91b1c41",
+        "target_d9734f9a841f",
+        "target_dd551f6424a6",
+        "target_ef3f70b0366c"
+      ]
+    },
+    "SUCCESS_20UM": {
+      "episodes": 20,
+      "fallback_fraction": {
+        "COARSE_FALLBACK": {
+          "median_fraction": 0.0,
+          "p95_fraction": 0.0
+        },
+        "FINE_COAST": {
+          "median_fraction": 0.0,
+          "p95_fraction": 0.0
+        },
+        "FINE_TRACKING": {
+          "median_fraction": 0.9953810377197474,
+          "p95_fraction": 0.9955818679023131
+        },
+        "PRECISION_HOLD": {
+          "median_fraction": 0.004618962280252603,
+          "p95_fraction": 0.032311827956989246
+        }
+      },
+      "final_error_um": {
+        "count": 20,
+        "max": 22.217489473100994,
+        "mean": 8.085395336370691,
+        "min": 0.15606496863741062,
+        "p05": 1.0094975789063232,
+        "p50": 6.82507809825227,
+        "p95": 18.868488343977752
+      },
+      "minimum_error_um": {
+        "count": 20,
+        "max": 6.713713799636428,
+        "mean": 1.4203416584393669,
+        "min": 0.11034819187549409,
+        "p05": 0.11034819187549409,
+        "p50": 0.6336749260650122,
+        "p95": 5.742291783550305
+      },
+      "steps": {
+        "count": 20,
+        "max": 233.0,
+        "mean": 155.25,
+        "min": 30.0,
+        "p05": 30.95,
+        "p50": 216.5,
+        "p95": 226.35
+      },
+      "target_ids": [
+        "target_1adb693fd65f",
+        "target_3d35de79c60b",
+        "target_6741ac1e349e",
+        "target_a463f01ea0f0",
+        "target_df6561984372",
+        "target_e82427b6c741",
+        "target_e829407031c2"
+      ]
+    },
+    "UNSAFE_INITIALIZATION": {
+      "episodes": 9,
+      "fallback_fraction": {
+        "COARSE_FALLBACK": {
+          "median_fraction": 0.0,
+          "p95_fraction": 0.0
+        },
+        "FINE_COAST": {
+          "median_fraction": 0.0,
+          "p95_fraction": 0.0
+        },
+        "FINE_TRACKING": {
+          "median_fraction": 0.0,
+          "p95_fraction": 0.0
+        },
+        "PRECISION_HOLD": {
+          "median_fraction": 0.0,
+          "p95_fraction": 0.0
+        }
+      },
+      "final_error_um": {
+        "count": 9,
+        "max": 30000.0,
+        "mean": 30000.0,
+        "min": 30000.0,
+        "p05": 30000.0,
+        "p50": 30000.0,
+        "p95": 30000.0
+      },
+      "minimum_error_um": {
+        "count": 9,
+        "max": 30000.0,
+        "mean": 30000.0,
+        "min": 30000.0,
+        "p05": 30000.0,
+        "p50": 30000.0,
+        "p95": 30000.0
+      },
+      "steps": {
+        "count": 9,
+        "max": 1.0,
+        "mean": 1.0,
+        "min": 1.0,
+        "p05": 1.0,
+        "p50": 1.0,
+        "p95": 1.0
+      },
+      "target_ids": [
+        "target_0d19682c3d13",
+        "target_1dd120604629",
+        "target_a38bd1474291"
+      ]
+    }
+  },
+  "target_distribution": {
+    "development": {
+      "distance_from_eye_center_mm": {
+        "count": 40,
+        "max": 11.999996698709568,
+        "mean": 11.981234721011138,
+        "min": 11.932343603532265,
+        "p05": 11.948625422107652,
+        "p50": 11.988207060593963,
+        "p95": 11.999568925109669
+      },
+      "distance_to_ellipsoid_wall_um": {
+        "count": 40,
+        "max": 0.0006182830727397004,
+        "mean": 0.0002697110585411777,
+        "min": 5.346200704359205e-07,
+        "p05": 4.263547725980033e-06,
+        "p50": 0.0002680418401124207,
+        "p95": 0.0004980635087192818
+      },
+      "normalized_eye_local_z": {
+        "count": 40,
+        "max": 0.9995539741350292,
+        "mean": 0.9446335876897042,
+        "min": 0.9006365959695856,
+        "p05": 0.9062344250692095,
+        "p50": 0.9438689641303345,
+        "p95": 0.9892184502537733
+      },
+      "polar_angle_from_posterior_axis_deg": {
+        "count": 40,
+        "max": 25.758125935580306,
+        "mean": 18.34492936962453,
+        "min": 1.711371084653413,
+        "p05": 8.418308477280142,
+        "p50": 19.287062613704506,
+        "p95": 25.00993750981509
+      },
+      "robot_xyz_mm": {
+        "x": {
+          "count": 40,
+          "max": 5.21479,
+          "mean": 0.5494815500000001,
+          "min": -4.895777,
+          "p05": -4.3208455500000005,
+          "p50": 0.512551,
+          "p95": 4.82249925
+        },
+        "y": {
+          "count": 40,
+          "max": 9.264065,
+          "mean": 5.6276527000000005,
+          "min": 1.296112,
+          "p05": 2.39971425,
+          "p50": 5.7001535,
+          "p95": 8.843373799999998
+        },
+        "z": {
+          "count": 40,
+          "max": 23.608149,
+          "mean": 22.646985425,
+          "min": 21.548467,
+          "p05": 21.63981845,
+          "p50": 22.643127,
+          "p95": 23.5918463
+        }
+      }
+    },
+    "development_to_final_nearest_mm": {
+      "minimum": 1.018658312042365,
+      "p50": 2.4022020314404555,
+      "p95": 4.288805242859267
+    },
+    "final_test": {
+      "distance_from_eye_center_mm": {
+        "count": 60,
+        "max": 11.999999992681728,
+        "mean": 11.927718666371819,
+        "min": 11.834180501758787,
+        "p05": 11.844661273391926,
+        "p50": 11.928612593119084,
+        "p95": 11.999154110173869
+      },
+      "distance_to_ellipsoid_wall_um": {
+        "count": 60,
+        "max": 0.0005444758324757437,
+        "mean": 0.00023273196653554132,
+        "min": 7.663191969875527e-06,
+        "p05": 2.8078404468168117e-05,
+        "p50": 0.00017781774777625436,
+        "p95": 0.0005021560739837393
+      },
+      "normalized_eye_local_z": {
+        "count": 60,
+        "max": 0.882161190507743,
+        "mean": 0.8351028449637105,
+        "min": 0.8000630368836622,
+        "p05": 0.8004906137305622,
+        "p50": 0.8367460869790163,
+        "p95": 0.8716992359020906
+      },
+      "polar_angle_from_posterior_axis_deg": {
+        "count": 60,
+        "max": 36.86388057768016,
+        "mean": 33.27351784815249,
+        "min": 28.095829016322256,
+        "p05": 29.343282921760565,
+        "p50": 33.201431273489305,
+        "p95": 36.82302167183007
+      },
+      "robot_xyz_mm": {
+        "x": {
+          "count": 60,
+          "max": 7.177092,
+          "mean": -0.06890058333333343,
+          "min": -7.103577,
+          "p05": -6.485872949999999,
+          "p50": -0.1302315,
+          "p95": 6.78571675
+        },
+        "y": {
+          "count": 60,
+          "max": 11.650119,
+          "mean": 5.288604233333333,
+          "min": -1.278783,
+          "p05": -0.7721939999999999,
+          "p50": 5.2156065,
+          "p95": 11.2922447
+        },
+        "z": {
+          "count": 60,
+          "max": 23.170707,
+          "mean": 21.3768096,
+          "min": 19.492888,
+          "p05": 19.5953142,
+          "p50": 21.4582665,
+          "p95": 23.00984945
+        }
+      }
+    },
+    "ks_tests_development_vs_final": {
+      "normalized_z": {
+        "pvalue": 1.4549439350345037e-28,
+        "statistic": 1.0
+      },
+      "polar_angle_deg": {
+        "pvalue": 1.4549439350345037e-28,
+        "statistic": 1.0
+      },
+      "surface_error_um": {
+        "pvalue": 0.028819402194378795,
+        "statistic": 0.2916666666666667
+      },
+      "x_mm": {
+        "pvalue": 0.07161444615420261,
+        "statistic": 0.25833333333333336
+      },
+      "y_mm": {
+        "pvalue": 0.01033158607810265,
+        "statistic": 0.325
+      },
+      "z_mm": {
+        "pvalue": 3.8172654752817283e-07,
+        "statistic": 0.55
+      }
+    },
+    "region_separation": {
+      "final_all_above_development_maximum_polar_angle": true,
+      "final_all_below_development_minimum_normalized_z": true
+    },
+    "within_development_nearest_mm": {
+      "minimum": 0.2859332276266616,
+      "p50": 0.772229801823247,
+      "p95": 1.5121488508555985
+    },
+    "within_final_nearest_mm": {
+      "minimum": 1.0001668417824099,
+      "p50": 1.0677906025963249,
+      "p95": 1.2543566739822039
+    },
+    "within_final_target_gradient": {
+      "angle_bins": [
+        {
+          "angle_range_deg": [
+            28.0,
+            31.0
+          ],
+          "mean_target_success_rate_20um": 0.303030303030303,
+          "targets": 22
+        },
+        {
+          "angle_range_deg": [
+            31.0,
+            33.0
+          ],
+          "mean_target_success_rate_20um": 0.0,
+          "targets": 7
+        },
+        {
+          "angle_range_deg": [
+            33.0,
+            35.0
+          ],
+          "mean_target_success_rate_20um": 0.0,
+          "targets": 9
+        },
+        {
+          "angle_range_deg": [
+            35.0,
+            38.0
+          ],
+          "mean_target_success_rate_20um": 0.0,
+          "targets": 22
+        }
+      ],
+      "spearman_angle_vs_target_minimum_error_p50_um": {
+        "pvalue": 1.5151032086291187e-05,
+        "rho": 0.5270645778951633
+      },
+      "spearman_angle_vs_target_success_rate_20um": {
+        "pvalue": 0.00021642788859285305,
+        "rho": -0.460138818011624
+      }
+    }
+  }
+}

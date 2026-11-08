@@ -1,0 +1,134 @@
+{
+  "acceptance": {
+    "no_safety_limited_steps": true,
+    "success_rate_at_least_0_95": true,
+    "uncontrolled_over_30mm_under_5": true
+  },
+  "extrinsic_defect_audit": {
+    "configuration_updated": true,
+    "dagger_recollected": true,
+    "root_cause": "legacy Reference camera pose was used instead of RCMSceneV9.eye_internal",
+    "sidecars_rebuilt": true
+  },
+  "paired_against_dagger_only": {
+    "velocity": {
+      "baseline_final_error_p95_um": 16.67408901753854,
+      "baseline_success_rate": 1.0,
+      "candidate_final_error_p95_um": 83.59972593347571,
+      "candidate_success_rate": 0.85,
+      "exact_mcnemar_p": 0.03125,
+      "mcnemar_baseline_only": 6,
+      "mcnemar_candidate_only": 0,
+      "paired_episodes": 40,
+      "paired_error_difference_bootstrap_95_um": [
+        3.7539811732838455,
+        13.357280172061035
+      ],
+      "paired_error_difference_mean_um": 8.96841974944283,
+      "paired_targets": 40,
+      "relative_mean_error_improvement": -1.292929562630595,
+      "relative_p95_error_improvement": -4.013750726983755,
+      "success_difference_bootstrap_95": [
+        -0.23076923076923078,
+        -0.07142857142857142
+      ],
+      "success_rate_difference": -0.15
+    },
+    "velocity_residual_cap": {
+      "baseline_final_error_p95_um": 16.67408901753854,
+      "baseline_success_rate": 1.0,
+      "candidate_final_error_p95_um": 17.116054281093398,
+      "candidate_success_rate": 0.95,
+      "exact_mcnemar_p": 0.5,
+      "mcnemar_baseline_only": 2,
+      "mcnemar_candidate_only": 0,
+      "paired_episodes": 40,
+      "paired_error_difference_bootstrap_95_um": [
+        -0.97454942177914,
+        8.079562889238037
+      ],
+      "paired_error_difference_mean_um": 4.175869129581504,
+      "paired_targets": 40,
+      "relative_mean_error_improvement": -0.6020129296075645,
+      "relative_p95_error_improvement": -0.026506111553679323,
+      "success_difference_bootstrap_95": [
+        -0.08695652173913043,
+        0.0
+      ],
+      "success_rate_difference": -0.05
+    },
+    "velocity_residual_cap_stop": {
+      "baseline_final_error_p95_um": 16.67408901753854,
+      "baseline_success_rate": 1.0,
+      "candidate_final_error_p95_um": 20.34068014997056,
+      "candidate_success_rate": 0.95,
+      "exact_mcnemar_p": 0.5,
+      "mcnemar_baseline_only": 2,
+      "mcnemar_candidate_only": 0,
+      "paired_episodes": 40,
+      "paired_error_difference_bootstrap_95_um": [
+        2.8272560161613542,
+        10.069257719097807
+      ],
+      "paired_error_difference_mean_um": 6.905736328554047,
+      "paired_targets": 40,
+      "relative_mean_error_improvement": -0.9955634214683471,
+      "relative_p95_error_improvement": -0.21989753854470462,
+      "success_difference_bootstrap_95": [
+        -0.08695652173913043,
+        0.0
+      ],
+      "success_rate_difference": -0.05
+    }
+  },
+  "result": "PASS",
+  "schema_version": 1,
+  "selected_variant": "dagger_only",
+  "selection_reason": "The corrected RCMSceneV9 extrinsic snapshot changed the single-factor ordering; DAgger-only alone reached 40/40 and had the best final-error P95.",
+  "source_sha256": {
+    "dagger_only": "412E61D5F34E268291DFE0A39887E7E81776364102DA462836AACC5AE478B4B1",
+    "velocity": "DFDA0BE751F8ADBDEE3536E68FDEF3BF02194E50E8AC314C62F6F3C8C4780EBC",
+    "velocity_residual_cap": "5373472F1FBA94DB48A49438F01D60DD3F3EF587E2524F38250849AA8169B981",
+    "velocity_residual_cap_stop": "DB1C5A66725E60C7E3BB091BBFCDC82513ED88190D1E1E11E00B28060783C452"
+  },
+  "stage": 2,
+  "stage2_pass": true,
+  "variants": {
+    "dagger_only": {
+      "episodes": 40,
+      "final_error_p50_um": 5.7536606405410495,
+      "final_error_p95_um": 16.67408901753854,
+      "safety_limited_steps": 0,
+      "success_rate": 1.0,
+      "successes": 40,
+      "uncontrolled_over_30mm": 0
+    },
+    "velocity": {
+      "episodes": 40,
+      "final_error_p50_um": 11.129047290845714,
+      "final_error_p95_um": 83.59972593347571,
+      "safety_limited_steps": 0,
+      "success_rate": 0.85,
+      "successes": 34,
+      "uncontrolled_over_30mm": 0
+    },
+    "velocity_residual_cap": {
+      "episodes": 40,
+      "final_error_p50_um": 5.754690870366273,
+      "final_error_p95_um": 17.116054281093398,
+      "safety_limited_steps": 0,
+      "success_rate": 0.95,
+      "successes": 38,
+      "uncontrolled_over_30mm": 0
+    },
+    "velocity_residual_cap_stop": {
+      "episodes": 40,
+      "final_error_p50_um": 10.677489525958205,
+      "final_error_p95_um": 20.34068014997056,
+      "safety_limited_steps": 0,
+      "success_rate": 0.95,
+      "successes": 38,
+      "uncontrolled_over_30mm": 0
+    }
+  }
+}

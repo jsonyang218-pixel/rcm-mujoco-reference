@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" font-family="Microsoft YaHei, Arial" data-pptx-page-role="content">
+  <defs>
+    <marker id="flowArrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <polygon points="0,0 10,5 0,10" fill="#0B4F8A"/>
+    </marker>
+    <marker id="returnArrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <polygon points="0,0 10,5 0,10" fill="#14988F"/>
+    </marker>
+  </defs>
+  <rect id="page-bg" data-pptx-role="background" x="0" y="0" width="1280" height="720" fill="#FFFFFF"/>
+  <path id="header-grid" data-pptx-role="decoration" d="M72 154H1208 M72 182H1208 M72 628H1208" fill="none" stroke="#CBD9E2" stroke-width="1"/>
+  <rect id="header-tick" data-pptx-role="decoration" x="72" y="50" width="8" height="92" rx="4" fill="#14988F"/>
+
+  <g id="page-title" data-pptx-bounds="96 44 1112 116">
+    <text x="96" y="88" font-size="44" font-weight="bold" fill="#172633">数据闭环贡献主要增益，蒸馏<tspan x="96" dy="52">把七次采样压成单次推理</tspan></text>
+  </g>
+
+  <g id="training-loop" data-pptx-bounds="72 188 1136 252">
+    <line x1="306" y1="278" x2="356" y2="278" stroke="#0B4F8A" stroke-width="2" marker-end="url(#flowArrow)"/>
+    <line x1="584" y1="278" x2="634" y2="278" stroke="#0B4F8A" stroke-width="2" marker-end="url(#flowArrow)"/>
+    <line x1="862" y1="278" x2="912" y2="278" stroke="#0B4F8A" stroke-width="2" marker-end="url(#flowArrow)"/>
+
+    <g id="step-geometry">
+      <rect x="72" y="204" width="234" height="148" rx="16" fill="#EAF2F7"/>
+      <use data-icon="tabler-outline/database" x="96" y="226" width="40" height="40" fill="#0B4F8A" stroke-width="2"/>
+      <text x="148" y="252" font-size="24" font-weight="bold" fill="#0B4F8A">几何教师采集</text>
+      <text x="96" y="290" font-size="22" fill="#172633">特权目标误差</text>
+      <text x="96" y="320" font-size="22" fill="#526571">形成初始动作数据</text>
+    </g>
+    <g id="step-dagger">
+      <rect x="350" y="204" width="234" height="148" rx="16" fill="#FFFFFF" stroke="#14988F" stroke-width="3"/>
+      <use data-icon="tabler-outline/git-branch" x="374" y="226" width="40" height="40" fill="#14988F" stroke-width="2"/>
+      <text x="426" y="252" font-size="24" font-weight="bold" fill="#14988F">DAgger 接管</text>
+      <text x="374" y="290" font-size="22" fill="#172633">学生偏航状态重标注</text>
+      <text x="374" y="320" font-size="22" fill="#526571">误差分布进入训练集</text>
+    </g>
+    <g id="step-median">
+      <rect x="628" y="204" width="234" height="148" rx="16" fill="#EAF2F7"/>
+      <use data-icon="tabler-outline/git-compare" x="652" y="226" width="40" height="40" fill="#0B4F8A" stroke-width="2"/>
+      <text x="704" y="252" font-size="24" font-weight="bold" fill="#0B4F8A">七样本中位</text>
+      <text x="652" y="290" font-size="22" fill="#172633">降低扩散采样方差</text>
+      <text x="652" y="320" font-size="22" fill="#526571">生成单步监督标签</text>
+    </g>
+    <g id="step-distill">
+      <rect x="906" y="204" width="302" height="148" rx="16" fill="#0B4F8A"/>
+      <use data-icon="tabler-outline/cpu" x="930" y="226" width="40" height="40" fill="#FFFFFF" stroke-width="2"/>
+      <text x="982" y="252" font-size="24" font-weight="bold" fill="#FFFFFF">学生蒸馏</text>
+      <text x="930" y="290" font-size="22" fill="#EAF2F7">单步 MLP · 单次推理</text>
+      <text x="930" y="320" font-size="22" fill="#EAF2F7">保留七次采样的监督目标</text>
+    </g>
+
+    <path d="M467 352V398H188V352" fill="none" stroke="#14988F" stroke-width="2" stroke-dasharray="8,4" marker-end="url(#returnArrow)"/>
+    <text x="328" y="426" font-size="22" font-weight="bold" fill="#14988F" text-anchor="middle">学生继续接管，形成数据闭环</text>
+  </g>
+
+  <g id="latency-receipt" data-pptx-bounds="72 452 1136 176">
+    <text x="72" y="484" font-size="24" font-weight="bold" fill="#0B4F8A">推理延迟回执</text>
+    <line x1="72" y1="498" x2="1208" y2="498" stroke="#CBD9E2" stroke-width="1"/>
+    <rect x="72" y="514" width="552" height="112" rx="16" fill="#EAF2F7"/>
+    <text x="96" y="538" font-size="22" fill="#526571">533 维特征后的学生策略头</text>
+    <text x="96" y="584" font-family="Microsoft YaHei, Consolas" font-size="44" font-weight="bold" fill="#14988F">0.384 ms P50</text>
+    <text x="552" y="538" font-size="22" fill="#526571" text-anchor="end">CUDA · batch 1</text>
+    <text x="552" y="618" font-size="22" fill="#526571" text-anchor="end">不包含完整 RGB-to-action</text>
+    <rect x="656" y="514" width="552" height="112" rx="16" fill="#FFFFFF" stroke="#CBD9E2" stroke-width="1"/>
+    <text x="680" y="538" font-size="22" fill="#526571">七样本教师现有基准</text>
+    <text x="680" y="584" font-family="Microsoft YaHei, Consolas" font-size="44" font-weight="bold" fill="#0B4F8A">288.7 ms P50</text>
+    <text x="1184" y="538" font-size="22" fill="#526571" text-anchor="end">CUDA · batch 1</text>
+    <text x="1184" y="618" font-size="22" fill="#526571" text-anchor="end">含视觉编码的基准</text>
+  </g>
+
+  <g id="page-footer" data-pptx-bounds="72 666 1136 36">
+    <line x1="72" y1="672" x2="1208" y2="672" stroke="#CBD9E2" stroke-width="1"/>
+    <text x="72" y="694" font-size="20" fill="#526571">技术评审 · 数据闭环与蒸馏</text>
+    <text x="1208" y="694" font-size="20" fill="#526571" text-anchor="end">P07 / 11</text>
+  </g>
+</svg>

@@ -1,0 +1,77 @@
+{
+  "schema_version": 1,
+  "name": "restricted_stage3_stage4_protocol",
+  "frozen_before_stage3_results": true,
+  "seed": 20270301,
+  "stage3": {
+    "development_targets": 40,
+    "start_error_um": 100.0,
+    "max_steps": 1600,
+    "stagnation_steps": 200,
+    "threshold_um": 20.0,
+    "primary_baseline": "guided_no_dagger_action_chunk_mlp",
+    "paired_bootstrap_samples": 10000,
+    "student_selection_used_final_targets": false,
+    "robustness": {
+      "geometric_teacher_gain": 0.15,
+      "perturbation_scenarios": {
+        "noise": {
+          "coarse_noise_multiplier": 2.0,
+          "fine_noise_multiplier": 2.0
+        },
+        "occlusion": {
+          "center_occlusion_fraction": 0.45
+        },
+        "oct_loss": {
+          "fine_dropout_probability": 0.2
+        },
+        "delay": {
+          "coarse_delay_frames": 3,
+          "fine_delay_frames": 3
+        }
+      },
+      "minimum_scenarios_with_student_gain": 2,
+      "success_difference_bootstrap_lower_must_exceed": 0.0
+    },
+    "distillation": {
+      "teacher_checkpoint": "outputs/diffusion_policy_v7_guided_dagger1_cached/best_model.pth",
+      "teacher_samples": 7,
+      "teacher_aggregation": "median",
+      "training_target_manifest": "configs/stage2_training_targets.json",
+      "starts_per_target": 2,
+      "max_rollout_steps": 300,
+      "sample_every_frames": 2,
+      "max_labels": 4000,
+      "validation_targets": 12,
+      "epochs": 40,
+      "batch_size": 256,
+      "learning_rate": 0.0003,
+      "noninferiority_margin": 0.05,
+      "noninferiority_bootstrap_samples": 10000
+    },
+    "act_decision": {
+      "status": "DEFERRED_NO_DISTINCT_IMPLEMENTATION",
+      "reason": "The repository has an eight-step action-chunk MLP baseline but no standalone ACT transformer; it is reported under its actual architecture name."
+    }
+  },
+  "stage4": {
+    "test_targets": 60,
+    "seeds_per_target": 3,
+    "start_error_um": 100.0,
+    "thresholds_um": [
+      20.0,
+      10.0,
+      5.0
+    ],
+    "max_steps": 1600,
+    "stagnation_steps": 200,
+    "target_manifest": "configs/target_split_manifest.json",
+    "primary_policy": "distilled_single_step",
+    "median_control_policy": "final_diffusion_7_sample_median",
+    "median_control_subset_size": 20,
+    "median_control_episodes": 60,
+    "bootstrap_samples": 10000,
+    "target_cluster_bootstrap": true,
+    "same_target_same_seed_pairing": true
+  }
+}

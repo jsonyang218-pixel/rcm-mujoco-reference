@@ -1,0 +1,107 @@
+{
+  "roles": {
+    "body": {
+      "family": "Microsoft YaHei, Arial",
+      "size": 28.0,
+      "weight": "normal",
+      "cjk_chars_per_100px": 3.4,
+      "latin_chars_per_100px": 6.9,
+      "caps_chars_per_100px": 6.4,
+      "digits_chars_per_100px": 6.1,
+      "citation_chars_per_100px": 6.4,
+      "script_clusters_per_100px": {},
+      "longest_planned_line": {
+        "px": 746.5,
+        "slide": "P04",
+        "text": "动作噪声 24 + 条件 256 + 时间 1 = 281 → 512 → 5…"
+      }
+    },
+    "title": {
+      "family": "Microsoft YaHei, Arial",
+      "size": 44.0,
+      "weight": "normal",
+      "cjk_chars_per_100px": 2.1,
+      "latin_chars_per_100px": 4.4,
+      "caps_chars_per_100px": 4.1,
+      "digits_chars_per_100px": 3.9,
+      "citation_chars_per_100px": 4.1,
+      "script_clusters_per_100px": {},
+      "longest_planned_line": {
+        "px": 1119.4,
+        "slide": "P07",
+        "text": "数据闭环贡献主要增益，蒸馏把七次采样压成单次推理"
+      }
+    },
+    "subtitle": {
+      "family": "Microsoft YaHei, Arial",
+      "size": 32.0,
+      "weight": "normal",
+      "cjk_chars_per_100px": 2.9,
+      "latin_chars_per_100px": 6.1,
+      "caps_chars_per_100px": 5.6,
+      "digits_chars_per_100px": 5.4,
+      "citation_chars_per_100px": 5.6,
+      "script_clusters_per_100px": {},
+      "longest_planned_line": {
+        "px": 1308.0,
+        "slide": "P03",
+        "text": "特权目标、受限 OCT 与 DAgger 学生是三种信息条件和训练角色，不等价…"
+      }
+    },
+    "annotation": {
+      "family": "Microsoft YaHei, Arial",
+      "size": 22.0,
+      "weight": "normal",
+      "cjk_chars_per_100px": 4.3,
+      "latin_chars_per_100px": 8.8,
+      "caps_chars_per_100px": 8.2,
+      "digits_chars_per_100px": 7.8,
+      "citation_chars_per_100px": 8.2,
+      "script_clusters_per_100px": {},
+      "longest_planned_line": null
+    },
+    "footer": {
+      "family": "Microsoft YaHei, Arial",
+      "size": 20.0,
+      "weight": "normal",
+      "cjk_chars_per_100px": 4.7,
+      "latin_chars_per_100px": 9.7,
+      "caps_chars_per_100px": 9.0,
+      "digits_chars_per_100px": 8.6,
+      "citation_chars_per_100px": 9.0,
+      "script_clusters_per_100px": {},
+      "longest_planned_line": null
+    },
+    "hero_number": {
+      "family": "Microsoft YaHei, Arial",
+      "size": 96.0,
+      "weight": "normal",
+      "cjk_chars_per_100px": 1.0,
+      "latin_chars_per_100px": 2.0,
+      "caps_chars_per_100px": 1.9,
+      "digits_chars_per_100px": 1.8,
+      "citation_chars_per_100px": 1.9,
+      "script_clusters_per_100px": {},
+      "longest_planned_line": null
+    },
+    "section_label": {
+      "family": "Microsoft YaHei, Arial",
+      "size": 24.0,
+      "weight": "normal",
+      "cjk_chars_per_100px": 3.9,
+      "latin_chars_per_100px": 8.1,
+      "caps_chars_per_100px": 7.5,
+      "digits_chars_per_100px": 7.1,
+      "citation_chars_per_100px": 7.5,
+      "script_clusters_per_100px": {},
+      "longest_planned_line": null
+    }
+  },
+  "script_samples": {},
+  "source": "spec_lock.md",
+  "generated_at": "2026-11-07T13:03:03Z",
+  "notes": [
+    "role hero_number (96px, at least twice body) has no hero_number_family and uses body_family; declare hero_number_family if it is display type",
+    "every role is measured at normal weight; recalibrate a role realized as bold deck-wide with --role NAME:FAMILY:SIZE:bold: bold widens Latin and digits about 7%, while the bundled advance table gives CJK one width for both weights"
+  ]
+}

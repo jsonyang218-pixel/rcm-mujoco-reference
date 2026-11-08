@@ -1,0 +1,111 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" font-family="Microsoft YaHei, Arial" data-pptx-page-role="content">
+  <defs>
+    <marker id="storyArrow" viewBox="0 0 10 10" refX="5" refY="9" markerWidth="8" markerHeight="8" orient="auto">
+      <polygon points="0,0 10,0 5,10" fill="#B42318"/>
+    </marker>
+  </defs>
+  <rect id="page-bg" data-pptx-role="background" x="0" y="0" width="1280" height="720" fill="#FFFFFF"/>
+  <path id="header-grid" data-pptx-role="decoration" d="M72 154H1208 M72 182H1208 M72 628H1208" fill="none" stroke="#CBD9E2" stroke-width="1"/>
+  <rect id="header-tick" data-pptx-role="decoration" x="72" y="50" width="8" height="92" rx="4" fill="#14988F"/>
+
+  <g id="page-title" data-pptx-bounds="96 44 1112 104">
+    <text x="96" y="88" font-size="44" font-weight="bold" fill="#172633">多数失败已经进入 20 µm，却没有保持住</text>
+  </g>
+
+  <g id="failure-mode-bars" data-pptx-replace-with="chart" data-pptx-bounds="72 190 680 410" data-pptx-fallback-sha256="cb0a83e9da0a562108e0d906c7cf375b83c49f699c4653342a1cea9276a0df72">
+    <metadata type="application/json">
+      {
+        "x": 72, "y": 190, "width": 680, "height": 410,
+        "name": "failure-mode-bars",
+        "type": "bar",
+        "grouping": "clustered",
+        "categories": ["成功", "到达未保持", "20–30 µm", "30–50 µm", "50–100 µm", "未接近", "初始化不安全"],
+        "series": [
+          {
+            "name": "Episodes",
+            "values": [20, 51, 8, 41, 45, 6, 9],
+            "point_colors": ["#78A83D", "#B42318", "#D97706", "#0B4F8A", "#0B4F8A", "#D97706", "#B42318"]
+          }
+        ],
+        "gap_width": 45,
+        "plot_area": {"x": 250, "y": 222, "width": 440, "height": 330},
+        "axes": {
+          "category": {"kind": "text", "visible": true},
+          "value": {
+            "kind": "value", "minimum": 0, "maximum": 60, "major_unit": 20,
+            "visible": true, "major_gridlines": true, "number_format": "0"
+          }
+        },
+        "data_labels": {"show_value": true, "position": "outside_end", "number_format": "0"},
+        "style": {
+          "font_family": "Microsoft YaHei, Arial",
+          "font_size": 22,
+          "text_color": "#172633",
+          "axis_color": "#526571",
+          "grid_color": "#CBD9E2",
+          "chart_area_fill": "#FFFFFF",
+          "plot_area_fill": "#FFFFFF"
+        }
+      }
+    </metadata>
+    <text x="72" y="218" font-size="24" font-weight="bold" fill="#0B4F8A">180 个 episode 的互斥结果</text>
+    <g id="failure-mode-bars-chartArea">
+      <line x1="250" y1="222" x2="250" y2="552" id="value-axis" stroke="#526571" stroke-width="2"/>
+      <line x1="250" y1="552" x2="690" y2="552" id="category-axis" stroke="#526571" stroke-width="2"/>
+      <line x1="397" y1="222" x2="397" y2="552" id="grid-20" stroke="#CBD9E2" stroke-width="1"/>
+      <line x1="544" y1="222" x2="544" y2="552" id="grid-40" stroke="#CBD9E2" stroke-width="1"/>
+      <text x="250" y="578" font-size="22" fill="#526571" text-anchor="middle">0</text>
+      <text x="397" y="578" font-size="22" fill="#526571" text-anchor="middle">20</text>
+      <text x="544" y="578" font-size="22" fill="#526571" text-anchor="middle">40</text>
+      <text x="690" y="578" font-size="22" fill="#526571" text-anchor="middle">60</text>
+      <!-- chart-plot-area: object=failure-mode-bars | 250,222,690,552 -->
+      <text x="232" y="250" font-size="22" fill="#78A83D" font-weight="bold" text-anchor="end">成功</text>
+      <rect x="250" y="229.3" width="146.7" height="32.5" rx="4" fill="#78A83D"/>
+      <text x="409" y="252" font-family="Microsoft YaHei, Consolas" font-size="22" font-weight="bold" fill="#78A83D">20</text>
+      <text x="232" y="292" font-size="22" font-weight="bold" fill="#B42318" text-anchor="end">到达未保持</text>
+      <rect x="250" y="276.5" width="374" height="32.5" rx="4" fill="#B42318"/>
+      <text x="636" y="294" font-family="Microsoft YaHei, Consolas" font-size="22" font-weight="bold" fill="#B42318">51</text>
+      <text x="232" y="334" font-size="22" fill="#172633" text-anchor="end">20–30 µm</text>
+      <rect x="250" y="323.6" width="58.7" height="32.5" rx="4" fill="#D97706"/>
+      <text x="321" y="336" font-family="Microsoft YaHei, Consolas" font-size="22" font-weight="bold" fill="#D97706">8</text>
+      <text x="232" y="376" font-size="22" fill="#172633" text-anchor="end">30–50 µm</text>
+      <rect x="250" y="370.7" width="300.7" height="32.5" rx="4" fill="#0B4F8A"/>
+      <text x="563" y="378" font-family="Microsoft YaHei, Consolas" font-size="22" font-weight="bold" fill="#0B4F8A">41</text>
+      <text x="232" y="418" font-size="22" fill="#172633" text-anchor="end">50–100 µm</text>
+      <rect x="250" y="417.9" width="330" height="32.5" rx="4" fill="#0B4F8A"/>
+      <text x="592" y="420" font-family="Microsoft YaHei, Consolas" font-size="22" font-weight="bold" fill="#0B4F8A">45</text>
+      <text x="232" y="460" font-size="22" fill="#172633" text-anchor="end">未接近</text>
+      <rect x="250" y="465" width="44" height="32.5" rx="4" fill="#D97706"/>
+      <text x="306" y="462" font-family="Microsoft YaHei, Consolas" font-size="22" font-weight="bold" fill="#D97706">6</text>
+      <text x="232" y="502" font-size="22" fill="#172633" text-anchor="end">初始化不安全</text>
+      <rect x="250" y="512.2" width="66" height="32.5" rx="4" fill="#B42318"/>
+      <text x="328" y="504" font-family="Microsoft YaHei, Consolas" font-size="22" font-weight="bold" fill="#B42318">9</text>
+    </g>
+  </g>
+
+  <g id="hold-failure-story" data-pptx-bounds="784 190 424 390">
+    <rect x="784" y="190" width="424" height="390" rx="16" fill="#EAF2F7"/>
+    <use data-icon="tabler-outline/alert-triangle" x="808" y="214" width="44" height="44" fill="#B42318" stroke-width="2"/>
+    <text x="864" y="246" font-size="24" font-weight="bold" fill="#B42318">51 次“到达未保持”</text>
+    <line x1="824" y1="294" x2="1168" y2="294" stroke="#CBD9E2" stroke-width="1"/>
+    <line x1="824" y1="378" x2="1168" y2="378" stroke="#CBD9E2" stroke-width="1"/>
+    <line x1="824" y1="462" x2="1168" y2="462" stroke="#CBD9E2" stroke-width="1"/>
+    <text x="824" y="282" font-size="22" fill="#172633">进入 20 µm 区域</text>
+    <text x="1168" y="282" font-size="22" fill="#14988F" text-anchor="end">已发生</text>
+    <text x="824" y="366" font-size="22" fill="#172633">最低误差中位</text>
+    <text x="1168" y="366" font-family="Microsoft YaHei, Consolas" font-size="22" font-weight="bold" fill="#14988F" text-anchor="end">5.54 µm</text>
+    <text x="824" y="450" font-size="22" fill="#172633">最终误差中位</text>
+    <text x="1168" y="450" font-family="Microsoft YaHei, Consolas" font-size="22" font-weight="bold" fill="#B42318" text-anchor="end">96.29 µm</text>
+    <line x1="1090" y1="286" x2="1090" y2="334" stroke="#B42318" stroke-width="2" marker-end="url(#storyArrow)"/>
+    <line x1="1090" y1="370" x2="1090" y2="418" stroke="#B42318" stroke-width="2" marker-end="url(#storyArrow)"/>
+    <text x="808" y="488" font-size="22" fill="#526571">细通道有效中位 99.52%</text>
+    <text x="808" y="510" font-size="22" fill="#526571">coarse fallback 0%</text>
+    <text x="808" y="542" font-size="22" font-weight="bold" fill="#B42318">终端稳定性更像主因，<tspan x="808" dy="22">而非通道不可用。</tspan></text>
+  </g>
+
+  <g id="page-footer" data-pptx-bounds="72 666 1136 36">
+    <line x1="72" y1="672" x2="1208" y2="672" stroke="#CBD9E2" stroke-width="1"/>
+    <text x="72" y="694" font-size="20" fill="#526571">技术评审 · 失败机制</text>
+    <text x="1208" y="694" font-size="20" fill="#526571" text-anchor="end">P10 / 11</text>
+  </g>
+</svg>
