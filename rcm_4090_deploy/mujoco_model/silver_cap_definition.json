@@ -1,0 +1,55 @@
+{
+  "count": 1238,
+  "source_centroid_bounds_m": [
+    [
+      0.2728080366666667,
+      -0.04753582333333334,
+      0.32786506
+    ],
+    [
+      0.2930783666666667,
+      0.023462803333333334,
+      0.36208806000000004
+    ]
+  ],
+  "installed_centroid_bounds_m": [
+    [
+      0.06925495109038923,
+      -0.04753582333333334,
+      0.4104928473499785
+    ],
+    [
+      0.09602644045791443,
+      0.023462803333333334,
+      0.43693819554181224
+    ]
+  ],
+  "coordinate_formula": "q = (face_centroid_reference - origin_m) @ basis_columns_uvn",
+  "origin_m": [
+    0.3555831455912251,
+    -0.019218344161583727,
+    0.27760387738897796
+  ],
+  "basis_columns_uvn": [
+    [
+      0.7851013638493375,
+      0.5792747296240425,
+      -0.21921823852248862
+    ],
+    [
+      0.29336742982465847,
+      -0.03607940150466397,
+      0.9553187048860392
+    ],
+    [
+      -0.5454827216328527,
+      0.8143335093228437,
+      0.19826632592035878
+    ]
+  ],
+  "rule": "owner==0; -.106<u<-.080; .005<v<.036; -.0015<n<.0715; exclude all 537 returned white-shell faces",
+  "preserved_537": true,
+  "scope": "Primary rounded cap; the full repair also includes its vertical bottom rim",
+  "complete_repair_face_count": 1797,
+  "bottom_rim_rule": "-.0925<u<-.088; -.0015<v<.005; -.0015<n<.0715; abs(face_normal dot basis_u)>.55; exclude protected 537 white faces"
+}

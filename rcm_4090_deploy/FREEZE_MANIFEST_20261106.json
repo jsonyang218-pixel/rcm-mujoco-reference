@@ -1,0 +1,105 @@
+{
+  "freeze_name": "v7-guided-dagger1-20261106",
+  "frozen_at": "2026-11-06T15:46:34+08:00",
+  "source_repository": "https://github.com/jsonyang218-pixel/rcm-mujoco-reference.git",
+  "base_branch": "main",
+  "base_commit": "50b18b6e18cb0d9864cd7fb04b45a5090e14d387",
+  "target_branch": "freeze/v7-guided-dagger1-20261106",
+  "hash_algorithm": "SHA-256",
+  "checkpoint": {
+    "path": "outputs/diffusion_policy_v7_guided_dagger1_cached/best_model.pth",
+    "size_bytes": 60608666,
+    "sha256": "59C8B186F83CD434B7F09C669FE9CC0F7AF9B8E0C0B8C477B8FDC9E439C2BDEB"
+  },
+  "evaluations": [
+    {
+      "path": "outputs/evaluation_v7_guided_dagger1_cached_20261106",
+      "file_count": 7,
+      "result": "PASS",
+      "aggregate_summary_sha256": "4FCDB919BF0A9F796009D27A90A337077A40C68AEF4E5EFBED2E408C414E9454",
+      "files": [
+        {
+          "path": "aggregate_summary.json",
+          "sha256": "4FCDB919BF0A9F796009D27A90A337077A40C68AEF4E5EFBED2E408C414E9454"
+        },
+        {
+          "path": "g1/evaluation_results.json",
+          "sha256": "FD594E7D997DCF749D0B7EFAF6D914D5B64F72FD980E05D01EF8A6182E146DF0"
+        },
+        {
+          "path": "g1_console.log",
+          "sha256": "AEB47742F3C4D2585CAEF06B4173D0A9CEADB81616944AF27253603EB0E565EE"
+        },
+        {
+          "path": "g2/evaluation_results.json",
+          "sha256": "2DD5978005048E8C99E3B382916354BF0E17CC22EA9C2A2BF122616E70BCE4FF"
+        },
+        {
+          "path": "g2_console.log",
+          "sha256": "BB7AEF50EA568ABDDF16E08FF9FF1E936CF73EC55818A320BA3AE4ABB51F4BD7"
+        },
+        {
+          "path": "g3/evaluation_results.json",
+          "sha256": "514A40F17D5085E88DE9837C4BB09F346BBC6CD11353D13F3FEA74FDECE223D3"
+        },
+        {
+          "path": "g3_console.log",
+          "sha256": "7F3DD37569647ACF419E3068319AB182897A1BAA5EC88C240748A902BFC7E689"
+        }
+      ]
+    },
+    {
+      "path": "outputs/evaluation_v7_guided_20mm_repeat_20261106",
+      "file_count": 7,
+      "result": "PASS",
+      "aggregate_summary_sha256": "212C4ABCA825BA28E96E7510EA4D64FADFDB66DAA139201340711800BB549833",
+      "files": [
+        {
+          "path": "aggregate_summary.json",
+          "sha256": "212C4ABCA825BA28E96E7510EA4D64FADFDB66DAA139201340711800BB549833"
+        },
+        {
+          "path": "g1/evaluation_results.json",
+          "sha256": "C18621F22009F77D9640801CB46DDA4B51AA81169B3CA3D2C9899281B45BC4D0"
+        },
+        {
+          "path": "g1_console.log",
+          "sha256": "8D071E3114DD55781AAFFAB71BBFB20E476357B967400732CDDDD8BA29DDBBA8"
+        },
+        {
+          "path": "g2/evaluation_results.json",
+          "sha256": "C5C7C63A410B5416084DAD787D182FBDB166AE4F03569DE2F79CCE5346F1C987"
+        },
+        {
+          "path": "g2_console.log",
+          "sha256": "31DE75B8B7647DA19DECFA7663D343B979C1AB67703C6AA3CD004A10F9CEC61D"
+        },
+        {
+          "path": "g3/evaluation_results.json",
+          "sha256": "C1DCFEF53A23AFD7784537D512E0BB261601B11930F0FDD5300CC83690F176D4"
+        },
+        {
+          "path": "g3_console.log",
+          "sha256": "B2D9AFFDF7F0CD7C9F70CAADA8FFC8EFA2BC50D6412BDB41B894394815A738F5"
+        }
+      ]
+    }
+  ],
+  "test_log": {
+    "path": "TEST_LOG.md",
+    "sha256_before_freeze_entry": "3EB72BD06EB9A6CA7D867EE9A9E0D5879EF10F20C4778894C04E29C98BD2A897"
+  },
+  "upload_scope": {
+    "included": [
+      "current source and model assets",
+      "selected v7 checkpoint",
+      "two complete v7 evaluation directories",
+      "freeze manifest and test log"
+    ],
+    "excluded": [
+      "data/ (24.0 GB generated and source datasets)",
+      "runs/ and local caches",
+      "unselected historical outputs"
+    ]
+  }
+}

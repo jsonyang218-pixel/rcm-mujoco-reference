@@ -1,0 +1,55 @@
+{
+  "result": "PASS",
+  "episodes": 20,
+  "shards": [
+    {
+      "path": "outputs/evaluation_v8_full_unfreeze_b96_lr1e4_20261112/g1/evaluation_results.json",
+      "episodes": 7,
+      "success_rate": 0.8571428571428571
+    },
+    {
+      "path": "outputs/evaluation_v8_full_unfreeze_b96_lr1e4_20261112/g2/evaluation_results.json",
+      "episodes": 7,
+      "success_rate": 1.0
+    },
+    {
+      "path": "outputs/evaluation_v8_full_unfreeze_b96_lr1e4_20261112/g3/evaluation_results.json",
+      "episodes": 6,
+      "success_rate": 1.0
+    }
+  ],
+  "successes": 19,
+  "success_rate": 0.95,
+  "strict_all_episodes_success": false,
+  "acceptance_gates": {
+    "uncontrolled": {
+      "threshold_count": 5,
+      "actual_count": 0,
+      "pass": true
+    },
+    "median_per_episode_minimum_error": {
+      "threshold_mm": 1.0,
+      "actual_mm": 0.011117156539569385,
+      "pass": true
+    }
+  },
+  "uncontrolled_over_threshold": 0,
+  "uncontrolled_threshold_mm": 30.0,
+  "final_error_mm": {
+    "mean": 0.0118478932179504,
+    "median": 0.011117156539569385,
+    "minimum": 0.009711841341083601,
+    "maximum": 0.026791402050377593
+  },
+  "per_episode_minimum_error_mm": {
+    "mean": 0.011831840748803127,
+    "median": 0.011117156539569385,
+    "minimum": 0.009711841341083601,
+    "maximum": 0.026791402050377593
+  },
+  "safety_limited_steps": {
+    "total": 0,
+    "maximum_per_episode": 0,
+    "episodes_with_any": 0
+  }
+}

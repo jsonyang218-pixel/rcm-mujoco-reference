@@ -1,0 +1,80 @@
+{
+  "result": "FAIL",
+  "episodes": 20,
+  "shards": [
+    {
+      "path": "outputs/evaluation_v12_oct_dagger1_fixed_dev20_20261115/g1/evaluation_results.json",
+      "episodes": 3,
+      "success_rate": 0.0
+    },
+    {
+      "path": "outputs/evaluation_v12_oct_dagger1_fixed_dev20_20261115/g2/evaluation_results.json",
+      "episodes": 3,
+      "success_rate": 0.0
+    },
+    {
+      "path": "outputs/evaluation_v12_oct_dagger1_fixed_dev20_20261115/g3/evaluation_results.json",
+      "episodes": 2,
+      "success_rate": 0.0
+    },
+    {
+      "path": "outputs/evaluation_v12_oct_dagger1_fixed_dev20_20261115/g4/evaluation_results.json",
+      "episodes": 3,
+      "success_rate": 0.0
+    },
+    {
+      "path": "outputs/evaluation_v12_oct_dagger1_fixed_dev20_20261115/g5/evaluation_results.json",
+      "episodes": 2,
+      "success_rate": 0.0
+    },
+    {
+      "path": "outputs/evaluation_v12_oct_dagger1_fixed_dev20_20261115/g6/evaluation_results.json",
+      "episodes": 2,
+      "success_rate": 0.0
+    },
+    {
+      "path": "outputs/evaluation_v12_oct_dagger1_fixed_dev20_20261115/g7/evaluation_results.json",
+      "episodes": 3,
+      "success_rate": 0.0
+    },
+    {
+      "path": "outputs/evaluation_v12_oct_dagger1_fixed_dev20_20261115/g8/evaluation_results.json",
+      "episodes": 2,
+      "success_rate": 0.0
+    }
+  ],
+  "successes": 0,
+  "success_rate": 0.0,
+  "strict_all_episodes_success": false,
+  "acceptance_gates": {
+    "uncontrolled": {
+      "threshold_count": 5,
+      "actual_count": 0,
+      "pass": true
+    },
+    "median_per_episode_minimum_error": {
+      "threshold_mm": 1.0,
+      "actual_mm": 14.714760203716823,
+      "pass": false
+    }
+  },
+  "uncontrolled_over_threshold": 0,
+  "uncontrolled_threshold_mm": 30.0,
+  "final_error_mm": {
+    "mean": 16.096741895690236,
+    "median": 18.034157594283148,
+    "minimum": 4.854894415616384,
+    "maximum": 23.973981519467802
+  },
+  "per_episode_minimum_error_mm": {
+    "mean": 12.179286228455545,
+    "median": 14.714760203716823,
+    "minimum": 3.9965872611097377,
+    "maximum": 19.93782971403494
+  },
+  "safety_limited_steps": {
+    "total": 2550,
+    "maximum_per_episode": 512,
+    "episodes_with_any": 13
+  }
+}

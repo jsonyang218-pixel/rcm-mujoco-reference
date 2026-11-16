@@ -1,0 +1,3662 @@
+{
+  "schema_version": 1,
+  "format": "DAgger episodes with per-frame policy, teacher and executed actions",
+  "model": "/home/him1/mujoco_bc/rcm_4090_deploy/outputs/dit_rectified_flow_v12_oct_dit_rf_dagger1_20261116/best_model.pth",
+  "policy_type": "dit_rectified_flow",
+  "policy_checkpoint_epoch": 2,
+  "policy_guided_oct": false,
+  "seed": 20266116,
+  "beta": 0.0,
+  "teacher_takeover_steps": 20,
+  "teacher_takeover_max_steps": 300,
+  "hold_frames": 20,
+  "max_error_mm": 5.0,
+  "target_seeds_file": null,
+  "target_seeds": null,
+  "target_min_posterior_z": 0.9,
+  "reachable_targets": [
+    {
+      "target_index": 0,
+      "target_seed": 20266116,
+      "requested_target_robot_mm": [
+        2.106479447016549,
+        1.801612993031184,
+        23.367088060082647
+      ],
+      "requested_target_world_mm": [
+        344.8995596854976,
+        -9.154272528345654,
+        370.90854120055553
+      ],
+      "reachable_target_robot_mm": [
+        2.103716168319919,
+        1.8007438402717488,
+        23.367153059817163
+      ],
+      "reachable_target_world_mm": [
+        344.89877309494534,
+        -9.157035807042284,
+        370.9081657983874
+      ],
+      "target_shift_mm": [
+        -0.0007865905522521643,
+        -0.002763278696630067,
+        -0.00037540216811748905
+      ],
+      "target_shift_norm_mm": 0.0028974748730522647,
+      "requested_terminal_robot_ABCE": [
+        2862,
+        2300472,
+        2140034,
+        0
+      ],
+      "endpoint_robot_ABCE": [
+        2858,
+        2300661,
+        2140018,
+        0
+      ],
+      "endpoint_task_rad_rad_m": [
+        0.08978671803959629,
+        0.16362459141537766,
+        0.019530664001737936
+      ]
+    },
+    {
+      "target_index": 1,
+      "target_seed": 20266117,
+      "requested_target_robot_mm": [
+        -3.418485303549202,
+        2.4205291638088227,
+        23.11161974066718
+      ],
+      "requested_target_world_mm": [
+        345.38391592358386,
+        -14.679237278911405,
+        371.37084015502325
+      ],
+      "reachable_target_robot_mm": [
+        -3.419054669622783,
+        2.4191145366607065,
+        23.11192261948332
+      ],
+      "reachable_target_world_mm": [
+        345.3827070606074,
+        -14.679806644984987,
+        371.37004545014116
+      ],
+      "target_shift_mm": [
+        -0.0012088629764548386,
+        -0.0005693660735826,
+        -0.0007947048820824421
+      ],
+      "target_shift_norm_mm": 0.0015546971638218765,
+      "requested_terminal_robot_ABCE": [
+        -4674,
+        2161770,
+        2137303,
+        0
+      ],
+      "endpoint_robot_ABCE": [
+        -4675,
+        2162090,
+        2137318,
+        0
+      ],
+      "endpoint_task_rad_rad_m": [
+        -0.14686945655532285,
+        0.13705201126098382,
+        0.01948835931436955
+      ]
+    },
+    {
+      "target_index": 2,
+      "target_seed": 20266118,
+      "requested_target_robot_mm": [
+        -1.0304102308476293,
+        2.845174872104675,
+        23.580927880728566
+      ],
+      "requested_target_world_mm": [
+        345.94971492615764,
+        -12.291162206209833,
+        371.08721082546003
+      ],
+      "reachable_target_robot_mm": [
+        -1.0318595575427687,
+        2.8443826921028093,
+        23.580581556361757
+      ],
+      "reachable_target_world_mm": [
+        345.948851095774,
+        -12.292611532904973,
+        371.0872466973249
+      ],
+      "target_shift_mm": [
+        -0.0008638303836505656,
+        -0.001449326695139419,
+        3.587186483855476e-05
+      ],
+      "target_shift_norm_mm": 0.00168761298633562,
+      "requested_terminal_robot_ABCE": [
+        -1390,
+        2074953,
+        2155567,
+        0
+      ],
+      "endpoint_robot_ABCE": [
+        -1392,
+        2075117,
+        2155543,
+        0
+      ],
+      "endpoint_task_rad_rad_m": [
+        -0.04373096973796992,
+        0.12029673145518989,
+        0.01977391595410615
+      ]
+    },
+    {
+      "target_index": 3,
+      "target_seed": 20266119,
+      "requested_target_robot_mm": [
+        3.3660837161812163,
+        7.032835270374066,
+        22.379878124277
+      ],
+      "requested_target_world_mm": [
+        349.41798528709717,
+        -7.894668259180988,
+        373.7235190077738
+      ],
+      "reachable_target_robot_mm": [
+        3.3645632972463586,
+        7.034168816335868,
+        22.37920730491539
+      ],
+      "reachable_target_world_mm": [
+        349.41898530270936,
+        -7.896188678115845,
+        373.72462730025484
+      ],
+      "target_shift_mm": [
+        0.0010000156121918735,
+        -0.001520418934856771,
+        0.0011082924810352779
+      ],
+      "target_shift_norm_mm": 0.0021307316080674773,
+      "requested_terminal_robot_ABCE": [
+        4752,
+        1171716,
+        2150772,
+        0
+      ],
+      "endpoint_robot_ABCE": [
+        4750,
+        1171410,
+        2150743,
+        0
+      ],
+      "endpoint_task_rad_rad_m": [
+        0.1492256510455152,
+        -0.06113021789461725,
+        0.0196987076210068
+      ]
+    },
+    {
+      "target_index": 4,
+      "target_seed": 20266120,
+      "requested_target_robot_mm": [
+        1.3575961042310725,
+        9.02950701466282,
+        21.79899117367129
+      ],
+      "requested_target_world_mm": [
+        351.06867248586104,
+        -9.903155871131132,
+        374.98817685702085
+      ],
+      "reachable_target_robot_mm": [
+        1.3597483179087086,
+        9.03064704459391,
+        21.798348908333043
+      ],
+      "reachable_target_world_mm": [
+        351.0695024684474,
+        -9.901003657453495,
+        374.9891884408853
+      ],
+      "target_shift_mm": [
+        0.0008299825863673505,
+        0.0021522136776361833,
+        0.001011583864453769
+      ],
+      "target_shift_norm_mm": 0.0025187688902915495,
+      "requested_terminal_robot_ABCE": [
+        1980,
+        759935,
+        2146620,
+        0
+      ],
+      "endpoint_robot_ABCE": [
+        1983,
+        759706,
+        2146618,
+        0
+      ],
+      "endpoint_task_rad_rad_m": [
+        0.0622977823206856,
+        -0.15184369629742592,
+        0.01963407545974954
+      ]
+    },
+    {
+      "target_index": 5,
+      "target_seed": 20266121,
+      "requested_target_robot_mm": [
+        1.849288732762532,
+        5.008023538351023,
+        23.313176307533507
+      ],
+      "requested_target_world_mm": [
+        347.86871591458896,
+        -9.411463242599671,
+        372.1201873326622
+      ],
+      "reachable_target_robot_mm": [
+        1.8473086689701956,
+        5.006727198683487,
+        23.313092615552776
+      ],
+      "reachable_target_world_mm": [
+        347.8674772869882,
+        -9.413443306392008,
+        372.11979579396944
+      ],
+      "target_shift_mm": [
+        -0.0012386276007418928,
+        -0.001980063792336395,
+        -0.0003915386927815234
+      ],
+      "target_shift_norm_mm": 0.002368154028560277,
+      "requested_terminal_robot_ABCE": [
+        2520,
+        1611123,
+        2164650,
+        0
+      ],
+      "endpoint_robot_ABCE": [
+        2517,
+        1611377,
+        2164618,
+        0
+      ],
+      "endpoint_task_rad_rad_m": [
+        0.0790738870908551,
+        0.029321535486197974,
+        0.019916106708872113
+      ]
+    },
+    {
+      "target_index": 6,
+      "target_seed": 20266122,
+      "requested_target_robot_mm": [
+        -2.428808827480467,
+        1.2330557501704833,
+        23.22286175377028
+      ],
+      "requested_target_world_mm": [
+        344.3173692788208,
+        -13.68956080284267,
+        370.8370366817095
+      ],
+      "reachable_target_robot_mm": [
+        -2.428827365977192,
+        1.2335288293066533,
+        23.223373322563045
+      ],
+      "reachable_target_world_mm": [
+        344.3179955296927,
+        -13.689579341339396,
+        370.83673120446934
+      ],
+      "target_shift_mm": [
+        0.0006262508719032667,
+        -1.8538496725284404e-05,
+        -0.0003054772401469563
+      ],
+      "target_shift_norm_mm": 0.0006970295364389062,
+      "requested_terminal_robot_ABCE": [
+        -3317,
+        2425464,
+        2130534,
+        0
+      ],
+      "endpoint_robot_ABCE": [
+        -3317,
+        2425364,
+        2130568,
+        0
+      ],
+      "endpoint_task_rad_rad_m": [
+        -0.10420662831957345,
+        0.18744838639518063,
+        0.019382597595948587
+      ]
+    },
+    {
+      "target_index": 7,
+      "target_seed": 20266123,
+      "requested_target_robot_mm": [
+        3.13840673627538,
+        5.315750670395986,
+        22.972976058511588
+      ],
+      "requested_target_world_mm": [
+        348.032323195274,
+        -8.122345239086824,
+        372.5487487109245
+      ],
+      "reachable_target_robot_mm": [
+        3.1407959656641786,
+        5.314315750927306,
+        22.97309774399427
+      ],
+      "reachable_target_world_mm": [
+        348.031029787793,
+        -8.119956009698024,
+        372.5481155456014
+      ],
+      "target_shift_mm": [
+        -0.0012934074810004859,
+        0.0023892293888003735,
+        -0.000633165323108642
+      ],
+      "target_shift_norm_mm": 0.0027896627592959512,
+      "requested_terminal_robot_ABCE": [
+        4322,
+        1539387,
+        2156436,
+        0
+      ],
+      "endpoint_robot_ABCE": [
+        4325,
+        1539699,
+        2156443,
+        0
+      ],
+      "endpoint_task_rad_rad_m": [
+        0.13587388226775857,
+        0.014922651580803348,
+        0.019788017516562277
+      ]
+    },
+    {
+      "target_index": 8,
+      "target_seed": 20266124,
+      "requested_target_robot_mm": [
+        -3.482057101159036,
+        2.1057880744327013,
+        23.068579564453092
+      ],
+      "requested_target_world_mm": [
+        345.0749572985325,
+        -14.742809076521239,
+        371.296955257266
+      ],
+      "reachable_target_robot_mm": [
+        -3.480877386641353,
+        2.1043279804065893,
+        23.069055837486545
+      ],
+      "reachable_target_world_mm": [
+        345.0737688612296,
+        -14.741629362003557,
+        371.29598246368846
+      ],
+      "target_shift_mm": [
+        -0.0011884373029147355,
+        0.001179714517681063,
+        -0.0009727935775458718
+      ],
+      "target_shift_norm_mm": 0.0019366044796760155,
+      "requested_terminal_robot_ABCE": [
+        -4769,
+        2230619,
+        2133258,
+        0
+      ],
+      "endpoint_robot_ABCE": [
+        -4767,
+        2230949,
+        2133268,
+        0
+      ],
+      "endpoint_task_rad_rad_m": [
+        -0.14975972179662544,
+        0.15027281458221803,
+        0.01942490228331697
+      ]
+    },
+    {
+      "target_index": 9,
+      "target_seed": 20266125,
+      "requested_target_robot_mm": [
+        1.9729698089602121,
+        1.7228111617558417,
+        23.380649690452845
+      ],
+      "requested_target_world_mm": [
+        344.8310209480231,
+        -9.287782166401993,
+        370.8673576128531
+      ],
+      "reachable_target_robot_mm": [
+        1.9754069452426912,
+        1.7236953833137125,
+        23.380609203088593
+      ],
+      "reachable_target_world_mm": [
+        344.8318304627826,
+        -9.285345030119512,
+        370.8677156252051
+      ],
+      "target_shift_mm": [
+        0.0008095147595099661,
+        0.0024371362824808784,
+        0.0003580123520237066
+      ],
+      "target_shift_norm_mm": 0.002592898040697077,
+      "requested_terminal_robot_ABCE": [
+        2680,
+        2317963,
+        2139778,
+        0
+      ],
+      "endpoint_robot_ABCE": [
+        2683,
+        2317770,
+        2139793,
+        0
+      ],
+      "endpoint_task_rad_rad_m": [
+        0.08428893089581414,
+        0.16689719310864892,
+        0.019527138611123904
+      ]
+    },
+    {
+      "target_index": 10,
+      "target_seed": 20266126,
+      "requested_target_robot_mm": [
+        5.020776439114449,
+        4.463123412207845,
+        22.431158488164296
+      ],
+      "requested_target_world_mm": [
+        347.0413404758973,
+        -6.239975536247755,
+        372.7449444571558
+      ],
+      "reachable_target_robot_mm": [
+        5.01991100618028,
+        4.463474583960901,
+        22.431308040566694
+      ],
+      "reachable_target_world_mm": [
+        347.04172197124564,
+        -6.2408409691819235,
+        372.74493225795885
+      ],
+      "target_shift_mm": [
+        0.0003814953483356476,
+        -0.0008654329341686307,
+        -1.219919693085103e-05
+      ],
+      "target_shift_norm_mm": 0.0009458655743556904,
+      "requested_terminal_robot_ABCE": [
+        7009,
+        1707412,
+        2132666,
+        0
+      ],
+      "endpoint_robot_ABCE": [
+        7008,
+        1707336,
+        2132668,
+        0
+      ],
+      "endpoint_task_rad_rad_m": [
+        0.2201628131635727,
+        0.048432826319299946,
+        0.019415501241679553
+      ]
+    },
+    {
+      "target_index": 11,
+      "target_seed": 20266127,
+      "requested_target_robot_mm": [
+        1.8322709315472432,
+        4.311580713332152,
+        23.417688170757405
+      ],
+      "requested_target_world_mm": [
+        347.25741936819514,
+        -9.42848104381496,
+        371.7705133839017
+      ],
+      "reachable_target_robot_mm": [
+        1.8304489821392567,
+        4.312800665459481,
+        23.417951637453605
+      ],
+      "reachable_target_world_mm": [
+        347.25865191151513,
+        -9.430302993222947,
+        371.770709686875
+      ],
+      "target_shift_mm": [
+        0.0012325433199862346,
+        -0.0018219494079865228,
+        0.00019630297333605995
+      ],
+      "target_shift_norm_mm": 0.0022084378049303786,
+      "requested_terminal_robot_ABCE": [
+        2485,
+        1759210,
+        2162421,
+        0
+      ],
+      "endpoint_robot_ABCE": [
+        2483,
+        1758960,
+        2162443,
+        0
+      ],
+      "endpoint_task_rad_rad_m": [
+        0.07800574558863457,
+        0.05864307590405251,
+        0.01988202793293647
+      ]
+    },
+    {
+      "target_index": 12,
+      "target_seed": 20266128,
+      "requested_target_robot_mm": [
+        2.4394118292581184,
+        3.8398658170625035,
+        23.350842312916804
+      ],
+      "requested_target_world_mm": [
+        346.7935233627776,
+        -8.821340146104086,
+        371.66196013323287
+      ],
+      "reachable_target_robot_mm": [
+        2.442196588848067,
+        3.839081155100547,
+        23.3512039187384
+      ],
+      "reachable_target_world_mm": [
+        346.7929229595945,
+        -8.818555386514136,
+        371.661338869052
+      ],
+      "target_shift_mm": [
+        -0.00060040318311394,
+        0.00278475958995017,
+        -0.000621264180892922
+      ],
+      "target_shift_norm_mm": 0.0029157055987484985,
+      "requested_terminal_robot_ABCE": [
+        3313,
+        1858018,
+        2156560,
+        0
+      ],
+      "endpoint_robot_ABCE": [
+        3317,
+        1858207,
+        2156593,
+        0
+      ],
+      "endpoint_task_rad_rad_m": [
+        0.10420662831957345,
+        0.07814707936391842,
+        0.019790367776971636
+      ]
+    },
+    {
+      "target_index": 13,
+      "target_seed": 20266129,
+      "requested_target_robot_mm": [
+        3.803911888100134,
+        3.7952804759556145,
+        22.985191868052524
+      ],
+      "requested_target_world_mm": [
+        346.6195231415128,
+        -7.45684008726207,
+        371.9866323117004
+      ],
+      "reachable_target_robot_mm": [
+        3.8071441297902,
+        3.793871657681094,
+        22.98464520883935
+      ],
+      "reachable_target_world_mm": [
+        346.61801198147356,
+        -7.4536078455720025,
+        371.98663156216475
+      ],
+      "target_shift_mm": [
+        -0.0015111600392287983,
+        0.0032322416900676387,
+        -7.495356726394675e-07
+      ],
+      "target_shift_norm_mm": 0.0035680515087337253,
+      "requested_terminal_robot_ABCE": [
+        5221,
+        1861250,
+        2144758,
+        0
+      ],
+      "endpoint_robot_ABCE": [
+        5225,
+        1861551,
+        2144743,
+        0
+      ],
+      "endpoint_task_rad_rad_m": [
+        0.1641482161500667,
+        0.0788015793371295,
+        0.019604697204632607
+      ]
+    }
+  ],
+  "expert_terminal_tolerance_um": 0.1,
+  "terminal_start_profile_indices": null,
+  "terminal_start_profiles": null,
+  "state_range_A_deg_B_deg_C_mm": [
+    [
+      -13.296600341796875,
+      -12.27226734161377,
+      0.0
+    ],
+    [
+      13.296600341796875,
+      11.900778770446777,
+      20.76517677307129
+    ]
+  ],
+  "action_abs_limit_deg_deg_mm": [
+    0.28980064392089844,
+    0.14434337615966797,
+    0.042713165283203125
+  ],
+  "episodes": [
+    {
+      "episode_index": 48,
+      "method": "dagger_policy_teacher",
+      "seed": 20266164,
+      "visit_order": [
+        "P1"
+      ],
+      "result": "PASS",
+      "frames": 169,
+      "data": "data/episode_000048.npz",
+      "jsonl": "data/episode_000048.jsonl",
+      "policy_inputs": "policy_inputs/episode_000048.npz",
+      "policy_inputs_no_image": "policy_inputs_no_image/episode_000048.npz",
+      "action_labels": "action_labels/episode_000048.npz",
+      "image_write_wall_s": 7.846090059058042,
+      "visibility_summary": {
+        "known_frames": 0,
+        "unknown_frames": 169,
+        "target_occlusion_state_frames": {
+          "clear": 0,
+          "partial_needle": 0,
+          "full_needle": 0,
+          "not_visible": 0
+        },
+        "frames_with_needle_occlusion": 0,
+        "maximum_target_occlusion_fraction_by_needle": null,
+        "source": "MuJoCo geometry segmentation; offline no-needle counterfactual, not controller input"
+      },
+      "target_success_by_visibility": null,
+      "stop_constraint_summary": {
+        "pass": true,
+        "attempted_targets": 1,
+        "targets_with_validated_stop": 1
+      },
+      "initial_error_mm": 0.35,
+      "stop_reason": "EXACT_TERMINAL_LOCK_WITHIN_0P1UM",
+      "teacher_invalid_frames": 0,
+      "teacher_invalid_fraction": 0.0,
+      "collection_wall_s": 539.2745692899916,
+      "target_robot_mm": [
+        2.442196588848067,
+        3.839081155100547,
+        23.3512039187384
+      ],
+      "teacher_pre_roll": {
+        "result": "FAIL",
+        "reason": "USER_ABORTED",
+        "controller_result": "FAIL",
+        "controller_reason": "USER_ABORTED",
+        "execution_mode": "visual_servo_motor",
+        "motor_execution": {
+          "backend": "MotorBackend",
+          "tau_s": 0.04,
+          "control_period_s": 0.05,
+          "integration_step_s": 0.002,
+          "speed_limits_A_deg_B_deg_C_mm_per_s": [
+            10.0,
+            10.0,
+            2.0
+          ],
+          "timeout_s": 0.5,
+          "simulation_time_s": 32.600000000000286,
+          "control_steps": 652,
+          "robot_ABCE": [
+            3316,
+            1856201,
+            2134441,
+            0
+          ],
+          "target_robot_ABCE": [
+            3317,
+            1856201,
+            2135218,
+            0
+          ],
+          "encoder_settled": false,
+          "status": "moving",
+          "fault": null,
+          "physical_dynamics_identified": false,
+          "direct_pose_fallback_used": false
+        },
+        "feedback_controller_used": true,
+        "position_feedback": "calibrated_visible_geometry",
+        "camera_name": "eye_internal",
+        "iterations": 653,
+        "initial_tip_world_mm": [
+          337.0507865724399,
+          -11.260751975282796,
+          388.75974812805464
+        ],
+        "final_tip_world_mm": [
+          346.6252787401298,
+          -8.855063062447726,
+          371.96319671490136
+        ],
+        "target_world_mm": [
+          346.7929229595945,
+          -8.81855538651414,
+          371.66133886905203
+        ],
+        "final_tip_target_error_um": 347.21110843807674,
+        "final_estimated_position_error_um": 347.2755613907175,
+        "final_geometry_measurement": {
+          "target_world_mm": [
+            346.8010370671198,
+            -8.82150348412953,
+            371.6657997968597
+          ],
+          "target_quality": {
+            "source": "target_sphere_fit",
+            "support": 33,
+            "residual_mm": 0.0006160248221905397,
+            "fit_quality_mm": 0.002
+          },
+          "tip_world_mm": [
+            346.62518231434103,
+            -8.855063206894012,
+            371.963371916643
+          ],
+          "tip_quality": {
+            "source": "shaft_end_plane",
+            "plane_end": "rear",
+            "support": 1518,
+            "residual_mm": 8.667519428737475e-07,
+            "axis_residual_mm": 0.0017225231933989502,
+            "fit_quality_mm": 0.0026786667712701442,
+            "axis_world": [
+              0.5062773418514892,
+              0.10261827917942179,
+              -0.8562433894086686
+            ]
+          }
+        },
+        "final_oct_metadata": {
+          "schema_version": 1,
+          "frame_id": "sim-oct-4c082f92a5f7460683d57ab79ac6aa21/00000652",
+          "stream_id": "sim-oct-4c082f92a5f7460683d57ab79ac6aa21",
+          "sequence_id": 652,
+          "timestamp_s": 32.600000000000286,
+          "clock_domain": "simulation",
+          "acquired_monotonic_s": 241956.987009548,
+          "nominal_period_s": 0.05,
+          "nominal_frequency_hz": 20.0,
+          "nominal_rate_is_wall_clock_guarantee": false,
+          "source": "mujoco_visible_scene_depth_simulation",
+          "is_simulation": true,
+          "raw_oct_available": false,
+          "realtime_validated": false,
+          "camera_name": "eye_internal",
+          "registration_frame": "eye_internal",
+          "registration_description": "One normally visible, registered metric depth map; no hidden-feature render or object-ID segmentation.",
+          "depth_unit": "m",
+          "depth_convention": "positive_camera_optical_axis_z_not_ray_range",
+          "shape_hw": [
+            1440,
+            1920
+          ],
+          "depth_dtype": "float32",
+          "validity_rule": "finite and strictly greater than min; strictly less than max when set",
+          "min_valid_depth_m": 0.0001,
+          "max_valid_depth_m": 0.059994,
+          "scene_valid_pixels": 1585318,
+          "feature_valid_pixels": 1585318,
+          "timestamp_repeated": false,
+          "fresh_simulation_timestamp": true,
+          "extra": {
+            "source": "mujoco_visible_scene_depth_simulation",
+            "is_simulation": true,
+            "raw_oct_available": false,
+            "realtime_validated": false,
+            "feature_pass_excludes_fundus_backdrop": false,
+            "visibility_gated_by_normal_scene_segmentation": false,
+            "rgb_and_depth_share_visibility": true,
+            "simulator_object_ids_used": false
+          }
+        },
+        "final_oct_navigation_depth": {
+          "definition": "target_minus_tip",
+          "unit": "m",
+          "coordinate_frame": "camera_optical",
+          "delta_xyz_m": [
+            5.715456084417515e-06,
+            2.653979367428158e-05,
+            0.0003462127791585834
+          ],
+          "axial_depth_difference_m": 0.0003462127791585834,
+          "euclidean_distance_m": 0.00034727556139071514,
+          "along_needle_difference_m": null,
+          "source_flags": {
+            "source": "mujoco_visible_scene_depth_simulation",
+            "frame_id": "sim-oct-4c082f92a5f7460683d57ab79ac6aa21/00000652",
+            "target_source": "current_rgb_visible_depth",
+            "is_simulation": true
+          }
+        },
+        "final_visual_error": {
+          "calibrated_u_v_depth_mm": [
+            -2.1754628468340798,
+            -0.42543537420658595,
+            -0.3462127791585834
+          ]
+        },
+        "camera_resolution_px": [
+          1920,
+          1440
+        ],
+        "max_velocity_A_deg_B_deg_C_mm_per_s": [
+          4.0,
+          2.0,
+          0.6
+        ],
+        "max_acceleration_A_deg_B_deg_C_mm_per_s2": [
+          10.000000000000005,
+          5.000000000000003,
+          11.999999999999998
+        ],
+        "trajectory_rate_limits_pass": false,
+        "initial_command_velocity_A_deg_B_deg_C_mm_per_s": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "final_command_velocity_A_deg_B_deg_C_mm_per_s": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "simulation_abort_hold": true,
+        "velocity_before_abort_hold_A_deg_B_deg_C_mm_per_s": [
+          -0.009938991530617195,
+          0.00039082470056024297,
+          0.6
+        ],
+        "physical_braking_validated": false,
+        "settled_frames": 0,
+        "terminal_stop_validated": false,
+        "independent_accuracy_acceptance_pass": false,
+        "independent_endpoint_acceptance_required": true,
+        "measurement_goal_type": "physical_target",
+        "independent_accuracy_tolerance_um": 20.0,
+        "stop_condition": "measured controllable 3D error and consecutive zero-command-velocity observations",
+        "tip_detection": "RGB-observed shaft/end plane or calibrated visible artificial green fiducial",
+        "perception_backend": "strict_rgbd",
+        "simulator_ids_used_for_control": false,
+        "hidden_geometry_render_used_for_control": false,
+        "target_detection": "current RGB detector and single visible-scene depth",
+        "control_axes": [
+          true,
+          true,
+          true
+        ],
+        "completion_axes": [
+          true,
+          true,
+          true
+        ],
+        "known_target_pose_used_for_feature_calibration": false,
+        "ground_truth_used_for_stop": false,
+        "ground_truth_used_for_post_run_acceptance": true,
+        "calibration_inputs": "fixed camera, RCM, needle lengths/radii and target marker radius",
+        "scope": "MuJoCo RGB-D geometry and kinematic control; geometric calibration and ideal depth are simulation assumptions, not hardware accuracy.",
+        "occlusion_handling": "S0a_stop_instant",
+        "occlusion_strategy_label": "S0a_stop_instant",
+        "occlusion_handling_semantics": "immediate simulator hold; failure report includes the resulting command-velocity discontinuity"
+      },
+      "terminal_start_profile": null,
+      "exact_terminal_lock": {
+        "requested_terminal_robot_ABCE": [
+          3313,
+          1858018,
+          2156560,
+          0
+        ],
+        "terminal_robot_ABCE": [
+          3317,
+          1858207,
+          2156593,
+          0
+        ],
+        "terminal_target_robot_ABCE": [
+          3317,
+          1858207,
+          2156593,
+          0
+        ],
+        "exact_settle_steps": 8,
+        "terminal_tip_world_m": [
+          0.34679292295959446,
+          -0.008818555386514135,
+          0.37166133886905195
+        ],
+        "terminal_target_world_m": [
+          0.34679292295959446,
+          -0.008818555386514139,
+          0.371661338869052
+        ],
+        "original_target_world_mm": [
+          346.7929229595945,
+          -8.81855538651414,
+          371.66133886905203
+        ],
+        "target_shift_mm": 0.0,
+        "target_shift_vector_mm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "final_error_um": 5.561946577567963e-11,
+        "reachable_target_planning": {
+          "requested_target_robot_mm": [
+            2.4394118292581184,
+            3.8398658170625035,
+            23.350842312916804
+          ],
+          "requested_target_world_mm": [
+            346.7935233627776,
+            -8.821340146104086,
+            371.66196013323287
+          ],
+          "reachable_target_robot_mm": [
+            2.442196588848067,
+            3.839081155100547,
+            23.3512039187384
+          ],
+          "reachable_target_world_mm": [
+            346.7929229595945,
+            -8.818555386514136,
+            371.661338869052
+          ],
+          "target_shift_mm": [
+            -0.00060040318311394,
+            0.00278475958995017,
+            -0.000621264180892922
+          ],
+          "target_shift_norm_mm": 0.0029157055987484985,
+          "requested_terminal_robot_ABCE": [
+            3313,
+            1858018,
+            2156560,
+            0
+          ],
+          "endpoint_robot_ABCE": [
+            3317,
+            1858207,
+            2156593,
+            0
+          ],
+          "endpoint_task_rad_rad_m": [
+            0.10420662831957345,
+            0.07814707936391842,
+            0.019790367776971636
+          ]
+        }
+      },
+      "executor_counts": {
+        "policy": 65,
+        "teacher": 75,
+        "hold": 21,
+        "exact_terminal": 8
+      },
+      "takeover_trigger_reasons": {
+        "policy_action_limited": 2,
+        "worsening": 1,
+        "near_target_stagnation": 1
+      },
+      "strict_zero_error": true,
+      "final_error_um": 5.561946577567963e-11,
+      "expert_terminal_tolerance_um": 0.1
+    },
+    {
+      "episode_index": 49,
+      "method": "dagger_policy_teacher",
+      "seed": 20266165,
+      "visit_order": [
+        "P1"
+      ],
+      "result": "PASS",
+      "frames": 201,
+      "data": "data/episode_000049.npz",
+      "jsonl": "data/episode_000049.jsonl",
+      "policy_inputs": "policy_inputs/episode_000049.npz",
+      "policy_inputs_no_image": "policy_inputs_no_image/episode_000049.npz",
+      "action_labels": "action_labels/episode_000049.npz",
+      "image_write_wall_s": 9.158188346016686,
+      "visibility_summary": {
+        "known_frames": 0,
+        "unknown_frames": 201,
+        "target_occlusion_state_frames": {
+          "clear": 0,
+          "partial_needle": 0,
+          "full_needle": 0,
+          "not_visible": 0
+        },
+        "frames_with_needle_occlusion": 0,
+        "maximum_target_occlusion_fraction_by_needle": null,
+        "source": "MuJoCo geometry segmentation; offline no-needle counterfactual, not controller input"
+      },
+      "target_success_by_visibility": null,
+      "stop_constraint_summary": {
+        "pass": true,
+        "attempted_targets": 1,
+        "targets_with_validated_stop": 1
+      },
+      "initial_error_mm": 0.5,
+      "stop_reason": "EXACT_TERMINAL_LOCK_WITHIN_0P1UM",
+      "teacher_invalid_frames": 0,
+      "teacher_invalid_fraction": 0.0,
+      "collection_wall_s": 554.6350204519986,
+      "target_robot_mm": [
+        2.442196588848067,
+        3.839081155100547,
+        23.3512039187384
+      ],
+      "teacher_pre_roll": {
+        "result": "FAIL",
+        "reason": "USER_ABORTED",
+        "controller_result": "FAIL",
+        "controller_reason": "USER_ABORTED",
+        "execution_mode": "visual_servo_motor",
+        "motor_execution": {
+          "backend": "MotorBackend",
+          "tau_s": 0.04,
+          "control_period_s": 0.05,
+          "integration_step_s": 0.002,
+          "speed_limits_A_deg_B_deg_C_mm_per_s": [
+            10.0,
+            10.0,
+            2.0
+          ],
+          "timeout_s": 0.5,
+          "simulation_time_s": 32.3500000000003,
+          "control_steps": 647,
+          "robot_ABCE": [
+            3315,
+            1856201,
+            2124842,
+            0
+          ],
+          "target_robot_ABCE": [
+            3317,
+            1856201,
+            2125618,
+            0
+          ],
+          "encoder_settled": false,
+          "status": "moving",
+          "fault": null,
+          "physical_dynamics_identified": false,
+          "direct_pose_fallback_used": false
+        },
+        "feedback_controller_used": true,
+        "position_feedback": "calibrated_visible_geometry",
+        "camera_name": "eye_internal",
+        "iterations": 648,
+        "initial_tip_world_mm": [
+          337.0507865724399,
+          -11.260751975282796,
+          388.75974812805464
+        ],
+        "final_tip_world_mm": [
+          346.5491613450419,
+          -8.871215040590158,
+          372.0919066241718
+        ],
+        "target_world_mm": [
+          346.7929229595945,
+          -8.81855538651414,
+          371.66133886905203
+        ],
+        "final_tip_target_error_um": 497.5754773354302,
+        "final_estimated_position_error_um": 497.79706947518775,
+        "final_geometry_measurement": {
+          "target_world_mm": [
+            346.8010752581846,
+            -8.821658238257365,
+            371.66565970614624
+          ],
+          "target_quality": {
+            "source": "target_sphere_fit",
+            "support": 45,
+            "residual_mm": 0.000567213590783943,
+            "fit_quality_mm": 0.002
+          },
+          "tip_world_mm": [
+            346.54907063367483,
+            -8.871216641315396,
+            372.0920862019109
+          ],
+          "tip_quality": {
+            "source": "shaft_end_plane",
+            "plane_end": "rear",
+            "support": 1553,
+            "residual_mm": 8.710176930796084e-07,
+            "axis_residual_mm": 0.0017255573844802286,
+            "fit_quality_mm": 0.0026820068536813333,
+            "axis_world": [
+              0.506278777708038,
+              0.10258739223062252,
+              -0.8562462415670945
+            ]
+          }
+        },
+        "final_oct_metadata": {
+          "schema_version": 1,
+          "frame_id": "sim-oct-d3ec6fb2f0cd4867b6eb09c810310091/00000647",
+          "stream_id": "sim-oct-d3ec6fb2f0cd4867b6eb09c810310091",
+          "sequence_id": 647,
+          "timestamp_s": 32.3500000000003,
+          "clock_domain": "simulation",
+          "acquired_monotonic_s": 242492.092219558,
+          "nominal_period_s": 0.05,
+          "nominal_frequency_hz": 20.0,
+          "nominal_rate_is_wall_clock_guarantee": false,
+          "source": "mujoco_visible_scene_depth_simulation",
+          "is_simulation": true,
+          "raw_oct_available": false,
+          "realtime_validated": false,
+          "camera_name": "eye_internal",
+          "registration_frame": "eye_internal",
+          "registration_description": "One normally visible, registered metric depth map; no hidden-feature render or object-ID segmentation.",
+          "depth_unit": "m",
+          "depth_convention": "positive_camera_optical_axis_z_not_ray_range",
+          "shape_hw": [
+            1440,
+            1920
+          ],
+          "depth_dtype": "float32",
+          "validity_rule": "finite and strictly greater than min; strictly less than max when set",
+          "min_valid_depth_m": 0.0001,
+          "max_valid_depth_m": 0.059994,
+          "scene_valid_pixels": 1585318,
+          "feature_valid_pixels": 1585318,
+          "timestamp_repeated": false,
+          "fresh_simulation_timestamp": true,
+          "extra": {
+            "source": "mujoco_visible_scene_depth_simulation",
+            "is_simulation": true,
+            "raw_oct_available": false,
+            "realtime_validated": false,
+            "feature_pass_excludes_fundus_backdrop": false,
+            "visibility_gated_by_normal_scene_segmentation": false,
+            "rgb_and_depth_share_visibility": true,
+            "simulator_object_ids_used": false
+          }
+        },
+        "final_oct_navigation_depth": {
+          "definition": "target_minus_tip",
+          "unit": "m",
+          "coordinate_frame": "camera_optical",
+          "delta_xyz_m": [
+            6.733380243225881e-06,
+            3.807059546819848e-05,
+            0.0004962934754047105
+          ],
+          "axial_depth_difference_m": 0.0004962934754047105,
+          "euclidean_distance_m": 0.0004977970694751919,
+          "along_needle_difference_m": null,
+          "source_flags": {
+            "source": "mujoco_visible_scene_depth_simulation",
+            "frame_id": "sim-oct-d3ec6fb2f0cd4867b6eb09c810310091/00000647",
+            "target_source": "current_rgb_visible_depth",
+            "is_simulation": true
+          }
+        },
+        "final_visual_error": {
+          "calibrated_u_v_depth_mm": [
+            -3.0673529936300383,
+            -0.6132095671229081,
+            -0.49629347540471047
+          ]
+        },
+        "camera_resolution_px": [
+          1920,
+          1440
+        ],
+        "max_velocity_A_deg_B_deg_C_mm_per_s": [
+          4.0,
+          2.0,
+          0.6
+        ],
+        "max_acceleration_A_deg_B_deg_C_mm_per_s2": [
+          10.000000000000005,
+          5.000000000000003,
+          11.999999999999998
+        ],
+        "trajectory_rate_limits_pass": false,
+        "initial_command_velocity_A_deg_B_deg_C_mm_per_s": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "final_command_velocity_A_deg_B_deg_C_mm_per_s": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "simulation_abort_hold": true,
+        "velocity_before_abort_hold_A_deg_B_deg_C_mm_per_s": [
+          0.01622443446477555,
+          0.0011172128475124127,
+          0.6
+        ],
+        "physical_braking_validated": false,
+        "settled_frames": 0,
+        "terminal_stop_validated": false,
+        "independent_accuracy_acceptance_pass": false,
+        "independent_endpoint_acceptance_required": true,
+        "measurement_goal_type": "physical_target",
+        "independent_accuracy_tolerance_um": 20.0,
+        "stop_condition": "measured controllable 3D error and consecutive zero-command-velocity observations",
+        "tip_detection": "RGB-observed shaft/end plane or calibrated visible artificial green fiducial",
+        "perception_backend": "strict_rgbd",
+        "simulator_ids_used_for_control": false,
+        "hidden_geometry_render_used_for_control": false,
+        "target_detection": "current RGB detector and single visible-scene depth",
+        "control_axes": [
+          true,
+          true,
+          true
+        ],
+        "completion_axes": [
+          true,
+          true,
+          true
+        ],
+        "known_target_pose_used_for_feature_calibration": false,
+        "ground_truth_used_for_stop": false,
+        "ground_truth_used_for_post_run_acceptance": true,
+        "calibration_inputs": "fixed camera, RCM, needle lengths/radii and target marker radius",
+        "scope": "MuJoCo RGB-D geometry and kinematic control; geometric calibration and ideal depth are simulation assumptions, not hardware accuracy.",
+        "occlusion_handling": "S0a_stop_instant",
+        "occlusion_strategy_label": "S0a_stop_instant",
+        "occlusion_handling_semantics": "immediate simulator hold; failure report includes the resulting command-velocity discontinuity"
+      },
+      "terminal_start_profile": null,
+      "exact_terminal_lock": {
+        "requested_terminal_robot_ABCE": [
+          3313,
+          1858018,
+          2156560,
+          0
+        ],
+        "terminal_robot_ABCE": [
+          3317,
+          1858207,
+          2156593,
+          0
+        ],
+        "terminal_target_robot_ABCE": [
+          3317,
+          1858207,
+          2156593,
+          0
+        ],
+        "exact_settle_steps": 8,
+        "terminal_tip_world_m": [
+          0.34679292295959446,
+          -0.008818555386514135,
+          0.37166133886905195
+        ],
+        "terminal_target_world_m": [
+          0.34679292295959446,
+          -0.008818555386514139,
+          0.371661338869052
+        ],
+        "original_target_world_mm": [
+          346.7929229595945,
+          -8.81855538651414,
+          371.66133886905203
+        ],
+        "target_shift_mm": 0.0,
+        "target_shift_vector_mm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "final_error_um": 5.561946577567963e-11,
+        "reachable_target_planning": {
+          "requested_target_robot_mm": [
+            2.4394118292581184,
+            3.8398658170625035,
+            23.350842312916804
+          ],
+          "requested_target_world_mm": [
+            346.7935233627776,
+            -8.821340146104086,
+            371.66196013323287
+          ],
+          "reachable_target_robot_mm": [
+            2.442196588848067,
+            3.839081155100547,
+            23.3512039187384
+          ],
+          "reachable_target_world_mm": [
+            346.7929229595945,
+            -8.818555386514136,
+            371.661338869052
+          ],
+          "target_shift_mm": [
+            -0.00060040318311394,
+            0.00278475958995017,
+            -0.000621264180892922
+          ],
+          "target_shift_norm_mm": 0.0029157055987484985,
+          "requested_terminal_robot_ABCE": [
+            3313,
+            1858018,
+            2156560,
+            0
+          ],
+          "endpoint_robot_ABCE": [
+            3317,
+            1858207,
+            2156593,
+            0
+          ],
+          "endpoint_task_rad_rad_m": [
+            0.10420662831957345,
+            0.07814707936391842,
+            0.019790367776971636
+          ]
+        }
+      },
+      "executor_counts": {
+        "policy": 95,
+        "teacher": 77,
+        "hold": 21,
+        "exact_terminal": 8
+      },
+      "takeover_trigger_reasons": {
+        "worsening": 1,
+        "policy_action_limited": 2,
+        "near_target_stagnation": 1
+      },
+      "strict_zero_error": true,
+      "final_error_um": 5.561946577567963e-11,
+      "expert_terminal_tolerance_um": 0.1
+    },
+    {
+      "episode_index": 50,
+      "method": "dagger_policy_teacher",
+      "seed": 20266166,
+      "visit_order": [
+        "P1"
+      ],
+      "result": "PASS",
+      "frames": 185,
+      "data": "data/episode_000050.npz",
+      "jsonl": "data/episode_000050.jsonl",
+      "policy_inputs": "policy_inputs/episode_000050.npz",
+      "policy_inputs_no_image": "policy_inputs_no_image/episode_000050.npz",
+      "action_labels": "action_labels/episode_000050.npz",
+      "image_write_wall_s": 8.318015887896763,
+      "visibility_summary": {
+        "known_frames": 0,
+        "unknown_frames": 185,
+        "target_occlusion_state_frames": {
+          "clear": 0,
+          "partial_needle": 0,
+          "full_needle": 0,
+          "not_visible": 0
+        },
+        "frames_with_needle_occlusion": 0,
+        "maximum_target_occlusion_fraction_by_needle": null,
+        "source": "MuJoCo geometry segmentation; offline no-needle counterfactual, not controller input"
+      },
+      "target_success_by_visibility": null,
+      "stop_constraint_summary": {
+        "pass": true,
+        "attempted_targets": 1,
+        "targets_with_validated_stop": 1
+      },
+      "initial_error_mm": 1.0,
+      "stop_reason": "EXACT_TERMINAL_LOCK_WITHIN_0P1UM",
+      "teacher_invalid_frames": 0,
+      "teacher_invalid_fraction": 0.0,
+      "collection_wall_s": 532.4377091109927,
+      "target_robot_mm": [
+        2.442196588848067,
+        3.839081155100547,
+        23.3512039187384
+      ],
+      "teacher_pre_roll": {
+        "result": "FAIL",
+        "reason": "USER_ABORTED",
+        "controller_result": "FAIL",
+        "controller_reason": "USER_ABORTED",
+        "execution_mode": "visual_servo_motor",
+        "motor_execution": {
+          "backend": "MotorBackend",
+          "tau_s": 0.04,
+          "control_period_s": 0.05,
+          "integration_step_s": 0.002,
+          "speed_limits_A_deg_B_deg_C_mm_per_s": [
+            10.0,
+            10.0,
+            2.0
+          ],
+          "timeout_s": 0.5,
+          "simulation_time_s": 31.550000000000313,
+          "control_steps": 631,
+          "robot_ABCE": [
+            3316,
+            1856190,
+            2094237,
+            0
+          ],
+          "target_robot_ABCE": [
+            3317,
+            1856201,
+            2095018,
+            0
+          ],
+          "encoder_settled": false,
+          "status": "moving",
+          "fault": null,
+          "physical_dynamics_identified": false,
+          "direct_pose_fallback_used": false
+        },
+        "feedback_controller_used": true,
+        "position_feedback": "calibrated_visible_geometry",
+        "camera_name": "eye_internal",
+        "iterations": 632,
+        "initial_tip_world_mm": [
+          337.0507865724399,
+          -11.260751975282796,
+          388.75974812805464
+        ],
+        "final_tip_world_mm": [
+          346.30640064890275,
+          -8.91970592981541,
+          372.5025972835479
+        ],
+        "target_world_mm": [
+          346.7929229595945,
+          -8.81855538651414,
+          371.66133886905203
+        ],
+        "final_tip_target_error_um": 977.0624909242422,
+        "final_estimated_position_error_um": 976.9671825551568,
+        "final_geometry_measurement": {
+          "target_world_mm": [
+            346.80109703046156,
+            -8.821309388978815,
+            371.66612968746415
+          ],
+          "target_quality": {
+            "source": "target_sphere_fit",
+            "support": 70,
+            "residual_mm": 0.0006684952455052292,
+            "fit_quality_mm": 0.0020054857365156874
+          },
+          "tip_world_mm": [
+            346.30628964626686,
+            -8.919701634066875,
+            372.50275953061026
+          ],
+          "tip_quality": {
+            "source": "shaft_end_plane",
+            "plane_end": "rear",
+            "support": 1660,
+            "residual_mm": 8.232691069922223e-07,
+            "axis_residual_mm": 0.0017713336382502633,
+            "fit_quality_mm": 0.0026446197107749102,
+            "axis_world": [
+              0.5062784707970116,
+              0.1026184427032093,
+              -0.8562427022898401
+            ]
+          }
+        },
+        "final_oct_metadata": {
+          "schema_version": 1,
+          "frame_id": "sim-oct-30aa6b1ad90b4e94a4616b8f01fd3253/00000631",
+          "stream_id": "sim-oct-30aa6b1ad90b4e94a4616b8f01fd3253",
+          "sequence_id": 631,
+          "timestamp_s": 31.550000000000313,
+          "clock_domain": "simulation",
+          "acquired_monotonic_s": 243038.022718791,
+          "nominal_period_s": 0.05,
+          "nominal_frequency_hz": 20.0,
+          "nominal_rate_is_wall_clock_guarantee": false,
+          "source": "mujoco_visible_scene_depth_simulation",
+          "is_simulation": true,
+          "raw_oct_available": false,
+          "realtime_validated": false,
+          "camera_name": "eye_internal",
+          "registration_frame": "eye_internal",
+          "registration_description": "One normally visible, registered metric depth map; no hidden-feature render or object-ID segmentation.",
+          "depth_unit": "m",
+          "depth_convention": "positive_camera_optical_axis_z_not_ray_range",
+          "shape_hw": [
+            1440,
+            1920
+          ],
+          "depth_dtype": "float32",
+          "validity_rule": "finite and strictly greater than min; strictly less than max when set",
+          "min_valid_depth_m": 0.0001,
+          "max_valid_depth_m": 0.059994,
+          "scene_valid_pixels": 1585318,
+          "feature_valid_pixels": 1585318,
+          "timestamp_repeated": false,
+          "fresh_simulation_timestamp": true,
+          "extra": {
+            "source": "mujoco_visible_scene_depth_simulation",
+            "is_simulation": true,
+            "raw_oct_available": false,
+            "realtime_validated": false,
+            "feature_pass_excludes_fundus_backdrop": false,
+            "visibility_gated_by_normal_scene_segmentation": false,
+            "rgb_and_depth_share_visibility": true,
+            "simulator_object_ids_used": false
+          }
+        },
+        "final_oct_navigation_depth": {
+          "definition": "target_minus_tip",
+          "unit": "m",
+          "coordinate_frame": "camera_optical",
+          "delta_xyz_m": [
+            1.207335831303509e-05,
+            7.440796501201395e-05,
+            0.0009740547030591198
+          ],
+          "axial_depth_difference_m": 0.0009740547030591198,
+          "euclidean_distance_m": 0.0009769671825551635,
+          "along_needle_difference_m": null,
+          "source_flags": {
+            "source": "mujoco_visible_scene_depth_simulation",
+            "frame_id": "sim-oct-30aa6b1ad90b4e94a4616b8f01fd3253/00000631",
+            "target_source": "current_rgb_visible_depth",
+            "is_simulation": true
+          }
+        },
+        "final_visual_error": {
+          "calibrated_u_v_depth_mm": [
+            -6.042918772721919,
+            -1.204631900691993,
+            -0.9740547030591198
+          ]
+        },
+        "camera_resolution_px": [
+          1920,
+          1440
+        ],
+        "max_velocity_A_deg_B_deg_C_mm_per_s": [
+          4.0,
+          2.0,
+          0.6
+        ],
+        "max_acceleration_A_deg_B_deg_C_mm_per_s2": [
+          10.000000000000005,
+          5.000000000000003,
+          11.999999999999998
+        ],
+        "trajectory_rate_limits_pass": false,
+        "initial_command_velocity_A_deg_B_deg_C_mm_per_s": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "final_command_velocity_A_deg_B_deg_C_mm_per_s": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "simulation_abort_hold": true,
+        "velocity_before_abort_hold_A_deg_B_deg_C_mm_per_s": [
+          -0.008505374019016063,
+          0.000379443898938599,
+          0.6
+        ],
+        "physical_braking_validated": false,
+        "settled_frames": 0,
+        "terminal_stop_validated": false,
+        "independent_accuracy_acceptance_pass": false,
+        "independent_endpoint_acceptance_required": true,
+        "measurement_goal_type": "physical_target",
+        "independent_accuracy_tolerance_um": 20.0,
+        "stop_condition": "measured controllable 3D error and consecutive zero-command-velocity observations",
+        "tip_detection": "RGB-observed shaft/end plane or calibrated visible artificial green fiducial",
+        "perception_backend": "strict_rgbd",
+        "simulator_ids_used_for_control": false,
+        "hidden_geometry_render_used_for_control": false,
+        "target_detection": "current RGB detector and single visible-scene depth",
+        "control_axes": [
+          true,
+          true,
+          true
+        ],
+        "completion_axes": [
+          true,
+          true,
+          true
+        ],
+        "known_target_pose_used_for_feature_calibration": false,
+        "ground_truth_used_for_stop": false,
+        "ground_truth_used_for_post_run_acceptance": true,
+        "calibration_inputs": "fixed camera, RCM, needle lengths/radii and target marker radius",
+        "scope": "MuJoCo RGB-D geometry and kinematic control; geometric calibration and ideal depth are simulation assumptions, not hardware accuracy.",
+        "occlusion_handling": "S0a_stop_instant",
+        "occlusion_strategy_label": "S0a_stop_instant",
+        "occlusion_handling_semantics": "immediate simulator hold; failure report includes the resulting command-velocity discontinuity"
+      },
+      "terminal_start_profile": null,
+      "exact_terminal_lock": {
+        "requested_terminal_robot_ABCE": [
+          3313,
+          1858018,
+          2156560,
+          0
+        ],
+        "terminal_robot_ABCE": [
+          3317,
+          1858207,
+          2156593,
+          0
+        ],
+        "terminal_target_robot_ABCE": [
+          3317,
+          1858207,
+          2156593,
+          0
+        ],
+        "exact_settle_steps": 8,
+        "terminal_tip_world_m": [
+          0.34679292295959446,
+          -0.008818555386514135,
+          0.37166133886905195
+        ],
+        "terminal_target_world_m": [
+          0.34679292295959446,
+          -0.008818555386514139,
+          0.371661338869052
+        ],
+        "original_target_world_mm": [
+          346.7929229595945,
+          -8.81855538651414,
+          371.66133886905203
+        ],
+        "target_shift_mm": 0.0,
+        "target_shift_vector_mm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "final_error_um": 5.561946577567963e-11,
+        "reachable_target_planning": {
+          "requested_target_robot_mm": [
+            2.4394118292581184,
+            3.8398658170625035,
+            23.350842312916804
+          ],
+          "requested_target_world_mm": [
+            346.7935233627776,
+            -8.821340146104086,
+            371.66196013323287
+          ],
+          "reachable_target_robot_mm": [
+            2.442196588848067,
+            3.839081155100547,
+            23.3512039187384
+          ],
+          "reachable_target_world_mm": [
+            346.7929229595945,
+            -8.818555386514136,
+            371.661338869052
+          ],
+          "target_shift_mm": [
+            -0.00060040318311394,
+            0.00278475958995017,
+            -0.000621264180892922
+          ],
+          "target_shift_norm_mm": 0.0029157055987484985,
+          "requested_terminal_robot_ABCE": [
+            3313,
+            1858018,
+            2156560,
+            0
+          ],
+          "endpoint_robot_ABCE": [
+            3317,
+            1858207,
+            2156593,
+            0
+          ],
+          "endpoint_task_rad_rad_m": [
+            0.10420662831957345,
+            0.07814707936391842,
+            0.019790367776971636
+          ]
+        }
+      },
+      "executor_counts": {
+        "policy": 57,
+        "teacher": 99,
+        "hold": 21,
+        "exact_terminal": 8
+      },
+      "takeover_trigger_reasons": {
+        "worsening": 1,
+        "policy_action_limited": 3,
+        "near_target_stagnation": 1
+      },
+      "strict_zero_error": true,
+      "final_error_um": 5.561946577567963e-11,
+      "expert_terminal_tolerance_um": 0.1
+    },
+    {
+      "episode_index": 51,
+      "method": "dagger_policy_teacher",
+      "seed": 20266167,
+      "visit_order": [
+        "P1"
+      ],
+      "result": "PASS",
+      "frames": 283,
+      "data": "data/episode_000051.npz",
+      "jsonl": "data/episode_000051.jsonl",
+      "policy_inputs": "policy_inputs/episode_000051.npz",
+      "policy_inputs_no_image": "policy_inputs_no_image/episode_000051.npz",
+      "action_labels": "action_labels/episode_000051.npz",
+      "image_write_wall_s": 12.799489711091155,
+      "visibility_summary": {
+        "known_frames": 0,
+        "unknown_frames": 283,
+        "target_occlusion_state_frames": {
+          "clear": 0,
+          "partial_needle": 0,
+          "full_needle": 0,
+          "not_visible": 0
+        },
+        "frames_with_needle_occlusion": 0,
+        "maximum_target_occlusion_fraction_by_needle": null,
+        "source": "MuJoCo geometry segmentation; offline no-needle counterfactual, not controller input"
+      },
+      "target_success_by_visibility": null,
+      "stop_constraint_summary": {
+        "pass": true,
+        "attempted_targets": 1,
+        "targets_with_validated_stop": 1
+      },
+      "initial_error_mm": 2.0,
+      "stop_reason": "EXACT_TERMINAL_LOCK_WITHIN_0P1UM",
+      "teacher_invalid_frames": 0,
+      "teacher_invalid_fraction": 0.0,
+      "collection_wall_s": 576.8488238599966,
+      "target_robot_mm": [
+        2.442196588848067,
+        3.839081155100547,
+        23.3512039187384
+      ],
+      "teacher_pre_roll": {
+        "result": "FAIL",
+        "reason": "USER_ABORTED",
+        "controller_result": "FAIL",
+        "controller_reason": "USER_ABORTED",
+        "execution_mode": "visual_servo_motor",
+        "motor_execution": {
+          "backend": "MotorBackend",
+          "tau_s": 0.04,
+          "control_period_s": 0.05,
+          "integration_step_s": 0.002,
+          "speed_limits_A_deg_B_deg_C_mm_per_s": [
+            10.0,
+            10.0,
+            2.0
+          ],
+          "timeout_s": 0.5,
+          "simulation_time_s": 29.85000000000029,
+          "control_steps": 597,
+          "robot_ABCE": [
+            3315,
+            1856201,
+            2029137,
+            0
+          ],
+          "target_robot_ABCE": [
+            3317,
+            1856201,
+            2029918,
+            0
+          ],
+          "encoder_settled": false,
+          "status": "moving",
+          "fault": null,
+          "physical_dynamics_identified": false,
+          "direct_pose_fallback_used": false
+        },
+        "feedback_controller_used": true,
+        "position_feedback": "calibrated_visible_geometry",
+        "camera_name": "eye_internal",
+        "iterations": 598,
+        "initial_tip_world_mm": [
+          337.0507865724399,
+          -11.260751975282796,
+          388.75974812805464
+        ],
+        "final_tip_world_mm": [
+          345.7899744709778,
+          -9.02504818180364,
+          373.3758864962706
+        ],
+        "target_world_mm": [
+          346.7929229595945,
+          -8.81855538651414,
+          371.66133886905203
+        ],
+        "final_tip_target_error_um": 1997.0524558272648,
+        "final_estimated_position_error_um": 1997.0982286429366,
+        "final_geometry_measurement": {
+          "target_world_mm": [
+            346.80113094783445,
+            -8.821608647667873,
+            371.6659956190016
+          ],
+          "target_quality": {
+            "source": "target_sphere_fit",
+            "support": 92,
+            "residual_mm": 0.0006520397359032599,
+            "fit_quality_mm": 0.002
+          },
+          "tip_world_mm": [
+            345.7898748820225,
+            -9.02506419705841,
+            373.3760740802511
+          ],
+          "tip_quality": {
+            "source": "shaft_end_plane",
+            "plane_end": "rear",
+            "support": 1921,
+            "residual_mm": 7.233522238072025e-07,
+            "axis_residual_mm": 0.0018752683636530376,
+            "fit_quality_mm": 0.0025663847912410394,
+            "axis_world": [
+              0.506278699300575,
+              0.10258684702984566,
+              -0.8562463532482886
+            ]
+          }
+        },
+        "final_oct_metadata": {
+          "schema_version": 1,
+          "frame_id": "sim-oct-d46c464988634be3818ac258b8c71b52/00000597",
+          "stream_id": "sim-oct-d46c464988634be3818ac258b8c71b52",
+          "sequence_id": 597,
+          "timestamp_s": 29.85000000000029,
+          "clock_domain": "simulation",
+          "acquired_monotonic_s": 243546.945125727,
+          "nominal_period_s": 0.05,
+          "nominal_frequency_hz": 20.0,
+          "nominal_rate_is_wall_clock_guarantee": false,
+          "source": "mujoco_visible_scene_depth_simulation",
+          "is_simulation": true,
+          "raw_oct_available": false,
+          "realtime_validated": false,
+          "camera_name": "eye_internal",
+          "registration_frame": "eye_internal",
+          "registration_description": "One normally visible, registered metric depth map; no hidden-feature render or object-ID segmentation.",
+          "depth_unit": "m",
+          "depth_convention": "positive_camera_optical_axis_z_not_ray_range",
+          "shape_hw": [
+            1440,
+            1920
+          ],
+          "depth_dtype": "float32",
+          "validity_rule": "finite and strictly greater than min; strictly less than max when set",
+          "min_valid_depth_m": 0.0001,
+          "max_valid_depth_m": 0.059994,
+          "scene_valid_pixels": 1585318,
+          "feature_valid_pixels": 1585318,
+          "timestamp_repeated": false,
+          "fresh_simulation_timestamp": true,
+          "extra": {
+            "source": "mujoco_visible_scene_depth_simulation",
+            "is_simulation": true,
+            "raw_oct_available": false,
+            "realtime_validated": false,
+            "feature_pass_excludes_fundus_backdrop": false,
+            "visibility_gated_by_normal_scene_segmentation": false,
+            "rgb_and_depth_share_visibility": true,
+            "simulator_object_ids_used": false
+          }
+        },
+        "final_oct_navigation_depth": {
+          "definition": "target_minus_tip",
+          "unit": "m",
+          "coordinate_frame": "camera_optical",
+          "delta_xyz_m": [
+            2.2346900024708752e-05,
+            0.00015226421080854623,
+            0.001991159853204881
+          ],
+          "axial_depth_difference_m": 0.001991159853204881,
+          "euclidean_distance_m": 0.0019970982286429345,
+          "along_needle_difference_m": null,
+          "source_flags": {
+            "source": "mujoco_visible_scene_depth_simulation",
+            "frame_id": "sim-oct-d46c464988634be3818ac258b8c71b52/00000597",
+            "target_source": "current_rgb_visible_depth",
+            "is_simulation": true
+          }
+        },
+        "final_visual_error": {
+          "calibrated_u_v_depth_mm": [
+            -12.570133667387495,
+            -2.5336901896043855,
+            -1.991159853204881
+          ]
+        },
+        "camera_resolution_px": [
+          1920,
+          1440
+        ],
+        "max_velocity_A_deg_B_deg_C_mm_per_s": [
+          4.0,
+          2.0,
+          0.6
+        ],
+        "max_acceleration_A_deg_B_deg_C_mm_per_s2": [
+          10.000000000000005,
+          5.000000000000003,
+          11.999999999999998
+        ],
+        "trajectory_rate_limits_pass": false,
+        "initial_command_velocity_A_deg_B_deg_C_mm_per_s": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "final_command_velocity_A_deg_B_deg_C_mm_per_s": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "simulation_abort_hold": true,
+        "velocity_before_abort_hold_A_deg_B_deg_C_mm_per_s": [
+          0.0182294263811906,
+          -0.0007493043403734731,
+          0.6
+        ],
+        "physical_braking_validated": false,
+        "settled_frames": 0,
+        "terminal_stop_validated": false,
+        "independent_accuracy_acceptance_pass": false,
+        "independent_endpoint_acceptance_required": true,
+        "measurement_goal_type": "physical_target",
+        "independent_accuracy_tolerance_um": 20.0,
+        "stop_condition": "measured controllable 3D error and consecutive zero-command-velocity observations",
+        "tip_detection": "RGB-observed shaft/end plane or calibrated visible artificial green fiducial",
+        "perception_backend": "strict_rgbd",
+        "simulator_ids_used_for_control": false,
+        "hidden_geometry_render_used_for_control": false,
+        "target_detection": "current RGB detector and single visible-scene depth",
+        "control_axes": [
+          true,
+          true,
+          true
+        ],
+        "completion_axes": [
+          true,
+          true,
+          true
+        ],
+        "known_target_pose_used_for_feature_calibration": false,
+        "ground_truth_used_for_stop": false,
+        "ground_truth_used_for_post_run_acceptance": true,
+        "calibration_inputs": "fixed camera, RCM, needle lengths/radii and target marker radius",
+        "scope": "MuJoCo RGB-D geometry and kinematic control; geometric calibration and ideal depth are simulation assumptions, not hardware accuracy.",
+        "occlusion_handling": "S0a_stop_instant",
+        "occlusion_strategy_label": "S0a_stop_instant",
+        "occlusion_handling_semantics": "immediate simulator hold; failure report includes the resulting command-velocity discontinuity"
+      },
+      "terminal_start_profile": null,
+      "exact_terminal_lock": {
+        "requested_terminal_robot_ABCE": [
+          3313,
+          1858018,
+          2156560,
+          0
+        ],
+        "terminal_robot_ABCE": [
+          3317,
+          1858207,
+          2156593,
+          0
+        ],
+        "terminal_target_robot_ABCE": [
+          3317,
+          1858207,
+          2156593,
+          0
+        ],
+        "exact_settle_steps": 8,
+        "terminal_tip_world_m": [
+          0.34679292295959446,
+          -0.008818555386514135,
+          0.37166133886905195
+        ],
+        "terminal_target_world_m": [
+          0.34679292295959446,
+          -0.008818555386514139,
+          0.371661338869052
+        ],
+        "original_target_world_mm": [
+          346.7929229595945,
+          -8.81855538651414,
+          371.66133886905203
+        ],
+        "target_shift_mm": 0.0,
+        "target_shift_vector_mm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "final_error_um": 5.561946577567963e-11,
+        "reachable_target_planning": {
+          "requested_target_robot_mm": [
+            2.4394118292581184,
+            3.8398658170625035,
+            23.350842312916804
+          ],
+          "requested_target_world_mm": [
+            346.7935233627776,
+            -8.821340146104086,
+            371.66196013323287
+          ],
+          "reachable_target_robot_mm": [
+            2.442196588848067,
+            3.839081155100547,
+            23.3512039187384
+          ],
+          "reachable_target_world_mm": [
+            346.7929229595945,
+            -8.818555386514136,
+            371.661338869052
+          ],
+          "target_shift_mm": [
+            -0.00060040318311394,
+            0.00278475958995017,
+            -0.000621264180892922
+          ],
+          "target_shift_norm_mm": 0.0029157055987484985,
+          "requested_terminal_robot_ABCE": [
+            3313,
+            1858018,
+            2156560,
+            0
+          ],
+          "endpoint_robot_ABCE": [
+            3317,
+            1858207,
+            2156593,
+            0
+          ],
+          "endpoint_task_rad_rad_m": [
+            0.10420662831957345,
+            0.07814707936391842,
+            0.019790367776971636
+          ]
+        }
+      },
+      "executor_counts": {
+        "policy": 119,
+        "teacher": 135,
+        "hold": 21,
+        "exact_terminal": 8
+      },
+      "takeover_trigger_reasons": {
+        "worsening": 2,
+        "policy_action_limited": 4,
+        "near_target_stagnation": 1
+      },
+      "strict_zero_error": true,
+      "final_error_um": 5.561946577567963e-11,
+      "expert_terminal_tolerance_um": 0.1
+    },
+    {
+      "episode_index": 52,
+      "method": "dagger_policy_teacher",
+      "seed": 20266168,
+      "visit_order": [
+        "P1"
+      ],
+      "result": "PASS",
+      "frames": 209,
+      "data": "data/episode_000052.npz",
+      "jsonl": "data/episode_000052.jsonl",
+      "policy_inputs": "policy_inputs/episode_000052.npz",
+      "policy_inputs_no_image": "policy_inputs_no_image/episode_000052.npz",
+      "action_labels": "action_labels/episode_000052.npz",
+      "image_write_wall_s": 9.559286068892106,
+      "visibility_summary": {
+        "known_frames": 0,
+        "unknown_frames": 209,
+        "target_occlusion_state_frames": {
+          "clear": 0,
+          "partial_needle": 0,
+          "full_needle": 0,
+          "not_visible": 0
+        },
+        "frames_with_needle_occlusion": 0,
+        "maximum_target_occlusion_fraction_by_needle": null,
+        "source": "MuJoCo geometry segmentation; offline no-needle counterfactual, not controller input"
+      },
+      "target_success_by_visibility": null,
+      "stop_constraint_summary": {
+        "pass": true,
+        "attempted_targets": 1,
+        "targets_with_validated_stop": 1
+      },
+      "initial_error_mm": 0.35,
+      "stop_reason": "EXACT_TERMINAL_LOCK_WITHIN_0P1UM",
+      "teacher_invalid_frames": 0,
+      "teacher_invalid_fraction": 0.0,
+      "collection_wall_s": 558.463339932001,
+      "target_robot_mm": [
+        3.8071441297902,
+        3.793871657681094,
+        22.98464520883935
+      ],
+      "teacher_pre_roll": {
+        "result": "FAIL",
+        "reason": "USER_ABORTED",
+        "controller_result": "FAIL",
+        "controller_reason": "USER_ABORTED",
+        "execution_mode": "visual_servo_motor",
+        "motor_execution": {
+          "backend": "MotorBackend",
+          "tau_s": 0.04,
+          "control_period_s": 0.05,
+          "integration_step_s": 0.002,
+          "speed_limits_A_deg_B_deg_C_mm_per_s": [
+            10.0,
+            10.0,
+            2.0
+          ],
+          "timeout_s": 0.5,
+          "simulation_time_s": 32.3000000000003,
+          "control_steps": 646,
+          "robot_ABCE": [
+            5223,
+            1859408,
+            2122908,
+            0
+          ],
+          "target_robot_ABCE": [
+            5225,
+            1859545,
+            2123668,
+            0
+          ],
+          "encoder_settled": false,
+          "status": "moving",
+          "fault": null,
+          "physical_dynamics_identified": false,
+          "direct_pose_fallback_used": false
+        },
+        "feedback_controller_used": true,
+        "position_feedback": "calibrated_visible_geometry",
+        "camera_name": "eye_internal",
+        "iterations": 647,
+        "initial_tip_world_mm": [
+          337.0507865724399,
+          -11.260751975282796,
+          388.75974812805464
+        ],
+        "final_tip_world_mm": [
+          346.4545943612432,
+          -7.510467210142289,
+          372.2819385242482
+        ],
+        "target_world_mm": [
+          346.61801198147356,
+          -7.453607845572004,
+          371.98663156216475
+        ],
+        "final_tip_target_error_um": 342.2637985473062,
+        "final_estimated_position_error_um": 342.13807859919893,
+        "final_geometry_measurement": {
+          "target_world_mm": [
+            346.6264146717194,
+            -7.456441922667652,
+            371.9913925534532
+          ],
+          "target_quality": {
+            "source": "target_sphere_fit",
+            "support": 23,
+            "residual_mm": 0.0005990233565615114,
+            "fit_quality_mm": 0.002
+          },
+          "tip_world_mm": [
+            346.454489953124,
+            -7.510522549765902,
+            372.28221146916553
+          ],
+          "tip_quality": {
+            "source": "shaft_end_plane",
+            "plane_end": "rear",
+            "support": 1586,
+            "residual_mm": 9.153544356502596e-07,
+            "axis_residual_mm": 0.0017372273255481408,
+            "fit_quality_mm": 0.002716722523114153,
+            "axis_world": [
+              0.5028744771675525,
+              0.16121501132575367,
+              -0.8491919572962866
+            ]
+          }
+        },
+        "final_oct_metadata": {
+          "schema_version": 1,
+          "frame_id": "sim-oct-e1896522ad004515881521a2a8ebbad9/00000646",
+          "stream_id": "sim-oct-e1896522ad004515881521a2a8ebbad9",
+          "sequence_id": 646,
+          "timestamp_s": 32.3000000000003,
+          "clock_domain": "simulation",
+          "acquired_monotonic_s": 244157.98364986,
+          "nominal_period_s": 0.05,
+          "nominal_frequency_hz": 20.0,
+          "nominal_rate_is_wall_clock_guarantee": false,
+          "source": "mujoco_visible_scene_depth_simulation",
+          "is_simulation": true,
+          "raw_oct_available": false,
+          "realtime_validated": false,
+          "camera_name": "eye_internal",
+          "registration_frame": "eye_internal",
+          "registration_description": "One normally visible, registered metric depth map; no hidden-feature render or object-ID segmentation.",
+          "depth_unit": "m",
+          "depth_convention": "positive_camera_optical_axis_z_not_ray_range",
+          "shape_hw": [
+            1440,
+            1920
+          ],
+          "depth_dtype": "float32",
+          "validity_rule": "finite and strictly greater than min; strictly less than max when set",
+          "min_valid_depth_m": 0.0001,
+          "max_valid_depth_m": 0.059994,
+          "scene_valid_pixels": 1585318,
+          "feature_valid_pixels": 1585318,
+          "timestamp_repeated": false,
+          "fresh_simulation_timestamp": true,
+          "extra": {
+            "source": "mujoco_visible_scene_depth_simulation",
+            "is_simulation": true,
+            "raw_oct_available": false,
+            "realtime_validated": false,
+            "feature_pass_excludes_fundus_backdrop": false,
+            "visibility_gated_by_normal_scene_segmentation": false,
+            "rgb_and_depth_share_visibility": true,
+            "simulator_object_ids_used": false
+          }
+        },
+        "final_oct_navigation_depth": {
+          "definition": "target_minus_tip",
+          "unit": "m",
+          "coordinate_frame": "camera_optical",
+          "delta_xyz_m": [
+            -1.5554257870595625e-05,
+            2.6464158454739695e-05,
+            0.0003407582401159584
+          ],
+          "axial_depth_difference_m": 0.0003407582401159584,
+          "euclidean_distance_m": 0.0003421380785991932,
+          "along_needle_difference_m": null,
+          "source_flags": {
+            "source": "mujoco_visible_scene_depth_simulation",
+            "frame_id": "sim-oct-e1896522ad004515881521a2a8ebbad9/00000646",
+            "target_source": "current_rgb_visible_depth",
+            "is_simulation": true
+          }
+        },
+        "final_visual_error": {
+          "calibrated_u_v_depth_mm": [
+            -1.7537993051391823,
+            -0.43396119885346707,
+            -0.3407582401159584
+          ]
+        },
+        "camera_resolution_px": [
+          1920,
+          1440
+        ],
+        "max_velocity_A_deg_B_deg_C_mm_per_s": [
+          4.0,
+          2.0,
+          0.6
+        ],
+        "max_acceleration_A_deg_B_deg_C_mm_per_s2": [
+          10.000000000000005,
+          5.000000000000003,
+          11.999999999999998
+        ],
+        "trajectory_rate_limits_pass": false,
+        "initial_command_velocity_A_deg_B_deg_C_mm_per_s": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "final_command_velocity_A_deg_B_deg_C_mm_per_s": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "simulation_abort_hold": true,
+        "velocity_before_abort_hold_A_deg_B_deg_C_mm_per_s": [
+          0.01694958198292471,
+          0.011987193943486227,
+          0.6
+        ],
+        "physical_braking_validated": false,
+        "settled_frames": 0,
+        "terminal_stop_validated": false,
+        "independent_accuracy_acceptance_pass": false,
+        "independent_endpoint_acceptance_required": true,
+        "measurement_goal_type": "physical_target",
+        "independent_accuracy_tolerance_um": 20.0,
+        "stop_condition": "measured controllable 3D error and consecutive zero-command-velocity observations",
+        "tip_detection": "RGB-observed shaft/end plane or calibrated visible artificial green fiducial",
+        "perception_backend": "strict_rgbd",
+        "simulator_ids_used_for_control": false,
+        "hidden_geometry_render_used_for_control": false,
+        "target_detection": "current RGB detector and single visible-scene depth",
+        "control_axes": [
+          true,
+          true,
+          true
+        ],
+        "completion_axes": [
+          true,
+          true,
+          true
+        ],
+        "known_target_pose_used_for_feature_calibration": false,
+        "ground_truth_used_for_stop": false,
+        "ground_truth_used_for_post_run_acceptance": true,
+        "calibration_inputs": "fixed camera, RCM, needle lengths/radii and target marker radius",
+        "scope": "MuJoCo RGB-D geometry and kinematic control; geometric calibration and ideal depth are simulation assumptions, not hardware accuracy.",
+        "occlusion_handling": "S0a_stop_instant",
+        "occlusion_strategy_label": "S0a_stop_instant",
+        "occlusion_handling_semantics": "immediate simulator hold; failure report includes the resulting command-velocity discontinuity"
+      },
+      "terminal_start_profile": null,
+      "exact_terminal_lock": {
+        "requested_terminal_robot_ABCE": [
+          5221,
+          1861250,
+          2144758,
+          0
+        ],
+        "terminal_robot_ABCE": [
+          5225,
+          1861551,
+          2144743,
+          0
+        ],
+        "terminal_target_robot_ABCE": [
+          5225,
+          1861551,
+          2144743,
+          0
+        ],
+        "exact_settle_steps": 8,
+        "terminal_tip_world_m": [
+          0.3466180119814736,
+          -0.007453607845572002,
+          0.37198663156216477
+        ],
+        "terminal_target_world_m": [
+          0.3466180119814736,
+          -0.007453607845572004,
+          0.37198663156216477
+        ],
+        "original_target_world_mm": [
+          346.61801198147356,
+          -7.453607845572004,
+          371.98663156216475
+        ],
+        "target_shift_mm": 0.0,
+        "target_shift_vector_mm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "final_error_um": 1.734723475976807e-12,
+        "reachable_target_planning": {
+          "requested_target_robot_mm": [
+            3.803911888100134,
+            3.7952804759556145,
+            22.985191868052524
+          ],
+          "requested_target_world_mm": [
+            346.6195231415128,
+            -7.45684008726207,
+            371.9866323117004
+          ],
+          "reachable_target_robot_mm": [
+            3.8071441297902,
+            3.793871657681094,
+            22.98464520883935
+          ],
+          "reachable_target_world_mm": [
+            346.61801198147356,
+            -7.4536078455720025,
+            371.98663156216475
+          ],
+          "target_shift_mm": [
+            -0.0015111600392287983,
+            0.0032322416900676387,
+            -7.495356726394675e-07
+          ],
+          "target_shift_norm_mm": 0.0035680515087337253,
+          "requested_terminal_robot_ABCE": [
+            5221,
+            1861250,
+            2144758,
+            0
+          ],
+          "endpoint_robot_ABCE": [
+            5225,
+            1861551,
+            2144743,
+            0
+          ],
+          "endpoint_task_rad_rad_m": [
+            0.1641482161500667,
+            0.0788015793371295,
+            0.019604697204632607
+          ]
+        }
+      },
+      "executor_counts": {
+        "policy": 85,
+        "teacher": 95,
+        "hold": 21,
+        "exact_terminal": 8
+      },
+      "takeover_trigger_reasons": {
+        "policy_action_limited": 3,
+        "worsening": 1,
+        "near_target_stagnation": 1
+      },
+      "strict_zero_error": true,
+      "final_error_um": 1.734723475976807e-12,
+      "expert_terminal_tolerance_um": 0.1
+    },
+    {
+      "episode_index": 53,
+      "method": "dagger_policy_teacher",
+      "seed": 20266169,
+      "visit_order": [
+        "P1"
+      ],
+      "result": "PASS",
+      "frames": 240,
+      "data": "data/episode_000053.npz",
+      "jsonl": "data/episode_000053.jsonl",
+      "policy_inputs": "policy_inputs/episode_000053.npz",
+      "policy_inputs_no_image": "policy_inputs_no_image/episode_000053.npz",
+      "action_labels": "action_labels/episode_000053.npz",
+      "image_write_wall_s": 11.006977633049246,
+      "visibility_summary": {
+        "known_frames": 0,
+        "unknown_frames": 240,
+        "target_occlusion_state_frames": {
+          "clear": 0,
+          "partial_needle": 0,
+          "full_needle": 0,
+          "not_visible": 0
+        },
+        "frames_with_needle_occlusion": 0,
+        "maximum_target_occlusion_fraction_by_needle": null,
+        "source": "MuJoCo geometry segmentation; offline no-needle counterfactual, not controller input"
+      },
+      "target_success_by_visibility": null,
+      "stop_constraint_summary": {
+        "pass": true,
+        "attempted_targets": 1,
+        "targets_with_validated_stop": 1
+      },
+      "initial_error_mm": 0.5,
+      "stop_reason": "EXACT_TERMINAL_LOCK_WITHIN_0P1UM",
+      "teacher_invalid_frames": 0,
+      "teacher_invalid_fraction": 0.0,
+      "collection_wall_s": 577.1545638970274,
+      "target_robot_mm": [
+        3.8071441297902,
+        3.793871657681094,
+        22.98464520883935
+      ],
+      "teacher_pre_roll": {
+        "result": "FAIL",
+        "reason": "USER_ABORTED",
+        "controller_result": "FAIL",
+        "controller_reason": "USER_ABORTED",
+        "execution_mode": "visual_servo_motor",
+        "motor_execution": {
+          "backend": "MotorBackend",
+          "tau_s": 0.04,
+          "control_period_s": 0.05,
+          "integration_step_s": 0.002,
+          "speed_limits_A_deg_B_deg_C_mm_per_s": [
+            10.0,
+            10.0,
+            2.0
+          ],
+          "timeout_s": 0.5,
+          "simulation_time_s": 32.05000000000032,
+          "control_steps": 641,
+          "robot_ABCE": [
+            5219,
+            1859534,
+            2113367,
+            0
+          ],
+          "target_robot_ABCE": [
+            5217,
+            1859545,
+            2114143,
+            0
+          ],
+          "encoder_settled": false,
+          "status": "moving",
+          "fault": null,
+          "physical_dynamics_identified": false,
+          "direct_pose_fallback_used": false
+        },
+        "feedback_controller_used": true,
+        "position_feedback": "calibrated_visible_geometry",
+        "camera_name": "eye_internal",
+        "iterations": 642,
+        "initial_tip_world_mm": [
+          337.0507865724399,
+          -11.260751975282796,
+          388.75974812805464
+        ],
+        "final_tip_world_mm": [
+          346.3790968054613,
+          -7.537380708346175,
+          372.4081617660699
+        ],
+        "target_world_mm": [
+          346.61801198147356,
+          -7.453607845572004,
+          371.98663156216475
+        ],
+        "final_tip_target_error_um": 491.71746630627644,
+        "final_estimated_position_error_um": 491.46264579695776,
+        "final_geometry_measurement": {
+          "target_world_mm": [
+            346.62629997350837,
+            -7.456273948879841,
+            371.99154712137846
+          ],
+          "target_quality": {
+            "source": "target_sphere_fit",
+            "support": 32,
+            "residual_mm": 0.0005750478414252196,
+            "fit_quality_mm": 0.002
+          },
+          "tip_world_mm": [
+            346.378956314617,
+            -7.537453534317254,
+            372.40840023882896
+          ],
+          "tip_quality": {
+            "source": "shaft_end_plane",
+            "plane_end": "rear",
+            "support": 1621,
+            "residual_mm": 9.108047489630615e-07,
+            "axis_residual_mm": 0.0017580899851284565,
+            "fit_quality_mm": 0.002713160118438077,
+            "axis_world": [
+              0.5028588152164178,
+              0.16109248471621518,
+              -0.8492244834713002
+            ]
+          }
+        },
+        "final_oct_metadata": {
+          "schema_version": 1,
+          "frame_id": "sim-oct-042822d6c7944758987915868a3aca82/00000641",
+          "stream_id": "sim-oct-042822d6c7944758987915868a3aca82",
+          "sequence_id": 641,
+          "timestamp_s": 32.05000000000032,
+          "clock_domain": "simulation",
+          "acquired_monotonic_s": 244713.67953826,
+          "nominal_period_s": 0.05,
+          "nominal_frequency_hz": 20.0,
+          "nominal_rate_is_wall_clock_guarantee": false,
+          "source": "mujoco_visible_scene_depth_simulation",
+          "is_simulation": true,
+          "raw_oct_available": false,
+          "realtime_validated": false,
+          "camera_name": "eye_internal",
+          "registration_frame": "eye_internal",
+          "registration_description": "One normally visible, registered metric depth map; no hidden-feature render or object-ID segmentation.",
+          "depth_unit": "m",
+          "depth_convention": "positive_camera_optical_axis_z_not_ray_range",
+          "shape_hw": [
+            1440,
+            1920
+          ],
+          "depth_dtype": "float32",
+          "validity_rule": "finite and strictly greater than min; strictly less than max when set",
+          "min_valid_depth_m": 0.0001,
+          "max_valid_depth_m": 0.059994,
+          "scene_valid_pixels": 1585318,
+          "feature_valid_pixels": 1585318,
+          "timestamp_repeated": false,
+          "fresh_simulation_timestamp": true,
+          "extra": {
+            "source": "mujoco_visible_scene_depth_simulation",
+            "is_simulation": true,
+            "raw_oct_available": false,
+            "realtime_validated": false,
+            "feature_pass_excludes_fundus_backdrop": false,
+            "visibility_gated_by_normal_scene_segmentation": false,
+            "rgb_and_depth_share_visibility": true,
+            "simulator_object_ids_used": false
+          }
+        },
+        "final_oct_navigation_depth": {
+          "definition": "target_minus_tip",
+          "unit": "m",
+          "coordinate_frame": "camera_optical",
+          "delta_xyz_m": [
+            -2.5894918404395333e-05,
+            3.7285066668854214e-05,
+            0.0004893616343953355
+          ],
+          "axial_depth_difference_m": 0.0004893616343953355,
+          "euclidean_distance_m": 0.000491462645796957,
+          "along_needle_difference_m": null,
+          "source_flags": {
+            "source": "mujoco_visible_scene_depth_simulation",
+            "frame_id": "sim-oct-042822d6c7944758987915868a3aca82/00000641",
+            "target_source": "current_rgb_visible_depth",
+            "is_simulation": true
+          }
+        },
+        "final_visual_error": {
+          "calibrated_u_v_depth_mm": [
+            -2.37468531062666,
+            -0.5944641004640516,
+            -0.48936163439533553
+          ]
+        },
+        "camera_resolution_px": [
+          1920,
+          1440
+        ],
+        "max_velocity_A_deg_B_deg_C_mm_per_s": [
+          4.0,
+          2.0,
+          0.6
+        ],
+        "max_acceleration_A_deg_B_deg_C_mm_per_s2": [
+          10.000000000000005,
+          5.000000000000003,
+          11.999999999999998
+        ],
+        "trajectory_rate_limits_pass": false,
+        "initial_command_velocity_A_deg_B_deg_C_mm_per_s": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "final_command_velocity_A_deg_B_deg_C_mm_per_s": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "simulation_abort_hold": true,
+        "velocity_before_abort_hold_A_deg_B_deg_C_mm_per_s": [
+          -0.013342187561824918,
+          -0.0019161597617249721,
+          0.6
+        ],
+        "physical_braking_validated": false,
+        "settled_frames": 0,
+        "terminal_stop_validated": false,
+        "independent_accuracy_acceptance_pass": false,
+        "independent_endpoint_acceptance_required": true,
+        "measurement_goal_type": "physical_target",
+        "independent_accuracy_tolerance_um": 20.0,
+        "stop_condition": "measured controllable 3D error and consecutive zero-command-velocity observations",
+        "tip_detection": "RGB-observed shaft/end plane or calibrated visible artificial green fiducial",
+        "perception_backend": "strict_rgbd",
+        "simulator_ids_used_for_control": false,
+        "hidden_geometry_render_used_for_control": false,
+        "target_detection": "current RGB detector and single visible-scene depth",
+        "control_axes": [
+          true,
+          true,
+          true
+        ],
+        "completion_axes": [
+          true,
+          true,
+          true
+        ],
+        "known_target_pose_used_for_feature_calibration": false,
+        "ground_truth_used_for_stop": false,
+        "ground_truth_used_for_post_run_acceptance": true,
+        "calibration_inputs": "fixed camera, RCM, needle lengths/radii and target marker radius",
+        "scope": "MuJoCo RGB-D geometry and kinematic control; geometric calibration and ideal depth are simulation assumptions, not hardware accuracy.",
+        "occlusion_handling": "S0a_stop_instant",
+        "occlusion_strategy_label": "S0a_stop_instant",
+        "occlusion_handling_semantics": "immediate simulator hold; failure report includes the resulting command-velocity discontinuity"
+      },
+      "terminal_start_profile": null,
+      "exact_terminal_lock": {
+        "requested_terminal_robot_ABCE": [
+          5221,
+          1861250,
+          2144758,
+          0
+        ],
+        "terminal_robot_ABCE": [
+          5225,
+          1861551,
+          2144743,
+          0
+        ],
+        "terminal_target_robot_ABCE": [
+          5225,
+          1861551,
+          2144743,
+          0
+        ],
+        "exact_settle_steps": 8,
+        "terminal_tip_world_m": [
+          0.3466180119814736,
+          -0.007453607845572002,
+          0.37198663156216477
+        ],
+        "terminal_target_world_m": [
+          0.3466180119814736,
+          -0.007453607845572004,
+          0.37198663156216477
+        ],
+        "original_target_world_mm": [
+          346.61801198147356,
+          -7.453607845572004,
+          371.98663156216475
+        ],
+        "target_shift_mm": 0.0,
+        "target_shift_vector_mm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "final_error_um": 1.734723475976807e-12,
+        "reachable_target_planning": {
+          "requested_target_robot_mm": [
+            3.803911888100134,
+            3.7952804759556145,
+            22.985191868052524
+          ],
+          "requested_target_world_mm": [
+            346.6195231415128,
+            -7.45684008726207,
+            371.9866323117004
+          ],
+          "reachable_target_robot_mm": [
+            3.8071441297902,
+            3.793871657681094,
+            22.98464520883935
+          ],
+          "reachable_target_world_mm": [
+            346.61801198147356,
+            -7.4536078455720025,
+            371.98663156216475
+          ],
+          "target_shift_mm": [
+            -0.0015111600392287983,
+            0.0032322416900676387,
+            -7.495356726394675e-07
+          ],
+          "target_shift_norm_mm": 0.0035680515087337253,
+          "requested_terminal_robot_ABCE": [
+            5221,
+            1861250,
+            2144758,
+            0
+          ],
+          "endpoint_robot_ABCE": [
+            5225,
+            1861551,
+            2144743,
+            0
+          ],
+          "endpoint_task_rad_rad_m": [
+            0.1641482161500667,
+            0.0788015793371295,
+            0.019604697204632607
+          ]
+        }
+      },
+      "executor_counts": {
+        "policy": 96,
+        "teacher": 115,
+        "hold": 21,
+        "exact_terminal": 8
+      },
+      "takeover_trigger_reasons": {
+        "policy_action_limited": 5,
+        "near_target_stagnation": 1
+      },
+      "strict_zero_error": true,
+      "final_error_um": 1.734723475976807e-12,
+      "expert_terminal_tolerance_um": 0.1
+    },
+    {
+      "episode_index": 54,
+      "method": "dagger_policy_teacher",
+      "seed": 20266170,
+      "visit_order": [
+        "P1"
+      ],
+      "result": "PASS",
+      "frames": 222,
+      "data": "data/episode_000054.npz",
+      "jsonl": "data/episode_000054.jsonl",
+      "policy_inputs": "policy_inputs/episode_000054.npz",
+      "policy_inputs_no_image": "policy_inputs_no_image/episode_000054.npz",
+      "action_labels": "action_labels/episode_000054.npz",
+      "image_write_wall_s": 10.273339955660049,
+      "visibility_summary": {
+        "known_frames": 0,
+        "unknown_frames": 222,
+        "target_occlusion_state_frames": {
+          "clear": 0,
+          "partial_needle": 0,
+          "full_needle": 0,
+          "not_visible": 0
+        },
+        "frames_with_needle_occlusion": 0,
+        "maximum_target_occlusion_fraction_by_needle": null,
+        "source": "MuJoCo geometry segmentation; offline no-needle counterfactual, not controller input"
+      },
+      "target_success_by_visibility": null,
+      "stop_constraint_summary": {
+        "pass": true,
+        "attempted_targets": 1,
+        "targets_with_validated_stop": 1
+      },
+      "initial_error_mm": 1.0,
+      "stop_reason": "EXACT_TERMINAL_LOCK_WITHIN_0P1UM",
+      "teacher_invalid_frames": 0,
+      "teacher_invalid_fraction": 0.0,
+      "collection_wall_s": 553.629415510979,
+      "target_robot_mm": [
+        3.8071441297902,
+        3.793871657681094,
+        22.98464520883935
+      ],
+      "teacher_pre_roll": {
+        "result": "FAIL",
+        "reason": "USER_ABORTED",
+        "controller_result": "FAIL",
+        "controller_reason": "USER_ABORTED",
+        "execution_mode": "visual_servo_motor",
+        "motor_execution": {
+          "backend": "MotorBackend",
+          "tau_s": 0.04,
+          "control_period_s": 0.05,
+          "integration_step_s": 0.002,
+          "speed_limits_A_deg_B_deg_C_mm_per_s": [
+            10.0,
+            10.0,
+            2.0
+          ],
+          "timeout_s": 0.5,
+          "simulation_time_s": 31.25000000000031,
+          "control_steps": 625,
+          "robot_ABCE": [
+            5223,
+            1859534,
+            2082708,
+            0
+          ],
+          "target_robot_ABCE": [
+            5225,
+            1859545,
+            2083468,
+            0
+          ],
+          "encoder_settled": false,
+          "status": "moving",
+          "fault": null,
+          "physical_dynamics_identified": false,
+          "direct_pose_fallback_used": false
+        },
+        "feedback_controller_used": true,
+        "position_feedback": "calibrated_visible_geometry",
+        "camera_name": "eye_internal",
+        "iterations": 626,
+        "initial_tip_world_mm": [
+          337.0507865724399,
+          -11.260751975282796,
+          388.75974812805464
+        ],
+        "final_tip_world_mm": [
+          346.1373687565015,
+          -7.611997202921206,
+          372.81653729759927
+        ],
+        "target_world_mm": [
+          346.61801198147356,
+          -7.453607845572004,
+          371.98663156216475
+        ],
+        "final_tip_target_error_um": 972.0332442566838,
+        "final_estimated_position_error_um": 971.9972347040584,
+        "final_geometry_measurement": {
+          "target_world_mm": [
+            346.62643544686466,
+            -7.4565015613885635,
+            371.9913869694171
+          ],
+          "target_quality": {
+            "source": "target_sphere_fit",
+            "support": 54,
+            "residual_mm": 0.000531736599892509,
+            "fit_quality_mm": 0.002
+          },
+          "tip_world_mm": [
+            346.1372679568162,
+            -7.6120729532373925,
+            372.81679070880176
+          ],
+          "tip_quality": {
+            "source": "shaft_end_plane",
+            "plane_end": "rear",
+            "support": 1742,
+            "residual_mm": 8.570026538850118e-07,
+            "axis_residual_mm": 0.0017896524718144819,
+            "fit_quality_mm": 0.002671033077991964,
+            "axis_world": [
+              0.5028530851199403,
+              0.1612146413127058,
+              -0.849204695118776
+            ]
+          }
+        },
+        "final_oct_metadata": {
+          "schema_version": 1,
+          "frame_id": "sim-oct-cb4af75da76e45c395794c90f5f10e17/00000625",
+          "stream_id": "sim-oct-cb4af75da76e45c395794c90f5f10e17",
+          "sequence_id": 625,
+          "timestamp_s": 31.25000000000031,
+          "clock_domain": "simulation",
+          "acquired_monotonic_s": 245282.391565874,
+          "nominal_period_s": 0.05,
+          "nominal_frequency_hz": 20.0,
+          "nominal_rate_is_wall_clock_guarantee": false,
+          "source": "mujoco_visible_scene_depth_simulation",
+          "is_simulation": true,
+          "raw_oct_available": false,
+          "realtime_validated": false,
+          "camera_name": "eye_internal",
+          "registration_frame": "eye_internal",
+          "registration_description": "One normally visible, registered metric depth map; no hidden-feature render or object-ID segmentation.",
+          "depth_unit": "m",
+          "depth_convention": "positive_camera_optical_axis_z_not_ray_range",
+          "shape_hw": [
+            1440,
+            1920
+          ],
+          "depth_dtype": "float32",
+          "validity_rule": "finite and strictly greater than min; strictly less than max when set",
+          "min_valid_depth_m": 0.0001,
+          "max_valid_depth_m": 0.059994,
+          "scene_valid_pixels": 1585318,
+          "feature_valid_pixels": 1585318,
+          "timestamp_repeated": false,
+          "fresh_simulation_timestamp": true,
+          "extra": {
+            "source": "mujoco_visible_scene_depth_simulation",
+            "is_simulation": true,
+            "raw_oct_available": false,
+            "realtime_validated": false,
+            "feature_pass_excludes_fundus_backdrop": false,
+            "visibility_gated_by_normal_scene_segmentation": false,
+            "rgb_and_depth_share_visibility": true,
+            "simulator_object_ids_used": false
+          }
+        },
+        "final_oct_navigation_depth": {
+          "definition": "target_minus_tip",
+          "unit": "m",
+          "coordinate_frame": "camera_optical",
+          "delta_xyz_m": [
+            -4.6161794073571946e-05,
+            7.417436002398847e-05,
+            0.0009680629511324562
+          ],
+          "axial_depth_difference_m": 0.0009680629511324562,
+          "euclidean_distance_m": 0.00097199723470406,
+          "along_needle_difference_m": null,
+          "source_flags": {
+            "source": "mujoco_visible_scene_depth_simulation",
+            "frame_id": "sim-oct-cb4af75da76e45c395794c90f5f10e17/00000625",
+            "target_source": "current_rgb_visible_depth",
+            "is_simulation": true
+          }
+        },
+        "final_visual_error": {
+          "calibrated_u_v_depth_mm": [
+            -4.974661961670449,
+            -1.2083023045731807,
+            -0.9680629511324562
+          ]
+        },
+        "camera_resolution_px": [
+          1920,
+          1440
+        ],
+        "max_velocity_A_deg_B_deg_C_mm_per_s": [
+          4.0,
+          2.0,
+          0.6
+        ],
+        "max_acceleration_A_deg_B_deg_C_mm_per_s2": [
+          10.000000000000005,
+          5.000000000000003,
+          11.999999999999998
+        ],
+        "trajectory_rate_limits_pass": false,
+        "initial_command_velocity_A_deg_B_deg_C_mm_per_s": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "final_command_velocity_A_deg_B_deg_C_mm_per_s": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "simulation_abort_hold": true,
+        "velocity_before_abort_hold_A_deg_B_deg_C_mm_per_s": [
+          0.013746665657897134,
+          -0.0021579155637844035,
+          0.6
+        ],
+        "physical_braking_validated": false,
+        "settled_frames": 0,
+        "terminal_stop_validated": false,
+        "independent_accuracy_acceptance_pass": false,
+        "independent_endpoint_acceptance_required": true,
+        "measurement_goal_type": "physical_target",
+        "independent_accuracy_tolerance_um": 20.0,
+        "stop_condition": "measured controllable 3D error and consecutive zero-command-velocity observations",
+        "tip_detection": "RGB-observed shaft/end plane or calibrated visible artificial green fiducial",
+        "perception_backend": "strict_rgbd",
+        "simulator_ids_used_for_control": false,
+        "hidden_geometry_render_used_for_control": false,
+        "target_detection": "current RGB detector and single visible-scene depth",
+        "control_axes": [
+          true,
+          true,
+          true
+        ],
+        "completion_axes": [
+          true,
+          true,
+          true
+        ],
+        "known_target_pose_used_for_feature_calibration": false,
+        "ground_truth_used_for_stop": false,
+        "ground_truth_used_for_post_run_acceptance": true,
+        "calibration_inputs": "fixed camera, RCM, needle lengths/radii and target marker radius",
+        "scope": "MuJoCo RGB-D geometry and kinematic control; geometric calibration and ideal depth are simulation assumptions, not hardware accuracy.",
+        "occlusion_handling": "S0a_stop_instant",
+        "occlusion_strategy_label": "S0a_stop_instant",
+        "occlusion_handling_semantics": "immediate simulator hold; failure report includes the resulting command-velocity discontinuity"
+      },
+      "terminal_start_profile": null,
+      "exact_terminal_lock": {
+        "requested_terminal_robot_ABCE": [
+          5221,
+          1861250,
+          2144758,
+          0
+        ],
+        "terminal_robot_ABCE": [
+          5225,
+          1861551,
+          2144743,
+          0
+        ],
+        "terminal_target_robot_ABCE": [
+          5225,
+          1861551,
+          2144743,
+          0
+        ],
+        "exact_settle_steps": 8,
+        "terminal_tip_world_m": [
+          0.3466180119814736,
+          -0.007453607845572002,
+          0.37198663156216477
+        ],
+        "terminal_target_world_m": [
+          0.3466180119814736,
+          -0.007453607845572004,
+          0.37198663156216477
+        ],
+        "original_target_world_mm": [
+          346.61801198147356,
+          -7.453607845572004,
+          371.98663156216475
+        ],
+        "target_shift_mm": 0.0,
+        "target_shift_vector_mm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "final_error_um": 1.734723475976807e-12,
+        "reachable_target_planning": {
+          "requested_target_robot_mm": [
+            3.803911888100134,
+            3.7952804759556145,
+            22.985191868052524
+          ],
+          "requested_target_world_mm": [
+            346.6195231415128,
+            -7.45684008726207,
+            371.9866323117004
+          ],
+          "reachable_target_robot_mm": [
+            3.8071441297902,
+            3.793871657681094,
+            22.98464520883935
+          ],
+          "reachable_target_world_mm": [
+            346.61801198147356,
+            -7.4536078455720025,
+            371.98663156216475
+          ],
+          "target_shift_mm": [
+            -0.0015111600392287983,
+            0.0032322416900676387,
+            -7.495356726394675e-07
+          ],
+          "target_shift_norm_mm": 0.0035680515087337253,
+          "requested_terminal_robot_ABCE": [
+            5221,
+            1861250,
+            2144758,
+            0
+          ],
+          "endpoint_robot_ABCE": [
+            5225,
+            1861551,
+            2144743,
+            0
+          ],
+          "endpoint_task_rad_rad_m": [
+            0.1641482161500667,
+            0.0788015793371295,
+            0.019604697204632607
+          ]
+        }
+      },
+      "executor_counts": {
+        "policy": 76,
+        "teacher": 117,
+        "hold": 21,
+        "exact_terminal": 8
+      },
+      "takeover_trigger_reasons": {
+        "worsening": 2,
+        "policy_action_limited": 3,
+        "near_target_stagnation": 1
+      },
+      "strict_zero_error": true,
+      "final_error_um": 1.734723475976807e-12,
+      "expert_terminal_tolerance_um": 0.1
+    },
+    {
+      "episode_index": 55,
+      "method": "dagger_policy_teacher",
+      "seed": 20266171,
+      "visit_order": [
+        "P1"
+      ],
+      "result": "PASS",
+      "frames": 280,
+      "data": "data/episode_000055.npz",
+      "jsonl": "data/episode_000055.jsonl",
+      "policy_inputs": "policy_inputs/episode_000055.npz",
+      "policy_inputs_no_image": "policy_inputs_no_image/episode_000055.npz",
+      "action_labels": "action_labels/episode_000055.npz",
+      "image_write_wall_s": 11.902959543047473,
+      "visibility_summary": {
+        "known_frames": 0,
+        "unknown_frames": 280,
+        "target_occlusion_state_frames": {
+          "clear": 0,
+          "partial_needle": 0,
+          "full_needle": 0,
+          "not_visible": 0
+        },
+        "frames_with_needle_occlusion": 0,
+        "maximum_target_occlusion_fraction_by_needle": null,
+        "source": "MuJoCo geometry segmentation; offline no-needle counterfactual, not controller input"
+      },
+      "target_success_by_visibility": null,
+      "stop_constraint_summary": {
+        "pass": true,
+        "attempted_targets": 1,
+        "targets_with_validated_stop": 1
+      },
+      "initial_error_mm": 2.0,
+      "stop_reason": "EXACT_TERMINAL_LOCK_WITHIN_0P1UM",
+      "teacher_invalid_frames": 0,
+      "teacher_invalid_fraction": 0.0,
+      "collection_wall_s": 549.3893741339853,
+      "target_robot_mm": [
+        3.8071441297902,
+        3.793871657681094,
+        22.98464520883935
+      ],
+      "teacher_pre_roll": {
+        "result": "FAIL",
+        "reason": "USER_ABORTED",
+        "controller_result": "FAIL",
+        "controller_reason": "USER_ABORTED",
+        "execution_mode": "visual_servo_motor",
+        "motor_execution": {
+          "backend": "MotorBackend",
+          "tau_s": 0.04,
+          "control_period_s": 0.05,
+          "integration_step_s": 0.002,
+          "speed_limits_A_deg_B_deg_C_mm_per_s": [
+            10.0,
+            10.0,
+            2.0
+          ],
+          "timeout_s": 0.5,
+          "simulation_time_s": 29.550000000000285,
+          "control_steps": 591,
+          "robot_ABCE": [
+            5219,
+            1859506,
+            2017608,
+            0
+          ],
+          "target_robot_ABCE": [
+            5217,
+            1859545,
+            2018368,
+            0
+          ],
+          "encoder_settled": false,
+          "status": "moving",
+          "fault": null,
+          "physical_dynamics_identified": false,
+          "direct_pose_fallback_used": false
+        },
+        "feedback_controller_used": true,
+        "position_feedback": "calibrated_visible_geometry",
+        "camera_name": "eye_internal",
+        "iterations": 592,
+        "initial_tip_world_mm": [
+          337.0507865724399,
+          -11.260751975282796,
+          388.75974812805464
+        ],
+        "final_tip_world_mm": [
+          345.62471449894383,
+          -7.779087217654219,
+          373.6823898450704
+        ],
+        "target_world_mm": [
+          346.61801198147356,
+          -7.453607845572004,
+          371.98663156216475
+        ],
+        "final_tip_target_error_um": 1992.0273252378136,
+        "final_estimated_position_error_um": 1991.8846843966915,
+        "final_geometry_measurement": {
+          "target_world_mm": [
+            346.62639616850316,
+            -7.456415913829871,
+            371.99148821269364
+          ],
+          "target_quality": {
+            "source": "target_sphere_fit",
+            "support": 86,
+            "residual_mm": 0.000601456338116371,
+            "fit_quality_mm": 0.002
+          },
+          "tip_world_mm": [
+            345.62463270384,
+            -7.779146633743158,
+            373.68261784676207
+          ],
+          "tip_quality": {
+            "source": "shaft_end_plane",
+            "plane_end": "rear",
+            "support": 2018,
+            "residual_mm": 8.066403685062746e-07,
+            "axis_residual_mm": 0.0019017500505535889,
+            "fit_quality_mm": 0.002631599408540413,
+            "axis_world": [
+              0.502865321506712,
+              0.161092577781894,
+              -0.8492206131562839
+            ]
+          }
+        },
+        "final_oct_metadata": {
+          "schema_version": 1,
+          "frame_id": "sim-oct-5f42391475db4e54aca6369dcf0ec19e/00000591",
+          "stream_id": "sim-oct-5f42391475db4e54aca6369dcf0ec19e",
+          "sequence_id": 591,
+          "timestamp_s": 29.550000000000285,
+          "clock_domain": "simulation",
+          "acquired_monotonic_s": 245813.676546751,
+          "nominal_period_s": 0.05,
+          "nominal_frequency_hz": 20.0,
+          "nominal_rate_is_wall_clock_guarantee": false,
+          "source": "mujoco_visible_scene_depth_simulation",
+          "is_simulation": true,
+          "raw_oct_available": false,
+          "realtime_validated": false,
+          "camera_name": "eye_internal",
+          "registration_frame": "eye_internal",
+          "registration_description": "One normally visible, registered metric depth map; no hidden-feature render or object-ID segmentation.",
+          "depth_unit": "m",
+          "depth_convention": "positive_camera_optical_axis_z_not_ray_range",
+          "shape_hw": [
+            1440,
+            1920
+          ],
+          "depth_dtype": "float32",
+          "validity_rule": "finite and strictly greater than min; strictly less than max when set",
+          "min_valid_depth_m": 0.0001,
+          "max_valid_depth_m": 0.059994,
+          "scene_valid_pixels": 1585318,
+          "feature_valid_pixels": 1585318,
+          "timestamp_repeated": false,
+          "fresh_simulation_timestamp": true,
+          "extra": {
+            "source": "mujoco_visible_scene_depth_simulation",
+            "is_simulation": true,
+            "raw_oct_available": false,
+            "realtime_validated": false,
+            "feature_pass_excludes_fundus_backdrop": false,
+            "visibility_gated_by_normal_scene_segmentation": false,
+            "rgb_and_depth_share_visibility": true,
+            "simulator_object_ids_used": false
+          }
+        },
+        "final_oct_navigation_depth": {
+          "definition": "target_minus_tip",
+          "unit": "m",
+          "coordinate_frame": "camera_optical",
+          "delta_xyz_m": [
+            -9.855988935337633e-05,
+            0.0001524643235396256,
+            0.001983594004374978
+          ],
+          "axial_depth_difference_m": 0.001983594004374978,
+          "euclidean_distance_m": 0.001991884684396691,
+          "along_needle_difference_m": null,
+          "source_flags": {
+            "source": "mujoco_visible_scene_depth_simulation",
+            "frame_id": "sim-oct-5f42391475db4e54aca6369dcf0ec19e/00000591",
+            "target_source": "current_rgb_visible_depth",
+            "is_simulation": true
+          }
+        },
+        "final_visual_error": {
+          "calibrated_u_v_depth_mm": [
+            -10.282261881239492,
+            -2.562067513862985,
+            -1.9835940043749778
+          ]
+        },
+        "camera_resolution_px": [
+          1920,
+          1440
+        ],
+        "max_velocity_A_deg_B_deg_C_mm_per_s": [
+          4.0,
+          2.0,
+          0.6
+        ],
+        "max_acceleration_A_deg_B_deg_C_mm_per_s2": [
+          10.000000000000005,
+          5.000000000000003,
+          11.999999999999998
+        ],
+        "trajectory_rate_limits_pass": false,
+        "initial_command_velocity_A_deg_B_deg_C_mm_per_s": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "final_command_velocity_A_deg_B_deg_C_mm_per_s": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "simulation_abort_hold": true,
+        "velocity_before_abort_hold_A_deg_B_deg_C_mm_per_s": [
+          -0.014479352376779843,
+          0.001212436983068536,
+          0.6
+        ],
+        "physical_braking_validated": false,
+        "settled_frames": 0,
+        "terminal_stop_validated": false,
+        "independent_accuracy_acceptance_pass": false,
+        "independent_endpoint_acceptance_required": true,
+        "measurement_goal_type": "physical_target",
+        "independent_accuracy_tolerance_um": 20.0,
+        "stop_condition": "measured controllable 3D error and consecutive zero-command-velocity observations",
+        "tip_detection": "RGB-observed shaft/end plane or calibrated visible artificial green fiducial",
+        "perception_backend": "strict_rgbd",
+        "simulator_ids_used_for_control": false,
+        "hidden_geometry_render_used_for_control": false,
+        "target_detection": "current RGB detector and single visible-scene depth",
+        "control_axes": [
+          true,
+          true,
+          true
+        ],
+        "completion_axes": [
+          true,
+          true,
+          true
+        ],
+        "known_target_pose_used_for_feature_calibration": false,
+        "ground_truth_used_for_stop": false,
+        "ground_truth_used_for_post_run_acceptance": true,
+        "calibration_inputs": "fixed camera, RCM, needle lengths/radii and target marker radius",
+        "scope": "MuJoCo RGB-D geometry and kinematic control; geometric calibration and ideal depth are simulation assumptions, not hardware accuracy.",
+        "occlusion_handling": "S0a_stop_instant",
+        "occlusion_strategy_label": "S0a_stop_instant",
+        "occlusion_handling_semantics": "immediate simulator hold; failure report includes the resulting command-velocity discontinuity"
+      },
+      "terminal_start_profile": null,
+      "exact_terminal_lock": {
+        "requested_terminal_robot_ABCE": [
+          5221,
+          1861250,
+          2144758,
+          0
+        ],
+        "terminal_robot_ABCE": [
+          5225,
+          1861551,
+          2144743,
+          0
+        ],
+        "terminal_target_robot_ABCE": [
+          5225,
+          1861551,
+          2144743,
+          0
+        ],
+        "exact_settle_steps": 8,
+        "terminal_tip_world_m": [
+          0.3466180119814736,
+          -0.007453607845572002,
+          0.37198663156216477
+        ],
+        "terminal_target_world_m": [
+          0.3466180119814736,
+          -0.007453607845572004,
+          0.37198663156216477
+        ],
+        "original_target_world_mm": [
+          346.61801198147356,
+          -7.453607845572004,
+          371.98663156216475
+        ],
+        "target_shift_mm": 0.0,
+        "target_shift_vector_mm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "final_error_um": 1.734723475976807e-12,
+        "reachable_target_planning": {
+          "requested_target_robot_mm": [
+            3.803911888100134,
+            3.7952804759556145,
+            22.985191868052524
+          ],
+          "requested_target_world_mm": [
+            346.6195231415128,
+            -7.45684008726207,
+            371.9866323117004
+          ],
+          "reachable_target_robot_mm": [
+            3.8071441297902,
+            3.793871657681094,
+            22.98464520883935
+          ],
+          "reachable_target_world_mm": [
+            346.61801198147356,
+            -7.4536078455720025,
+            371.98663156216475
+          ],
+          "target_shift_mm": [
+            -0.0015111600392287983,
+            0.0032322416900676387,
+            -7.495356726394675e-07
+          ],
+          "target_shift_norm_mm": 0.0035680515087337253,
+          "requested_terminal_robot_ABCE": [
+            5221,
+            1861250,
+            2144758,
+            0
+          ],
+          "endpoint_robot_ABCE": [
+            5225,
+            1861551,
+            2144743,
+            0
+          ],
+          "endpoint_task_rad_rad_m": [
+            0.1641482161500667,
+            0.0788015793371295,
+            0.019604697204632607
+          ]
+        }
+      },
+      "executor_counts": {
+        "policy": 115,
+        "teacher": 136,
+        "hold": 21,
+        "exact_terminal": 8
+      },
+      "takeover_trigger_reasons": {
+        "worsening": 2,
+        "policy_action_limited": 4,
+        "near_target_stagnation": 1
+      },
+      "strict_zero_error": true,
+      "final_error_um": 1.734723475976807e-12,
+      "expert_terminal_tolerance_um": 0.1
+    }
+  ],
+  "requested_episodes": 8,
+  "completed_episodes": 8,
+  "skipped_empty_episodes": [],
+  "resume_missing_prefix": [],
+  "resume_start_episode": 0,
+  "target_start": 12,
+  "target_end": 13,
+  "skip_episodes_before": 0,
+  "total_frames": 1789,
+  "teacher_invalid_frames": 0,
+  "strict_zero_error_episodes": 8,
+  "maximum_final_error_um": 5.561946577567963e-11
+}

@@ -1,0 +1,55 @@
+{
+  "result": "PASS",
+  "episodes": 20,
+  "shards": [
+    {
+      "path": "outputs/evaluation_v11_h4_20261113/g1/evaluation_results.json",
+      "episodes": 7,
+      "success_rate": 0.8571428571428571
+    },
+    {
+      "path": "outputs/evaluation_v11_h4_20261113/g2/evaluation_results.json",
+      "episodes": 7,
+      "success_rate": 1.0
+    },
+    {
+      "path": "outputs/evaluation_v11_h4_20261113/g3/evaluation_results.json",
+      "episodes": 6,
+      "success_rate": 1.0
+    }
+  ],
+  "successes": 19,
+  "success_rate": 0.95,
+  "strict_all_episodes_success": false,
+  "acceptance_gates": {
+    "uncontrolled": {
+      "threshold_count": 5,
+      "actual_count": 0,
+      "pass": true
+    },
+    "median_per_episode_minimum_error": {
+      "threshold_mm": 1.0,
+      "actual_mm": 0.010352558243011829,
+      "pass": true
+    }
+  },
+  "uncontrolled_over_threshold": 0,
+  "uncontrolled_threshold_mm": 30.0,
+  "final_error_mm": {
+    "mean": 0.011458700504862487,
+    "median": 0.010807045733196904,
+    "minimum": 0.006264231408364327,
+    "maximum": 0.027691468580371914
+  },
+  "per_episode_minimum_error_mm": {
+    "mean": 0.011235733321865709,
+    "median": 0.010352558243011829,
+    "minimum": 0.006264231408364327,
+    "maximum": 0.027322560794365333
+  },
+  "safety_limited_steps": {
+    "total": 0,
+    "maximum_per_episode": 0,
+    "episodes_with_any": 0
+  }
+}

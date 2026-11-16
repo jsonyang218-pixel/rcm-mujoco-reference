@@ -1,0 +1,60 @@
+{
+  "result": "FAIL",
+  "episodes": 20,
+  "shards": [
+    {
+      "path": "outputs/evaluation_v12_oct_dev20_20261115/g1/evaluation_results.json",
+      "episodes": 5,
+      "success_rate": 0.0
+    },
+    {
+      "path": "outputs/evaluation_v12_oct_dev20_20261115/g2/evaluation_results.json",
+      "episodes": 5,
+      "success_rate": 0.0
+    },
+    {
+      "path": "outputs/evaluation_v12_oct_dev20_20261115/g3/evaluation_results.json",
+      "episodes": 5,
+      "success_rate": 0.0
+    },
+    {
+      "path": "outputs/evaluation_v12_oct_dev20_20261115/g4/evaluation_results.json",
+      "episodes": 5,
+      "success_rate": 0.0
+    }
+  ],
+  "successes": 0,
+  "success_rate": 0.0,
+  "strict_all_episodes_success": false,
+  "acceptance_gates": {
+    "uncontrolled": {
+      "threshold_count": 5,
+      "actual_count": 0,
+      "pass": true
+    },
+    "median_per_episode_minimum_error": {
+      "threshold_mm": 1.0,
+      "actual_mm": 19.19623898352126,
+      "pass": false
+    }
+  },
+  "uncontrolled_over_threshold": 0,
+  "uncontrolled_threshold_mm": 30.0,
+  "final_error_mm": {
+    "mean": 22.494892029737475,
+    "median": 22.815396718625706,
+    "minimum": 18.527865674718694,
+    "maximum": 23.69732661077046
+  },
+  "per_episode_minimum_error_mm": {
+    "mean": 19.123303138471165,
+    "median": 19.19623898352126,
+    "minimum": 17.521095480114106,
+    "maximum": 19.761671194561554
+  },
+  "safety_limited_steps": {
+    "total": 4016,
+    "maximum_per_episode": 396,
+    "episodes_with_any": 19
+  }
+}
