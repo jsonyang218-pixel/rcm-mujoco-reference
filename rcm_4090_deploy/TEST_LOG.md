@@ -4139,3 +4139,44 @@ OK
   `outputs/evaluation_dit_rectified_flow_dagger1_nominal_0p35um_dev20_20261116/`，
   汇总 `strict_summary.json`、`strict_summary_vs_flow_unet.json`，
   轨迹图 `plots_v2/` 和 `plots_phase_diagnostics/`。
+- 2026-11-16：DiT + Rectified Flow 近目标在线 DAgger round 2 采集完成，
+  PARTIAL PASS。使用 DiT DAgger1 最佳 checkpoint 作为 student，围绕同一组
+  20 个非 development 目标，以 `0.35/0.5/1.0/2.0 mm` 四种近目标起点
+  共请求 80 集；实际 `79/80` 严格零误差，1 集因
+  `LOW_QUALITY_VISUAL_GEOMETRY` 失败，最终误差 `90.637375 µm`。成功集
+  总计 15,883 帧，失败集保留在
+  `runs/20261116/online_dagger_dit_rf_round2_near_target_shards/g06/`。
+  按严格零误差过滤转换为 8 个 224 数据集，并与 DiT DAgger1 数据合并为
+  `data/lerobot_v12_oct_dit_rf_dagger2_near_target_verified_224`：
+  839 集、234,316 帧、`839/839` 显式严格零误差，最大专家终点误差
+  `7.85046e-11 µm`；dataset SHA-256
+  `4d3d5cb9871a92b1a12dec2f0459968f574bd158a211f2fa56f7aecaa8c6114e`。
+  以上均为 MuJoCo 仿真结果。
+- 2026-11-16：DiT + Rectified Flow 近目标 DAgger round 2 增量训练与纯感知
+  闭环 FAIL，但闭环指标继续改善。从 DAgger1 checkpoint 增量训练 4 epochs，
+  batch 64，lr `5e-5`，第 760 集后的新 DAgger 样本权重 10；最佳 epoch 2，
+  train/val loss `0.130223/0.158247`，相对 DAgger1
+  `0.138848/0.158255` 的离线验证 loss 基本持平。checkpoint
+  `outputs/dit_rectified_flow_v12_oct_dit_rf_dagger2_near_target_20261116/best_model.pth`，
+  SHA-256
+  `686b78ae7744884ce34369e545f760253251ac0ccfa3c30691528cadf3f15424`。
+  使用原始 development 20 名义目标、无冻结、无 residual、无特权终点，
+  4-step RF、单样本、执行动作块首步、`0.35 µm` 三帧停稳门，严格成功
+  `0/20`，最终和瞬时达到门限也均为 `0/20`。最终误差
+  mean/median/min/max/P95 =
+  `1029.075/668.484/70.093/2280.636/2265.680 µm`；每集最小误差
+  mean/median/min/max=`68.675/67.443/29.381/159.527 µm`。全部 1600 步，
+  safety-limited `0`。相对 DiT DAgger1，最终误差 `15/20` 改善、`5/20`
+  恶化，均值/中位分别改善 `1305.375/1063.676 µm`，最大误差从
+  `4406.408 µm` 降到 `2280.636 µm`。与旧 U-Net Flow + DAgger2 相比，
+  `10/20` 改善、`10/20` 恶化，均值/中位分别退化
+  `42.344/14.407 µm`，两者最终误差已基本同一量级；但 DiT DAgger2 的
+  每集最小误差均值 `68.675 µm` 明显低于 U-Net 的 `456.846 µm`，说明它
+  能更稳定地接近目标，仍不能保持到终点。最终残差以 `-X/+Y/+Z` 为主，
+  平均绝对分量 `591.759/173.865/795.878 µm`，X/Z 负向/正向分别占
+  `19/20` 和 `18/20`。结果位于
+  `outputs/evaluation_dit_rectified_flow_dagger2_near_target_nominal_0p35um_dev20_20261116/`，
+  汇总 `strict_summary.json`、`strict_summary_vs_flow_unet.json`，
+  轨迹图 `plots_v2/` 和 `plots_phase_diagnostics/`。结论：近目标 round 2
+  显著改善 DiT 的接近能力和最终误差平台，但最后数十至数百微米仍无法
+  收敛，纯 Flow 动作块仍缺少终点保持能力。

@@ -14,6 +14,8 @@ failure analysis. All results are from MuJoCo simulation.
   reachable-target evaluation JSON for `0.1 um` / `0.35 um` protocols.
 - `archives/evaluations_dit_rf_035um.tar.gz`: raw pure-DiT and DiT+DAgger1
   evaluation JSON.
+- `archives/evaluations_dit_rf_dagger2_035um.tar.gz`: raw DiT/RF
+  near-target DAgger round-2 evaluation JSON and plots.
 - `archives/training_histories.tar.gz`: training loss history for the main model
   checkpoints.
 - `archives/dataset_metadata.tar.gz`: episode/frame counts, strict-zero metadata,

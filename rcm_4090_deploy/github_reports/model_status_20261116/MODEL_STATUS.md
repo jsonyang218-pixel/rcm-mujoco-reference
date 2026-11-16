@@ -13,9 +13,11 @@ closed-loop median among the strict Flow experiments is `448.589 um`, still
 far above the final target.
 
 The current DiT + Rectified Flow line is a separate architecture experiment.
-DAgger round 1 reduced the pure-DiT final-error mean from `4080.069 um` to
-`2334.450 um` and removed the 15-16 mm failure tail. It remains worse than the
-U-Net Flow + DAgger round-2 median and has not passed strict closure.
+Round 1 reduced the pure-DiT final-error mean from `4080.069 um` to
+`2334.450 um`. Near-target round 2 reduced it again to `1029.075 um`, with a
+median of `668.484 um` and a maximum of `2280.636 um`. The DiT line is now
+nearly tied with U-Net Flow + DAgger2 on mean final error, but neither model
+passes strict closure.
 
 ## Evaluation threshold warning
 
@@ -41,7 +43,7 @@ equivalent.
 | Flow + reachable | Frozen reachable target + terminal lock | Trained and evaluated | 0.35 um | 0/20 | 4890.596 / 2609.548 / 14399.986 | Reachability was not the dominant blocker |
 | DiT/RF | Pure DiT + Rectified Flow | Trained and evaluated | 0.35 um | 0/20 | 4080.069 / 2230.331 / 16439.474 | Fast inference, poor closed-loop stability |
 | DiT/RF DAgger1 | DiT/RF + online DAgger round 1 | Trained and evaluated | 0.35 um | 0/20 | 2334.450 / 1546.263 / 4406.408 | Strong tail improvement, terminal hold still fails |
-| DiT/RF DAgger2 | DiT/RF + near-target DAgger round 2 | Collection and training complete; closure pending | 0.35 um | pending | pending | Best val loss 0.158247; only 1/80 expert episode failed |
+| DiT/RF DAgger2 | DiT/RF + near-target DAgger round 2 | Trained and evaluated | 0.35 um | 0/20 | 1029.075 / 668.484 / 2280.636 | Best DiT result; near-target holding still fails |
 
 Raw metric definitions for the newer strict evaluations are under `evidence/`.
 The full chronological audit is in `../TEST_LOG.md`.
@@ -97,6 +99,12 @@ evaluation:
 
 This is a terminal-control and action-distribution problem, not a missing OCT
 target problem.
+
+Near-target DAgger round 2 confirms this interpretation. All 20 DiT episodes
+reached an instantaneous error below `160 um`, and 16/20 reached below
+`100 um`, with a per-episode minimum mean of `68.675 um`. Nevertheless, most
+errors rebounded after the closest approach. The remaining gap is final
+holding and rebound prevention, not coarse approach.
 
 ## Recommended next step
 
