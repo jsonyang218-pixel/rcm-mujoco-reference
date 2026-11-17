@@ -99,8 +99,11 @@ def convert(
 
     state_rows = []
     action_rows = []
+    executed_action_rows = []
     episode_rows = []
     frame_rows = []
+    source_frame_rows = []
+    timestamp_rows = []
     image_paths = []
     terminal_audits = []
     metadata_episodes = []
@@ -144,9 +147,13 @@ def convert(
             if not np.all(np.isfinite(state)) or not np.all(np.isfinite(absolute_action)):
                 raise ValueError(f"episode {global_episode} contains non-finite data")
             state_rows.append(state)
-            action_rows.append((absolute_action - state).astype(np.float32))
+            delta_action = (absolute_action - state).astype(np.float32)
+            action_rows.append(delta_action)
+            executed_action_rows.append(delta_action.copy())
             episode_rows.append(global_episode)
             frame_rows.append(local_frame)
+            source_frame_rows.append(local_frame)
+            timestamp_rows.append(local_frame * 0.05)
             image_paths.append(relative)
 
         metadata_episodes.append({
@@ -164,8 +171,14 @@ def convert(
 
     states = np.asarray(state_rows, dtype=np.float32)
     actions = np.asarray(action_rows, dtype=np.float32)
+    executed_actions = np.asarray(
+        executed_action_rows,
+        dtype=np.float32,
+    )
     episode_indices = np.asarray(episode_rows, dtype=np.int64)
     frame_indices = np.asarray(frame_rows, dtype=np.int32)
+    source_frame_indices = np.asarray(source_frame_rows, dtype=np.int64)
+    timestamps = np.asarray(timestamp_rows, dtype=np.float64)
     zero_navigation = np.zeros((len(states), 3), dtype=np.float32)
     invalid_navigation = np.zeros(len(states), dtype=np.bool_)
     _validate_training_arrays(
@@ -180,6 +193,9 @@ def convert(
         frame_index=frame_indices,
         action=actions,
         state=states,
+        executed_action=executed_actions,
+        source_frame_index=source_frame_indices,
+        timestamp_s=timestamps,
         oct_navigation=zero_navigation,
         oct_navigation_valid=invalid_navigation,
     )
@@ -190,6 +206,10 @@ def convert(
         "num_episodes": len(metadata_episodes),
         "num_frames": len(states),
         "fps": 20,
+        "data_contract_version": 2,
+        "action_supervision_source": "accepted_executed_command",
+        "history_action_source": "executed_action",
+        "continuity_source": "source_frame_index",
         "dataset_version": "v12",
         "strict_zero_error": True,
         "target_semantics": (

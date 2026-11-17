@@ -464,18 +464,24 @@ def main():
     velocity_std = np.ones(3, dtype=np.float64)
     previous_action_mean = np.zeros(3, dtype=np.float64)
     previous_action_std = np.ones(3, dtype=np.float64)
+    if args.include_velocity or args.include_previous_action:
+        velocities, previous_actions, history_valid = (
+            train_dataset.history_features(history_rows)
+        )
+    else:
+        velocities = np.zeros((len(history_rows), 3), dtype=np.float32)
+        previous_actions = np.zeros_like(velocities)
+        history_valid = np.zeros(len(history_rows), dtype=np.bool_)
     if args.include_velocity:
-        velocities = (
-            train_dataset.states[history_rows]
-            - train_dataset.states[history_rows - 1]
-        ) / 0.05
-        velocity_mean = velocities.mean(axis=0)
-        velocity_std = np.maximum(velocities.std(axis=0), 1e-6)
+        velocity_mean = velocities[history_valid].mean(axis=0)
+        velocity_std = np.maximum(
+            velocities[history_valid].std(axis=0),
+            1e-6,
+        )
     if args.include_previous_action:
-        previous_actions = train_dataset.actions[history_rows - 1]
-        previous_action_mean = previous_actions.mean(axis=0)
+        previous_action_mean = previous_actions[history_valid].mean(axis=0)
         previous_action_std = np.maximum(
-            previous_actions.std(axis=0),
+            previous_actions[history_valid].std(axis=0),
             1e-6,
         )
     if args.guided_oct:

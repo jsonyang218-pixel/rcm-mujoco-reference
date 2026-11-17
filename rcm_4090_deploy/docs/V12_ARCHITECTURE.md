@@ -248,7 +248,8 @@ DAgger 成功集与基础 608 集合并后：
 ### 4.1 训练样本构建代码
 
 数据集从连续轨迹中取出两帧历史和八帧未来动作。历史和未来必须属于同一
-episode：
+episode，并且 `source_frame_index` 必须逐帧连续。转换时过滤无效专家帧造成
+的缺口会切断观测历史和动作块：
 
 ```python
 for j in range(self.n_obs_steps):
@@ -700,8 +701,8 @@ $$
 \right).
 $$
 
-控制周期为 `0.05 s`，即 20 Hz。编码器到达目标并且速度低于停稳阈值后，
-才允许计入成功。
+控制周期为 `0.05 s`，即 20 Hz。训练监督标签 `action` 与历史输入
+`executed_action` 分别保存；后者是实际接受的增量控制命令。
 
 ### 6.4 成功条件
 
@@ -722,14 +723,11 @@ $$
 $$
 e_t<0.020\ \mathrm{mm}
 \quad\text{and}\quad
-\left|\mathbf{v}_t\right|
-\le
-\left[0.05,0.05,0.01\right]
-\quad
-(\deg/\mathrm{s},\deg/\mathrm{s},\mathrm{mm}/\mathrm{s}),
+\operatorname{MotorExecution.settled}()=\mathrm{true},
 $$
 
-并连续保持三帧。
+并连续保持三帧。低速阈值仍记录为诊断信息，但不能替代编码器到达目标这一
+条件。
 
 ## 7. 当前实验结果
 

@@ -58,10 +58,13 @@ def main():
     (output_dir / "data").mkdir()
     states = []
     actions = []
+    executed_actions = []
     oct_navigation = []
     oct_navigation_valid = []
     episode_indices = []
     frame_indices = []
+    source_frame_indices = []
+    timestamps = []
     image_paths = []
     segments = []
     source_records = []
@@ -140,6 +143,10 @@ def main():
                         row["teacher_action_deg_deg_mm"],
                         dtype=np.float32,
                     )
+                    executed_action = np.asarray(
+                        row["executed_action_deg_deg_mm"],
+                        dtype=np.float32,
+                    )
                     oct_xyz = np.asarray(
                         row["oct_navigation_mm"],
                         dtype=np.float32,
@@ -156,10 +163,13 @@ def main():
                         raise FileNotFoundError(image)
                     states.append(state)
                     actions.append(teacher_delta)
+                    executed_actions.append(executed_action)
                     oct_navigation.append(oct_xyz)
                     oct_navigation_valid.append(True)
                     episode_indices.append(new_episode)
                     frame_indices.append(new_frame_index)
+                    source_frame_indices.append(source_frame)
+                    timestamps.append(float(row["timestamp_s"]))
                     new_frame_index += 1
                     image_paths.append(
                         os.path.relpath(image.resolve(), output_dir)
@@ -205,6 +215,12 @@ def main():
         frame_index=local_frame,
         state=np.asarray(states, dtype=np.float32),
         action=np.asarray(actions, dtype=np.float32),
+        executed_action=np.asarray(executed_actions, dtype=np.float32),
+        source_frame_index=np.asarray(
+            source_frame_indices,
+            dtype=np.int64,
+        ),
+        timestamp_s=np.asarray(timestamps, dtype=np.float64),
         oct_navigation=np.asarray(oct_navigation, dtype=np.float32),
         oct_navigation_valid=np.asarray(
             oct_navigation_valid,
@@ -219,6 +235,11 @@ def main():
     metadata = {
         "dataset_version": "v12",
         "dataset_variant": "covshift2_near_target_residual",
+        "data_contract_version": 2,
+        "action_source": "teacher",
+        "action_supervision_source": "teacher_action_deg_deg_mm",
+        "history_action_source": "executed_action",
+        "continuity_source": "source_frame_index",
         "num_episodes": len(segments),
         "num_frames": len(selected_errors_um),
         "observation_space": {

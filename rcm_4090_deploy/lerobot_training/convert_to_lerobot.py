@@ -16,6 +16,11 @@ import numpy as np
 from PIL import Image
 from tqdm import tqdm
 
+try:
+    from .dataset_contract import DATA_CONTRACT_VERSION
+except ImportError:
+    from dataset_contract import DATA_CONTRACT_VERSION
+
 
 class V9ToLeRobotConverter:
     """转换 v9 数据集到 LeRobot 格式"""
@@ -155,6 +160,10 @@ class V9ToLeRobotConverter:
                     'teacher_action_deg_deg_mm',
                 )
                 action = state + delta_action
+                executed_action = self._finite_task_vector(
+                    row['executed_action_deg_deg_mm'],
+                    'executed_action_deg_deg_mm',
+                )
                 image_path = images_dir / Path(row['image_path']).name
                 if not image_path.is_file():
                     raise FileNotFoundError(f"图像不存在: {image_path}")
@@ -171,6 +180,7 @@ class V9ToLeRobotConverter:
                     'state': state.tolist(),
                     'action': action.tolist(),
                     'delta_action': delta_action.tolist(),
+                    'executed_action': executed_action.tolist(),
                     'oct_navigation_mm': oct_delta.tolist(),
                     'oct_navigation_valid': bool(
                         row.get('oct_navigation_valid')
@@ -250,6 +260,7 @@ class V9ToLeRobotConverter:
                 'state': state.tolist(),
                 'action': action.tolist(),
                 'delta_action': delta_action.tolist(),
+                'executed_action': delta_action.tolist(),
                 'oct_navigation_mm': oct_navigation_mm,
                 'oct_navigation_valid': oct_valid,
             })
@@ -341,6 +352,16 @@ class V9ToLeRobotConverter:
                 self.episodes.append({
                     'episode_index': output_episode_index,
                     'num_frames': len(frames),
+                    'source_num_frames': (
+                        len(episode_data['dagger_samples'])
+                        if episode_data.get('dagger_samples')
+                        else len(episode_data['frame_audits'])
+                    ),
+                    'expert_invalid_frames': (
+                        len(episode_data['dagger_samples']) - len(frames)
+                        if self.action_source == 'teacher'
+                        else 0
+                    ),
                     'success': report.get('result') == 'PASS',
                     'result': report.get('result'),
                     'final_error_um': report.get(
@@ -395,26 +416,40 @@ class V9ToLeRobotConverter:
             for frame, image_path in zip(frames, image_paths)
         ]
         actions = [frame['delta_action'] for frame in frames]
+        executed_actions = [frame['executed_action'] for frame in frames]
         oct_navigation = [frame['oct_navigation_mm'] for frame in frames]
         oct_navigation_valid = [
             frame['oct_navigation_valid'] for frame in frames
         ]
         episode_indices = [frame['episode_index'] for frame in frames]
         frame_indices = [frame['frame_index'] for frame in frames]
+        source_frame_indices = [
+            frame['source_frame_index'] for frame in frames
+        ]
+        timestamps = [frame['timestamp'] for frame in frames]
 
         states = np.array([obs['state'] for obs in observations], dtype=np.float32)
         actions = np.array(actions, dtype=np.float32)
+        executed_actions = np.asarray(executed_actions, dtype=np.float32)
         oct_navigation = np.asarray(oct_navigation, dtype=np.float32)
         oct_navigation_valid = np.asarray(oct_navigation_valid, dtype=np.bool_)
         episode_indices_array = np.array(episode_indices, dtype=np.int32)
         frame_indices_array = np.array(frame_indices, dtype=np.int32)
+        source_frame_indices_array = np.asarray(
+            source_frame_indices,
+            dtype=np.int64,
+        )
+        timestamps_array = np.asarray(timestamps, dtype=np.float64)
         self._validate_dataset_arrays(
             states,
             actions,
+            executed_actions,
             oct_navigation,
             oct_navigation_valid,
             episode_indices_array,
             frame_indices_array,
+            source_frame_indices_array,
+            timestamps_array,
         )
 
         # 保存为 numpy 格式
@@ -424,6 +459,9 @@ class V9ToLeRobotConverter:
             frame_index=frame_indices_array,
             action=actions,
             state=states,
+            executed_action=executed_actions,
+            source_frame_index=source_frame_indices_array,
+            timestamp_s=timestamps_array,
             oct_navigation=oct_navigation,
             oct_navigation_valid=oct_navigation_valid,
         )
@@ -437,6 +475,18 @@ class V9ToLeRobotConverter:
             'num_episodes': len(self.episodes),
             'num_frames': len(frames),
             'fps': 20,  # 50ms 控制周期 = 20 Hz
+            'data_contract_version': DATA_CONTRACT_VERSION,
+            'action_supervision_source': (
+                'teacher_action_deg_deg_mm'
+                if self.action_source == 'teacher'
+                else 'accepted_executed_command'
+            ),
+            'history_action_source': 'executed_action',
+            'continuity_source': 'source_frame_index',
+            'dropped_teacher_invalid_frames': sum(
+                int(episode['expert_invalid_frames'])
+                for episode in self.episodes
+            ),
             'observation_space': {
             'image': {
                 'shape': (
@@ -520,23 +570,39 @@ class V9ToLeRobotConverter:
     def _validate_dataset_arrays(
         states: np.ndarray,
         actions: np.ndarray,
+        executed_actions: np.ndarray,
         oct_navigation: np.ndarray,
         oct_navigation_valid: np.ndarray,
         episode_indices: np.ndarray,
         frame_indices: np.ndarray,
+        source_frame_indices: np.ndarray,
+        timestamps: np.ndarray,
     ) -> None:
         if len(states) == 0:
             raise ValueError("转换结果没有样本")
         for name, array in (
             ('state', states),
             ('action', actions),
+            ('executed_action', executed_actions),
             ('episode_index', episode_indices),
             ('frame_index', frame_indices),
+            ('source_frame_index', source_frame_indices),
+            ('timestamp_s', timestamps),
         ):
             if array.shape[0] != len(states):
                 raise ValueError(f"{name} 样本数与 state 不一致")
-        if not np.all(np.isfinite(states)) or not np.all(np.isfinite(actions)):
-            raise ValueError("state 或 action 包含非有限数")
+        if (
+            not np.all(np.isfinite(states))
+            or not np.all(np.isfinite(actions))
+            or not np.all(np.isfinite(executed_actions))
+        ):
+            raise ValueError(
+                "state、action 或 executed_action 包含非有限数"
+            )
+        if executed_actions.shape != actions.shape:
+            raise ValueError("executed_action 形状必须与 action 一致")
+        if not np.all(np.isfinite(timestamps)):
+            raise ValueError("timestamp_s 包含非有限数")
         if np.all(np.ptp(states, axis=0) == 0):
             raise ValueError("state 所有维度均为常量，拒绝生成无效数据集")
         if np.max(np.abs(actions)) == 0:
@@ -548,11 +614,24 @@ class V9ToLeRobotConverter:
         if not np.any(oct_navigation_valid):
             raise ValueError("没有可用的 OCT navigation 样本")
         for episode_index in np.unique(episode_indices):
-            frame_index = frame_indices[episode_indices == episode_index]
+            rows = episode_indices == episode_index
+            frame_index = frame_indices[rows]
             expected = np.arange(len(frame_index), dtype=frame_index.dtype)
             if not np.array_equal(frame_index, expected):
                 raise ValueError(
                     f"episode {int(episode_index)} 的 frame_index 不连续"
+                )
+            source_index = source_frame_indices[rows]
+            if np.any(np.diff(source_index) <= 0):
+                raise ValueError(
+                    f"episode {int(episode_index)} 的 source_frame_index "
+                    "不是严格递增"
+                )
+            episode_timestamps = timestamps[rows]
+            if np.any(np.diff(episode_timestamps) <= 0):
+                raise ValueError(
+                    f"episode {int(episode_index)} 的 timestamp_s "
+                    "不是严格递增"
                 )
 
 

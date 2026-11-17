@@ -82,6 +82,11 @@ finally:
 
 数据为 PNG + JSONL + NumPy NPZ，自带字段契约，尚不是 LeRobot 容器。真值误差、目标坐标、深度、访问顺序和可见性审计不进入模型输入。原始 RGB 与策略输入没有指导十字线、显示放大针体或其他视频覆盖物。
 
+转换到 LeRobot 风格训练集时，`action` 是训练监督标签，`executed_action`
+是同一时刻实际接受的增量命令。DAgger 的 `action` 来自教师建议，两者不能
+互换；使用上一动作或速度特征的模型必须同时读取 `executed_action`、
+`source_frame_index` 和 `timestamp_s`，并在原始帧号不连续处切断窗口。
+
 ## 验证及范围
 
 ```bash

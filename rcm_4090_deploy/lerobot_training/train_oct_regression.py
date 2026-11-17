@@ -134,19 +134,10 @@ def _features(dataset, history_mode="none", control_period_s=0.05):
         dataset.oct_navigation[rows].astype(np.float32),
         dataset.oct_navigation_valid[rows].astype(np.float32)[:, None],
     ], axis=1)
-    has_previous = (
-        (rows > 0)
-        & (dataset.episode_indices[rows - 1] == dataset.episode_indices[rows])
-    )
-    previous_state = state.copy()
-    previous_state[has_previous] = dataset.states[
-        rows[has_previous] - 1
-    ].astype(np.float32)
-    velocity = (state - previous_state) / float(control_period_s)
+    velocity = np.zeros_like(state, dtype=np.float32)
     previous_action = np.zeros_like(state, dtype=np.float32)
-    previous_action[has_previous] = dataset.actions[
-        rows[has_previous] - 1
-    ].astype(np.float32)
+    if history_mode != "none":
+        velocity, previous_action, _ = dataset.history_features(rows)
     actions = dataset.actions[rows].astype(np.float32)
     return state, oct_navigation, velocity, previous_action, actions
 
@@ -214,11 +205,19 @@ def main():
         Path(args.data_dir),
         n_obs_steps=args.n_obs_steps,
         n_action_steps=args.n_action_steps,
+        include_velocity=args.history_mode != "none",
+        include_previous_action=(
+            args.history_mode == "velocity_previous_action"
+        ),
     )
     val_dataset = RCMDataset(
         Path(args.val_data_dir),
         n_obs_steps=args.n_obs_steps,
         n_action_steps=args.n_action_steps,
+        include_velocity=args.history_mode != "none",
+        include_previous_action=(
+            args.history_mode == "velocity_previous_action"
+        ),
     )
     train_state, train_oct, train_velocity, train_previous_action, train_action = _features(
         train_dataset,

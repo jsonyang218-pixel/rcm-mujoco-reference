@@ -23,11 +23,18 @@ from rcm.scene_v9 import RCMSceneV9
 from rcm.fundus import make_random_fundus_targets
 from rcm.strict_rgbd import StrictRGBDSensor
 from rcm.visual_servo import visual_servo_settings
-from train_diffusion_policy import SimpleDiffusionPolicy
-from train_oct_guided_regression import (
-    GuidedOCTResidualPolicy,
-    proportional_guided_action,
-)
+try:
+    from .train_diffusion_policy import SimpleDiffusionPolicy
+    from .train_oct_guided_regression import (
+        GuidedOCTResidualPolicy,
+        proportional_guided_action,
+    )
+except ImportError:
+    from train_diffusion_policy import SimpleDiffusionPolicy
+    from train_oct_guided_regression import (
+        GuidedOCTResidualPolicy,
+        proportional_guided_action,
+    )
 from rcm.reference import Reference
 
 
@@ -35,6 +42,8 @@ TASK_TO_DEG_DEG_MM = np.array(
     [180.0 / math.pi, 180.0 / math.pi, 1000.0],
     dtype=np.float64,
 )
+EVALUATION_CONTRACT_VERSION = 2
+TERMINAL_SETTLE_FRAMES = 3
 
 # Per-axis maximum of the final recovery training set actions.  The previous
 # 2 deg / 2 deg / 0.2 mm allowance let one bad diffusion sample move far beyond
@@ -60,6 +69,27 @@ def state_abc_mm_to_task(state):
     if state.shape != (3,):
         raise ValueError(f"policy state must have shape (3,), got {state.shape}")
     return state / TASK_TO_DEG_DEG_MM
+
+
+def terminal_success_frame(error_mm, error_threshold_mm, encoder_settled):
+    """Return the per-frame canonical terminal-success gate."""
+    return (
+        float(error_mm) <= float(error_threshold_mm)
+        and bool(encoder_settled)
+    )
+
+
+def advance_terminal_success_streak(
+    current_streak,
+    qualifies,
+    required_frames=TERMINAL_SETTLE_FRAMES,
+):
+    """Advance a consecutive terminal-success counter."""
+    required = int(required_frames)
+    if required < 1:
+        raise ValueError("required terminal frames must be positive")
+    streak = int(current_streak) + 1 if qualifies else 0
+    return streak, streak >= required
 
 
 class PolicyEvaluator:
@@ -190,7 +220,10 @@ class PolicyEvaluator:
         oct_dim = 4 if self.use_oct else 0
 
         if self.is_regression:
-            from train_oct_regression import OCTStateRegressionPolicy
+            try:
+                from .train_oct_regression import OCTStateRegressionPolicy
+            except ImportError:
+                from train_oct_regression import OCTStateRegressionPolicy
             self.n_obs_steps = 1
             self.use_oct = True
             self.model = OCTStateRegressionPolicy(
@@ -225,7 +258,10 @@ class PolicyEvaluator:
                 hidden_dim=config.get('hidden_dim', 128),
             ).to(self.device)
         elif self.is_flow_temporal_unet:
-            from flow_temporal_unet import FlowTemporalUNetPolicy
+            try:
+                from .flow_temporal_unet import FlowTemporalUNetPolicy
+            except ImportError:
+                from flow_temporal_unet import FlowTemporalUNetPolicy
 
             self.n_obs_steps = int(config.get('n_obs_steps', 2))
             self.n_action_steps = int(config.get('n_action_steps', 16))
@@ -252,7 +288,10 @@ class PolicyEvaluator:
                 previous_action_std=config['previous_action_std'],
             ).to(self.device)
         elif self.is_dit_rectified_flow:
-            from dit_rectified_flow import DiTRectifiedFlowPolicy
+            try:
+                from .dit_rectified_flow import DiTRectifiedFlowPolicy
+            except ImportError:
+                from dit_rectified_flow import DiTRectifiedFlowPolicy
 
             self.n_obs_steps = int(config.get('n_obs_steps', 2))
             self.n_action_steps = int(config.get('n_action_steps', 16))
@@ -852,6 +891,8 @@ class PolicyEvaluator:
             'actions': [],
             'errors': [],
             'velocities': [],
+            'low_speed': [],
+            'encoder_settled': [],
             'oct_navigation_mm': [],
             'oct_navigation_norm_mm': [],
             'oct_navigation_valid': [],
@@ -860,7 +901,10 @@ class PolicyEvaluator:
 
         success = False
         consecutive_success = 0
-        required_consecutive = 3  # 需要连续3帧达标
+        required_consecutive = TERMINAL_SETTLE_FRAMES
+        final_low_speed = False
+        final_encoder_settled = False
+        final_terminal_frame_pass = False
         target_world_mm = np.asarray(target_world_mm, dtype=np.float64)
         safety_limited_steps = 0
         safety_limited_streak = 0
@@ -908,6 +952,22 @@ class PolicyEvaluator:
             trajectory['oct_navigation_valid'].append(bool(oct_feature[3] > 0.5))
             trajectory['simulation_time_s'].append(float(motor.time_s))
 
+            # 低速只是诊断字段；规范成功必须由 MotorExecution 报告编码器
+            # 已到达量化目标并静止。
+            low_speed = bool(
+                np.all(np.abs(velocity_abc) <= settled_velocity_limit)
+            )
+            encoder_settled = bool(motor.settled())
+            final_low_speed = low_speed
+            final_encoder_settled = encoder_settled
+            final_terminal_frame_pass = terminal_success_frame(
+                error,
+                error_threshold_mm,
+                encoder_settled,
+            )
+            trajectory['low_speed'].append(low_speed)
+            trajectory['encoder_settled'].append(encoder_settled)
+
             if error < best_error_mm - 0.0005:
                 best_error_mm = error
                 last_improvement_step = step
@@ -927,18 +987,17 @@ class PolicyEvaluator:
                 print(f"  发散早停: {error:.3f} mm")
                 break
 
-            # 检查成功
-            motor_settled = bool(
-                np.all(np.abs(velocity_abc) <= settled_velocity_limit)
+            consecutive_success, success = advance_terminal_success_streak(
+                consecutive_success,
+                final_terminal_frame_pass,
+                required_consecutive,
             )
-            if error <= error_threshold_mm and motor_settled:
-                consecutive_success += 1
-                if consecutive_success >= required_consecutive:
-                    success = True
-                    print(f"  成功! 步数: {step}, 最终误差: {error:.3f} mm")
-                    break
-            else:
-                consecutive_success = 0
+            if success:
+                print(
+                    f"  成功! 步数: {step}, 最终误差: {error:.3f} mm, "
+                    "编码器真停稳"
+                )
+                break
 
             # 获取策略动作
             action = self.get_action(rgb, state_abc, oct_feature)  # [dA, dB, dC]
@@ -1013,11 +1072,21 @@ class PolicyEvaluator:
             'ground_truth_used_for_control': False,
             'ground_truth_used_for_success': True,
             'execution_backend': 'MotorBackend',
+            'evaluation_contract_version': EVALUATION_CONTRACT_VERSION,
             'state_action_units': 'A_deg,B_deg,C_mm',
             'oct_navigation_used': self.use_oct,
             'safety_limited_steps': safety_limited_steps,
             'last_safety_error': last_safety_error,
             'early_stop_reason': early_stop_reason,
+            'terminal_success': {
+                'error_threshold_mm': float(error_threshold_mm),
+                'required_consecutive_frames': required_consecutive,
+                'consecutive_frames_at_exit': int(consecutive_success),
+                'low_speed_at_exit': final_low_speed,
+                'encoder_settled_at_exit': final_encoder_settled,
+                'terminal_frame_pass': final_terminal_frame_pass,
+                'terminal_condition': 'MotorExecution.settled',
+            },
             'policy_control_mode_counts': dict(
                 self.control_mode_counts
             ),
@@ -1197,6 +1266,7 @@ class PolicyEvaluator:
                 r['final_error_mm'] for r in results
             ])),
             'evaluation_contract': {
+                'version': EVALUATION_CONTRACT_VERSION,
                 'execution_backend': 'MotorBackend',
                 'control_period_s': control_period_s,
                 'state_action_units': 'A_deg,B_deg,C_mm',
@@ -1208,9 +1278,16 @@ class PolicyEvaluator:
                 'ground_truth_used_for_control': False,
                 'ground_truth_used_for_success': True,
                 'require_motor_settled_for_success': True,
+                'terminal_condition': 'MotorExecution.settled',
+                'success_definition': (
+                    'error_threshold_and_three_consecutive_'
+                    'MotorExecution.settled_frames'
+                ),
                 'success_error_threshold_mm': error_threshold_mm,
                 'success_error_threshold_um': error_threshold_mm * 1000.0,
-                'required_consecutive_success_frames': 3,
+                'required_consecutive_success_frames': (
+                    TERMINAL_SETTLE_FRAMES
+                ),
                 'early_stop_error_mm': early_stop_error_mm,
                 'max_consecutive_safety_limited': max_consecutive_safety_limited,
                 'oct_navigation_used': self.use_oct,

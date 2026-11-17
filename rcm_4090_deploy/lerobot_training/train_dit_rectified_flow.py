@@ -12,13 +12,22 @@ import torch
 from torch.utils.data import DataLoader, WeightedRandomSampler
 from tqdm import tqdm
 
-from dit_rectified_flow import DiTRectifiedFlowPolicy
-from train_diffusion_policy import (
-    RCMDataset,
-    configure_stream_logging,
-    image_transform_for_dataset,
-    seed_worker,
-)
+try:
+    from .dit_rectified_flow import DiTRectifiedFlowPolicy
+    from .train_diffusion_policy import (
+        RCMDataset,
+        configure_stream_logging,
+        image_transform_for_dataset,
+        seed_worker,
+    )
+except ImportError:
+    from dit_rectified_flow import DiTRectifiedFlowPolicy
+    from train_diffusion_policy import (
+        RCMDataset,
+        configure_stream_logging,
+        image_transform_for_dataset,
+        seed_worker,
+    )
 
 
 def _atomic_torch_save(payload, destination):
@@ -29,28 +38,10 @@ def _atomic_torch_save(payload, destination):
 
 
 def _motion_stats(dataset):
-    velocities = []
-    previous_actions = []
-    for index in range(1, len(dataset.states)):
-        if (
-            dataset.frame_indices[index] > 0
-            and dataset.episode_indices[index]
-            == dataset.episode_indices[index - 1]
-        ):
-            velocities.append(
-                (
-                    dataset.states[index]
-                    - dataset.states[index - 1]
-                )
-                / dataset.control_period_s
-            )
-            previous_actions.append(dataset.actions[index - 1])
-    if not velocities:
+    velocities, previous_actions = dataset.motion_samples()
+    if len(velocities) == 0:
         raise ValueError("dataset lacks within-episode motion samples")
-    return (
-        np.asarray(velocities, dtype=np.float32),
-        np.asarray(previous_actions, dtype=np.float32),
-    )
+    return velocities, previous_actions
 
 
 def _dataset_statistics(dataset):

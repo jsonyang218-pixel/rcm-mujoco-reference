@@ -29,26 +29,9 @@ def _atomic_torch_save(payload, destination):
 
 
 def _motion_stats(dataset):
-    velocities = []
-    previous_actions = []
-    for index in range(1, len(dataset.states)):
-        if (
-            dataset.frame_indices[index] > 0
-            and dataset.episode_indices[index]
-            == dataset.episode_indices[index - 1]
-        ):
-            velocities.append(
-                (
-                    dataset.states[index]
-                    - dataset.states[index - 1]
-                )
-                / dataset.control_period_s
-            )
-            previous_actions.append(dataset.actions[index - 1])
-    if not velocities:
+    velocities, previous_actions = dataset.motion_samples()
+    if len(velocities) == 0:
         raise ValueError("dataset lacks within-episode motion samples")
-    velocities = np.asarray(velocities, dtype=np.float32)
-    previous_actions = np.asarray(previous_actions, dtype=np.float32)
     return velocities, previous_actions
 
 

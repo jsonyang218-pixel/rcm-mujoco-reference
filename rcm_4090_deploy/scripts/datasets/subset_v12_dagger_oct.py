@@ -47,7 +47,15 @@ def build(source_dir, output_dir):
         "oct_navigation",
         "oct_navigation_valid",
     }
-    if set(arrays) != required:
+    history = {
+        "executed_action",
+        "source_frame_index",
+        "timestamp_s",
+    }
+    present_history = history & set(arrays)
+    if present_history and present_history != history:
+        raise ValueError("source dataset has a partial history contract")
+    if not required <= set(arrays) or set(arrays) - required - history:
         raise ValueError(f"unexpected source arrays: {sorted(arrays)}")
 
     selected = [
@@ -58,16 +66,7 @@ def build(source_dir, output_dir):
     if not selected:
         raise ValueError("source metadata contains no DAgger episodes")
 
-    output_arrays = {
-        name: [] for name in (
-            "episode_index",
-            "frame_index",
-            "action",
-            "state",
-            "oct_navigation",
-            "oct_navigation_valid",
-        )
-    }
+    output_arrays = {name: [] for name in arrays}
     output_episodes = []
     output_audits = []
     output_image_paths = []
@@ -83,7 +82,7 @@ def build(source_dir, output_dir):
         output_arrays["episode_index"].append(
             np.full(len(rows), new_episode, dtype=arrays["episode_index"].dtype)
         )
-        for name in required - {"episode_index"}:
+        for name in set(arrays) - {"episode_index"}:
             output_arrays[name].append(arrays[name][rows])
 
         for local_frame, global_row in enumerate(rows):
@@ -133,6 +132,10 @@ def build(source_dir, output_dir):
     metadata["num_frames"] = expected_frames
     metadata["episodes"] = output_episodes
     metadata["dataset_variant"] = "v12_zero_error_dagger_oct_navigation"
+    if present_history:
+        metadata["data_contract_version"] = 2
+        metadata["history_action_source"] = "executed_action"
+        metadata["continuity_source"] = "source_frame_index"
     metadata["subset_definition"] = {
         "selection": "source_dataset contains 'dagger'",
         "source_dataset": str(source_dir),

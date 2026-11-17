@@ -74,6 +74,23 @@ t, t+1, ..., t+7
 预测8步 → 只执行第1步 → 下一控制周期重新预测
 ```
 
+### 2.1 动作语义、历史与缺帧
+
+数据契约 v2 明确区分两种动作：
+
+```text
+action          = 训练监督标签
+executed_action = 实际接受并下发的增量命令
+```
+
+DAgger 数据的 `action` 来自 `teacher_action_deg_deg_mm`；速度状态仍由实际
+相邻状态计算，`previous_action` 输入则必须来自 `executed_action`。推理端
+记录的上一动作同样是已接受命令，因此训练与推理语义一致。
+
+同时保存过滤前的 `source_frame_index` 和 `timestamp_s`。观测历史、速度计算
+和未来动作块只允许使用原始帧号逐帧连续的样本；过滤无效专家帧形成的缺口会
+切断窗口，不能把过滤后的相邻数组行当作固定 50 ms 间隔。
+
 ## 3. 端到端总览
 
 ```text
@@ -544,7 +561,11 @@ action_t = [dA_t, dB_t, dC_t]
 
 ```text
 action_source = teacher
+action = teacher_action_deg_deg_mm
 ```
+
+教师标签只用于监督，不用于构造上一动作历史。历史动作必须读取同一行记录的
+`executed_action_deg_deg_mm`，包括实际执行的 policy、teacher 或 hold 命令。
 
 教师动作与 guided base 相减：
 
@@ -931,13 +952,23 @@ error =
 error < 20 μm
 ```
 
-且电机速度连续 3 帧满足：
+且 `MotorExecution.settled()` 连续 3 帧为真。该条件要求实际编码器已经到达
+量化命令目标并且保持静止：
+
+```text
+backend.robot == backend.target
+abs(actual_velocity) < 1e-12 rad/rad/m/s
+```
+
+低速阈值仍作为诊断字段记录：
 
 ```text
 abs(vA) <= 0.05 deg/s
 abs(vB) <= 0.05 deg/s
 abs(vC) <= 0.01 mm/s
 ```
+
+但低速本身不再单独构成成功，避免电机仍在追赶命令时提前结束评估。
 
 评估限制：
 
@@ -1062,6 +1093,10 @@ final error max = 19156.335 µm
 35/60 曾进入 20 µm，但其中只有 28 个完成三帧停稳；25/60 从未进入
 20 µm。3 个 episode 因连续 safety-limit 早停。该结果说明固定开发目标上的
 成功不能外推到 final-test，目标分布覆盖和终端稳定仍是主要问题。
+
+这组历史结果产生于评估契约 v2 之前，其中“停稳”只能解释为连续三帧低于
+速度阈值；它没有验证编码器已经到达量化目标，不能与新的
+`MotorExecution.settled()` 成功数直接比较。
 
 ## 22. 当前输入不包含什么
 

@@ -32,6 +32,19 @@ except ImportError:
     print("Warning: wandb not available, logging will be local only")
 from typing import Dict, Tuple
 
+try:
+    from .dataset_contract import (
+        history_features,
+        motion_samples,
+        validate_dataset_contract,
+    )
+except ImportError:
+    from dataset_contract import (
+        history_features,
+        motion_samples,
+        validate_dataset_contract,
+    )
+
 
 DEFAULT_EPOCHS = 1000
 
@@ -314,14 +327,45 @@ class RCMDataset(Dataset):
 
         # 加载数据
         with np.load(data_dir / "data" / "dataset.npz") as data:
-            self.has_oct_navigation = 'oct_navigation' in data.files
-            self.episode_indices = data['episode_index'].copy()
-            self.frame_indices = data['frame_index'].copy()
-            self.actions = data['action'].copy()  # [N, 3] delta actions
-            self.states = data['state'].copy()    # [N, 3] current states
+            arrays = {name: data[name].copy() for name in data.files}
+            validate_dataset_contract(
+                arrays,
+                require_history=(
+                    self.include_velocity or self.include_previous_action
+                ),
+            )
+            self.has_oct_navigation = 'oct_navigation' in arrays
+            self.episode_indices = arrays['episode_index'].astype(np.int64)
+            self.frame_indices = arrays['frame_index'].astype(np.int32)
+            self.actions = arrays['action'].astype(np.float32)
+            self.states = arrays['state'].astype(np.float32)
+            self.has_history_contract = (
+                'executed_action' in arrays
+                and 'source_frame_index' in arrays
+                and 'timestamp_s' in arrays
+            )
+            self.executed_actions = (
+                arrays['executed_action'].astype(np.float32)
+                if self.has_history_contract else None
+            )
+            self.source_frame_indices = (
+                arrays['source_frame_index'].astype(np.int64)
+                if self.has_history_contract else None
+            )
+            self.timestamps_s = (
+                arrays['timestamp_s'].astype(np.float64)
+                if self.has_history_contract else None
+            )
+            self.continuity_frame_indices = (
+                self.source_frame_indices
+                if self.source_frame_indices is not None
+                else self.frame_indices
+            )
             if self.has_oct_navigation:
-                self.oct_navigation = data['oct_navigation'].copy()
-                self.oct_navigation_valid = data['oct_navigation_valid'].copy()
+                self.oct_navigation = arrays['oct_navigation'].copy()
+                self.oct_navigation_valid = arrays[
+                    'oct_navigation_valid'
+                ].copy()
             else:
                 self.oct_navigation = np.zeros((len(self.states), 3), dtype=np.float32)
                 self.oct_navigation_valid = np.zeros(len(self.states), dtype=np.bool_)
@@ -423,7 +467,12 @@ class RCMDataset(Dataset):
             # 检查历史帧是否在同一 episode
             history_valid = True
             for j in range(1, self.n_obs_steps):
-                if i - j < 0 or self.episode_indices[i - j] != ep_idx:
+                if (
+                    i - j < 0
+                    or self.episode_indices[i - j] != ep_idx
+                    or self.continuity_frame_indices[i - j]
+                    != self.continuity_frame_indices[i] - j
+                ):
                     history_valid = False
                     break
 
@@ -437,7 +486,12 @@ class RCMDataset(Dataset):
             # 检查未来动作是否在同一 episode
             future_valid = True
             for j in range(1, self.n_action_steps):
-                if i + j >= len(self.actions) or self.episode_indices[i + j] != ep_idx:
+                if (
+                    i + j >= len(self.actions)
+                    or self.episode_indices[i + j] != ep_idx
+                    or self.continuity_frame_indices[i + j]
+                    != self.continuity_frame_indices[i] + j
+                ):
                     future_valid = False
                     break
 
@@ -450,6 +504,29 @@ class RCMDataset(Dataset):
 
     def __len__(self):
         return len(self.valid_indices)
+
+    def motion_samples(self):
+        if not self.has_history_contract:
+            raise ValueError("dataset lacks executed-action history arrays")
+        return motion_samples(
+            self.episode_indices,
+            self.source_frame_indices,
+            self.timestamps_s,
+            self.states,
+            self.executed_actions,
+        )
+
+    def history_features(self, rows):
+        if not self.has_history_contract:
+            raise ValueError("dataset lacks executed-action history arrays")
+        return history_features(
+            rows,
+            self.episode_indices,
+            self.source_frame_indices,
+            self.timestamps_s,
+            self.states,
+            self.executed_actions,
+        )
 
     def __getitem__(self, idx) -> Dict[str, torch.Tensor]:
         i = self.valid_indices[idx]
@@ -534,15 +611,18 @@ class RCMDataset(Dataset):
             'action': actions,
         }
         if self.include_velocity:
+            duration_s = (
+                self.timestamps_s[i] - self.timestamps_s[i - 1]
+            )
             velocity = (
                 self.states[i] - self.states[i - 1]
-            ) / self.control_period_s
+            ) / float(duration_s)
             sample['observation.velocity'] = torch.from_numpy(
                 velocity.astype(np.float32)
             )
         if self.include_previous_action:
             sample['observation.previous_action'] = torch.from_numpy(
-                self.actions[i - 1].astype(np.float32)
+                self.executed_actions[i - 1].astype(np.float32)
             )
         if self.use_restricted_sidecar:
             sample['observation.restricted'] = obs_restricted

@@ -19,6 +19,9 @@ def _load_episodes(root: Path):
         rows = payload.get("episodes", [])
         if not rows:
             continue
+        contract = payload.get("evaluation_contract", {})
+        for row in rows:
+            row["_evaluation_contract"] = contract
         episodes.extend(rows)
         shards.append({
             "path": str(path),
@@ -56,6 +59,16 @@ def _count_at_most(values_um, threshold_um):
     return int(np.sum(np.asarray(values_um, dtype=np.float64) <= threshold_um))
 
 
+def _is_canonical_success(row):
+    contract = row.get("_evaluation_contract", {})
+    return bool(
+        row.get("success")
+        and int(contract.get("version", 1)) >= 2
+        and contract.get("terminal_condition")
+        == "MotorExecution.settled"
+    )
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--root", type=Path, required=True)
@@ -82,9 +95,15 @@ def main():
     minimum_um = [
         _minimum_error_mm(row) * 1000.0 for row in episodes
     ]
-    settled_successes = int(
-        sum(bool(row["success"]) for row in episodes)
-    )
+    canonical_successes = int(sum(
+        _is_canonical_success(row)
+        for row in episodes
+    ))
+    legacy_successes = int(sum(
+        bool(row["success"])
+        and not _is_canonical_success(row)
+        for row in episodes
+    ))
     final_gate_successes = _count_at_most(
         final_um, args.threshold_um
     )
@@ -118,6 +137,12 @@ def main():
             "episode_index": index,
             "target_id": row.get("target_id"),
             "success_at_0p1um": bool(row["success"]),
+            "success_contract_version": int(
+                row["_evaluation_contract"].get("version", 1)
+            ),
+            "success_terminal_condition": row[
+                "_evaluation_contract"
+            ].get("terminal_condition", "legacy_low_speed"),
             "final_error_um": final_value,
             "minimum_error_um": minimum_value,
             "reference_final_error_um": baseline_mm * 1000.0,
@@ -137,15 +162,17 @@ def main():
         })
 
     result = {
-        "result": "PASS" if settled_successes == len(episodes) else "FAIL",
+        "result": "PASS" if canonical_successes == len(episodes) else "FAIL",
         "execution_backend": episodes[0]["execution_backend"],
         "strict_success_error_threshold_um": args.threshold_um,
         "episodes": len(episodes),
         "shards": shards,
-        "settled_successes_at_threshold": settled_successes,
+        "settled_successes_at_threshold": canonical_successes,
         "settled_success_rate_at_threshold": (
-            settled_successes / len(episodes)
+            canonical_successes / len(episodes)
         ),
+        "canonical_encoder_settled_successes": canonical_successes,
+        "legacy_successes_not_canonical": legacy_successes,
         "episodes_with_final_at_most_threshold": final_gate_successes,
         "episodes_ever_at_most_threshold": ever_reached_gate,
         "final_error_threshold_gate_pass": (

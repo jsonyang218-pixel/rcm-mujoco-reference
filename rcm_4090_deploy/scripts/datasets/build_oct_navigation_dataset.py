@@ -58,6 +58,17 @@ def build(source_dir, raw_run_dir, output_dir):
         frame_indices = data["frame_index"].copy()
         actions = data["action"].copy()
         states = data["state"].copy()
+        history_arrays = {
+            name: data[name].copy()
+            for name in (
+                "executed_action",
+                "source_frame_index",
+                "timestamp_s",
+            )
+            if name in data.files
+        }
+        if history_arrays and len(history_arrays) != 3:
+            raise ValueError("source dataset has a partial history contract")
 
     if (
         len(episode_indices) != len(frame_indices)
@@ -139,14 +150,18 @@ def build(source_dir, raw_run_dir, output_dir):
         raise ValueError("matched OCT navigation contains non-finite values")
 
     (output_dir / "data").mkdir(parents=True)
+    output_arrays = {
+        **history_arrays,
+        "episode_index": episode_indices,
+        "frame_index": frame_indices,
+        "action": actions,
+        "state": states,
+        "oct_navigation": oct_navigation,
+        "oct_navigation_valid": oct_valid,
+    }
     np.savez(
         output_dir / "data" / "dataset.npz",
-        episode_index=episode_indices,
-        frame_index=frame_indices,
-        action=actions,
-        state=states,
-        oct_navigation=oct_navigation,
-        oct_navigation_valid=oct_valid,
+        **output_arrays,
     )
     _write_json(output_dir / "data" / "image_paths.json", image_paths)
     _write_json(
@@ -160,6 +175,10 @@ def build(source_dir, raw_run_dir, output_dir):
     linked_images = _link_image_tree(source_dir, output_dir)
 
     metadata["dataset_variant"] = "oct_navigation_from_registered_rgbd"
+    if history_arrays:
+        metadata["data_contract_version"] = 2
+        metadata["history_action_source"] = "executed_action"
+        metadata["continuity_source"] = "source_frame_index"
     metadata["oct_navigation"] = {
         "available": True,
         "source": "registered RGB-D visible-depth simulation",
