@@ -20,6 +20,17 @@ Recorded: 2026-11-16
 - Compact data:
   https://github.com/jsonyang218-pixel/rcm-mujoco-reference/tree/experiment/dit-rf-dagger2-acthist-20261117/rcm_4090_deploy/github_reports/model_status_20261117
 
+## State-attention continuation
+
+- Branch:
+  `experiment/state-attention-v1-20261117`
+- Frozen v1 baseline:
+  https://github.com/jsonyang218-pixel/rcm-mujoco-reference/tree/experiment/state-attention-v1-20261117/rcm_4090_deploy/configs/baselines/state_attention_v1
+- E1 status:
+  https://github.com/jsonyang218-pixel/rcm-mujoco-reference/blob/experiment/state-attention-v1-20261117/rcm_4090_deploy/github_reports/model_status_20261117_state_attention_e1/MODEL_STATUS.md
+- E1 compact data:
+  https://github.com/jsonyang218-pixel/rcm-mujoco-reference/tree/experiment/state-attention-v1-20261117/rcm_4090_deploy/github_reports/model_status_20261117_state_attention_e1
+
 ## Previous experiment branch
 
 - Branch name:

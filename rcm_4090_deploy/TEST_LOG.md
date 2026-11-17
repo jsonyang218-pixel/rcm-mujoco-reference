@@ -4391,3 +4391,85 @@ OK
   首次绘图尝试因 stdout 重定向到尚未创建的 plot 目录而未执行；改为先由
   绘图脚本创建目录，并把生成日志写到既有结果根目录后 PASS。结果仅为
   MuJoCo 仿真闭环性能，不代表硬件或临床精度。
+- 2026-11-17 16:57:36 CST：统一模型流水线接入与入口 smoke PASS。新增
+  `lerobot_training/run_model_pipeline.py`（SHA-256
+  `1a3fb5e1220f187d4c63da03665d7f63207c4252fa845572ed70cf0c565176ac`）、
+  `configs/state_attention_pipeline.json`（SHA-256
+  `a1e56663f58107f34e71ab39759755b954567b5b9c7ba1072e0c9cf6a5c6e777`）
+  和 `docs/MODEL_PIPELINE.md`（SHA-256
+  `5c255edd432f8844f0dc0c268a6d8c4d406f5321adcc157c0cfe83ff7015f9ee`）。
+  `py_compile` 与 `--help` 入口检查 PASS；配置解析为
+  `state_attention_v1`、入口 `lerobot_training/dit_state_attention.py`、
+  development 目标 0–20、10 分片。此检查未启动训练或闭环评估，也未生成
+  模型产物。
+- 2026-11-17 17:02:54 CST：统一模型流水线分段结果输出 smoke PASS。训练与
+  验证完成后立即生成 `training/result.json` 和 `training/REPORT.md`，
+  记录最佳 epoch、train/val loss、训练耗时、checkpoint 路径与 SHA-256，
+  并把 `status.json` 标记为 `training_completed`。每个闭环评测分片完成后
+  立即生成 `evaluation/gXX/result.json`，刷新
+  `evaluation/partial_summary.json` 与 `partial_episodes.csv`，并保存
+  `evaluation/progress/after_NN_shards/` 不可变累计快照；部分结果明确标记
+  `status=partial`。临时 fixture 验证 1/2 与 2/2 shard 两个阶段、目标排序、
+  成功数、CSV 和快照均 PASS，临时目录已自动清理。修改后
+  `run_model_pipeline.py` SHA-256
+  `7e2f3385e84b52655e6724e0a433a9d499b64ed6b5d4cac47f6abad1a96996d4`，
+  `docs/MODEL_PIPELINE.md` SHA-256
+  `aeb097e91ebbc7cd1138dc9885402cecf9f3cd5f8defcb264473b1d8954d246b`；
+  验证日志位于
+  `runs/20261117/verification/model_pipeline_progress/`。未启动真实训练或
+  闭环评估。
+- 2026-11-17 18:38:44 CST：state-attention v1 冻结为首个正式对照基线 PASS。
+  基线目录 `configs/baselines/state_attention_v1/` 保存完整流水线配置副本、
+  训练历史、20 目标严格评估汇总、机器可读 `BASELINE.json` 和
+  `BASELINE.md`；基线 ID 为 `state_attention_v1_20261117`，状态
+  `frozen`。基线指标为：canonical settled success `0/20`，最终误差
+  mean/median `434.397058/258.933493 µm`，每目标最小误差均值
+  `93.680006 µm`，safety-limited steps `0`。`BASELINE.json` SHA-256
+  `3679d03cc2465bcb58c2eae247bd290736cd2ee7cd7da3434a6f48fdc533bb55`；
+  模型源码、v1 checkpoint、冻结配置和目标清单的 SHA-256 均已记录并通过
+  完整性复算。工作配置
+  `configs/state_attention_pipeline.json` 默认通过 `baseline_manifest`
+  指向该基线。流水线新增最终自动对照：强制校验目标清单 SHA-256、episode
+  索引和 target ID；匹配时生成 `comparison.json` 与 `COMPARISON.md`，
+  不匹配时拒绝输出不可比指标。隔离 smoke 验证 1 个改善、1 个恶化、成功
+  差值、两类报告及错误目标拒绝均 PASS；验证日志位于
+  `runs/20261117/verification/model_pipeline_baseline_comparison/`。
+  修改后流水线 SHA-256
+  `16057dfc3ed70ee47a0a20a19827c2f07c2f61b088f22f01e9c9020ed1ee7734`，
+  工作配置 SHA-256
+  `77c1a23c6060aff8f4cf4aa51aa475f08e80020d73b9b926e20a19026adb38c0`，
+  文档 SHA-256
+  `2f6b3715ad040b6bf20c57af4f50f6e425d6c0644af182413d216a5ead8ec368`。
+  本次未启动真实训练或闭环评估。
+- 2026-11-17 20:48:59 CST：E1 state-attention v1 同预算续训 FAIL。
+  使用新流水线配置
+  `configs/state_attention_v1_continue_pipeline.json`（SHA-256
+  `fd930f3ac43762074665eef1b9277c07b2c51ba0f935189d1ce611a921a71fce`），
+  从 v1 checkpoint 初始化，新偏置 lr `1e-5`、主干 lr `1e-6`，
+  保持 4 epochs、batch 64、seed 20261116、DAgger start 760 / repeat 10。
+  best epoch 1：train/val loss `0.1107269140/0.1467070205`；最后 epoch 3：
+  `0.1089468125/0.1477184232`；训练耗时 973.384 s。best checkpoint SHA-256
+  `4bc962b328ac57cc9f00e137f7866afe28ce5aa3592c3d166c525619d5f0610b`。
+  使用冻结 20 目标严格协议完成闭环评估，10/10 shard 正常结束。正式成功
+  `0/20`；最终误差 mean/median/min/max =
+  `978.815/637.927/143.672/2548.990 µm`；每目标最小误差均值
+  `72.531 µm`；safety-limited steps 0。与冻结 v1 baseline
+  `state_attention_v1_20261117` 自动对照：成功数不变；最终误差均值恶化
+  `544.418 µm`、中位数恶化 `378.994 µm`；最小误差均值改善 `21.149 µm`；
+  逐目标 7 个改善、13 个变差。因此本轮不能保留为 v1 的替代版本，KV8
+  初筛应以 E1 为同预算对照，而不能只看验证 loss。输出目录
+  `outputs/state_attention_v1_continue_20261117_1/`；训练阶段独立结果
+  `training/result.json` SHA-256
+  `b00a6b96f40eaa27f89c953a600c8d5d33584323b27d76c2b962010ff5250856`，
+  最终 `summary.json` SHA-256
+  `cc43b8f02558707fbc5d13656df9cffc86d34c5b63d95a800d31339d6296463e`，
+  `comparison.json` SHA-256
+  `62f94397a34a27041eb493cba2cc99f1092244a4224dab9445a61a8ed0d7bb3c`。
+  执行中发现旧流水线把仍只在写第一目标的 shard 误计为已完成；修复为只统计
+  已正常退出 shard，隔离测试 PASS。E1 启动时使用旧代码快照，故其
+  `progress_pre_fix/` 与 `partial_summary_pre_fix.json` 保留为问题证据；
+  最终结果已重新生成正确的 `progress/after_01_shards/` 至
+  `after_10_shards/`，新生成到 `after_10_shards` 时为正确的 10 shard /
+  20 episode / success 0。修复后流水线 SHA-256
+  `a54dbf166aec3612af359aa5150f0f5530d88648332839e800c2c8cc634c00c4`。
+  结果仅为 MuJoCo 仿真，不代表硬件或临床精度。
