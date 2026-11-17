@@ -4366,3 +4366,28 @@ OK
   从 `training_history.json` 读取真值后 PASS；失败日志保留在
   `runs/20261117/verification/state_attention_trained_checkpoint/`。结果仅为
   MuJoCo 仿真离线训练指标，不能代表闭环成功率、硬件或临床精度。
+- 2026-11-17 16:48:23 CST：state-attention v1 development 20 目标闭环评估
+  FAIL。使用 `best_model.pth`（epoch 3，val loss `0.1498646501`）和冻结的
+  `configs/v12_reachable_development_targets_0p35um.json`，按 acthistory
+  基线相同协议评估：10 个并行分片、每片 2 个目标、1600 步上限、`0.35 µm`
+  误差门限、连续 3 帧 `MotorExecution.settled`、单动作样本、执行动作块首步、
+  4-step rectified flow、50 ms 控制周期。评估
+  `2026-11-17T15:52:38+08:00` 启动，`16:44:17+08:00` 完成，历时约
+  3099 s；10/10 shard 均 exit 0。严格成功 `0/20`，最终或瞬时进入
+  `0.35 µm` 均为 `0/20`，safety-limited steps 为 0。最终误差
+  mean/median/min/max/P95 =
+  `434.397/258.933/134.901/2128.198/1131.427 µm`；每目标最小误差
+  mean/median/min/max/P95 =
+  `93.680/89.067/45.103/201.134/145.855 µm`。与 acthistory 基线逐目标
+  配对比较：18 个改善、2 个恶化，最终误差均值/中位数改善
+  `1303.090/1668.789 µm`；基线最终误差 mean/median=
+  `1737.487/2012.021 µm`。因此闭环误差显著改善，但仍未达到严格成功门限。
+  结果目录
+  `outputs/evaluation_dit_rectified_flow_state_attention_v1_acthist_20261117_dev20_0p35um/`；
+  `strict_summary_vs_acthist.json` 与 `summary.log` SHA-256 均为
+  `004a3844dd64728a2f31f9c144a2f7ce7e7c73a6a19e3f6bb3c926ad5d683ea0`，
+  `error_curves_all.png` SHA-256
+  `c5a6313d826405e49aec987a26f08c42ab0da85067baf83646ecb0dbbe093c4d`。
+  首次绘图尝试因 stdout 重定向到尚未创建的 plot 目录而未执行；改为先由
+  绘图脚本创建目录，并把生成日志写到既有结果根目录后 PASS。结果仅为
+  MuJoCo 仿真闭环性能，不代表硬件或临床精度。

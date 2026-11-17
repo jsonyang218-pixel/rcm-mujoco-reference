@@ -1,5 +1,6 @@
 {
-  "status": "running",
+  "status": "complete",
+  "result": "FAIL",
   "model": "outputs/dit_rectified_flow_state_attention_v1_acthist_20261117/best_model.pth",
   "target_manifest": "configs/v12_reachable_development_targets_0p35um.json",
   "targets": 20,
@@ -11,5 +12,105 @@
   "n_action_execute_steps": 1,
   "flow_integration_steps": 4,
   "terminal_condition": "MotorExecution.settled",
-  "result_note": "Final closed-loop metrics are pending; this repository snapshot records launch status only."
+  "canonical_successes": 0,
+  "canonical_success_rate": 0.0,
+  "final_error": {
+    "values_um": [
+      1078.9651363736966,
+      258.5840656330503,
+      305.24560793614273,
+      200.72653953836272,
+      186.53714421634288,
+      243.52055509459888,
+      259.28292002405334,
+      512.4175193053986,
+      309.51243303176864,
+      156.8382380490639,
+      433.7814594315187,
+      192.8003595693677,
+      134.9009264006471,
+      209.61884839901964,
+      209.38107393328278,
+      284.612401910935,
+      721.4068510113256,
+      192.4351663904464,
+      669.1760324067262,
+      2128.197889874639
+    ],
+    "mean_um": 434.39705842651927,
+    "median_um": 258.93349282855183,
+    "minimum_um": 134.9009264006471,
+    "maximum_um": 2128.197889874639,
+    "p75_um": 453.4404743999887,
+    "p90_um": 757.1626795475631,
+    "p95_um": 1131.4267740487444
+  },
+  "per_episode_minimum_error": {
+    "values_um": [
+      62.28459709845059,
+      67.48854022513112,
+      90.94442978729478,
+      115.5033596900291,
+      142.94583697866926,
+      72.50919353991051,
+      201.13367202211958,
+      93.80776684824998,
+      73.4341708408315,
+      107.52504039488272,
+      104.82255548690635,
+      79.68320372498746,
+      56.62044538015139,
+      87.18955372115154,
+      105.37772365974239,
+      96.61961944921896,
+      137.92082828814108,
+      45.10301783465415,
+      61.14801169961423,
+      71.53855682785546
+    ],
+    "mean_um": 93.6800061748996,
+    "median_um": 89.06699175422315,
+    "minimum_um": 45.10301783465415,
+    "maximum_um": 201.13367202211958,
+    "p75_um": 105.91455284352747,
+    "p90_um": 138.4233291571939,
+    "p95_um": 145.85522873084182
+  },
+  "safety_limited_steps": {
+    "total": 0,
+    "maximum_per_episode": 0,
+    "episodes_with_any": 0
+  },
+  "paired_reference": {
+    "path": "outputs/evaluation_dit_rectified_flow_dagger2_acthist_20261117_dev20_0p35um",
+    "improved": 18,
+    "worsened": 2,
+    "unchanged": 0,
+    "mean_improvement_um": 1303.0898911272493,
+    "median_improvement_um": 1668.788834575127
+  },
+  "plot_summary": {
+    "episodes": 20,
+    "threshold_um": 0.35,
+    "final_error_um": {
+      "mean": 434.39705842651927,
+      "median": 258.93349282855183,
+      "minimum": 134.9009264006471,
+      "maximum": 2128.197889874639
+    },
+    "minimum_error_um": {
+      "mean": 93.6800061748996,
+      "median": 89.06699175422315,
+      "minimum": 45.10301783465415,
+      "maximum": 201.13367202211958
+    },
+    "paired_change_um": {
+      "improved": 18,
+      "worsened": 2,
+      "mean": -1303.0898911272493,
+      "median": -1668.788834575127
+    }
+  },
+  "duration_seconds": 3099,
+  "shard_failures": 0
 }

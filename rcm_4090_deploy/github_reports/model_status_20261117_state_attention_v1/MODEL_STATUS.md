@@ -6,10 +6,9 @@ The state-conditioned temporal attention policy is implemented, integration
 tested, and fine-tuned from the existing DiT acthistory checkpoint. Offline
 validation loss improved relative to the warm-start baseline.
 
-The 20-target, 0.35 µm closed-loop development evaluation was started after
-training and is still running at the time of this repository snapshot. The
-closed-loop metrics are therefore pending and must not be inferred from the
-offline validation result.
+The 20-target, 0.35 µm closed-loop development evaluation is complete. The
+policy improves final error substantially but does not satisfy the strict
+terminal success requirement: the result is `FAIL` with 0/20 successes.
 
 | Item | Result |
 |---|---:|
@@ -22,7 +21,41 @@ offline validation result.
 | Validation improvement | 7.227835% |
 | New attention parameters | 83,136 |
 | Training duration | 979.608 s |
-| Closed-loop evaluation | running |
+| Closed-loop result | `FAIL` |
+| Canonical successes | 0 / 20 |
+| Final error mean / median | 434.397 / 258.933 µm |
+| Per-episode minimum error mean | 93.680 µm |
+| Paired final-error improvement | 18 improved / 2 worsened |
+| Safety-limited steps | 0 |
+
+## Closed-loop result
+
+The evaluation completed in 3,099 seconds with all 10 shards exiting
+successfully. No episode reached the 0.35 µm gate, even transiently. The best
+per-episode minimum error was 45.103 µm, so the model approaches the target
+but remains outside the strict threshold.
+
+| Metric | acthistory baseline | state-attention v1 |
+|---|---:|---:|
+| Canonical successes | 0 / 20 | 0 / 20 |
+| Final error mean | 1737.487 µm | **434.397 µm** |
+| Final error median | 2012.021 µm | **258.933 µm** |
+| Per-episode minimum mean | 143.065 µm | **93.680 µm** |
+| Safety-limited steps | 0 | 0 |
+
+Pairwise final-error comparison: 18 episodes improved and 2 worsened. Mean
+and median final errors improved by 1303.090 µm and 1668.789 µm respectively.
+This is a clear improvement in trajectory error, but not a successful policy
+under the required settled-terminal gate.
+
+Evaluation evidence:
+
+- [Strict 20-target summary](evaluation/strict_summary_vs_acthist.json)
+- [Evaluation status](evaluation/evaluation_status.json)
+- [All 20 error curves](evaluation/plots/error_curves_all.png)
+- [Per-target small multiples](evaluation/plots/error_curves_small_multiples.png)
+- [Best and final error](evaluation/plots/best_and_final_error.png)
+- [Paired final error vs acthistory](evaluation/plots/final_error_vs_acthist.png)
 
 ## Training
 
@@ -83,10 +116,12 @@ manifest and the same strict protocol as the baseline:
 - 50 ms control period;
 - no fine policy or terminal refinement.
 
-Launch status is recorded in:
+The complete evaluation run and logs are recorded in:
 
 - [Evaluation launch log](evaluation/eval_launch.txt)
+- [Evaluation summary](evaluation/summary.txt)
+- [Plot generation log](evaluation/plot_generation.txt)
 - [evaluation_status.json](evaluation/evaluation_status.json)
 
-All reported training values are MuJoCo simulation results. They do not
-establish hardware accuracy, clinical validity, or closed-loop success.
+All reported values are MuJoCo simulation results. They do not establish
+hardware accuracy or clinical validity.
