@@ -1,0 +1,16 @@
+PASS: CUDA is available
+PASS: real checkpoint warm-start strict load
+Warning: wandb not available, logging will be local only
+加载数据集: 220844 个有效样本 (from 234316 total frames)
+PASS: loaded eight sequential real training samples
+DiT-RF epoch 0:   0%|          | 0/8 [00:00<?, ?it/s]DiT-RF epoch 0:  12%|█▎        | 1/8 [00:00<00:02,  2.53it/s]DiT-RF epoch 0:  75%|███████▌  | 6/8 [00:00<00:00, 14.79it/s]DiT-RF epoch 0: 100%|██████████| 8/8 [00:00<00:00, 14.82it/s]
+PASS: AMP train_epoch returned finite loss: 0.418949
+PASS: all model parameters remain finite after eight AMP batches
+PASS: AMP optimizer updates state-gate weights (max_delta=5.139e-04)
+PASS: AMP optimizer updates backbone weights (max_delta=5.585e-05)
+PASS: both parameter groups receive the same successful optimizer steps: {'gate': 6, 'backbone': 6}
+PASS: adaptive AMP completed 6/8 successful updates
+PASS: AMP step retains backbone=1e-5 and attention=1e-4 learning rates
+PASS: adaptive AMP scale remains healthy: 16384.0
+{"dataset": "/home/him1/mujoco_bc/rcm_4090_deploy/data/lerobot_v12_oct_dit_rf_dagger2_acthist_20261116_224", "batches": 8, "train_loss": 0.41894909949041903, "max_deltas": {"gate": 0.0005139338318258524, "backbone": 5.5849552154541016e-05}, "optimizer_steps": {"gate": 6, "backbone": 6}, "learning_rates": [1e-05, 0.0001], "final_scaler_scale": 16384.0, "elapsed_s": 1.8364287649746984}
+RESULT=PASS

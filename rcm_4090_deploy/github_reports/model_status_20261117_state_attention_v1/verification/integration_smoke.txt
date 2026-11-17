@@ -1,0 +1,29 @@
+torch=2.14.1+cu126 cuda=12.6 device=NVIDIA GeForce RTX 4090
+PASS: CUDA execution selected
+PASS: entry script sets native-JIT compatibility switch
+PASS: checkpoint exists: /home/him1/mujoco_bc/rcm_4090_deploy/outputs/dit_rectified_flow_v12_oct_dit_rf_dagger2_acthist_20261117/best_model.pth
+checkpoint_config={"epoch": 3, "val_loss": 0.16154053320380138, "n_obs_steps": 2, "n_action_steps": 16, "dit_dim": 384, "dit_depth": 6, "dit_heads": 6, "flow_integration_steps": 4}
+PASS: original checkpoint loads into original policy
+PASS: original checkpoint strict-loads into enhanced policy with new weights filled
+PASS: new gate output layers initialize to zero for baseline-preserving startup
+PASS: new state-attention parameters counted: 83136
+PASS: enhanced GPU forward output is finite
+PASS: initial enhanced output matches original checkpoint (max_abs_diff=0.000e+00)
+PASS: GPU rectified-flow loss finite: 2703.388672
+PASS: state-gate output receives finite gradient
+PASS: state-gate output gradient is nonzero (max=2.445e-01)
+PASS: at least one new state-attention parameter is learned
+PASS: training wrapper delegates to original epoch function
+PASS: training wrapper creates backbone and attention groups
+PASS: backbone learning rate scales to 1e-5
+PASS: new attention learning rate remains 1e-4
+PASS: checkpoint metadata records new architecture
+PASS: checkpoint config records attention template count
+PASS: checkpoint config records backbone LR scale
+Warning: wandb not available, logging will be local only
+加载模型: /home/him1/mujoco_bc/rcm_4090_deploy/outputs/dit_rectified_flow_v12_oct_dit_rf_dagger2_acthist_20261117/best_model.pth
+模型加载完成 (type=dit_rectified_flow, epoch=3, train_loss=0.135912, val_loss=0.161541)
+PASS: eval_policy constructs the enhanced policy class
+PASS: eval_policy model loads all new state-attention weights
+TOTAL_ELAPSED_S=1.284
+RESULT=PASS

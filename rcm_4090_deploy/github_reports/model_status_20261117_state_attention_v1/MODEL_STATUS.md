@@ -44,7 +44,7 @@ independent validation set with 26,650 windows.
 The complete history and log are in:
 
 - [training_history.json](training/training_history.json)
-- [training.log](training/training.log)
+- [Training log](training/training_log.txt)
 - [checkpoint_metadata.json](training/checkpoint_metadata.json)
 
 The 396 MB `best_model.pth` is intentionally excluded from Git. Its SHA-256 is
@@ -65,10 +65,10 @@ if distribution is required.
 
 Evidence:
 
-- [Integration smoke](verification/integration_smoke.log)
-- [AMP optimizer step](verification/amp_step.log)
-- [Trained checkpoint check](verification/checkpoint_check.log)
-- [Unit tests](verification/unittest.log)
+- [Integration smoke](verification/integration_smoke.txt)
+- [AMP optimizer step](verification/amp_step.txt)
+- [Trained checkpoint check](verification/checkpoint_check.txt)
+- [Unit tests](verification/unittest.txt)
 
 ## Closed-loop protocol
 
@@ -85,7 +85,7 @@ manifest and the same strict protocol as the baseline:
 
 Launch status is recorded in:
 
-- [eval_launch.log](evaluation/eval_launch.log)
+- [Evaluation launch log](evaluation/eval_launch.txt)
 - [evaluation_status.json](evaluation/evaluation_status.json)
 
 All reported training values are MuJoCo simulation results. They do not

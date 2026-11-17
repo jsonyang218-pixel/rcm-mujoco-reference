@@ -1,0 +1,33 @@
+Warning: wandb not available, logging will be local only
+test_teacher_label_and_executed_command_are_distinct (test_policy_data_contract.ConverterContractTests.test_teacher_label_and_executed_command_are_distinct) ... 保存数据:   0%|          | 0/2 [00:00<?, ?it/s]保存数据: 100%|██████████| 2/2 [00:00<00:00, 4626.92it/s]
+
+数据统计:
+  Episodes: 0
+  总帧数: 2
+  平均每集: 2.0 帧
+  State min/max: [ 0.   -0.01  0.  ] / [0.02  0.    0.001]
+  Action min/max: [ 0.1 -0.2 -0.2] / [0.2 0.1 0.3]
+  OCT navigation valid: 2/2
+ok
+test_history_uses_executed_action_and_timestamp_duration (test_policy_data_contract.HistoryContractTests.test_history_uses_executed_action_and_timestamp_duration) ... 加载数据集: 2 个有效样本 (from 5 total frames)
+ok
+test_legacy_dataset_fails_history_training (test_policy_data_contract.HistoryContractTests.test_legacy_dataset_fails_history_training) ... ok
+test_encoder_settle_requires_three_consecutive_frames (test_policy_data_contract.TerminalSuccessTests.test_encoder_settle_requires_three_consecutive_frames) ... ok
+test_legacy_success_is_not_reported_as_canonical (test_policy_data_contract.TerminalSuccessTests.test_legacy_success_is_not_reported_as_canonical) ... ok
+test_low_speed_alone_does_not_pass (test_policy_data_contract.TerminalSuccessTests.test_low_speed_alone_does_not_pass) ... ok
+test_visual_failure_uses_motor_fallback_then_exact_terminal_lock (test_zero_error_v12.CollectorIntegrationTests.test_visual_failure_uses_motor_fallback_then_exact_terminal_lock) ... {"episode": 206, "iteration": 0, "simulation_s": 0.0, "wall_s": 0.8, "error_um": 14.346419241888174}
+ok
+test_visual_pass_then_exact_terminal_lock (test_zero_error_v12.CollectorIntegrationTests.test_visual_pass_then_exact_terminal_lock) ... {"episode": 206, "iteration": 0, "simulation_s": 0.0, "wall_s": 0.6, "error_um": 14.346419241888174}
+ok
+test_joint_path_is_terminal_exact_and_respects_limits (test_zero_error_v12.FallbackTests.test_joint_path_is_terminal_exact_and_respects_limits) ... ok
+test_zero_distance_path_returns_exact_terminal (test_zero_error_v12.FallbackTests.test_zero_distance_path_returns_exact_terminal) ... ok
+test_manifest_write_is_atomic (test_zero_error_v12.SourceTests.test_manifest_write_is_atomic) ... ok
+test_parallel_ranges_cover_missing_indices_once (test_zero_error_v12.SourceTests.test_parallel_ranges_cover_missing_indices_once) ... ok
+test_source_indexes_and_per_source_traceback_are_preserved (test_zero_error_v12.SourceTests.test_source_indexes_and_per_source_traceback_are_preserved) ... ok
+test_integer_terminal_reproduction_and_target_are_exactly_equal (test_zero_error_v12.StrictTargetTests.test_integer_terminal_reproduction_and_target_are_exactly_equal) ... ok
+test_target_site_and_marker_use_exact_needle_tip_meters (test_zero_error_v12.StrictTargetTests.test_target_site_and_marker_use_exact_needle_tip_meters) ... ok
+
+----------------------------------------------------------------------
+Ran 15 tests in 17.085s
+
+OK
