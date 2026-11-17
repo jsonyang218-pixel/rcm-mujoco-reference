@@ -4298,3 +4298,71 @@ OK
   20 目标汇总、训练历史、迁移证据、训练/验证元数据及 4.7 MB 完整评估压缩包；
   未上传 790 MB checkpoint 或原始 RGB-D 数据。远端 `MODEL_STATUS.md`、
   `error_curves_all.png` 和评估压缩包均已验证 HTTP 200。
+- 2026-11-17 15:27:55 CST：state-conditioned temporal attention 增量包接入
+  与 GPU smoke PASS（仅接入/训练路径验证，未进行完整微调或闭环评估）。
+  新增
+  `lerobot_training/dit_state_attention.py`，SHA-256
+  `415b8a303c8b01aa5ab4d1f33d7ace8406f14a8760cdf3185c9adcdb9b0b0766`；
+  相对交付包仅增加 `TORCH_DISABLE_NATIVE_JIT=1` 兼容开关，避免当前
+  PyTorch 2.14/Triton 在注意力偏置反传时因缺少 `Python.h` 而即时编译失败。
+  使用 RTX 4090、CUDA 12.6、checkpoint
+  `outputs/dit_rectified_flow_v12_oct_dit_rf_dagger2_acthist_20261117/best_model.pth`
+  （epoch 3，val loss `0.1615405332`）验证：原权重严格热加载 PASS，新增
+  注意力参数 83,136 个，增强前后初始 GPU 输出最大绝对差 `0`；真实 checkpoint
+  FP32 rectified-flow 反传得到有限梯度，新增门控梯度非零；`eval_policy`
+  能构造增强策略并加载全部新增权重；backbone/attention 学习率分组为
+  `1e-5/1e-4`。连续 8 个真实训练样本的 FP16 AMP 训练步 PASS，loss
+  `0.418949`，自适应缩放后成功更新 6/8 步，门控/主干最大权重变化
+  `5.139e-4/5.585e-5`，最终 scale `16384`，全部参数有限。语法检查和
+  `python -m unittest discover -v -s tests` 15/15 PASS。完整证据及失败诊断
+  位于 `runs/20261117/verification/state_attention_integration_retry3/`、
+  `runs/20261117/verification/state_attention_amp_real_samples8_retry1/` 和
+  `runs/20261117/verification/state_attention_unittest/`；过程未回退到 CPU。
+- 2026-11-17 15:27:55 CST：state-attention 测试迭代中的失败与诊断记录。
+  `runs/20261117/verification/state_attention_integration/` 首次 GPU 反传
+  FAIL：checkpoint 加载与 GPU 前向均已 PASS，但 PyTorch/Triton 即时编译因
+  系统缺少 `Python.h` 失败；随后 `integration_retry1` 因测试脚本属性名错误
+  FAIL（未进入模型计算），`integration_retry2` 在设置兼容开关后 PASS。
+  `state_attention_amp_step/`、`state_attention_amp_step_retry1/`、
+  `state_attention_amp_step_retry2/` 和
+  `state_attention_amp_real_sample/` 的单批次 AMP 更新断言 FAIL；经
+  `state_attention_amp_grad_diagnostic/`、
+  `state_attention_amp_grad_baseline_compare/`、
+  `state_attention_amp_real_sample_ab/` 及
+  `state_attention_amp_optimizer_diagnostic_retry1/` 复核，原 DiT 和增强
+  DiT 在同一随机 flow 状态下都会被初始 `scale=65536` 的梯度缩放器判定
+  溢出并跳过更新，因此不是新增注意力回归。最终
+  `state_attention_amp_real_samples8/` 已证明参数可更新，但其“恰好一步”
+  断言不符合 AMP 自适应跳过语义而 FAIL；放宽为“两组步数一致且至少一次”
+  后在 `state_attention_amp_real_samples8_retry1/` PASS。所有失败日志均
+  保留，未覆盖旧结果。
+- 2026-11-17 15:51:29 CST：state-conditioned temporal attention v1
+  acthist DiT 微调完成 PASS（离线训练，尚未闭环评估）。使用
+  `lerobot_training/dit_state_attention.py train`，训练/验证数据分别为
+  `data/lerobot_v12_oct_dit_rf_dagger2_acthist_20261116_224` 和
+  `data/lerobot_rcm_val_acthist_20261117_224`，训练/验证窗口
+  220,844/26,650；从
+  `outputs/dit_rectified_flow_v12_oct_dit_rf_dagger2_acthist_20261117/best_model.pth`
+  （epoch 3，val loss `0.1615405332`）热启动。配置为 RTX 4090、CUDA 12.6、
+  FP16 AMP、4 epochs、batch 64、2 帧观测、16 步动作块、4-step
+  rectified flow、DAgger episode start 760、repeat 10、seed 20261116；
+  新注意力 lr `1e-4`，主干 lr `1e-5`。各 epoch train/val loss：
+  `0.120944/0.151613`、`0.117699/0.150786`、
+  `0.115918/0.150879`、`0.114257/0.149865`；best/last 均为 epoch 3，
+  val loss `0.1498646501`，较热启动基线降低 `0.0116758831`
+  （`7.227835%`）。总训练历史 elapsed `979.608 s`。输出目录
+  `outputs/dit_rectified_flow_state_attention_v1_acthist_20261117/`；
+  `best_model.pth` SHA-256
+  `d1e2527fe087ad1f619450bdd83eac24e63d1e3a0d96186dc2cdd849fdfbc424`，
+  `last_model.pth` SHA-256
+  `f7627f65ffc2eadc13d96e3828d271440c1b5099c7d9bdc8bc2f5b466e551b78`，
+  `training.log` SHA-256
+  `c01d28387fcdf1e1e92481eb0e66ff44d9b3d7633529405cd6371e7c3d1ce798`。
+  新 checkpoint 通过 `eval_policy.PolicyEvaluator` 在 CUDA 加载，全部参数
+  有限，架构 metadata 为 `state_conditioned_temporal_attention_v1`，新增
+  注意力参数 83,136。验证日志位于
+  `runs/20261117/verification/state_attention_trained_checkpoint_retry1/`。
+  首次 checkpoint 校验脚本因硬编码 val loss 多写一位不一致而 FAIL，修正为
+  从 `training_history.json` 读取真值后 PASS；失败日志保留在
+  `runs/20261117/verification/state_attention_trained_checkpoint/`。结果仅为
+  MuJoCo 仿真离线训练指标，不能代表闭环成功率、硬件或临床精度。

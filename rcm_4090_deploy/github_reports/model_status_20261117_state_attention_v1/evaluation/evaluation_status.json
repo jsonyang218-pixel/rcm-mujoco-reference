@@ -1,0 +1,15 @@
+{
+  "status": "running",
+  "model": "outputs/dit_rectified_flow_state_attention_v1_acthist_20261117/best_model.pth",
+  "target_manifest": "configs/v12_reachable_development_targets_0p35um.json",
+  "targets": 20,
+  "shards": 10,
+  "episodes_per_shard": 2,
+  "max_steps": 1600,
+  "success_threshold_um": 0.35,
+  "num_action_samples": 1,
+  "n_action_execute_steps": 1,
+  "flow_integration_steps": 4,
+  "terminal_condition": "MotorExecution.settled",
+  "result_note": "Final closed-loop metrics are pending; this repository snapshot records launch status only."
+}

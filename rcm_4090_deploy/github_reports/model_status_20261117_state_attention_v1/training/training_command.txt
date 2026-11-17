@@ -1,0 +1,13 @@
+python -u lerobot_training/dit_state_attention.py train \
+  --data-dir data/lerobot_v12_oct_dit_rf_dagger2_acthist_20261116_224 \
+  --val-data-dir data/lerobot_rcm_val_acthist_20261117_224 \
+  --init-from outputs/dit_rectified_flow_v12_oct_dit_rf_dagger2_acthist_20261117/best_model.pth \
+  --output-dir outputs/dit_rectified_flow_state_attention_v1_acthist_20261117 \
+  --epochs 4 \
+  --batch-size 64 \
+  --val-batch-size 64 \
+  --num-workers 12 \
+  --lr 1e-4 \
+  --dagger-episode-start 760 \
+  --dagger-repeat 10 \
+  --seed 20261116
