@@ -4286,3 +4286,15 @@ OK
   `990e58e59377e6d4560c40e8acf2f81ac3c17994a729b1d3cbddc813edfba50a`。
   全流程中 10 个评估子进程均 PASS 退出；从启动到分片完成约 52 分钟。结果
   仍为 MuJoCo 仿真性能，不代表硬件或临床精度。
+- 2026-11-17 15:18:23 CST：误差图生成与 GitHub 上传 PASS。新增
+  `plot_closed_loop_errors.py`，使用正确 `0.35 µm` 门限生成 20 条误差曲线、
+  单目标小图、best/final 误差图和旧模型配对误差图；输出目录
+  `outputs/evaluation_dit_rectified_flow_dagger2_acthist_20261117_dev20_0p35um/plots_acthist_20261117/`。
+  采用 GitHub SSH 部署密钥推送独立分支
+  `experiment/dit-rf-dagger2-acthist-20261117`，提交
+  `4f02aff`（数据契约与真停稳修复）和 `02af806`（训练/评估报告）。
+  上传报告位于
+  `rcm_4090_deploy/github_reports/model_status_20261117/`，包含四个 PNG、
+  20 目标汇总、训练历史、迁移证据、训练/验证元数据及 4.7 MB 完整评估压缩包；
+  未上传 790 MB checkpoint 或原始 RGB-D 数据。远端 `MODEL_STATUS.md`、
+  `error_curves_all.png` 和评估压缩包均已验证 HTTP 200。
