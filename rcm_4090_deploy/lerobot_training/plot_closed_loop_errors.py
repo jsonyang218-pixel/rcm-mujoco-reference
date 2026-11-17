@@ -171,6 +171,8 @@ def _plot_paired_baseline(
     baseline_episodes,
     threshold_um,
     destination,
+    baseline_label,
+    candidate_label,
 ):
     baseline = {
         int(row["episode_index"]): row for row in baseline_episodes
@@ -196,14 +198,14 @@ def _plot_paired_baseline(
         indices - width / 2,
         reference,
         width,
-        label="old DiT DAgger2",
+        label=baseline_label,
         color="#8C8C8C",
     )
     axis.bar(
         indices + width / 2,
         candidate,
         width,
-        label="acthist DiT DAgger2",
+        label=candidate_label,
         color="#E45756",
     )
     axis.axhline(
@@ -216,7 +218,9 @@ def _plot_paired_baseline(
     axis.set_yscale("log")
     axis.set_xticks(indices, labels, rotation=45)
     axis.set_ylabel("Final error (um, log scale)")
-    axis.set_title("Paired final error: acthist model vs old DAgger2")
+    axis.set_title(
+        f"Paired final error: {candidate_label} vs {baseline_label}"
+    )
     axis.grid(True, axis="y", which="both", alpha=0.22)
     axis.legend()
     figure.tight_layout()
@@ -234,6 +238,18 @@ def main():
         default="acthist DiT DAgger2: development 20 error trajectories",
     )
     parser.add_argument("--baseline-root", type=Path, default=None)
+    parser.add_argument(
+        "--baseline-label",
+        default="old DiT DAgger2",
+    )
+    parser.add_argument(
+        "--candidate-label",
+        default="acthist DiT DAgger2",
+    )
+    parser.add_argument(
+        "--paired-filename",
+        default="final_error_vs_old.png",
+    )
     args = parser.parse_args()
     if args.threshold_um <= 0:
         raise ValueError("threshold must be positive")
@@ -272,7 +288,9 @@ def main():
             episodes,
             baseline,
             args.threshold_um,
-            args.output_dir / "final_error_vs_old.png",
+            args.output_dir / args.paired_filename,
+            args.baseline_label,
+            args.candidate_label,
         )
         baseline_map = {
             int(row["episode_index"]): float(row["final_error_mm"]) * 1000.0

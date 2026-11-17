@@ -4473,3 +4473,20 @@ OK
   20 episode / success 0。修复后流水线 SHA-256
   `a54dbf166aec3612af359aa5150f0f5530d88648332839e800c2c8cc634c00c4`。
   结果仅为 MuJoCo 仿真，不代表硬件或临床精度。
+- 2026-11-17 20:52:25 CST：E1 轨迹误差图生成 PASS。绘图脚本新增可配置
+  candidate/baseline 图例与配对文件名；使用 E1 20 目标完整轨迹和冻结 v1
+  基线生成 4 张图：全部轨迹、20 宫格、best/final 对比、E1 对 v1 最终误差
+  配对柱状图。图中成功门限为 `0.35 µm`，图例明确标为
+  `State-attention E1` 与 `State-attention v1 baseline`。输出目录
+  `outputs/state_attention_v1_continue_20261117_1/plots_state_attention_e1_20261117/`；
+  `error_curves_all.png` SHA-256
+  `ee4ad3b9effae39dca7e3a794b1b2841331d0b33355c2d2f82a80ccfde338c90`，
+  `error_curves_small_multiples.png` SHA-256
+  `dc452fe8cb04f3f1967a629b00f97e53a2654f6cc7d395ba79e5665f1a6b8f07`，
+  `best_and_final_error.png` SHA-256
+  `8eaaf50188bac17e9e0c4c45195575bfa766b79bb218820e03dab2ed5bfbb147`，
+  `final_error_vs_v1.png` SHA-256
+  `0c79ef36ee9829f1592d21860629fb2a83b6b6995f16fc0e193f4f00b4abd08d`。
+  绘图脚本 SHA-256
+  `f6478b50296dacacf9d44b4bbed6cf452e89b467e60fc47e90fe7e4d9bb70a67`。
+  图像已同步到 E1 GitHub 报告目录，尚未另行推送远端。

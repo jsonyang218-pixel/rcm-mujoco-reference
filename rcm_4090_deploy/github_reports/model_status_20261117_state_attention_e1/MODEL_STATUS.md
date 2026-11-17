@@ -68,6 +68,10 @@ Evidence:
 - [Training report](training/REPORT.md)
 - [Shard logs](evaluation/shard_logs.txt)
 - [Cumulative progress reports](evaluation/progress)
+- [All 20 E1 error trajectories](evaluation/plots/error_curves_all.png)
+- [Per-target small multiples](evaluation/plots/error_curves_small_multiples.png)
+- [Best and final error](evaluation/plots/best_and_final_error.png)
+- [Paired final error vs v1](evaluation/plots/final_error_vs_v1.png)
 
 ## Pipeline note
 
