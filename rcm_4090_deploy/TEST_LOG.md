@@ -4180,3 +4180,109 @@ OK
   轨迹图 `plots_v2/` 和 `plots_phase_diagnostics/`。结论：近目标 round 2
   显著改善 DiT 的接近能力和最终误差平台，但最后数十至数百微米仍无法
   收敛，纯 Flow 动作块仍缺少终点保持能力。
+- 2026-11-16 22:23:46 CST：DAgger 动作语义、缺帧连续性、编码器真停稳门控
+  修复与回归测试 PASS。数据契约 v2 新增 `executed_action`、
+  `source_frame_index`、`timestamp_s`：`action` 保留专家监督标签，历史输入
+  和速度只使用实际接受命令与原始时间戳；过滤缺帧会切断观测历史和 8 步动作
+  窗口。历史模式遇到旧教师数据缺少执行动作字段时严格失败。闭环评估的
+  `success` 改为误差达标且 `MotorExecution.settled()` 连续 3 帧，低速阈值
+  仅作为诊断；旧口径汇总结果会被标记为 legacy。`python -m unittest
+  discover -v -s tests` 15/15 PASS，涉及转换器、数据集、训练历史、缺帧、
+  成功门控和 legacy 汇总；相关模块 `py_compile` PASS。本轮未训练、未运行
+  新闭环评估。
+- 2026-11-16 22:23:46 CST：DAgger2 动作历史数据迁移 PASS。从
+  `runs/20261116/online_dagger_dit_rf_round2_near_target_shards` 重新转换
+  8 个 shard，输出
+  `data/online_dagger_dit_rf_round2_acthist_20261116_g01_224` 至
+  `g08_224`，并合并为
+  `data/lerobot_v12_oct_dit_rf_dagger2_acthist_20261116_224`：839 集、
+  234,316 帧，动作源按 episode 标记为 executed/teacher，历史动作统一来自
+  `executed_action`。第二轮原始 79 条合格轨迹共 15,886 帧，过滤 3 个
+  `LOW_QUALITY_VISUAL_GEOMETRY` 后保留 15,883 帧；其中 5,617 帧由策略
+  执行，5,614 个有效策略帧的教师标签与实际执行命令全部不同，未发现完全
+  相同帧。A/B/C 教师-执行差值 RMS=`0.00923622/0.00740038/0.00953227`
+  deg/deg/mm，P99 绝对差=`0.0321656/0.0210013/0.03`。三个缺帧位于
+  global episode 776、801、832，训练窗口审计确认无观测历史或动作块跨缺口。
+  完整迁移报告位于
+  `runs/20261116/verification/dagger2_acthist_migration/verification_report.json`，
+  含逐行对照原始 JSONL 的标签、执行命令、原始帧号和时间戳；有效训练窗口
+  227,580，单样本图像/历史/动作块 smoke PASS。旧数据与旧评估结果均未覆盖；
+  合并元数据曾错误继承基础集 `action_source=executed`，已修正为
+  `per_episode` 并重建、复验，过程留档于
+  `runs/20261116/migration/dagger2_acthist/`。结果均为 MuJoCo 仿真数据与
+  软件语义验证，不代表硬件或临床精度。
+- 2026-11-16 22:23:46 CST：电机真停稳专项复核 PASS。
+  `python -m scripts.verification.verify_motor_execution -v` 7/7 PASS，
+  覆盖协议目标转换、非法命令不瞬移、50 ms/2 ms 多子步滞后、反馈解码、
+  sub-handle 累积及 `settled()`；新闭环成功口径依赖的电机定义未改变。
+  新数据 `RCMDataset(include_previous_action=True)` 加载成功；旧
+  DAgger2 数据在缺少执行动作契约时按预期立即报错，无静默回退。
+- 2026-11-16 22:24:48 CST：最终交付物复核 PASS。全量单测再次
+  15/15 PASS，全部修改模块 `py_compile` PASS。迁移数据集
+  `data/lerobot_v12_oct_dit_rf_dagger2_acthist_20261116_224` 的
+  `dataset.npz` SHA-256 为
+  `f55feb52aa131bcd5a77f8432b29a3fa3894cf2a243711f2ccefa74cfc5f911c`，
+  `metadata.json` SHA-256 为
+  `8f05e8f88cc44a3261a372bd22e32c5e0804af626f392743b72fa2d4d47d8acc`；
+  迁移报告 SHA-256 为
+  `6b858f5c70b41687be0770d38b84f5aa49862962c575c415c54ac27333c0a8aa`。
+  本轮没有触发或静默回退到 CPU 训练/推理；迁移和验证均为 CPU I/O 与数据
+  正确性工作，未执行新的模型训练或闭环评估。
+- 2026-11-16 22:25:11 CST：新数据集跨来源图像/历史 smoke PASS。分别从
+  round1 起始 episode 0、round2 首集 760、三个缺口所在 episode
+  776/801/832 和末集 838 读取一个有效训练窗口；图像均为
+  `[2,3,224,224]`，上一动作和速度有限。确认合并后的相对图像路径同时覆盖
+  保留的旧数据和新转换 shard。
+- 2026-11-17 13:51:52 CST：acthist DiT DAgger2 重训前启动与验证集迁移
+  FAIL。首次启动因输出目录被预先创建而立即拒绝启动（0 训练）；
+  第二次启动已加载训练集 220,844 窗口，但旧
+  `data/lerobot_rcm_val_224` 缺少 action-history 契约，严格失败；
+  验证集升级第一次因元数据无 `action_source` 失败，增加显式
+  `--legacy-action-source executed` 后，又因历史 Windows 反斜杠图像路径失败。
+  四次失败均未改动旧数据、未完成 epoch、未产生模型 checkpoint，日志与临时
+  输出保留在 `runs/20261117/training/`。修复模块导入、显式 legacy 语义和
+  路径规范化后，验证集升级为
+  `data/lerobot_rcm_val_acthist_20261117_224`：40 集、27,290 帧、
+  26,650 有效窗口；`dataset.npz` SHA-256
+  `2b0760827c6d2a53dcf9c02ae589ad043b8de3156782ee0befed8ea475c32ec7`。
+- 2026-11-17 13:51:52 CST：acthist DiT DAgger2 重训完成 PASS（离线训练，
+  尚未闭环评估）。使用 RTX 4090、CUDA 12.6、FP16 AMP，从 DiT DAgger1
+  epoch 2 checkpoint 初始化；数据为
+  `data/lerobot_v12_oct_dit_rf_dagger2_acthist_20261116_224`，训练/验证窗口
+  220,844/26,650，batch 64，lr `5e-5`，2 帧观测、16 步动作块、4-step
+  rectified flow，最后 79 集权重 10，共 4 epochs、961.68 s。各 epoch
+  train/val loss：`0.149197/0.167302`、`0.142475/0.169941`、
+  `0.138629/0.162381`、`0.135912/0.161541`；best/last 均为 epoch 3，
+  val loss `0.161541`。相比旧 DAgger2 最佳 val loss `0.158247` 退化
+  `0.003294`（约 `2.08%`），因此本次修复数据语义后的离线验证指标暂未改善。
+  输出
+  `outputs/dit_rectified_flow_v12_oct_dit_rf_dagger2_acthist_20261117/`；
+  `best_model.pth` SHA-256
+  `c7156b4d6e2542d808b2397dc7135001175af25cb7bbe8098dc69e4a5b44ce0e`，
+  模型加载成功、全部参数有限，`PolicyEvaluator` 可在 CUDA 上加载该
+  checkpoint。`training.log` SHA-256
+  `ccc87d4ad6c770db80ecd1b814e107b34d164ffd9cb7fa5a8c4160c035e6839b`。
+  全量单测随后 15/15 PASS。该结果仅为 MuJoCo 仿真离线训练，不能代表闭环
+  成功率或硬件精度；下一步需用新的编码器真停稳口径评估该 checkpoint。
+- 2026-11-17 15:11:17 CST：acthist DiT DAgger2 development 20 目标闭环
+  FAIL。使用
+  `outputs/dit_rectified_flow_v12_oct_dit_rf_dagger2_acthist_20261117/best_model.pth`
+  在相同 20 个 development 目标上并行 10 分片复评，每集 1600 步，
+  `0.35 µm` 误差阈值、单动作样本、执行动作块首步、4-step rectified flow。
+  新评估契约 20/20 正确记录 `version=2` 与
+  `terminal_condition=MotorExecution.settled`。结果为编码器真停稳成功
+  `0/20`，最终或瞬时进入 `0.35 µm` 均为 `0/20`；末步低速仅 `2/20`，
+  末步编码器真停稳 `0/20`，20/20 均跑满 1600 步，safety-limited 总数为 0。
+  最终误差 mean/median/min/max/P95 =
+  `1737.487/2012.021/238.893/2342.127/2315.729 µm`；每集最小误差
+  mean/median/min/max=`143.065/129.572/37.391/279.056 µm`。
+  与旧 DiT DAgger2 同组结果配对比较：最终误差 `5/20` 改善、`15/20`
+  恶化，均值/中位分别退化 `708.412/635.352 µm`；旧版最终误差
+  mean/median=`1029.075/668.484 µm`。因此 action-history 修复后的本轮
+  重训模型闭环性能明显下降，不能归因于成功口径变化（两组均 0 成功）。
+  结果保存于
+  `outputs/evaluation_dit_rectified_flow_dagger2_acthist_20261117_dev20_0p35um/`，
+  汇总 `strict_summary_vs_old.json` SHA-256
+  `990e58e59377e6d4560c40e8acf2f81ac3c17994a729b1d3cbddc813edfba50a`。
+  全流程中 10 个评估子进程均 PASS 退出；从启动到分片完成约 52 分钟。结果
+  仍为 MuJoCo 仿真性能，不代表硬件或临床精度。

@@ -1,0 +1,91 @@
+{
+  "result": "PASS",
+  "data_dir": "/home/him1/mujoco_bc/rcm_4090_deploy/data/lerobot_v12_oct_dit_rf_dagger2_acthist_20261116_224",
+  "raw_root": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261116/online_dagger_dit_rf_round2_near_target_shards",
+  "round2_data_dirs": [
+    "/home/him1/mujoco_bc/rcm_4090_deploy/data/online_dagger_dit_rf_round2_acthist_20261116_g01_224",
+    "/home/him1/mujoco_bc/rcm_4090_deploy/data/online_dagger_dit_rf_round2_acthist_20261116_g02_224",
+    "/home/him1/mujoco_bc/rcm_4090_deploy/data/online_dagger_dit_rf_round2_acthist_20261116_g03_224",
+    "/home/him1/mujoco_bc/rcm_4090_deploy/data/online_dagger_dit_rf_round2_acthist_20261116_g04_224",
+    "/home/him1/mujoco_bc/rcm_4090_deploy/data/online_dagger_dit_rf_round2_acthist_20261116_g05_224",
+    "/home/him1/mujoco_bc/rcm_4090_deploy/data/online_dagger_dit_rf_round2_acthist_20261116_g06_224",
+    "/home/him1/mujoco_bc/rcm_4090_deploy/data/online_dagger_dit_rf_round2_acthist_20261116_g07_224",
+    "/home/him1/mujoco_bc/rcm_4090_deploy/data/online_dagger_dit_rf_round2_acthist_20261116_g08_224"
+  ],
+  "contract_fields": [
+    "executed_action",
+    "source_frame_index",
+    "timestamp_s"
+  ],
+  "counts": {
+    "episodes": 79,
+    "raw_source_frames": 15886,
+    "retained_frames": 15883,
+    "policy_frames": 5617,
+    "valid_policy_frames": 5614,
+    "invalid_frames": 3,
+    "source_gaps": 3
+  },
+  "invalid_frames": [
+    {
+      "episode": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261116/online_dagger_dit_rf_round2_near_target_shards/g02/episode_000016",
+      "source_frame_index": 30,
+      "reason": "LOW_QUALITY_VISUAL_GEOMETRY"
+    },
+    {
+      "episode": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261116/online_dagger_dit_rf_round2_near_target_shards/g04/episode_000041",
+      "source_frame_index": 93,
+      "reason": "LOW_QUALITY_VISUAL_GEOMETRY"
+    },
+    {
+      "episode": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261116/online_dagger_dit_rf_round2_near_target_shards/g08/episode_000073",
+      "source_frame_index": 126,
+      "reason": "LOW_QUALITY_VISUAL_GEOMETRY"
+    }
+  ],
+  "gaps": [
+    {
+      "episode": 776,
+      "before_source_frame_index": 29,
+      "after_source_frame_index": 31
+    },
+    {
+      "episode": 801,
+      "before_source_frame_index": 92,
+      "after_source_frame_index": 94
+    },
+    {
+      "episode": 832,
+      "before_source_frame_index": 125,
+      "after_source_frame_index": 127
+    }
+  ],
+  "merged_episodes": 839,
+  "merged_frames": 234316,
+  "valid_training_windows": 227580,
+  "checked_rows": 15883,
+  "policy_teacher_action_comparison": {
+    "different_frames": 5614,
+    "identical_frames": 0,
+    "mean_absolute_difference_deg_deg_mm": [
+      0.006026183228143676,
+      0.005422301236164461,
+      0.007764270821659231
+    ],
+    "rms_difference_deg_deg_mm": [
+      0.009236220321816738,
+      0.007400383656117781,
+      0.009532266276616972
+    ],
+    "absolute_difference_p99_deg_deg_mm": [
+      0.03216563549973569,
+      0.021001281443455345,
+      0.029999999999998778
+    ],
+    "absolute_difference_max_deg_deg_mm": [
+      0.07207447941303188,
+      0.031095322765350063,
+      0.029999999999998778
+    ]
+  }
+}

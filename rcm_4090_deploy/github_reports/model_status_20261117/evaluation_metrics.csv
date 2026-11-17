@@ -1,0 +1,16 @@
+model,stage,evaluation_gate_um,episodes,successes,final_mean_um,final_median_um,final_max_um,episode_min_mean_um,status
+v7,guided_diffusion_dagger_cached,20,20,20,9.840,10.160,11.298,9.783,completed
+v8,full_unfreeze_diffusion,20,20,19,11.848,11.117,26.791,,completed
+v9,terminal_dagger_diffusion,20,20,19,11.159,10.865,23.146,,completed
+v10,four_frame_temporal_diffusion_exec1,20,20,19,12.464,10.418,45.648,,completed
+v11_h4,four_step_action_horizon,20,20,19,11.459,10.807,27.691,,completed
+v12_oct,oct_aware_diffusion,20,20,0,22495,22815,23697,19123,completed
+v12_oct_dagger1,oct_diffusion_dagger1,20,20,0,16097,18034,23974,,completed
+flow,flow_temporal_unet,0.1,20,0,1731.480,1010.959,15219.883,1470.546,completed
+flow_dagger2,flow_covshift_dagger2,0.1,20,0,986.731,448.589,5065.026,456.846,completed
+flow_residual,flow_oct_residual_hybrid,0.1,20,0,4800.836,1606.998,14571.062,624.999,completed
+flow_reachable,flow_residual_reachable,0.35,20,0,4890.596,2609.548,14399.986,706.695,completed
+dit_rf,pure_dit_rectified_flow,0.35,20,0,4080.069,2230.331,16439.474,2399.433,completed
+dit_rf_dagger1,dit_rf_online_dagger1,0.35,20,0,2334.450,1546.263,4406.408,217.851,completed
+dit_rf_dagger2,dit_rf_near_target_dagger2,0.35,20,0,1029.075,668.484,2280.636,68.675,completed
+dit_rf_dagger2_acthist,dit_rf_action_history_dagger2,0.35,20,0,1737.487,2012.021,2342.127,143.065,completed

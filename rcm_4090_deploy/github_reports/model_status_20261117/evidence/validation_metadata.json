@@ -1,0 +1,397 @@
+{
+  "num_episodes": 40,
+  "num_frames": 27290,
+  "fps": 20,
+  "observation_space": {
+    "image": {
+      "shape": [
+        224,
+        224,
+        3
+      ],
+      "dtype": "uint8"
+    },
+    "state": {
+      "shape": [
+        3
+      ],
+      "dtype": "float32",
+      "names": [
+        "A_deg",
+        "B_deg",
+        "C_mm"
+      ]
+    },
+    "oct_navigation": {
+      "shape": [
+        3
+      ],
+      "dtype": "float32",
+      "units": "mm",
+      "frame": "camera_optical",
+      "definition": "target_minus_tip"
+    }
+  },
+  "action_space": {
+    "shape": [
+      3
+    ],
+    "dtype": "float32",
+    "names": [
+      "dA_deg",
+      "dB_deg",
+      "dC_mm"
+    ],
+    "type": "delta"
+  },
+  "episodes": [
+    {
+      "episode_index": 0,
+      "num_frames": 684,
+      "success": true,
+      "final_error_um": 11.291359436400452,
+      "source_dataset": "/home/him1/mujoco_bc/rcm_4090_deploy/data/lerobot_rcm_val_224",
+      "action_source": null
+    },
+    {
+      "episode_index": 1,
+      "num_frames": 683,
+      "success": true,
+      "final_error_um": 10.93929652078727,
+      "source_dataset": "/home/him1/mujoco_bc/rcm_4090_deploy/data/lerobot_rcm_val_224",
+      "action_source": null
+    },
+    {
+      "episode_index": 2,
+      "num_frames": 679,
+      "success": true,
+      "final_error_um": 9.70045175754585,
+      "source_dataset": "/home/him1/mujoco_bc/rcm_4090_deploy/data/lerobot_rcm_val_224",
+      "action_source": null
+    },
+    {
+      "episode_index": 3,
+      "num_frames": 674,
+      "success": true,
+      "final_error_um": 11.10884725144363,
+      "source_dataset": "/home/him1/mujoco_bc/rcm_4090_deploy/data/lerobot_rcm_val_224",
+      "action_source": null
+    },
+    {
+      "episode_index": 4,
+      "num_frames": 691,
+      "success": true,
+      "final_error_um": 12.393436129861577,
+      "source_dataset": "/home/him1/mujoco_bc/rcm_4090_deploy/data/lerobot_rcm_val_224",
+      "action_source": null
+    },
+    {
+      "episode_index": 5,
+      "num_frames": 687,
+      "success": true,
+      "final_error_um": 8.923585324185385,
+      "source_dataset": "/home/him1/mujoco_bc/rcm_4090_deploy/data/lerobot_rcm_val_224",
+      "action_source": null
+    },
+    {
+      "episode_index": 6,
+      "num_frames": 672,
+      "success": true,
+      "final_error_um": 10.446518998888092,
+      "source_dataset": "/home/him1/mujoco_bc/rcm_4090_deploy/data/lerobot_rcm_val_224",
+      "action_source": null
+    },
+    {
+      "episode_index": 7,
+      "num_frames": 689,
+      "success": true,
+      "final_error_um": 11.861967967095557,
+      "source_dataset": "/home/him1/mujoco_bc/rcm_4090_deploy/data/lerobot_rcm_val_224",
+      "action_source": null
+    },
+    {
+      "episode_index": 8,
+      "num_frames": 687,
+      "success": true,
+      "final_error_um": 13.123112409162312,
+      "source_dataset": "/home/him1/mujoco_bc/rcm_4090_deploy/data/lerobot_rcm_val_224",
+      "action_source": null
+    },
+    {
+      "episode_index": 9,
+      "num_frames": 686,
+      "success": true,
+      "final_error_um": 13.711397590230236,
+      "source_dataset": "/home/him1/mujoco_bc/rcm_4090_deploy/data/lerobot_rcm_val_224",
+      "action_source": null
+    },
+    {
+      "episode_index": 10,
+      "num_frames": 672,
+      "success": true,
+      "final_error_um": 13.168252616254971,
+      "source_dataset": "/home/him1/mujoco_bc/rcm_4090_deploy/data/lerobot_rcm_val_224",
+      "action_source": null
+    },
+    {
+      "episode_index": 11,
+      "num_frames": 687,
+      "success": true,
+      "final_error_um": 11.307423802180129,
+      "source_dataset": "/home/him1/mujoco_bc/rcm_4090_deploy/data/lerobot_rcm_val_224",
+      "action_source": null
+    },
+    {
+      "episode_index": 12,
+      "num_frames": 660,
+      "success": false,
+      "final_error_um": 21.72371723239456,
+      "source_dataset": "/home/him1/mujoco_bc/rcm_4090_deploy/data/lerobot_rcm_val_224",
+      "action_source": null
+    },
+    {
+      "episode_index": 13,
+      "num_frames": 675,
+      "success": true,
+      "final_error_um": 10.197766647532111,
+      "source_dataset": "/home/him1/mujoco_bc/rcm_4090_deploy/data/lerobot_rcm_val_224",
+      "action_source": null
+    },
+    {
+      "episode_index": 14,
+      "num_frames": 683,
+      "success": true,
+      "final_error_um": 13.023098892801311,
+      "source_dataset": "/home/him1/mujoco_bc/rcm_4090_deploy/data/lerobot_rcm_val_224",
+      "action_source": null
+    },
+    {
+      "episode_index": 15,
+      "num_frames": 680,
+      "success": true,
+      "final_error_um": 12.285983334724381,
+      "source_dataset": "/home/him1/mujoco_bc/rcm_4090_deploy/data/lerobot_rcm_val_224",
+      "action_source": null
+    },
+    {
+      "episode_index": 16,
+      "num_frames": 691,
+      "success": true,
+      "final_error_um": 10.377920816242735,
+      "source_dataset": "/home/him1/mujoco_bc/rcm_4090_deploy/data/lerobot_rcm_val_224",
+      "action_source": null
+    },
+    {
+      "episode_index": 17,
+      "num_frames": 678,
+      "success": true,
+      "final_error_um": 11.97293884827637,
+      "source_dataset": "/home/him1/mujoco_bc/rcm_4090_deploy/data/lerobot_rcm_val_224",
+      "action_source": null
+    },
+    {
+      "episode_index": 18,
+      "num_frames": 684,
+      "success": true,
+      "final_error_um": 11.168519546644264,
+      "source_dataset": "/home/him1/mujoco_bc/rcm_4090_deploy/data/lerobot_rcm_val_224",
+      "action_source": null
+    },
+    {
+      "episode_index": 19,
+      "num_frames": 673,
+      "success": true,
+      "final_error_um": 10.09989537506254,
+      "source_dataset": "/home/him1/mujoco_bc/rcm_4090_deploy/data/lerobot_rcm_val_224",
+      "action_source": null
+    },
+    {
+      "episode_index": 20,
+      "num_frames": 674,
+      "success": true,
+      "final_error_um": 12.77488932503829,
+      "source_dataset": "/home/him1/mujoco_bc/rcm_4090_deploy/data/lerobot_rcm_val_224",
+      "action_source": null
+    },
+    {
+      "episode_index": 21,
+      "num_frames": 688,
+      "success": true,
+      "final_error_um": 11.276517283135838,
+      "source_dataset": "/home/him1/mujoco_bc/rcm_4090_deploy/data/lerobot_rcm_val_224",
+      "action_source": null
+    },
+    {
+      "episode_index": 22,
+      "num_frames": 690,
+      "success": true,
+      "final_error_um": 10.889213747314864,
+      "source_dataset": "/home/him1/mujoco_bc/rcm_4090_deploy/data/lerobot_rcm_val_224",
+      "action_source": null
+    },
+    {
+      "episode_index": 23,
+      "num_frames": 687,
+      "success": true,
+      "final_error_um": 10.699399826650144,
+      "source_dataset": "/home/him1/mujoco_bc/rcm_4090_deploy/data/lerobot_rcm_val_224",
+      "action_source": null
+    },
+    {
+      "episode_index": 24,
+      "num_frames": 687,
+      "success": true,
+      "final_error_um": 12.39010775053805,
+      "source_dataset": "/home/him1/mujoco_bc/rcm_4090_deploy/data/lerobot_rcm_val_224",
+      "action_source": null
+    },
+    {
+      "episode_index": 25,
+      "num_frames": 685,
+      "success": true,
+      "final_error_um": 11.730286007209134,
+      "source_dataset": "/home/him1/mujoco_bc/rcm_4090_deploy/data/lerobot_rcm_val_224",
+      "action_source": null
+    },
+    {
+      "episode_index": 26,
+      "num_frames": 690,
+      "success": true,
+      "final_error_um": 12.926003030290014,
+      "source_dataset": "/home/him1/mujoco_bc/rcm_4090_deploy/data/lerobot_rcm_val_224",
+      "action_source": null
+    },
+    {
+      "episode_index": 27,
+      "num_frames": 680,
+      "success": true,
+      "final_error_um": 12.440634145882525,
+      "source_dataset": "/home/him1/mujoco_bc/rcm_4090_deploy/data/lerobot_rcm_val_224",
+      "action_source": null
+    },
+    {
+      "episode_index": 28,
+      "num_frames": 673,
+      "success": true,
+      "final_error_um": 12.40319618929558,
+      "source_dataset": "/home/him1/mujoco_bc/rcm_4090_deploy/data/lerobot_rcm_val_224",
+      "action_source": null
+    },
+    {
+      "episode_index": 29,
+      "num_frames": 682,
+      "success": true,
+      "final_error_um": 11.125824074870248,
+      "source_dataset": "/home/him1/mujoco_bc/rcm_4090_deploy/data/lerobot_rcm_val_224",
+      "action_source": null
+    },
+    {
+      "episode_index": 30,
+      "num_frames": 690,
+      "success": true,
+      "final_error_um": 13.446686189028023,
+      "source_dataset": "/home/him1/mujoco_bc/rcm_4090_deploy/data/lerobot_rcm_val_224",
+      "action_source": null
+    },
+    {
+      "episode_index": 31,
+      "num_frames": 689,
+      "success": true,
+      "final_error_um": 10.486093094740651,
+      "source_dataset": "/home/him1/mujoco_bc/rcm_4090_deploy/data/lerobot_rcm_val_224",
+      "action_source": null
+    },
+    {
+      "episode_index": 32,
+      "num_frames": 684,
+      "success": true,
+      "final_error_um": 10.156751504018638,
+      "source_dataset": "/home/him1/mujoco_bc/rcm_4090_deploy/data/lerobot_rcm_val_224",
+      "action_source": null
+    },
+    {
+      "episode_index": 33,
+      "num_frames": 676,
+      "success": true,
+      "final_error_um": 10.572255987383652,
+      "source_dataset": "/home/him1/mujoco_bc/rcm_4090_deploy/data/lerobot_rcm_val_224",
+      "action_source": null
+    },
+    {
+      "episode_index": 34,
+      "num_frames": 690,
+      "success": true,
+      "final_error_um": 11.766723865000717,
+      "source_dataset": "/home/him1/mujoco_bc/rcm_4090_deploy/data/lerobot_rcm_val_224",
+      "action_source": null
+    },
+    {
+      "episode_index": 35,
+      "num_frames": 681,
+      "success": true,
+      "final_error_um": 9.0064737670633,
+      "source_dataset": "/home/him1/mujoco_bc/rcm_4090_deploy/data/lerobot_rcm_val_224",
+      "action_source": null
+    },
+    {
+      "episode_index": 36,
+      "num_frames": 691,
+      "success": true,
+      "final_error_um": 13.49036624307873,
+      "source_dataset": "/home/him1/mujoco_bc/rcm_4090_deploy/data/lerobot_rcm_val_224",
+      "action_source": null
+    },
+    {
+      "episode_index": 37,
+      "num_frames": 682,
+      "success": true,
+      "final_error_um": 12.37736580215231,
+      "source_dataset": "/home/him1/mujoco_bc/rcm_4090_deploy/data/lerobot_rcm_val_224",
+      "action_source": null
+    },
+    {
+      "episode_index": 38,
+      "num_frames": 672,
+      "success": true,
+      "final_error_um": 9.995515221697943,
+      "source_dataset": "/home/him1/mujoco_bc/rcm_4090_deploy/data/lerobot_rcm_val_224",
+      "action_source": null
+    },
+    {
+      "episode_index": 39,
+      "num_frames": 684,
+      "success": true,
+      "final_error_um": 11.841880648164018,
+      "source_dataset": "/home/him1/mujoco_bc/rcm_4090_deploy/data/lerobot_rcm_val_224",
+      "action_source": null
+    }
+  ],
+  "image_cache": {
+    "source_directory": "E:\\30_RESOURCES\\32_课程教程\\医学\\中科院\\rcm-mujoco-reference-ffd7b15d41c51c2d2f8a15596e9575106f81c225\\data\\lerobot_rcm_val",
+    "size_px": [
+      224,
+      224
+    ],
+    "interpolation": "bilinear"
+  },
+  "source_datasets": [
+    {
+      "directory": "/home/him1/mujoco_bc/rcm_4090_deploy/data/lerobot_rcm_val_224",
+      "episode_offset": 0,
+      "episodes": 40,
+      "frames": 27290,
+      "action_source": "executed",
+      "action_sources": [
+        "executed"
+      ]
+    }
+  ],
+  "data_contract_version": 2,
+  "history_action_source": "executed_action",
+  "continuity_source": "source_frame_index",
+  "action_sources": [
+    "executed"
+  ],
+  "action_source": "executed",
+  "action_supervision_source": "per_episode; see source_datasets[].action_source"
+}

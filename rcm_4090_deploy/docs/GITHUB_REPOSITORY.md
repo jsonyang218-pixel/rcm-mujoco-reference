@@ -12,6 +12,17 @@ Recorded: 2026-11-16
 ## Current experiment branch
 
 - Branch name:
+  `experiment/dit-rf-dagger2-acthist-20261117`
+- Branch URL:
+  https://github.com/jsonyang218-pixel/rcm-mujoco-reference/tree/experiment/dit-rf-dagger2-acthist-20261117
+- Model status:
+  https://github.com/jsonyang218-pixel/rcm-mujoco-reference/blob/experiment/dit-rf-dagger2-acthist-20261117/rcm_4090_deploy/github_reports/model_status_20261117/MODEL_STATUS.md
+- Compact data:
+  https://github.com/jsonyang218-pixel/rcm-mujoco-reference/tree/experiment/dit-rf-dagger2-acthist-20261117/rcm_4090_deploy/github_reports/model_status_20261117
+
+## Previous experiment branch
+
+- Branch name:
   `experiment/dit-rf-dagger2-near-target-20261116`
 - Branch URL:
   https://github.com/jsonyang218-pixel/rcm-mujoco-reference/tree/experiment/dit-rf-dagger2-near-target-20261116
