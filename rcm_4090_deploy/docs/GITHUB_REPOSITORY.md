@@ -39,6 +39,17 @@ Recorded: 2026-11-16
 - ILOSAC source/formula audit:
   https://github.com/jsonyang218-pixel/rcm-mujoco-reference/blob/experiment/state-attention-v1-20261117/rcm_4090_deploy/docs/ILOSAC_SOURCE_FORMULA_AUDIT.md
 
+## Frontiers 2022 DDPG adaptation
+
+- Branch name:
+  `experiment/frontiers2022-ddpg-20261118`
+- Branch URL:
+  https://github.com/jsonyang218-pixel/rcm-mujoco-reference/tree/experiment/frontiers2022-ddpg-20261118
+- Model status:
+  https://github.com/jsonyang218-pixel/rcm-mujoco-reference/blob/experiment/frontiers2022-ddpg-20261118/rcm_4090_deploy/github_reports/model_status_20261118_frontiers2022_ddpg/MODEL_STATUS.md
+- Formula and implementation notes:
+  https://github.com/jsonyang218-pixel/rcm-mujoco-reference/blob/experiment/frontiers2022-ddpg-20261118/rcm_4090_deploy/FRONTIERS2022_DDPG.md
+
 ## Previous experiment branch
 
 - Branch name:

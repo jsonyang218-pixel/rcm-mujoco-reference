@@ -1,0 +1,27 @@
+{
+  "training_module": "frontiers2022_algorithm1_ddpg_rcm_v1",
+  "variant": "frontiers2022_algorithm1",
+  "sources": [
+    {
+      "source": 0,
+      "data_dir": "/home/him1/mujoco_bc/rcm_4090_deploy/data/lerobot_v12_oct_dit_rf_dagger2_acthist_20261116_224",
+      "frames": 234316,
+      "eligible_transitions": 225614,
+      "explicit_terminated_labels": false
+    }
+  ],
+  "retained_transitions": 225614,
+  "seen_transitions": 225614,
+  "capacity": 300000,
+  "retention": "uniform_reservoir",
+  "reward": "-500*0.5*(norm(OCT_next_mm)/1000)^2",
+  "reward_distance_source": "observed next-state OCT navigation; mm converted to m",
+  "unlabeled_endings": "continuing task; bootstrap, no inferred success or failure",
+  "execution_action_limit_deg_deg_mm": [
+    0.2897999882698059,
+    0.14434358477592468,
+    0.04271206632256508
+  ],
+  "reward_equations": "Frontiers 2022 Eqs. (5)-(7); obstacle term disabled",
+  "obstacle_reward_enabled": false
+}

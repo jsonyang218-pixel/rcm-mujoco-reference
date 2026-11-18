@@ -4568,3 +4568,30 @@ OK
   配置 SHA-256
   `81481e8f6ba1d6e82aa995374852dfa53ed00899bf8a09bd2e3dec2144da59fe`。
   结果仅为 MuJoCo 仿真，不代表硬件或临床精度。
+- 2026-11-18 16:05:48 CST：Frontiers 2022 Algorithm 1 DDPG + DiT-Flow/RCM
+  完整流水线 FAIL（严格成功门限）。从
+  `Frontiers2022_DDPG_linux_20261118.zip` 接入独立实现，并在共享 Replay
+  入口增加可替换 policy/critic/update/reward 组件；保留当前 ILOSAC-inspired
+  Flow v2 的 twin-Q、TD clip、demonstration anchor 路径。5/5 Frontiers 单元
+  测试和 6/6 Replay 回归测试 PASS。启动命令为
+  `bash scripts/run_frontiers2022_ddpg.sh --output-dir outputs/state_attention_frontiers2022_ddpg_20261118_1`，
+  配置 `configs/frontiers2022_ddpg_pipeline.json`；训练集
+  `lerobot_v12_oct_dit_rf_dagger2_acthist_20261116_224`、验证集
+  `lerobot_rcm_val_acthist_20261117_224`、初始 checkpoint
+  `dit_rectified_flow_state_attention_v1_acthist_20261117/best_model.pth`、
+  seed `20261117`、固定 Flow 噪声 seed `20261118`。回放缓存保留 225,614 个
+  连续 OCT-valid transitions；4×1000 步训练完成 3,750 次 actor 更新，best
+  epoch 0 val loss `1.103461`，last epoch val loss `16.239620`。best
+  checkpoint SHA-256
+  `5559f5b3f1b986aceeda6aab76d64694880d931a58f9c8b4e65124ffdc51be4d`。
+  20 目标闭环 canonical success `0/20`，最终误差
+  mean/median/min/max=`15909.594/13546.894/11030.918/23944.568 µm`，
+  每目标最小误差均值 `12334.938 µm`，退出时编码器停稳 `5/20`，
+  safety-limited steps `108`。与 `state_attention_replay_v1_20261117_1`
+  逐目标配对：0 改善、20 恶化，最终误差均值恶化 `15738.567 µm`。结果目录
+  `outputs/state_attention_frontiers2022_ddpg_20261118_1/`；`summary.json`
+  SHA-256
+  `a49cd89b248d62602165aa3d3fd8f0f2a5588e28191fddf5b9dd7c170cec61b0`，
+  `comparison.json` SHA-256
+  `63d44dcef7a64fa4b7827e30a8246c0f4cf35984c1e105f21026db8ca11de3ce`。
+  结果仅为 MuJoCo 仿真，不代表硬件或临床精度。

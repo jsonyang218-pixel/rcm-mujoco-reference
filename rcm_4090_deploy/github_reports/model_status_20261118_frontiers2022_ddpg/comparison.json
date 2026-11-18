@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "status": "comparable",
+  "baseline_id": "state_attention_replay_v1_20261117_1",
+  "baseline_manifest": {
+    "path": "/home/him1/mujoco_bc/rcm_4090_deploy/configs/baselines/state_attention_replay_v1/BASELINE.json",
+    "sha256": "293f0cb23202040ac3167fde5ef3121908faf45506958092c7799ecd84351bb8"
+  },
+  "target_manifest_sha256": "fcc4872a9d5b58bb7158b36d3c0ab6d7452e4d8d747317dfb077b6e7bbc815c7",
+  "episodes": 20,
+  "baseline": {
+    "successes": 0,
+    "success_rate": 0.0,
+    "final_error_mean_um": 171.0276789644418,
+    "final_error_median_um": 161.43855803169055,
+    "per_episode_minimum_error_mean_um": 77.84127321267582,
+    "safety_limited_steps": 0
+  },
+  "candidate": {
+    "successes": 0,
+    "success_rate": 0.0,
+    "final_error_mean_um": 15909.594388319452,
+    "final_error_median_um": 13546.894309635827,
+    "per_episode_minimum_error_mean_um": 12334.938349913748,
+    "safety_limited_steps": 108
+  },
+  "delta_candidate_minus_baseline": {
+    "successes": 0,
+    "final_error_mean_um": 15738.566709355011,
+    "final_error_median_um": 13385.455751604137,
+    "per_episode_minimum_error_mean_um": 12257.097076701071
+  },
+  "paired_final_error": {
+    "definition": "baseline_final_error_um - candidate_final_error_um",
+    "improved": 0,
+    "worsened": 20,
+    "unchanged": 0,
+    "mean_improvement_um": -15738.566709355011,
+    "median_improvement_um": -13424.18097037006
+  }
+}

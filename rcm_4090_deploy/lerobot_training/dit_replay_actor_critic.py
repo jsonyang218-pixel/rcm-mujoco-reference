@@ -237,7 +237,13 @@ def write_json(path, value):
     temporary.replace(path)
 
 
-def train(argv):
+def train(argv, *, components=None):
+    """Run the shared replay loop, optionally with algorithm-specific parts.
+
+    The original replay module remains the default. Alternate algorithms can
+    replace the policy, critic, update rules, and reward adapter explicitly.
+    """
+    components = {} if components is None else components
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--data-dir", type=Path, required=True, help="expert-labeled BC data")
     parser.add_argument("--val-data-dir", type=Path, required=True)
@@ -274,6 +280,8 @@ def train(argv):
     parser.add_argument("--control-period-s", type=float, default=0.05)
     parser.add_argument("--seed", type=int, default=20261117)
     parser.add_argument("--device", default="cuda")
+    if "configure_parser" in components:
+        components["configure_parser"](parser)
     args = parser.parse_args(argv)
     counts = (args.epochs, args.steps_per_epoch, args.batch_size, args.replay_batch_size,
               args.val_batch_size, args.critic_hidden_dim, args.replay_capacity)
@@ -283,23 +291,29 @@ def train(argv):
         parser.error("critic warmup must be nonnegative and shorter than the first epoch")
     if not (0 < args.gamma < 1 and 0 < args.tau <= 1):
         parser.error("gamma must be in (0,1) and tau in (0,1]")
-    if min(args.lr, args.bias_lr_scale, args.critic_lr, args.fm_weight,
+    if min(args.lr, args.bias_lr_scale, args.critic_lr,
            args.q_weight, args.distance_scale_mm, args.control_period_s) <= 0:
         parser.error("learning rates, loss weights, distance scale and period must be positive")
+    if args.fm_weight < 0 or (args.fm_weight == 0 and not components.get("allow_zero_fm", False)):
+        parser.error("fm-weight must be positive for the original replay module")
     if min(args.progress_weight, args.distance_weight, args.effort_weight) < 0:
         parser.error("reward weights must be nonnegative")
     if args.td_clip < 0 or args.demo_anchor_weight < 0:
         parser.error("TD clip and demonstration anchor weight must be nonnegative")
-    training_module = (
+    training_module = components.get(
+        "training_module",
         ILOSAC_INSPIRED_MODULE
         if args.variant == "ilosac_flow_v2"
-        else TRAINING_MODULE
+        else TRAINING_MODULE,
     )
+    variant = components.get("variant_label", args.variant)
     replay_paths = list(dict.fromkeys(path.resolve() for path in [args.data_dir, *args.replay_data_dir]))
     if args.val_data_dir.resolve() in replay_paths:
         parser.error("validation data cannot enter the training replay buffer")
     if args.output_dir.exists():
         parser.error("output directory already exists")
+    if "validate_args" in components:
+        components["validate_args"](args, parser)
 
     device = torch.device(args.device)
     if device.type == "cuda" and not torch.cuda.is_available():
@@ -313,11 +327,14 @@ def train(argv):
         parser.error("--init-from must be the state-attention v1 checkpoint")
     if checkpoint.get("policy_type") != "dit_rectified_flow":
         parser.error("--init-from has an incompatible policy type")
-    model = attention.StateConditionedDiTRectifiedFlowPolicy(
+    policy_class = components.get("policy_class", attention.StateConditionedDiTRectifiedFlowPolicy)
+    policy_kwargs = components.get("policy_kwargs", lambda args: {})(args)
+    model = policy_class(
         **{key: config[key] for key in STAT_NAMES},
         **{key: int(config[key]) for key in (
             "n_obs_steps", "n_action_steps", "dit_dim", "dit_depth", "dit_heads", "flow_integration_steps",
         )},
+        **policy_kwargs,
     ).to(device)
     # Do not let the v1 old-checkpoint fallback hide missing trained bias keys.
     if set(model.state_dict()) != set(checkpoint["model_state_dict"]):
@@ -330,7 +347,8 @@ def train(argv):
         else None
     )
     geometry_dim = model.n_obs_steps * (3 + model.oct_dim + 3 + model.action_dim)
-    critic = TwinQ(geometry_dim, hidden_dim=args.critic_hidden_dim).to(device)
+    critic_class = components.get("critic_class", TwinQ)
+    critic = critic_class(geometry_dim, hidden_dim=args.critic_hidden_dim).to(device)
     target_critic = copy.deepcopy(critic).eval().requires_grad_(False)
     backbone, bias = [], []
     for name, parameter in model.named_parameters():
@@ -338,7 +356,7 @@ def train(argv):
     actor_optimizer = torch.optim.AdamW([
         {"params": backbone, "lr": args.lr},
         {"params": bias, "lr": args.lr * args.bias_lr_scale},
-    ], weight_decay=1e-4)
+    ], weight_decay=components.get("actor_weight_decay", 1e-4))
     critic_optimizer = torch.optim.Adam(critic.parameters(), lr=args.critic_lr)
     limits = torch.as_tensor(ACTION_LIMIT, device=device)
 
@@ -359,7 +377,7 @@ def train(argv):
         data = demonstrations if path == args.data_dir.resolve() else dataset(path)
         with np.load(path / "data" / "dataset.npz", allow_pickle=False) as arrays:
             terminated = arrays["terminated"].copy() if "terminated" in arrays else None
-        records = transition_records(
+        records = components.get("transition_records", transition_records)(
             data, len(sources), n_obs_steps=model.n_obs_steps,
             control_period_s=args.control_period_s, distance_scale_mm=args.distance_scale_mm,
             progress_weight=args.progress_weight, distance_weight=args.distance_weight,
@@ -383,9 +401,10 @@ def train(argv):
         "replay_data_dir": [str(path) for path in args.replay_data_dir],
         "training_module": training_module, "attention_mechanism": attention.ARCHITECTURE,
         "include_velocity": True, "include_previous_action": True, "use_oct": True,
+        **components.get("metadata", lambda args: {})(args),
     }
     write_json(args.output_dir / "replay_manifest.json", {
-        "training_module": training_module, "variant": args.variant,
+        "training_module": training_module, "variant": variant,
         "sources": source_metadata,
         "retained_transitions": len(buffer), "seen_transitions": buffer.seen,
         "capacity": buffer.capacity, "retention": "uniform_reservoir",
@@ -393,7 +412,8 @@ def train(argv):
         "reward_distance_source": "observed OCT navigation norm in mm",
         "unlabeled_endings": "continuing task; bootstrap, no inferred success or failure",
         "execution_action_limit_deg_deg_mm": ACTION_LIMIT.tolist(),
-        "ilosac_inspired_assumptions": {
+        **components.get("replay_metadata", {}),
+        **({"ilosac_inspired_assumptions": {
             "implemented": [
                 "frozen demonstration-policy action anchor as KL proxy",
                 "TD target clipping for critic scale control",
@@ -407,15 +427,16 @@ def train(argv):
                 "exact demonstration-policy KL",
             ],
             "naming": "offline ILOSAC-inspired Flow variant, not an ILOSAC reproduction",
-        },
+        }} if not components else {}),
     })
     write_json(args.output_dir / "training_config.json", run_config)
-    print(json.dumps({"training_module": training_module, "variant": args.variant,
+    print(json.dumps({"training_module": training_module, "variant": variant,
                       "replay_size": len(buffer),
                       "init_from": str(args.init_from), "sources": source_metadata}), flush=True)
-    train_loader = make_loader(demonstrations, args.batch_size, args.num_workers, shuffle=True, seed=args.seed)
+    train_loader = (make_loader(demonstrations, args.batch_size, args.num_workers, shuffle=True, seed=args.seed)
+                    if args.fm_weight > 0 else None)
     val_loader = make_loader(validation, args.val_batch_size, min(args.num_workers, 4), shuffle=False, seed=args.seed)
-    batches = iter(train_loader)
+    batches = iter(train_loader) if train_loader is not None else None
     history, best, started, global_step = [], float("inf"), time.monotonic(), 0
     for epoch in range(args.epochs):
         model.train()
@@ -425,19 +446,28 @@ def train(argv):
         actor_updates = 0
         for _ in tqdm(range(args.steps_per_epoch), desc=f"Replay actor-critic epoch {epoch}"):
             transition = replay_batch(buffer, sources, args.replay_batch_size, device)
-            q_loss, reward, target = update_critic(
-                model, target_actor, critic, target_critic, critic_optimizer, transition,
-                limits, args.gamma, args.tau, args.td_clip,
-            )
+            if "update_critic" in components:
+                q_loss, reward, target = components["update_critic"](
+                    model, target_actor, critic, target_critic, critic_optimizer,
+                    transition, limits, args.gamma, args.tau,
+                )
+            else:
+                q_loss, reward, target = update_critic(
+                    model, target_actor, critic, target_critic, critic_optimizer, transition,
+                    limits, args.gamma, args.tau, args.td_clip,
+                )
             totals["critic_loss"] += q_loss
             totals["reward_mean"] += reward
             totals["td_target_mean"] += target
             if global_step >= args.critic_warmup_steps:
-                try:
-                    demonstration = next(batches)
-                except StopIteration:
-                    batches = iter(train_loader)
-                    demonstration = next(batches)
+                demonstration = None
+                if args.fm_weight > 0:
+                    try:
+                        demonstration = next(batches)
+                    except StopIteration:
+                        batches = iter(train_loader)
+                        demonstration = next(batches)
+                    demonstration = _move_batch(demonstration, device)
                 anchor_weight = (
                     args.demo_anchor_weight
                     * max(
@@ -447,11 +477,19 @@ def train(argv):
                         / max(1, args.epochs * args.steps_per_epoch),
                     )
                 )
-                fm, q_objective, policy_q, anchor_loss = update_actor(
-                    model, critic, actor_optimizer, _move_batch(demonstration, device),
-                    transition[0], limits, args.fm_weight, args.q_weight,
-                    reference_actor, anchor_weight,
-                )
+                if "update_actor" in components:
+                    actor_result = components["update_actor"](
+                        model, critic, actor_optimizer, demonstration,
+                        transition[0], limits, args.fm_weight, args.q_weight,
+                    )
+                else:
+                    actor_result = update_actor(
+                        model, critic, actor_optimizer, demonstration,
+                        transition[0], limits, args.fm_weight, args.q_weight,
+                        reference_actor, anchor_weight,
+                    )
+                fm, q_objective, policy_q, *extra = actor_result
+                anchor_loss = extra[0] if extra else 0.0
                 soft_update(target_actor, model, args.tau)
                 totals["train_loss"] += fm
                 totals["q_objective"] += q_objective

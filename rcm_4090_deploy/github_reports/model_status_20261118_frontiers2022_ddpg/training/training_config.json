@@ -1,0 +1,123 @@
+{
+  "data_dir": "/home/him1/mujoco_bc/rcm_4090_deploy/data/lerobot_v12_oct_dit_rf_dagger2_acthist_20261116_224",
+  "val_data_dir": "/home/him1/mujoco_bc/rcm_4090_deploy/data/lerobot_rcm_val_acthist_20261117_224",
+  "output_dir": "/home/him1/mujoco_bc/rcm_4090_deploy/outputs/state_attention_frontiers2022_ddpg_20261118_1/training",
+  "init_from": "/home/him1/mujoco_bc/rcm_4090_deploy/outputs/dit_rectified_flow_state_attention_v1_acthist_20261117/best_model.pth",
+  "epochs": 4,
+  "batch_size": 16,
+  "val_batch_size": 32,
+  "num_workers": 8,
+  "prefetch_factor": 4,
+  "lr": 1e-06,
+  "weight_decay": 0.0001,
+  "n_obs_steps": 2,
+  "n_action_steps": 16,
+  "flow_integration_steps": 4,
+  "dit_dim": 384,
+  "dit_depth": 6,
+  "dit_heads": 6,
+  "dagger_episode_start": 760,
+  "dagger_repeat": 1,
+  "seed": 20261117,
+  "amp": true,
+  "policy_type": "dit_rectified_flow",
+  "use_oct": true,
+  "include_velocity": true,
+  "include_previous_action": true,
+  "state_mean": [
+    0.06349938362836838,
+    0.363604873418808,
+    12.981619834899902
+  ],
+  "state_std": [
+    6.787475109100342,
+    5.752523899078369,
+    6.081380844116211
+  ],
+  "oct_mean": [
+    0.7278906106948853,
+    -0.026162389665842056,
+    6.579880237579346,
+    0.970044732093811
+  ],
+  "oct_std": [
+    1.216712474822998,
+    0.9585331082344055,
+    5.981095314025879,
+    0.17052701115608215
+  ],
+  "action_mean": [
+    0.00018426710448693484,
+    -7.851731788832694e-05,
+    0.03335476294159889
+  ],
+  "action_std": [
+    0.04544081911444664,
+    0.02966109849512577,
+    0.016713595017790794
+  ],
+  "velocity_mean": [
+    0.004034513141959906,
+    -0.003496601479128003,
+    0.4751315414905548
+  ],
+  "velocity_std": [
+    0.6506950259208679,
+    0.4250059723854065,
+    0.24601227045059204
+  ],
+  "previous_action_mean": [
+    0.00024240043421741575,
+    -0.0001381530601065606,
+    0.033337727189064026
+  ],
+  "previous_action_std": [
+    0.045525968074798584,
+    0.029723668470978737,
+    0.01701800711452961
+  ],
+  "attention_mechanism": "state_conditioned_temporal_attention_v1",
+  "attention_num_templates": 4,
+  "attention_gate_hidden_dim": 32,
+  "backbone_lr_scale": 0.1,
+  "steps_per_epoch": 1000,
+  "replay_batch_size": 16,
+  "bias_lr_scale": 1.0,
+  "critic_lr": 0.0001,
+  "critic_hidden_dim": 256,
+  "critic_warmup_steps": 250,
+  "gamma": 0.99,
+  "tau": 0.005,
+  "fm_weight": 0.0,
+  "q_weight": 1.0,
+  "variant": "replay_v1",
+  "td_clip": 0.0,
+  "demo_anchor_weight": 0.0,
+  "replay_capacity": 300000,
+  "distance_scale_mm": 1.0,
+  "progress_weight": 0.0,
+  "distance_weight": 0.0,
+  "effort_weight": 0.0,
+  "control_period_s": 0.05,
+  "device": "cuda",
+  "fixed_noise_seed": 20261118,
+  "replay_data_dir": [],
+  "training_module": "frontiers2022_algorithm1_ddpg_rcm_v1",
+  "paper_doi": "10.3389/fnbot.2022.883562",
+  "algorithm": "Algorithm 1 DDPG; independent RCM implementation",
+  "official_author_source": false,
+  "training_regime": "offline stored transitions; not original online exploration",
+  "actor_sampling": "fixed_noise_deterministic_flow",
+  "critic_type": "single_Q_geometry_only",
+  "actor_weight_decay": 0.0,
+  "flow_anchor_is_project_extension": false,
+  "demonstration_sampling": "unused",
+  "replay_sampling": "uniform_with_replacement",
+  "train_loss_metric": "negative_weighted_policy_Q",
+  "checkpoint_selection": "minimum validation Flow loss; not validation RL return",
+  "reward_c1": 500.0,
+  "reward_c2": 15.0,
+  "reward_a_m": 1.0,
+  "reward_n": 35,
+  "obstacle_reward_enabled": false
+}

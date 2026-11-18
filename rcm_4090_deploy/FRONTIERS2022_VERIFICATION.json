@@ -1,0 +1,81 @@
+{
+  "date": "2026-11-18",
+  "base_commit": "28c7182a8540faca5fae38ffec55372445865b9d",
+  "environment": {
+    "python": "3.12.14",
+    "torch": "2.5.1+cpu",
+    "torchvision": "0.20.1+cpu",
+    "device": "cpu"
+  },
+  "checks": [
+    {
+      "command": "python -m unittest discover -s tests -p test_frontiers2022_ddpg.py -v",
+      "passed": 5,
+      "failed": 0
+    },
+    {
+      "command": "python -m unittest discover -s tests -p 'test_*replay.py' -v",
+      "passed": 6,
+      "failed": 0
+    },
+    {
+      "check": "train --help",
+      "passed": true
+    },
+    {
+      "check": "Linux shell syntax and git diff whitespace",
+      "passed": true
+    },
+    {
+      "check": "Replay baseline manifest through existing pipeline comparator",
+      "matching_targets": 20,
+      "unchanged": 20,
+      "mean_delta_um": 0.0
+    }
+  ],
+  "synthetic_integration_smoke": {
+    "test": "synthetic CPU training + validation + checkpoint + eval actor dispatch",
+    "real_simulation": false,
+    "training_steps": 3,
+    "actor_updates": 2,
+    "fixed_noise_seed_restored": 17,
+    "old_checkpoint_rejected": true,
+    "history_finite": true,
+    "note": "No real RCM benchmark performance is measured."
+  },
+  "real_dataset_training_completed": true,
+  "real_mujoco_evaluation_completed": true,
+  "full_pipeline": {
+    "status": "completed_with_failed_acceptance",
+    "device": "NVIDIA GeForce RTX 4090",
+    "training_steps": 4000,
+    "actor_updates": 3750,
+    "best_epoch": 0,
+    "best_val_loss": 1.1034613899352625,
+    "last_val_loss": 16.239620085066747,
+    "episodes": 20,
+    "canonical_successes": 0,
+    "final_error_um": {
+      "mean": 15909.594388319452,
+      "median": 13546.894309635827,
+      "min": 11030.918034366072,
+      "max": 23944.568477175577
+    },
+    "per_episode_minimum_error_mean_um": 12334.938349913748,
+    "encoder_settled_at_exit": 5,
+    "safety_limited_steps": 108,
+    "baseline_id": "state_attention_replay_v1_20261117_1",
+    "paired_final_error": {
+      "improved": 0,
+      "worsened": 20,
+      "unchanged": 0,
+      "mean_improvement_um": -15738.566709355011
+    },
+    "checkpoint_sha256": "5559f5b3f1b986aceeda6aab76d64694880d931a58f9c8b4e65124ffdc51be4d",
+    "summary_sha256": "a49cd89b248d62602165aa3d3fd8f0f2a5588e28191fddf5b9dd7c170cec61b0",
+    "comparison_sha256": "63d44dcef7a64fa4b7827e30a8246c0f4cf35984c1e105f21026db8ca11de3ce",
+    "output_dir": "outputs/state_attention_frontiers2022_ddpg_20261118_1/"
+  },
+  "performance_claim": "The implementation runs end to end but fails closed-loop acceptance and is substantially worse than Replay v1.",
+  "note": "The original synthetic CPU smoke evidence remains recorded above. Full training and evaluation were subsequently run on the RTX 4090 environment."
+}
