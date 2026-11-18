@@ -1,0 +1,21 @@
+{
+  "training_module": "state_attention_experience_replay_flow_v1",
+  "mode": "balanced",
+  "initial_checkpoint": "/home/him1/mujoco_bc/rcm_4090_deploy/outputs/dit_rectified_flow_state_attention_v1_acthist_20261117/best_model.pth",
+  "initial_checkpoint_epoch": 3,
+  "original_windows": 206273,
+  "correction_windows": 14571,
+  "validation_windows": 26650,
+  "batch_size": 16,
+  "batch_mix": {
+    "original": 8,
+    "correction": 8
+  },
+  "sampling": "uniform_with_replacement",
+  "steps_per_epoch": 1000,
+  "epochs": 4,
+  "flow_loss_weights": {
+    "original": 0.5,
+    "correction": 0.5
+  }
+}

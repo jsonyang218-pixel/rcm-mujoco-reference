@@ -4631,3 +4631,25 @@ OK
   上传时 B 处于 10 分片闭环评测中，C balanced 因顺序执行尚未启动。状态
   快照位于 `outputs/state_attention_experience_replay_abc_20261118_1/b_static/status.json`。
   结果仅为 MuJoCo 仿真，不代表硬件或临床精度。
+- 2026-11-18 19:24:05 CST：Experience Replay B/C 完成，A/B/C 全量对照
+  结论为“新增专家纠正数据有效，但固定 50/50 回放组织无效”。B static
+  最终误差 mean/median/P90/max=`207.290/141.257/510.406/677.360 µm`，
+  17/20 最终误差 ≤300 µm，与 v1 配对 18 改善、2 恶化，均值改善
+  `227.107 µm`；best epoch 3 val loss `0.145008`。C balanced 最终误差
+  mean/median/P90/max=`1486.514/1637.206/2661.735/2915.647 µm`，仅
+  4/20 最终误差 ≤300 µm，与 v1 配对 4 改善、16 恶化，均值恶化
+  `1052.117 µm`；相对 B 仅 3 改善、17 恶化。三组 canonical success 均为
+  `0/20`，编码器停稳均为 `0/20`，safety-limited steps 均为 0。B 在
+  19/20 目标曾进入 100 µm，但 19/20 均在首次进入后离开，说明仍需补足
+  保持和停稳行为。结果目录
+  `outputs/state_attention_experience_replay_abc_20261118_1/`；B
+  `summary/comparison` SHA-256
+  `26f1ad0a070779a4cf1310cc37ec20637797d1d9beeb1155588de19e6231ba9f`/
+  `11769abe6340597abf7f491684bf2d17de6b219c88764ea8ac7408e72d3d8e57`；
+  C `summary/comparison` SHA-256
+  `0d4cc724a077f4bb95b9d18ad68f41863b3d519858c97abcb8d5e1d86bc43a54`/
+  `2fcd8de80578da155f4ecce0d6bb5136ea45a7226644e007aba81fa62dab348b`。
+  汇总目录 `runs/20261118/analysis/experience_replay_abc/`；`abc_comparison.json`
+  SHA-256
+  `81ae86f7557801e33a5e0cf535ba85c0b8f5c9404b09c6848e968e92fe56513d`。
+  结果仅为 MuJoCo 仿真，不代表硬件或临床精度。
