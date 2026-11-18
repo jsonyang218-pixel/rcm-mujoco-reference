@@ -35,6 +35,8 @@ from train_dit_rectified_flow import _atomic_torch_save, _loss, _move_batch
 
 
 TRAINING_MODULE = "flow_replay_actor_critic_v1"
+ILOSAC_INSPIRED_MODULE = "flow_ilosac_inspired_offline_v1"
+TRAINING_MODULES = (TRAINING_MODULE, ILOSAC_INSPIRED_MODULE)
 STAT_NAMES = (
     "state_mean", "state_std", "oct_mean", "oct_std", "action_mean", "action_std",
     "velocity_mean", "velocity_std", "previous_action_mean", "previous_action_std",
@@ -145,7 +147,7 @@ def clipped_policy_action(model, batch, limits, *, gradients):
 
 
 def update_critic(model, target_actor, critic, target_critic, optimizer, transition,
-                  limits, gamma, tau):
+                  limits, gamma, tau, td_clip=0.0):
     current, following, executed, reward, terminated = transition
     with torch.no_grad():
         next_action = clipped_policy_action(target_actor, following, limits, gradients=False)
@@ -153,6 +155,8 @@ def update_critic(model, target_actor, critic, target_critic, optimizer, transit
             geometry_features(target_actor, following), normalized_action(target_actor, next_action),
         )
         target = reward + gamma * (~terminated).float() * torch.minimum(*target_q)
+        if td_clip:
+            target = target.clamp(-td_clip, td_clip)
         features = geometry_features(model, current)
     first, second = critic(features, normalized_action(model, executed))
     loss = F.mse_loss(first, target) + F.mse_loss(second, target)
@@ -165,7 +169,8 @@ def update_critic(model, target_actor, critic, target_critic, optimizer, transit
 
 
 def update_actor(model, critic, optimizer, demonstration, replay_observation,
-                 limits, fm_weight, q_weight):
+                 limits, fm_weight, q_weight, reference_actor=None,
+                 demo_anchor_weight=0.0):
     # Q parameters stay fixed while its derivative wrt the Flow action is used.
     critic.requires_grad_(False)
     optimizer.zero_grad(set_to_none=True)
@@ -179,10 +184,22 @@ def update_actor(model, critic, optimizer, demonstration, replay_observation,
         first, second = critic(features, normalized_action(model, actions))
         q = torch.minimum(first, second)
         q_objective = -q_weight * q.mean() / q.detach().abs().mean().clamp_min(1.0)
-        q_objective.backward()
+        anchor_loss = torch.zeros((), device=actions.device)
+        objective = q_objective
+        if reference_actor is not None and demo_anchor_weight:
+            with torch.no_grad():
+                reference_actions = clipped_policy_action(
+                    reference_actor, demonstration, limits, gradients=False,
+                )
+            anchor_loss = F.mse_loss(actions, reference_actions)
+            objective = objective + demo_anchor_weight * anchor_loss
+        objective.backward()
         nn.utils.clip_grad_norm_(model.parameters(), 1.0, error_if_nonfinite=True)
         optimizer.step()
-        return float(fm_loss.detach()), float(q_objective.detach()), float(q.detach().mean())
+        return (
+            float(fm_loss.detach()), float(q_objective.detach()),
+            float(q.detach().mean()), float(anchor_loss.detach()),
+        )
     finally:
         critic.requires_grad_(True)
 
@@ -242,6 +259,13 @@ def train(argv):
     parser.add_argument("--tau", type=float, default=0.005)
     parser.add_argument("--fm-weight", type=float, default=1.0)
     parser.add_argument("--q-weight", type=float, default=0.1)
+    parser.add_argument(
+        "--variant",
+        choices=("replay_v1", "ilosac_flow_v2"),
+        default="replay_v1",
+    )
+    parser.add_argument("--td-clip", type=float, default=0.0)
+    parser.add_argument("--demo-anchor-weight", type=float, default=0.0)
     parser.add_argument("--replay-capacity", type=int, default=300000)
     parser.add_argument("--distance-scale-mm", type=float, default=1.0)
     parser.add_argument("--progress-weight", type=float, default=1.0)
@@ -264,6 +288,13 @@ def train(argv):
         parser.error("learning rates, loss weights, distance scale and period must be positive")
     if min(args.progress_weight, args.distance_weight, args.effort_weight) < 0:
         parser.error("reward weights must be nonnegative")
+    if args.td_clip < 0 or args.demo_anchor_weight < 0:
+        parser.error("TD clip and demonstration anchor weight must be nonnegative")
+    training_module = (
+        ILOSAC_INSPIRED_MODULE
+        if args.variant == "ilosac_flow_v2"
+        else TRAINING_MODULE
+    )
     replay_paths = list(dict.fromkeys(path.resolve() for path in [args.data_dir, *args.replay_data_dir]))
     if args.val_data_dir.resolve() in replay_paths:
         parser.error("validation data cannot enter the training replay buffer")
@@ -293,6 +324,11 @@ def train(argv):
         raise ValueError("initial v1 state dictionary has missing or unexpected parameters")
     model.load_state_dict(checkpoint["model_state_dict"])
     target_actor = copy.deepcopy(model).eval().requires_grad_(False)
+    reference_actor = (
+        copy.deepcopy(model).eval().requires_grad_(False)
+        if args.demo_anchor_weight
+        else None
+    )
     geometry_dim = model.n_obs_steps * (3 + model.oct_dim + 3 + model.action_dim)
     critic = TwinQ(geometry_dim, hidden_dim=args.critic_hidden_dim).to(device)
     target_critic = copy.deepcopy(critic).eval().requires_grad_(False)
@@ -345,20 +381,37 @@ def train(argv):
         **config, **{name: str(value) if isinstance(value, Path) else value for name, value in vars(args).items()
                     if name != "replay_data_dir"},
         "replay_data_dir": [str(path) for path in args.replay_data_dir],
-        "training_module": TRAINING_MODULE, "attention_mechanism": attention.ARCHITECTURE,
+        "training_module": training_module, "attention_mechanism": attention.ARCHITECTURE,
         "include_velocity": True, "include_previous_action": True, "use_oct": True,
     }
     write_json(args.output_dir / "replay_manifest.json", {
-        "training_module": TRAINING_MODULE, "sources": source_metadata,
+        "training_module": training_module, "variant": args.variant,
+        "sources": source_metadata,
         "retained_transitions": len(buffer), "seen_transitions": buffer.seen,
         "capacity": buffer.capacity, "retention": "uniform_reservoir",
         "reward": "progress_weight*(d-d_next)/scale-distance_weight*d_next/scale-effort_weight*mean((executed/action_limit)^2)",
         "reward_distance_source": "observed OCT navigation norm in mm",
         "unlabeled_endings": "continuing task; bootstrap, no inferred success or failure",
         "execution_action_limit_deg_deg_mm": ACTION_LIMIT.tolist(),
+        "ilosac_inspired_assumptions": {
+            "implemented": [
+                "frozen demonstration-policy action anchor as KL proxy",
+                "TD target clipping for critic scale control",
+                "expert Flow matching plus replay Q guidance",
+            ],
+            "not_implemented": [
+                "THMM Gaussian hidden-state model",
+                "duration model",
+                "online S_THMM membership and dynamic expansion",
+                "Gaussian policy entropy temperature",
+                "exact demonstration-policy KL",
+            ],
+            "naming": "offline ILOSAC-inspired Flow variant, not an ILOSAC reproduction",
+        },
     })
     write_json(args.output_dir / "training_config.json", run_config)
-    print(json.dumps({"training_module": TRAINING_MODULE, "replay_size": len(buffer),
+    print(json.dumps({"training_module": training_module, "variant": args.variant,
+                      "replay_size": len(buffer),
                       "init_from": str(args.init_from), "sources": source_metadata}), flush=True)
     train_loader = make_loader(demonstrations, args.batch_size, args.num_workers, shuffle=True, seed=args.seed)
     val_loader = make_loader(validation, args.val_batch_size, min(args.num_workers, 4), shuffle=False, seed=args.seed)
@@ -367,13 +420,14 @@ def train(argv):
     for epoch in range(args.epochs):
         model.train()
         totals = dict(critic_loss=0.0, reward_mean=0.0, td_target_mean=0.0,
-                      train_loss=0.0, q_objective=0.0, policy_q_mean=0.0)
+                      train_loss=0.0, q_objective=0.0, policy_q_mean=0.0,
+                      demo_anchor_loss=0.0)
         actor_updates = 0
         for _ in tqdm(range(args.steps_per_epoch), desc=f"Replay actor-critic epoch {epoch}"):
             transition = replay_batch(buffer, sources, args.replay_batch_size, device)
             q_loss, reward, target = update_critic(
                 model, target_actor, critic, target_critic, critic_optimizer, transition,
-                limits, args.gamma, args.tau,
+                limits, args.gamma, args.tau, args.td_clip,
             )
             totals["critic_loss"] += q_loss
             totals["reward_mean"] += reward
@@ -384,19 +438,30 @@ def train(argv):
                 except StopIteration:
                     batches = iter(train_loader)
                     demonstration = next(batches)
-                fm, q_objective, policy_q = update_actor(
+                anchor_weight = (
+                    args.demo_anchor_weight
+                    * max(
+                        0.0,
+                        1.0
+                        - global_step
+                        / max(1, args.epochs * args.steps_per_epoch),
+                    )
+                )
+                fm, q_objective, policy_q, anchor_loss = update_actor(
                     model, critic, actor_optimizer, _move_batch(demonstration, device),
                     transition[0], limits, args.fm_weight, args.q_weight,
+                    reference_actor, anchor_weight,
                 )
                 soft_update(target_actor, model, args.tau)
                 totals["train_loss"] += fm
                 totals["q_objective"] += q_objective
                 totals["policy_q_mean"] += policy_q
+                totals["demo_anchor_loss"] += anchor_loss
                 actor_updates += 1
             global_step += 1
         row = {
             "epoch": epoch, "global_step": global_step, "actor_updates": actor_updates,
-            **{name: value / (actor_updates if name in ("train_loss", "q_objective", "policy_q_mean")
+            **{name: value / (actor_updates if name in ("train_loss", "q_objective", "policy_q_mean", "demo_anchor_loss")
                               else args.steps_per_epoch) for name, value in totals.items()},
             "val_loss": validate(model, val_loader, device, args.seed + 1),
             "elapsed_s": time.monotonic() - started,
@@ -405,7 +470,7 @@ def train(argv):
         write_json(args.output_dir / "training_history.json", history)
         payload = {
             "schema_version": 1, "policy_type": model.policy_type,
-            "architecture": attention.ARCHITECTURE, "training_module": TRAINING_MODULE,
+            "architecture": attention.ARCHITECTURE, "training_module": training_module,
             "model_state_dict": model.state_dict(), "critic_state_dict": critic.state_dict(),
             "target_actor_state_dict": target_actor.state_dict(),
             "target_critic_state_dict": target_critic.state_dict(),
@@ -435,8 +500,11 @@ def main(argv=None):
     options, _ = evaluation_parser.parse_known_args(arguments[1:])
     if options.model is not None:
         checkpoint = torch.load(options.model, map_location="cpu", weights_only=False)
-        if checkpoint.get("training_module") != TRAINING_MODULE:
-            raise ValueError("evaluation requires a checkpoint trained by this replay module")
+        if checkpoint.get("training_module") not in TRAINING_MODULES:
+            raise ValueError(
+                "evaluation requires a checkpoint trained by a supported "
+                "replay or ILOSAC-inspired Flow module"
+            )
         del checkpoint
     return attention.main(["eval", *arguments[1:]])
 

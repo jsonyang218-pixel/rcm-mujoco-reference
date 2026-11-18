@@ -1,0 +1,108 @@
+{
+  "stage": "evaluation",
+  "status": "partial",
+  "updated_at": "2026-11-18T14:46:37+08:00",
+  "completed_shards": 3,
+  "total_shards": 10,
+  "completed_shard_names": [
+    "g02",
+    "g07",
+    "g09"
+  ],
+  "completed_episodes": 6,
+  "target_start": 0,
+  "target_end": 20,
+  "episode_indices": [
+    2,
+    3,
+    12,
+    13,
+    16,
+    17
+  ],
+  "successes": 0,
+  "success_rate": 0.0,
+  "encoder_settled_at_exit": 0,
+  "final_error_um": {
+    "mean": 197.77026993464392,
+    "median": 161.8535004316389,
+    "min": 147.9426483826615,
+    "max": 342.3244213733218
+  },
+  "trajectory_minimum_error_mean_um": 53.65371226749789,
+  "safety_limited_steps": 0,
+  "episodes": [
+    {
+      "episode_index": 2,
+      "target_id": "target_26985bd28045",
+      "seed": 44,
+      "success": false,
+      "steps": 1600,
+      "final_error_um": 149.2391813671509,
+      "trajectory_minimum_error_um": 40.67409227396427,
+      "low_speed_at_exit": false,
+      "encoder_settled_at_exit": false,
+      "safety_limited_steps": 0
+    },
+    {
+      "episode_index": 3,
+      "target_id": "target_3af19f0abe43",
+      "seed": 45,
+      "success": false,
+      "steps": 1600,
+      "final_error_um": 223.40836762145153,
+      "trajectory_minimum_error_um": 69.42276059081269,
+      "low_speed_at_exit": false,
+      "encoder_settled_at_exit": false,
+      "safety_limited_steps": 0
+    },
+    {
+      "episode_index": 12,
+      "target_id": "target_8c09d0273c72",
+      "seed": 54,
+      "success": false,
+      "steps": 1600,
+      "final_error_um": 342.3244213733218,
+      "trajectory_minimum_error_um": 49.04463246637768,
+      "low_speed_at_exit": false,
+      "encoder_settled_at_exit": false,
+      "safety_limited_steps": 0
+    },
+    {
+      "episode_index": 13,
+      "target_id": "target_6568a41173bf",
+      "seed": 55,
+      "success": false,
+      "steps": 1600,
+      "final_error_um": 147.9426483826615,
+      "trajectory_minimum_error_um": 88.59847215205222,
+      "low_speed_at_exit": false,
+      "encoder_settled_at_exit": false,
+      "safety_limited_steps": 0
+    },
+    {
+      "episode_index": 16,
+      "target_id": "target_fbc038a60a6e",
+      "seed": 58,
+      "success": false,
+      "steps": 1600,
+      "final_error_um": 158.87410160526133,
+      "trajectory_minimum_error_um": 42.625421072831635,
+      "low_speed_at_exit": false,
+      "encoder_settled_at_exit": false,
+      "safety_limited_steps": 0
+    },
+    {
+      "episode_index": 17,
+      "target_id": "target_baf07b4fdc81",
+      "seed": 59,
+      "success": false,
+      "steps": 1600,
+      "final_error_um": 164.8328992580165,
+      "trajectory_minimum_error_um": 31.55689504894884,
+      "low_speed_at_exit": false,
+      "encoder_settled_at_exit": false,
+      "safety_limited_steps": 0
+    }
+  ]
+}

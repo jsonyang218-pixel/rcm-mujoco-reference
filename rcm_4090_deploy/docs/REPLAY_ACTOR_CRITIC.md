@@ -5,6 +5,11 @@
 代码基于远端 `040fe0b`（Publish state attention E1 error trajectories）；
 安装包仅包含本次新增的五个文件，解压到现有仓库根目录即可。
 
+命名和复现边界见
+[ILOSAC_SOURCE_FORMULA_AUDIT.md](ILOSAC_SOURCE_FORMULA_AUDIT.md)。本模块不是
+已验证的 ILOSAC/THMM 复现；原论文的官方算法源码目前仍未确认。论文公式的
+模块映射、待确认项以及“当前结果应归属 Flow Replay”的说明均以该审计为准。
+
 ## Linux 一条命令
 
 在 `rcm_4090_deploy` 下，用现有训练环境执行：

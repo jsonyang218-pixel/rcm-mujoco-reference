@@ -34,6 +34,10 @@ Recorded: 2026-11-16
   https://github.com/jsonyang218-pixel/rcm-mujoco-reference/blob/experiment/state-attention-v1-20261117/rcm_4090_deploy/github_reports/model_status_20261117_state_attention_kv8/MODEL_STATUS.md
 - Replay actor-critic status:
   https://github.com/jsonyang218-pixel/rcm-mujoco-reference/blob/experiment/state-attention-v1-20261117/rcm_4090_deploy/github_reports/model_status_20261117_state_attention_replay/MODEL_STATUS.md
+- ILOSAC-inspired Flow v2 status:
+  https://github.com/jsonyang218-pixel/rcm-mujoco-reference/blob/experiment/state-attention-v1-20261117/rcm_4090_deploy/github_reports/model_status_20261118_ilosac_flow_v2/MODEL_STATUS.md
+- ILOSAC source/formula audit:
+  https://github.com/jsonyang218-pixel/rcm-mujoco-reference/blob/experiment/state-attention-v1-20261117/rcm_4090_deploy/docs/ILOSAC_SOURCE_FORMULA_AUDIT.md
 
 ## Previous experiment branch
 

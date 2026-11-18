@@ -4533,3 +4533,38 @@ OK
   `comparison.json` SHA-256
   `4d1448281a0d6d0ee55d35b5039050952428af2089b59a927a2c651912bc16cd`。
   结果仅为 MuJoCo 仿真，不代表硬件或临床精度。
+- 2026-11-18 13:44:11 CST：ILOSAC 来源与公式审计接入 PASS。新增
+  `docs/ILOSAC_SOURCE_FORMULA_AUDIT.md`、原始论文
+  `docs/references/ILOSAC_cit2.70076_original.pdf`（SHA-256
+  `14fedf6a282501f1b356868c3f775d4dd22343d818c62251f3a7aa042faa5816`）
+  和机器可读来源状态
+  `docs/references/ILOSAC_source_status_20261118.json`；PDF 哈希与状态 JSON
+  完全一致。文档索引已加入 ILOSAC 审计和 Replay actor-critic 条目，
+  `REPLAY_ACTOR_CRITIC.md` 已明确当前实现不是已验证的 ILOSAC/THMM 复现，
+  官方源码状态仍为 `not_verified`。已核对原 PDF 第 7 页式(17)软 Q 项确实
+  带平方，式(20)使用示范策略 KL 约束；当前 Flow matching 不能等价替代该
+  KL。本次仅接入审计资料，没有实现或启动新的 ILOSAC 复现实验。
+- 2026-11-18 15:15:05 CST：ILOSAC-inspired Flow v2 完整流水线 FAIL
+  （严格成功门限），但为当前最佳最终误差版本。模块标记为
+  `flow_ilosac_inspired_offline_v1`，不是 ILOSAC 复现。实现加入冻结示范
+  策略动作锚定（KL 近似）和 TD target `[-5,5]` 裁剪；明确未实现 THMM、
+  持续时间模型、在线约束与 entropy temperature。6/6 replay 单元测试和 GPU
+  smoke PASS。4×1000 步训练 best epoch 1，best/last val loss
+  `0.1482578143/0.1484347544`；checkpoint SHA-256
+  `1ab324fca7f388b5747cc976d42ccc62e24781c47a78e86e9131fcde021d0015`。
+  20 目标 canonical success `0/20`，最终误差
+  mean/median/min/max=`162.215/148.591/88.933/342.324 µm`，19/20 最终误差
+  ≤300 µm，每目标最小误差均值 `63.193 µm`，全组最好瞬间误差
+  `31.557 µm`，从未进入 `0.35 µm`，safety-limited steps 0。与 v1 配对：
+  18 改善、2 恶化，均值/中位数改善 `272.182/81.240 µm`。Policy Q 均值从
+  `-2.031` 到 `-3.712`，明显优于 Replay v1 的 `-10.455` 漂移。结果目录
+  `outputs/state_attention_ilosac_flow_v2_20261118_1/`；`summary.json`
+  SHA-256
+  `62831313b3eaf5ae4d38adb830ef2358d7ec656b22fa2affde133c538a35a6a7`，
+  `comparison.json` SHA-256
+  `5dc358495ea3a484213a5cb3f450292f11594a36e420a83ad084d37cdadbdbd0`。
+  模型入口 SHA-256
+  `3777214a3cb87cece928771cd33d1cd342b8b594cc40ca4b39560b1a01b730a5`，
+  配置 SHA-256
+  `81481e8f6ba1d6e82aa995374852dfa53ed00899bf8a09bd2e3dec2144da59fe`。
+  结果仅为 MuJoCo 仿真，不代表硬件或临床精度。
