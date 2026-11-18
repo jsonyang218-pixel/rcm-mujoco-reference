@@ -4595,3 +4595,39 @@ OK
   `comparison.json` SHA-256
   `63d44dcef7a64fa4b7827e30a8246c0f4cf35984c1e105f21026db8ca11de3ce`。
   结果仅为 MuJoCo 仿真，不代表硬件或临床精度。
+- 2026-11-18 18:21:33 CST：专家纠正历史经验回放 A/B/C 接入，A 完整
+  FAIL、B 评测中、C 待运行。新增纯 Flow 训练入口
+  `lerobot_training/dit_experience_replay.py`、固定 8+8 平衡采样器、
+  `run_experience_replay_abc.sh`、契约审计和 A/B/C 汇总器。单元测试合计
+  11/11 PASS，覆盖平衡批次、source 拆分、可复现性、reservoir 和旧 Replay
+  回归。首次契约审计因窗口掩码初始化为全 False，错误报告
+  `valid_windows=0`，判定 FAIL 并保留于
+  `runs/20261118/verification/experience_replay_contract/`；修正后用
+  `runs/20261118/verification/experience_replay_contract_retry1/` 重跑
+  PASS：234,316 帧、839 episodes、219,967 个连续有效动作窗口，其中教师
+  纠正 14,489 个；教师近目标 `<30/30–100/100–300 µm` 窗口数为
+  `2048/2863/5268`。真实 GPU 1-step balanced smoke 和 2-step 评测入口
+  smoke PASS，目录为 `runs/20261118/smoke/experience_replay_balanced/`
+  与 `runs/20261118/smoke/experience_replay_eval/`。
+- 2026-11-18 18:21:33 CST：Experience Replay A 原始继续训练完整流水线
+  FAIL（严格成功门限）。命令
+  `bash scripts/run_experience_replay_abc.sh outputs/state_attention_experience_replay_abc_20261118_1`，
+  配置 `configs/state_attention_experience_replay_a_original_20261118.json`；
+  从 state-attention v1 epoch 3 开始，4×1000 updates、batch 16、backbone
+  lr `1e-6`、attention lr `1e-5`。best epoch 3 val loss `0.144550`。
+  20 目标 canonical success `0/20`，最终误差
+  mean/median/min/max=`1087.778/883.749/112.620/2466.592 µm`，仅 6/20
+  最终误差 ≤300 µm，编码器停稳 0/20，safety-limited steps 0。与 v1 配对：
+  7 改善、13 恶化，最终误差均值恶化 `653.381 µm`；每目标最小误差均值从
+  `93.680` 改善至 `63.988 µm`，说明接近能力局部改善但无法保持。结果目录
+  `outputs/state_attention_experience_replay_abc_20261118_1/a_original/`；
+  `summary.json` SHA-256
+  `9de7f96b0498a5d589261b1ea5c9ddc5697f189316303fa7f60875d521f3548b`，
+  `comparison.json` SHA-256
+  `dfd62c594dcf4f9e29dc8c5d2d737a45089644dabd2fd6e567c6607804989c4e`。
+- 2026-11-18 18:21:33 CST：Experience Replay B/C 为部分状态，不作最终
+  结论。B static 训练完成，best epoch 3 val loss `0.145008`，checkpoint
+  SHA-256 `edc72afcd36b71fc9e969d0c58ba2aa92c97b317f95b5bda3f957f3af58afa56`；
+  上传时 B 处于 10 分片闭环评测中，C balanced 因顺序执行尚未启动。状态
+  快照位于 `outputs/state_attention_experience_replay_abc_20261118_1/b_static/status.json`。
+  结果仅为 MuJoCo 仿真，不代表硬件或临床精度。

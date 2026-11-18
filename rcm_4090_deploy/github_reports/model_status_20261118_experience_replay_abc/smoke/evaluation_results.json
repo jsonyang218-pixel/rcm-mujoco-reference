@@ -1,0 +1,221 @@
+{
+  "num_episodes": 1,
+  "success_rate": 0.0,
+  "avg_steps": 2.0,
+  "avg_final_error_mm": 19.544658749345125,
+  "median_final_error_mm": 19.544658749345125,
+  "evaluation_contract": {
+    "version": 2,
+    "execution_backend": "MotorBackend",
+    "control_period_s": 0.05,
+    "state_action_units": "A_deg,B_deg,C_mm",
+    "rgb_preprocessing": "1920x1440 -> 224x224 bilinear",
+    "ground_truth_used_for_control": false,
+    "ground_truth_used_for_success": true,
+    "require_motor_settled_for_success": true,
+    "terminal_condition": "MotorExecution.settled",
+    "success_definition": "error_threshold_and_three_consecutive_MotorExecution.settled_frames",
+    "success_error_threshold_mm": 0.00035,
+    "success_error_threshold_um": 0.35,
+    "required_consecutive_success_frames": 3,
+    "early_stop_error_mm": 30.0,
+    "max_consecutive_safety_limited": 20,
+    "oct_navigation_used": true,
+    "action_limit_deg_deg_mm": [
+      0.2897999882698059,
+      0.14434358477592468,
+      0.04271206632256508
+    ],
+    "num_action_samples": 1,
+    "action_aggregation": "single_sample",
+    "flow_integration_steps": 4,
+    "model_epoch": 0,
+    "policy_type": "dit_rectified_flow",
+    "model_train_loss": 0.07626359164714813,
+    "model_val_loss": 0.4895044267177582,
+    "model_best_normalized_mae": null,
+    "fine_model": null,
+    "fine_switch_error_mm": null,
+    "terminal_refine_error_mm": null,
+    "terminal_confirm_frames": 8
+  },
+  "episodes": [
+    {
+      "success": false,
+      "steps": 2,
+      "final_error_mm": 19.544658749345125,
+      "max_error_mm": 19.54812622391649,
+      "final_state_A_deg_B_deg_C_mm": [
+        -0.0108,
+        -0.010699718499168398,
+        0.0033530381840127703
+      ],
+      "final_velocity_deg_deg_mm_per_s": [
+        -0.216,
+        -0.21399436998336796,
+        0.0670607636802554
+      ],
+      "final_tip_world_mm": [
+        337.053322135206,
+        -11.261484886468503,
+        388.75743041152816
+      ],
+      "target_world_mm": [
+        348.8248906374382,
+        -16.156434489083658,
+        373.9431356590445
+      ],
+      "motor_summary": {
+        "backend": "MotorBackend",
+        "tau_s": 0.04,
+        "control_period_s": 0.05,
+        "integration_step_s": 0.002,
+        "speed_limits_A_deg_B_deg_C_mm_per_s": [
+          10.0,
+          10.0,
+          2.0
+        ],
+        "timeout_s": 0.5,
+        "simulation_time_s": 0.1,
+        "control_steps": 2,
+        "robot_ABCE": [
+          -6,
+          1465100,
+          893732,
+          0
+        ],
+        "target_robot_ABCE": [
+          -8,
+          1464731,
+          893818,
+          0
+        ],
+        "encoder_settled": false,
+        "status": "moving",
+        "fault": null,
+        "physical_dynamics_identified": false,
+        "direct_pose_fallback_used": false
+      },
+      "ground_truth_used_for_control": false,
+      "ground_truth_used_for_success": true,
+      "execution_backend": "MotorBackend",
+      "evaluation_contract_version": 2,
+      "state_action_units": "A_deg,B_deg,C_mm",
+      "oct_navigation_used": true,
+      "safety_limited_steps": 0,
+      "last_safety_error": null,
+      "early_stop_reason": null,
+      "terminal_success": {
+        "error_threshold_mm": 0.00035,
+        "required_consecutive_frames": 3,
+        "consecutive_frames_at_exit": 0,
+        "low_speed_at_exit": true,
+        "encoder_settled_at_exit": true,
+        "terminal_frame_pass": false,
+        "terminal_condition": "MotorExecution.settled"
+      },
+      "policy_control_mode_counts": {
+        "coarse": 0,
+        "fine": 0,
+        "stabilize": 0,
+        "terminal": 0
+      },
+      "last_terminal_refinement": null,
+      "terminal_locked_target_world_mm": null,
+      "trajectory": {
+        "states": [
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "actions": [
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            -0.019186053425073624,
+            -0.01694447547197342,
+            0.004329420626163483
+          ]
+        ],
+        "errors": [
+          19.54812622391649,
+          19.54812622391649
+        ],
+        "velocities": [
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "low_speed": [
+          true,
+          true
+        ],
+        "encoder_settled": [
+          true,
+          true
+        ],
+        "oct_navigation_mm": [
+          [
+            6.935793399810791,
+            -1.3441190719604492,
+            18.228723526000977
+          ],
+          [
+            6.935793399810791,
+            -1.3441190719604492,
+            18.228723526000977
+          ]
+        ],
+        "oct_navigation_norm_mm": [
+          19.549890518188477,
+          19.549890518188477
+        ],
+        "oct_navigation_valid": [
+          true,
+          true
+        ],
+        "simulation_time_s": [
+          0.0,
+          0.05
+        ]
+      },
+      "episode_index": 0,
+      "target_id": "target_d30721d6bc45",
+      "seed": 42,
+      "target_robot_mm": [
+        -4.895682513721456,
+        6.559561331997307,
+        21.960349202481627
+      ],
+      "nominal_target_robot_mm": [
+        -4.895777,
+        6.559563,
+        21.960329
+      ],
+      "target_shift_um": 0.09663632510827451,
+      "reachable_encoder_counts_ABC": [
+        -6982,
+        1255324,
+        2133985
+      ],
+      "target_manifest_used": true
+    }
+  ]
+}

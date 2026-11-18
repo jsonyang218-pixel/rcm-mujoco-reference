@@ -1,0 +1,21 @@
+{
+  "training_module": "state_attention_experience_replay_flow_v1",
+  "mode": "balanced",
+  "initial_checkpoint": "outputs/dit_rectified_flow_state_attention_v1_acthist_20261117/best_model.pth",
+  "initial_checkpoint_epoch": 3,
+  "original_windows": 206273,
+  "correction_windows": 14571,
+  "validation_windows": 26650,
+  "batch_size": 2,
+  "batch_mix": {
+    "original": 1,
+    "correction": 1
+  },
+  "sampling": "uniform_with_replacement",
+  "steps_per_epoch": 1,
+  "epochs": 1,
+  "flow_loss_weights": {
+    "original": 0.5,
+    "correction": 0.5
+  }
+}

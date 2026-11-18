@@ -1,0 +1,97 @@
+{
+  "data_dir": "/home/him1/mujoco_bc/rcm_4090_deploy/data/lerobot_v12_oct_dit_rf_dagger2_acthist_20261116_224",
+  "val_data_dir": "/home/him1/mujoco_bc/rcm_4090_deploy/data/lerobot_rcm_val_acthist_20261117_224",
+  "output_dir": "/home/him1/mujoco_bc/rcm_4090_deploy/outputs/state_attention_experience_replay_abc_20261118_1/a_original/training",
+  "init_from": "/home/him1/mujoco_bc/rcm_4090_deploy/outputs/dit_rectified_flow_state_attention_v1_acthist_20261117/best_model.pth",
+  "epochs": 4,
+  "batch_size": 16,
+  "val_batch_size": 64,
+  "num_workers": 8,
+  "prefetch_factor": 4,
+  "lr": 0.0001,
+  "weight_decay": 0.0001,
+  "n_obs_steps": 2,
+  "n_action_steps": 16,
+  "flow_integration_steps": 4,
+  "dit_dim": 384,
+  "dit_depth": 6,
+  "dit_heads": 6,
+  "dagger_episode_start": 760,
+  "dagger_repeat": 10.0,
+  "seed": 20261118,
+  "amp": true,
+  "policy_type": "dit_rectified_flow",
+  "use_oct": true,
+  "include_velocity": true,
+  "include_previous_action": true,
+  "state_mean": [
+    0.06349938362836838,
+    0.363604873418808,
+    12.981619834899902
+  ],
+  "state_std": [
+    6.787475109100342,
+    5.752523899078369,
+    6.081380844116211
+  ],
+  "oct_mean": [
+    0.7278906106948853,
+    -0.026162389665842056,
+    6.579880237579346,
+    0.970044732093811
+  ],
+  "oct_std": [
+    1.216712474822998,
+    0.9585331082344055,
+    5.981095314025879,
+    0.17052701115608215
+  ],
+  "action_mean": [
+    0.00018426710448693484,
+    -7.851731788832694e-05,
+    0.03335476294159889
+  ],
+  "action_std": [
+    0.04544081911444664,
+    0.02966109849512577,
+    0.016713595017790794
+  ],
+  "velocity_mean": [
+    0.004034513141959906,
+    -0.003496601479128003,
+    0.4751315414905548
+  ],
+  "velocity_std": [
+    0.6506950259208679,
+    0.4250059723854065,
+    0.24601227045059204
+  ],
+  "previous_action_mean": [
+    0.00024240043421741575,
+    -0.0001381530601065606,
+    0.033337727189064026
+  ],
+  "previous_action_std": [
+    0.045525968074798584,
+    0.029723668470978737,
+    0.01701800711452961
+  ],
+  "attention_mechanism": "state_conditioned_temporal_attention_v1",
+  "attention_num_templates": 4,
+  "attention_gate_hidden_dim": 32,
+  "backbone_lr_scale": 0.1,
+  "mode": "original",
+  "steps_per_epoch": 1000,
+  "validation_max_batches": null,
+  "backbone_lr": 1e-06,
+  "attention_lr": 1e-05,
+  "correction_source": "teacher",
+  "device": "cuda",
+  "architecture": "state_conditioned_temporal_attention_v1",
+  "training_module": "state_attention_experience_replay_flow_v1",
+  "objective": "rectified_flow_only",
+  "reward_in_loss": false,
+  "history_action_source": "executed_action",
+  "supervision_action_source": "teacher",
+  "initial_checkpoint_epoch": 3
+}

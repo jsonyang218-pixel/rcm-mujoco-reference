@@ -1,0 +1,45 @@
+{
+  "status": "PASS",
+  "data_dir": "data/lerobot_v12_oct_dit_rf_dagger2_acthist_20261116_224",
+  "frames": 234316,
+  "episodes": 839,
+  "action_block_steps": 16,
+  "history_steps": 2,
+  "control_period_s": 0.05,
+  "action_label_contract": {
+    "supervision_array": "action",
+    "execution_array": "executed_action",
+    "history_action_array": "executed_action",
+    "cross_episode_windows_allowed": false,
+    "cross_source_frame_gap_windows_allowed": false
+  },
+  "valid_windows": 219967,
+  "sources": {
+    "executed": {
+      "frames": 218433,
+      "valid_action_windows": 205478,
+      "label_differs_from_executed": 0,
+      "distance_buckets": {
+        "<30": 9634,
+        "30-100": 6626,
+        "100-300": 6468,
+        "300-1000": 12818,
+        ">=1000": 169932
+      },
+      "invalid_oct_frames": 6308
+    },
+    "teacher": {
+      "frames": 15883,
+      "valid_action_windows": 14489,
+      "label_differs_from_executed": 5614,
+      "distance_buckets": {
+        "<30": 2048,
+        "30-100": 2863,
+        "100-300": 5268,
+        "300-1000": 2213,
+        ">=1000": 2097
+      },
+      "invalid_oct_frames": 711
+    }
+  }
+}

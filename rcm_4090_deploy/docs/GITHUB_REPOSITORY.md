@@ -50,6 +50,17 @@ Recorded: 2026-11-16
 - Formula and implementation notes:
   https://github.com/jsonyang218-pixel/rcm-mujoco-reference/blob/experiment/frontiers2022-ddpg-20261118/rcm_4090_deploy/FRONTIERS2022_DDPG.md
 
+## Expert-corrected experience replay
+
+- Branch name:
+  `experiment/experience-replay-20261118`
+- Branch URL:
+  https://github.com/jsonyang218-pixel/rcm-mujoco-reference/tree/experiment/experience-replay-20261118
+- A/B/C status:
+  https://github.com/jsonyang218-pixel/rcm-mujoco-reference/blob/experiment/experience-replay-20261118/rcm_4090_deploy/github_reports/model_status_20261118_experience_replay_abc/ABC_STATUS.md
+- Experiment design:
+  https://github.com/jsonyang218-pixel/rcm-mujoco-reference/blob/experiment/experience-replay-20261118/rcm_4090_deploy/docs/EXPERIENCE_REPLAY_EXPERIMENT.md
+
 ## Previous experiment branch
 
 - Branch name:
