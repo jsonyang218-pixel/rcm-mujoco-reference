@@ -30,6 +30,10 @@ Recorded: 2026-11-16
   https://github.com/jsonyang218-pixel/rcm-mujoco-reference/blob/experiment/state-attention-v1-20261117/rcm_4090_deploy/github_reports/model_status_20261117_state_attention_e1/MODEL_STATUS.md
 - E1 compact data:
   https://github.com/jsonyang218-pixel/rcm-mujoco-reference/tree/experiment/state-attention-v1-20261117/rcm_4090_deploy/github_reports/model_status_20261117_state_attention_e1
+- KV8 status:
+  https://github.com/jsonyang218-pixel/rcm-mujoco-reference/blob/experiment/state-attention-v1-20261117/rcm_4090_deploy/github_reports/model_status_20261117_state_attention_kv8/MODEL_STATUS.md
+- Replay actor-critic status:
+  https://github.com/jsonyang218-pixel/rcm-mujoco-reference/blob/experiment/state-attention-v1-20261117/rcm_4090_deploy/github_reports/model_status_20261117_state_attention_replay/MODEL_STATUS.md
 
 ## Previous experiment branch
 

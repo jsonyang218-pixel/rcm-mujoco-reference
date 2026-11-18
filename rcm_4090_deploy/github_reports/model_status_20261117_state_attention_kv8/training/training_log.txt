@@ -1,0 +1,10 @@
+训练日志: /home/him1/mujoco_bc/rcm_4090_deploy/outputs/state_attention_kv8_20261117_1/training/training.log
+加载数据集: 220844 个有效样本 (from 234316 total frames)
+加载数据集: 26650 个有效样本 (from 27290 total frames)
+{"initialized_from": "/home/him1/mujoco_bc/rcm_4090_deploy/outputs/dit_rectified_flow_state_attention_v1_acthist_20261117/best_model.pth", "initial_epoch": 3}
+{"policy_type": "dit_rectified_flow", "parameters_m": 34.538115, "train_windows": 220844, "val_windows": 26650, "backbone": "DiT", "objective": "rectified_flow"}
+Epoch 0: train_loss=0.152474 val_loss=0.183928
+Epoch 1: train_loss=0.137077 val_loss=0.177554
+Epoch 2: train_loss=0.133604 val_loss=0.175543
+Epoch 3: train_loss=0.131388 val_loss=0.174219
+Training complete; best val loss=0.174219

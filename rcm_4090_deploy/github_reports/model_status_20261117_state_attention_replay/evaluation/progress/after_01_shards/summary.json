@@ -1,0 +1,54 @@
+{
+  "stage": "evaluation",
+  "status": "partial",
+  "updated_at": "2026-11-17T23:11:36+08:00",
+  "completed_shards": 1,
+  "total_shards": 10,
+  "completed_shard_names": [
+    "g08"
+  ],
+  "completed_episodes": 2,
+  "target_start": 0,
+  "target_end": 20,
+  "episode_indices": [
+    14,
+    15
+  ],
+  "successes": 0,
+  "success_rate": 0.0,
+  "encoder_settled_at_exit": 0,
+  "final_error_um": {
+    "mean": 227.66879480118524,
+    "median": 227.66879480118524,
+    "min": 199.60399576242497,
+    "max": 255.73359383994554
+  },
+  "trajectory_minimum_error_mean_um": 109.61670432596611,
+  "safety_limited_steps": 0,
+  "episodes": [
+    {
+      "episode_index": 14,
+      "target_id": "target_60c55f2f653c",
+      "seed": 56,
+      "success": false,
+      "steps": 1600,
+      "final_error_um": 199.60399576242497,
+      "trajectory_minimum_error_um": 163.08697141267876,
+      "low_speed_at_exit": false,
+      "encoder_settled_at_exit": false,
+      "safety_limited_steps": 0
+    },
+    {
+      "episode_index": 15,
+      "target_id": "target_a17303552cb6",
+      "seed": 57,
+      "success": false,
+      "steps": 1600,
+      "final_error_um": 255.73359383994554,
+      "trajectory_minimum_error_um": 56.14643723925347,
+      "low_speed_at_exit": false,
+      "encoder_settled_at_exit": false,
+      "safety_limited_steps": 0
+    }
+  ]
+}

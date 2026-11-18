@@ -1,0 +1,81 @@
+{
+  "stage": "evaluation",
+  "status": "partial",
+  "updated_at": "2026-11-17T23:12:10+08:00",
+  "completed_shards": 2,
+  "total_shards": 10,
+  "completed_shard_names": [
+    "g08",
+    "g09"
+  ],
+  "completed_episodes": 4,
+  "target_start": 0,
+  "target_end": 20,
+  "episode_indices": [
+    14,
+    15,
+    16,
+    17
+  ],
+  "successes": 0,
+  "success_rate": 0.0,
+  "encoder_settled_at_exit": 0,
+  "final_error_um": {
+    "mean": 224.8636045270328,
+    "median": 222.05841425288034,
+    "min": 199.60399576242497,
+    "max": 255.73359383994554
+  },
+  "trajectory_minimum_error_mean_um": 87.05248911185485,
+  "safety_limited_steps": 0,
+  "episodes": [
+    {
+      "episode_index": 14,
+      "target_id": "target_60c55f2f653c",
+      "seed": 56,
+      "success": false,
+      "steps": 1600,
+      "final_error_um": 199.60399576242497,
+      "trajectory_minimum_error_um": 163.08697141267876,
+      "low_speed_at_exit": false,
+      "encoder_settled_at_exit": false,
+      "safety_limited_steps": 0
+    },
+    {
+      "episode_index": 15,
+      "target_id": "target_a17303552cb6",
+      "seed": 57,
+      "success": false,
+      "steps": 1600,
+      "final_error_um": 255.73359383994554,
+      "trajectory_minimum_error_um": 56.14643723925347,
+      "low_speed_at_exit": false,
+      "encoder_settled_at_exit": false,
+      "safety_limited_steps": 0
+    },
+    {
+      "episode_index": 16,
+      "target_id": "target_fbc038a60a6e",
+      "seed": 58,
+      "success": false,
+      "steps": 1600,
+      "final_error_um": 238.27861495691246,
+      "trajectory_minimum_error_um": 42.987147611240324,
+      "low_speed_at_exit": false,
+      "encoder_settled_at_exit": false,
+      "safety_limited_steps": 0
+    },
+    {
+      "episode_index": 17,
+      "target_id": "target_baf07b4fdc81",
+      "seed": 59,
+      "success": false,
+      "steps": 1600,
+      "final_error_um": 205.83821354884822,
+      "trajectory_minimum_error_um": 85.98940018424688,
+      "low_speed_at_exit": false,
+      "encoder_settled_at_exit": false,
+      "safety_limited_steps": 0
+    }
+  ]
+}

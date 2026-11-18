@@ -4490,3 +4490,46 @@ OK
   绘图脚本 SHA-256
   `f6478b50296dacacf9d44b4bbed6cf452e89b467e60fc47e90fe7e4d9bb70a67`。
   图像已同步到 E1 GitHub 报告目录，尚未另行推送远端。
+- 2026-11-18 08:46:12 CST：KV8/E2 完整流水线 FAIL。Q/输出保持 16 token，
+  K/V/偏置键使用固定相邻平均压缩到 8，v1 checkpoint 严格加载且参数量仍为
+  34,538,115；GPU 前向有限。模型源码
+  `lerobot_training/dit_state_attention_kv8.py` SHA-256
+  `1b57216b9bea596c73d64fee9bcee01848f0e7b546b18dc6c8d1071823fddad8`，
+  配置 SHA-256
+  `c9b5a2602dacf0f10976371b01b1956366e0fe11260d35ef86b44870b74abce6`。
+  4×1000 步训练 best epoch 3，best val loss `0.174219`；best checkpoint
+  SHA-256
+  `06d36598f35b83ec87e8f71498201f16fea733d98b74508f364d4a9db91ccea2`。
+  20 目标闭环 canonical success `0/20`，最终误差
+  mean/median/min/max=`1513.620/1713.822/166.260/2983.236 µm`，每目标最小
+  误差均值 `80.416 µm`，safety-limited steps 0。与 v1 配对：4 改善、16
+  恶化，最终误差均值恶化 `1079.223 µm`。结果目录
+  `outputs/state_attention_kv8_20261117_1/`；`summary.json` SHA-256
+  `c3fcedb5502a05311d7d6fbfc1a237f253446fe1a4073c41170a63d998ef4e55`，
+  `comparison.json` SHA-256
+  `0b0277e46b88bf8d54dd4d93e5a90458fb701ab89cee55a6de9de80623095039`。
+  KV8 不能替代 v1，也不值得进入 KV4。
+- 2026-11-18 08:46:12 CST：Replay actor-critic v1 完整流水线 FAIL（严格
+  成功门限），但为当前最佳最终误差版本。Replay 6/6 数据与梯度单元测试 PASS；
+  真实数据 GPU smoke PASS；经验池包含 225,614 个连续、OCT 有效转移。
+  入口源码 SHA-256
+  `10dbd2a0cc51d01ba13a77d2a8a6c8c90f02f212837d28fd42604ff0274961c0`，
+  回放模块 SHA-256
+  `50104076ef5aa617c294f70f8187d28ec4ec4ef1ab5d838fde5c6879d4aeff22`，
+  配置 SHA-256
+  `338d7cb54248291fa70d13e11072fcad633ec03edd70c9698493cf4b7487e46a`。
+  4×1000 步训练 best epoch 3，best val loss `0.148059`；best checkpoint
+  SHA-256
+  `015bb3d2330693f9d8a46967c4f40698e2e54b708f2da2a8e1e87398fe740c8c`。
+  20 目标 canonical success `0/20`，最终误差
+  mean/median/min/max=`171.028/161.439/92.671/269.203 µm`，20/20 最终误差
+  ≤300 µm，每目标最小误差均值 `77.841 µm`，全组最好瞬间误差 `28.463 µm`，
+  从未进入 `0.35 µm`；safety-limited steps 0。与 v1 配对：19 改善、
+  1 恶化，均值/中位数改善 `263.369/74.930 µm`；与 E1 配对：17 改善、
+  3 恶化，均值改善 `807.787 µm`。Policy Q 均值从 `-2.256` 漂移至
+  `-10.455`，critic 尺度稳定性仍需修复。结果目录
+  `outputs/state_attention_replay_v1_20261117_1/`；`summary.json` SHA-256
+  `9eca5e1699cda6cb76e3d842a480ca1e57ba876de2938987a0d16e607d87e443`，
+  `comparison.json` SHA-256
+  `4d1448281a0d6d0ee55d35b5039050952428af2089b59a927a2c651912bc16cd`。
+  结果仅为 MuJoCo 仿真，不代表硬件或临床精度。

@@ -1,0 +1,24 @@
+{
+  "training_module": "flow_replay_actor_critic_v1",
+  "sources": [
+    {
+      "source": 0,
+      "data_dir": "/home/him1/mujoco_bc/rcm_4090_deploy/data/lerobot_v12_oct_dit_rf_dagger2_acthist_20261116_224",
+      "frames": 234316,
+      "eligible_transitions": 225614,
+      "explicit_terminated_labels": false
+    }
+  ],
+  "retained_transitions": 225614,
+  "seen_transitions": 225614,
+  "capacity": 300000,
+  "retention": "uniform_reservoir",
+  "reward": "progress_weight*(d-d_next)/scale-distance_weight*d_next/scale-effort_weight*mean((executed/action_limit)^2)",
+  "reward_distance_source": "observed OCT navigation norm in mm",
+  "unlabeled_endings": "continuing task; bootstrap, no inferred success or failure",
+  "execution_action_limit_deg_deg_mm": [
+    0.2897999882698059,
+    0.14434358477592468,
+    0.04271206632256508
+  ]
+}
