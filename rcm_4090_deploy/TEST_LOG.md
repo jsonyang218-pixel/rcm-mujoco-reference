@@ -4514,6 +4514,21 @@ OK
   `runs/20261119/analysis/plan2_collection/plan2_collection.json` SHA-256
   `a492e128bb05457ae2017697d9ab4fdb945243498e3b9d9e758bfe9061f7969d`。
   采集数据仅为仿真数据，不代表硬件或临床精度。
+- 2026-11-19 15:40:00 CST：规划 2 专家纠正数据集采集完成。按用户确认将
+  测试集上限从 40 调整为 35 条，最终接受训练/验证/测试
+  `200/40/35`，共 `275` 条、`110,771` 帧。分类结果为：训练
+  D1/D2/D3/D4=`70/50/50/30`，验证=`14/10/10/6`，测试=`14/10/10/1`。
+  训练集 D4 有一条重复 target seed，已从接受计数中排除（重复帧 1,600）；
+  测试 D4 分片在达到 35 条上限后停止，未完成目录保留为 interrupted
+  evidence，不计入最终数据。并行续采期间，所有中断中的 episode 均归档为
+  `partial_episode_*`，已完成 control report 保留。最终原始数据目录为
+  `data/experience_replay_plan2_20261118_retry2/`、
+  `data/experience_replay_plan2_d3_pilot_beta1_20261119/`、
+  `data/experience_replay_plan2_20261119_remaining1/`、
+  `data/experience_replay_plan2_20261119_validation1/`、
+  `data/experience_replay_plan2_20261119_test1/`；最终清单
+  `github_reports/model_status_20261119_plan2_collection/plan2_final_summary.json`。
+  所有采集进程已结束，结果仅为 MuJoCo 仿真数据。
 - 2026-11-17 20:52:25 CST：E1 轨迹误差图生成 PASS。绘图脚本新增可配置
   candidate/baseline 图例与配对文件名；使用 E1 20 目标完整轨迹和冻结 v1
   基线生成 4 张图：全部轨迹、20 宫格、best/final 对比、E1 对 v1 最终误差

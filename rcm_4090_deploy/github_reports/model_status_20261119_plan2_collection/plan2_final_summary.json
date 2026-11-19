@@ -1,0 +1,47 @@
+{
+  "train": {
+    "trajectories": 200,
+    "frames": 85523,
+    "categories": {
+      "D1": {"trajectories": 70, "frames": 22410},
+      "D2": {"trajectories": 50, "frames": 14587},
+      "D3": {"trajectories": 50, "frames": 4432},
+      "D4": {"trajectories": 30, "frames": 44094}
+    }
+  },
+  "validation": {
+    "trajectories": 40,
+    "frames": 15675,
+    "categories": {
+      "D1": {"trajectories": 14, "frames": 4364},
+      "D2": {"trajectories": 10, "frames": 3302},
+      "D3": {"trajectories": 10, "frames": 775},
+      "D4": {"trajectories": 6, "frames": 7234}
+    }
+  },
+  "test": {
+    "trajectories": 35,
+    "frames": 9573,
+    "categories": {
+      "D1": {"trajectories": 14, "frames": 4826},
+      "D2": {"trajectories": 10, "frames": 3302},
+      "D3": {"trajectories": 10, "frames": 774},
+      "D4": {"trajectories": 1, "frames": 671}
+    }
+  },
+  "duplicate_excluded": {
+    "trajectories": 1,
+    "frames": 1600,
+    "reason": "D4 repeated target seed"
+  },
+  "total": {
+    "trajectories": 275,
+    "frames": 110771
+  },
+  "scope_change": {
+    "date": "2026-11-19",
+    "decision": "Test split capped at 35 trajectories",
+    "planned_test_trajectories": 40,
+    "accepted_test_trajectories": 35
+  }
+}

@@ -1,13 +1,18 @@
 # Plan 2 Expert-Correction Collection
 
-Plan 2 targets 280 independent trajectories over 70 new targets:
+Plan 2 initially targeted 280 trajectories. On 2026-11-19 the test split was
+approved at 35 trajectories, producing a final accepted cap of 275:
 
 | Category | Train | Validation | Test |
 |---|---:|---:|---:|
 | D1 near-target correction | 70 | 14 | 14 |
 | D2 overshoot/oscillation recovery | 50 | 10 | 10 |
 | D3 settling and hold | 50 | 10 | 10 |
-| D4 full approach | 30 | 6 | 6 |
+| D4 full approach | 30 | 6 | 1 for the revised 35-trajectory test cap |
+
+Final accepted totals are 200 training, 40 validation, and 35 test
+trajectories, including 110,771 frames. One duplicate training D4 target was
+excluded from the accepted count.
 
 The collection driver is:
 

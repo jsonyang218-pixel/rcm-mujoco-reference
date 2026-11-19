@@ -3,10 +3,13 @@
 from __future__ import annotations
 
 import argparse
+from concurrent.futures import ThreadPoolExecutor, as_completed
+from datetime import datetime
 import json
 from pathlib import Path
 import subprocess
 import sys
+import time
 
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
@@ -406,6 +409,97 @@ def command_for(spec, model, dataset_root, seed, *, materialize):
     return command, output
 
 
+def prepare_resume(item, interrupted_tag):
+    output = Path(item["output"])
+    manifest = output / "manifest.json"
+    if manifest.is_file():
+        item["status"] = "already_complete"
+        return item
+    if not output.exists():
+        item["status"] = "pending"
+        return item
+
+    reports = sorted(output.glob("episode_*/control_report.json"))
+    completed = sorted(
+        int(path.parent.name.split("_")[-1]) for path in reports
+    )
+    if completed and completed != list(range(completed[-1] + 1)):
+        raise ValueError(
+            f"{output} completed episodes are not a contiguous prefix"
+        )
+    if not completed:
+        destination = output.with_name(
+            f"{output.name}_prestart_archived_{interrupted_tag}"
+        )
+        output.rename(destination)
+        item["status"] = "fresh_after_archive"
+        item["archived_output"] = str(destination)
+        return item
+    for episode_dir in sorted(output.glob("episode_*")):
+        if not episode_dir.is_dir():
+            continue
+        if (episode_dir / "control_report.json").is_file():
+            continue
+        destination = output / (
+            f"partial_{episode_dir.name}_{interrupted_tag}"
+        )
+        episode_dir.rename(destination)
+        for name in (
+            "images",
+            "policy_inputs",
+            "policy_inputs_no_image",
+            "action_labels",
+        ):
+            partial = output / "dataset" / name / episode_dir.name
+            if partial.is_dir():
+                partial.rename(
+                    output
+                    / "dataset"
+                    / name
+                    / f"partial_{episode_dir.name}_{interrupted_tag}"
+                )
+    next_episode = completed[-1] + 1 if completed else 0
+    if next_episode:
+        item["command"].extend([
+            "--resume-start-episode",
+            str(next_episode),
+        ])
+    item["resume_start_episode"] = next_episode
+    item["status"] = "resume"
+    return item
+
+
+def execute_item(item, dataset_root):
+    logs = dataset_root / "logs"
+    logs.mkdir(parents=True, exist_ok=True)
+    log_path = logs / f"{item['name']}.log"
+    started = time.monotonic()
+    with log_path.open("w", encoding="utf-8") as stream:
+        print(
+            json.dumps({
+                "event": "start",
+                "run": item["name"],
+                "resume_start_episode": item.get(
+                    "resume_start_episode", 0
+                ),
+            }),
+            file=stream,
+            flush=True,
+        )
+        code = subprocess.run(
+            item["command"],
+            cwd=PROJECT_ROOT,
+            stdout=stream,
+            stderr=subprocess.STDOUT,
+        ).returncode
+    return {
+        "run": item["name"],
+        "returncode": code,
+        "log": str(log_path),
+        "elapsed_s": time.monotonic() - started,
+    }
+
+
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--model", type=Path, required=True)
@@ -424,13 +518,17 @@ def main(argv=None):
     )
     parser.add_argument("--seed", type=int, default=20300101)
     parser.add_argument("--dry-run", action="store_true")
+    parser.add_argument("--resume", action="store_true")
+    parser.add_argument("--workers", type=int, default=1)
     args = parser.parse_args(argv)
     dataset_root = args.dataset_root.resolve()
     model = args.model.resolve()
     if not model.is_file():
         parser.error("model checkpoint does not exist")
-    if dataset_root.exists() and not args.dry_run:
+    if dataset_root.exists() and not args.dry_run and not args.resume:
         parser.error("dataset root already exists")
+    if args.workers < 1:
+        parser.error("workers must be positive")
 
     stages = {
         "pilot": pilot_runs(),
@@ -453,6 +551,7 @@ def main(argv=None):
         "model": str(model),
         "dataset_root": str(dataset_root),
         "dry_run": args.dry_run,
+        "workers": args.workers,
         "expected_counts": expected_counts(specs),
         "expected_trajectories": sum(
             len(spec["seeds"]) for spec in specs
@@ -461,7 +560,7 @@ def main(argv=None):
     }
     commands = []
     if not args.dry_run:
-        dataset_root.mkdir(parents=True)
+        dataset_root.mkdir(parents=True, exist_ok=True)
     for index, spec in enumerate(specs):
         command, output = command_for(
             spec,
@@ -476,15 +575,43 @@ def main(argv=None):
             "trajectories": len(spec["seeds"]),
             "output": str(output),
             "command": command,
+            "status": "pending",
         })
+    if args.resume and not args.dry_run:
+        interrupted_tag = datetime.now().strftime(
+            "interrupted_%Y%m%d_%H%M%S"
+        )
+        commands = [
+            prepare_resume(item, interrupted_tag)
+            for item in commands
+        ]
+        commands = [
+            item for item in commands
+            if item["status"] != "already_complete"
+        ]
     plan["commands"] = commands
     if args.dry_run:
         print(json.dumps(plan, ensure_ascii=False, indent=2))
         return 0
 
     write_json(dataset_root / "collection_plan.json", plan)
-    for item in commands:
-        subprocess.run(item["command"], cwd=PROJECT_ROOT, check=True)
+    failures = []
+    with ThreadPoolExecutor(
+        max_workers=min(args.workers, max(len(commands), 1))
+    ) as pool:
+        futures = {
+            pool.submit(execute_item, item, dataset_root): item
+            for item in commands
+        }
+        for future in as_completed(futures):
+            result = future.result()
+            print(json.dumps(result, ensure_ascii=False), flush=True)
+            if result["returncode"]:
+                failures.append(result)
+    if failures:
+        raise RuntimeError(
+            f"{len(failures)} collection runs failed: {failures}"
+        )
     return 0
 
 

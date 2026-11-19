@@ -1,4 +1,4 @@
-# Plan 2 Expert-Correction Collection — 2026-11-19
+# Plan 2 Expert-Correction Collection — Final Status
 
 ## Dataset design
 
@@ -35,17 +35,25 @@ reliably. D3 was re-collected with expert-dominant `beta=1.0`. Its accepted
 trajectories reduce error from `20-77 um` to `0.016-4.081 um`, demonstrating
 that the expert provides useful settling/hold corrections.
 
-## Current collection state
+## Final accepted dataset
 
-The remaining 180 training trajectories have started:
+Collection is complete under the revised scope approved on 2026-11-19: the test
+split is capped at 35 trajectories instead of 40.
 
-- D1: 63
-- D2: 45
-- D3: 45
-- D4: 27
+| Split | D1 | D2 | D3 | D4 | Total | Frames |
+|---|---:|---:|---:|---:|---:|---:|
+| Train | 70 | 50 | 50 | 30 | **200** | 85,523 |
+| Validation | 14 | 10 | 10 | 6 | **40** | 15,675 |
+| Test | 14 | 10 | 10 | 1 | **35** | 9,573 |
+| Total | 98 | 70 | 70 | 37 | **275** | **110,771** |
 
-Validation and test collection follow after training completion. The raw image
-datasets are intentionally excluded from Git; only collection plans, manifests,
+One training D4 trajectory repeated an already collected target and is excluded
+from the accepted 200 trajectories. The incomplete test D4 shards were stopped
+after the 35-trajectory test limit was approved; their partial directories are
+retained as interrupted evidence.
+
+The raw image datasets occupy about 28 GB across the accepted collection roots
+and are intentionally excluded from Git. Only collection plans, manifests,
 status, and summaries are uploaded.
 
 ## Failed and superseded attempts
@@ -65,5 +73,7 @@ status, and summaries are uploaded.
 - [Pilot plan](plans/pilot_plan.json)
 - [Expert-dominant D3 plan](plans/d3_beta1_plan.json)
 - [Remaining training plan](plans/remaining_plan.json)
-- [Compact collection summary](plan2_collection.json)
+- [Earlier pilot snapshot](plan2_collection.json)
+- [Final accepted split and frame counts](plan2_final_summary.json)
 - [Pilot run manifests](pilot_manifests/)
+- [Completed train/validation/test run manifests](final_manifests/)

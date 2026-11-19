@@ -1,0 +1,4419 @@
+{
+  "schema_version": 1,
+  "format": "DAgger episodes with per-frame policy, teacher and executed actions",
+  "model": "/home/him1/mujoco_bc/rcm_4090_deploy/outputs/state_attention_experience_ratio_20261118_1/r0_natural/training/step_004000.pth",
+  "policy_type": "dit_rectified_flow",
+  "policy_checkpoint_epoch": 3,
+  "policy_guided_oct": false,
+  "seed": 20300701,
+  "beta": 1.0,
+  "teacher_takeover_steps": 20,
+  "teacher_takeover_max_steps": 400,
+  "hold_frames": 40,
+  "max_error_mm": 0.1,
+  "target_seeds_file": "/home/him1/mujoco_bc/rcm_4090_deploy/data/experience_replay_plan2_20261119_remaining1/manifests/d3_hold_remaining_seeds.json",
+  "target_seeds": [
+    20310003,
+    20310004,
+    20310005,
+    20310006,
+    20310007,
+    20310008,
+    20310009,
+    20310010,
+    20310011,
+    20310012,
+    20310013,
+    20310014,
+    20310015,
+    20310016,
+    20310017,
+    20310018,
+    20310019,
+    20310020,
+    20310021,
+    20310022,
+    20310023,
+    20310024
+  ],
+  "target_min_posterior_z": 0.9,
+  "reachable_targets": [
+    {
+      "target_index": 0,
+      "target_seed": 20310003,
+      "requested_target_robot_mm": [
+        1.8178315265376535,
+        8.501812006271265,
+        22.047898623044283
+      ],
+      "requested_target_world_mm": [
+        350.66696674673926,
+        -9.442920448824552,
+        374.5650345176227
+      ],
+      "reachable_target_robot_mm": [
+        1.8167380563613529,
+        8.502541421884457,
+        22.047464444517082
+      ],
+      "reachable_target_world_mm": [
+        350.667489368414,
+        -9.44401391900085,
+        374.5657034157579
+      ],
+      "target_shift_mm": [
+        0.00052262167474737,
+        -0.0010934701762987942,
+        0.0006688981352453993
+      ],
+      "target_shift_norm_mm": 0.0013842814586295066,
+      "requested_terminal_robot_ABCE": [
+        2619,
+        870537,
+        2150832,
+        0
+      ],
+      "endpoint_robot_ABCE": [
+        2617,
+        870374,
+        2150818,
+        0
+      ],
+      "endpoint_task_rad_rad_m": [
+        0.08221547974444489,
+        -0.12671080625122777,
+        0.019699882751211477
+      ]
+    },
+    {
+      "target_index": 1,
+      "target_seed": 20310004,
+      "requested_target_robot_mm": [
+        -5.012248147641645,
+        4.11567829053738,
+        22.477893981177584
+      ],
+      "requested_target_world_mm": [
+        346.7344162204076,
+        -16.273000123003847,
+        372.5755342441464
+      ],
+      "reachable_target_robot_mm": [
+        -5.011698110766239,
+        4.116255948487899,
+        22.47743030823502
+      ],
+      "reachable_target_world_mm": [
+        346.73478670613264,
+        -16.272450086128444,
+        372.5761756657184
+      ],
+      "target_shift_mm": [
+        0.00037048572505682387,
+        0.0005500368754027818,
+        0.0006414215719701133
+      ],
+      "target_shift_norm_mm": 0.000922616859678137,
+      "requested_terminal_robot_ABCE": [
+        -6984,
+        1783010,
+        2131347,
+        0
+      ],
+      "endpoint_robot_ABCE": [
+        -6983,
+        1782865,
+        2131318,
+        0
+      ],
+      "endpoint_task_rad_rad_m": [
+        -0.21937741500017527,
+        0.06335540503372747,
+        0.01939434889799536
+      ]
+    },
+    {
+      "target_index": 2,
+      "target_seed": 20310005,
+      "requested_target_robot_mm": [
+        2.1236067991759664,
+        7.900616057376502,
+        22.310720283335215
+      ],
+      "requested_target_world_mm": [
+        350.20179091951627,
+        -9.137145176186237,
+        374.1022999891369
+      ],
+      "reachable_target_robot_mm": [
+        2.1266317964305155,
+        7.900690313166393,
+        22.310375191290486
+      ],
+      "reachable_target_world_mm": [
+        350.2017351371476,
+        -9.134120178931688,
+        374.1026485443965
+      ],
+      "target_shift_mm": [
+        -5.578236869041575e-05,
+        0.0030249972545490778,
+        0.0003485552596202979
+      ],
+      "target_shift_norm_mm": 0.003045523080144878,
+      "requested_terminal_robot_ABCE": [
+        3021,
+        996897,
+        2154870,
+        0
+      ],
+      "endpoint_robot_ABCE": [
+        3025,
+        996880,
+        2154868,
+        0
+      ],
+      "endpoint_task_rad_rad_m": [
+        0.09503317777109124,
+        -0.09869846742224446,
+        0.019763339782264053
+      ]
+    },
+    {
+      "target_index": 3,
+      "target_seed": 20310006,
+      "requested_target_robot_mm": [
+        0.7807783218059193,
+        1.8204120860733903,
+        23.53043889165503
+      ],
+      "requested_target_world_mm": [
+        344.97624961869707,
+        -10.479973653556284,
+        370.7630917102833
+      ],
+      "reachable_target_robot_mm": [
+        0.7824092428312309,
+        1.8194539485383254,
+        23.530895710144264
+      ],
+      "reachable_target_world_mm": [
+        344.9755220065788,
+        -10.478342732530972,
+        370.7623188640673
+      ],
+      "target_shift_mm": [
+        -0.00072761211828265,
+        0.0016309210253115936,
+        -0.0007728462159661831
+      ],
+      "target_shift_norm_mm": 0.0019459224185481888,
+      "requested_terminal_robot_ABCE": [
+        1056,
+        2297705,
+        2145315,
+        0
+      ],
+      "endpoint_robot_ABCE": [
+        1058,
+        2297925,
+        2145343,
+        0
+      ],
+      "endpoint_task_rad_rad_m": [
+        0.033238050274980016,
+        0.16310110796156785,
+        0.01961409824627003
+      ]
+    },
+    {
+      "target_index": 4,
+      "target_seed": 20310007,
+      "requested_target_robot_mm": [
+        4.573312062321396,
+        7.397043438477667,
+        21.759729203413666
+      ],
+      "requested_target_world_mm": [
+        349.53283802146694,
+        -6.687439913040809,
+        374.4334775440061
+      ],
+      "reachable_target_robot_mm": [
+        4.571940520324373,
+        7.396253049281524,
+        21.76015375816742
+      ],
+      "reachable_target_world_mm": [
+        349.5322550807063,
+        -6.688811455037831,
+        374.4327955308905
+      ],
+      "target_shift_mm": [
+        -0.0005829407606370296,
+        -0.0013715419970221632,
+        -0.0006820131156359821
+      ],
+      "target_shift_norm_mm": 0.0016389293059516391,
+      "requested_terminal_robot_ABCE": [
+        6594,
+        1078759,
+        2133801,
+        0
+      ],
+      "endpoint_robot_ABCE": [
+        6592,
+        1078916,
+        2133793,
+        0
+      ],
+      "endpoint_task_rad_rad_m": [
+        0.20709378772463918,
+        -0.0808959594820545,
+        0.019433128194749714
+      ]
+    },
+    {
+      "target_index": 5,
+      "target_seed": 20310008,
+      "requested_target_robot_mm": [
+        -2.525792157550575,
+        4.121779346447255,
+        23.308926503426637
+      ],
+      "requested_target_world_mm": [
+        347.0411115984724,
+        -13.786544132912777,
+        371.8031417137627
+      ],
+      "reachable_target_robot_mm": [
+        -2.5236710703393954,
+        4.120915116139901,
+        23.308837320777407
+      ],
+      "reachable_target_world_mm": [
+        347.04027374966,
+        -13.7844230457016,
+        371.80291180739783
+      ],
+      "target_shift_mm": [
+        -0.0008378488124094474,
+        0.0021210872111776524,
+        -0.00022990636489339522
+      ],
+      "target_shift_norm_mm": 0.002292129692337632,
+      "requested_terminal_robot_ABCE": [
+        -3436,
+        1797328,
+        2157522,
+        0
+      ],
+      "endpoint_robot_ABCE": [
+        -3433,
+        1797498,
+        2157493,
+        0
+      ],
+      "endpoint_task_rad_rad_m": [
+        -0.10785087579773761,
+        0.06623528946846967,
+        0.019804469339427762
+      ]
+    },
+    {
+      "target_index": 6,
+      "target_seed": 20310009,
+      "requested_target_robot_mm": [
+        -1.4005588113748864,
+        1.3360121628639954,
+        23.407419795744122
+      ],
+      "requested_target_world_mm": [
+        344.48018341580394,
+        -12.66131078673709,
+        370.70230268239834
+      ],
+      "reachable_target_robot_mm": [
+        -1.3988508602915608,
+        1.3372806269176758,
+        23.407321751125377
+      ],
+      "reachable_target_world_mm": [
+        344.4813302337634,
+        -12.659602835653764,
+        370.70285352027884
+      ],
+      "target_shift_mm": [
+        0.0011468179594658068,
+        0.001707951083325554,
+        0.0005508378804961467
+      ],
+      "target_shift_norm_mm": 0.0021297208046539193,
+      "requested_terminal_robot_ABCE": [
+        -1902,
+        2403701,
+        2137251,
+        0
+      ],
+      "endpoint_robot_ABCE": [
+        -1900,
+        2403416,
+        2137243,
+        0
+      ],
+      "endpoint_task_rad_rad_m": [
+        -0.05969026041820607,
+        0.1832596094915007,
+        0.019487184184164872
+      ]
+    },
+    {
+      "target_index": 7,
+      "target_seed": 20310010,
+      "requested_target_robot_mm": [
+        -3.6166429308395016,
+        5.951926974199234,
+        22.669766076441373
+      ],
+      "requested_target_world_mm": [
+        348.51547501488375,
+        -14.877394906201705,
+        373.0617992951319
+      ],
+      "reachable_target_robot_mm": [
+        -3.614611975592991,
+        5.952423996883846,
+        22.669627479926966
+      ],
+      "reachable_target_world_mm": [
+        348.515888086827,
+        -14.875363950955196,
+        373.0621085072153
+      ],
+      "target_shift_mm": [
+        0.00041307194322826035,
+        0.002030955246508981,
+        0.00030921208343670514
+      ],
+      "target_shift_norm_mm": 0.002095476021372708,
+      "requested_terminal_robot_ABCE": [
+        -5036,
+        1400130,
+        2151813,
+        0
+      ],
+      "endpoint_robot_ABCE": [
+        -5033,
+        1400008,
+        2151793,
+        0
+      ],
+      "endpoint_task_rad_rad_m": [
+        -0.15811635825517428,
+        -0.013482633936010445,
+        0.019715159443872282
+      ]
+    },
+    {
+      "target_index": 8,
+      "target_seed": 20310011,
+      "requested_target_robot_mm": [
+        2.421002227625072,
+        8.297847879654537,
+        22.03858745501485
+      ],
+      "requested_target_world_mm": [
+        350.473479923284,
+        -8.839749747737132,
+        374.4998354996409
+      ],
+      "reachable_target_robot_mm": [
+        2.4211052742670076,
+        8.298725197778019,
+        22.038000260454695
+      ],
+      "reachable_target_world_mm": [
+        350.474084980356,
+        -8.839646701095196,
+        374.5007005952893
+      ],
+      "target_shift_mm": [
+        0.0006050570719935422,
+        0.00010304664193583335,
+        0.0008650956484075323
+      ],
+      "target_shift_norm_mm": 0.0010607087968322404,
+      "requested_terminal_robot_ABCE": [
+        3483,
+        909826,
+        2149108,
+        0
+      ],
+      "endpoint_robot_ABCE": [
+        3483,
+        909632,
+        2149093,
+        0
+      ],
+      "endpoint_task_rad_rad_m": [
+        0.10942167212453249,
+        -0.11794057001739951,
+        0.019672854756503894
+      ]
+    },
+    {
+      "target_index": 9,
+      "target_seed": 20310012,
+      "requested_target_robot_mm": [
+        1.0113621074956656,
+        9.467244356846837,
+        21.544036564585046
+      ],
+      "requested_target_world_mm": [
+        351.3843386669642,
+        -10.249389867866538,
+        375.3843721315313
+      ],
+      "reachable_target_robot_mm": [
+        1.0105502078608237,
+        9.468107607655,
+        21.543734238697912
+      ],
+      "reachable_target_world_mm": [
+        351.3850337943331,
+        -10.25020176750138,
+        375.3849666067964
+      ],
+      "target_shift_mm": [
+        0.0006951273688855508,
+        -0.0008118996348418506,
+        0.0005944752651316776
+      ],
+      "target_shift_norm_mm": 0.0012230224515042466,
+      "requested_terminal_robot_ABCE": [
+        1493,
+        667026,
+        2141516,
+        0
+      ],
+      "endpoint_robot_ABCE": [
+        1492,
+        666859,
+        2141518,
+        0
+      ],
+      "endpoint_task_rad_rad_m": [
+        0.046872562391559715,
+        -0.173442099118503,
+        0.019554166605831483
+      ]
+    },
+    {
+      "target_index": 10,
+      "target_seed": 20310013,
+      "requested_target_robot_mm": [
+        1.559627361453697,
+        6.1746112189014735,
+        23.080184070077753
+      ],
+      "requested_target_world_mm": [
+        348.87169584830923,
+        -9.701124613908506,
+        372.75990871864303
+      ],
+      "reachable_target_robot_mm": [
+        1.5613541491644751,
+        6.173321141270982,
+        23.080857273629356
+      ],
+      "reachable_target_world_mm": [
+        348.87073721294917,
+        -9.699397826197728,
+        372.758813948548
+      ],
+      "target_shift_mm": [
+        -0.0009586353600639086,
+        0.001726787710778055,
+        -0.0010947700950509898
+      ],
+      "target_shift_norm_mm": 0.0022581627737337556,
+      "requested_terminal_robot_ABCE": [
+        2148,
+        1365329,
+        2166316,
+        0
+      ],
+      "endpoint_robot_ABCE": [
+        2150,
+        1365623,
+        2166343,
+        0
+      ],
+      "endpoint_task_rad_rad_m": [
+        0.06754424205218056,
+        -0.020551279297947766,
+        0.019943134703579692
+      ]
+    },
+    {
+      "target_index": 11,
+      "target_seed": 20310014,
+      "requested_target_robot_mm": [
+        -4.804037782414407,
+        3.9523708382182665,
+        22.587369010744503
+      ],
+      "requested_target_world_mm": [
+        346.6218509292413,
+        -16.06478975777661,
+        372.4143413122099
+      ],
+      "reachable_target_robot_mm": [
+        -4.8071176318772,
+        3.953083043783537,
+        22.586632588178382
+      ],
+      "reachable_target_world_mm": [
+        346.6222480335646,
+        -16.067869607239405,
+        372.41528569725824
+      ],
+      "target_shift_mm": [
+        0.00039710432326955925,
+        -0.003079849462796602,
+        0.0009443850483421556
+      ],
+      "target_shift_norm_mm": 0.003245770736909819,
+      "requested_terminal_robot_ABCE": [
+        -6671,
+        1820302,
+        2133490,
+        0
+      ],
+      "endpoint_robot_ABCE": [
+        -6675,
+        1820146,
+        2133493,
+        0
+      ],
+      "endpoint_task_rad_rad_m": [
+        -0.2097013096271187,
+        0.07068578036922993,
+        0.019428427673931006
+      ]
+    },
+    {
+      "target_index": 12,
+      "target_seed": 20310015,
+      "requested_target_robot_mm": [
+        3.3313615256134463,
+        2.167026536636773,
+        23.118573839440195
+      ],
+      "requested_target_world_mm": [
+        345.15014589213155,
+        -7.929390449748758,
+        371.2725369817903
+      ],
+      "reachable_target_robot_mm": [
+        3.3332114874050953,
+        2.1684407378901103,
+        23.11830916879314
+      ],
+      "reachable_target_world_mm": [
+        345.1513681975285,
+        -7.927540487957107,
+        371.27329591871325
+      ],
+      "target_shift_mm": [
+        0.0012223053969364628,
+        0.001849961791650756,
+        0.0007589369229208387
+      ],
+      "target_shift_norm_mm": 0.0023435815255544727,
+      "requested_terminal_robot_ABCE": [
+        4555,
+        2217612,
+        2135360,
+        0
+      ],
+      "endpoint_robot_ABCE": [
+        4558,
+        2217299,
+        2135368,
+        0
+      ],
+      "endpoint_task_rad_rad_m": [
+        0.14319379315062278,
+        0.1476548153459049,
+        0.019457805929047937
+      ]
+    },
+    {
+      "target_index": 13,
+      "target_seed": 20310016,
+      "requested_target_robot_mm": [
+        0.7685839203968027,
+        1.4440268785506092,
+        23.48176206904023
+      ],
+      "requested_target_world_mm": [
+        344.60779108313955,
+        -10.4921680549654,
+        370.67213257068397
+      ],
+      "reachable_target_robot_mm": [
+        0.7689646338267452,
+        1.4448034159046852,
+        23.481920038122247
+      ],
+      "reachable_target_world_mm": [
+        344.60857210882864,
+        -10.491787341535458,
+        370.6722665981667
+      ],
+      "target_shift_mm": [
+        0.0007810256890934397,
+        0.000380713429942503,
+        0.00013402748271573728
+      ],
+      "target_shift_norm_mm": 0.0008791514140838225,
+      "requested_terminal_robot_ABCE": [
+        1041,
+        2380275,
+        2140529,
+        0
+      ],
+      "endpoint_robot_ABCE": [
+        1042,
+        2380105,
+        2140543,
+        0
+      ],
+      "endpoint_task_rad_rad_m": [
+        0.032735395450405644,
+        0.17880900005734968,
+        0.019538889913170675
+      ]
+    },
+    {
+      "target_index": 14,
+      "target_seed": 20310017,
+      "requested_target_robot_mm": [
+        -1.703272538314618,
+        8.1578704726537,
+        22.255663492166626
+      ],
+      "requested_target_world_mm": [
+        350.42163468452634,
+        -12.964024513676822,
+        374.2467984438677
+      ],
+      "reachable_target_robot_mm": [
+        -1.7043758682060073,
+        8.158724866485754,
+        22.254942692979316
+      ],
+      "reachable_target_world_mm": [
+        350.4221699809667,
+        -12.965127843568212,
+        374.2477797684876
+      ],
+      "target_shift_mm": [
+        0.0005352964403755323,
+        -0.001103329891389393,
+        0.0009813246198859815
+      ],
+      "target_shift_norm_mm": 0.001570629535538668,
+      "requested_terminal_robot_ABCE": [
+        -2431,
+        944662,
+        2154962,
+        0
+      ],
+      "endpoint_robot_ABCE": [
+        -2433,
+        944468,
+        2154943,
+        0
+      ],
+      "endpoint_task_rad_rad_m": [
+        -0.07643494926183968,
+        -0.1102175969142395,
+        0.01976451491246873
+      ]
+    },
+    {
+      "target_index": 15,
+      "target_seed": 20310018,
+      "requested_target_robot_mm": [
+        4.0093179418602745,
+        5.155946673591598,
+        22.72867161334414
+      ],
+      "requested_target_world_mm": [
+        347.79488086415006,
+        -7.25143403350193,
+        372.718581330623
+      ],
+      "reachable_target_robot_mm": [
+        4.009405171741057,
+        5.156271377539671,
+        22.72826007299411
+      ],
+      "reachable_target_world_mm": [
+        347.7950344553342,
+        -7.251346803621146,
+        372.71908253702935
+      ],
+      "target_shift_mm": [
+        0.00015359118413016404,
+        8.722988078346816e-05,
+        0.0005012064063407706
+      ],
+      "target_shift_norm_mm": 0.0005314199522985882,
+      "requested_terminal_robot_ABCE": [
+        5558,
+        1567086,
+        2147538,
+        0
+      ],
+      "endpoint_robot_ABCE": [
+        5558,
+        1567001,
+        2147518,
+        0
+      ],
+      "endpoint_task_rad_rad_m": [
+        0.17460971968652073,
+        0.020420337021739614,
+        0.019648177022205674
+      ]
+    },
+    {
+      "target_index": 16,
+      "target_seed": 20310019,
+      "requested_target_robot_mm": [
+        -5.038409830151969,
+        5.977173484132296,
+        22.08805087682827
+      ],
+      "requested_target_world_mm": [
+        348.32830391137685,
+        -16.29916180551417,
+        373.6131584682094
+      ],
+      "reachable_target_robot_mm": [
+        -5.040812289223701,
+        5.975998070621795,
+        22.08798331696341
+      ],
+      "reachable_target_world_mm": [
+        348.3271838418278,
+        -16.301564264585906,
+        373.61279569353934
+      ],
+      "target_shift_mm": [
+        -0.0011200695490742874,
+        -0.002402459071735308,
+        -0.0003627746700658463
+      ],
+      "target_shift_norm_mm": 0.00267543844021277,
+      "requested_terminal_robot_ABCE": [
+        -7139,
+        1379352,
+        2133633,
+        0
+      ],
+      "endpoint_robot_ABCE": [
+        -7142,
+        1379613,
+        2133643,
+        0
+      ],
+      "endpoint_task_rad_rad_m": [
+        -0.22437254731938305,
+        -0.01767142383222536,
+        0.01943077793434036
+      ]
+    },
+    {
+      "target_index": 17,
+      "target_seed": 20310020,
+      "requested_target_robot_mm": [
+        2.4077547339638232,
+        9.057798819147429,
+        21.581986381935756
+      ],
+      "requested_target_world_mm": [
+        351.01644178591926,
+        -8.85299724139838,
+        375.2006938206279
+      ],
+      "reachable_target_robot_mm": [
+        2.405335000220697,
+        9.058949719998235,
+        21.582090582581973
+      ],
+      "reachable_target_world_mm": [
+        351.0175522789786,
+        -8.855416975141507,
+        375.20101356381895
+      ],
+      "target_shift_mm": [
+        0.0011104930593432982,
+        -0.0024197337431264287,
+        0.0003197431910280102
+      ],
+      "target_shift_norm_mm": 0.002681518586674918,
+      "requested_terminal_robot_ABCE": [
+        3537,
+        746276,
+        2139924,
+        0
+      ],
+      "endpoint_robot_ABCE": [
+        3533,
+        746069,
+        2139943,
+        0
+      ],
+      "endpoint_task_rad_rad_m": [
+        0.11099246845132739,
+        -0.15498524225361707,
+        0.019529488871533256
+      ]
+    },
+    {
+      "target_index": 18,
+      "target_seed": 20310021,
+      "requested_target_robot_mm": [
+        2.027489931855437,
+        4.888392474944738,
+        23.304379063750748
+      ],
+      "requested_target_world_mm": [
+        347.7540217818008,
+        -9.233262043506766,
+        372.08505559866194
+      ],
+      "reachable_target_robot_mm": [
+        2.024245019639784,
+        4.889557795819765,
+        23.30398718646758
+      ],
+      "reachable_target_world_mm": [
+        347.75496603113686,
+        -9.236506955722419,
+        372.08584295737194
+      ],
+      "target_shift_mm": [
+        0.0009442493360438675,
+        -0.0032449122156528176,
+        0.0007873587099993529
+      ],
+      "target_shift_norm_mm": 0.0034700138089241096,
+      "requested_terminal_robot_ABCE": [
+        2762,
+        1635877,
+        2163445,
+        0
+      ],
+      "endpoint_robot_ABCE": [
+        2758,
+        1635609,
+        2163418,
+        0
+      ],
+      "endpoint_task_rad_rad_m": [
+        0.08664512538600651,
+        0.03416474398189043,
+        0.019897304625597276
+      ]
+    },
+    {
+      "target_index": 19,
+      "target_seed": 20310022,
+      "requested_target_robot_mm": [
+        -0.4491163511613704,
+        8.706633266380475,
+        22.078735877891763
+      ],
+      "requested_target_world_mm": [
+        350.8690494733051,
+        -11.709868326523575,
+        374.61047961089986
+      ],
+      "reachable_target_robot_mm": [
+        -0.4509090330070259,
+        8.707140304231206,
+        22.078284981727613
+      ],
+      "reachable_target_world_mm": [
+        350.86935876217336,
+        -11.71166100836923,
+        374.61108354394986
+      ],
+      "target_shift_mm": [
+        0.00030928886826586677,
+        -0.0017926818456555083,
+        0.0006039330500016149
+      ],
+      "target_shift_norm_mm": 0.0019167949636464182,
+      "requested_terminal_robot_ABCE": [
+        -647,
+        832137,
+        2153231,
+        0
+      ],
+      "endpoint_robot_ABCE": [
+        -650,
+        832021,
+        2153218,
+        0
+      ],
+      "endpoint_task_rad_rad_m": [
+        -0.020420352248333655,
+        -0.1353503224056546,
+        0.019737486917761154
+      ]
+    },
+    {
+      "target_index": 20,
+      "target_seed": 20310023,
+      "requested_target_robot_mm": [
+        -3.4962983521592665,
+        3.875476028093879,
+        23.07774720770704
+      ],
+      "requested_target_world_mm": [
+        346.72779762922175,
+        -14.757050327521469,
+        371.92940947716136
+      ],
+      "reachable_target_robot_mm": [
+        -3.494154678485584,
+        3.8762838695147304,
+        23.078412357571658
+      ],
+      "reachable_target_world_mm": [
+        346.728791539462,
+        -14.754906653847788,
+        371.92908210193633
+      ],
+      "target_shift_mm": [
+        0.0009939102402540811,
+        0.002143673673680624,
+        -0.00032737522502657157
+      ],
+      "target_shift_norm_mm": 0.0023854494173791456,
+      "requested_terminal_robot_ABCE": [
+        -4786,
+        1845668,
+        2148313,
+        0
+      ],
+      "endpoint_robot_ABCE": [
+        -4783,
+        1845508,
+        2148343,
+        0
+      ],
+      "endpoint_task_rad_rad_m": [
+        -0.15026237662119982,
+        0.07566007076881774,
+        0.019661103454457124
+      ]
+    },
+    {
+      "target_index": 21,
+      "target_seed": 20310024,
+      "requested_target_robot_mm": [
+        1.282675343827557,
+        5.958307574620699,
+        23.175741086170277
+      ],
+      "requested_target_world_mm": [
+        348.70469175011164,
+        -9.978076631534647,
+        372.5924929456739
+      ],
+      "reachable_target_robot_mm": [
+        1.2813301464247104,
+        5.957243230735116,
+        23.17663680450901
+      ],
+      "reachable_target_world_mm": [
+        348.70402411752116,
+        -9.979421828937493,
+        372.5912725334594
+      ],
+      "target_shift_mm": [
+        -0.0006676325904777514,
+        -0.0013451974028466651,
+        -0.0012204122144794383
+      ],
+      "target_shift_norm_mm": 0.001935121521182598,
+      "requested_terminal_robot_ABCE": [
+        1760,
+        1411891,
+        2167659,
+        0
+      ],
+      "endpoint_robot_ABCE": [
+        1758,
+        1412143,
+        2167693,
+        0
+      ],
+      "endpoint_task_rad_rad_m": [
+        0.05522919885010857,
+        -0.01099558608953273,
+        0.019964287047263884
+      ]
+    }
+  ],
+  "expert_terminal_tolerance_um": 0.1,
+  "terminal_start_profile_indices": [
+    0,
+    1,
+    2,
+    6,
+    7
+  ],
+  "terminal_start_profiles": [
+    {
+      "index": 0,
+      "name": "under_0p02mm",
+      "delta_A_deg_B_deg_C_mm": [
+        0.0,
+        0.0,
+        -0.02
+      ]
+    },
+    {
+      "index": 1,
+      "name": "under_0p05mm",
+      "delta_A_deg_B_deg_C_mm": [
+        0.0,
+        0.0,
+        -0.05
+      ]
+    },
+    {
+      "index": 2,
+      "name": "under_0p10mm",
+      "delta_A_deg_B_deg_C_mm": [
+        0.0,
+        0.0,
+        -0.1
+      ]
+    },
+    {
+      "index": 6,
+      "name": "over_0p02mm",
+      "delta_A_deg_B_deg_C_mm": [
+        0.0,
+        0.0,
+        0.02
+      ]
+    },
+    {
+      "index": 7,
+      "name": "over_0p05mm",
+      "delta_A_deg_B_deg_C_mm": [
+        0.0,
+        0.0,
+        0.05
+      ]
+    }
+  ],
+  "state_range_A_deg_B_deg_C_mm": [
+    [
+      -13.280400276184082,
+      -12.27226734161377,
+      0.0
+    ],
+    [
+      13.31820011138916,
+      11.927999496459961,
+      20.76517677307129
+    ]
+  ],
+  "action_abs_limit_deg_deg_mm": [
+    0.2897999882698059,
+    0.14434358477592468,
+    0.04271206632256508
+  ],
+  "episodes": [
+    {
+      "episode_index": 0,
+      "method": "dagger_policy_teacher",
+      "seed": 20300701,
+      "visit_order": [
+        "P1"
+      ],
+      "result": "PASS",
+      "frames": 64,
+      "data": "data/episode_000000.npz",
+      "jsonl": "data/episode_000000.jsonl",
+      "policy_inputs": "policy_inputs/episode_000000.npz",
+      "policy_inputs_no_image": "policy_inputs_no_image/episode_000000.npz",
+      "action_labels": "action_labels/episode_000000.npz",
+      "image_write_wall_s": 2.521081880084239,
+      "visibility_summary": {
+        "known_frames": 0,
+        "unknown_frames": 64,
+        "target_occlusion_state_frames": {
+          "clear": 0,
+          "partial_needle": 0,
+          "full_needle": 0,
+          "not_visible": 0
+        },
+        "frames_with_needle_occlusion": 0,
+        "maximum_target_occlusion_fraction_by_needle": null,
+        "source": "MuJoCo geometry segmentation; offline no-needle counterfactual, not controller input"
+      },
+      "target_success_by_visibility": null,
+      "stop_constraint_summary": {
+        "pass": true,
+        "attempted_targets": 1,
+        "targets_with_validated_stop": 1
+      },
+      "initial_error_mm": 0.019992881882157396,
+      "stop_reason": "EXACT_TERMINAL_LOCK_WITHIN_0P1UM",
+      "teacher_invalid_frames": 0,
+      "teacher_invalid_fraction": 0.0,
+      "collection_wall_s": 37.05877114197938,
+      "target_robot_mm": [
+        1.8167380563613529,
+        8.502541421884457,
+        22.047464444517082
+      ],
+      "teacher_pre_roll": {
+        "result": "SKIPPED",
+        "reason": "DIRECT_TERMINAL_START",
+        "start_profile": "under_0p02mm"
+      },
+      "terminal_start_profile": "under_0p02mm",
+      "exact_terminal_lock": {
+        "requested_terminal_robot_ABCE": [
+          2619,
+          870537,
+          2150832,
+          0
+        ],
+        "terminal_robot_ABCE": [
+          2617,
+          870374,
+          2150817,
+          0
+        ],
+        "terminal_target_robot_ABCE": [
+          2617,
+          870374,
+          2150817,
+          0
+        ],
+        "exact_settle_steps": 6,
+        "terminal_tip_world_m": [
+          0.3506674788493709,
+          -0.009444015120077833,
+          0.37456571496590896
+        ],
+        "terminal_target_world_m": [
+          0.350667489368414,
+          -0.009444013919000852,
+          0.37456570341575796
+        ],
+        "original_target_world_mm": [
+          350.667489368414,
+          -9.444013919000852,
+          374.565703415758
+        ],
+        "target_shift_mm": 0.0,
+        "target_shift_vector_mm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "final_error_um": 0.015668402681773344,
+        "reachable_target_planning": {
+          "requested_target_robot_mm": [
+            1.8178315265376535,
+            8.501812006271265,
+            22.047898623044283
+          ],
+          "requested_target_world_mm": [
+            350.66696674673926,
+            -9.442920448824552,
+            374.5650345176227
+          ],
+          "reachable_target_robot_mm": [
+            1.8167380563613529,
+            8.502541421884457,
+            22.047464444517082
+          ],
+          "reachable_target_world_mm": [
+            350.667489368414,
+            -9.44401391900085,
+            374.5657034157579
+          ],
+          "target_shift_mm": [
+            0.00052262167474737,
+            -0.0010934701762987942,
+            0.0006688981352453993
+          ],
+          "target_shift_norm_mm": 0.0013842814586295066,
+          "requested_terminal_robot_ABCE": [
+            2619,
+            870537,
+            2150832,
+            0
+          ],
+          "endpoint_robot_ABCE": [
+            2617,
+            870374,
+            2150818,
+            0
+          ],
+          "endpoint_task_rad_rad_m": [
+            0.08221547974444489,
+            -0.12671080625122777,
+            0.019699882751211477
+          ]
+        }
+      },
+      "executor_counts": {
+        "beta_teacher": 17,
+        "hold": 41,
+        "exact_terminal": 6
+      },
+      "takeover_trigger_reasons": {},
+      "strict_zero_error": true,
+      "final_error_um": 0.015668402681773344,
+      "expert_terminal_tolerance_um": 0.1
+    },
+    {
+      "episode_index": 1,
+      "method": "dagger_policy_teacher",
+      "seed": 20300702,
+      "visit_order": [
+        "P1"
+      ],
+      "result": "FAIL",
+      "frames": 71,
+      "data": "data/episode_000001.npz",
+      "jsonl": "data/episode_000001.jsonl",
+      "policy_inputs": "policy_inputs/episode_000001.npz",
+      "policy_inputs_no_image": "policy_inputs_no_image/episode_000001.npz",
+      "action_labels": "action_labels/episode_000001.npz",
+      "image_write_wall_s": 2.8183985739015043,
+      "visibility_summary": {
+        "known_frames": 0,
+        "unknown_frames": 71,
+        "target_occlusion_state_frames": {
+          "clear": 0,
+          "partial_needle": 0,
+          "full_needle": 0,
+          "not_visible": 0
+        },
+        "frames_with_needle_occlusion": 0,
+        "maximum_target_occlusion_fraction_by_needle": null,
+        "source": "MuJoCo geometry segmentation; offline no-needle counterfactual, not controller input"
+      },
+      "target_success_by_visibility": null,
+      "stop_constraint_summary": {
+        "pass": false,
+        "attempted_targets": 1,
+        "targets_with_validated_stop": 0
+      },
+      "initial_error_mm": 0.04999787310841129,
+      "stop_reason": "EXACT_TERMINAL_ERROR_ABOVE_0P1UM: 0.532725692780831",
+      "teacher_invalid_frames": 0,
+      "teacher_invalid_fraction": 0.0,
+      "collection_wall_s": 40.18578121002065,
+      "target_robot_mm": [
+        -5.011698110766239,
+        4.116255948487899,
+        22.47743030823502
+      ],
+      "teacher_pre_roll": {
+        "result": "SKIPPED",
+        "reason": "DIRECT_TERMINAL_START",
+        "start_profile": "under_0p05mm"
+      },
+      "terminal_start_profile": "under_0p05mm",
+      "exact_terminal_lock": {
+        "requested_terminal_robot_ABCE": [
+          -6984,
+          1783010,
+          2131347,
+          0
+        ],
+        "terminal_robot_ABCE": [
+          -6983,
+          1782865,
+          2131352,
+          0
+        ],
+        "terminal_target_robot_ABCE": [
+          -6983,
+          1782865,
+          2131352,
+          0
+        ],
+        "exact_settle_steps": 6,
+        "terminal_tip_world_m": [
+          0.34673505947077854,
+          -0.01627256421028615,
+          0.37257573252715276
+        ],
+        "terminal_target_world_m": [
+          0.34673478670613267,
+          -0.016272450086128442,
+          0.3725761756657184
+        ],
+        "original_target_world_mm": [
+          346.7347867061327,
+          -16.27245008612844,
+          372.5761756657184
+        ],
+        "target_shift_mm": 0.0,
+        "target_shift_vector_mm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "final_error_um": 0.532725692780831,
+        "reachable_target_planning": {
+          "requested_target_robot_mm": [
+            -5.012248147641645,
+            4.11567829053738,
+            22.477893981177584
+          ],
+          "requested_target_world_mm": [
+            346.7344162204076,
+            -16.273000123003847,
+            372.5755342441464
+          ],
+          "reachable_target_robot_mm": [
+            -5.011698110766239,
+            4.116255948487899,
+            22.47743030823502
+          ],
+          "reachable_target_world_mm": [
+            346.73478670613264,
+            -16.272450086128444,
+            372.5761756657184
+          ],
+          "target_shift_mm": [
+            0.00037048572505682387,
+            0.0005500368754027818,
+            0.0006414215719701133
+          ],
+          "target_shift_norm_mm": 0.000922616859678137,
+          "requested_terminal_robot_ABCE": [
+            -6984,
+            1783010,
+            2131347,
+            0
+          ],
+          "endpoint_robot_ABCE": [
+            -6983,
+            1782865,
+            2131318,
+            0
+          ],
+          "endpoint_task_rad_rad_m": [
+            -0.21937741500017527,
+            0.06335540503372747,
+            0.01939434889799536
+          ]
+        }
+      },
+      "executor_counts": {
+        "beta_teacher": 25,
+        "hold": 40,
+        "exact_terminal": 6
+      },
+      "takeover_trigger_reasons": {},
+      "strict_zero_error": false,
+      "final_error_um": 0.532725692780831,
+      "expert_terminal_tolerance_um": 0.1
+    },
+    {
+      "episode_index": 2,
+      "method": "dagger_policy_teacher",
+      "seed": 20300703,
+      "visit_order": [
+        "P1"
+      ],
+      "result": "FAIL",
+      "frames": 79,
+      "data": "data/episode_000002.npz",
+      "jsonl": "data/episode_000002.jsonl",
+      "policy_inputs": "policy_inputs/episode_000002.npz",
+      "policy_inputs_no_image": "policy_inputs_no_image/episode_000002.npz",
+      "action_labels": "action_labels/episode_000002.npz",
+      "image_write_wall_s": 3.098297620716039,
+      "visibility_summary": {
+        "known_frames": 0,
+        "unknown_frames": 79,
+        "target_occlusion_state_frames": {
+          "clear": 0,
+          "partial_needle": 0,
+          "full_needle": 0,
+          "not_visible": 0
+        },
+        "frames_with_needle_occlusion": 0,
+        "maximum_target_occlusion_fraction_by_needle": null,
+        "source": "MuJoCo geometry segmentation; offline no-needle counterfactual, not controller input"
+      },
+      "target_success_by_visibility": null,
+      "stop_constraint_summary": {
+        "pass": false,
+        "attempted_targets": 1,
+        "targets_with_validated_stop": 0
+      },
+      "initial_error_mm": 0.09999574621666693,
+      "stop_reason": "EXACT_TERMINAL_ERROR_ABOVE_0P1UM: 0.10967881912257729",
+      "teacher_invalid_frames": 0,
+      "teacher_invalid_fraction": 0.0,
+      "collection_wall_s": 43.79315896600019,
+      "target_robot_mm": [
+        2.1266317964305155,
+        7.900690313166393,
+        22.310375191290486
+      ],
+      "teacher_pre_roll": {
+        "result": "SKIPPED",
+        "reason": "DIRECT_TERMINAL_START",
+        "start_profile": "under_0p10mm"
+      },
+      "terminal_start_profile": "under_0p10mm",
+      "exact_terminal_lock": {
+        "requested_terminal_robot_ABCE": [
+          3021,
+          996897,
+          2154870,
+          0
+        ],
+        "terminal_robot_ABCE": [
+          3025,
+          996880,
+          2154861,
+          0
+        ],
+        "terminal_target_robot_ABCE": [
+          3025,
+          996880,
+          2154861,
+          0
+        ],
+        "exact_settle_steps": 6,
+        "terminal_tip_world_m": [
+          0.3502016638501454,
+          -0.009134129994322433,
+          0.3741027313167638
+        ],
+        "terminal_target_world_m": [
+          0.3502017351371476,
+          -0.009134120178931688,
+          0.3741026485443965
+        ],
+        "original_target_world_mm": [
+          350.2017351371476,
+          -9.134120178931688,
+          374.1026485443965
+        ],
+        "target_shift_mm": 0.0,
+        "target_shift_vector_mm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "final_error_um": 0.10967881912257729,
+        "reachable_target_planning": {
+          "requested_target_robot_mm": [
+            2.1236067991759664,
+            7.900616057376502,
+            22.310720283335215
+          ],
+          "requested_target_world_mm": [
+            350.20179091951627,
+            -9.137145176186237,
+            374.1022999891369
+          ],
+          "reachable_target_robot_mm": [
+            2.1266317964305155,
+            7.900690313166393,
+            22.310375191290486
+          ],
+          "reachable_target_world_mm": [
+            350.2017351371476,
+            -9.134120178931688,
+            374.1026485443965
+          ],
+          "target_shift_mm": [
+            -5.578236869041575e-05,
+            0.0030249972545490778,
+            0.0003485552596202979
+          ],
+          "target_shift_norm_mm": 0.003045523080144878,
+          "requested_terminal_robot_ABCE": [
+            3021,
+            996897,
+            2154870,
+            0
+          ],
+          "endpoint_robot_ABCE": [
+            3025,
+            996880,
+            2154868,
+            0
+          ],
+          "endpoint_task_rad_rad_m": [
+            0.09503317777109124,
+            -0.09869846742224446,
+            0.019763339782264053
+          ]
+        }
+      },
+      "executor_counts": {
+        "beta_teacher": 33,
+        "hold": 40,
+        "exact_terminal": 6
+      },
+      "takeover_trigger_reasons": {},
+      "strict_zero_error": false,
+      "final_error_um": 0.10967881912257729,
+      "expert_terminal_tolerance_um": 0.1
+    },
+    {
+      "episode_index": 3,
+      "method": "dagger_policy_teacher",
+      "seed": 20300704,
+      "visit_order": [
+        "P1"
+      ],
+      "result": "PASS",
+      "frames": 63,
+      "data": "data/episode_000003.npz",
+      "jsonl": "data/episode_000003.jsonl",
+      "policy_inputs": "policy_inputs/episode_000003.npz",
+      "policy_inputs_no_image": "policy_inputs_no_image/episode_000003.npz",
+      "action_labels": "action_labels/episode_000003.npz",
+      "image_write_wall_s": 2.485195896704681,
+      "visibility_summary": {
+        "known_frames": 0,
+        "unknown_frames": 63,
+        "target_occlusion_state_frames": {
+          "clear": 0,
+          "partial_needle": 0,
+          "full_needle": 0,
+          "not_visible": 0
+        },
+        "frames_with_needle_occlusion": 0,
+        "maximum_target_occlusion_fraction_by_needle": null,
+        "source": "MuJoCo geometry segmentation; offline no-needle counterfactual, not controller input"
+      },
+      "target_success_by_visibility": null,
+      "stop_constraint_summary": {
+        "pass": true,
+        "attempted_targets": 1,
+        "targets_with_validated_stop": 1
+      },
+      "initial_error_mm": 0.019992881882314035,
+      "stop_reason": "EXACT_TERMINAL_LOCK_WITHIN_0P1UM",
+      "teacher_invalid_frames": 0,
+      "teacher_invalid_fraction": 0.0,
+      "collection_wall_s": 35.25338384200586,
+      "target_robot_mm": [
+        0.7824092428312309,
+        1.8194539485383254,
+        23.530895710144264
+      ],
+      "teacher_pre_roll": {
+        "result": "SKIPPED",
+        "reason": "DIRECT_TERMINAL_START",
+        "start_profile": "over_0p02mm"
+      },
+      "terminal_start_profile": "over_0p02mm",
+      "exact_terminal_lock": {
+        "requested_terminal_robot_ABCE": [
+          1056,
+          2297705,
+          2145315,
+          0
+        ],
+        "terminal_robot_ABCE": [
+          1058,
+          2297925,
+          2145344,
+          0
+        ],
+        "terminal_target_robot_ABCE": [
+          1058,
+          2297925,
+          2145344,
+          0
+        ],
+        "exact_settle_steps": 6,
+        "terminal_tip_world_m": [
+          0.3449755287871067,
+          -0.010478342213387577,
+          0.3707623047483393
+        ],
+        "terminal_target_world_m": [
+          0.34497552200657877,
+          -0.010478342732530973,
+          0.3707623188640673
+        ],
+        "original_target_world_mm": [
+          344.9755220065788,
+          -10.478342732530972,
+          370.7623188640673
+        ],
+        "target_shift_mm": 0.0,
+        "target_shift_vector_mm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "final_error_um": 0.015668402757569602,
+        "reachable_target_planning": {
+          "requested_target_robot_mm": [
+            0.7807783218059193,
+            1.8204120860733903,
+            23.53043889165503
+          ],
+          "requested_target_world_mm": [
+            344.97624961869707,
+            -10.479973653556284,
+            370.7630917102833
+          ],
+          "reachable_target_robot_mm": [
+            0.7824092428312309,
+            1.8194539485383254,
+            23.530895710144264
+          ],
+          "reachable_target_world_mm": [
+            344.9755220065788,
+            -10.478342732530972,
+            370.7623188640673
+          ],
+          "target_shift_mm": [
+            -0.00072761211828265,
+            0.0016309210253115936,
+            -0.0007728462159661831
+          ],
+          "target_shift_norm_mm": 0.0019459224185481888,
+          "requested_terminal_robot_ABCE": [
+            1056,
+            2297705,
+            2145315,
+            0
+          ],
+          "endpoint_robot_ABCE": [
+            1058,
+            2297925,
+            2145343,
+            0
+          ],
+          "endpoint_task_rad_rad_m": [
+            0.033238050274980016,
+            0.16310110796156785,
+            0.01961409824627003
+          ]
+        }
+      },
+      "executor_counts": {
+        "beta_teacher": 16,
+        "hold": 41,
+        "exact_terminal": 6
+      },
+      "takeover_trigger_reasons": {},
+      "strict_zero_error": true,
+      "final_error_um": 0.015668402757569602,
+      "expert_terminal_tolerance_um": 0.1
+    },
+    {
+      "episode_index": 4,
+      "method": "dagger_policy_teacher",
+      "seed": 20300705,
+      "visit_order": [
+        "P1"
+      ],
+      "result": "FAIL",
+      "frames": 73,
+      "data": "data/episode_000004.npz",
+      "jsonl": "data/episode_000004.jsonl",
+      "policy_inputs": "policy_inputs/episode_000004.npz",
+      "policy_inputs_no_image": "policy_inputs_no_image/episode_000004.npz",
+      "action_labels": "action_labels/episode_000004.npz",
+      "image_write_wall_s": 2.8897327652666718,
+      "visibility_summary": {
+        "known_frames": 0,
+        "unknown_frames": 73,
+        "target_occlusion_state_frames": {
+          "clear": 0,
+          "partial_needle": 0,
+          "full_needle": 0,
+          "not_visible": 0
+        },
+        "frames_with_needle_occlusion": 0,
+        "maximum_target_occlusion_fraction_by_needle": null,
+        "source": "MuJoCo geometry segmentation; offline no-needle counterfactual, not controller input"
+      },
+      "target_success_by_visibility": null,
+      "stop_constraint_summary": {
+        "pass": false,
+        "attempted_targets": 1,
+        "targets_with_validated_stop": 0
+      },
+      "initial_error_mm": 0.049997873108342514,
+      "stop_reason": "EXACT_TERMINAL_ERROR_ABOVE_0P1UM: 0.6424045119303867",
+      "teacher_invalid_frames": 0,
+      "teacher_invalid_fraction": 0.0,
+      "collection_wall_s": 40.51679372397484,
+      "target_robot_mm": [
+        4.571940520324373,
+        7.396253049281524,
+        21.76015375816742
+      ],
+      "teacher_pre_roll": {
+        "result": "SKIPPED",
+        "reason": "DIRECT_TERMINAL_START",
+        "start_profile": "over_0p05mm"
+      },
+      "terminal_start_profile": "over_0p05mm",
+      "exact_terminal_lock": {
+        "requested_terminal_robot_ABCE": [
+          6594,
+          1078759,
+          2133801,
+          0
+        ],
+        "terminal_robot_ABCE": [
+          6592,
+          1078916,
+          2133834,
+          0
+        ],
+        "terminal_target_robot_ABCE": [
+          6592,
+          1078916,
+          2133834,
+          0
+        ],
+        "exact_settle_steps": 6,
+        "terminal_tip_world_m": [
+          0.34953266014929013,
+          -0.006688686118155354,
+          0.37443231294031326
+        ],
+        "terminal_target_world_m": [
+          0.3495322550807063,
+          -0.0066888114550378314,
+          0.3744327955308905
+        ],
+        "original_target_world_mm": [
+          349.5322550807063,
+          -6.688811455037832,
+          374.4327955308905
+        ],
+        "target_shift_mm": 0.0,
+        "target_shift_vector_mm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "final_error_um": 0.6424045119303867,
+        "reachable_target_planning": {
+          "requested_target_robot_mm": [
+            4.573312062321396,
+            7.397043438477667,
+            21.759729203413666
+          ],
+          "requested_target_world_mm": [
+            349.53283802146694,
+            -6.687439913040809,
+            374.4334775440061
+          ],
+          "reachable_target_robot_mm": [
+            4.571940520324373,
+            7.396253049281524,
+            21.76015375816742
+          ],
+          "reachable_target_world_mm": [
+            349.5322550807063,
+            -6.688811455037831,
+            374.4327955308905
+          ],
+          "target_shift_mm": [
+            -0.0005829407606370296,
+            -0.0013715419970221632,
+            -0.0006820131156359821
+          ],
+          "target_shift_norm_mm": 0.0016389293059516391,
+          "requested_terminal_robot_ABCE": [
+            6594,
+            1078759,
+            2133801,
+            0
+          ],
+          "endpoint_robot_ABCE": [
+            6592,
+            1078916,
+            2133793,
+            0
+          ],
+          "endpoint_task_rad_rad_m": [
+            0.20709378772463918,
+            -0.0808959594820545,
+            0.019433128194749714
+          ]
+        }
+      },
+      "executor_counts": {
+        "beta_teacher": 27,
+        "hold": 40,
+        "exact_terminal": 6
+      },
+      "takeover_trigger_reasons": {},
+      "strict_zero_error": false,
+      "final_error_um": 0.6424045119303867,
+      "expert_terminal_tolerance_um": 0.1
+    },
+    {
+      "episode_index": 5,
+      "method": "dagger_policy_teacher",
+      "seed": 20300706,
+      "visit_order": [
+        "P1"
+      ],
+      "result": "PASS",
+      "frames": 63,
+      "data": "data/episode_000005.npz",
+      "jsonl": "data/episode_000005.jsonl",
+      "policy_inputs": "policy_inputs/episode_000005.npz",
+      "policy_inputs_no_image": "policy_inputs_no_image/episode_000005.npz",
+      "action_labels": "action_labels/episode_000005.npz",
+      "image_write_wall_s": 2.495221925084479,
+      "visibility_summary": {
+        "known_frames": 0,
+        "unknown_frames": 63,
+        "target_occlusion_state_frames": {
+          "clear": 0,
+          "partial_needle": 0,
+          "full_needle": 0,
+          "not_visible": 0
+        },
+        "frames_with_needle_occlusion": 0,
+        "maximum_target_occlusion_fraction_by_needle": null,
+        "source": "MuJoCo geometry segmentation; offline no-needle counterfactual, not controller input"
+      },
+      "target_success_by_visibility": null,
+      "stop_constraint_summary": {
+        "pass": true,
+        "attempted_targets": 1,
+        "targets_with_validated_stop": 1
+      },
+      "initial_error_mm": 0.019992881882205934,
+      "stop_reason": "EXACT_TERMINAL_LOCK_WITHIN_0P1UM",
+      "teacher_invalid_frames": 0,
+      "teacher_invalid_fraction": 0.0,
+      "collection_wall_s": 35.36663940700237,
+      "target_robot_mm": [
+        -2.5236710703393954,
+        4.120915116139901,
+        23.308837320777407
+      ],
+      "teacher_pre_roll": {
+        "result": "SKIPPED",
+        "reason": "DIRECT_TERMINAL_START",
+        "start_profile": "under_0p02mm"
+      },
+      "terminal_start_profile": "under_0p02mm",
+      "exact_terminal_lock": {
+        "requested_terminal_robot_ABCE": [
+          -3436,
+          1797328,
+          2157522,
+          0
+        ],
+        "terminal_robot_ABCE": [
+          -3433,
+          1797498,
+          2157492,
+          0
+        ],
+        "terminal_target_robot_ABCE": [
+          -3433,
+          1797498,
+          2157492,
+          0
+        ],
+        "exact_settle_steps": 6,
+        "terminal_tip_world_m": [
+          0.3470402656643122,
+          -0.01378442138458938,
+          0.3718029251253068
+        ],
+        "terminal_target_world_m": [
+          0.34704027374966,
+          -0.013784423045701598,
+          0.37180291180739783
+        ],
+        "original_target_world_mm": [
+          347.04027374966,
+          -13.784423045701597,
+          371.80291180739783
+        ],
+        "target_shift_mm": 0.0,
+        "target_shift_vector_mm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "final_error_um": 0.01566840271056503,
+        "reachable_target_planning": {
+          "requested_target_robot_mm": [
+            -2.525792157550575,
+            4.121779346447255,
+            23.308926503426637
+          ],
+          "requested_target_world_mm": [
+            347.0411115984724,
+            -13.786544132912777,
+            371.8031417137627
+          ],
+          "reachable_target_robot_mm": [
+            -2.5236710703393954,
+            4.120915116139901,
+            23.308837320777407
+          ],
+          "reachable_target_world_mm": [
+            347.04027374966,
+            -13.7844230457016,
+            371.80291180739783
+          ],
+          "target_shift_mm": [
+            -0.0008378488124094474,
+            0.0021210872111776524,
+            -0.00022990636489339522
+          ],
+          "target_shift_norm_mm": 0.002292129692337632,
+          "requested_terminal_robot_ABCE": [
+            -3436,
+            1797328,
+            2157522,
+            0
+          ],
+          "endpoint_robot_ABCE": [
+            -3433,
+            1797498,
+            2157493,
+            0
+          ],
+          "endpoint_task_rad_rad_m": [
+            -0.10785087579773761,
+            0.06623528946846967,
+            0.019804469339427762
+          ]
+        }
+      },
+      "executor_counts": {
+        "beta_teacher": 16,
+        "hold": 41,
+        "exact_terminal": 6
+      },
+      "takeover_trigger_reasons": {},
+      "strict_zero_error": true,
+      "final_error_um": 0.01566840271056503,
+      "expert_terminal_tolerance_um": 0.1
+    },
+    {
+      "episode_index": 6,
+      "method": "dagger_policy_teacher",
+      "seed": 20300707,
+      "visit_order": [
+        "P1"
+      ],
+      "result": "FAIL",
+      "frames": 72,
+      "data": "data/episode_000006.npz",
+      "jsonl": "data/episode_000006.jsonl",
+      "policy_inputs": "policy_inputs/episode_000006.npz",
+      "policy_inputs_no_image": "policy_inputs_no_image/episode_000006.npz",
+      "action_labels": "action_labels/episode_000006.npz",
+      "image_write_wall_s": 2.894051685114391,
+      "visibility_summary": {
+        "known_frames": 0,
+        "unknown_frames": 72,
+        "target_occlusion_state_frames": {
+          "clear": 0,
+          "partial_needle": 0,
+          "full_needle": 0,
+          "not_visible": 0
+        },
+        "frames_with_needle_occlusion": 0,
+        "maximum_target_occlusion_fraction_by_needle": null,
+        "source": "MuJoCo geometry segmentation; offline no-needle counterfactual, not controller input"
+      },
+      "target_success_by_visibility": null,
+      "stop_constraint_summary": {
+        "pass": false,
+        "attempted_targets": 1,
+        "targets_with_validated_stop": 0
+      },
+      "initial_error_mm": 0.049997873108341834,
+      "stop_reason": "EXACT_TERMINAL_ERROR_ABOVE_0P1UM: 0.532725692778191",
+      "teacher_invalid_frames": 0,
+      "teacher_invalid_fraction": 0.0,
+      "collection_wall_s": 41.24814595899079,
+      "target_robot_mm": [
+        -1.3988508602915608,
+        1.3372806269176758,
+        23.407321751125377
+      ],
+      "teacher_pre_roll": {
+        "result": "SKIPPED",
+        "reason": "DIRECT_TERMINAL_START",
+        "start_profile": "under_0p05mm"
+      },
+      "terminal_start_profile": "under_0p05mm",
+      "exact_terminal_lock": {
+        "requested_terminal_robot_ABCE": [
+          -1902,
+          2403701,
+          2137251,
+          0
+        ],
+        "terminal_robot_ABCE": [
+          -1900,
+          2403416,
+          2137277,
+          0
+        ],
+        "terminal_target_robot_ABCE": [
+          -1900,
+          2403416,
+          2137277,
+          0
+        ],
+        "exact_settle_steps": 7,
+        "terminal_tip_world_m": [
+          0.3444815508084005,
+          -0.012659634563756714,
+          0.3707023696434136
+        ],
+        "terminal_target_world_m": [
+          0.3444813302337634,
+          -0.012659602835653764,
+          0.3707028535202788
+        ],
+        "original_target_world_mm": [
+          344.4813302337634,
+          -12.659602835653764,
+          370.70285352027884
+        ],
+        "target_shift_mm": 0.0,
+        "target_shift_vector_mm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "final_error_um": 0.532725692778191,
+        "reachable_target_planning": {
+          "requested_target_robot_mm": [
+            -1.4005588113748864,
+            1.3360121628639954,
+            23.407419795744122
+          ],
+          "requested_target_world_mm": [
+            344.48018341580394,
+            -12.66131078673709,
+            370.70230268239834
+          ],
+          "reachable_target_robot_mm": [
+            -1.3988508602915608,
+            1.3372806269176758,
+            23.407321751125377
+          ],
+          "reachable_target_world_mm": [
+            344.4813302337634,
+            -12.659602835653764,
+            370.70285352027884
+          ],
+          "target_shift_mm": [
+            0.0011468179594658068,
+            0.001707951083325554,
+            0.0005508378804961467
+          ],
+          "target_shift_norm_mm": 0.0021297208046539193,
+          "requested_terminal_robot_ABCE": [
+            -1902,
+            2403701,
+            2137251,
+            0
+          ],
+          "endpoint_robot_ABCE": [
+            -1900,
+            2403416,
+            2137243,
+            0
+          ],
+          "endpoint_task_rad_rad_m": [
+            -0.05969026041820607,
+            0.1832596094915007,
+            0.019487184184164872
+          ]
+        }
+      },
+      "executor_counts": {
+        "beta_teacher": 25,
+        "hold": 40,
+        "exact_terminal": 7
+      },
+      "takeover_trigger_reasons": {},
+      "strict_zero_error": false,
+      "final_error_um": 0.532725692778191,
+      "expert_terminal_tolerance_um": 0.1
+    },
+    {
+      "episode_index": 7,
+      "method": "dagger_policy_teacher",
+      "seed": 20300708,
+      "visit_order": [
+        "P1"
+      ],
+      "result": "FAIL",
+      "frames": 79,
+      "data": "data/episode_000007.npz",
+      "jsonl": "data/episode_000007.jsonl",
+      "policy_inputs": "policy_inputs/episode_000007.npz",
+      "policy_inputs_no_image": "policy_inputs_no_image/episode_000007.npz",
+      "action_labels": "action_labels/episode_000007.npz",
+      "image_write_wall_s": 3.227179269946646,
+      "visibility_summary": {
+        "known_frames": 0,
+        "unknown_frames": 79,
+        "target_occlusion_state_frames": {
+          "clear": 0,
+          "partial_needle": 0,
+          "full_needle": 0,
+          "not_visible": 0
+        },
+        "frames_with_needle_occlusion": 0,
+        "maximum_target_occlusion_fraction_by_needle": null,
+        "source": "MuJoCo geometry segmentation; offline no-needle counterfactual, not controller input"
+      },
+      "target_success_by_visibility": null,
+      "stop_constraint_summary": {
+        "pass": false,
+        "attempted_targets": 1,
+        "targets_with_validated_stop": 0
+      },
+      "initial_error_mm": 0.09999574621662743,
+      "stop_reason": "EXACT_TERMINAL_ERROR_ABOVE_0P1UM: 0.10967881905852936",
+      "teacher_invalid_frames": 0,
+      "teacher_invalid_fraction": 0.0,
+      "collection_wall_s": 47.603387863026,
+      "target_robot_mm": [
+        -3.614611975592991,
+        5.952423996883846,
+        22.669627479926966
+      ],
+      "teacher_pre_roll": {
+        "result": "SKIPPED",
+        "reason": "DIRECT_TERMINAL_START",
+        "start_profile": "under_0p10mm"
+      },
+      "terminal_start_profile": "under_0p10mm",
+      "exact_terminal_lock": {
+        "requested_terminal_robot_ABCE": [
+          -5036,
+          1400130,
+          2151813,
+          0
+        ],
+        "terminal_robot_ABCE": [
+          -5033,
+          1400008,
+          2151786,
+          0
+        ],
+        "terminal_target_robot_ABCE": [
+          -5033,
+          1400008,
+          2151786,
+          0
+        ],
+        "exact_settle_steps": 6,
+        "terminal_tip_world_m": [
+          0.3485158244517693,
+          -0.014875347233952885,
+          0.37306219626007636
+        ],
+        "terminal_target_world_m": [
+          0.348515888086827,
+          -0.014875363950955194,
+          0.37306210850721533
+        ],
+        "original_target_world_mm": [
+          348.515888086827,
+          -14.875363950955194,
+          373.0621085072153
+        ],
+        "target_shift_mm": 0.0,
+        "target_shift_vector_mm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "final_error_um": 0.10967881905852936,
+        "reachable_target_planning": {
+          "requested_target_robot_mm": [
+            -3.6166429308395016,
+            5.951926974199234,
+            22.669766076441373
+          ],
+          "requested_target_world_mm": [
+            348.51547501488375,
+            -14.877394906201705,
+            373.0617992951319
+          ],
+          "reachable_target_robot_mm": [
+            -3.614611975592991,
+            5.952423996883846,
+            22.669627479926966
+          ],
+          "reachable_target_world_mm": [
+            348.515888086827,
+            -14.875363950955196,
+            373.0621085072153
+          ],
+          "target_shift_mm": [
+            0.00041307194322826035,
+            0.002030955246508981,
+            0.00030921208343670514
+          ],
+          "target_shift_norm_mm": 0.002095476021372708,
+          "requested_terminal_robot_ABCE": [
+            -5036,
+            1400130,
+            2151813,
+            0
+          ],
+          "endpoint_robot_ABCE": [
+            -5033,
+            1400008,
+            2151793,
+            0
+          ],
+          "endpoint_task_rad_rad_m": [
+            -0.15811635825517428,
+            -0.013482633936010445,
+            0.019715159443872282
+          ]
+        }
+      },
+      "executor_counts": {
+        "beta_teacher": 33,
+        "hold": 40,
+        "exact_terminal": 6
+      },
+      "takeover_trigger_reasons": {},
+      "strict_zero_error": false,
+      "final_error_um": 0.10967881905852936,
+      "expert_terminal_tolerance_um": 0.1
+    },
+    {
+      "episode_index": 8,
+      "method": "dagger_policy_teacher",
+      "seed": 20300709,
+      "visit_order": [
+        "P1"
+      ],
+      "result": "PASS",
+      "frames": 64,
+      "data": "data/episode_000008.npz",
+      "jsonl": "data/episode_000008.jsonl",
+      "policy_inputs": "policy_inputs/episode_000008.npz",
+      "policy_inputs_no_image": "policy_inputs_no_image/episode_000008.npz",
+      "action_labels": "action_labels/episode_000008.npz",
+      "image_write_wall_s": 2.664179229759611,
+      "visibility_summary": {
+        "known_frames": 0,
+        "unknown_frames": 64,
+        "target_occlusion_state_frames": {
+          "clear": 0,
+          "partial_needle": 0,
+          "full_needle": 0,
+          "not_visible": 0
+        },
+        "frames_with_needle_occlusion": 0,
+        "maximum_target_occlusion_fraction_by_needle": null,
+        "source": "MuJoCo geometry segmentation; offline no-needle counterfactual, not controller input"
+      },
+      "target_success_by_visibility": null,
+      "stop_constraint_summary": {
+        "pass": true,
+        "attempted_targets": 1,
+        "targets_with_validated_stop": 1
+      },
+      "initial_error_mm": 0.01999288188225477,
+      "stop_reason": "EXACT_TERMINAL_LOCK_WITHIN_0P1UM",
+      "teacher_invalid_frames": 0,
+      "teacher_invalid_fraction": 0.0,
+      "collection_wall_s": 39.573053987987805,
+      "target_robot_mm": [
+        2.4211052742670076,
+        8.298725197778019,
+        22.038000260454695
+      ],
+      "teacher_pre_roll": {
+        "result": "SKIPPED",
+        "reason": "DIRECT_TERMINAL_START",
+        "start_profile": "over_0p02mm"
+      },
+      "terminal_start_profile": "over_0p02mm",
+      "exact_terminal_lock": {
+        "requested_terminal_robot_ABCE": [
+          3483,
+          909826,
+          2149108,
+          0
+        ],
+        "terminal_robot_ABCE": [
+          3483,
+          909632,
+          2149094,
+          0
+        ],
+        "terminal_target_robot_ABCE": [
+          3483,
+          909632,
+          2149094,
+          0
+        ],
+        "exact_settle_steps": 7,
+        "terminal_tip_world_m": [
+          0.3504740953834001,
+          -0.008839645098633088,
+          0.3745006889889276
+        ],
+        "terminal_target_world_m": [
+          0.350474084980356,
+          -0.008839646701095197,
+          0.3745007005952893
+        ],
+        "original_target_world_mm": [
+          350.474084980356,
+          -8.839646701095198,
+          374.5007005952893
+        ],
+        "target_shift_mm": 0.0,
+        "target_shift_vector_mm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "final_error_um": 0.015668402702167926,
+        "reachable_target_planning": {
+          "requested_target_robot_mm": [
+            2.421002227625072,
+            8.297847879654537,
+            22.03858745501485
+          ],
+          "requested_target_world_mm": [
+            350.473479923284,
+            -8.839749747737132,
+            374.4998354996409
+          ],
+          "reachable_target_robot_mm": [
+            2.4211052742670076,
+            8.298725197778019,
+            22.038000260454695
+          ],
+          "reachable_target_world_mm": [
+            350.474084980356,
+            -8.839646701095196,
+            374.5007005952893
+          ],
+          "target_shift_mm": [
+            0.0006050570719935422,
+            0.00010304664193583335,
+            0.0008650956484075323
+          ],
+          "target_shift_norm_mm": 0.0010607087968322404,
+          "requested_terminal_robot_ABCE": [
+            3483,
+            909826,
+            2149108,
+            0
+          ],
+          "endpoint_robot_ABCE": [
+            3483,
+            909632,
+            2149093,
+            0
+          ],
+          "endpoint_task_rad_rad_m": [
+            0.10942167212453249,
+            -0.11794057001739951,
+            0.019672854756503894
+          ]
+        }
+      },
+      "executor_counts": {
+        "beta_teacher": 16,
+        "hold": 41,
+        "exact_terminal": 7
+      },
+      "takeover_trigger_reasons": {},
+      "strict_zero_error": true,
+      "final_error_um": 0.015668402702167926,
+      "expert_terminal_tolerance_um": 0.1
+    },
+    {
+      "episode_index": 9,
+      "method": "dagger_policy_teacher",
+      "seed": 20300710,
+      "visit_order": [
+        "P1"
+      ],
+      "result": "FAIL",
+      "frames": 72,
+      "data": "data/episode_000009.npz",
+      "jsonl": "data/episode_000009.jsonl",
+      "policy_inputs": "policy_inputs/episode_000009.npz",
+      "policy_inputs_no_image": "policy_inputs_no_image/episode_000009.npz",
+      "action_labels": "action_labels/episode_000009.npz",
+      "image_write_wall_s": 2.982465663284529,
+      "visibility_summary": {
+        "known_frames": 0,
+        "unknown_frames": 72,
+        "target_occlusion_state_frames": {
+          "clear": 0,
+          "partial_needle": 0,
+          "full_needle": 0,
+          "not_visible": 0
+        },
+        "frames_with_needle_occlusion": 0,
+        "maximum_target_occlusion_fraction_by_needle": null,
+        "source": "MuJoCo geometry segmentation; offline no-needle counterfactual, not controller input"
+      },
+      "target_success_by_visibility": null,
+      "stop_constraint_summary": {
+        "pass": false,
+        "attempted_targets": 1,
+        "targets_with_validated_stop": 0
+      },
+      "initial_error_mm": 0.049997873108280216,
+      "stop_reason": "EXACT_TERMINAL_ERROR_ABOVE_0P1UM: 0.5327256928216375",
+      "teacher_invalid_frames": 0,
+      "teacher_invalid_fraction": 0.0,
+      "collection_wall_s": 43.31050034594955,
+      "target_robot_mm": [
+        1.0105502078608237,
+        9.468107607655,
+        21.543734238697912
+      ],
+      "teacher_pre_roll": {
+        "result": "SKIPPED",
+        "reason": "DIRECT_TERMINAL_START",
+        "start_profile": "over_0p05mm"
+      },
+      "terminal_start_profile": "over_0p05mm",
+      "exact_terminal_lock": {
+        "requested_terminal_robot_ABCE": [
+          1493,
+          667026,
+          2141516,
+          0
+        ],
+        "terminal_robot_ABCE": [
+          1492,
+          666859,
+          2141484,
+          0
+        ],
+        "terminal_target_robot_ABCE": [
+          1492,
+          666859,
+          2141484,
+          0
+        ],
+        "exact_settle_steps": 7,
+        "terminal_tip_world_m": [
+          0.3513846577055689,
+          -0.010250224623163036,
+          0.37538534321205924
+        ],
+        "terminal_target_world_m": [
+          0.3513850337943331,
+          -0.01025020176750138,
+          0.37538496660679643
+        ],
+        "original_target_world_mm": [
+          351.38503379433314,
+          -10.25020176750138,
+          375.3849666067964
+        ],
+        "target_shift_mm": 0.0,
+        "target_shift_vector_mm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "final_error_um": 0.5327256928216375,
+        "reachable_target_planning": {
+          "requested_target_robot_mm": [
+            1.0113621074956656,
+            9.467244356846837,
+            21.544036564585046
+          ],
+          "requested_target_world_mm": [
+            351.3843386669642,
+            -10.249389867866538,
+            375.3843721315313
+          ],
+          "reachable_target_robot_mm": [
+            1.0105502078608237,
+            9.468107607655,
+            21.543734238697912
+          ],
+          "reachable_target_world_mm": [
+            351.3850337943331,
+            -10.25020176750138,
+            375.3849666067964
+          ],
+          "target_shift_mm": [
+            0.0006951273688855508,
+            -0.0008118996348418506,
+            0.0005944752651316776
+          ],
+          "target_shift_norm_mm": 0.0012230224515042466,
+          "requested_terminal_robot_ABCE": [
+            1493,
+            667026,
+            2141516,
+            0
+          ],
+          "endpoint_robot_ABCE": [
+            1492,
+            666859,
+            2141518,
+            0
+          ],
+          "endpoint_task_rad_rad_m": [
+            0.046872562391559715,
+            -0.173442099118503,
+            0.019554166605831483
+          ]
+        }
+      },
+      "executor_counts": {
+        "beta_teacher": 25,
+        "hold": 40,
+        "exact_terminal": 7
+      },
+      "takeover_trigger_reasons": {},
+      "strict_zero_error": false,
+      "final_error_um": 0.5327256928216375,
+      "expert_terminal_tolerance_um": 0.1
+    },
+    {
+      "episode_index": 10,
+      "method": "dagger_policy_teacher",
+      "seed": 20300711,
+      "visit_order": [
+        "P1"
+      ],
+      "result": "PASS",
+      "frames": 65,
+      "data": "data/episode_000010.npz",
+      "jsonl": "data/episode_000010.jsonl",
+      "policy_inputs": "policy_inputs/episode_000010.npz",
+      "policy_inputs_no_image": "policy_inputs_no_image/episode_000010.npz",
+      "action_labels": "action_labels/episode_000010.npz",
+      "image_write_wall_s": 2.709657531057019,
+      "visibility_summary": {
+        "known_frames": 0,
+        "unknown_frames": 65,
+        "target_occlusion_state_frames": {
+          "clear": 0,
+          "partial_needle": 0,
+          "full_needle": 0,
+          "not_visible": 0
+        },
+        "frames_with_needle_occlusion": 0,
+        "maximum_target_occlusion_fraction_by_needle": null,
+        "source": "MuJoCo geometry segmentation; offline no-needle counterfactual, not controller input"
+      },
+      "target_success_by_visibility": null,
+      "stop_constraint_summary": {
+        "pass": true,
+        "attempted_targets": 1,
+        "targets_with_validated_stop": 1
+      },
+      "initial_error_mm": 0.01999288188223573,
+      "stop_reason": "EXACT_TERMINAL_LOCK_WITHIN_0P1UM",
+      "teacher_invalid_frames": 0,
+      "teacher_invalid_fraction": 0.0,
+      "collection_wall_s": 39.727130410959944,
+      "target_robot_mm": [
+        1.5613541491644751,
+        6.173321141270982,
+        23.080857273629356
+      ],
+      "teacher_pre_roll": {
+        "result": "SKIPPED",
+        "reason": "DIRECT_TERMINAL_START",
+        "start_profile": "under_0p02mm"
+      },
+      "terminal_start_profile": "under_0p02mm",
+      "exact_terminal_lock": {
+        "requested_terminal_robot_ABCE": [
+          2148,
+          1365329,
+          2166316,
+          0
+        ],
+        "terminal_robot_ABCE": [
+          2150,
+          1365623,
+          2166342,
+          0
+        ],
+        "terminal_target_robot_ABCE": [
+          2150,
+          1365623,
+          2166342,
+          0
+        ],
+        "exact_settle_steps": 6,
+        "terminal_tip_world_m": [
+          0.3488707279765707,
+          -0.009699398847948891,
+          0.37275882656378406
+        ],
+        "terminal_target_world_m": [
+          0.3488707372129492,
+          -0.009699397826197729,
+          0.372758813948548
+        ],
+        "original_target_world_mm": [
+          348.8707372129492,
+          -9.699397826197728,
+          372.758813948548
+        ],
+        "target_shift_mm": 0.0,
+        "target_shift_vector_mm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "final_error_um": 0.015668402740923314,
+        "reachable_target_planning": {
+          "requested_target_robot_mm": [
+            1.559627361453697,
+            6.1746112189014735,
+            23.080184070077753
+          ],
+          "requested_target_world_mm": [
+            348.87169584830923,
+            -9.701124613908506,
+            372.75990871864303
+          ],
+          "reachable_target_robot_mm": [
+            1.5613541491644751,
+            6.173321141270982,
+            23.080857273629356
+          ],
+          "reachable_target_world_mm": [
+            348.87073721294917,
+            -9.699397826197728,
+            372.758813948548
+          ],
+          "target_shift_mm": [
+            -0.0009586353600639086,
+            0.001726787710778055,
+            -0.0010947700950509898
+          ],
+          "target_shift_norm_mm": 0.0022581627737337556,
+          "requested_terminal_robot_ABCE": [
+            2148,
+            1365329,
+            2166316,
+            0
+          ],
+          "endpoint_robot_ABCE": [
+            2150,
+            1365623,
+            2166343,
+            0
+          ],
+          "endpoint_task_rad_rad_m": [
+            0.06754424205218056,
+            -0.020551279297947766,
+            0.019943134703579692
+          ]
+        }
+      },
+      "executor_counts": {
+        "beta_teacher": 18,
+        "hold": 41,
+        "exact_terminal": 6
+      },
+      "takeover_trigger_reasons": {},
+      "strict_zero_error": true,
+      "final_error_um": 0.015668402740923314,
+      "expert_terminal_tolerance_um": 0.1
+    },
+    {
+      "episode_index": 11,
+      "method": "dagger_policy_teacher",
+      "seed": 20300712,
+      "visit_order": [
+        "P1"
+      ],
+      "result": "FAIL",
+      "frames": 71,
+      "data": "data/episode_000011.npz",
+      "jsonl": "data/episode_000011.jsonl",
+      "policy_inputs": "policy_inputs/episode_000011.npz",
+      "policy_inputs_no_image": "policy_inputs_no_image/episode_000011.npz",
+      "action_labels": "action_labels/episode_000011.npz",
+      "image_write_wall_s": 2.9428708473569714,
+      "visibility_summary": {
+        "known_frames": 0,
+        "unknown_frames": 71,
+        "target_occlusion_state_frames": {
+          "clear": 0,
+          "partial_needle": 0,
+          "full_needle": 0,
+          "not_visible": 0
+        },
+        "frames_with_needle_occlusion": 0,
+        "maximum_target_occlusion_fraction_by_needle": null,
+        "source": "MuJoCo geometry segmentation; offline no-needle counterfactual, not controller input"
+      },
+      "target_success_by_visibility": null,
+      "stop_constraint_summary": {
+        "pass": false,
+        "attempted_targets": 1,
+        "targets_with_validated_stop": 0
+      },
+      "initial_error_mm": 0.049997873108313856,
+      "stop_reason": "EXACT_TERMINAL_ERROR_ABOVE_0P1UM: 0.5327256927745446",
+      "teacher_invalid_frames": 0,
+      "teacher_invalid_fraction": 0.0,
+      "collection_wall_s": 43.843889707000926,
+      "target_robot_mm": [
+        -4.8071176318772,
+        3.953083043783537,
+        22.586632588178382
+      ],
+      "teacher_pre_roll": {
+        "result": "SKIPPED",
+        "reason": "DIRECT_TERMINAL_START",
+        "start_profile": "under_0p05mm"
+      },
+      "terminal_start_profile": "under_0p05mm",
+      "exact_terminal_lock": {
+        "requested_terminal_robot_ABCE": [
+          -6671,
+          1820302,
+          2133490,
+          0
+        ],
+        "terminal_robot_ABCE": [
+          -6675,
+          1820146,
+          2133527,
+          0
+        ],
+        "terminal_target_robot_ABCE": [
+          -6675,
+          1820146,
+          2133527,
+          0
+        ],
+        "exact_settle_steps": 6,
+        "terminal_tip_world_m": [
+          0.3466225178424966,
+          -0.01606797891355397,
+          0.3724148395448924
+        ],
+        "terminal_target_world_m": [
+          0.34662224803356456,
+          -0.016067869607239403,
+          0.37241528569725824
+        ],
+        "original_target_world_mm": [
+          346.6222480335646,
+          -16.067869607239402,
+          372.41528569725824
+        ],
+        "target_shift_mm": 0.0,
+        "target_shift_vector_mm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "final_error_um": 0.5327256927745446,
+        "reachable_target_planning": {
+          "requested_target_robot_mm": [
+            -4.804037782414407,
+            3.9523708382182665,
+            22.587369010744503
+          ],
+          "requested_target_world_mm": [
+            346.6218509292413,
+            -16.06478975777661,
+            372.4143413122099
+          ],
+          "reachable_target_robot_mm": [
+            -4.8071176318772,
+            3.953083043783537,
+            22.586632588178382
+          ],
+          "reachable_target_world_mm": [
+            346.6222480335646,
+            -16.067869607239405,
+            372.41528569725824
+          ],
+          "target_shift_mm": [
+            0.00039710432326955925,
+            -0.003079849462796602,
+            0.0009443850483421556
+          ],
+          "target_shift_norm_mm": 0.003245770736909819,
+          "requested_terminal_robot_ABCE": [
+            -6671,
+            1820302,
+            2133490,
+            0
+          ],
+          "endpoint_robot_ABCE": [
+            -6675,
+            1820146,
+            2133493,
+            0
+          ],
+          "endpoint_task_rad_rad_m": [
+            -0.2097013096271187,
+            0.07068578036922993,
+            0.019428427673931006
+          ]
+        }
+      },
+      "executor_counts": {
+        "beta_teacher": 25,
+        "hold": 40,
+        "exact_terminal": 6
+      },
+      "takeover_trigger_reasons": {},
+      "strict_zero_error": false,
+      "final_error_um": 0.5327256927745446,
+      "expert_terminal_tolerance_um": 0.1
+    },
+    {
+      "episode_index": 12,
+      "method": "dagger_policy_teacher",
+      "seed": 20300713,
+      "visit_order": [
+        "P1"
+      ],
+      "result": "FAIL",
+      "frames": 81,
+      "data": "data/episode_000012.npz",
+      "jsonl": "data/episode_000012.jsonl",
+      "policy_inputs": "policy_inputs/episode_000012.npz",
+      "policy_inputs_no_image": "policy_inputs_no_image/episode_000012.npz",
+      "action_labels": "action_labels/episode_000012.npz",
+      "image_write_wall_s": 3.3569892337545753,
+      "visibility_summary": {
+        "known_frames": 0,
+        "unknown_frames": 81,
+        "target_occlusion_state_frames": {
+          "clear": 0,
+          "partial_needle": 0,
+          "full_needle": 0,
+          "not_visible": 0
+        },
+        "frames_with_needle_occlusion": 0,
+        "maximum_target_occlusion_fraction_by_needle": null,
+        "source": "MuJoCo geometry segmentation; offline no-needle counterfactual, not controller input"
+      },
+      "target_success_by_visibility": null,
+      "stop_constraint_summary": {
+        "pass": false,
+        "attempted_targets": 1,
+        "targets_with_validated_stop": 0
+      },
+      "initial_error_mm": 0.09999574621661628,
+      "stop_reason": "EXACT_TERMINAL_ERROR_ABOVE_0P1UM: 0.10967881906119617",
+      "teacher_invalid_frames": 0,
+      "teacher_invalid_fraction": 0.0,
+      "collection_wall_s": 48.88284656201722,
+      "target_robot_mm": [
+        3.3332114874050953,
+        2.1684407378901103,
+        23.11830916879314
+      ],
+      "teacher_pre_roll": {
+        "result": "SKIPPED",
+        "reason": "DIRECT_TERMINAL_START",
+        "start_profile": "under_0p10mm"
+      },
+      "terminal_start_profile": "under_0p10mm",
+      "exact_terminal_lock": {
+        "requested_terminal_robot_ABCE": [
+          4555,
+          2217612,
+          2135360,
+          0
+        ],
+        "terminal_robot_ABCE": [
+          4558,
+          2217299,
+          2135361,
+          0
+        ],
+        "terminal_target_robot_ABCE": [
+          4558,
+          2217299,
+          2135361,
+          0
+        ],
+        "exact_settle_steps": 6,
+        "terminal_tip_world_m": [
+          0.345151319595414,
+          -0.007927556072650018,
+          0.37127339299803735
+        ],
+        "terminal_target_world_m": [
+          0.3451513681975285,
+          -0.007927540487957109,
+          0.3712732959187133
+        ],
+        "original_target_world_mm": [
+          345.1513681975285,
+          -7.927540487957109,
+          371.2732959187133
+        ],
+        "target_shift_mm": 0.0,
+        "target_shift_vector_mm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "final_error_um": 0.10967881906119617,
+        "reachable_target_planning": {
+          "requested_target_robot_mm": [
+            3.3313615256134463,
+            2.167026536636773,
+            23.118573839440195
+          ],
+          "requested_target_world_mm": [
+            345.15014589213155,
+            -7.929390449748758,
+            371.2725369817903
+          ],
+          "reachable_target_robot_mm": [
+            3.3332114874050953,
+            2.1684407378901103,
+            23.11830916879314
+          ],
+          "reachable_target_world_mm": [
+            345.1513681975285,
+            -7.927540487957107,
+            371.27329591871325
+          ],
+          "target_shift_mm": [
+            0.0012223053969364628,
+            0.001849961791650756,
+            0.0007589369229208387
+          ],
+          "target_shift_norm_mm": 0.0023435815255544727,
+          "requested_terminal_robot_ABCE": [
+            4555,
+            2217612,
+            2135360,
+            0
+          ],
+          "endpoint_robot_ABCE": [
+            4558,
+            2217299,
+            2135368,
+            0
+          ],
+          "endpoint_task_rad_rad_m": [
+            0.14319379315062278,
+            0.1476548153459049,
+            0.019457805929047937
+          ]
+        }
+      },
+      "executor_counts": {
+        "beta_teacher": 35,
+        "hold": 40,
+        "exact_terminal": 6
+      },
+      "takeover_trigger_reasons": {},
+      "strict_zero_error": false,
+      "final_error_um": 0.10967881906119617,
+      "expert_terminal_tolerance_um": 0.1
+    },
+    {
+      "episode_index": 13,
+      "method": "dagger_policy_teacher",
+      "seed": 20300714,
+      "visit_order": [
+        "P1"
+      ],
+      "result": "PASS",
+      "frames": 63,
+      "data": "data/episode_000013.npz",
+      "jsonl": "data/episode_000013.jsonl",
+      "policy_inputs": "policy_inputs/episode_000013.npz",
+      "policy_inputs_no_image": "policy_inputs_no_image/episode_000013.npz",
+      "action_labels": "action_labels/episode_000013.npz",
+      "image_write_wall_s": 2.6135982968262397,
+      "visibility_summary": {
+        "known_frames": 0,
+        "unknown_frames": 63,
+        "target_occlusion_state_frames": {
+          "clear": 0,
+          "partial_needle": 0,
+          "full_needle": 0,
+          "not_visible": 0
+        },
+        "frames_with_needle_occlusion": 0,
+        "maximum_target_occlusion_fraction_by_needle": null,
+        "source": "MuJoCo geometry segmentation; offline no-needle counterfactual, not controller input"
+      },
+      "target_success_by_visibility": null,
+      "stop_constraint_summary": {
+        "pass": true,
+        "attempted_targets": 1,
+        "targets_with_validated_stop": 1
+      },
+      "initial_error_mm": 0.019992881882209105,
+      "stop_reason": "EXACT_TERMINAL_LOCK_WITHIN_0P1UM",
+      "teacher_invalid_frames": 0,
+      "teacher_invalid_fraction": 0.0,
+      "collection_wall_s": 38.517367523978464,
+      "target_robot_mm": [
+        0.7689646338267452,
+        1.4448034159046852,
+        23.481920038122247
+      ],
+      "teacher_pre_roll": {
+        "result": "SKIPPED",
+        "reason": "DIRECT_TERMINAL_START",
+        "start_profile": "over_0p02mm"
+      },
+      "terminal_start_profile": "over_0p02mm",
+      "exact_terminal_lock": {
+        "requested_terminal_robot_ABCE": [
+          1041,
+          2380275,
+          2140529,
+          0
+        ],
+        "terminal_robot_ABCE": [
+          1042,
+          2380105,
+          2140544,
+          0
+        ],
+        "terminal_target_robot_ABCE": [
+          1042,
+          2380105,
+          2140544,
+          0
+        ],
+        "exact_settle_steps": 6,
+        "terminal_tip_world_m": [
+          0.34460857866676464,
+          -0.010491786829682619,
+          0.3706722523773958
+        ],
+        "terminal_target_world_m": [
+          0.34460857210882867,
+          -0.010491787341535459,
+          0.3706722665981667
+        ],
+        "original_target_world_mm": [
+          344.6085721088287,
+          -10.491787341535458,
+          370.6722665981667
+        ],
+        "target_shift_mm": 0.0,
+        "target_shift_vector_mm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "final_error_um": 0.015668402674423605,
+        "reachable_target_planning": {
+          "requested_target_robot_mm": [
+            0.7685839203968027,
+            1.4440268785506092,
+            23.48176206904023
+          ],
+          "requested_target_world_mm": [
+            344.60779108313955,
+            -10.4921680549654,
+            370.67213257068397
+          ],
+          "reachable_target_robot_mm": [
+            0.7689646338267452,
+            1.4448034159046852,
+            23.481920038122247
+          ],
+          "reachable_target_world_mm": [
+            344.60857210882864,
+            -10.491787341535458,
+            370.6722665981667
+          ],
+          "target_shift_mm": [
+            0.0007810256890934397,
+            0.000380713429942503,
+            0.00013402748271573728
+          ],
+          "target_shift_norm_mm": 0.0008791514140838225,
+          "requested_terminal_robot_ABCE": [
+            1041,
+            2380275,
+            2140529,
+            0
+          ],
+          "endpoint_robot_ABCE": [
+            1042,
+            2380105,
+            2140543,
+            0
+          ],
+          "endpoint_task_rad_rad_m": [
+            0.032735395450405644,
+            0.17880900005734968,
+            0.019538889913170675
+          ]
+        }
+      },
+      "executor_counts": {
+        "beta_teacher": 16,
+        "hold": 41,
+        "exact_terminal": 6
+      },
+      "takeover_trigger_reasons": {},
+      "strict_zero_error": true,
+      "final_error_um": 0.015668402674423605,
+      "expert_terminal_tolerance_um": 0.1
+    },
+    {
+      "episode_index": 14,
+      "method": "dagger_policy_teacher",
+      "seed": 20300715,
+      "visit_order": [
+        "P1"
+      ],
+      "result": "FAIL",
+      "frames": 72,
+      "data": "data/episode_000014.npz",
+      "jsonl": "data/episode_000014.jsonl",
+      "policy_inputs": "policy_inputs/episode_000014.npz",
+      "policy_inputs_no_image": "policy_inputs_no_image/episode_000014.npz",
+      "action_labels": "action_labels/episode_000014.npz",
+      "image_write_wall_s": 3.001634501910303,
+      "visibility_summary": {
+        "known_frames": 0,
+        "unknown_frames": 72,
+        "target_occlusion_state_frames": {
+          "clear": 0,
+          "partial_needle": 0,
+          "full_needle": 0,
+          "not_visible": 0
+        },
+        "frames_with_needle_occlusion": 0,
+        "maximum_target_occlusion_fraction_by_needle": null,
+        "source": "MuJoCo geometry segmentation; offline no-needle counterfactual, not controller input"
+      },
+      "target_success_by_visibility": null,
+      "stop_constraint_summary": {
+        "pass": false,
+        "attempted_targets": 1,
+        "targets_with_validated_stop": 0
+      },
+      "initial_error_mm": 0.04999787310827442,
+      "stop_reason": "EXACT_TERMINAL_ERROR_ABOVE_0P1UM: 0.6424045118665532",
+      "teacher_invalid_frames": 0,
+      "teacher_invalid_fraction": 0.0,
+      "collection_wall_s": 43.76329792296747,
+      "target_robot_mm": [
+        -1.7043758682060073,
+        8.158724866485754,
+        22.254942692979316
+      ],
+      "teacher_pre_roll": {
+        "result": "SKIPPED",
+        "reason": "DIRECT_TERMINAL_START",
+        "start_profile": "over_0p05mm"
+      },
+      "terminal_start_profile": "over_0p05mm",
+      "exact_terminal_lock": {
+        "requested_terminal_robot_ABCE": [
+          -2431,
+          944662,
+          2154962,
+          0
+        ],
+        "terminal_robot_ABCE": [
+          -2433,
+          944468,
+          2154984,
+          0
+        ],
+        "terminal_target_robot_ABCE": [
+          -2433,
+          944468,
+          2154984,
+          0
+        ],
+        "exact_settle_steps": 7,
+        "terminal_tip_world_m": [
+          0.35042259345729004,
+          -0.012965173916410758,
+          0.3742472989060815
+        ],
+        "terminal_target_world_m": [
+          0.3504221699809667,
+          -0.012965127843568212,
+          0.3742477797684876
+        ],
+        "original_target_world_mm": [
+          350.4221699809667,
+          -12.965127843568212,
+          374.2477797684876
+        ],
+        "target_shift_mm": 0.0,
+        "target_shift_vector_mm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "final_error_um": 0.6424045118665532,
+        "reachable_target_planning": {
+          "requested_target_robot_mm": [
+            -1.703272538314618,
+            8.1578704726537,
+            22.255663492166626
+          ],
+          "requested_target_world_mm": [
+            350.42163468452634,
+            -12.964024513676822,
+            374.2467984438677
+          ],
+          "reachable_target_robot_mm": [
+            -1.7043758682060073,
+            8.158724866485754,
+            22.254942692979316
+          ],
+          "reachable_target_world_mm": [
+            350.4221699809667,
+            -12.965127843568212,
+            374.2477797684876
+          ],
+          "target_shift_mm": [
+            0.0005352964403755323,
+            -0.001103329891389393,
+            0.0009813246198859815
+          ],
+          "target_shift_norm_mm": 0.001570629535538668,
+          "requested_terminal_robot_ABCE": [
+            -2431,
+            944662,
+            2154962,
+            0
+          ],
+          "endpoint_robot_ABCE": [
+            -2433,
+            944468,
+            2154943,
+            0
+          ],
+          "endpoint_task_rad_rad_m": [
+            -0.07643494926183968,
+            -0.1102175969142395,
+            0.01976451491246873
+          ]
+        }
+      },
+      "executor_counts": {
+        "beta_teacher": 25,
+        "hold": 40,
+        "exact_terminal": 7
+      },
+      "takeover_trigger_reasons": {},
+      "strict_zero_error": false,
+      "final_error_um": 0.6424045118665532,
+      "expert_terminal_tolerance_um": 0.1
+    },
+    {
+      "episode_index": 15,
+      "method": "dagger_policy_teacher",
+      "seed": 20300716,
+      "visit_order": [
+        "P1"
+      ],
+      "result": "PASS",
+      "frames": 63,
+      "data": "data/episode_000015.npz",
+      "jsonl": "data/episode_000015.jsonl",
+      "policy_inputs": "policy_inputs/episode_000015.npz",
+      "policy_inputs_no_image": "policy_inputs_no_image/episode_000015.npz",
+      "action_labels": "action_labels/episode_000015.npz",
+      "image_write_wall_s": 2.582269615668338,
+      "visibility_summary": {
+        "known_frames": 0,
+        "unknown_frames": 63,
+        "target_occlusion_state_frames": {
+          "clear": 0,
+          "partial_needle": 0,
+          "full_needle": 0,
+          "not_visible": 0
+        },
+        "frames_with_needle_occlusion": 0,
+        "maximum_target_occlusion_fraction_by_needle": null,
+        "source": "MuJoCo geometry segmentation; offline no-needle counterfactual, not controller input"
+      },
+      "target_success_by_visibility": null,
+      "stop_constraint_summary": {
+        "pass": true,
+        "attempted_targets": 1,
+        "targets_with_validated_stop": 1
+      },
+      "initial_error_mm": 0.019992881882207596,
+      "stop_reason": "EXACT_TERMINAL_LOCK_WITHIN_0P1UM",
+      "teacher_invalid_frames": 0,
+      "teacher_invalid_fraction": 0.0,
+      "collection_wall_s": 37.88396914600162,
+      "target_robot_mm": [
+        4.009405171741057,
+        5.156271377539671,
+        22.72826007299411
+      ],
+      "teacher_pre_roll": {
+        "result": "SKIPPED",
+        "reason": "DIRECT_TERMINAL_START",
+        "start_profile": "under_0p02mm"
+      },
+      "terminal_start_profile": "under_0p02mm",
+      "exact_terminal_lock": {
+        "requested_terminal_robot_ABCE": [
+          5558,
+          1567086,
+          2147538,
+          0
+        ],
+        "terminal_robot_ABCE": [
+          5558,
+          1567001,
+          2147517,
+          0
+        ],
+        "terminal_target_robot_ABCE": [
+          5558,
+          1567001,
+          2147517,
+          0
+        ],
+        "exact_settle_steps": 6,
+        "terminal_tip_world_m": [
+          0.3477950258164734,
+          -0.007251349460103937,
+          0.3727190953359366
+        ],
+        "terminal_target_world_m": [
+          0.3477950344553342,
+          -0.007251346803621148,
+          0.37271908253702934
+        ],
+        "original_target_world_mm": [
+          347.7950344553342,
+          -7.251346803621147,
+          372.71908253702935
+        ],
+        "target_shift_mm": 0.0,
+        "target_shift_vector_mm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "final_error_um": 0.015668402721988228,
+        "reachable_target_planning": {
+          "requested_target_robot_mm": [
+            4.0093179418602745,
+            5.155946673591598,
+            22.72867161334414
+          ],
+          "requested_target_world_mm": [
+            347.79488086415006,
+            -7.25143403350193,
+            372.718581330623
+          ],
+          "reachable_target_robot_mm": [
+            4.009405171741057,
+            5.156271377539671,
+            22.72826007299411
+          ],
+          "reachable_target_world_mm": [
+            347.7950344553342,
+            -7.251346803621146,
+            372.71908253702935
+          ],
+          "target_shift_mm": [
+            0.00015359118413016404,
+            8.722988078346816e-05,
+            0.0005012064063407706
+          ],
+          "target_shift_norm_mm": 0.0005314199522985882,
+          "requested_terminal_robot_ABCE": [
+            5558,
+            1567086,
+            2147538,
+            0
+          ],
+          "endpoint_robot_ABCE": [
+            5558,
+            1567001,
+            2147518,
+            0
+          ],
+          "endpoint_task_rad_rad_m": [
+            0.17460971968652073,
+            0.020420337021739614,
+            0.019648177022205674
+          ]
+        }
+      },
+      "executor_counts": {
+        "beta_teacher": 16,
+        "hold": 41,
+        "exact_terminal": 6
+      },
+      "takeover_trigger_reasons": {},
+      "strict_zero_error": true,
+      "final_error_um": 0.015668402721988228,
+      "expert_terminal_tolerance_um": 0.1
+    },
+    {
+      "episode_index": 16,
+      "method": "dagger_policy_teacher",
+      "seed": 20300717,
+      "visit_order": [
+        "P1"
+      ],
+      "result": "FAIL",
+      "frames": 74,
+      "data": "data/episode_000016.npz",
+      "jsonl": "data/episode_000016.jsonl",
+      "policy_inputs": "policy_inputs/episode_000016.npz",
+      "policy_inputs_no_image": "policy_inputs_no_image/episode_000016.npz",
+      "action_labels": "action_labels/episode_000016.npz",
+      "image_write_wall_s": 3.046831744897645,
+      "visibility_summary": {
+        "known_frames": 0,
+        "unknown_frames": 74,
+        "target_occlusion_state_frames": {
+          "clear": 0,
+          "partial_needle": 0,
+          "full_needle": 0,
+          "not_visible": 0
+        },
+        "frames_with_needle_occlusion": 0,
+        "maximum_target_occlusion_fraction_by_needle": null,
+        "source": "MuJoCo geometry segmentation; offline no-needle counterfactual, not controller input"
+      },
+      "target_success_by_visibility": null,
+      "stop_constraint_summary": {
+        "pass": false,
+        "attempted_targets": 1,
+        "targets_with_validated_stop": 0
+      },
+      "initial_error_mm": 0.049997873108382634,
+      "stop_reason": "EXACT_TERMINAL_ERROR_ABOVE_0P1UM: 0.6424045119525491",
+      "teacher_invalid_frames": 0,
+      "teacher_invalid_fraction": 0.0,
+      "collection_wall_s": 44.85222775902366,
+      "target_robot_mm": [
+        -5.040812289223701,
+        5.975998070621795,
+        22.08798331696341
+      ],
+      "teacher_pre_roll": {
+        "result": "SKIPPED",
+        "reason": "DIRECT_TERMINAL_START",
+        "start_profile": "under_0p05mm"
+      },
+      "terminal_start_profile": "under_0p05mm",
+      "exact_terminal_lock": {
+        "requested_terminal_robot_ABCE": [
+          -7139,
+          1379352,
+          2133633,
+          0
+        ],
+        "terminal_robot_ABCE": [
+          -7142,
+          1379613,
+          2133602,
+          0
+        ],
+        "terminal_target_robot_ABCE": [
+          -7142,
+          1379613,
+          2133602,
+          0
+        ],
+        "exact_settle_steps": 6,
+        "terminal_tip_world_m": [
+          0.348326811772199,
+          -0.016301426060016458,
+          0.3736133008145598
+        ],
+        "terminal_target_world_m": [
+          0.34832718384182776,
+          -0.016301564264585903,
+          0.37361279569353933
+        ],
+        "original_target_world_mm": [
+          348.3271838418278,
+          -16.301564264585902,
+          373.61279569353934
+        ],
+        "target_shift_mm": 0.0,
+        "target_shift_vector_mm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "final_error_um": 0.6424045119525491,
+        "reachable_target_planning": {
+          "requested_target_robot_mm": [
+            -5.038409830151969,
+            5.977173484132296,
+            22.08805087682827
+          ],
+          "requested_target_world_mm": [
+            348.32830391137685,
+            -16.29916180551417,
+            373.6131584682094
+          ],
+          "reachable_target_robot_mm": [
+            -5.040812289223701,
+            5.975998070621795,
+            22.08798331696341
+          ],
+          "reachable_target_world_mm": [
+            348.3271838418278,
+            -16.301564264585906,
+            373.61279569353934
+          ],
+          "target_shift_mm": [
+            -0.0011200695490742874,
+            -0.002402459071735308,
+            -0.0003627746700658463
+          ],
+          "target_shift_norm_mm": 0.00267543844021277,
+          "requested_terminal_robot_ABCE": [
+            -7139,
+            1379352,
+            2133633,
+            0
+          ],
+          "endpoint_robot_ABCE": [
+            -7142,
+            1379613,
+            2133643,
+            0
+          ],
+          "endpoint_task_rad_rad_m": [
+            -0.22437254731938305,
+            -0.01767142383222536,
+            0.01943077793434036
+          ]
+        }
+      },
+      "executor_counts": {
+        "beta_teacher": 28,
+        "hold": 40,
+        "exact_terminal": 6
+      },
+      "takeover_trigger_reasons": {},
+      "strict_zero_error": false,
+      "final_error_um": 0.6424045119525491,
+      "expert_terminal_tolerance_um": 0.1
+    },
+    {
+      "episode_index": 17,
+      "method": "dagger_policy_teacher",
+      "seed": 20300718,
+      "visit_order": [
+        "P1"
+      ],
+      "result": "FAIL",
+      "frames": 83,
+      "data": "data/episode_000017.npz",
+      "jsonl": "data/episode_000017.jsonl",
+      "policy_inputs": "policy_inputs/episode_000017.npz",
+      "policy_inputs_no_image": "policy_inputs_no_image/episode_000017.npz",
+      "action_labels": "action_labels/episode_000017.npz",
+      "image_write_wall_s": 3.39439448696794,
+      "visibility_summary": {
+        "known_frames": 0,
+        "unknown_frames": 83,
+        "target_occlusion_state_frames": {
+          "clear": 0,
+          "partial_needle": 0,
+          "full_needle": 0,
+          "not_visible": 0
+        },
+        "frames_with_needle_occlusion": 0,
+        "maximum_target_occlusion_fraction_by_needle": null,
+        "source": "MuJoCo geometry segmentation; offline no-needle counterfactual, not controller input"
+      },
+      "target_success_by_visibility": null,
+      "stop_constraint_summary": {
+        "pass": false,
+        "attempted_targets": 1,
+        "targets_with_validated_stop": 0
+      },
+      "initial_error_mm": 0.09999574621672819,
+      "stop_reason": "EXACT_TERMINAL_ERROR_ABOVE_0P1UM: 0.1096788191314438",
+      "teacher_invalid_frames": 3,
+      "teacher_invalid_fraction": 0.03614457831325301,
+      "collection_wall_s": 50.25777407200076,
+      "target_robot_mm": [
+        2.405335000220697,
+        9.058949719998235,
+        21.582090582581973
+      ],
+      "teacher_pre_roll": {
+        "result": "SKIPPED",
+        "reason": "DIRECT_TERMINAL_START",
+        "start_profile": "under_0p10mm"
+      },
+      "terminal_start_profile": "under_0p10mm",
+      "exact_terminal_lock": {
+        "requested_terminal_robot_ABCE": [
+          3537,
+          746276,
+          2139924,
+          0
+        ],
+        "terminal_robot_ABCE": [
+          3533,
+          746069,
+          2139936,
+          0
+        ],
+        "terminal_target_robot_ABCE": [
+          3533,
+          746069,
+          2139936,
+          0
+        ],
+        "exact_settle_steps": 7,
+        "terminal_tip_world_m": [
+          0.35101747648068454,
+          -0.008855428187212678,
+          0.37520109203898344
+        ],
+        "terminal_target_world_m": [
+          0.35101755227897863,
+          -0.008855416975141507,
+          0.37520101356381896
+        ],
+        "original_target_world_mm": [
+          351.01755227897866,
+          -8.855416975141507,
+          375.20101356381895
+        ],
+        "target_shift_mm": 0.0,
+        "target_shift_vector_mm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "final_error_um": 0.1096788191314438,
+        "reachable_target_planning": {
+          "requested_target_robot_mm": [
+            2.4077547339638232,
+            9.057798819147429,
+            21.581986381935756
+          ],
+          "requested_target_world_mm": [
+            351.01644178591926,
+            -8.85299724139838,
+            375.2006938206279
+          ],
+          "reachable_target_robot_mm": [
+            2.405335000220697,
+            9.058949719998235,
+            21.582090582581973
+          ],
+          "reachable_target_world_mm": [
+            351.0175522789786,
+            -8.855416975141507,
+            375.20101356381895
+          ],
+          "target_shift_mm": [
+            0.0011104930593432982,
+            -0.0024197337431264287,
+            0.0003197431910280102
+          ],
+          "target_shift_norm_mm": 0.002681518586674918,
+          "requested_terminal_robot_ABCE": [
+            3537,
+            746276,
+            2139924,
+            0
+          ],
+          "endpoint_robot_ABCE": [
+            3533,
+            746069,
+            2139943,
+            0
+          ],
+          "endpoint_task_rad_rad_m": [
+            0.11099246845132739,
+            -0.15498524225361707,
+            0.019529488871533256
+          ]
+        }
+      },
+      "executor_counts": {
+        "beta_teacher": 33,
+        "policy": 3,
+        "hold": 40,
+        "exact_terminal": 7
+      },
+      "takeover_trigger_reasons": {},
+      "strict_zero_error": false,
+      "final_error_um": 0.1096788191314438,
+      "expert_terminal_tolerance_um": 0.1
+    },
+    {
+      "episode_index": 18,
+      "method": "dagger_policy_teacher",
+      "seed": 20300719,
+      "visit_order": [
+        "P1"
+      ],
+      "result": "PASS",
+      "frames": 65,
+      "data": "data/episode_000018.npz",
+      "jsonl": "data/episode_000018.jsonl",
+      "policy_inputs": "policy_inputs/episode_000018.npz",
+      "policy_inputs_no_image": "policy_inputs_no_image/episode_000018.npz",
+      "action_labels": "action_labels/episode_000018.npz",
+      "image_write_wall_s": 2.6684445667779073,
+      "visibility_summary": {
+        "known_frames": 0,
+        "unknown_frames": 65,
+        "target_occlusion_state_frames": {
+          "clear": 0,
+          "partial_needle": 0,
+          "full_needle": 0,
+          "not_visible": 0
+        },
+        "frames_with_needle_occlusion": 0,
+        "maximum_target_occlusion_fraction_by_needle": null,
+        "source": "MuJoCo geometry segmentation; offline no-needle counterfactual, not controller input"
+      },
+      "target_success_by_visibility": null,
+      "stop_constraint_summary": {
+        "pass": true,
+        "attempted_targets": 1,
+        "targets_with_validated_stop": 1
+      },
+      "initial_error_mm": 0.019992881882290214,
+      "stop_reason": "EXACT_TERMINAL_LOCK_WITHIN_0P1UM",
+      "teacher_invalid_frames": 0,
+      "teacher_invalid_fraction": 0.0,
+      "collection_wall_s": 39.66582351800753,
+      "target_robot_mm": [
+        2.024245019639784,
+        4.889557795819765,
+        23.30398718646758
+      ],
+      "teacher_pre_roll": {
+        "result": "SKIPPED",
+        "reason": "DIRECT_TERMINAL_START",
+        "start_profile": "over_0p02mm"
+      },
+      "terminal_start_profile": "over_0p02mm",
+      "exact_terminal_lock": {
+        "requested_terminal_robot_ABCE": [
+          2762,
+          1635877,
+          2163445,
+          0
+        ],
+        "terminal_robot_ABCE": [
+          2758,
+          1635609,
+          2163419,
+          0
+        ],
+        "terminal_target_robot_ABCE": [
+          2758,
+          1635609,
+          2163419,
+          0
+        ],
+        "exact_settle_steps": 6,
+        "terminal_tip_world_m": [
+          0.3477549745536671,
+          -0.009236505628514732,
+          0.3720858298767052
+        ],
+        "terminal_target_world_m": [
+          0.34775496603113687,
+          -0.00923650695572242,
+          0.37208584295737196
+        ],
+        "original_target_world_mm": [
+          347.75496603113686,
+          -9.23650695572242,
+          372.08584295737194
+        ],
+        "target_shift_mm": 0.0,
+        "target_shift_vector_mm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "final_error_um": 0.015668402761198727,
+        "reachable_target_planning": {
+          "requested_target_robot_mm": [
+            2.027489931855437,
+            4.888392474944738,
+            23.304379063750748
+          ],
+          "requested_target_world_mm": [
+            347.7540217818008,
+            -9.233262043506766,
+            372.08505559866194
+          ],
+          "reachable_target_robot_mm": [
+            2.024245019639784,
+            4.889557795819765,
+            23.30398718646758
+          ],
+          "reachable_target_world_mm": [
+            347.75496603113686,
+            -9.236506955722419,
+            372.08584295737194
+          ],
+          "target_shift_mm": [
+            0.0009442493360438675,
+            -0.0032449122156528176,
+            0.0007873587099993529
+          ],
+          "target_shift_norm_mm": 0.0034700138089241096,
+          "requested_terminal_robot_ABCE": [
+            2762,
+            1635877,
+            2163445,
+            0
+          ],
+          "endpoint_robot_ABCE": [
+            2758,
+            1635609,
+            2163418,
+            0
+          ],
+          "endpoint_task_rad_rad_m": [
+            0.08664512538600651,
+            0.03416474398189043,
+            0.019897304625597276
+          ]
+        }
+      },
+      "executor_counts": {
+        "beta_teacher": 18,
+        "hold": 41,
+        "exact_terminal": 6
+      },
+      "takeover_trigger_reasons": {},
+      "strict_zero_error": true,
+      "final_error_um": 0.015668402761198727,
+      "expert_terminal_tolerance_um": 0.1
+    },
+    {
+      "episode_index": 19,
+      "method": "dagger_policy_teacher",
+      "seed": 20300720,
+      "visit_order": [
+        "P1"
+      ],
+      "result": "FAIL",
+      "frames": 72,
+      "data": "data/episode_000019.npz",
+      "jsonl": "data/episode_000019.jsonl",
+      "policy_inputs": "policy_inputs/episode_000019.npz",
+      "policy_inputs_no_image": "policy_inputs_no_image/episode_000019.npz",
+      "action_labels": "action_labels/episode_000019.npz",
+      "image_write_wall_s": 2.9588383159716614,
+      "visibility_summary": {
+        "known_frames": 0,
+        "unknown_frames": 72,
+        "target_occlusion_state_frames": {
+          "clear": 0,
+          "partial_needle": 0,
+          "full_needle": 0,
+          "not_visible": 0
+        },
+        "frames_with_needle_occlusion": 0,
+        "maximum_target_occlusion_fraction_by_needle": null,
+        "source": "MuJoCo geometry segmentation; offline no-needle counterfactual, not controller input"
+      },
+      "target_success_by_visibility": null,
+      "stop_constraint_summary": {
+        "pass": false,
+        "attempted_targets": 1,
+        "targets_with_validated_stop": 0
+      },
+      "initial_error_mm": 0.049997873108343145,
+      "stop_reason": "EXACT_TERMINAL_ERROR_ABOVE_0P1UM: 0.6424045118754796",
+      "teacher_invalid_frames": 0,
+      "teacher_invalid_fraction": 0.0,
+      "collection_wall_s": 43.741264095006045,
+      "target_robot_mm": [
+        -0.4509090330070259,
+        8.707140304231206,
+        22.078284981727613
+      ],
+      "teacher_pre_roll": {
+        "result": "SKIPPED",
+        "reason": "DIRECT_TERMINAL_START",
+        "start_profile": "over_0p05mm"
+      },
+      "terminal_start_profile": "over_0p05mm",
+      "exact_terminal_lock": {
+        "requested_terminal_robot_ABCE": [
+          -647,
+          832137,
+          2153231,
+          0
+        ],
+        "terminal_robot_ABCE": [
+          -650,
+          832021,
+          2153259,
+          0
+        ],
+        "terminal_target_robot_ABCE": [
+          -650,
+          832021,
+          2153259,
+          0
+        ],
+        "exact_settle_steps": 7,
+        "terminal_tip_world_m": [
+          0.3508697948228873,
+          -0.011711673211261637,
+          0.37461061196606654
+        ],
+        "terminal_target_world_m": [
+          0.35086935876217334,
+          -0.01171166100836923,
+          0.37461108354394984
+        ],
+        "original_target_world_mm": [
+          350.86935876217336,
+          -11.71166100836923,
+          374.61108354394986
+        ],
+        "target_shift_mm": 0.0,
+        "target_shift_vector_mm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "final_error_um": 0.6424045118754796,
+        "reachable_target_planning": {
+          "requested_target_robot_mm": [
+            -0.4491163511613704,
+            8.706633266380475,
+            22.078735877891763
+          ],
+          "requested_target_world_mm": [
+            350.8690494733051,
+            -11.709868326523575,
+            374.61047961089986
+          ],
+          "reachable_target_robot_mm": [
+            -0.4509090330070259,
+            8.707140304231206,
+            22.078284981727613
+          ],
+          "reachable_target_world_mm": [
+            350.86935876217336,
+            -11.71166100836923,
+            374.61108354394986
+          ],
+          "target_shift_mm": [
+            0.00030928886826586677,
+            -0.0017926818456555083,
+            0.0006039330500016149
+          ],
+          "target_shift_norm_mm": 0.0019167949636464182,
+          "requested_terminal_robot_ABCE": [
+            -647,
+            832137,
+            2153231,
+            0
+          ],
+          "endpoint_robot_ABCE": [
+            -650,
+            832021,
+            2153218,
+            0
+          ],
+          "endpoint_task_rad_rad_m": [
+            -0.020420352248333655,
+            -0.1353503224056546,
+            0.019737486917761154
+          ]
+        }
+      },
+      "executor_counts": {
+        "beta_teacher": 25,
+        "hold": 40,
+        "exact_terminal": 7
+      },
+      "takeover_trigger_reasons": {},
+      "strict_zero_error": false,
+      "final_error_um": 0.6424045118754796,
+      "expert_terminal_tolerance_um": 0.1
+    },
+    {
+      "episode_index": 20,
+      "method": "dagger_policy_teacher",
+      "seed": 20300721,
+      "visit_order": [
+        "P1"
+      ],
+      "result": "PASS",
+      "frames": 63,
+      "data": "data/episode_000020.npz",
+      "jsonl": "data/episode_000020.jsonl",
+      "policy_inputs": "policy_inputs/episode_000020.npz",
+      "policy_inputs_no_image": "policy_inputs_no_image/episode_000020.npz",
+      "action_labels": "action_labels/episode_000020.npz",
+      "image_write_wall_s": 2.719181955093518,
+      "visibility_summary": {
+        "known_frames": 0,
+        "unknown_frames": 63,
+        "target_occlusion_state_frames": {
+          "clear": 0,
+          "partial_needle": 0,
+          "full_needle": 0,
+          "not_visible": 0
+        },
+        "frames_with_needle_occlusion": 0,
+        "maximum_target_occlusion_fraction_by_needle": null,
+        "source": "MuJoCo geometry segmentation; offline no-needle counterfactual, not controller input"
+      },
+      "target_success_by_visibility": null,
+      "stop_constraint_summary": {
+        "pass": true,
+        "attempted_targets": 1,
+        "targets_with_validated_stop": 1
+      },
+      "initial_error_mm": 0.019992881882226164,
+      "stop_reason": "EXACT_TERMINAL_LOCK_WITHIN_0P1UM",
+      "teacher_invalid_frames": 0,
+      "teacher_invalid_fraction": 0.0,
+      "collection_wall_s": 39.86596358998213,
+      "target_robot_mm": [
+        -3.494154678485584,
+        3.8762838695147304,
+        23.078412357571658
+      ],
+      "teacher_pre_roll": {
+        "result": "SKIPPED",
+        "reason": "DIRECT_TERMINAL_START",
+        "start_profile": "under_0p02mm"
+      },
+      "terminal_start_profile": "under_0p02mm",
+      "exact_terminal_lock": {
+        "requested_terminal_robot_ABCE": [
+          -4786,
+          1845668,
+          2148313,
+          0
+        ],
+        "terminal_robot_ABCE": [
+          -4783,
+          1845508,
+          2148342,
+          0
+        ],
+        "terminal_target_robot_ABCE": [
+          -4783,
+          1845508,
+          2148342,
+          0
+        ],
+        "exact_settle_steps": 6,
+        "terminal_tip_world_m": [
+          0.3467287836113877,
+          -0.014754904340015591,
+          0.3719290954169903
+        ],
+        "terminal_target_world_m": [
+          0.346728791539462,
+          -0.014754906653847787,
+          0.3719290821019363
+        ],
+        "original_target_world_mm": [
+          346.728791539462,
+          -14.754906653847787,
+          371.92908210193633
+        ],
+        "target_shift_mm": 0.0,
+        "target_shift_vector_mm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "final_error_um": 0.015668402751658927,
+        "reachable_target_planning": {
+          "requested_target_robot_mm": [
+            -3.4962983521592665,
+            3.875476028093879,
+            23.07774720770704
+          ],
+          "requested_target_world_mm": [
+            346.72779762922175,
+            -14.757050327521469,
+            371.92940947716136
+          ],
+          "reachable_target_robot_mm": [
+            -3.494154678485584,
+            3.8762838695147304,
+            23.078412357571658
+          ],
+          "reachable_target_world_mm": [
+            346.728791539462,
+            -14.754906653847788,
+            371.92908210193633
+          ],
+          "target_shift_mm": [
+            0.0009939102402540811,
+            0.002143673673680624,
+            -0.00032737522502657157
+          ],
+          "target_shift_norm_mm": 0.0023854494173791456,
+          "requested_terminal_robot_ABCE": [
+            -4786,
+            1845668,
+            2148313,
+            0
+          ],
+          "endpoint_robot_ABCE": [
+            -4783,
+            1845508,
+            2148343,
+            0
+          ],
+          "endpoint_task_rad_rad_m": [
+            -0.15026237662119982,
+            0.07566007076881774,
+            0.019661103454457124
+          ]
+        }
+      },
+      "executor_counts": {
+        "beta_teacher": 16,
+        "hold": 41,
+        "exact_terminal": 6
+      },
+      "takeover_trigger_reasons": {},
+      "strict_zero_error": true,
+      "final_error_um": 0.015668402751658927,
+      "expert_terminal_tolerance_um": 0.1
+    },
+    {
+      "episode_index": 21,
+      "method": "dagger_policy_teacher",
+      "seed": 20300722,
+      "visit_order": [
+        "P1"
+      ],
+      "result": "FAIL",
+      "frames": 72,
+      "data": "data/episode_000021.npz",
+      "jsonl": "data/episode_000021.jsonl",
+      "policy_inputs": "policy_inputs/episode_000021.npz",
+      "policy_inputs_no_image": "policy_inputs_no_image/episode_000021.npz",
+      "action_labels": "action_labels/episode_000021.npz",
+      "image_write_wall_s": 2.989828288264107,
+      "visibility_summary": {
+        "known_frames": 0,
+        "unknown_frames": 72,
+        "target_occlusion_state_frames": {
+          "clear": 0,
+          "partial_needle": 0,
+          "full_needle": 0,
+          "not_visible": 0
+        },
+        "frames_with_needle_occlusion": 0,
+        "maximum_target_occlusion_fraction_by_needle": null,
+        "source": "MuJoCo geometry segmentation; offline no-needle counterfactual, not controller input"
+      },
+      "target_success_by_visibility": null,
+      "stop_constraint_summary": {
+        "pass": false,
+        "attempted_targets": 1,
+        "targets_with_validated_stop": 0
+      },
+      "initial_error_mm": 0.04999787310836441,
+      "stop_reason": "EXACT_TERMINAL_ERROR_ABOVE_0P1UM: 0.6424045118816335",
+      "teacher_invalid_frames": 0,
+      "teacher_invalid_fraction": 0.0,
+      "collection_wall_s": 45.606992052984424,
+      "target_robot_mm": [
+        1.2813301464247104,
+        5.957243230735116,
+        23.17663680450901
+      ],
+      "teacher_pre_roll": {
+        "result": "SKIPPED",
+        "reason": "DIRECT_TERMINAL_START",
+        "start_profile": "under_0p05mm"
+      },
+      "terminal_start_profile": "under_0p05mm",
+      "exact_terminal_lock": {
+        "requested_terminal_robot_ABCE": [
+          1760,
+          1411891,
+          2167659,
+          0
+        ],
+        "terminal_robot_ABCE": [
+          1758,
+          1412143,
+          2167652,
+          0
+        ],
+        "terminal_target_robot_ABCE": [
+          1758,
+          1412143,
+          2167652,
+          0
+        ],
+        "exact_settle_steps": 6,
+        "terminal_tip_world_m": [
+          0.34870365022929645,
+          -0.0099794561772271,
+          0.37259179379284524
+        ],
+        "terminal_target_world_m": [
+          0.34870402411752116,
+          -0.009979421828937494,
+          0.3725912725334594
+        ],
+        "original_target_world_mm": [
+          348.70402411752116,
+          -9.979421828937493,
+          372.5912725334594
+        ],
+        "target_shift_mm": 0.0,
+        "target_shift_vector_mm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "final_error_um": 0.6424045118816335,
+        "reachable_target_planning": {
+          "requested_target_robot_mm": [
+            1.282675343827557,
+            5.958307574620699,
+            23.175741086170277
+          ],
+          "requested_target_world_mm": [
+            348.70469175011164,
+            -9.978076631534647,
+            372.5924929456739
+          ],
+          "reachable_target_robot_mm": [
+            1.2813301464247104,
+            5.957243230735116,
+            23.17663680450901
+          ],
+          "reachable_target_world_mm": [
+            348.70402411752116,
+            -9.979421828937493,
+            372.5912725334594
+          ],
+          "target_shift_mm": [
+            -0.0006676325904777514,
+            -0.0013451974028466651,
+            -0.0012204122144794383
+          ],
+          "target_shift_norm_mm": 0.001935121521182598,
+          "requested_terminal_robot_ABCE": [
+            1760,
+            1411891,
+            2167659,
+            0
+          ],
+          "endpoint_robot_ABCE": [
+            1758,
+            1412143,
+            2167693,
+            0
+          ],
+          "endpoint_task_rad_rad_m": [
+            0.05522919885010857,
+            -0.01099558608953273,
+            0.019964287047263884
+          ]
+        }
+      },
+      "executor_counts": {
+        "beta_teacher": 26,
+        "hold": 40,
+        "exact_terminal": 6
+      },
+      "takeover_trigger_reasons": {},
+      "strict_zero_error": false,
+      "final_error_um": 0.6424045118816335,
+      "expert_terminal_tolerance_um": 0.1
+    }
+  ],
+  "requested_episodes": 15,
+  "completed_episodes": 22,
+  "skipped_empty_episodes": [],
+  "resume_missing_prefix": [],
+  "resume_start_episode": 7,
+  "target_start": 0,
+  "target_end": 21,
+  "skip_episodes_before": 7,
+  "total_frames": 1544,
+  "teacher_invalid_frames": 3,
+  "strict_zero_error_episodes": 9,
+  "maximum_final_error_um": 0.6424045119525491
+}
