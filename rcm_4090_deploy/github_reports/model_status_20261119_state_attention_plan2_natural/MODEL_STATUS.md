@@ -49,4 +49,6 @@ All 16,010 reconstructed poses match the recorded errors or final tip values.
 [Paired comparison (JSON)](sampling_comparison.json) ·
 [Trajectory reconstruction check (JSON)](plots/trajectory_reconstruction.json)
 
+[A/B/C residual, command, and teacher diagnostics for E08, E00, E02, and E06](axis_diagnostics/AXIS_DIAGNOSTICS.md)
+
 These are MuJoCo simulation results.
