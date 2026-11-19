@@ -4529,6 +4529,62 @@ OK
   `data/experience_replay_plan2_20261119_test1/`；最终清单
   `github_reports/model_status_20261119_plan2_collection/plan2_final_summary.json`。
   所有采集进程已结束，结果仅为 MuJoCo 仿真数据。
+- 2026-11-19 16:10:16 CST：规划 2 的 200 条训练轨迹已转换为 224×224
+  LeRobot 数据并训练原始 DiT-Flow 架构。合并数据为 200 episodes、
+  85,381 frames、80,818 valid train windows；验证集 26,650 windows。
+  首次运行
+  `outputs/dit_rectified_flow_plan2_new200_20261119_1/` 因从新数据重算
+  归一化统计而产生 `val_loss=167.6–161.9`，判定无效并保留；修复为继承
+  初始 checkpoint 的归一化统计后重跑
+  `outputs/dit_rectified_flow_plan2_new200_20261119_correctstats_1/`。
+  有效 4 epochs 的 train/val loss 为
+  `0.091189/0.189130`、`0.084789/0.203877`、
+  `0.082460/0.212826`、`0.081821/0.213401`；训练 loss 下降但验证 loss
+  持续恶化，best epoch 为 0。best checkpoint SHA-256
+  `12b9b8b218a19df11031293fbb8747bbf682f917098b8bbe58d48ac883571ab7`。
+  曲线和摘要位于
+  `runs/20261119/original_arch_plan2_training/training_curves.png` 与
+  `runs/20261119/original_arch_plan2_training/training_summary.json`。
+  这是仅使用新增纠正训练集的离线 Flow 训练结果，尚未进行闭环评测；结果
+  说明需要与原始数据混合或降低更新强度，不能只凭训练 loss 判断有效。
+- 2026-11-19 16:33:48 CST：原 DiT-Flow 架构加入历史训练集后重新训练
+  PASS（离线 Flow 曲线）。将原 839 episodes/234,316 frames 与规划 2 的
+  200 episodes/85,381 frames 合并，得到 1,039 episodes/319,697 frames，
+  301,634 个 valid train windows；验证集 26,650 windows。
+  `train_dit_rectified_flow.py` 改为使用初始 checkpoint 的固定归一化统计，
+  避免新旧数据统计漂移。4 epochs 的 train/val loss 为
+  `0.117040/0.148789`、`0.113280/0.147219`、
+  `0.111231/0.147659`、`0.110118/0.146885`；best epoch 3，
+  val loss 较初始 checkpoint 的 `0.161541` 改善约 9.1%。checkpoint
+  SHA-256
+  `4e4b2865fc9939a22ff7d5f6953d2a378af9d4baeead887fd053ff32a243d275`。
+  曲线和摘要位于
+  `runs/20261119/original_arch_plan2_plus_original_training/training_curves.png`
+  与 `training_summary.json`。本次仅为离线训练结果，尚未做闭环评测。
+- 2026-11-19 17:33:22 CST：原始 DiT-Flow 架构在“原 839 episodes + 规划 2
+  200 episodes”合并训练 checkpoint 上完成固定 20 目标闭环评测 FAIL。
+  checkpoint `outputs/dit_rectified_flow_plan2_plus_original200_20261119_1/best_model.pth`
+  SHA-256
+  `4e4b2865fc9939a22ff7d5f6953d2a378af9d4baeead887fd053ff32a243d275`；
+  使用 12 分片、seed 42、1600 步、0.35 µm＋连续三帧停稳协议。canonical
+  success `0/20`，最终误差 mean/median/min/max=
+  `1151.149/1392.104/83.444/1952.920 µm`，仅 4/20 最终误差 ≤300 µm、
+  2/20 ≤100 µm；每目标最小误差均值 `72.032 µm`，编码器停稳 `0/20`，
+  safety-limited steps 0。与 state-attention v1 配对：5 改善、15 恶化，
+  最终误差均值恶化 `716.752 µm`。结果目录
+  `outputs/evaluation_dit_rectified_flow_plan2_plus_original200_20261119_dev20_0p35um_shards12/`；
+  `summary.json` SHA-256
+  `a06309ef8a8f69f7099400e9f111ff6ea6829471c82ebd0bb3aeef75b840d61c`，
+  `comparison.json` SHA-256
+  `6ff0602f00cc55a9cc1463f948055e2155fb889845e125ff78c66c58be000c32`。
+  结果仅为 MuJoCo 仿真，不代表硬件或临床精度。
+- 2026-11-19：原 DiT-Flow 20 目标评测做过两次资源调度尝试，均不用于最终
+  指标：10 分片版本运行约 4 分钟后因切换更高并行度而中断，保留目录
+  `outputs/evaluation_dit_rectified_flow_plan2_plus_original200_20261119_dev20_0p35um/`；
+  18 分片版本启动后因主机内存压力被系统终止，完成分片 `0/18`，保留目录
+  `outputs/evaluation_dit_rectified_flow_plan2_plus_original200_20261119_dev20_0p35um_shards18/`。
+  最终 12 分片版本正常完成 `12/12`，上述指标与结果只引用
+  `_shards12` 目录。
 - 2026-11-17 20:52:25 CST：E1 轨迹误差图生成 PASS。绘图脚本新增可配置
   candidate/baseline 图例与配对文件名；使用 E1 20 目标完整轨迹和冻结 v1
   基线生成 4 张图：全部轨迹、20 宫格、best/final 对比、E1 对 v1 最终误差

@@ -1,0 +1,41 @@
+{
+  "run_dir": "outputs/dit_rectified_flow_plan2_plus_original200_20261119_1",
+  "dataset_episodes": 1039,
+  "dataset_frames": 319697,
+  "train_windows": 301634,
+  "val_windows": 26650,
+  "epochs": 4,
+  "history": [
+    {
+      "epoch": 0,
+      "train_loss": 0.1170401020820332,
+      "val_loss": 0.14878915514734437,
+      "elapsed_s": 321.4771070340066
+    },
+    {
+      "epoch": 1,
+      "train_loss": 0.11327998839179666,
+      "val_loss": 0.14721880124198447,
+      "elapsed_s": 642.9669054929982
+    },
+    {
+      "epoch": 2,
+      "train_loss": 0.11123066139792707,
+      "val_loss": 0.14765890146330965,
+      "elapsed_s": 963.0323193179793
+    },
+    {
+      "epoch": 3,
+      "train_loss": 0.11011809352935499,
+      "val_loss": 0.14688515181628634,
+      "elapsed_s": 1282.3829627459636
+    }
+  ],
+  "best_epoch": 3,
+  "best_val_loss": 0.14688515181628634,
+  "final_train_loss": 0.11011809352935499,
+  "final_val_loss": 0.14688515181628634,
+  "baseline_checkpoint_val_loss": 0.16154053320380138,
+  "checkpoint": "outputs/dit_rectified_flow_plan2_plus_original200_20261119_1/best_model.pth",
+  "checkpoint_sha256": "4e4b2865fc9939a22ff7d5f6953d2a378af9d4baeead887fd053ff32a243d275"
+}
