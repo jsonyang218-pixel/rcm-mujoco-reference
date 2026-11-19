@@ -1,0 +1,49 @@
+{
+  "run_dir": "outputs/state_attention_v1_plan2_plus_original200_20261119_1",
+  "method": "state_conditioned_temporal_attention_v1",
+  "dataset": {
+    "train_episodes": 1039,
+    "train_frames": 319697,
+    "train_windows": 301634,
+    "validation_episodes": 40,
+    "validation_frames": 27290,
+    "validation_windows": 26650
+  },
+  "epochs": 4,
+  "history": [
+    {
+      "epoch": 0,
+      "train_loss": 0.09497630909894501,
+      "val_loss": 0.1510357878727021,
+      "elapsed_s": 324.03354519599816
+    },
+    {
+      "epoch": 1,
+      "train_loss": 0.09077471700695722,
+      "val_loss": 0.14984885833675055,
+      "elapsed_s": 646.9906863369979
+    },
+    {
+      "epoch": 2,
+      "train_loss": 0.08936387643069471,
+      "val_loss": 0.15034077269174784,
+      "elapsed_s": 970.1210523229674
+    },
+    {
+      "epoch": 3,
+      "train_loss": 0.08871388135222646,
+      "val_loss": 0.1499095358472648,
+      "elapsed_s": 1276.545690880972
+    }
+  ],
+  "best_epoch": 1,
+  "best_train_loss": 0.09077471700695722,
+  "best_val_loss": 0.14984885833675055,
+  "final_train_loss": 0.08871388135222646,
+  "final_val_loss": 0.1499095358472648,
+  "baseline_v1_best_val_loss": 0.1498646500835316,
+  "checkpoint": "outputs/state_attention_v1_plan2_plus_original200_20261119_1/best_model.pth",
+  "checkpoint_sha256": "6a8572a6f2646f2fc9f0525cff3a9b667c6e9962a162c8c86151137f30dacd4c",
+  "parameters_m": 34.538115,
+  "note": "Offline training result only; closed-loop result is recorded separately."
+}

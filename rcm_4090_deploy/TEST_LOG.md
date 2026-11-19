@@ -4765,3 +4765,38 @@ OK
   SHA-256
   `81ae86f7557801e33a5e0cf535ba85c0b8f5c9404b09c6848e968e92fe56513d`。
   结果仅为 MuJoCo 仿真，不代表硬件或临床精度。
+- 2026-11-19 19:11:51 CST：state-attention v1 使用“原 839 episodes + 规划 2
+  200 episodes”合并数据训练完成，4/4 epochs 正常退出。命令为
+  `python lerobot_training/dit_state_attention.py train --data-dir data/plan2_plus_original_train_224_20261119 --val-data-dir data/lerobot_rcm_val_acthist_20261117_224 --init-from outputs/dit_rectified_flow_state_attention_v1_acthist_20261117/best_model.pth --output-dir outputs/state_attention_v1_plan2_plus_original200_20261119_1 --epochs 4 --batch-size 64 --val-batch-size 64 --num-workers 8 --lr 1e-4 --weight-decay 1e-4 --dagger-episode-start 839 --dagger-repeat 10 --seed 20261116`。
+  训练集 1,039 episodes/319,697 frames、301,634 valid windows；验证集
+  40 episodes/27,290 frames、26,650 windows。train/val loss 依次为
+  `0.094976/0.151036`、`0.090775/0.149849`、
+  `0.089364/0.150341`、`0.088714/0.149910`，best epoch 1，
+  best val loss `0.149849`。最佳 checkpoint 为
+  `outputs/state_attention_v1_plan2_plus_original200_20261119_1/best_model.pth`，
+  SHA-256 `6a8572a6f2646f2fc9f0525cff3a9b667c6e9962a162c8c86151137f30dacd4c`；
+  架构校验为 `state_conditioned_temporal_attention_v1`、34.538115M 参数。
+  本次只完成离线训练，尚未运行闭环评测；结果仅为 MuJoCo 仿真，不代表硬件
+  或临床精度。
+- 2026-11-19 19:38:29 CST：state-attention v1 新 checkpoint 的 20 目标评测
+  在启动约 14 秒后按用户要求中断，保留目录
+  `outputs/evaluation_state_attention_v1_plan2_plus_original200_20261119_dev20_0p35um_shards12/`，
+  未产生可用于指标的完整 episode。
+- 2026-11-19 19:38:29 CST：state-attention v1 新 checkpoint 的 10 目标闭环
+  评测 FAIL。命令
+  `.venv/bin/python -u lerobot_training/run_model_pipeline.py --config configs/state_attention_v1_plan2_plus_original200_eval_dev10_shards10_20261119.json --eval-only outputs/state_attention_v1_plan2_plus_original200_20261119_1/best_model.pth --output-dir outputs/evaluation_state_attention_v1_plan2_plus_original200_20261119_dev10_0p35um_shards10`；
+  10/10 shards 和 10/10 episodes 均完成，协议为 seed 42、1600 步、
+  `0.35 µm`＋连续三帧停稳。自动流水线因冻结 v1 baseline 含 20 个 episode
+  索引而拒绝生成最终对照；随后使用目标 ID 完全一致的前 10 条 baseline
+  记录形成独立分析。结果：canonical success `0/10`，最终误差
+  mean/median/min/max=`3458.685/4308.960/287.678/6447.226 µm`，仅
+  1/10 最终误差 ≤300 µm、0/10 ≤100 µm；每目标最小误差均值
+  `3204.780 µm`，仅 1/10 曾进入 100 µm，从未进入 0.35 µm，编码器停稳
+  `0/10`，safety-limited steps 0。与 v1 前 10 目标配对：2 改善、8 恶化，
+  最终误差均值恶化 `3107.522 µm`。原始结果目录
+  `outputs/evaluation_state_attention_v1_plan2_plus_original200_20261119_dev10_0p35um_shards10/`；
+  独立分析目录
+  `runs/20261119/analysis/state_attention_v1_plan2_plus_original200_dev10_1/`，
+  `summary.json` SHA-256
+  `cdeea4e3f9dfe8e6ac18e4f6bf954f977838d12f0137d266bbd3c4d125d1f9c9`。
+  结果仅为 MuJoCo 仿真，不代表硬件或临床精度。
