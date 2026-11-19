@@ -66,3 +66,19 @@ Closed-loop acceptance remains the existing `0.35 um` error gate with three
 settled encoder frames. Report final-error mean, median, P90, maximum, paired
 changes, interval-entry and retention behavior, exit speed, settle rate, and
 safety-limited steps. Training loss alone is not evidence that replay helped.
+
+## Sampling-ratio result
+
+The first corrected-window ratio experiment kept the same initialization,
+validation set, update budget, seed, and 20-target closed-loop protocol:
+
+| Arm | Correction ratio | Final error mean | Improved vs v1 |
+|---|---:|---:|---:|
+| R0 | 6.5987% natural | 247.936 um | 19 / 20 |
+| R10 | 10% | 980.699 um | 9 / 20 |
+| R20 | 20% | 589.481 um | 11 / 20 |
+
+Increasing the correction ratio above the natural rate was harmful. R0 is the
+selected ratio for the next data collection. All arms still failed the strict
+success gate and none ended with a settled encoder, so the remaining blocker is
+fine retention and stopping behavior rather than correction frequency alone.

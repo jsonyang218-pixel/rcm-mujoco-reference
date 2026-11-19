@@ -4473,6 +4473,47 @@ OK
   20 episode / success 0。修复后流水线 SHA-256
   `a54dbf166aec3612af359aa5150f0f5530d88648332839e800c2c8cc634c00c4`。
   结果仅为 MuJoCo 仿真，不代表硬件或临床精度。
+- 2026-11-19 08:52:20 CST：经验回放边界、共享索引和比例实验完成。
+  `valid_window_indices` 修复了审计器多检查一帧的问题；20 帧、2 帧历史、
+  16 步动作测试得到 4 个窗口。训练与审计共享 220,816 个有效索引，SHA-256
+  `3f852d9c7b296cdcc4c4abbca6a12e0e099050bc5bbfc4254aae979830fb927d`；
+  自然纠正比例 `6.5987%`。剔除 episode 边界 `13,408`、源帧间断 `48`、
+  时间异常 `0`、无效输入 `28`。未知标签来源改为直接报错。契约报告
+  SHA-256
+  `aa08478b826b9caf732041b637f8899f635f6fe06f632c319c168493e12a1ae7`。
+- 2026-11-19 08:52:20 CST：比例实验零更新复现 PASS。220 个权重张量完全
+  一致，固定噪声单步动作完全一致；3 个固定开发目标的 states/errors/
+  velocities/settle flags 逐帧一致，原始动作最大差 `2.015e-6`。报告
+  `runs/20261118/verification/zero_update_reproduction/zero_update_verification.json`
+  SHA-256
+  `26f13c8bd6fcf4f8d5cded916fb8b9da5e1e08a78ed85dd411811a17125d0d91`，
+  轨迹对照
+  `runs/20261118/verification/zero_update_trajectory_parity.json` SHA-256
+  `1555f47806836e34c01c4c0aa15c36f91f31da68544fe715dbd6d0edab454bf4`。
+- 2026-11-19 08:52:20 CST：纠正比例 R0/R10/R20 完整流水线全部完成，
+  均未达到严格成功门限，均无编码器停稳，safety-limited steps 均为 0。
+  R0 自然 `6.5987%` 最终误差 mean/median/P90/max=
+  `247.936/170.736/566.363/658.363 µm`，与 v1 配对 19 改善、1 恶化；
+  R10 为 `980.699/549.848/2435.211/2521.840 µm`，9 改善、11 恶化；
+  R20 为 `589.481/227.022/1430.254/2202.496 µm`，11 改善、9 恶化。结论为
+  自然比例最佳，提高纠正比例会造成退化。汇总
+  `runs/20261119/analysis/experience_ratio/ratio_comparison.json` SHA-256
+  `a72959710b0f356cfdb8050d33052c7fca40fc715c996c78bebb259e3531f599`。
+  结果目录
+  `outputs/state_attention_experience_ratio_20261118_1/`。
+- 2026-11-19 08:52:20 CST：规划 2 采集试点完成并开始剩余训练数据采集。
+  初次编排目录 `data/experience_replay_plan2_20261118/` 只生成 seeds，
+  因创建顺序错误未采轨迹；`_retry1` 因 DAgger 未分派状态注意力架构而未采
+  轨迹，两者均保留。修复后 `_retry2` 完成 D1/D2/D4 共 15 条，另用
+  `data/experience_replay_plan2_d3_pilot_beta1_20261119/` 完成专家主导
+  D3 5 条；验收试点共 20 条、8,538 帧。D3 `beta=0.5` 试点中 2/5 恶化，
+  改为 `beta=1.0` 后已采集轨迹从 `20–77 µm` 改善到 `0.016–4.081 µm`，
+  原 D3 试点作为 superseded 保留。剩余 180 条训练轨迹已启动，目录
+  `data/experience_replay_plan2_20261119_remaining1/`；验证和测试各 40 条
+  待训练集完成后采集。紧凑汇总
+  `runs/20261119/analysis/plan2_collection/plan2_collection.json` SHA-256
+  `a492e128bb05457ae2017697d9ab4fdb945243498e3b9d9e758bfe9061f7969d`。
+  采集数据仅为仿真数据，不代表硬件或临床精度。
 - 2026-11-17 20:52:25 CST：E1 轨迹误差图生成 PASS。绘图脚本新增可配置
   candidate/baseline 图例与配对文件名；使用 E1 20 目标完整轨迹和冻结 v1
   基线生成 4 张图：全部轨迹、20 宫格、best/final 对比、E1 对 v1 最终误差

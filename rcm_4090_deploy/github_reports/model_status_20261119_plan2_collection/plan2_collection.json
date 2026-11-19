@@ -1,0 +1,267 @@
+{
+  "runs": [
+    {
+      "root": "data/experience_replay_plan2_20261118_retry2",
+      "run": "d1_pilot_extra",
+      "category": "D1",
+      "requested": 2,
+      "completed": 2,
+      "frames": 443,
+      "teacher_invalid_frames": 4,
+      "strict_zero_error_episodes": 0,
+      "final_error_um": {
+        "count": 2,
+        "mean": 13.054682815281769,
+        "minimum": 0.4543836791155136,
+        "maximum": 25.654981951448026
+      },
+      "skipped_empty_episodes": []
+    },
+    {
+      "root": "data/experience_replay_plan2_20261118_retry2",
+      "run": "d1_pilot_primary",
+      "category": "D1",
+      "requested": 5,
+      "completed": 5,
+      "frames": 1289,
+      "teacher_invalid_frames": 17,
+      "strict_zero_error_episodes": 1,
+      "final_error_um": {
+        "count": 5,
+        "mean": 28.378275665380563,
+        "minimum": 0.015668402697919862,
+        "maximum": 86.03982809867485
+      },
+      "skipped_empty_episodes": []
+    },
+    {
+      "root": "data/experience_replay_plan2_20261118_retry2",
+      "run": "d2_pilot_oscillation",
+      "category": "D2",
+      "requested": 2,
+      "completed": 2,
+      "frames": 800,
+      "teacher_invalid_frames": 0,
+      "strict_zero_error_episodes": 0,
+      "final_error_um": {
+        "count": 2,
+        "mean": 28.950964518134803,
+        "minimum": 25.720554657755773,
+        "maximum": 32.18137437851383
+      },
+      "skipped_empty_episodes": []
+    },
+    {
+      "root": "data/experience_replay_plan2_20261118_retry2",
+      "run": "d2_pilot_overshoot",
+      "category": "D2",
+      "requested": 3,
+      "completed": 3,
+      "frames": 843,
+      "teacher_invalid_frames": 0,
+      "strict_zero_error_episodes": 0,
+      "final_error_um": {
+        "count": 3,
+        "mean": 35.15131813118101,
+        "minimum": 0.4543836791155136,
+        "maximum": 54.20627103483551
+      },
+      "skipped_empty_episodes": []
+    },
+    {
+      "root": "data/experience_replay_plan2_20261118_retry2",
+      "run": "d3_pilot_hold",
+      "category": "D3",
+      "requested": 3,
+      "completed": 3,
+      "frames": 600,
+      "teacher_invalid_frames": 4,
+      "strict_zero_error_episodes": 0,
+      "final_error_um": {
+        "count": 3,
+        "mean": 39.74852491821658,
+        "minimum": 27.8049631042701,
+        "maximum": 56.414683955488265
+      },
+      "skipped_empty_episodes": []
+    },
+    {
+      "root": "data/experience_replay_plan2_20261118_retry2",
+      "run": "d3_pilot_perturb_hold",
+      "category": "D3",
+      "requested": 2,
+      "completed": 1,
+      "frames": 200,
+      "teacher_invalid_frames": 0,
+      "strict_zero_error_episodes": 0,
+      "final_error_um": {
+        "count": 1,
+        "mean": 62.56812883576418,
+        "minimum": 62.56812883576418,
+        "maximum": 62.56812883576418
+      },
+      "skipped_empty_episodes": [
+        {
+          "episode_index": 1,
+          "target_index": 1,
+          "start_index": 0,
+          "reason": "DAgger episode produced no frames"
+        }
+      ]
+    },
+    {
+      "root": "data/experience_replay_plan2_20261118_retry2",
+      "run": "d3_pilot_perturb_hold_retry1",
+      "category": "D3",
+      "requested": 1,
+      "completed": 0,
+      "frames": 0,
+      "teacher_invalid_frames": 0,
+      "strict_zero_error_episodes": 0,
+      "final_error_um": {
+        "count": 0,
+        "mean": null,
+        "minimum": null,
+        "maximum": null
+      },
+      "skipped_empty_episodes": [
+        {
+          "episode_index": 0,
+          "target_index": 0,
+          "start_index": 0,
+          "reason": "DAgger episode produced no frames"
+        }
+      ]
+    },
+    {
+      "root": "data/experience_replay_plan2_20261118_retry2",
+      "run": "d3_pilot_perturb_hold_retry2",
+      "category": "D3",
+      "requested": 1,
+      "completed": 1,
+      "frames": 200,
+      "teacher_invalid_frames": 3,
+      "strict_zero_error_episodes": 0,
+      "final_error_um": {
+        "count": 1,
+        "mean": 44.01057929583503,
+        "minimum": 44.01057929583503,
+        "maximum": 44.01057929583503
+      },
+      "skipped_empty_episodes": []
+    },
+    {
+      "root": "data/experience_replay_plan2_20261118_retry2",
+      "run": "d4_pilot_full",
+      "category": "D4",
+      "requested": 3,
+      "completed": 3,
+      "frames": 4792,
+      "teacher_invalid_frames": 6,
+      "strict_zero_error_episodes": 1,
+      "final_error_um": {
+        "count": 3,
+        "mean": 21.32932491899515,
+        "minimum": 0.0,
+        "maximum": 35.918181227827446
+      },
+      "skipped_empty_episodes": []
+    },
+    {
+      "root": "data/experience_replay_plan2_d3_pilot_beta1_20261119",
+      "run": "d3_pilot_hold_beta1",
+      "category": "D3",
+      "requested": 3,
+      "completed": 3,
+      "frames": 207,
+      "teacher_invalid_frames": 0,
+      "strict_zero_error_episodes": 1,
+      "final_error_um": {
+        "count": 3,
+        "mean": 0.396932869122043,
+        "minimum": 0.01566840272432881,
+        "maximum": 0.642404511887532
+      },
+      "skipped_empty_episodes": []
+    },
+    {
+      "root": "data/experience_replay_plan2_d3_pilot_beta1_20261119",
+      "run": "d3_pilot_perturb_hold_beta1",
+      "category": "D3",
+      "requested": 2,
+      "completed": 1,
+      "frames": 81,
+      "teacher_invalid_frames": 0,
+      "strict_zero_error_episodes": 0,
+      "final_error_um": {
+        "count": 1,
+        "mean": 2.0849671487779142,
+        "minimum": 2.0849671487779142,
+        "maximum": 2.0849671487779142
+      },
+      "skipped_empty_episodes": [
+        {
+          "episode_index": 1,
+          "target_index": 1,
+          "start_index": 0,
+          "reason": "DAgger episode produced no frames"
+        }
+      ]
+    },
+    {
+      "root": "data/experience_replay_plan2_d3_pilot_beta1_20261119",
+      "run": "d3_pilot_perturb_hold_beta1_retry1",
+      "category": "D3",
+      "requested": 1,
+      "completed": 1,
+      "frames": 83,
+      "teacher_invalid_frames": 0,
+      "strict_zero_error_episodes": 0,
+      "final_error_um": {
+        "count": 1,
+        "mean": 4.0807053327380425,
+        "minimum": 4.0807053327380425,
+        "maximum": 4.0807053327380425
+      },
+      "skipped_empty_episodes": []
+    }
+  ],
+  "roots": [
+    {
+      "root": "data/experience_replay_plan2_20261118_retry2",
+      "stage": "pilot",
+      "expected_trajectories": 20,
+      "expected_counts": {
+        "D1": 7,
+        "D2": 5,
+        "D3": 5,
+        "D4": 3
+      }
+    },
+    {
+      "root": "data/experience_replay_plan2_d3_pilot_beta1_20261119",
+      "stage": "d3-pilot",
+      "expected_trajectories": 5,
+      "expected_counts": {
+        "D1": 0,
+        "D2": 0,
+        "D3": 5,
+        "D4": 0
+      }
+    },
+    {
+      "root": "data/experience_replay_plan2_20261119_remaining1",
+      "stage": "remaining",
+      "expected_trajectories": 180,
+      "expected_counts": {
+        "D1": 63,
+        "D2": 45,
+        "D3": 45,
+        "D4": 27
+      }
+    }
+  ],
+  "completed_trajectories": 25,
+  "completed_frames": 9538,
+  "teacher_invalid_frames": 34
+}

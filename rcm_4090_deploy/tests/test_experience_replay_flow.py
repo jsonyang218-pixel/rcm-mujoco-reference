@@ -17,6 +17,7 @@ def source_dataset():
                 {"episode_index": 0, "action_source": "executed"},
                 {"episode_index": 1, "action_source": "teacher"},
                 {"episode_index": 2, "action_source": "teacher"},
+                {"episode_index": 3, "action_source": "executed"},
             ]
         },
         episode_indices=np.array([0, 0, 1, 1, 2, 3], dtype=np.int64),
@@ -57,6 +58,44 @@ class ExperienceReplayFlowTests(unittest.TestCase):
     def test_index_subset_rejects_out_of_range_indices(self):
         with self.assertRaises(IndexError):
             replay.IndexSubset(list(range(3)), [0, 3])
+
+    def test_valid_window_has_no_extra_boundary_frame(self):
+        count = 20
+        indices, diagnostics = replay.valid_window_indices(
+            np.zeros(count, dtype=np.int64),
+            np.arange(count, dtype=np.int64),
+            np.arange(count, dtype=np.float64) * 0.05,
+            n_obs_steps=2,
+            n_action_steps=16,
+            control_period_s=0.05,
+            oct_navigation=np.zeros((count, 3), dtype=np.float32),
+            oct_navigation_valid=np.ones(count, dtype=np.bool_),
+            return_diagnostics=True,
+        )
+        np.testing.assert_array_equal(indices, [1, 2, 3, 4])
+        self.assertEqual(diagnostics["valid_windows"], 4)
+
+    def test_ratio_sampler_reaches_requested_long_run_ratio(self):
+        sampler = replay.RatioReplacementBatchSampler(
+            original_count=5,
+            correction_count=5,
+            correction_ratio=0.1,
+            batches=1000,
+            batch_size=16,
+            seed=17,
+        )
+        correction = sum(
+            index >= 5
+            for batch in sampler
+            for index in batch
+        )
+        self.assertAlmostEqual(correction / 16000, 0.1, places=2)
+
+    def test_unknown_label_source_fails_loudly(self):
+        dataset = source_dataset()
+        dataset.metadata["episodes"].pop()
+        with self.assertRaisesRegex(ValueError, "no declared action source"):
+            replay.split_experience_indices(dataset)
 
 
 if __name__ == "__main__":

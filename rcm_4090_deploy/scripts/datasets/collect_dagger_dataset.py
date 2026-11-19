@@ -27,6 +27,27 @@ from eval_policy import PolicyEvaluator
 UNITS = np.array([180.0 / np.pi, 180.0 / np.pi, 1000.0])
 
 
+def install_policy_architecture(model_path):
+    """Install the checkpoint's DiT architecture before PolicyEvaluator loads."""
+    import torch
+    import dit_rectified_flow as flow
+
+    checkpoint = torch.load(
+        model_path, map_location="cpu", weights_only=False
+    )
+    architecture = checkpoint.get("architecture")
+    if architecture == "state_conditioned_temporal_attention_v1":
+        import dit_state_attention as state_attention
+
+        flow.DiTRectifiedFlowPolicy = (
+            state_attention.StateConditionedDiTRectifiedFlowPolicy
+        )
+    elif architecture not in (None, "dit_rectified_flow_v1"):
+        raise ValueError(
+            f"unsupported collection policy architecture: {architecture}"
+        )
+
+
 def write_json(path, value):
     Path(path).write_text(
         json.dumps(value, ensure_ascii=False, indent=2, allow_nan=False) + "\n",
@@ -981,6 +1002,7 @@ def main():
         **config.get("motor_execution", {}),
         "enabled": True,
     }
+    install_policy_architecture(str(Path(args.model).resolve()))
     policy = PolicyEvaluator(
         str(Path(args.model).resolve()),
         device="cuda",

@@ -42,7 +42,7 @@ def _write_dataset(root: Path, *, include_history: bool):
                 dtype=np.int64,
             ),
             "timestamp_s": np.asarray(
-                [0.0, 0.1, 0.2, 0.3, 0.4],
+                [0.0, 0.05, 0.10, 0.15, 0.20],
                 dtype=np.float64,
             ),
         })
@@ -169,7 +169,7 @@ class HistoryContractTests(unittest.TestCase):
             self.assertTrue(valid[0])
             np.testing.assert_allclose(
                 velocity[0],
-                (dataset.states[3] - dataset.states[2]) / 0.1,
+                (dataset.states[3] - dataset.states[2]) / 0.05,
             )
             np.testing.assert_allclose(
                 previous_action[0],

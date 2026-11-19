@@ -14,6 +14,7 @@ This directory contains focused supporting documents.
 | [V12_ARCHITECTURE.md](V12_ARCHITECTURE.md) | v12 OCT-aware input/output contract, data pipeline, diffusion equations, closed-loop execution, and current blockers |
 | [REPLAY_ACTOR_CRITIC.md](REPLAY_ACTOR_CRITIC.md) | Flow-compatible replay, twin-Q training, expert Flow regularization, and deployment scope |
 | [EXPERIENCE_REPLAY_EXPERIMENT.md](EXPERIENCE_REPLAY_EXPERIMENT.md) | Expert-corrected history replay, strict A/B/C sampling comparison, and action-block contract |
+| [PLAN2_DATASET_COLLECTION.md](PLAN2_DATASET_COLLECTION.md) | D1-D4 expert-correction dataset scale, train/validation/test isolation, and collection commands |
 | [ILOSAC_SOURCE_FORMULA_AUDIT.md](ILOSAC_SOURCE_FORMULA_AUDIT.md) | Original-paper formula audit, official-source status, and ILOSAC reproduction boundaries |
 | [../FRONTIERS2022_DDPG.md](../FRONTIERS2022_DDPG.md) | Independent Frontiers 2022 Algorithm 1 DDPG adaptation, equations, assumptions, and experiment scope |
 | [IMAGE_PROCESSING_PIPELINE.md](IMAGE_PROCESSING_PIPELINE.md) | RGB capture, resizing, detection, training transforms, and ResNet visual encoding |

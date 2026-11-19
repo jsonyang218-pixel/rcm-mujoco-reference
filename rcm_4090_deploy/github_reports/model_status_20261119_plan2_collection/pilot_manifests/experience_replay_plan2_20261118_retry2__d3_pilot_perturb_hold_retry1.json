@@ -1,0 +1,120 @@
+{
+  "schema_version": 1,
+  "format": "DAgger episodes with per-frame policy, teacher and executed actions",
+  "model": "/home/him1/mujoco_bc/rcm_4090_deploy/outputs/state_attention_experience_ratio_20261118_1/r0_natural/training/step_004000.pth",
+  "policy_type": "dit_rectified_flow",
+  "policy_checkpoint_epoch": 3,
+  "policy_guided_oct": false,
+  "seed": 20300800,
+  "beta": 0.5,
+  "teacher_takeover_steps": 20,
+  "teacher_takeover_max_steps": 400,
+  "hold_frames": 60,
+  "max_error_mm": 0.1,
+  "target_seeds_file": "/home/him1/mujoco_bc/rcm_4090_deploy/data/experience_replay_plan2_20261118_retry2/manifests/d3_pilot_perturb_hold_retry1_seeds.json",
+  "target_seeds": [
+    20310002
+  ],
+  "target_min_posterior_z": 0.9,
+  "reachable_targets": [
+    {
+      "target_index": 0,
+      "target_seed": 20310002,
+      "requested_target_robot_mm": [
+        1.5260315284389434,
+        9.299493308958576,
+        21.5948828737586
+      ],
+      "requested_target_world_mm": [
+        351.24639558538854,
+        -9.73472044692326,
+        375.27621730052687
+      ],
+      "reachable_target_robot_mm": [
+        1.5289904959317915,
+        9.298376331066503,
+        21.594752702286016
+      ],
+      "reachable_target_world_mm": [
+        351.24530730489295,
+        -9.731761479430412,
+        375.27593405189657
+      ],
+      "target_shift_mm": [
+        -0.0010882804955940628,
+        0.0029589674928480747,
+        -0.00028324863029638436
+      ],
+      "target_shift_norm_mm": 0.0031654498649302375,
+      "requested_terminal_robot_ABCE": [
+        2246,
+        700743,
+        2141991,
+        0
+      ],
+      "endpoint_robot_ABCE": [
+        2250,
+        700935,
+        2141968,
+        0
+      ],
+      "endpoint_task_rad_rad_m": [
+        0.07068583470577035,
+        -0.16545719283353488,
+        0.019561217387059546
+      ]
+    }
+  ],
+  "expert_terminal_tolerance_um": 0.1,
+  "terminal_start_profile_indices": [
+    17
+  ],
+  "terminal_start_profiles": [
+    {
+      "index": 17,
+      "name": "combined_A_neg_over",
+      "delta_A_deg_B_deg_C_mm": [
+        -0.2,
+        0.0,
+        0.2
+      ]
+    }
+  ],
+  "state_range_A_deg_B_deg_C_mm": [
+    [
+      -13.280400276184082,
+      -12.27226734161377,
+      0.0
+    ],
+    [
+      13.31820011138916,
+      11.927999496459961,
+      20.76517677307129
+    ]
+  ],
+  "action_abs_limit_deg_deg_mm": [
+    0.2897999882698059,
+    0.14434358477592468,
+    0.04271206632256508
+  ],
+  "episodes": [],
+  "requested_episodes": 1,
+  "completed_episodes": 0,
+  "skipped_empty_episodes": [
+    {
+      "episode_index": 0,
+      "target_index": 0,
+      "start_index": 0,
+      "reason": "DAgger episode produced no frames"
+    }
+  ],
+  "resume_missing_prefix": [],
+  "resume_start_episode": 0,
+  "target_start": 0,
+  "target_end": 0,
+  "skip_episodes_before": 0,
+  "total_frames": 0,
+  "teacher_invalid_frames": 0,
+  "strict_zero_error_episodes": 0,
+  "maximum_final_error_um": null
+}

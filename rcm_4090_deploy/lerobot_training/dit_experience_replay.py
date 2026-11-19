@@ -7,6 +7,7 @@ contract. It does not train a critic and does not use reward in the loss.
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import os
 from pathlib import Path
@@ -24,6 +25,8 @@ from tqdm import tqdm
 
 try:
     from . import dit_state_attention as attention
+    from .experience_replay import ACTION_LIMIT
+    from .dataset_contract import valid_window_indices
     from .train_diffusion_policy import (
         RCMDataset,
         configure_stream_logging,
@@ -33,6 +36,8 @@ try:
     from .train_dit_rectified_flow import _atomic_torch_save, _loss, _move_batch
 except ImportError:
     import dit_state_attention as attention
+    from experience_replay import ACTION_LIMIT
+    from dataset_contract import valid_window_indices
     from train_diffusion_policy import (
         RCMDataset,
         configure_stream_logging,
@@ -68,9 +73,10 @@ INTEGER_POLICY_NAMES = (
 class IndexSubset(Dataset):
     """Expose selected dataset sample indices without copying observations."""
 
-    def __init__(self, dataset, indices):
+    def __init__(self, dataset, indices, source=0):
         self.dataset = dataset
         self.indices = np.asarray(indices, dtype=np.int64)
+        self.source = int(source)
         if self.indices.ndim != 1:
             raise ValueError("subset indices must be one-dimensional")
         if len(self.indices) and (
@@ -82,7 +88,10 @@ class IndexSubset(Dataset):
         return len(self.indices)
 
     def __getitem__(self, index):
-        return self.dataset[int(self.indices[int(index)])]
+        sample = dict(self.dataset[int(self.indices[int(index)])])
+        sample["sample.source"] = torch.tensor(self.source, dtype=torch.long)
+        sample["sample.index"] = torch.tensor(int(index), dtype=torch.long)
+        return sample
 
 
 class ReplacementBatchSampler:
@@ -154,6 +163,62 @@ class BalancedReplacementBatchSampler:
         return self.batches
 
 
+class RatioReplacementBatchSampler:
+    """Select each correction sample independently at a target probability."""
+
+    def __init__(
+        self,
+        original_count,
+        correction_count,
+        correction_ratio,
+        batches,
+        batch_size,
+        seed,
+    ):
+        self.original_count = int(original_count)
+        self.correction_count = int(correction_count)
+        self.correction_ratio = float(correction_ratio)
+        self.batches = int(batches)
+        self.batch_size = int(batch_size)
+        self.seed = int(seed)
+        self.epoch = 0
+        if min(
+            self.original_count,
+            self.correction_count,
+            self.batches,
+            self.batch_size,
+        ) < 1:
+            raise ValueError("sampler counts must be positive")
+        if not 0.0 < self.correction_ratio < 1.0:
+            raise ValueError("correction ratio must be in (0, 1)")
+
+    def __iter__(self):
+        rng = np.random.default_rng(self.seed + self.epoch)
+        self.epoch += 1
+        for _ in range(self.batches):
+            choose_correction = (
+                rng.random(self.batch_size) < self.correction_ratio
+            )
+            indices = np.empty(self.batch_size, dtype=np.int64)
+            original_rows = np.flatnonzero(~choose_correction)
+            correction_rows = np.flatnonzero(choose_correction)
+            if len(original_rows):
+                indices[original_rows] = rng.integers(
+                    self.original_count, size=len(original_rows)
+                )
+            if len(correction_rows):
+                indices[correction_rows] = (
+                    self.original_count
+                    + rng.integers(
+                        self.correction_count, size=len(correction_rows)
+                    )
+                )
+            yield indices.tolist()
+
+    def __len__(self):
+        return self.batches
+
+
 def split_experience_indices(dataset, correction_source="teacher"):
     """Split valid action windows by the episode's supervision source."""
     episodes = {
@@ -163,11 +228,19 @@ def split_experience_indices(dataset, correction_source="teacher"):
     original, correction = [], []
     for sample_index, row in enumerate(dataset.valid_indices):
         episode = int(dataset.episode_indices[int(row)])
-        source = episodes.get(episode)
+        if episode not in episodes:
+            raise ValueError(
+                f"episode {episode} has no declared action source"
+            )
+        source = episodes[episode]
         if source == correction_source:
             correction.append(sample_index)
-        else:
+        elif source == "executed":
             original.append(sample_index)
+        else:
+            raise ValueError(
+                f"episode {episode} has unsupported action source {source!r}"
+            )
     return np.asarray(original, dtype=np.int64), np.asarray(
         correction, dtype=np.int64
     )
@@ -183,11 +256,34 @@ def _loader_options(args):
     }
 
 
-def _train_loader(args, dataset, mode, original_count, correction_count, epoch):
+def _index_sha256(indices):
+    return hashlib.sha256(
+        np.asarray(indices, dtype="<i8").tobytes()
+    ).hexdigest()
+
+
+def _train_loader(
+    args,
+    dataset,
+    mode,
+    original_count,
+    correction_count,
+    correction_ratio,
+    epoch,
+):
     if mode == "balanced":
         sampler = BalancedReplacementBatchSampler(
             original_count,
             correction_count,
+            args.steps_per_epoch,
+            args.batch_size,
+            args.seed + epoch,
+        )
+    elif mode == "ratio":
+        sampler = RatioReplacementBatchSampler(
+            original_count,
+            correction_count,
+            correction_ratio,
             args.steps_per_epoch,
             args.batch_size,
             args.seed + epoch,
@@ -261,23 +357,135 @@ def _validate(model, loader, device, args):
     model.eval()
     total, count = 0.0, 0
     autocast = args.amp and device.type == "cuda"
+    devices = [device.index or 0] if device.type == "cuda" else []
+    with torch.random.fork_rng(devices=devices):
+        torch.manual_seed(args.validation_seed)
+        with torch.no_grad():
+            for batch in tqdm(
+                loader, desc="Experience replay validation"
+            ):
+                batch = _move_batch(batch, device)
+                with torch.autocast(
+                    device_type=device.type,
+                    enabled=autocast,
+                    dtype=torch.float16,
+                ):
+                    loss = _loss(model, batch)
+                total += float(loss.detach())
+                count += 1
+                if (
+                    args.validation_max_batches is not None
+                    and count >= args.validation_max_batches
+                ):
+                    break
+    return total / max(count, 1)
+
+
+def _select_batch(batch, mask):
+    return {
+        name: value[mask]
+        for name, value in batch.items()
+        if name != "sample.source" and name != "sample.index"
+    }
+
+
+def _log_metrics(
+    model,
+    batch,
+    device,
+    args,
+    global_step,
+    gradient_norm,
+    optimizer_updated,
+    amp_scale,
+    original_seen,
+    correction_seen,
+    sampling_counts,
+):
+    source = batch["sample.source"]
+    index = batch["sample.index"]
+    correction_mask = source == 1
+    original_mask = ~correction_mask
+    group_loss = {}
+    model.eval()
     with torch.no_grad():
-        for batch in tqdm(loader, desc="Experience replay validation"):
-            batch = _move_batch(batch, device)
+        for name, mask in (
+            ("original", original_mask),
+            ("correction", correction_mask),
+        ):
+            if not bool(mask.any()):
+                group_loss[name] = None
+                continue
             with torch.autocast(
                 device_type=device.type,
-                enabled=autocast,
+                enabled=args.amp and device.type == "cuda",
                 dtype=torch.float16,
             ):
-                loss = _loss(model, batch)
-            total += float(loss.detach())
-            count += 1
-            if (
-                args.validation_max_batches is not None
-                and count >= args.validation_max_batches
-            ):
-                break
-    return total / max(count, 1)
+                group_loss[name] = float(
+                    _loss(model, _select_batch(batch, mask)).detach()
+                )
+        generator = torch.Generator(device=device).manual_seed(
+            args.validation_seed + global_step
+        )
+        actions = model.sample(
+            batch["observation.image"],
+            batch["observation.state"],
+            batch["observation.oct"],
+            batch["observation.velocity"],
+            batch["observation.previous_action"],
+            generator=generator,
+        )
+        action_error = torch.abs(
+            actions[:, 0] - batch["action"][:, 0]
+        )
+        distance_um = torch.linalg.norm(
+            batch["observation.oct"][:, -1, :3], dim=-1
+        ) * 1000.0
+        buckets = {
+            "<30": distance_um < 30.0,
+            "30-100": (distance_um >= 30.0) & (distance_um < 100.0),
+            "100-300": (distance_um >= 100.0) & (distance_um < 300.0),
+            "300-1000": (distance_um >= 300.0) & (distance_um < 1000.0),
+            ">=1000": distance_um >= 1000.0,
+        }
+        bucket_action_error = {
+            name: (
+                action_error[mask].mean().tolist()
+                if bool(mask.any())
+                else None
+            )
+            for name, mask in buckets.items()
+        }
+    model.train()
+    return {
+        "step": int(global_step),
+        "batch_correction_ratio": float(correction_mask.float().mean()),
+        "cumulative_correction_ratio": (
+            sampling_counts["correction"]
+            / (
+                sampling_counts["original"]
+                + sampling_counts["correction"]
+            )
+        ),
+        "original_unique_seen": len(original_seen),
+        "correction_unique_seen": len(correction_seen),
+        "original_loss": group_loss["original"],
+        "correction_loss": group_loss["correction"],
+        "distance_bucket_first_action_abs_error": bucket_action_error,
+        "first_action_mean_abs_error_deg_deg_mm": (
+            action_error.mean(dim=0).tolist()
+        ),
+        "first_action_limited_fraction": float(
+            torch.any(
+                torch.abs(actions[:, 0])
+                > torch.as_tensor(ACTION_LIMIT, device=actions.device),
+                dim=-1,
+            ).float().mean()
+        ),
+        "gradient_norm_before_clip": float(gradient_norm),
+        "amp_optimizer_updated": bool(optimizer_updated),
+        "amp_scale_after_update": float(amp_scale),
+    }
 
 
 def _write_json(path, value):
@@ -297,8 +505,14 @@ def train(argv):
     parser.add_argument("--output-dir", type=Path, required=True)
     parser.add_argument(
         "--mode",
-        choices=("original", "static", "balanced"),
+        choices=("original", "static", "balanced", "ratio"),
         required=True,
+    )
+    parser.add_argument(
+        "--correction-ratio",
+        type=float,
+        default=-1.0,
+        help="Correction sampling probability; negative uses the natural ratio",
     )
     parser.add_argument("--epochs", type=int, default=4)
     parser.add_argument("--steps-per-epoch", type=int, default=1000)
@@ -311,6 +525,9 @@ def train(argv):
     parser.add_argument("--weight-decay", type=float, default=1e-4)
     parser.add_argument("--correction-source", default="teacher")
     parser.add_argument("--seed", type=int, default=20261118)
+    parser.add_argument("--validation-seed", type=int, default=20261119)
+    parser.add_argument("--log-every-steps", type=int, default=100)
+    parser.add_argument("--checkpoint-every-steps", type=int, default=1000)
     parser.add_argument("--device", default="cuda")
     parser.add_argument(
         "--amp",
@@ -334,6 +551,14 @@ def train(argv):
         parser.error("validation max batches must be positive")
     if args.batch_size % 2:
         parser.error("batch size must be even")
+    if args.correction_ratio > 1.0:
+        parser.error("correction ratio must be at most 1 or negative for natural")
+    if min(args.log_every_steps, args.checkpoint_every_steps) < 1:
+        parser.error("logging and checkpoint intervals must be positive")
+    if args.steps_per_epoch % args.checkpoint_every_steps:
+        parser.error(
+            "steps per epoch must be divisible by checkpoint interval"
+        )
     if min(
         args.backbone_lr,
         args.attention_lr,
@@ -376,12 +601,24 @@ def train(argv):
         raise ValueError(
             "static/balanced modes require expert correction windows"
         )
-    original = IndexSubset(combined, original_indices)
-    correction = IndexSubset(combined, correction_indices)
+    original = IndexSubset(combined, original_indices, source=0)
+    correction = IndexSubset(combined, correction_indices, source=1)
+    natural_correction_ratio = len(correction_indices) / (
+        len(original_indices) + len(correction_indices)
+    )
+    correction_ratio = (
+        natural_correction_ratio
+        if args.correction_ratio < 0
+        else args.correction_ratio
+    )
     if args.mode == "original":
         training = original
     else:
         training = ConcatDataset([original, correction])
+    if args.mode == "ratio" and not 0.0 < correction_ratio < 1.0:
+        raise ValueError(
+            "ratio mode requires a correction probability in (0, 1)"
+        )
 
     args.output_dir.mkdir(parents=True)
     configure_stream_logging(args.output_dir)
@@ -416,10 +653,25 @@ def train(argv):
         "initial_checkpoint_epoch": initial_epoch,
         "original_windows": len(original),
         "correction_windows": len(correction),
+        "natural_correction_ratio": natural_correction_ratio,
+        "correction_ratio": correction_ratio,
+        "valid_window_index_sha256": _index_sha256(
+            combined.valid_indices
+        ),
+        "original_index_sha256": _index_sha256(original_indices),
+        "correction_index_sha256": _index_sha256(correction_indices),
+        "window_diagnostics": combined.window_diagnostics,
         "validation_windows": len(validation),
+        "validation_index_sha256": _index_sha256(
+            validation.valid_indices
+        ),
         "batch_size": args.batch_size,
         "batch_mix": (
             {
+                "correction_probability": correction_ratio,
+            }
+            if args.mode == "ratio"
+            else {
                 "original": args.batch_size // 2,
                 "correction": args.batch_size // 2,
             }
@@ -449,6 +701,11 @@ def train(argv):
     print(json.dumps(manifest, ensure_ascii=False), flush=True)
 
     history, best, started = [], float("inf"), time.monotonic()
+    metrics_path = args.output_dir / "training_metrics.jsonl"
+    metrics_stream = metrics_path.open("w", encoding="utf-8")
+    original_seen, correction_seen = set(), set()
+    sampling_counts = {"original": 0, "correction": 0}
+    global_step = 0
     for epoch in range(args.epochs):
         model.train()
         loader = _train_loader(
@@ -457,6 +714,7 @@ def train(argv):
             args.mode,
             len(original),
             len(correction),
+            correction_ratio,
             epoch,
         )
         total, count = 0.0, 0
@@ -475,11 +733,53 @@ def train(argv):
                 loss = _loss(model, batch)
             scaler.scale(loss).backward()
             scaler.unscale_(optimizer)
-            torch.nn.utils.clip_grad_norm_(model.parameters(), 1.0)
+            gradient_norm = torch.nn.utils.clip_grad_norm_(
+                model.parameters(), 1.0
+            )
+            scale_before_step = scaler.get_scale()
             scaler.step(optimizer)
             scaler.update()
+            scale_after_step = scaler.get_scale()
+            optimizer_updated = (
+                not (args.amp and device.type == "cuda")
+                or scale_after_step >= scale_before_step
+            )
             total += float(loss.detach())
             count += 1
+            global_step += 1
+            source = batch["sample.source"]
+            index = batch["sample.index"]
+            original_seen.update(
+                int(value)
+                for value in index[source == 0].cpu().tolist()
+            )
+            correction_seen.update(
+                int(value)
+                for value in index[source == 1].cpu().tolist()
+            )
+            sampling_counts["original"] += int((source == 0).sum())
+            sampling_counts["correction"] += int((source == 1).sum())
+            if global_step % args.log_every_steps == 0:
+                metrics_stream.write(
+                    json.dumps(
+                        _log_metrics(
+                            model,
+                            batch,
+                            device,
+                            args,
+                            global_step,
+                            float(gradient_norm),
+                            optimizer_updated,
+                            scale_after_step,
+                            original_seen,
+                            correction_seen,
+                            sampling_counts,
+                        ),
+                        ensure_ascii=False,
+                    )
+                    + "\n"
+                )
+                metrics_stream.flush()
         train_loss = total / max(count, 1)
         val_loss = _validate(model, val_loader, device, args)
         row = {
@@ -504,10 +804,13 @@ def train(argv):
             "config": run_config,
         }
         _atomic_torch_save(payload, args.output_dir / "last_model.pth")
+        step_checkpoint = args.output_dir / f"step_{global_step:06d}.pth"
+        _atomic_torch_save(payload, step_checkpoint)
         if val_loss < best:
             best = val_loss
             _atomic_torch_save(payload, args.output_dir / "best_model.pth")
         print(json.dumps(row), flush=True)
+    metrics_stream.close()
     return 0
 
 

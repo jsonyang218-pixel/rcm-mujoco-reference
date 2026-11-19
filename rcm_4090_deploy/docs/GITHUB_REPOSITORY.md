@@ -60,6 +60,10 @@ Recorded: 2026-11-16
   https://github.com/jsonyang218-pixel/rcm-mujoco-reference/blob/experiment/experience-replay-20261118/rcm_4090_deploy/github_reports/model_status_20261118_experience_replay_abc/ABC_STATUS.md
 - Experiment design:
   https://github.com/jsonyang218-pixel/rcm-mujoco-reference/blob/experiment/experience-replay-20261118/rcm_4090_deploy/docs/EXPERIENCE_REPLAY_EXPERIMENT.md
+- Correction-ratio results:
+  https://github.com/jsonyang218-pixel/rcm-mujoco-reference/blob/experiment/experience-replay-20261118/rcm_4090_deploy/github_reports/model_status_20261119_experience_ratio/RATIO_STATUS.md
+- Plan-2 collection status:
+  https://github.com/jsonyang218-pixel/rcm-mujoco-reference/blob/experiment/experience-replay-20261118/rcm_4090_deploy/github_reports/model_status_20261119_plan2_collection/COLLECTION_STATUS.md
 
 ## Previous experiment branch
 

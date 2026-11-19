@@ -1,0 +1,137 @@
+{
+  "plan": "experience_replay_plan2_20261118",
+  "stage": "d3-pilot",
+  "model": "/home/him1/mujoco_bc/rcm_4090_deploy/outputs/state_attention_experience_ratio_20261118_1/r0_natural/training/step_004000.pth",
+  "dataset_root": "/home/him1/mujoco_bc/rcm_4090_deploy/data/experience_replay_plan2_d3_pilot_beta1_20261119",
+  "dry_run": false,
+  "expected_counts": {
+    "D1": 0,
+    "D2": 0,
+    "D3": 5,
+    "D4": 0
+  },
+  "expected_trajectories": 5,
+  "runs": [
+    {
+      "name": "d3_pilot_hold_beta1",
+      "category": "D3",
+      "seeds": [
+        20310000,
+        20310001,
+        20310002
+      ],
+      "max_steps": 200,
+      "hold_frames": 40,
+      "teacher_takeover_steps": 20,
+      "beta": 1.0,
+      "profiles": [
+        0,
+        1,
+        7
+      ],
+      "start_error_mm": null,
+      "max_error_mm": 0.1
+    },
+    {
+      "name": "d3_pilot_perturb_hold_beta1",
+      "category": "D3",
+      "seeds": [
+        20310003,
+        20310004
+      ],
+      "max_steps": 200,
+      "hold_frames": 60,
+      "teacher_takeover_steps": 20,
+      "beta": 1.0,
+      "profiles": [
+        12,
+        16
+      ],
+      "start_error_mm": null,
+      "max_error_mm": 0.1
+    }
+  ],
+  "commands": [
+    {
+      "name": "d3_pilot_hold_beta1",
+      "category": "D3",
+      "trajectories": 3,
+      "output": "/home/him1/mujoco_bc/rcm_4090_deploy/data/experience_replay_plan2_d3_pilot_beta1_20261119/raw/d3_pilot_hold_beta1",
+      "command": [
+        "/home/him1/mujoco_bc/rcm_4090_deploy/.venv/bin/python",
+        "-m",
+        "scripts.datasets.collect_dagger_dataset",
+        "--model",
+        "/home/him1/mujoco_bc/rcm_4090_deploy/outputs/state_attention_experience_ratio_20261118_1/r0_natural/training/step_004000.pth",
+        "--output-dir",
+        "/home/him1/mujoco_bc/rcm_4090_deploy/data/experience_replay_plan2_d3_pilot_beta1_20261119/raw/d3_pilot_hold_beta1",
+        "--episodes",
+        "3",
+        "--starts-per-episode",
+        "1",
+        "--seed",
+        "20300101",
+        "--beta",
+        "1.0",
+        "--teacher-takeover-steps",
+        "20",
+        "--teacher-takeover-max-steps",
+        "400",
+        "--hold-frames",
+        "40",
+        "--max-steps",
+        "200",
+        "--max-error-mm",
+        "0.1",
+        "--num-action-samples",
+        "1",
+        "--target-seeds-file",
+        "/home/him1/mujoco_bc/rcm_4090_deploy/data/experience_replay_plan2_d3_pilot_beta1_20261119/manifests/d3_pilot_hold_beta1_seeds.json",
+        "--terminal-start-profile-indices",
+        "0",
+        "1",
+        "7"
+      ]
+    },
+    {
+      "name": "d3_pilot_perturb_hold_beta1",
+      "category": "D3",
+      "trajectories": 2,
+      "output": "/home/him1/mujoco_bc/rcm_4090_deploy/data/experience_replay_plan2_d3_pilot_beta1_20261119/raw/d3_pilot_perturb_hold_beta1",
+      "command": [
+        "/home/him1/mujoco_bc/rcm_4090_deploy/.venv/bin/python",
+        "-m",
+        "scripts.datasets.collect_dagger_dataset",
+        "--model",
+        "/home/him1/mujoco_bc/rcm_4090_deploy/outputs/state_attention_experience_ratio_20261118_1/r0_natural/training/step_004000.pth",
+        "--output-dir",
+        "/home/him1/mujoco_bc/rcm_4090_deploy/data/experience_replay_plan2_d3_pilot_beta1_20261119/raw/d3_pilot_perturb_hold_beta1",
+        "--episodes",
+        "2",
+        "--starts-per-episode",
+        "1",
+        "--seed",
+        "20300201",
+        "--beta",
+        "1.0",
+        "--teacher-takeover-steps",
+        "20",
+        "--teacher-takeover-max-steps",
+        "400",
+        "--hold-frames",
+        "60",
+        "--max-steps",
+        "200",
+        "--max-error-mm",
+        "0.1",
+        "--num-action-samples",
+        "1",
+        "--target-seeds-file",
+        "/home/him1/mujoco_bc/rcm_4090_deploy/data/experience_replay_plan2_d3_pilot_beta1_20261119/manifests/d3_pilot_perturb_hold_beta1_seeds.json",
+        "--terminal-start-profile-indices",
+        "12",
+        "16"
+      ]
+    }
+  ]
+}

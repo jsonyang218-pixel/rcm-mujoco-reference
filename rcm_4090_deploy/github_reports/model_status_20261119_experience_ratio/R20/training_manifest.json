@@ -1,0 +1,34 @@
+{
+  "training_module": "state_attention_experience_replay_flow_v1",
+  "mode": "ratio",
+  "initial_checkpoint": "/home/him1/mujoco_bc/rcm_4090_deploy/outputs/dit_rectified_flow_state_attention_v1_acthist_20261117/best_model.pth",
+  "initial_checkpoint_epoch": 3,
+  "original_windows": 206245,
+  "correction_windows": 14571,
+  "natural_correction_ratio": 0.06598706615462648,
+  "correction_ratio": 0.2,
+  "valid_window_index_sha256": "3f852d9c7b296cdcc4c4abbca6a12e0e099050bc5bbfc4254aae979830fb927d",
+  "original_index_sha256": "37aa0ca45ac5db3bb0fff6fb4284dad4425675e289005c46ebb14d5f490e960f",
+  "correction_index_sha256": "b0a911e9ca6b36ba8bcb4d5fcdba92e95ce4e7f670f53619a66df5270ff685e1",
+  "window_diagnostics": {
+    "candidate_windows": 234300,
+    "trajectory_boundary_excluded": 13408,
+    "source_frame_gap_excluded": 48,
+    "time_interval_excluded": 0,
+    "invalid_input_excluded": 28,
+    "valid_windows": 220816
+  },
+  "validation_windows": 26650,
+  "validation_index_sha256": "a7a2cdd47de89d673b3d56903312d71814d9ca28c73b74285f39b735b92511eb",
+  "batch_size": 16,
+  "batch_mix": {
+    "correction_probability": 0.2
+  },
+  "sampling": "uniform_with_replacement",
+  "steps_per_epoch": 1000,
+  "epochs": 4,
+  "flow_loss_weights": {
+    "original": null,
+    "correction": null
+  }
+}

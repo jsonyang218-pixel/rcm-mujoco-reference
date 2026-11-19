@@ -1,0 +1,292 @@
+{
+  "schema_version": 1,
+  "format": "DAgger episodes with per-frame policy, teacher and executed actions",
+  "model": "/home/him1/mujoco_bc/rcm_4090_deploy/outputs/state_attention_experience_ratio_20261118_1/r0_natural/training/step_004000.pth",
+  "policy_type": "dit_rectified_flow",
+  "policy_checkpoint_epoch": 3,
+  "policy_guided_oct": false,
+  "seed": 20300401,
+  "beta": 0.5,
+  "teacher_takeover_steps": 40,
+  "teacher_takeover_max_steps": 400,
+  "hold_frames": 20,
+  "max_error_mm": 1.0,
+  "target_seeds_file": "/home/him1/mujoco_bc/rcm_4090_deploy/data/experience_replay_plan2_20261118_retry2/manifests/d2_pilot_oscillation_seeds.json",
+  "target_seeds": [
+    20310003,
+    20310004
+  ],
+  "target_min_posterior_z": 0.9,
+  "reachable_targets": [
+    {
+      "target_index": 0,
+      "target_seed": 20310003,
+      "requested_target_robot_mm": [
+        1.8178315265376535,
+        8.501812006271265,
+        22.047898623044283
+      ],
+      "requested_target_world_mm": [
+        350.66696674673926,
+        -9.442920448824552,
+        374.5650345176227
+      ],
+      "reachable_target_robot_mm": [
+        1.8167380563613529,
+        8.502541421884457,
+        22.047464444517082
+      ],
+      "reachable_target_world_mm": [
+        350.667489368414,
+        -9.44401391900085,
+        374.5657034157579
+      ],
+      "target_shift_mm": [
+        0.00052262167474737,
+        -0.0010934701762987942,
+        0.0006688981352453993
+      ],
+      "target_shift_norm_mm": 0.0013842814586295066,
+      "requested_terminal_robot_ABCE": [
+        2619,
+        870537,
+        2150832,
+        0
+      ],
+      "endpoint_robot_ABCE": [
+        2617,
+        870374,
+        2150818,
+        0
+      ],
+      "endpoint_task_rad_rad_m": [
+        0.08221547974444489,
+        -0.12671080625122777,
+        0.019699882751211477
+      ]
+    },
+    {
+      "target_index": 1,
+      "target_seed": 20310004,
+      "requested_target_robot_mm": [
+        -5.012248147641645,
+        4.11567829053738,
+        22.477893981177584
+      ],
+      "requested_target_world_mm": [
+        346.7344162204076,
+        -16.273000123003847,
+        372.5755342441464
+      ],
+      "reachable_target_robot_mm": [
+        -5.011698110766239,
+        4.116255948487899,
+        22.47743030823502
+      ],
+      "reachable_target_world_mm": [
+        346.73478670613264,
+        -16.272450086128444,
+        372.5761756657184
+      ],
+      "target_shift_mm": [
+        0.00037048572505682387,
+        0.0005500368754027818,
+        0.0006414215719701133
+      ],
+      "target_shift_norm_mm": 0.000922616859678137,
+      "requested_terminal_robot_ABCE": [
+        -6984,
+        1783010,
+        2131347,
+        0
+      ],
+      "endpoint_robot_ABCE": [
+        -6983,
+        1782865,
+        2131318,
+        0
+      ],
+      "endpoint_task_rad_rad_m": [
+        -0.21937741500017527,
+        0.06335540503372747,
+        0.01939434889799536
+      ]
+    }
+  ],
+  "expert_terminal_tolerance_um": 0.1,
+  "terminal_start_profile_indices": [
+    16,
+    19
+  ],
+  "terminal_start_profiles": [
+    {
+      "index": 16,
+      "name": "combined_A_pos_under",
+      "delta_A_deg_B_deg_C_mm": [
+        0.2,
+        0.0,
+        -0.2
+      ]
+    },
+    {
+      "index": 19,
+      "name": "combined_B_neg_over",
+      "delta_A_deg_B_deg_C_mm": [
+        0.0,
+        -0.2,
+        0.2
+      ]
+    }
+  ],
+  "state_range_A_deg_B_deg_C_mm": [
+    [
+      -13.280400276184082,
+      -12.27226734161377,
+      0.0
+    ],
+    [
+      13.31820011138916,
+      11.927999496459961,
+      20.76517677307129
+    ]
+  ],
+  "action_abs_limit_deg_deg_mm": [
+    0.2897999882698059,
+    0.14434358477592468,
+    0.04271206632256508
+  ],
+  "episodes": [
+    {
+      "episode_index": 0,
+      "method": "dagger_policy_teacher",
+      "seed": 20300401,
+      "visit_order": [
+        "P1"
+      ],
+      "result": "FAIL",
+      "frames": 400,
+      "data": "data/episode_000000.npz",
+      "jsonl": "data/episode_000000.jsonl",
+      "policy_inputs": "policy_inputs/episode_000000.npz",
+      "policy_inputs_no_image": "policy_inputs_no_image/episode_000000.npz",
+      "action_labels": "action_labels/episode_000000.npz",
+      "image_write_wall_s": 12.293675575172529,
+      "visibility_summary": {
+        "known_frames": 0,
+        "unknown_frames": 400,
+        "target_occlusion_state_frames": {
+          "clear": 0,
+          "partial_needle": 0,
+          "full_needle": 0,
+          "not_visible": 0
+        },
+        "frames_with_needle_occlusion": 0,
+        "maximum_target_occlusion_fraction_by_needle": null,
+        "source": "MuJoCo geometry segmentation; offline no-needle counterfactual, not controller input"
+      },
+      "target_success_by_visibility": null,
+      "stop_constraint_summary": {
+        "pass": false,
+        "attempted_targets": 1,
+        "targets_with_validated_stop": 0
+      },
+      "initial_error_mm": 0.21425171892481867,
+      "stop_reason": null,
+      "teacher_invalid_frames": 0,
+      "teacher_invalid_fraction": 0.0,
+      "collection_wall_s": 141.803352921037,
+      "target_robot_mm": [
+        1.8167380563613529,
+        8.502541421884457,
+        22.047464444517082
+      ],
+      "teacher_pre_roll": {
+        "result": "SKIPPED",
+        "reason": "DIRECT_TERMINAL_START",
+        "start_profile": "combined_A_pos_under"
+      },
+      "terminal_start_profile": "combined_A_pos_under",
+      "exact_terminal_lock": null,
+      "executor_counts": {
+        "policy": 201,
+        "beta_teacher": 199
+      },
+      "takeover_trigger_reasons": {},
+      "strict_zero_error": false,
+      "final_error_um": 25.720554657755773,
+      "expert_terminal_tolerance_um": 0.1
+    },
+    {
+      "episode_index": 1,
+      "method": "dagger_policy_teacher",
+      "seed": 20300402,
+      "visit_order": [
+        "P1"
+      ],
+      "result": "FAIL",
+      "frames": 400,
+      "data": "data/episode_000001.npz",
+      "jsonl": "data/episode_000001.jsonl",
+      "policy_inputs": "policy_inputs/episode_000001.npz",
+      "policy_inputs_no_image": "policy_inputs_no_image/episode_000001.npz",
+      "action_labels": "action_labels/episode_000001.npz",
+      "image_write_wall_s": 12.284746325167362,
+      "visibility_summary": {
+        "known_frames": 0,
+        "unknown_frames": 400,
+        "target_occlusion_state_frames": {
+          "clear": 0,
+          "partial_needle": 0,
+          "full_needle": 0,
+          "not_visible": 0
+        },
+        "frames_with_needle_occlusion": 0,
+        "maximum_target_occlusion_fraction_by_needle": null,
+        "source": "MuJoCo geometry segmentation; offline no-needle counterfactual, not controller input"
+      },
+      "target_success_by_visibility": null,
+      "stop_constraint_summary": {
+        "pass": false,
+        "attempted_targets": 1,
+        "targets_with_validated_stop": 0
+      },
+      "initial_error_mm": 0.2161671966626452,
+      "stop_reason": null,
+      "teacher_invalid_frames": 0,
+      "teacher_invalid_fraction": 0.0,
+      "collection_wall_s": 143.7957762949518,
+      "target_robot_mm": [
+        -5.011698110766239,
+        4.116255948487899,
+        22.47743030823502
+      ],
+      "teacher_pre_roll": {
+        "result": "SKIPPED",
+        "reason": "DIRECT_TERMINAL_START",
+        "start_profile": "combined_B_neg_over"
+      },
+      "terminal_start_profile": "combined_B_neg_over",
+      "exact_terminal_lock": null,
+      "executor_counts": {
+        "policy": 202,
+        "beta_teacher": 198
+      },
+      "takeover_trigger_reasons": {},
+      "strict_zero_error": false,
+      "final_error_um": 32.18137437851383,
+      "expert_terminal_tolerance_um": 0.1
+    }
+  ],
+  "requested_episodes": 2,
+  "completed_episodes": 2,
+  "skipped_empty_episodes": [],
+  "resume_missing_prefix": [],
+  "resume_start_episode": 0,
+  "target_start": 0,
+  "target_end": 1,
+  "skip_episodes_before": 0,
+  "total_frames": 800,
+  "teacher_invalid_frames": 0,
+  "strict_zero_error_episodes": 0,
+  "maximum_final_error_um": 32.18137437851383
+}

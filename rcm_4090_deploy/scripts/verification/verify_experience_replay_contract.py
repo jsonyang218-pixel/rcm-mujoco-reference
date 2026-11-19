@@ -3,10 +3,17 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 from pathlib import Path
+import sys
 
 import numpy as np
+
+PROJECT_ROOT = Path(__file__).resolve().parents[2]
+sys.path.insert(0, str(PROJECT_ROOT))
+
+from lerobot_training.dataset_contract import valid_window_indices
 
 
 def write_json(path, value):
@@ -86,36 +93,17 @@ def main(argv=None):
     if not np.isfinite(action).all() or not np.isfinite(executed).all():
         raise ValueError("action arrays contain non-finite values")
 
-    continuous_step = np.zeros(len(episode), dtype=bool)
-    continuous_step[1:] = (
-        episode[1:] == episode[:-1]
-    ) & (source_frame[1:] == source_frame[:-1] + 1) & np.isclose(
-        np.diff(timestamp), 0.05, rtol=1e-3, atol=1e-6
+    starts, diagnostics = valid_window_indices(
+        episode,
+        source_frame,
+        timestamp,
+        n_obs_steps=args.n_obs_steps,
+        n_action_steps=args.n_action_steps,
+        control_period_s=0.05,
+        oct_navigation=oct_navigation,
+        oct_navigation_valid=oct_valid,
+        return_diagnostics=True,
     )
-    valid_window = np.ones(
-        len(episode) - args.n_action_steps - args.n_obs_steps + 2,
-        dtype=bool,
-    )
-    for offset in range(-(args.n_obs_steps - 1), args.n_action_steps):
-        valid_window &= continuous_step[
-            np.arange(
-                args.n_obs_steps - 1,
-                len(episode) - args.n_action_steps + 1,
-            )
-            + offset
-        ]
-
-    starts = np.arange(
-        args.n_obs_steps - 1,
-        len(episode) - args.n_action_steps + 1,
-    )
-    starts = starts[valid_window]
-    starts = starts[
-        oct_valid[starts]
-        & oct_valid[starts + 1]
-        & np.isfinite(oct_navigation[starts]).all(axis=1)
-        & np.isfinite(oct_navigation[starts + 1]).all(axis=1)
-    ]
     distances_um = np.linalg.norm(oct_navigation, axis=1) * 1000.0
     sources = {
         source: {
@@ -145,6 +133,17 @@ def main(argv=None):
         if np.any(np.abs(action[row] - executed[row]) > 1e-6):
             sources[source]["label_differs_from_executed"] += 1
 
+    source_counts = {
+        source: sum(
+            source_by_episode[int(episode[row])] == source
+            for row in starts
+        )
+        for source in sources
+    }
+    total_source_windows = sum(source_counts.values())
+    index_hash = hashlib.sha256(
+        np.asarray(starts, dtype="<i8").tobytes()
+    ).hexdigest()
     report = {
         "status": "PASS",
         "data_dir": str(args.data_dir),
@@ -161,6 +160,13 @@ def main(argv=None):
             "cross_source_frame_gap_windows_allowed": False,
         },
         "valid_windows": int(len(starts)),
+        "valid_index_sha256": index_hash,
+        "natural_correction_ratio": (
+            source_counts.get("teacher", 0) / total_source_windows
+            if total_source_windows
+            else 0.0
+        ),
+        "window_diagnostics": diagnostics,
         "sources": sources,
     }
     write_json(args.output_dir / "experience_replay_contract.json", report)
