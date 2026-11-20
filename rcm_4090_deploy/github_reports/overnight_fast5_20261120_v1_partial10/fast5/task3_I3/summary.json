@@ -1,0 +1,69 @@
+{
+  "status": "completed",
+  "checkpoint": "outputs/overnight_c_fix_symlog_081234/task2_train/step_004000.pth",
+  "arm": "I3",
+  "target_count": 5,
+  "base_seed": 42,
+  "max_steps": 1000,
+  "tier": "fast5",
+  "episode_indices": [
+    0,
+    2,
+    6,
+    8,
+    10
+  ],
+  "parallel_workers": 5,
+  "error_threshold_um": 0.35,
+  "flow_steps": 8,
+  "samples": 5,
+  "final_mean_um": 119.56355865574703,
+  "final_median_um": 58.443066260272,
+  "final_min_um": 20.970555873750165,
+  "minimum_mean_um": 115.3903908027645,
+  "canonical_success_count": 0,
+  "encoder_settled_at_exit_count": 1,
+  "encoder_settled_near_target_frames": 43,
+  "inference_median_ms": 22.777856826782227,
+  "inference_p90_ms": 31.09940452575684,
+  "inference_timing": "CUDA events: sample and aggregate, excluding initial history fill and host transfer; observed under concurrent workers, conservative real-time gate",
+  "near_target_ab_mean_change_deg": [
+    0.0016126801293696528,
+    0.0009989946920472084
+  ],
+  "near_target_ab_pairs": 1054,
+  "c_retraction": {
+    "E08": {
+      "minimum_step": 965,
+      "C_residual_at_min_um": -7.426822893560114,
+      "C_retreat_after_80_steps_um": null,
+      "post_min_negative_commands": 19,
+      "post_min_under_target_negative_commands": 19,
+      "post_min_command_frames": 35
+    },
+    "E00": {
+      "minimum_step": 724,
+      "C_residual_at_min_um": -146.7189231546513,
+      "C_retreat_after_80_steps_um": 11.735633644040178,
+      "post_min_negative_commands": 54,
+      "post_min_under_target_negative_commands": 54,
+      "post_min_command_frames": 80
+    },
+    "E02": {
+      "minimum_step": 763,
+      "C_residual_at_min_um": -168.48233454527772,
+      "C_retreat_after_80_steps_um": 11.688628435859272,
+      "post_min_negative_commands": 43,
+      "post_min_under_target_negative_commands": 43,
+      "post_min_command_frames": 80
+    },
+    "E06": {
+      "minimum_step": 888,
+      "C_residual_at_min_um": -35.19123252940659,
+      "C_retreat_after_80_steps_um": 7.035112825334977,
+      "post_min_negative_commands": 41,
+      "post_min_under_target_negative_commands": 41,
+      "post_min_command_frames": 80
+    }
+  }
+}

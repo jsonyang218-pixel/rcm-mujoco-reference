@@ -1,0 +1,139 @@
+{
+  "schema_version": 1,
+  "id": "overnight_fast5_20261120_v1",
+  "hypothesis": "Fixed five-target inference screening then zero-initialized OCT symlog FP32 residual can improve paired closed-loop error.",
+  "main_change": "Execute authorized updated Task3 and Task4; five original-index parallel workers; conditional one-candidate dev20.",
+  "source_plan": "/home/him1/mujoco_bc/overnight_codex_plan_20261119 (1).md",
+  "output_dir": "runs/20261120/overnight_fast5_20261120_v1",
+  "checkpoint_output": "outputs/overnight_fast5_20261120_v1/task4_train",
+  "data": "data/plan2_plus_original_train_224_20261119",
+  "validation": "data/lerobot_rcm_val_acthist_20261117_224",
+  "checkpoint": "outputs/overnight_c_fix_symlog_081234/task2_train/step_004000.pth",
+  "label_overlay": "data/overnight_c_fix_symlog_081234_overlay/label_override.npz",
+  "evaluation": {
+    "fast5_indices": [
+      0,
+      2,
+      6,
+      8,
+      10
+    ],
+    "fast5_seeds": [
+      42,
+      44,
+      48,
+      50,
+      52
+    ],
+    "fast5_max_steps": 1000,
+    "control_period_s": 0.05,
+    "dev20_indices": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19
+    ],
+    "dev20_max_steps": 1600,
+    "dev20_base_seed": 42,
+    "workers": 5,
+    "success_error_um": 0.35,
+    "success_consecutive_settled_frames": 3,
+    "arms": {
+      "I0": [
+        4,
+        1
+      ],
+      "I1": [
+        8,
+        1
+      ],
+      "I3": [
+        8,
+        5
+      ]
+    },
+    "baseline": "fresh same-code same-scene I0/I1/I3 fast5; historical full20 reference not reused",
+    "latency": "median and P90 observed under five concurrent GPU workers; conservative <50ms gate"
+  },
+  "training": {
+    "epochs": 4,
+    "steps_per_epoch": 1000,
+    "batch_size": 16,
+    "seed": 20261118,
+    "validation_seed": 20261119,
+    "correction_ratio": 0.08,
+    "dagger_repeat": 1,
+    "amp": "unchanged defaults",
+    "checkpoints_screened": [
+      2000,
+      4000
+    ]
+  },
+  "gates": {
+    "step_zero": "max_abs_diff <1e-6; otherwise stop dependent training",
+    "task3": "at least 10% mean final or mean minimum improvement, no final mean regression, median AND P90 <50ms; else I0",
+    "task4": "select lowest final mean across step2000/4000 x I0/BEST_ARM; same-arm paired final mean OR minimum mean improves >=10%; then one winning dev20",
+    "failures": "stop dependent stages, preserve partial evidence, no parameter changes/retries"
+  },
+  "budgets": {
+    "total_hours": 12,
+    "fast5_stage_seconds": 5400,
+    "training_seconds": 2700,
+    "dev20_seconds": 14400
+  },
+  "scope": "Task3 -> Task4 only; no optional Task5; output paths follow repository runs/outputs policy",
+  "stages": [
+    {
+      "id": "task34",
+      "type": "module",
+      "module": "scripts.research.overnight_cfix_fast",
+      "args": [
+        "--asset-receipt",
+        "runs/20261120/task4_oct_symlog_preflight_192534/assets.json",
+        "--workers",
+        "5"
+      ],
+      "assets": [
+        "data/plan2_plus_original_train_224_20261119/data/dataset.npz",
+        "data/plan2_plus_original_train_224_20261119/metadata.json",
+        "outputs/state_attention_experience_ratio_20261118_1/r0_natural/training/step_004000.pth",
+        "outputs/dit_rectified_flow_state_attention_v1_acthist_20261117/best_model.pth",
+        "configs/v12_reachable_development_targets_0p35um.json",
+        "outputs/overnight_c_fix_symlog_081234/task2_train/step_004000.pth",
+        "data/overnight_c_fix_symlog_081234_overlay/label_override.npz",
+        "outputs/overnight_c_fix_symlog_081234/task2_train/training_config.json",
+        "outputs/overnight_c_fix_symlog_081234/task2_train/training_manifest.json",
+        "data/overnight_c_fix_symlog_081234_overlay/label_override.json",
+        "data/plan2_plus_original_train_224_20261119/data/image_paths.json",
+        "data/lerobot_rcm_val_acthist_20261117_224/metadata.json",
+        "data/lerobot_rcm_val_acthist_20261117_224/data/dataset.npz",
+        "data/lerobot_rcm_val_acthist_20261117_224/data/image_paths.json",
+        "runs/20261120/task4_oct_symlog_preflight_192534/assets.json",
+        "/home/him1/mujoco_bc/overnight_codex_plan_20261119 (1).md",
+        "scripts/research/overnight_cfix.py",
+        "scripts/research/overnight_cfix_eval.py",
+        "scripts/research/overnight_cfix_data.py",
+        "scripts/tools/experiment_workflow.py",
+        "runs/20261119/overnight_c_fix_symlog_081234/task2_step4000/episodes.csv",
+        "runs/20261119/overnight_c_fix_symlog_081234/task2_step4000/summary.json"
+      ],
+      "timeout_s": 43320
+    }
+  ]
+}

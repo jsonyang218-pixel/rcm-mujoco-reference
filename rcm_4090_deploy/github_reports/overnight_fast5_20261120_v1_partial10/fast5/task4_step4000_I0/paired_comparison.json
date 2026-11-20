@@ -1,0 +1,72 @@
+{
+  "baseline_final_um": 61.84089435709457,
+  "candidate_final_um": 62.79889217933528,
+  "baseline_minimum_um": 52.09680698924613,
+  "candidate_minimum_um": 51.531059491018766,
+  "paired_targets": 5,
+  "arm": "I0",
+  "baseline": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/overnight_fast5_20261120_v1/task34/task3_I0",
+  "candidate": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/overnight_fast5_20261120_v1/task34/task4_step4000_I0",
+  "final_improvement_fraction": -0.01549133194466501,
+  "minimum_improvement_fraction": 0.010859542665333621,
+  "improved_final_count": 3,
+  "gate_passed": false,
+  "rule": "same-arm paired fast5 final mean OR minimum mean improves at least 10%",
+  "pairs": [
+    {
+      "target_id": "target_d30721d6bc45",
+      "episode": "E00",
+      "seed": 42,
+      "baseline_final_um": 56.359870825210265,
+      "candidate_final_um": 88.2216302984946,
+      "baseline_minimum_um": 55.937094514969274,
+      "candidate_minimum_um": 88.14189942355713,
+      "final_delta_um": 31.861759473284337,
+      "minimum_delta_um": 32.20480490858786
+    },
+    {
+      "target_id": "target_26985bd28045",
+      "episode": "E02",
+      "seed": 44,
+      "baseline_final_um": 58.89666963498952,
+      "candidate_final_um": 45.06041472077183,
+      "baseline_minimum_um": 35.83325003996871,
+      "candidate_minimum_um": 35.26503283966278,
+      "final_delta_um": -13.83625491421769,
+      "minimum_delta_um": -0.5682172003059307
+    },
+    {
+      "target_id": "target_6f265ab4f315",
+      "episode": "E06",
+      "seed": 48,
+      "baseline_final_um": 69.02333295100946,
+      "candidate_final_um": 59.01388413284856,
+      "baseline_minimum_um": 70.42222559126994,
+      "candidate_minimum_um": 60.62023105588462,
+      "final_delta_um": -10.009448818160905,
+      "minimum_delta_um": -9.801994535385319
+    },
+    {
+      "target_id": "target_29b219ad42c3",
+      "episode": "E08",
+      "seed": 50,
+      "baseline_final_um": 67.06037596847433,
+      "candidate_final_um": 81.93978903935648,
+      "baseline_minimum_um": 49.168300553613946,
+      "candidate_minimum_um": 45.25552460608136,
+      "final_delta_um": 14.879413070882151,
+      "minimum_delta_um": -3.9127759475325874
+    },
+    {
+      "target_id": "target_087ecb1a48ae",
+      "episode": "E10",
+      "seed": 52,
+      "baseline_final_um": 57.86422240578923,
+      "candidate_final_um": 39.758742705204895,
+      "baseline_minimum_um": 49.12316424640881,
+      "candidate_minimum_um": 28.372609529907944,
+      "final_delta_um": -18.105479700584333,
+      "minimum_delta_um": -20.75055471650087
+    }
+  ]
+}

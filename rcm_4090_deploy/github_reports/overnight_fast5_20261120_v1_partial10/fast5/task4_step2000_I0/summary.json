@@ -1,0 +1,69 @@
+{
+  "status": "completed",
+  "checkpoint": "outputs/overnight_fast5_20261120_v1/task4_train/step_002000.pth",
+  "arm": "I0",
+  "target_count": 5,
+  "base_seed": 42,
+  "max_steps": 1000,
+  "tier": "fast5",
+  "episode_indices": [
+    0,
+    2,
+    6,
+    8,
+    10
+  ],
+  "parallel_workers": 5,
+  "error_threshold_um": 0.35,
+  "flow_steps": 4,
+  "samples": 1,
+  "final_mean_um": 48.905758898853534,
+  "final_median_um": 51.64129244593653,
+  "final_min_um": 36.61796118179339,
+  "minimum_mean_um": 40.20874860922983,
+  "canonical_success_count": 0,
+  "encoder_settled_at_exit_count": 0,
+  "encoder_settled_near_target_frames": 0,
+  "inference_median_ms": 12.263551712036133,
+  "inference_p90_ms": 13.984838485717777,
+  "inference_timing": "CUDA events: sample and aggregate, excluding initial history fill and host transfer; observed under concurrent workers, conservative real-time gate",
+  "near_target_ab_mean_change_deg": [
+    0.0065349315030920445,
+    0.0038672300517561555
+  ],
+  "near_target_ab_pairs": 1673,
+  "c_retraction": {
+    "E08": {
+      "minimum_step": 845,
+      "C_residual_at_min_um": -47.396918255319775,
+      "C_retreat_after_80_steps_um": 29.143229076002086,
+      "post_min_negative_commands": 49,
+      "post_min_under_target_negative_commands": 49,
+      "post_min_command_frames": 80
+    },
+    "E00": {
+      "minimum_step": 998,
+      "C_residual_at_min_um": -49.183116166428675,
+      "C_retreat_after_80_steps_um": null,
+      "post_min_negative_commands": 2,
+      "post_min_under_target_negative_commands": 2,
+      "post_min_command_frames": 2
+    },
+    "E02": {
+      "minimum_step": 932,
+      "C_residual_at_min_um": -13.647178776988511,
+      "C_retreat_after_80_steps_um": null,
+      "post_min_negative_commands": 30,
+      "post_min_under_target_negative_commands": 29,
+      "post_min_command_frames": 68
+    },
+    "E06": {
+      "minimum_step": 999,
+      "C_residual_at_min_um": -35.112890515762274,
+      "C_retreat_after_80_steps_um": null,
+      "post_min_negative_commands": 0,
+      "post_min_under_target_negative_commands": 0,
+      "post_min_command_frames": 1
+    }
+  }
+}

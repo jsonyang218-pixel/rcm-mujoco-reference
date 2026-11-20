@@ -1,0 +1,69 @@
+{
+  "status": "completed",
+  "checkpoint": "outputs/overnight_c_fix_symlog_081234/task2_train/step_004000.pth",
+  "arm": "I1",
+  "target_count": 5,
+  "base_seed": 42,
+  "max_steps": 1000,
+  "tier": "fast5",
+  "episode_indices": [
+    0,
+    2,
+    6,
+    8,
+    10
+  ],
+  "parallel_workers": 5,
+  "error_threshold_um": 0.35,
+  "flow_steps": 8,
+  "samples": 1,
+  "final_mean_um": 134.55948256166585,
+  "final_median_um": 151.4327694302106,
+  "final_min_um": 18.49202368388006,
+  "minimum_mean_um": 126.82512905541466,
+  "canonical_success_count": 0,
+  "encoder_settled_at_exit_count": 0,
+  "encoder_settled_near_target_frames": 0,
+  "inference_median_ms": 21.91766357421875,
+  "inference_p90_ms": 28.721395111083986,
+  "inference_timing": "CUDA events: sample and aggregate, excluding initial history fill and host transfer; observed under concurrent workers, conservative real-time gate",
+  "near_target_ab_mean_change_deg": [
+    0.0028154778760434806,
+    0.0017262933599327239
+  ],
+  "near_target_ab_pairs": 1088,
+  "c_retraction": {
+    "E08": {
+      "minimum_step": 954,
+      "C_residual_at_min_um": -5.311588525142241,
+      "C_retreat_after_80_steps_um": null,
+      "post_min_negative_commands": 26,
+      "post_min_under_target_negative_commands": 26,
+      "post_min_command_frames": 46
+    },
+    "E00": {
+      "minimum_step": 998,
+      "C_residual_at_min_um": -100.74782954767159,
+      "C_retreat_after_80_steps_um": null,
+      "post_min_negative_commands": 1,
+      "post_min_under_target_negative_commands": 1,
+      "post_min_command_frames": 2
+    },
+    "E02": {
+      "minimum_step": 994,
+      "C_residual_at_min_um": -144.99539885445856,
+      "C_retreat_after_80_steps_um": null,
+      "post_min_negative_commands": 6,
+      "post_min_under_target_negative_commands": 6,
+      "post_min_command_frames": 6
+    },
+    "E06": {
+      "minimum_step": 869,
+      "C_residual_at_min_um": -127.86983467162827,
+      "C_retreat_after_80_steps_um": 24.066666591792796,
+      "post_min_negative_commands": 55,
+      "post_min_under_target_negative_commands": 55,
+      "post_min_command_frames": 80
+    }
+  }
+}

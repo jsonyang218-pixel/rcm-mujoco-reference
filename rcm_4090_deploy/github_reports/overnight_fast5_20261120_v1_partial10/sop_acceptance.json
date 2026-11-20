@@ -1,0 +1,13 @@
+{
+  "status": "PASS",
+  "checks": {
+    "plan_only": "no run directory or child stage after read-only preflight",
+    "execute_plan": "gates pass, selected dependency runs, nonselected branch skipped; live/disk logs match",
+    "failed_gate": "training kept; no evaluation, dependent stage, or retry",
+    "terminal_failure": "exit 7 logged; no worker and no background fallback",
+    "single_terminal_launch": "one window command, returns during run, then train/validate/eval complete",
+    "interruption_and_snapshot": "SIGTERM; one of two shards retained; no final summary",
+    "provenance_reuse": "complete matching receipt reused; different seed rejected",
+    "completed_evaluation_failed_gate": "failed metric gate does not relabel a complete evaluation as partial"
+  }
+}

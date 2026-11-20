@@ -1,0 +1,69 @@
+{
+  "status": "completed",
+  "checkpoint": "outputs/overnight_c_fix_symlog_081234/task2_train/step_004000.pth",
+  "arm": "I0",
+  "target_count": 5,
+  "base_seed": 42,
+  "max_steps": 1000,
+  "tier": "fast5",
+  "episode_indices": [
+    0,
+    2,
+    6,
+    8,
+    10
+  ],
+  "parallel_workers": 5,
+  "error_threshold_um": 0.35,
+  "flow_steps": 4,
+  "samples": 1,
+  "final_mean_um": 61.84089435709457,
+  "final_median_um": 58.89666963498952,
+  "final_min_um": 56.359870825210265,
+  "minimum_mean_um": 52.09680698924613,
+  "canonical_success_count": 0,
+  "encoder_settled_at_exit_count": 0,
+  "encoder_settled_near_target_frames": 1,
+  "inference_median_ms": 12.034815788269043,
+  "inference_p90_ms": 13.965907096862795,
+  "inference_timing": "CUDA events: sample and aggregate, excluding initial history fill and host transfer; observed under concurrent workers, conservative real-time gate",
+  "near_target_ab_mean_change_deg": [
+    0.0065694157361716726,
+    0.0038598342532623064
+  ],
+  "near_target_ab_pairs": 1664,
+  "c_retraction": {
+    "E08": {
+      "minimum_step": 662,
+      "C_residual_at_min_um": -44.34157972315944,
+      "C_retreat_after_80_steps_um": 41.724956467412255,
+      "post_min_negative_commands": 54,
+      "post_min_under_target_negative_commands": 54,
+      "post_min_command_frames": 80
+    },
+    "E00": {
+      "minimum_step": 998,
+      "C_residual_at_min_um": -53.88363698513743,
+      "C_retreat_after_80_steps_um": null,
+      "post_min_negative_commands": 2,
+      "post_min_under_target_negative_commands": 2,
+      "post_min_command_frames": 2
+    },
+    "E02": {
+      "minimum_step": 663,
+      "C_residual_at_min_um": -19.679513827664863,
+      "C_retreat_after_80_steps_um": 9.698741289270174,
+      "post_min_negative_commands": 47,
+      "post_min_under_target_negative_commands": 47,
+      "post_min_command_frames": 80
+    },
+    "E06": {
+      "minimum_step": 999,
+      "C_residual_at_min_um": -68.36124110676778,
+      "C_retreat_after_80_steps_um": null,
+      "post_min_negative_commands": 0,
+      "post_min_under_target_negative_commands": 0,
+      "post_min_command_frames": 1
+    }
+  }
+}
