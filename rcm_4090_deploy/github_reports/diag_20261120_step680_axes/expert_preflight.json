@@ -1,0 +1,49 @@
+{
+  "status": "preflight_passed",
+  "card": "/home/him1/mujoco_bc/rcm_4090_deploy/configs/experiment_card_step680_case1_expert_20261120_v1.json",
+  "card_sha256": "fa92b1654aec47f2f1d6caa4c05258676e7100d9769111c254ed1884f92b5fc2",
+  "id": "step680_case1_expert_20261120_v1",
+  "hypothesis": "The high A-axis nonzero-command/no-motion rate and protocol handle quantization obstruct strict 0.35 um endpoint reachability; they do not by themselves explain the complete 20-50 um policy floor.",
+  "main_change": "Execute only the case-1 five-target oracle expert motor reachability check authorized by the step680 plan; no training, no simulator or target-manifest changes, no retries.",
+  "output_dir": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/step680_case1_expert_v1",
+  "stages": [
+    {
+      "id": "physical_check",
+      "type": "module",
+      "timeout_s": 900,
+      "requires": [],
+      "gates": [
+        {
+          "file": "expert_summary.json",
+          "key": "strict_success_count",
+          "op": "==",
+          "value": 5
+        }
+      ],
+      "output_dir": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/step680_case1_expert_v1/physical_check",
+      "assets": {
+        "/home/him1/mujoco_bc/step680_axis_diagnostic_and_next_plan.md": "306471b66fd0ab3926f227860c642a2ecf316548fb50b8ffcc7595c099e5c956",
+        "/home/him1/mujoco_bc/rcm_4090_deploy/github_reports/diag_20261120_step680_axes/axis_floor_summary.json": "deffca02bfd7552c5a2e2b4433f73b8cc21b5a10fc1a0dd81e1cf5b878755c75",
+        "/home/him1/mujoco_bc/rcm_4090_deploy/github_reports/diag_20261120_step680_axes/motor_protocol_audit/motor_protocol_audit.json": "4bbc7f22a79ddbd19d3ba1d6d0ea2813b59d59a399ebaa100f1018f74a3ac9d9",
+        "/home/him1/mujoco_bc/rcm_4090_deploy/configs/v12_reachable_development_targets_0p35um.json": "fcc4872a9d5b58bb7158b36d3c0ab6d7452e4d8d747317dfb077b6e7bbc815c7",
+        "/home/him1/mujoco_bc/rcm_4090_deploy/scripts/research/diagnose_step680_axes.py": "41d979464374deba728fe16a782ce7cd5a0cea68354d2e14487537b9c5e3def5",
+        "/home/him1/mujoco_bc/rcm_4090_deploy/rcm/motor_execution.py": "97415225e203497c1c6b5d94605a090de439c261bd68354979e6796b872a5b12",
+        "/home/him1/mujoco_bc/rcm_4090_deploy/mujoco_model/motor_backend.py": "1bc2a5b79eceda9cc31bfaa49be20986e680784ad15e5ebc35fe629a453302e4",
+        "/home/him1/mujoco_bc/rcm_4090_deploy/scripts/research/step680_motor_reachability.py": "5b71947b6b09918fd02d861cc5b057e1bb3b20b151481646544478c29b30ec6c"
+      },
+      "trains": false,
+      "argv": [
+        "/home/him1/mujoco_bc/rcm_4090_deploy/.venv/bin/python",
+        "-B",
+        "-u",
+        "-m",
+        "scripts.research.step680_motor_reachability",
+        "expert",
+        "--audit-summary",
+        "github_reports/diag_20261120_step680_axes/motor_protocol_audit/motor_protocol_audit.json",
+        "--output-dir",
+        "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/step680_case1_expert_v1/physical_check"
+      ]
+    }
+  ]
+}

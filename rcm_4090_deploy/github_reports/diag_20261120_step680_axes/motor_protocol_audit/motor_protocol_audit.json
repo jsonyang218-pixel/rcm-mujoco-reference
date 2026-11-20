@@ -1,0 +1,351 @@
+{
+  "status": "completed",
+  "started_at": "2026-11-20T15:58:20.912584+08:00",
+  "mode": "audit",
+  "output_dir": "github_reports/diag_20261120_step680_axes/motor_protocol_audit",
+  "analysis_code_sha256": "76d5d01225d1d095b294b5ae314062adf11f06d5ef2512482d9f3b8c08b0812f",
+  "source_diagnostic": "github_reports/diag_20261120_step680_axes/axis_floor_summary.json",
+  "diagnostic_sha256": "deffca02bfd7552c5a2e2b4433f73b8cc21b5a10fc1a0dd81e1cf5b878755c75",
+  "target_manifest": "configs/v12_reachable_development_targets_0p35um.json",
+  "target_manifest_sha256": "fcc4872a9d5b58bb7158b36d3c0ab6d7452e4d8d747317dfb077b6e7bbc815c7",
+  "code_scene_identity": {
+    "code_sha256": "f8e3dd829b0b8fa074fad73d9224ea1ed2f41bc869b163a081ec1876e46bd1de",
+    "scene_sha256": "265c927ef7e7ac71536963b3000ffb161b7ff7ac03bb86cdb8480ed988c17028"
+  },
+  "initial_robot_ABCE": [
+    0,
+    1466018,
+    893518,
+    0
+  ],
+  "execution_settings": {
+    "tau_s": 0.04,
+    "timeout_s": 0.5,
+    "speed_limits_deg_deg_mm_per_s": [
+      10.0,
+      10.0,
+      2.0
+    ],
+    "control_period_s": 0.05,
+    "integration_step_s": 0.002,
+    "friction_or_configurable_deadband": "No such parameter in MotorBackend; first-order lag plus integer encoder and handle quantization."
+  },
+  "controller": "Exact-target oracle with original MotorBackend; no learned policy or perception. Physical feasibility only, not a deployable expert or policy comparison.",
+  "candidates": {
+    "E00": {
+      "target_id": "target_d30721d6bc45",
+      "manifest_encoder_counts_ABC": [
+        -6982,
+        1255324,
+        2133985
+      ],
+      "center_handles_ABCE": [
+        -838,
+        -332,
+        16540,
+        0
+      ],
+      "searched_candidates": 125,
+      "search_radius_handles": 2,
+      "best": {
+        "handles_ABCE": [
+          -838,
+          -332,
+          16540,
+          0
+        ],
+        "robot_ABCE": [
+          -6983,
+          1255299,
+          2134018,
+          0
+        ],
+        "task_rad_rad_m": [
+          -0.21937741500017527,
+          -0.043458672121358316,
+          0.019436653585363742
+        ],
+        "error_um": 0.8843190443335177
+      }
+    },
+    "E02": {
+      "target_id": "target_26985bd28045",
+      "manifest_encoder_counts_ABC": [
+        -6259,
+        996013,
+        2134043
+      ],
+      "center_handles_ABCE": [
+        -751,
+        -755,
+        16540,
+        0
+      ],
+      "searched_candidates": 125,
+      "search_radius_handles": 2,
+      "best": {
+        "handles_ABCE": [
+          -751,
+          -755,
+          16540,
+          0
+        ],
+        "robot_ABCE": [
+          -6258,
+          996282,
+          2134018,
+          0
+        ],
+        "task_rad_rad_m": [
+          -0.19660086826164927,
+          -0.09882923771718721,
+          0.019436653585363742
+        ],
+        "error_um": 1.5926761478477522
+      }
+    },
+    "E06": {
+      "target_id": "target_6f265ab4f315",
+      "manifest_encoder_counts_ABC": [
+        -4029,
+        1810560,
+        2154018
+      ],
+      "center_handles_ABCE": [
+        -483,
+        526,
+        16807,
+        0
+      ],
+      "searched_candidates": 125,
+      "search_radius_handles": 2,
+      "best": {
+        "handles_ABCE": [
+          -483,
+          526,
+          16807,
+          0
+        ],
+        "robot_ABCE": [
+          -4025,
+          1810815,
+          2154043,
+          0
+        ],
+        "task_rad_rad_m": [
+          -0.1264491043069892,
+          0.06885316155907371,
+          0.019750413350012604
+        ],
+        "error_um": 3.1965151067322726
+      }
+    },
+    "E08": {
+      "target_id": "target_29b219ad42c3",
+      "manifest_encoder_counts_ABC": [
+        -3457,
+        736275,
+        2139667
+      ],
+      "center_handles_ABCE": [
+        -415,
+        -1201,
+        16615,
+        0
+      ],
+      "searched_candidates": 125,
+      "search_radius_handles": 2,
+      "best": {
+        "handles_ABCE": [
+          -415,
+          -1201,
+          16615,
+          0
+        ],
+        "robot_ABCE": [
+          -3458,
+          736436,
+          2139643,
+          0
+        ],
+        "task_rad_rad_m": [
+          -0.10863627396113505,
+          -0.1572105941068358,
+          0.01952478835071455
+        ],
+        "error_um": 1.1718201995367623
+      }
+    },
+    "E10": {
+      "target_id": "target_087ecb1a48ae",
+      "manifest_encoder_counts_ABC": [
+        -2982,
+        2110688,
+        2149000
+      ],
+      "center_handles_ABCE": [
+        -358,
+        971,
+        16740,
+        0
+      ],
+      "searched_candidates": 125,
+      "search_radius_handles": 2,
+      "best": {
+        "handles_ABCE": [
+          -358,
+          971,
+          16740,
+          0
+        ],
+        "robot_ABCE": [
+          -2983,
+          2110406,
+          2149018,
+          0
+        ],
+        "task_rad_rad_m": [
+          -0.09371370885658352,
+          0.12710351556999105,
+          0.019671679626299222
+        ],
+        "error_um": 1.5101342801510873
+      }
+    }
+  },
+  "local_handle_quantum": {
+    "E00": {
+      "A": {
+        "task_increment_deg_deg_mm": [
+          0.014400000000000948,
+          0.0,
+          0.0
+        ],
+        "linearized_tip_um": 5.654841323957031
+      },
+      "B": {
+        "task_increment_deg_deg_mm": [
+          0.0,
+          0.007494574322933488,
+          0.0
+        ],
+        "linearized_tip_um": 3.0656314245783323
+      },
+      "C": {
+        "task_increment_deg_deg_mm": [
+          0.0,
+          0.0,
+          0.0011751302046794643
+        ],
+        "linearized_tip_um": 1.175130204685086
+      }
+    },
+    "E02": {
+      "A": {
+        "task_increment_deg_deg_mm": [
+          0.014400000000000948,
+          0.0,
+          0.0
+        ],
+        "linearized_tip_um": 5.554934157078527
+      },
+      "B": {
+        "task_increment_deg_deg_mm": [
+          0.0,
+          0.007492585985900723,
+          0.0
+        ],
+        "linearized_tip_um": 3.0648181018122256
+      },
+      "C": {
+        "task_increment_deg_deg_mm": [
+          0.0,
+          0.0,
+          0.0011751302046794643
+        ],
+        "linearized_tip_um": 1.1751302046806658
+      }
+    },
+    "E06": {
+      "A": {
+        "task_increment_deg_deg_mm": [
+          0.014400000000000948,
+          0.0,
+          0.0
+        ],
+        "linearized_tip_um": 5.881690549797527
+      },
+      "B": {
+        "task_increment_deg_deg_mm": [
+          0.0,
+          0.007508336174546037,
+          0.0
+        ],
+        "linearized_tip_um": 3.112377373093003
+      },
+      "C": {
+        "task_increment_deg_deg_mm": [
+          0.0,
+          0.0,
+          0.0011751302046759948
+        ],
+        "linearized_tip_um": 1.1751302046704912
+      }
+    },
+    "E08": {
+      "A": {
+        "task_increment_deg_deg_mm": [
+          0.014400000000000154,
+          0.0,
+          0.0
+        ],
+        "linearized_tip_um": 5.451585047288686
+      },
+      "B": {
+        "task_increment_deg_deg_mm": [
+          0.0,
+          0.007499839327223739,
+          0.0
+        ],
+        "linearized_tip_um": 3.0793216242218797
+      },
+      "C": {
+        "task_increment_deg_deg_mm": [
+          0.0,
+          0.0,
+          0.0011751302046759948
+        ],
+        "linearized_tip_um": 1.1751302046956413
+      }
+    },
+    "E10": {
+      "A": {
+        "task_increment_deg_deg_mm": [
+          0.014399999999998563,
+          0.0,
+          0.0
+        ],
+        "linearized_tip_um": 5.91131590951217
+      },
+      "B": {
+        "task_increment_deg_deg_mm": [
+          0.0,
+          0.0075083958766767375,
+          0.0
+        ],
+        "linearized_tip_um": 3.102084363139952
+      },
+      "C": {
+        "task_increment_deg_deg_mm": [
+          0.0,
+          0.0,
+          0.0011751302046725254
+        ],
+        "linearized_tip_um": 1.1751302046701313
+      }
+    }
+  },
+  "attainable_in_local_search_count": 0,
+  "limitation": "Search is over +/-2 protocol handles around the inverse target, not a proof over all joint branches. The manifest freezes encoder-lattice endpoints, not protocol-handle endpoints. Do not change the frozen manifest.",
+  "finished_at": "2026-11-20T15:58:22.704638+08:00"
+}

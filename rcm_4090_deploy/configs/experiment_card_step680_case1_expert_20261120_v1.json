@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "id": "step680_case1_expert_20261120_v1",
+  "hypothesis": "The high A-axis nonzero-command/no-motion rate and protocol handle quantization obstruct strict 0.35 um endpoint reachability; they do not by themselves explain the complete 20-50 um policy floor.",
+  "main_change": "Execute only the case-1 five-target oracle expert motor reachability check authorized by the step680 plan; no training, no simulator or target-manifest changes, no retries.",
+  "plan": "../step680_axis_diagnostic_and_next_plan.md",
+  "output_dir": "runs/20261120/step680_case1_expert_v1",
+  "dataset": "not applicable: no training or learned inference",
+  "checkpoint": "not applicable: exact-target oracle physical feasibility check",
+  "baseline": "Existing frozen step2000 I0 dev20 trajectories are diagnostic context only; oracle results are not policy-improvement metrics.",
+  "precondition": "github_reports/diag_20261120_step680_axes/axis_floor_summary.json completed and case=1; offline protocol audit completed with unchanged core code, scene and target manifest",
+  "protocol": {
+    "purpose": "Plan-specific five-target physical reachability check; neither screen10 nor dev20",
+    "target_manifest": "configs/v12_reachable_development_targets_0p35um.json",
+    "episode_indices": [0, 2, 6, 8, 10],
+    "seeds": [42, 44, 48, 50, 52],
+    "max_steps": 1600,
+    "control_period_s": 0.05,
+    "strict_error_threshold_um": 0.35,
+    "consecutive_encoder_settled_frames": 3,
+    "action_limits": "Import unchanged DEFAULT_ACTION_LIMIT_DEG_DEG_MM from lerobot_training.eval_policy",
+    "controller": "Exact-target encoder oracle to the closest endpoint found in a fixed +/-2-handle neighborhood, through the original MotorExecution and original session home anchor; diagnostic use of target truth is explicit.",
+    "device": "CPU for small scalar kinematics/protocol work; NVIDIA EGL scene initialization; no tensor inference or training",
+    "baseline_mutation": false,
+    "stop_rule": "Run once. Failure or timeout stops the workflow; failed physical gate skips all dependent training."
+  },
+  "stages": [
+    {
+      "id": "physical_check",
+      "type": "module",
+      "module": "scripts.research.step680_motor_reachability",
+      "args": [
+        "expert",
+        "--audit-summary",
+        "github_reports/diag_20261120_step680_axes/motor_protocol_audit/motor_protocol_audit.json"
+      ],
+      "assets": [
+        "../step680_axis_diagnostic_and_next_plan.md",
+        "github_reports/diag_20261120_step680_axes/axis_floor_summary.json",
+        "github_reports/diag_20261120_step680_axes/motor_protocol_audit/motor_protocol_audit.json",
+        "configs/v12_reachable_development_targets_0p35um.json",
+        "scripts/research/diagnose_step680_axes.py",
+        "rcm/motor_execution.py",
+        "mujoco_model/motor_backend.py"
+      ],
+      "timeout_s": 900,
+      "gates": [
+        {"file": "expert_summary.json", "key": "strict_success_count", "op": "==", "value": 5}
+      ]
+    }
+  ]
+}
