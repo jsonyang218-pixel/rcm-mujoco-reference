@@ -28,6 +28,13 @@ All rows use I0 and a 1,600-step budget per target. The latency metrics cover GP
 
 [2,000-batch target table](task2_step2000/episodes.csv) · [4,000-batch target table](task2_step4000/episodes.csv) · [4,000-batch error curves](task2_step4000/error_curves_all.png) · [4,000-batch best and final error](task2_step4000/best_and_final_error.png)
 
+## Needle-tip trajectories
+
+These figures compare frozen R0 and both cleaned-replay checkpoints using the existing I0 rollouts. CPU forward kinematics reconstructed 96,060 recorded poses, including each final pose. All reconstructed distances and final tip coordinates matched the evaluation records. No rollouts were rerun.
+
+- **E00-E19 3D overview:** target-relative coordinates in millimeters, with a shared scale and view. [PNG](trajectories/needle_tip_trajectories_3d.png) | [PDF](trajectories/needle_tip_trajectories_3d.pdf)
+- **E08, E00, E02, and E06 close-ups:** equal-scale projections within +/-150 micrometers on each axis, alongside the 3D error over the final 20 seconds. [PNG](trajectories/needle_tip_near_target.png) | [PDF](trajectories/needle_tip_near_target.pdf)
+
 ## C retreat 80 steps after each trajectory minimum (um)
 
 Positive means retraction. `n/a` means no comparable 80-step observation.
