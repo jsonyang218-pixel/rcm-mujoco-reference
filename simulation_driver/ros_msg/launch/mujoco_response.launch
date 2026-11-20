@@ -10,5 +10,5 @@
         type="base_position_response.py"
         name="mujoco_response_controller"
         output="screen"
-        args="--output $(arg output) --kind $(arg kind) --feedback-topic $(arg feedback_topic) --control-topic $(arg control_topic) --simulation-only --execute --confirm-safe" />
+        args="--output $(arg output) --kind $(arg kind) --feedback-topic $(arg feedback_topic) --control-topic $(arg control_topic) --simulation-only --data-source simulation --execute --confirm-safe" />
 </launch>

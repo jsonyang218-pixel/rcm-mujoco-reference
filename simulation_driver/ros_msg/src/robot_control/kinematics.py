@@ -34,7 +34,9 @@ ABSOLUTE_TARGET_WAYPOINT_STEP_MM = 0.300
 # the requested 1.5 um error bound.
 ABSOLUTE_TARGET_WAYPOINT_TOL_MM = 0.0015
 MAX_PLOT_POINTS = 12_000
-CONTROL_GEAR = 10
+# Operator-requested experimental conversion gain; the device's level-5
+# multiplier is 7. This local parameter does not set the device's level.
+CONTROL_GEAR = 15
 PROTOCOL_INITIAL_HANDLES = (0, 0, 0, 0)
 ENCODER_COUNTS_PER_MM = 4 * 1024 * 15.5817175
 C_ENCODER_COUNTS_PER_HANDLE = 3.0 * CONTROL_GEAR * 10000.0 / 4000.0
@@ -90,6 +92,27 @@ def stepped_values(values, axes, step):
             raise ValueError("%s 轴编码值超出 int32 范围" % axis)
         result[index] = updated
     return result
+
+
+def limit_cartesian_packet_delta(delta, limits):
+    """Scale one integer wire increment to an axis budget, without queuing it.
+
+    A common scale preserves the solved direction before integer rounding.
+    Limits are empirical handle counts, independent of the IK conversion G;
+    they do not certify a physical completion time. E motion remains forbidden.
+    """
+    if len(delta) != 4 or len(limits) != 4:
+        raise ValueError("单包增量和限幅必须包含 A/B/C/E 四轴")
+    if any(not math.isfinite(value) or value != int(value) for value in delta):
+        raise ValueError("单包手柄增量必须是有限整数")
+    if any(not math.isfinite(value) or value != int(value) or value < 1
+           for value in limits[:3]) or limits[3] != 0:
+        raise ValueError("A/B/C 单包上限必须为正整数，E 必须为 0")
+    if delta[3] != 0:
+        raise ValueError("E 轴尚无经标定的手柄换算公式，已禁止点动")
+    scale = min([1.0] + [limits[i] / abs(delta[i])
+                         for i in range(3) if delta[i]])
+    return tuple(int(round(value * scale)) for value in delta)
 
 
 def make_control_message(values, mode):
@@ -233,15 +256,21 @@ def model_tip_from_robot_encoders(robot_values, tip_offset_mm=DEFAULT_TIP_OFFSET
     return tuple(radius * value for value in direction)
 
 
-def cartesian_handle_target(robot_values, handle_values, position, delta_xyz,
-                            gear=CONTROL_GEAR, tip_offset_mm=DEFAULT_TIP_OFFSET_MM,
-                            tip_offset_sign=LEGACY_NEEDLE_OFFSET_SIGN):
+def cartesian_handle_delta_float(robot_values, position, delta_xyz,
+                                 gear=CONTROL_GEAR,
+                                 tip_offset_mm=DEFAULT_TIP_OFFSET_MM,
+                                 tip_offset_sign=LEGACY_NEEDLE_OFFSET_SIGN):
+    """Solve a Cartesian correction before integer handle quantisation.
+
+    The wire protocol accepts integer cumulative handle targets.  Keeping the
+    unrounded solution available lets a feedback controller carry a sub-count
+    residual across cycles instead of treating one rounded zero as a hard
+    resolution failure.
+    """
     current_robot = tuple(int(value) for value in robot_values)
-    current_handles = tuple(int(value) for value in handle_values)
     current_junction = tuple(float(value) for value in position)
     delta = tuple(float(value) for value in delta_xyz)
-    if (len(current_robot) != 4 or len(current_handles) != 4 or
-            len(current_junction) != 3 or len(delta) != 3):
+    if len(current_robot) != 4 or len(current_junction) != 3 or len(delta) != 3:
         raise ValueError("笛卡尔点动输入维度错误")
     if not all(math.isfinite(value) for value in current_junction + delta):
         raise ValueError("XYZ 反馈和位移必须是有限数值")
@@ -271,16 +300,29 @@ def cartesian_handle_target(robot_values, handle_values, position, delta_xyz,
     b_per_handle = gear * 3.0 / 4000.0
     c_per_handle = 3.0 * gear * 10000.0 / 4000.0
     handle_delta = (
-        int(round((target_a - current_robot[0]) / a_per_handle)),
-        int(round((target_alpha - alpha) / b_per_handle)),
-        int(round((target_c - current_robot[2]) / c_per_handle)),
-        0,
+        (target_a - current_robot[0]) / a_per_handle,
+        (target_alpha - alpha) / b_per_handle,
+        (target_c - current_robot[2]) / c_per_handle,
+        0.0,
     )
+    return target_tip, handle_delta, (target_a, target_b, target_c, current_robot[3])
+
+
+def cartesian_handle_target(robot_values, handle_values, position, delta_xyz,
+                            gear=CONTROL_GEAR, tip_offset_mm=DEFAULT_TIP_OFFSET_MM,
+                            tip_offset_sign=LEGACY_NEEDLE_OFFSET_SIGN):
+    current_handles = tuple(int(value) for value in handle_values)
+    if len(current_handles) != 4:
+        raise ValueError("笛卡尔点动输入维度错误")
+    target_tip, raw_delta, target_robot = cartesian_handle_delta_float(
+        robot_values, position, delta_xyz, gear, tip_offset_mm, tip_offset_sign,
+    )
+    handle_delta = tuple(int(round(value)) for value in raw_delta)
     target_handles = tuple(current_handles[i] + handle_delta[i] for i in range(4))
     for axis, value in zip(AXES, target_handles):
         if value < INT32_MIN or value > INT32_MAX:
             raise ValueError("%s 轴编码值超出 int32 范围" % axis)
-    return target_tip, target_handles, (target_a, target_b, target_c, current_robot[3])
+    return target_tip, target_handles, target_robot
 
 
 def plan_tip_segments(start_tip, target_tip, current_robot,

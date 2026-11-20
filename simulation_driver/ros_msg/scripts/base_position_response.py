@@ -18,12 +18,14 @@ from robot_control.base_position import (
 from robot_control.data_model import RobotData
 from robot_control.experiment_io import software_fingerprints
 from robot_control.kinematics import (
+    CONTROL_GEAR,
     ENCODER_COUNTS_PER_MM,
     C_HANDLE_COUNTS_PER_MM,
     make_control_message,
     model_tip_from_robot_encoders,
     needle_direction_from_robot_encoders,
 )
+from robot_control.simulation_topics import resolve_experiment_topics
 from robot_control.joint_response import joint_coordinates
 from robot_control.response_experiments import (
     ResponseControl, ResponseExperiment,
@@ -36,9 +38,9 @@ from robot_control.response_reporting import export_response, export_response_fi
 def arguments():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--output", required=True)
-    parser.add_argument("--feedback-topic", default="/robot/RobotState")
+    parser.add_argument("--feedback-topic", default="/simulation/RobotState")
     parser.add_argument(
-        "--control-topic", default="/robot/controlSignal",
+        "--control-topic", default="/simulation/controlSignal",
         help="command topic; use /simulation/controlSignal to isolate the real robot",
     )
     parser.add_argument(
@@ -69,7 +71,7 @@ def arguments():
     )
     parser.add_argument("--repeat", type=int, choices=(1, 2, 3), default=1)
     parser.add_argument(
-        "--data-source", choices=("robot", "simulation"), default="robot"
+        "--data-source", choices=("robot", "simulation"), default="simulation"
     )
     args = parser.parse_args(rospy.myargv()[1:])
     if args.execute and not args.confirm_safe:
@@ -130,6 +132,9 @@ def run(args):
 
     data.state_observer = observer
     rospy.init_node("base_position_response", anonymous=True, disable_signals=True)
+    args.feedback_topic, args.control_topic = resolve_experiment_topics(
+        args.feedback_topic, args.control_topic, args.simulation_only
+    )
     subscriber = rospy.Subscriber(
         args.feedback_topic, Encoder, data.state_callback, queue_size=100
     )
@@ -138,8 +143,9 @@ def run(args):
         repeat=args.repeat,
         needle_profile="new",
         software=software_fingerprints(),
+        control_gear=CONTROL_GEAR,
         data_source=args.data_source,
-        safety_basis="user authorized safe-state hardware diagnosis and base XYZ time-response plan",
+        safety_basis="explicit --execute --confirm-safe; feedback freshness and protocol checks",
         protocol_origin_source="stationary session echo frozen once",
         startup_quiet_policy="1 s; base/tip span <=0.25 um; half-mean drift <=0.05 um; exact echo/E/flags",
         feedback_topic=args.feedback_topic,

@@ -12,7 +12,7 @@ def software_fingerprints():
     """Capture source identities once at startup without exposing local paths."""
     folder = Path(__file__).parent
     return {name: hashlib.sha256((folder / name).read_bytes()).hexdigest()
-            for name in ("kinematics.py", "trajectory.py", "validation_experiments.py",
+            for name in ("kinematics.py", "trajectory.py", "validation_experiments.py", "simulation_topics.py",
                          "data_model.py", "experiment_io.py",
                          "experiment_plotting.py", "response_signals.py",
                          "response_experiments.py", "response_reporting.py",

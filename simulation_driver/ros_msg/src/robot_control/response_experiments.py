@@ -107,7 +107,7 @@ def junction_handle_target(robot, handles, delta):
 
 
 class ResponseExperiment:
-    """Thread-safe recorder for guarded feedback control."""
+    """Thread-safe recorder; only the UI tick can prepare a changed command."""
 
     def __init__(self, signal, state, handles, started_mono, started_unix,
                  mode="junction_axis", tip_offset_mm=4.0, offset_sign=1.0,

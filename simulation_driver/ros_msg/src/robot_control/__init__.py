@@ -15,6 +15,7 @@ from .kinematics import (  # noqa: F401
     b_alpha_from_robot_encoder,
     b_distance_from_alpha,
     cartesian_direction_delta,
+    cartesian_handle_delta_float,
     cartesian_handle_target,
     cartesian_step_mm_from_um,
     control_direction_flags,

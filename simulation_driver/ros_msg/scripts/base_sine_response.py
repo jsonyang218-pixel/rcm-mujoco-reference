@@ -17,7 +17,8 @@ import rospy
 from ros_msg.msg import Encoder, controlSignal
 from robot_control.data_model import RobotData
 from robot_control.experiment_io import software_fingerprints
-from robot_control.kinematics import make_control_message
+from robot_control.kinematics import CONTROL_GEAR, make_control_message
+from robot_control.simulation_topics import resolve_experiment_topics
 from robot_control.profiles import LEGACY_NEEDLE_PROFILE, NEW_NEEDLE_PROFILE
 from robot_control.response_experiments import ResponseControl, response_state_key, stationary_protocol_origin
 from robot_control.response_signals import WireSineSignal
@@ -28,8 +29,8 @@ from robot_control.wire_sine_reporting import export_wire_sine, export_wire_figu
 def arguments():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--output', required=True)
-    parser.add_argument('--feedback-topic', default='/robot/RobotState')
-    parser.add_argument('--control-topic', default='/robot/controlSignal',
+    parser.add_argument('--feedback-topic', default='/simulation/RobotState')
+    parser.add_argument('--control-topic', default='/simulation/controlSignal',
                         help='command topic; use /simulation/controlSignal to isolate the real robot')
     parser.add_argument('--simulation-only', action='store_true',
                         help='refuse the real robot control topic; requires a /simulation/ topic')
@@ -41,7 +42,7 @@ def arguments():
     parser.add_argument('--baseline-s', type=float, default=30.)
     parser.add_argument('--needle', choices=('legacy', 'new'), default='new')
     parser.add_argument('--repeat', type=int, choices=(1, 2, 3), default=1)
-    parser.add_argument('--data-source', choices=('robot', 'simulation'), default='robot',
+    parser.add_argument('--data-source', choices=('robot', 'simulation'), default='simulation',
                         help='report label only; does not alter control or protections')
     args = parser.parse_args(rospy.myargv()[1:])
     if args.execute and not args.confirm_safe:
@@ -72,6 +73,9 @@ def run(args):
                 engine[0].observe(state, unix, mono, sequence)
     data.state_observer = observer
     rospy.init_node('base_sine_response', anonymous=True, disable_signals=True)
+    args.feedback_topic, args.control_topic = resolve_experiment_topics(
+        args.feedback_topic, args.control_topic, args.simulation_only
+    )
     subscriber = rospy.Subscriber(args.feedback_topic, Encoder, data.state_callback, queue_size=100)
     publisher, held, result = None, False, dict(execute=args.execute)
     def exclusive():
@@ -134,7 +138,8 @@ def run(args):
                                      offset_sign=profile.offset_sign, control=ResponseControl(state_timeout_s=.5),
                                      metadata=dict(repeat=args.repeat, needle_profile=profile.name,
                                                    software=software_fingerprints(), data_source=args.data_source,
-                                                   safety_basis='user authorized live diagnosis and stated safe state',
+                                                   control_gear=CONTROL_GEAR,
+                                                   safety_basis='explicit --execute --confirm-safe; feedback freshness and protocol checks',
                                                    protocol_origin_source='stationary session echo frozen once',
                                                    feedback_topic=args.feedback_topic,
                                                    control_topic=args.control_topic,

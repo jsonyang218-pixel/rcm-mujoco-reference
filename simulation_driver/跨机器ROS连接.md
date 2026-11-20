@@ -8,12 +8,12 @@
 
 ```bash
 source /opt/ros/noetic/setup.bash
-export ROS_MASTER_URI=http://192.168.1.104:11311
-export ROS_IP=192.168.1.105
+export ROS_MASTER_URI=http://<robot-host>:11311
+export ROS_IP=<mujoco-host-ip>
 unset ROS_HOSTNAME
 ```
 
-两台电脑应位于同一可互通网络，且 `192.168.1.105` 是 MuJoCo 电脑能被 ROS Master 访问的地址。ROS 1 节点除 `11311` 外还会使用动态 TCP 端口，网络策略必须允许两台电脑互通。
+两台电脑应位于同一可互通网络，且 `<mujoco-host-ip>` 是 MuJoCo 电脑能被 ROS Master 访问的地址。本机实际地址写入 `ros_msg/config/ros_network.env`，该文件不入库。ROS 1 节点除 `11311` 外还会使用动态 TCP 端口，网络策略必须允许两台电脑互通。
 
 ## 构建
 
@@ -54,9 +54,9 @@ ros_msg/controlSignal
 ## 启动 MuJoCo 实验
 
 ```bash
-roslaunch ros_msg mujoco_response.launch \\
-  output:=/tmp/mujoco-response \\
-  feedback_topic:=/simulation/RobotState \\
+roslaunch ros_msg mujoco_response.launch \
+  output:=/tmp/mujoco-response \
+  feedback_topic:=/simulation/RobotState \
   control_topic:=/simulation/controlSignal
 ```
 

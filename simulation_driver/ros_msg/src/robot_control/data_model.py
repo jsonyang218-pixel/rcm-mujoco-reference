@@ -1,4 +1,4 @@
-"""Thread-safe ROS feedback storage shared by closed-loop nodes."""
+"""Thread-safe ROS feedback storage shared by both UI variants."""
 
 import csv
 import threading

@@ -200,6 +200,7 @@ catkin_install_python(PROGRAMS
 ## Mark other files for installation (e.g. launch and bag files, etc.)
 install(DIRECTORY launch config
   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
+  PATTERN "ros_network.env" EXCLUDE
 )
 
 #############
@@ -212,3 +213,6 @@ install(DIRECTORY launch config
 #   target_link_libraries(${PROJECT_NAME}-test ${PROJECT_NAME})
 # endif()
 
+if(CATKIN_ENABLE_TESTING)
+  catkin_add_nosetests(test)
+endif()
