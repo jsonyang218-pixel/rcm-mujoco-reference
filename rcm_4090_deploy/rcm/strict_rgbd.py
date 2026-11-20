@@ -40,11 +40,35 @@ class StrictRGBDSensor:
         self.detector=RGBFeatureDetector(settings)
         self.frame_provider=frame_provider
         self.renderers={}
+        self.render_quality=None
         if frame_provider is None:
-            for mode in ('rgb','depth'):
-                renderer=mujoco.Renderer(reference.model,height=self.height,width=self.width)
-                if mode=='depth':renderer.enable_depth_rendering()
-                self.renderers[mode]=renderer
+            # Depth resolves of multisampled buffers need not use the pixel
+            # centers assumed by calibrated backprojection. Use the same
+            # single-sample raster for both passes. Fine sphere tessellation
+            # also keeps the rendered fiducials close to their known radii.
+            # These are simulator frame-provider settings, not estimator
+            # offsets, and must not change the interactive viewer's model.
+            requested=settings.get('rgbd_render_quality',
+                {'offsamples':0,'numslices':112,'numstacks':64})
+            limits={'offsamples':0,'numslices':3,'numstacks':2}
+            if (not isinstance(requested,dict) or set(requested)!=set(limits)
+                    or any(type(requested[k]) is not int or requested[k]<v
+                           for k,v in limits.items())):
+                raise ValueError('Invalid rgbd_render_quality')
+            quality=reference.model.vis.quality
+            before={key:int(getattr(quality,key)) for key in limits}
+            self.render_quality=dict(requested)
+            try:
+                for key,value in requested.items():setattr(quality,key,value)
+                for mode in ('rgb','depth'):
+                    renderer=mujoco.Renderer(reference.model,height=self.height,width=self.width)
+                    if mode=='depth':renderer.enable_depth_rendering()
+                    self.renderers[mode]=renderer
+            except BaseException:
+                self.close()
+                raise
+            finally:
+                for key,value in before.items():setattr(quality,key,value)
         self.provider=SyntheticOCTProvider(nominal_period_s=settings['sample_period_s'],
             min_valid_depth_m=reference.eye_camera['znear_mm']*.001,
             max_valid_depth_m=reference.eye_camera['zfar_mm']*.001*(1.-1e-4))
@@ -77,7 +101,8 @@ class StrictRGBDSensor:
         else:
             rgb=self._render('rgb');depth=self._render('depth')
             metadata={'source':'mujoco_visible_scene_depth_simulation','is_simulation':True,
-                      'raw_oct_available':False,'realtime_validated':False}
+                      'raw_oct_available':False,'realtime_validated':False,
+                      'rgbd_render_quality':self.render_quality}
         return self.measure(rgb,depth,timestamp,metadata)
 
     def measure(self,rgb,depth,timestamp,metadata=None):

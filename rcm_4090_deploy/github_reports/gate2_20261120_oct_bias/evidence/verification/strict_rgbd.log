@@ -1,0 +1,55 @@
+test_controller_selects_strict_sensor_and_rejects_unsafe_modes (__main__.StrictRGBDTests.test_controller_selects_strict_sensor_and_rejects_unsafe_modes) ... ok
+test_depth_change_changes_estimate_or_rejects_measurement (__main__.StrictRGBDTests.test_depth_change_changes_estimate_or_rejects_measurement) ... ok
+test_empty_depth_fails_observability_without_pose_fallback (__main__.StrictRGBDTests.test_empty_depth_fails_observability_without_pose_fallback) ... ok
+test_external_registered_frame_provider_needs_no_simulator_render (__main__.StrictRGBDTests.test_external_registered_frame_provider_needs_no_simulator_render) ... ok
+test_frozen_arrays_suffice_with_all_dynamic_truth_forbidden (__main__.StrictRGBDTests.test_frozen_arrays_suffice_with_all_dynamic_truth_forbidden) ... ok
+test_removed_rgb_target_cannot_be_recovered_from_unchanged_depth (__main__.StrictRGBDTests.test_removed_rgb_target_cannot_be_recovered_from_unchanged_depth) ... ok
+test_representative_pose_accuracy_without_ids (__main__.StrictRGBDTests.test_representative_pose_accuracy_without_ids) ... ok
+test_rgb_and_depth_render_once_with_identical_visible_scene (__main__.StrictRGBDTests.test_rgb_and_depth_render_once_with_identical_visible_scene) ... ok
+test_segmentation_field_is_unused_even_when_poisoned (__main__.StrictRGBDTests.test_segmentation_field_is_unused_even_when_poisoned) ... ok
+test_sensor_pixel_center_sampling_preserves_viewer_quality (__main__.StrictRGBDTests.test_sensor_pixel_center_sampling_preserves_viewer_quality) ... ok
+test_strict_controller_rejects_injected_world_goals (__main__.StrictRGBDTests.test_strict_controller_rejects_injected_world_goals) ... ok
+
+----------------------------------------------------------------------
+Ran 11 tests in 8.708s
+
+OK
+{
+  "result": "PASS",
+  "tests": 11,
+  "failures": 0,
+  "errors": 0,
+  "scope": "Current visible RGB plus ideal registered simulation depth; fixed colored fiducials and calibration, not real OCT or clinical perception",
+  "simulator_object_identity_needed": false,
+  "hidden_object_or_fundus_removed_measurement_pass_needed": false,
+  "pose_accuracy": [
+    {
+      "pose": "home",
+      "tip_error_um": 0.0916787653610464,
+      "target_error_um": 0.03975787657316321,
+      "tip_source": "apex_sphere_on_shaft_axis",
+      "apex_rgb_pixels": 203
+    },
+    {
+      "pose": "C8",
+      "tip_error_um": 0.1162422662324427,
+      "target_error_um": 0.03975787657316321,
+      "tip_source": "apex_sphere_on_shaft_axis",
+      "apex_rgb_pixels": 108
+    },
+    {
+      "pose": "near",
+      "tip_error_um": 0.03267270300362283,
+      "target_error_um": 0.03975787657316321,
+      "tip_source": "shaft_end_plane",
+      "apex_rgb_pixels": 56
+    },
+    {
+      "pose": "goal",
+      "tip_error_um": 0.019285090228756088,
+      "target_error_um": 0.03934186542961456,
+      "tip_source": "shaft_end_plane",
+      "apex_rgb_pixels": 0
+    }
+  ]
+}

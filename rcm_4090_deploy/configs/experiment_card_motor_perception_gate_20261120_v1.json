@@ -1,0 +1,142 @@
+{
+  "schema_version": 1,
+  "id": "motor_perception_gate_20261120_v1",
+  "hypothesis": "Integer handle endpoints and simulator RGB/depth rasterization independently obstruct the strict terminal criterion; diagnose both before any neural training.",
+  "main_change": "Run the requested true geometry teacher on the original motor backend, then independent fixed-state perception and stored-data attribution. Correct only the simulator RGB-D frame provider's pixel sampling and sphere tessellation; preserve targets, motor protocol, thresholds and frozen data. No retries or training.",
+  "plan": "../motor_perception_gate_and_recovery_plan.md",
+  "output_dir": "runs/20261120/motor_perception_gate_v1",
+  "dataset": "data/plan2_plus_original_train_224_20261119 (read-only observation audit)",
+  "checkpoint": "N/A: no network inference or training",
+  "baseline": "Matched old/corrected render quality at the same 20 saved states; original endpoint oracle is auxiliary only, not a reusable geometry-teacher evaluation.",
+  "protocol": {
+    "tier": "Plan-specific diagnostic dev5, not screen10/dev20 or final_test",
+    "episode_indices": [
+      0,
+      2,
+      6,
+      8,
+      10
+    ],
+    "seeds": [
+      42,
+      44,
+      48,
+      50,
+      52
+    ],
+    "max_steps": 1600,
+    "control_period_s": 0.05,
+    "error_threshold_um": 0.35,
+    "consecutive_encoder_settled_frames": 3,
+    "teacher": "Geometry SVD/gain/braking/acceleration law with true points and retained command_q/command velocity; no RGB-D/OCT in Oracle control",
+    "perception_frames": [
+      1000,
+      1200,
+      1400,
+      1599
+    ],
+    "render_variants": {
+      "original": {
+        "offsamples": 4,
+        "numslices": 28,
+        "numstacks": 16
+      },
+      "single_sample": {
+        "offsamples": 0,
+        "numslices": 28,
+        "numstacks": 16
+      },
+      "corrected": {
+        "offsamples": 0,
+        "numslices": 112,
+        "numstacks": 64
+      }
+    },
+    "device": "NVIDIA EGL rendering; CPU small scalar kinematics/statistics, no heavy tensor work",
+    "hardware_calibration": "Unavailable: do not assert branch1B hardware resolution, replace manifests, or relax the threshold without this prerequisite.",
+    "gate2b_and_phase3": "Do not execute until Gate1 execution protocol is passed and closed. All training remains paused.",
+    "total_budget_s": 3600
+  },
+  "stages": [
+    {
+      "id": "oracle",
+      "type": "module",
+      "module": "scripts.research.motor_perception_gates",
+      "args": [
+        "oracle"
+      ],
+      "timeout_s": 1200,
+      "assets": [
+        "../motor_perception_gate_and_recovery_plan.md",
+        "configs/v12_reachable_development_targets_0p35um.json",
+        "github_reports/diag_20261120_step680_axes/motor_protocol_audit/motor_protocol_audit.json",
+        "runs/20261120/step680_case1_expert_v1/physical_check/expert_summary.json",
+        "rcm/motor_execution.py",
+        "mujoco_model/motor_backend.py",
+        "mujoco_model/vendor/simulation_driver/ros_msg/src/robot_control/kinematics.py",
+        "rcm/visual_servo.py"
+      ],
+      "gates": [
+        {
+          "file": "oracle_dev5_summary.json",
+          "key": "strict_success_count",
+          "op": "==",
+          "value": 5
+        }
+      ]
+    },
+    {
+      "id": "perception",
+      "type": "module",
+      "module": "scripts.research.motor_perception_gates",
+      "args": [
+        "perception"
+      ],
+      "requires": [],
+      "timeout_s": 2100,
+      "assets": [
+        "rcm/strict_rgbd.py",
+        "rcm/visual_geometry.py",
+        "rcm/oct.py",
+        "scripts/verification/verify_strict_rgbd.py",
+        "scripts/research/overnight_cfix_data.py",
+        "data/plan2_plus_original_train_224_20261119/data/dataset.npz",
+        "data/plan2_plus_original_train_224_20261119/metadata.json",
+        "runs/20261120/overnight_fast5_20261120_v1/task34/task4_dev20/summary.json",
+        "runs/20261120/overnight_fast5_20261120_v1/task34/task4_dev20/provenance.json",
+        "runs/20261120/overnight_fast5_20261120_v1/task34/task4_dev20/E00/evaluation_results.json",
+        "runs/20261120/overnight_fast5_20261120_v1/task34/task4_dev20/E02/evaluation_results.json",
+        "runs/20261120/overnight_fast5_20261120_v1/task34/task4_dev20/E06/evaluation_results.json",
+        "runs/20261120/overnight_fast5_20261120_v1/task34/task4_dev20/E08/evaluation_results.json",
+        "runs/20261120/overnight_fast5_20261120_v1/task34/task4_dev20/E10/evaluation_results.json",
+        "data/lerobot_v12_oct_dit_rf_dagger2_acthist_20261116_224/metadata.json",
+        "data/lerobot_v12_oct_dit_rf_dagger1_round1_verified_224/metadata.json",
+        "data/lerobot_v12_oct_dagger2_covshift_verified_224/metadata.json",
+        "data/lerobot_v12_oct_dagger1_fixed_224/metadata.json",
+        "data/lerobot_v12_zero_error_train_oct_224/metadata.json",
+        "data/lerobot_v12_zero_error_train_oct_224/data/terminal_audits.json",
+        "data/online_dagger_fixed_round1_g1_224/metadata.json",
+        "data/online_dagger_fixed_round1_g2_224/metadata.json",
+        "data/online_dagger_fixed_round1_g3_224/metadata.json",
+        "data/online_dagger_fixed_round1_g4_224/metadata.json",
+        "data/online_dagger_fixed_round1_g5_224/metadata.json",
+        "data/online_dagger_fixed_round1_g6_224/metadata.json",
+        "data/online_dagger_fixed_round1_g7_224/metadata.json",
+        "data/online_dagger_fixed_round1_g8_224/metadata.json"
+      ]
+    },
+    {
+      "id": "reports",
+      "type": "module",
+      "module": "scripts.research.motor_perception_gates",
+      "args": [
+        "reports",
+        "--workflow-dir",
+        "runs/20261120/motor_perception_gate_v1"
+      ],
+      "requires": [],
+      "timeout_s": 300,
+      "assets": []
+    }
+  ]
+}

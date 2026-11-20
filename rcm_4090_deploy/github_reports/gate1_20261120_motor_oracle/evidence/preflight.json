@@ -1,0 +1,120 @@
+{
+  "status": "preflight_passed",
+  "card": "/home/him1/mujoco_bc/rcm_4090_deploy/configs/experiment_card_motor_perception_gate_20261120_v1.json",
+  "card_sha256": "3812145d3bb2e479ce7680be2b40317760519414d1abaa2877c65a529368dfff",
+  "id": "motor_perception_gate_20261120_v1",
+  "hypothesis": "Integer handle endpoints and simulator RGB/depth rasterization independently obstruct the strict terminal criterion; diagnose both before any neural training.",
+  "main_change": "Run the requested true geometry teacher on the original motor backend, then independent fixed-state perception and stored-data attribution. Correct only the simulator RGB-D frame provider's pixel sampling and sphere tessellation; preserve targets, motor protocol, thresholds and frozen data. No retries or training.",
+  "output_dir": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/motor_perception_gate_v1",
+  "stages": [
+    {
+      "id": "oracle",
+      "type": "module",
+      "timeout_s": 1200,
+      "requires": [],
+      "gates": [
+        {
+          "file": "oracle_dev5_summary.json",
+          "key": "strict_success_count",
+          "op": "==",
+          "value": 5
+        }
+      ],
+      "output_dir": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/motor_perception_gate_v1/oracle",
+      "assets": {
+        "/home/him1/mujoco_bc/motor_perception_gate_and_recovery_plan.md": "ece038fa9b9c86dd1f20d4e8e8f8086fde3c1a616beeda2d6f24397fdc8549e7",
+        "/home/him1/mujoco_bc/rcm_4090_deploy/configs/v12_reachable_development_targets_0p35um.json": "fcc4872a9d5b58bb7158b36d3c0ab6d7452e4d8d747317dfb077b6e7bbc815c7",
+        "/home/him1/mujoco_bc/rcm_4090_deploy/github_reports/diag_20261120_step680_axes/motor_protocol_audit/motor_protocol_audit.json": "4bbc7f22a79ddbd19d3ba1d6d0ea2813b59d59a399ebaa100f1018f74a3ac9d9",
+        "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/step680_case1_expert_v1/physical_check/expert_summary.json": "367294e189f8038f221dc10571b7bb824c688e4adaf707fe0b26384123fd054d",
+        "/home/him1/mujoco_bc/rcm_4090_deploy/rcm/motor_execution.py": "97415225e203497c1c6b5d94605a090de439c261bd68354979e6796b872a5b12",
+        "/home/him1/mujoco_bc/rcm_4090_deploy/mujoco_model/motor_backend.py": "1bc2a5b79eceda9cc31bfaa49be20986e680784ad15e5ebc35fe629a453302e4",
+        "/home/him1/mujoco_bc/rcm_4090_deploy/mujoco_model/vendor/simulation_driver/ros_msg/src/robot_control/kinematics.py": "e48eb4a909208e8d1caa3ee2a7aff157de91c808730282dd17ccb17a46591530",
+        "/home/him1/mujoco_bc/rcm_4090_deploy/rcm/visual_servo.py": "b217af0f60eb0a1de462d37dfa22a507911420a7b3cc9c4d899e012e89cbb507",
+        "/home/him1/mujoco_bc/rcm_4090_deploy/scripts/research/motor_perception_gates.py": "ccda90c4ecadf2e5713dc787bd02b7402b9736f813cf31dae1704df12266fea2"
+      },
+      "trains": false,
+      "argv": [
+        "/home/him1/mujoco_bc/rcm_4090_deploy/.venv/bin/python",
+        "-B",
+        "-u",
+        "-m",
+        "scripts.research.motor_perception_gates",
+        "oracle",
+        "--output-dir",
+        "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/motor_perception_gate_v1/oracle"
+      ]
+    },
+    {
+      "id": "perception",
+      "type": "module",
+      "timeout_s": 2100,
+      "requires": [],
+      "output_dir": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/motor_perception_gate_v1/perception",
+      "assets": {
+        "/home/him1/mujoco_bc/rcm_4090_deploy/rcm/strict_rgbd.py": "240ef03a903b61f7b6be3f99a873f493bd368f1de1c9578a4175178b8e6a33a2",
+        "/home/him1/mujoco_bc/rcm_4090_deploy/rcm/visual_geometry.py": "d1250e484fa38c2fe0c9d7e9c6a614747d22348ced2e8845195106dbcc8eded5",
+        "/home/him1/mujoco_bc/rcm_4090_deploy/rcm/oct.py": "e34265d2ec8b09af1e5db2815a5f3ab0ae4d6e560bebd3b8ba4f690bc25491cc",
+        "/home/him1/mujoco_bc/rcm_4090_deploy/scripts/verification/verify_strict_rgbd.py": "97be2df80f98a95f1b1babad796f9c35954253e1ecca26dfc1bf12643422c9ec",
+        "/home/him1/mujoco_bc/rcm_4090_deploy/scripts/research/overnight_cfix_data.py": "149da9c675a3a4f878ab8d6aa13925abc6fb602119cf023cf79a958b167e0093",
+        "/home/him1/mujoco_bc/rcm_4090_deploy/data/plan2_plus_original_train_224_20261119/data/dataset.npz": "9d80523f519faf4e00bbaef3d30e29dec1401181f3dcddd438c5087c05eb54db",
+        "/home/him1/mujoco_bc/rcm_4090_deploy/data/plan2_plus_original_train_224_20261119/metadata.json": "7f02f265acadf965a9dc0de29b2058cfccc240ea39d06dc88050179d0ae2698d",
+        "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/overnight_fast5_20261120_v1/task34/task4_dev20/summary.json": "8f3a13e7f3795842dd5b9929f7b07f136e91418d3473398cb79c6cf15ec5f1e9",
+        "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/overnight_fast5_20261120_v1/task34/task4_dev20/provenance.json": "b3c4b37dec002eb79a881bc36dc9ba3116698f884741ee7b1ded05e6b3bc16a3",
+        "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/overnight_fast5_20261120_v1/task34/task4_dev20/E00/evaluation_results.json": "2c597ef2de59101c942ce72761271177a16ca6b6d8ce971ead07f419773f791d",
+        "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/overnight_fast5_20261120_v1/task34/task4_dev20/E02/evaluation_results.json": "dd7a5405121a1905e4770aa481466f39a5fcfd81ec9674d09bfabd72c7c986a8",
+        "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/overnight_fast5_20261120_v1/task34/task4_dev20/E06/evaluation_results.json": "767d2b6c603c0f86928db81ca3bff2b9367e9fefade1b2244c80efe9ed4a496f",
+        "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/overnight_fast5_20261120_v1/task34/task4_dev20/E08/evaluation_results.json": "beb4d275f5f1fbebac1e7ef455ae60432662746540dbc1278c014723eefb6244",
+        "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/overnight_fast5_20261120_v1/task34/task4_dev20/E10/evaluation_results.json": "9444d956aeb36fb64820f15678355107f8392db9e8c22c3eb6bf3798965b63ea",
+        "/home/him1/mujoco_bc/rcm_4090_deploy/data/lerobot_v12_oct_dit_rf_dagger2_acthist_20261116_224/metadata.json": "8f05e8f88cc44a3261a372bd22e32c5e0804af626f392743b72fa2d4d47d8acc",
+        "/home/him1/mujoco_bc/rcm_4090_deploy/data/lerobot_v12_oct_dit_rf_dagger1_round1_verified_224/metadata.json": "0a0c6a4798fb28cbe187853e497561c99b24753cf0f0e5750ef13fef63d96262",
+        "/home/him1/mujoco_bc/rcm_4090_deploy/data/lerobot_v12_oct_dagger2_covshift_verified_224/metadata.json": "a1e0cd31139928a26c5524b5d4534a759b59d6400d0681a4f0d04f34805cd166",
+        "/home/him1/mujoco_bc/rcm_4090_deploy/data/lerobot_v12_oct_dagger1_fixed_224/metadata.json": "a50afcebe16bb22607417800a8d84d50a14b87f05ca4af56a5a86474e1b506ea",
+        "/home/him1/mujoco_bc/rcm_4090_deploy/data/lerobot_v12_zero_error_train_oct_224/metadata.json": "18a9bcd8cd78228fec80686810828d52ecf09b5b9edc5ec4cf4839fc2c763652",
+        "/home/him1/mujoco_bc/rcm_4090_deploy/data/lerobot_v12_zero_error_train_oct_224/data/terminal_audits.json": "292ecfbd1753304078d69e2661d69d94ab5e8e9fc0d83beccbe346b5dc756ce8",
+        "/home/him1/mujoco_bc/rcm_4090_deploy/data/online_dagger_fixed_round1_g1_224/metadata.json": "1f058431cbe593f83355cd249d2f487c41d479e17b277dcf42aa38735709d3f4",
+        "/home/him1/mujoco_bc/rcm_4090_deploy/data/online_dagger_fixed_round1_g2_224/metadata.json": "838e1116934fb34883941d0faaa36456efe451e6742be0b3518cf4c8a5775720",
+        "/home/him1/mujoco_bc/rcm_4090_deploy/data/online_dagger_fixed_round1_g3_224/metadata.json": "c23fb15ffcf0bece481c267a8e017956632fbd66673e7e8b7e4a768ead266960",
+        "/home/him1/mujoco_bc/rcm_4090_deploy/data/online_dagger_fixed_round1_g4_224/metadata.json": "b409d9953189d83d699b340634c45c535464b08e47c9212724db8568493b557e",
+        "/home/him1/mujoco_bc/rcm_4090_deploy/data/online_dagger_fixed_round1_g5_224/metadata.json": "ef8432bc4bffa0c8b2aac4274f68927decf46d4bd351158dd495ba666bc5465b",
+        "/home/him1/mujoco_bc/rcm_4090_deploy/data/online_dagger_fixed_round1_g6_224/metadata.json": "d00b51821de9923496aae3a1e9e8db84578710392299f16b7228334b0f3cb6ee",
+        "/home/him1/mujoco_bc/rcm_4090_deploy/data/online_dagger_fixed_round1_g7_224/metadata.json": "e44cb2e6cfe21dd6f99d80f0938b6573d05d9485972a5ac00b46884dc444f595",
+        "/home/him1/mujoco_bc/rcm_4090_deploy/data/online_dagger_fixed_round1_g8_224/metadata.json": "f33c3c4918416c539d63d361474258881b63798f94f1124b8e69e3bf8ec9375d",
+        "/home/him1/mujoco_bc/rcm_4090_deploy/scripts/research/motor_perception_gates.py": "ccda90c4ecadf2e5713dc787bd02b7402b9736f813cf31dae1704df12266fea2"
+      },
+      "trains": false,
+      "argv": [
+        "/home/him1/mujoco_bc/rcm_4090_deploy/.venv/bin/python",
+        "-B",
+        "-u",
+        "-m",
+        "scripts.research.motor_perception_gates",
+        "perception",
+        "--output-dir",
+        "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/motor_perception_gate_v1/perception"
+      ]
+    },
+    {
+      "id": "reports",
+      "type": "module",
+      "timeout_s": 300,
+      "requires": [],
+      "output_dir": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/motor_perception_gate_v1/reports",
+      "assets": {
+        "/home/him1/mujoco_bc/rcm_4090_deploy/scripts/research/motor_perception_gates.py": "ccda90c4ecadf2e5713dc787bd02b7402b9736f813cf31dae1704df12266fea2"
+      },
+      "trains": false,
+      "argv": [
+        "/home/him1/mujoco_bc/rcm_4090_deploy/.venv/bin/python",
+        "-B",
+        "-u",
+        "-m",
+        "scripts.research.motor_perception_gates",
+        "reports",
+        "--workflow-dir",
+        "runs/20261120/motor_perception_gate_v1",
+        "--output-dir",
+        "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/motor_perception_gate_v1/reports"
+      ]
+    }
+  ]
+}

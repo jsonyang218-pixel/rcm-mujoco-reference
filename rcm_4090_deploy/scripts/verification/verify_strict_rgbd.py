@@ -63,7 +63,13 @@ class StrictRGBDTests(unittest.TestCase):
         cls.calibration=FrozenCalibration(cls.reference)
         cls.frames={}
         cls.pose_results=[]
+        quality=cls.reference.model.vis.quality
+        cls.quality_before={key:int(getattr(quality,key))
+                            for key in ('offsamples','numslices','numstacks')}
         sensor=StrictRGBDSensor(cls.reference,cls.settings)
+        cls.renderer_samples={mode:int(renderer._mjr_context.offSamples)
+                              for mode,renderer in sensor.renderers.items()}
+        cls.quality_after={key:int(getattr(quality,key)) for key in cls.quality_before}
         try:
             for i,(name,pose) in enumerate([
                     ('home',[0.,0.,0.]),('C8',[0.,0.,8.]),
@@ -116,6 +122,9 @@ class StrictRGBDTests(unittest.TestCase):
                 target_error=float(np.linalg.norm(np.asarray(geometry['target_world_mm'])-frame['truth_target'])*1000.)
                 self.assertLess(tip_error,10.)
                 self.assertLessEqual(target_error,target_tolerance_um)
+                # Submicron target reconstruction catches the former ~9um
+                # MSAA depth/pixel-center and sphere-faceting biases.
+                self.assertLess(target_error,.5)
                 self.assertIsNone(observation['segmentation'])
                 self.assertFalse(observation['simulator_ids_used_for_control'])
                 self.assertFalse(observation['hidden_geometry_render_used_for_control'])
@@ -124,6 +133,10 @@ class StrictRGBDTests(unittest.TestCase):
                     'tip_source':geometry['tip_quality']['source'],
                     'apex_rgb_pixels':int(observation['feature_masks']['apex'].sum())})
         type(self).pose_results=results
+
+    def test_sensor_pixel_center_sampling_preserves_viewer_quality(self):
+        self.assertEqual(self.renderer_samples,{'rgb':0,'depth':0})
+        self.assertEqual(self.quality_before,self.quality_after)
 
     def test_frozen_arrays_suffice_with_all_dynamic_truth_forbidden(self):
         observation=self.measure('near')

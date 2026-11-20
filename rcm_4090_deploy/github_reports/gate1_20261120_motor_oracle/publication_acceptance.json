@@ -1,0 +1,29 @@
+{
+  "timestamp": "2026-11-20T17:01:37.946087+08:00",
+  "status": "PASS",
+  "scope": "Publication integrity check, no new experiment or rollout",
+  "workflow_status": "failed: Oracle strict gate0/5; not an incomplete evaluation",
+  "oracle_completed": 5,
+  "oracle_steps_each": 1600,
+  "oracle_strict_success_count": 0,
+  "oracle_final_mean_um": 1.7052728586921226,
+  "perception_fixed_frame_count_per_variant": 20,
+  "original_oct_median_um": 9.317192738089464,
+  "corrected_oct_median_um": 0.07653267493221294,
+  "corrected_oct_max_um": 0.11476366626478683,
+  "regression_checks_passed": 21,
+  "source_matches_executed_snapshots": true,
+  "training_observation_coverage": "1001/1039 episodes;38 Original excluded",
+  "gate2b": "not run",
+  "phase3": "not run",
+  "neural_training": "paused",
+  "simulation_only": true,
+  "supporting_source_dependencies": [
+    "scripts/tools/experiment_workflow.py",
+    "lerobot_training/run_model_pipeline.py",
+    "lerobot_training/dataset_contract.py",
+    "scripts/research/overnight_cfix_data.py",
+    "scripts/datasets/convert_plan2_training.py"
+  ],
+  "supporting_source_reason": "Remote lacks the workflow/data-source modules and the start_logged / valid_window_indices APIs required by this experiment; include the exact local versions used, without launching training."
+}

@@ -1,0 +1,44 @@
+{
+  "status": "completed",
+  "correction": "Prior probe passed deg/deg/mm state as SI and failed before rendering; convert recorded state explicitly. This is a harness correction, no rollout or gate retry.",
+  "source": "runs/20261120/verification/motor_perception_gate_v1/E00_frame1200.npz",
+  "variants": [
+    {
+      "requested_offsamples": null,
+      "default_offsamples": 4,
+      "effective_offsamples": 4,
+      "target_error_um": 9.915454077991432,
+      "target_error_camera_um": [
+        1.6231088688924993,
+        9.761520497358084,
+        0.6280642898122335
+      ],
+      "tip_error_um": 0.580463167949866,
+      "target_quality": {
+        "source": "target_sphere_fit",
+        "support": 46,
+        "residual_mm": 0.0015938267725654045,
+        "fit_quality_mm": 0.004781480317696213
+      }
+    },
+    {
+      "requested_offsamples": 0,
+      "default_offsamples": 4,
+      "effective_offsamples": 0,
+      "target_error_um": 1.216361324250908,
+      "target_error_camera_um": [
+        -0.06074356017880677,
+        0.38453166156639496,
+        -1.152380359205767
+      ],
+      "tip_error_um": 0.04748311909854306,
+      "target_quality": {
+        "source": "target_sphere_fit",
+        "support": 58,
+        "residual_mm": 0.0003221967725652185,
+        "fit_quality_mm": 0.002
+      }
+    }
+  ],
+  "finished_at": "2026-11-20T16:37:59.007995+08:00"
+}

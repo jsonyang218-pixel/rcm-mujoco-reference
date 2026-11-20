@@ -1,0 +1,329 @@
+{
+  "status": "completed",
+  "started_at": "2026-11-20T16:53:54+08:00",
+  "mode": "oracle",
+  "analysis_code_sha256": "ccda90c4ecadf2e5713dc787bd02b7402b9736f813cf31dae1704df12266fea2",
+  "output_dir": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/motor_perception_gate_v1/oracle",
+  "checkpoint": "none: diagnostic only",
+  "no_training": true,
+  "target_manifest": "configs/v12_reachable_development_targets_0p35um.json",
+  "target_manifest_sha256": "fcc4872a9d5b58bb7158b36d3c0ab6d7452e4d8d747317dfb077b6e7bbc815c7",
+  "motor_source_sha256": {
+    "rcm/motor_execution.py": "97415225e203497c1c6b5d94605a090de439c261bd68354979e6796b872a5b12",
+    "mujoco_model/motor_backend.py": "1bc2a5b79eceda9cc31bfaa49be20986e680784ad15e5ebc35fe629a453302e4",
+    "mujoco_model/vendor/simulation_driver/ros_msg/src/robot_control/kinematics.py": "e48eb4a909208e8d1caa3ee2a7aff157de91c808730282dd17ccb17a46591530"
+  },
+  "code_scene_identity": {
+    "code_sha256": "9c5c19637ef66e5b10a880921767ec80e0c2c2cc0b41a0dcc036c6180a250ea3",
+    "scene_sha256": "265c927ef7e7ac71536963b3000ffb161b7ff7ac03bb86cdb8480ed988c17028"
+  },
+  "episodes": [
+    {
+      "episode": "E00",
+      "seed": 42,
+      "status": "completed",
+      "strict_success": false,
+      "steps": 1600,
+      "final_error_um": 0.840916942595071,
+      "minimum_error_um": 0.7379582603039907,
+      "encoder_settled_frames": 2,
+      "encoder_settled_at_exit": false,
+      "max_settled_consecutive_frames": 1,
+      "target_world_mm": [
+        348.8248906374382,
+        -16.15643448908366,
+        373.9431356590445
+      ],
+      "final_state_deg_deg_mm": [
+        -12.5694,
+        -2.4899984957966836,
+        19.4365752433501
+      ],
+      "local_endpoint_bound_um": 0.8843190443335177,
+      "axes": {
+        "A": {
+          "unit": "deg",
+          "frames": 900,
+          "active_command_frames": 900,
+          "nonzero_command_no_motion_frames": 561,
+          "nonzero_command_no_motion_fraction": 0.6233333333333333,
+          "minimum_feedback_step": 0.0036000000000014297,
+          "minimum_feedback_tip_step_um": 1.4136451173278994
+        },
+        "B": {
+          "unit": "deg",
+          "frames": 900,
+          "active_command_frames": 900,
+          "nonzero_command_no_motion_frames": 648,
+          "nonzero_command_no_motion_fraction": 0.72,
+          "minimum_feedback_step": 1.1991879056075714e-05,
+          "minimum_feedback_tip_step_um": 0.00490501312685969
+        },
+        "C": {
+          "unit": "mm",
+          "frames": 900,
+          "active_command_frames": 900,
+          "nonzero_command_no_motion_frames": 0,
+          "nonzero_command_no_motion_fraction": 0.0,
+          "minimum_feedback_step": 0.00017235243001886835,
+          "minimum_feedback_tip_step_um": 0.17235243001700695
+        }
+      }
+    },
+    {
+      "episode": "E02",
+      "seed": 44,
+      "status": "completed",
+      "strict_success": false,
+      "steps": 1600,
+      "final_error_um": 1.0374667341986648,
+      "minimum_error_um": 0.6572424632509969,
+      "encoder_settled_frames": 1,
+      "encoder_settled_at_exit": false,
+      "max_settled_consecutive_frames": 1,
+      "target_world_mm": [
+        349.8748844845924,
+        -15.578824148305719,
+        374.6558150133478
+      ],
+      "final_state_deg_deg_mm": [
+        -11.2644,
+        -5.6641647410611995,
+        19.43671625897466
+      ],
+      "local_endpoint_bound_um": 1.5926761478477522,
+      "axes": {
+        "A": {
+          "unit": "deg",
+          "frames": 900,
+          "active_command_frames": 900,
+          "nonzero_command_no_motion_frames": 500,
+          "nonzero_command_no_motion_fraction": 0.5555555555555556,
+          "minimum_feedback_step": 0.0017999999999991246,
+          "minimum_feedback_tip_step_um": 0.6943390040695598
+        },
+        "B": {
+          "unit": "deg",
+          "frames": 900,
+          "active_command_frames": 900,
+          "nonzero_command_no_motion_frames": 0,
+          "nonzero_command_no_motion_fraction": 0.0,
+          "minimum_feedback_step": 0.0011903810059116981,
+          "minimum_feedback_tip_step_um": 0.4869228084829316
+        },
+        "C": {
+          "unit": "mm",
+          "frames": 900,
+          "active_command_frames": 900,
+          "nonzero_command_no_motion_frames": 0,
+          "nonzero_command_no_motion_fraction": 0.0,
+          "minimum_feedback_step": 0.00018802083274691017,
+          "minimum_feedback_tip_step_um": 0.18802083274301568
+        }
+      }
+    },
+    {
+      "episode": "E06",
+      "seed": 48,
+      "status": "completed",
+      "strict_success": false,
+      "steps": 1600,
+      "final_error_um": 1.8193523210130116,
+      "minimum_error_um": 1.5579047356188276,
+      "encoder_settled_frames": 1,
+      "encoder_settled_at_exit": false,
+      "max_settled_consecutive_frames": 1,
+      "target_world_mm": [
+        346.94139312204265,
+        -14.214940788895339,
+        371.8654810477438
+      ],
+      "final_state_deg_deg_mm": [
+        -7.255800000000001,
+        3.9445452755780295,
+        19.750397681609876
+      ],
+      "local_endpoint_bound_um": 3.1965151067322726,
+      "axes": {
+        "A": {
+          "unit": "deg",
+          "frames": 900,
+          "active_command_frames": 900,
+          "nonzero_command_no_motion_frames": 0,
+          "nonzero_command_no_motion_fraction": 0.0,
+          "minimum_feedback_step": 0.0017999999999991246,
+          "minimum_feedback_tip_step_um": 0.7351901942429198
+        },
+        "B": {
+          "unit": "deg",
+          "frames": 900,
+          "active_command_frames": 900,
+          "nonzero_command_no_motion_frames": 0,
+          "nonzero_command_no_motion_fraction": 0.0,
+          "minimum_feedback_step": 0.0011257260902652949,
+          "minimum_feedback_tip_step_um": 0.4666214015291752
+        },
+        "C": {
+          "unit": "mm",
+          "frames": 900,
+          "active_command_frames": 900,
+          "nonzero_command_no_motion_frames": 0,
+          "nonzero_command_no_motion_fraction": 0.0,
+          "minimum_feedback_step": 6.267361091563672e-05,
+          "minimum_feedback_tip_step_um": 0.06267361091443349
+        }
+      }
+    },
+    {
+      "episode": "E08",
+      "seed": 50,
+      "status": "completed",
+      "strict_success": false,
+      "steps": 1600,
+      "final_error_um": 3.4917810262367848,
+      "minimum_error_um": 0.7287951553958704,
+      "encoder_settled_frames": 1,
+      "encoder_settled_at_exit": false,
+      "max_settled_consecutive_frames": 1,
+      "target_world_mm": [
+        351.0549894697093,
+        -13.611890660778762,
+        375.23563838939805
+      ],
+      "final_state_deg_deg_mm": [
+        -6.2136000000000005,
+        -9.007940838599708,
+        19.524851024325464
+      ],
+      "local_endpoint_bound_um": 1.1718201995367623,
+      "axes": {
+        "A": {
+          "unit": "deg",
+          "frames": 900,
+          "active_command_frames": 900,
+          "nonzero_command_no_motion_frames": 563,
+          "nonzero_command_no_motion_fraction": 0.6255555555555555,
+          "minimum_feedback_step": 0.0035999999999998394,
+          "minimum_feedback_tip_step_um": 1.3628425126968484
+        },
+        "B": {
+          "unit": "deg",
+          "frames": 900,
+          "active_command_frames": 900,
+          "nonzero_command_no_motion_frames": 0,
+          "nonzero_command_no_motion_fraction": 0.0,
+          "minimum_feedback_step": 0.00030478628697494785,
+          "minimum_feedback_tip_step_um": 0.1251410148495139
+        },
+        "C": {
+          "unit": "mm",
+          "frames": 900,
+          "active_command_frames": 900,
+          "nonzero_command_no_motion_frames": 0,
+          "nonzero_command_no_motion_fraction": 0.0,
+          "minimum_feedback_step": 4.7005208187594905e-05,
+          "minimum_feedback_tip_step_um": 0.04700520818678892
+        }
+      }
+    },
+    {
+      "episode": "E10",
+      "seed": 52,
+      "status": "completed",
+      "strict_success": false,
+      "steps": 1600,
+      "final_error_um": 1.3368472694170805,
+      "minimum_error_um": 0.87691349835979,
+      "encoder_settled_frames": 1,
+      "encoder_settled_at_exit": false,
+      "max_settled_consecutive_frames": 1,
+      "target_world_mm": [
+        345.7278487658241,
+        -13.46096071034915,
+        371.1767486602698
+      ],
+      "final_state_deg_deg_mm": [
+        -5.3658,
+        7.288302990067201,
+        19.671444600258283
+      ],
+      "local_endpoint_bound_um": 1.5101342801510873,
+      "axes": {
+        "A": {
+          "unit": "deg",
+          "frames": 900,
+          "active_command_frames": 900,
+          "nonzero_command_no_motion_frames": 562,
+          "nonzero_command_no_motion_fraction": 0.6244444444444445,
+          "minimum_feedback_step": 0.0035999999999990445,
+          "minimum_feedback_tip_step_um": 1.477776640840988
+        },
+        "B": {
+          "unit": "deg",
+          "frames": 900,
+          "active_command_frames": 900,
+          "nonzero_command_no_motion_frames": 0,
+          "nonzero_command_no_motion_fraction": 0.0,
+          "minimum_feedback_step": 0.000408551115775163,
+          "minimum_feedback_tip_step_um": 0.16878634924135105
+        },
+        "C": {
+          "unit": "mm",
+          "frames": 900,
+          "active_command_frames": 900,
+          "nonzero_command_no_motion_frames": 0,
+          "nonzero_command_no_motion_fraction": 0.0,
+          "minimum_feedback_step": 1.566840272804182e-05,
+          "minimum_feedback_tip_step_um": 0.015668402727580907
+        }
+      }
+    }
+  ],
+  "controller": "True-position feedback geometry teacher; no RGB-D/OCT or network; original MotorBackend, accumulated absolute command_q and previous command velocity.",
+  "protocol": {
+    "indices": [
+      0,
+      2,
+      6,
+      8,
+      10
+    ],
+    "seeds": [
+      42,
+      44,
+      48,
+      50,
+      52
+    ],
+    "max_steps": 1600,
+    "control_period_s": 0.05,
+    "threshold_um": 0.35,
+    "consecutive_settled": 3,
+    "no_motion_threshold_deg_deg_mm": 1e-06,
+    "axis_window": "700 <= step < 1600",
+    "initial_task_rad_rad_m": [
+      0,
+      0,
+      0
+    ]
+  },
+  "completed_targets": 5,
+  "strict_success_count": 0,
+  "final_mean_um": 1.7052728586921226,
+  "strict_gate_passed": false,
+  "gate1b": {
+    "decision": "hardware_calibration_required; neither 1A nor hardware-conditioned 1B established",
+    "absolute_handle_semantics": "Cumulative absolute int32 handles anchored to original session home; duplicate commands are idempotent, not increments.",
+    "geometry_teacher_residual": "command_q and command velocity accumulate across ticks; no per-tick subhandle loss in this teacher.",
+    "policy_execution_difference": "eval_policy forms desired=actual+action each tick; small learned increments can be lost. Changing this controller contract does not remove the handle endpoint lattice and is not an established backend bug.",
+    "hardware_resolution_verified": false,
+    "branch_1b_not_taken": "Source explicitly marks motor dynamics uncalibrated. Need physical handle calibration or authorization for a simulation-only protocol branch before replacing targets/thresholds.",
+    "frozen_manifest_limitation": "Encoder-lattice reachability alone does not guarantee integer-handle reachability; +/-2-handle bounds are local, not a global proof.",
+    "backend_mutated": false,
+    "manifest_mutated": false,
+    "threshold_mutated": false
+  },
+  "gate2b_status": "skipped: Gate1 strict execution gate failed",
+  "phase3_status": "skipped: Gate1b and Gate2b not closed; all neural training paused",
+  "finished_at": "2026-11-20T16:54:02+08:00"
+}

@@ -1,0 +1,36 @@
+{
+  "id": "motor_perception_gate_20261120_v1",
+  "status": "failed",
+  "pid": 477257,
+  "stages": {
+    "oracle": {
+      "status": "failed",
+      "type": "module",
+      "output_dir": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/motor_perception_gate_v1/oracle",
+      "started_at": "2026-11-20T16:53:53+08:00",
+      "gates": [
+        {
+          "passed": false,
+          "detail": "strict_success_count=0 == 5 (/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/motor_perception_gate_v1/oracle/oracle_dev5_summary.json)"
+        }
+      ],
+      "reason": "gate failed: strict_success_count=0 == 5 (/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/motor_perception_gate_v1/oracle/oracle_dev5_summary.json)",
+      "finished_at": "2026-11-20T16:54:02+08:00"
+    },
+    "perception": {
+      "status": "completed",
+      "type": "module",
+      "output_dir": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/motor_perception_gate_v1/perception",
+      "started_at": "2026-11-20T16:54:02+08:00",
+      "finished_at": "2026-11-20T16:54:52+08:00"
+    },
+    "reports": {
+      "status": "completed",
+      "type": "module",
+      "output_dir": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/motor_perception_gate_v1/reports",
+      "started_at": "2026-11-20T16:54:52+08:00",
+      "finished_at": "2026-11-20T16:54:52+08:00"
+    }
+  },
+  "updated_at": "2026-11-20T16:54:52+08:00"
+}

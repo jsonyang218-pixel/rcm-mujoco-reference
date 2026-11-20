@@ -1,0 +1,44 @@
+{
+  "status": "completed",
+  "source": "runs/20261120/verification/motor_perception_gate_v1/E00_frame1200.npz",
+  "hypothesis": "Separate multisample pixel-center bias from low-resolution sphere triangulation",
+  "variants": [
+    {
+      "offsamples": 4,
+      "numslices": 112,
+      "numstacks": 64,
+      "target_error_um": 9.33086383506632,
+      "target_error_camera_um": [
+        2.338145289449792,
+        8.968381117509375,
+        1.0799243700711412
+      ],
+      "tip_error_um": 0.5685186524423845,
+      "target_quality": {
+        "source": "target_sphere_fit",
+        "support": 48,
+        "residual_mm": 0.0007416966025216829,
+        "fit_quality_mm": 0.0022250898075650487
+      }
+    },
+    {
+      "offsamples": 0,
+      "numslices": 112,
+      "numstacks": 64,
+      "target_error_um": 0.08378697382424333,
+      "target_error_camera_um": [
+        0.003702775643646753,
+        0.03156867563639452,
+        -0.0775239650283792
+      ],
+      "tip_error_um": 0.052244509986812376,
+      "target_quality": {
+        "source": "target_sphere_fit",
+        "support": 55,
+        "residual_mm": 2.2691806520402418e-05,
+        "fit_quality_mm": 0.002
+      }
+    }
+  ],
+  "finished_at": "2026-11-20T16:39:08.688560+08:00"
+}

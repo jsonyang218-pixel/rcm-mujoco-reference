@@ -1,0 +1,367 @@
+{
+  "status": "completed",
+  "started_at": "2026-11-20T16:04:19.498108+08:00",
+  "mode": "expert",
+  "output_dir": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/step680_case1_expert_v1/physical_check",
+  "analysis_code_sha256": "5b71947b6b09918fd02d861cc5b057e1bb3b20b151481646544478c29b30ec6c",
+  "audit_summary": "github_reports/diag_20261120_step680_axes/motor_protocol_audit/motor_protocol_audit.json",
+  "audit_sha256": "4bbc7f22a79ddbd19d3ba1d6d0ea2813b59d59a399ebaa100f1018f74a3ac9d9",
+  "target_manifest": "configs/v12_reachable_development_targets_0p35um.json",
+  "target_manifest_sha256": "fcc4872a9d5b58bb7158b36d3c0ab6d7452e4d8d747317dfb077b6e7bbc815c7",
+  "code_scene_identity": {
+    "code_sha256": "f8e3dd829b0b8fa074fad73d9224ea1ed2f41bc869b163a081ec1876e46bd1de",
+    "scene_sha256": "265c927ef7e7ac71536963b3000ffb161b7ff7ac03bb86cdb8480ed988c17028"
+  },
+  "controller": "Exact-target oracle with original MotorBackend; no learned policy or perception. Physical feasibility only, not a deployable expert or policy comparison.",
+  "protocol": {
+    "episode_indices": [
+      0,
+      2,
+      6,
+      8,
+      10
+    ],
+    "seeds": [
+      42,
+      44,
+      48,
+      50,
+      52
+    ],
+    "max_steps": 1600,
+    "control_period_s": 0.05,
+    "error_threshold_um": 0.35,
+    "settled_consecutive_frames": 3,
+    "action_limits_deg_deg_mm": [
+      0.2897999882698059,
+      0.14434358477592468,
+      0.04271206632256508
+    ],
+    "uses_ground_truth_target_for_control": true,
+    "neural_inference": false,
+    "cpu_reason": "Small scalar kinematics and protocol simulation; no tensor inference/training. NVIDIA EGL used for scene initialization."
+  },
+  "episodes": [
+    {
+      "episode": "E00",
+      "target_id": "target_d30721d6bc45",
+      "seed": 42,
+      "status": "completed",
+      "steps": 1600,
+      "strict_success": false,
+      "final_error_um": 0.8843190443335177,
+      "minimum_error_um": 0.7708491390959958,
+      "encoder_settled_at_exit": true,
+      "max_settled_consecutive_frames": 957,
+      "selected_protocol_endpoint": {
+        "handles_ABCE": [
+          -838,
+          -332,
+          16540,
+          0
+        ],
+        "robot_ABCE": [
+          -6983,
+          1255299,
+          2134018,
+          0
+        ],
+        "task_rad_rad_m": [
+          -0.21937741500017527,
+          -0.043458672121358316,
+          0.019436653585363742
+        ],
+        "error_um": 0.8843190443335177
+      },
+      "motor_summary": {
+        "backend": "MotorBackend",
+        "tau_s": 0.04,
+        "control_period_s": 0.05,
+        "integration_step_s": 0.002,
+        "speed_limits_A_deg_B_deg_C_mm_per_s": [
+          10.0,
+          10.0,
+          2.0
+        ],
+        "timeout_s": 0.5,
+        "simulation_time_s": 79.9999999999976,
+        "control_steps": 1600,
+        "robot_ABCE": [
+          -6983,
+          1255299,
+          2134018,
+          0
+        ],
+        "target_robot_ABCE": [
+          -6983,
+          1255299,
+          2134018,
+          0
+        ],
+        "encoder_settled": true,
+        "status": "holding",
+        "fault": null,
+        "physical_dynamics_identified": false,
+        "direct_pose_fallback_used": false
+      }
+    },
+    {
+      "episode": "E02",
+      "target_id": "target_26985bd28045",
+      "seed": 44,
+      "status": "completed",
+      "steps": 1600,
+      "strict_success": false,
+      "final_error_um": 1.5926761478477522,
+      "minimum_error_um": 1.5926761478477522,
+      "encoder_settled_at_exit": true,
+      "max_settled_consecutive_frames": 957,
+      "selected_protocol_endpoint": {
+        "handles_ABCE": [
+          -751,
+          -755,
+          16540,
+          0
+        ],
+        "robot_ABCE": [
+          -6258,
+          996282,
+          2134018,
+          0
+        ],
+        "task_rad_rad_m": [
+          -0.19660086826164927,
+          -0.09882923771718721,
+          0.019436653585363742
+        ],
+        "error_um": 1.5926761478477522
+      },
+      "motor_summary": {
+        "backend": "MotorBackend",
+        "tau_s": 0.04,
+        "control_period_s": 0.05,
+        "integration_step_s": 0.002,
+        "speed_limits_A_deg_B_deg_C_mm_per_s": [
+          10.0,
+          10.0,
+          2.0
+        ],
+        "timeout_s": 0.5,
+        "simulation_time_s": 79.9999999999976,
+        "control_steps": 1600,
+        "robot_ABCE": [
+          -6258,
+          996282,
+          2134018,
+          0
+        ],
+        "target_robot_ABCE": [
+          -6258,
+          996282,
+          2134018,
+          0
+        ],
+        "encoder_settled": true,
+        "status": "holding",
+        "fault": null,
+        "physical_dynamics_identified": false,
+        "direct_pose_fallback_used": false
+      }
+    },
+    {
+      "episode": "E06",
+      "target_id": "target_6f265ab4f315",
+      "seed": 48,
+      "status": "completed",
+      "steps": 1600,
+      "strict_success": false,
+      "final_error_um": 3.1965151067322726,
+      "minimum_error_um": 3.1733699328780665,
+      "encoder_settled_at_exit": true,
+      "max_settled_consecutive_frames": 947,
+      "selected_protocol_endpoint": {
+        "handles_ABCE": [
+          -483,
+          526,
+          16807,
+          0
+        ],
+        "robot_ABCE": [
+          -4025,
+          1810815,
+          2154043,
+          0
+        ],
+        "task_rad_rad_m": [
+          -0.1264491043069892,
+          0.06885316155907371,
+          0.019750413350012604
+        ],
+        "error_um": 3.1965151067322726
+      },
+      "motor_summary": {
+        "backend": "MotorBackend",
+        "tau_s": 0.04,
+        "control_period_s": 0.05,
+        "integration_step_s": 0.002,
+        "speed_limits_A_deg_B_deg_C_mm_per_s": [
+          10.0,
+          10.0,
+          2.0
+        ],
+        "timeout_s": 0.5,
+        "simulation_time_s": 79.9999999999976,
+        "control_steps": 1600,
+        "robot_ABCE": [
+          -4025,
+          1810815,
+          2154043,
+          0
+        ],
+        "target_robot_ABCE": [
+          -4025,
+          1810815,
+          2154043,
+          0
+        ],
+        "encoder_settled": true,
+        "status": "holding",
+        "fault": null,
+        "physical_dynamics_identified": false,
+        "direct_pose_fallback_used": false
+      }
+    },
+    {
+      "episode": "E08",
+      "target_id": "target_29b219ad42c3",
+      "seed": 50,
+      "status": "completed",
+      "steps": 1600,
+      "strict_success": false,
+      "final_error_um": 1.1718201995367623,
+      "minimum_error_um": 1.1718201995367623,
+      "encoder_settled_at_exit": true,
+      "max_settled_consecutive_frames": 954,
+      "selected_protocol_endpoint": {
+        "handles_ABCE": [
+          -415,
+          -1201,
+          16615,
+          0
+        ],
+        "robot_ABCE": [
+          -3458,
+          736436,
+          2139643,
+          0
+        ],
+        "task_rad_rad_m": [
+          -0.10863627396113505,
+          -0.1572105941068358,
+          0.01952478835071455
+        ],
+        "error_um": 1.1718201995367623
+      },
+      "motor_summary": {
+        "backend": "MotorBackend",
+        "tau_s": 0.04,
+        "control_period_s": 0.05,
+        "integration_step_s": 0.002,
+        "speed_limits_A_deg_B_deg_C_mm_per_s": [
+          10.0,
+          10.0,
+          2.0
+        ],
+        "timeout_s": 0.5,
+        "simulation_time_s": 79.9999999999976,
+        "control_steps": 1600,
+        "robot_ABCE": [
+          -3458,
+          736436,
+          2139643,
+          0
+        ],
+        "target_robot_ABCE": [
+          -3458,
+          736436,
+          2139643,
+          0
+        ],
+        "encoder_settled": true,
+        "status": "holding",
+        "fault": null,
+        "physical_dynamics_identified": false,
+        "direct_pose_fallback_used": false
+      }
+    },
+    {
+      "episode": "E10",
+      "target_id": "target_087ecb1a48ae",
+      "seed": 52,
+      "status": "completed",
+      "steps": 1600,
+      "strict_success": false,
+      "final_error_um": 1.5101342801510873,
+      "minimum_error_um": 1.4876079244384162,
+      "encoder_settled_at_exit": true,
+      "max_settled_consecutive_frames": 949,
+      "selected_protocol_endpoint": {
+        "handles_ABCE": [
+          -358,
+          971,
+          16740,
+          0
+        ],
+        "robot_ABCE": [
+          -2983,
+          2110406,
+          2149018,
+          0
+        ],
+        "task_rad_rad_m": [
+          -0.09371370885658352,
+          0.12710351556999105,
+          0.019671679626299222
+        ],
+        "error_um": 1.5101342801510873
+      },
+      "motor_summary": {
+        "backend": "MotorBackend",
+        "tau_s": 0.04,
+        "control_period_s": 0.05,
+        "integration_step_s": 0.002,
+        "speed_limits_A_deg_B_deg_C_mm_per_s": [
+          10.0,
+          10.0,
+          2.0
+        ],
+        "timeout_s": 0.5,
+        "simulation_time_s": 79.9999999999976,
+        "control_steps": 1600,
+        "robot_ABCE": [
+          -2983,
+          2110406,
+          2149018,
+          0
+        ],
+        "target_robot_ABCE": [
+          -2983,
+          2110406,
+          2149018,
+          0
+        ],
+        "encoder_settled": true,
+        "status": "holding",
+        "fault": null,
+        "physical_dynamics_identified": false,
+        "direct_pose_fallback_used": false
+      }
+    }
+  ],
+  "completed_targets": 5,
+  "strict_success_count": 0,
+  "final_mean_um": 1.6710929557202785,
+  "dependent_fine_dit_training": "skipped: case-1 investigation only; no training authorized for another branch",
+  "physical_gate_passed": false,
+  "finished_at": "2026-11-20T16:04:28.267034+08:00"
+}
