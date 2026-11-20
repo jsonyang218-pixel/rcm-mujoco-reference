@@ -1,0 +1,86 @@
+# task2_step4000: completed
+
+```json
+{
+  "output": "runs/20261119/overnight_c_fix_symlog_081234/task2_step4000",
+  "checkpoint": "outputs/overnight_c_fix_symlog_081234/task2_train/step_004000.pth",
+  "arm": "I0",
+  "protocol": "development E00-E19, seed 42+index, 1600 steps, 0.35 um",
+  "target_count": 20,
+  "base_seed": 42,
+  "max_steps": 1600,
+  "error_threshold_um": 0.35,
+  "flow_steps": 4,
+  "samples": 1,
+  "final_mean_um": 53.94992340639875,
+  "final_median_um": 52.14944434522449,
+  "final_min_um": 26.773429507496655,
+  "minimum_mean_um": 30.396917993974448,
+  "canonical_success_count": 0,
+  "encoder_settled_at_exit_count": 0,
+  "encoder_settled_near_target_frames": 20,
+  "inference_median_ms": 9.10371208190918,
+  "inference_p90_ms": 9.31699504852295,
+  "inference_timing": "CUDA events: sample and aggregate, excluding initial history fill and host transfer",
+  "near_target_ab_mean_change_deg": [
+    0.006378195392980649,
+    0.0037169537593039308
+  ],
+  "near_target_ab_pairs": 18749,
+  "c_retraction": {
+    "E08": {
+      "minimum_step": 1575,
+      "C_residual_at_min_um": -15.637065923574056,
+      "C_retreat_after_80_steps_um": null,
+      "post_min_negative_commands": 21,
+      "post_min_under_target_negative_commands": 21,
+      "post_min_command_frames": 25
+    },
+    "E00": {
+      "minimum_step": 1585,
+      "C_residual_at_min_um": -28.077777690423744,
+      "C_retreat_after_80_steps_um": null,
+      "post_min_negative_commands": 12,
+      "post_min_under_target_negative_commands": 12,
+      "post_min_command_frames": 15
+    },
+    "E02": {
+      "minimum_step": 1240,
+      "C_residual_at_min_um": -22.67217874890548,
+      "C_retreat_after_80_steps_um": 42.53971340932239,
+      "post_min_negative_commands": 59,
+      "post_min_under_target_negative_commands": 59,
+      "post_min_command_frames": 80
+    },
+    "E06": {
+      "minimum_step": 1466,
+      "C_residual_at_min_um": -10.200130176595934,
+      "C_retreat_after_80_steps_um": 4.888541651464351,
+      "post_min_negative_commands": 47,
+      "post_min_under_target_negative_commands": 47,
+      "post_min_command_frames": 80
+    }
+  },
+  "result_status": "completed",
+  "commands": [
+    {
+      "stage": "task2_step4000",
+      "time": "2026-11-19T12:14:05.373995-07:00",
+      "argv": [
+        ".venv/bin/python",
+        "-m",
+        "scripts.research.overnight_cfix_eval",
+        "--checkpoint",
+        "outputs/overnight_c_fix_symlog_081234/task2_train/step_004000.pth",
+        "--target-manifest",
+        "configs/v12_reachable_development_targets_0p35um.json",
+        "--output-dir",
+        "runs/20261119/overnight_c_fix_symlog_081234/task2_step4000",
+        "--arm",
+        "I0"
+      ],
+      "log": "runs/20261119/overnight_c_fix_symlog_081234/task2_step4000.log"
+    }
+  ]
+}
+```

@@ -1,0 +1,50 @@
+{
+  "status": "PASS",
+  "dataset": "data/plan2_plus_original_train_224_20261119",
+  "candidate_count": 11400,
+  "replayed_count": 11400,
+  "candidate_counts_by_source": {
+    "Original": 2058,
+    "Plan2": 9342
+  },
+  "expected_counts_by_source": {
+    "Original": 2058,
+    "Plan2": 9342
+  },
+  "dragged_negative_count": 11029,
+  "reproduced_count": 11400,
+  "replay_absolute_tolerance_deg_deg_mm": [
+    0.0001,
+    0.0001,
+    5e-05
+  ],
+  "dragged_negative_fraction": 0.9674561403508772,
+  "threshold": 0.6,
+  "threshold_reached": true,
+  "definition": "pre_accel_dC_mm > 0 and zero_vel_dC_mm >= 0 among valid, near-target, C-under-target, teacher-labeled negative dC rows",
+  "control_period_s": 0.05,
+  "failure_count": 0,
+  "replay_failure_examples": [],
+  "groups": {
+    "D1": {
+      "candidates": 2898,
+      "dragged_negative": 2890,
+      "reproduced": 2898
+    },
+    "D2": {
+      "candidates": 1929,
+      "dragged_negative": 1918,
+      "reproduced": 1929
+    },
+    "D4": {
+      "candidates": 4515,
+      "dragged_negative": 4511,
+      "reproduced": 4515
+    },
+    "Original": {
+      "candidates": 2058,
+      "dragged_negative": 1710,
+      "reproduced": 2058
+    }
+  }
+}
