@@ -1,0 +1,88 @@
+{
+  "timestamp": "2026-11-21T13:30:20.737769+08:00",
+  "driver": {
+    "variant": "g15",
+    "control_gear": 15,
+    "kinematics_path": "/home/him1/mujoco_bc/rcm_4090_deploy/mujoco_model/vendor/simulation_driver_g15/ros_msg/src/robot_control/kinematics.py",
+    "kinematics_sha256": "3465daf19fd3269466f90fd77c6626149ab4da8ddde612c8f3d9a12c77d06088"
+  },
+  "purpose": "minimum nonzero single integer handle packet motion; not hardware positioning accuracy",
+  "hypothesis": "one G15 handle is executable and reproducible before watchdog; rounding changes nominal motion",
+  "main_change": "none to control sources; one consume at t=0 followed by plant steps only",
+  "baseline": "zero-handle packet at identical HOME; nominal G15 angle/axial formulas",
+  "tier": "deterministic three-axis smoke diagnostic, not navigation screen10/dev20",
+  "cases": [
+    [
+      "hold",
+      0
+    ],
+    [
+      "A",
+      1
+    ],
+    [
+      "A",
+      -1
+    ],
+    [
+      "B",
+      1
+    ],
+    [
+      "B",
+      -1
+    ],
+    [
+      "C",
+      1
+    ],
+    [
+      "C",
+      -1
+    ]
+  ],
+  "dataset": null,
+  "checkpoint": null,
+  "training_rounds": 0,
+  "seed": null,
+  "seed_reason": "no stochastic operation",
+  "initial_robot_ABCE": [
+    0,
+    1466018,
+    893518,
+    0
+  ],
+  "needle_profile": "legacy",
+  "tau_s": 0.04,
+  "speed_limits_A_deg_B_deg_C_mm_s": [
+    10.0,
+    10.0,
+    2.0
+  ],
+  "timeout_s": 0.5,
+  "integration_step_s": 0.002,
+  "observation_period_s": 0.05,
+  "max_simulation_time_s_per_case": 0.5,
+  "max_integration_steps_per_case": 250,
+  "accepted_packets_per_case": 1,
+  "worker_count": 1,
+  "wall_budget_s": 30,
+  "gates": [
+    "one accepted packet",
+    "no watchdog/fault before0.5s",
+    "encoder at target plus unchanged feedback for3consecutive50msframes",
+    "MuJoCo/driver FK agreement <1e-9m",
+    "fractional handle is rejected"
+  ],
+  "failure_policy": "record failure and stop; no parameter changes or retries",
+  "output_dir": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/verification/g15_single_packet_v1",
+  "device": "CPU; tiny scalar kinematics and MuJoCo FK, no rendering/tensors",
+  "source_sha256": {
+    "config.json": "72e42acb575f174baefd36063a637c9d8814782ed13c7ad7e234a3ade53997db",
+    "mujoco_model/driver_loader.py": "9de0dbcf5e2f837b89d3a366016412d3b81cfe3f5a2e856979a9f8dbb7ebeafe",
+    "mujoco_model/motor_backend.py": "1bc2a5b79eceda9cc31bfaa49be20986e680784ad15e5ebc35fe629a453302e4",
+    "mujoco_model/model_sync.py": "3fdc6b0f74becb15ceeed1b5d1c2973cd74fbad174fb67dce2852dc0c67ba66d",
+    "mujoco_model/source_manifest_g15.json": "c129c432e403c3bf4159c83e9ae625e17a06091e655b811b54d9e5683483d058",
+    "runs/20261121/verification/g15_single_packet_v1/measure.py": "d740ad79c4f1e6a1f0ef79591c24ae98aa5717a9726b3ba0ff097124f2d4174c"
+  }
+}

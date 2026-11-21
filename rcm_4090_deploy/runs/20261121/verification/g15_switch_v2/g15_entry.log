@@ -1,0 +1,48 @@
+{
+  "status": "PASS",
+  "model_backend": "RCMSceneV9",
+  "driver": {
+    "variant": "g15",
+    "control_gear": 15,
+    "kinematics_path": "/home/him1/mujoco_bc/rcm_4090_deploy/mujoco_model/vendor/simulation_driver_g15/ros_msg/src/robot_control/kinematics.py",
+    "kinematics_sha256": "3465daf19fd3269466f90fd77c6626149ab4da8ddde612c8f3d9a12c77d06088"
+  },
+  "scene": "v9 eye-injected scanned arm",
+  "task_A_deg_B_deg_C_mm": [
+    0.0,
+    0.0,
+    0.0
+  ],
+  "geoms": {
+    "scan_fixed_housing": 26,
+    "scan_parallel_cover": 77,
+    "scan_distal": 38,
+    "scan_C": 55,
+    "eye_reference": 16,
+    "retina_visual": 103,
+    "lens_visual": 21,
+    "lesion_marker": 22,
+    "needle_tip_marker": 73
+  },
+  "cameras": {
+    "overview": 0,
+    "eye_internal": 1
+  },
+  "rcm_world_mm": [
+    334.756480901806,
+    -11.260751975282258,
+    392.0363561984238
+  ],
+  "needle_tip_world_mm": [
+    337.0507865724399,
+    -11.260751975282796,
+    388.75974812805464
+  ],
+  "lesion_world_mm": [
+    350.642992743183,
+    -9.340751975362211,
+    374.560971897196
+  ],
+  "rcm_on_eye_surface": true,
+  "tip_inside_eye": true
+}

@@ -1,0 +1,65 @@
+{
+  "timestamp": "2026-11-21T13:24:17.807915+08:00",
+  "status": "PASS",
+  "default_driver": {
+    "variant": "g15",
+    "control_gear": 15,
+    "kinematics_path": "/home/him1/mujoco_bc/rcm_4090_deploy/mujoco_model/vendor/simulation_driver_g15/ros_msg/src/robot_control/kinematics.py",
+    "kinematics_sha256": "3465daf19fd3269466f90fd77c6626149ab4da8ddde612c8f3d9a12c77d06088"
+  },
+  "shell_RCM_DRIVER_VARIANT": null,
+  "default_home_tip_rcm_distance_mm": 3.999999869638881,
+  "nominal_per_handle": {
+    "A_deg": 0.0225,
+    "B_deg": 0.01125,
+    "C_um": 1.7626953070160591
+  },
+  "checks": {
+    "test_counts": {
+      "g15_unit": 18,
+      "g10_motor_rollback": 7,
+      "g15_dataset_replay": 4
+    },
+    "g15_source_files_identical": 36,
+    "g10_files_unchanged": 29,
+    "protocol": "PASS",
+    "geometry": "PASS",
+    "g15_entry": "PASS",
+    "g10_entry": "PASS"
+  },
+  "earlier_failure": {
+    "path": "runs/20261121/verification/g15_switch_v1/g15_protocol_geometry.log",
+    "reason": "Existing protocol fixture assumed first motion completed in20ms; G15 nine-count A travel exceeds20ms at10deg/s. Corrected fixture wait based on speed and distance, no motor dynamics changes."
+  },
+  "source_sha256": {
+    "mujoco_model/driver_loader.py": "9de0dbcf5e2f837b89d3a366016412d3b81cfe3f5a2e856979a9f8dbb7ebeafe",
+    "mujoco_model/source_manifest_g15.json": "c129c432e403c3bf4159c83e9ae625e17a06091e655b811b54d9e5683483d058",
+    "mujoco_model/run_driver_demo.py": "1776a85ac08a11b173c55654d50fe2446f46a5bcee7384af93600a2029f5c9f5",
+    "mujoco_model/validate_driver_integration.py": "bfe7a7b09505f16929190685433b5a3f79ce3743e5453611bf3c4cae110fa450",
+    "rcm/motor_execution.py": "4b3b7407f611fa76f51b14b53b544ae11a82a99d9ab8e67654643be7db9fe2c2",
+    "run_reference.py": "d2992a2b43a1cb63c0bd273906840d6fb1f14b547f17415a1d8a525cef7bfeee",
+    "scripts/datasets/collect_v9_dataset.py": "59bd3d4e3a75b3fa6fc3ab4aff4663686f2b401ce655ed59eac88d320eacafdf",
+    "scripts/verification/verify_driver_selection.py": "eb58818c9260aeb40eef64b01d8ea736bc28d956e24fb85129c66932a10228f7",
+    "scripts/verification/verify_motor_execution.py": "cae99008374a9c4e80c4bd23caeb3840064b208b87fa054c57ddb318506824e9",
+    "README.md": "639eb1672acd44812d87882770e17f1dbdf7fcf1fbf995ad80d0db0dd3a13227",
+    "mujoco_model/README.md": "584d18139139fdd183d24456e7c52d103408dbe1cbbd6de0504a5aaaa4746215",
+    "docs/MOTOR_DATASET.md": "6412b6d3b9b9aa3c73cb4b1c4a09ec80007d3991bcded7c8d92a5530691e2cac",
+    "docs/README.md": "0e3143d6b4bd874e0c5d9d4b6a7ceb61a23582a7a49f7493be8a22b464f3517d",
+    "docs/CONTROL_G15_MIGRATION_PLAN_20261121.md": "eeac864d2e7913b6780a76d697362278d0bb546072c115c49c17a3789cda6fa7",
+    "docs/KINEMATICS_G15_MODEL_HANDOFF_20261120.md": "4edff1fb7d64c9cbf26ec71af4c8afe16322b71d2655b0e917625a369a1294ab"
+  },
+  "evidence": [
+    "runs/20261121/verification/g15_switch_v1/g15_unit_result.json",
+    "runs/20261121/verification/g15_switch_v2/integration_results.json",
+    "runs/20261121/verification/g15_switch_v2/g15_protocol_geometry.json",
+    "runs/20261121/verification/g15_switch_v2/g15_entry.json",
+    "runs/20261121/verification/g15_switch_v2/g10_entry.json"
+  ],
+  "limitations": [
+    "Source/protocol/scene acceptance only; no policy evaluation or training",
+    "No new policy target accumulation",
+    "No ROS transport or hardware validation",
+    "No0.35um strict precision claim",
+    "Existing processes must restart; G10 rollback uses RCM_DRIVER_VARIANT=g10 in a fresh process"
+  ]
+}

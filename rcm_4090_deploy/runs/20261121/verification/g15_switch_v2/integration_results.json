@@ -1,0 +1,85 @@
+[
+  {
+    "timestamp": "2026-11-21T13:23:10.456498+08:00",
+    "stage": "g15_protocol_geometry",
+    "command": [
+      "/home/him1/mujoco_bc/rcm_4090_deploy/.venv/bin/python",
+      "-E",
+      "-B",
+      "-c",
+      "import json, sys\nsys.path.insert(0, \"mujoco_model\")\nfrom driver_loader import driver_identity\nfrom validate_driver_integration import protocol_checks, model_checks\nresult = {\"driver\": driver_identity(), \"protocol\": protocol_checks(), \"model\": model_checks([])}\nprint(json.dumps(result, indent=2, default=str))\n"
+    ],
+    "driver_environment": "default",
+    "status": "PASS",
+    "returncode": 0,
+    "log": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/verification/g15_switch_v2/g15_protocol_geometry.log"
+  },
+  {
+    "timestamp": "2026-11-21T13:23:12.367578+08:00",
+    "stage": "g10_motor_rollback",
+    "command": [
+      "/home/him1/mujoco_bc/rcm_4090_deploy/.venv/bin/python",
+      "-E",
+      "-B",
+      "-m",
+      "unittest",
+      "-v",
+      "scripts.verification.verify_motor_execution"
+    ],
+    "driver_environment": "g10",
+    "status": "PASS",
+    "returncode": 0,
+    "log": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/verification/g15_switch_v2/g10_motor_rollback.log"
+  },
+  {
+    "timestamp": "2026-11-21T13:23:14.153996+08:00",
+    "stage": "g15_entry",
+    "command": [
+      "/home/him1/mujoco_bc/rcm_4090_deploy/.venv/bin/python",
+      "-E",
+      "-B",
+      "run_reference.py",
+      "--verify",
+      "--report",
+      "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/verification/g15_switch_v2/g15_entry.json"
+    ],
+    "driver_environment": "default",
+    "status": "PASS",
+    "returncode": 0,
+    "log": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/verification/g15_switch_v2/g15_entry.log"
+  },
+  {
+    "timestamp": "2026-11-21T13:23:15.909018+08:00",
+    "stage": "g10_entry",
+    "command": [
+      "/home/him1/mujoco_bc/rcm_4090_deploy/.venv/bin/python",
+      "-E",
+      "-B",
+      "run_reference.py",
+      "--no-viewer",
+      "--report",
+      "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/verification/g15_switch_v2/g10_entry.json"
+    ],
+    "driver_environment": "g10",
+    "status": "PASS",
+    "returncode": 0,
+    "log": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/verification/g15_switch_v2/g10_entry.log"
+  },
+  {
+    "timestamp": "2026-11-21T13:23:16.596430+08:00",
+    "stage": "g15_dataset_replay",
+    "command": [
+      "/home/him1/mujoco_bc/rcm_4090_deploy/.venv/bin/python",
+      "-E",
+      "-B",
+      "-m",
+      "unittest",
+      "-v",
+      "scripts.verification.verify_v9_motor_collection"
+    ],
+    "driver_environment": "default",
+    "status": "PASS",
+    "returncode": 0,
+    "log": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/verification/g15_switch_v2/g15_dataset_replay.log"
+  }
+]

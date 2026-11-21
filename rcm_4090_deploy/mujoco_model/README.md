@@ -25,6 +25,7 @@ python -m mujoco.viewer --mjcf v9_eye_scene.xml
 - `registration.json`、`source_scan_info.json`、`enclosure_reference.json`：扫描配准、来源和原始 STL 校验信息。
 - `evidence/` 中的实物照片、参考运动视频及观察记录：建模依据。
 - `vendor/simulation_driver/`：提交 `c2a3ffc` 的固定驱动副本，`source_manifest.json` 保存其 SHA-256。根目录的原始驱动也保留。
+- `vendor/simulation_driver_g15/`：2026-11-21 切换后的默认 G15 原文件快照，36 个源文件的 SHA-256 见 `source_manifest_g15.json`；排除字节码缓存和机器专用 `ros_network.env`。原 G10 的 29 个文件和清单保留。新进程可用 `RCM_DRIVER_VARIANT=g10` 回退，默认或显式 `g15` 使用 G15；一个进程内禁止混用两版本。
 
 分件源网格及构建输入仍用于复验和重建，因此保留。已删除的完整旧扫描副本和参考网格不参与当前运行；原始用户 STL 位于仓库外，需要重新拟合时按前端说明传入路径。
 

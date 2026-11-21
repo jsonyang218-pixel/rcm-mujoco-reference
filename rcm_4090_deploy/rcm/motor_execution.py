@@ -13,6 +13,7 @@ import numpy as np
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'mujoco_model'))
 from motor_backend import MotorBackend
+from driver_loader import driver_identity
 
 
 class MotorExecution:
@@ -30,6 +31,7 @@ class MotorExecution:
             tau_s=self.settings.get('tau_s', .04),
             timeout_s=self.settings.get('timeout_s', .5),
             speed_limits=self.settings.get('speed_limits_A_deg_B_deg_C_mm_per_s', (10., 10., 2.)))
+        self.driver_identity = driver_identity()
         self.time_s = 0.
         self.records = []
         self.last_record = None
@@ -86,6 +88,7 @@ class MotorExecution:
         self.time_s = before_time + duration
         self.actual_velocity = (actual - before_task) / duration
         record = {
+            'driver': dict(self.driver_identity),
             'step_index': len(self.records), 'start_time_s': before_time,
             'end_time_s': self.time_s, 'duration_s': duration,
             'integration_steps': count, 'tau_s': self.backend.tau_s,
@@ -122,7 +125,8 @@ class MotorExecution:
         self.actual_velocity[:] = 0
 
     def summary(self):
-        return {'backend': 'MotorBackend', 'tau_s': self.backend.tau_s,
+        return {'backend': 'MotorBackend', 'driver': dict(self.driver_identity),
+                'tau_s': self.backend.tau_s,
                 'control_period_s': self.control_period_s,
                 'integration_step_s': self.integration_step_s,
                 'speed_limits_A_deg_B_deg_C_mm_per_s': list(self.backend.speed_limits),

@@ -1,0 +1,28 @@
+{
+  "timestamp": "2026-11-21T13:21:21.342261+08:00",
+  "stage": "g15_unit",
+  "command": [
+    "/home/him1/mujoco_bc/rcm_4090_deploy/.venv/bin/python",
+    "-E",
+    "-B",
+    "-m",
+    "unittest",
+    "-v",
+    "scripts.verification.verify_driver_selection",
+    "scripts.verification.verify_motor_execution",
+    "scripts.verification.verify_motor_perception_gates"
+  ],
+  "status": "PASS",
+  "returncode": 0,
+  "syntax_files": [
+    "mujoco_model/driver_loader.py",
+    "rcm/motor_execution.py",
+    "scripts/verification/verify_driver_selection.py",
+    "scripts/verification/verify_motor_execution.py",
+    "scripts/datasets/collect_v9_dataset.py",
+    "run_reference.py"
+  ],
+  "output_dir": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/verification/g15_switch_v1",
+  "log": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/verification/g15_switch_v1/g15_unit.log",
+  "scope": "source/protocol/scene regression only; no policy evaluation, training or hardware"
+}

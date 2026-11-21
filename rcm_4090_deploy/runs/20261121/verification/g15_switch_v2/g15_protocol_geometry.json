@@ -1,0 +1,1741 @@
+{
+  "driver": {
+    "variant": "g15",
+    "control_gear": 15,
+    "kinematics_path": "/home/him1/mujoco_bc/rcm_4090_deploy/mujoco_model/vendor/simulation_driver_g15/ros_msg/src/robot_control/kinematics.py",
+    "kinematics_sha256": "3465daf19fd3269466f90fd77c6626149ab4da8ddde612c8f3d9a12c77d06088"
+  },
+  "protocol": {
+    "status": "PASS",
+    "absolute_packets_idempotent": true,
+    "nonzero_session_origin": [
+      147,
+      -13,
+      -30901,
+      -20
+    ],
+    "same_target_after_packet_splitting": true,
+    "original_predicted_target": [
+      112,
+      1459264,
+      894980,
+      0
+    ],
+    "atomic_rejections": {
+      "unmapped_E": "E-axis conversion is not calibrated; E changes are unsupported",
+      "both_direction_flags": "Direction-only insertion rate is unspecified; use cumulative C handles, hold flags false",
+      "unspecified_direction_rate": "Direction-only insertion rate is unspecified; use cumulative C handles, hold flags false",
+      "int32_overflow": "Encoder/handle fields must be int32 integers",
+      "robot_limit": "A \u8f74\u9884\u6d4b\u76ee\u6807\u7f16\u7801\u5668 12498162 \u8d85\u51fa\u5b89\u5168\u8303\u56f4 [-74873, 73302]"
+    },
+    "watchdog_status": "timeout_hold",
+    "watchdog_held_robot": [
+      0,
+      1466018,
+      893741,
+      0
+    ],
+    "unchanged_controller_stale_feedback_reason": "feedback_timeout",
+    "no_ROS_or_network": true
+  },
+  "model": {
+    "status": "PASS",
+    "scope": "Actual MuJoCo site positions vs unchanged driver FK; scan-to-world alignment remains a chosen transform",
+    "profile_reports": [
+      {
+        "needle_profile": "new",
+        "samples": 28,
+        "max_fk_error_m": 3.060955000053461e-13,
+        "diagnostics": [
+          {
+            "profile": "new",
+            "robot": [
+              0,
+              1466018,
+              893518,
+              0
+            ],
+            "A_deg": 0.0,
+            "B_relative_deg": 0.0,
+            "B_alpha_deg": 54.23600525044604,
+            "C_axial_mm": -1.3036111035091835e-07,
+            "max_fk_error_m": 3.060346736974325e-13,
+            "tip_world_m": [
+              0.35453417089286127,
+              0.06999999999999999,
+              0.35777507444794787
+            ],
+            "junction_world_m": [
+              0.3519630204541134,
+              0.06999999999999999,
+              0.36083925222042235
+            ],
+            "silver_linear_travel_mm": 0.0,
+            "silver_motion_mapping_calibrated": false,
+            "installation_pitch_y_deg": -40.0,
+            "installation_photo_estimate": true,
+            "shared_installation_across_needle_profiles": true,
+            "alignment_status": "exact driver algebra in one visually aligned, uncalibrated world frame"
+          },
+          {
+            "profile": "new",
+            "robot": [
+              -3750,
+              1089865,
+              882268,
+              0
+            ],
+            "A_deg": -6.75,
+            "B_relative_deg": -4.500000438061022,
+            "B_alpha_deg": 49.73600481238502,
+            "C_axial_mm": -0.17626966106271702,
+            "max_fk_error_m": 3.060198415817316e-13,
+            "tip_world_m": [
+              0.3548780541417013,
+              0.07046613922203392,
+              0.35788518383440054
+            ],
+            "junction_world_m": [
+              0.3520860564902463,
+              0.07001967454435282,
+              0.3607145686448943
+            ],
+            "silver_linear_travel_mm": -5.893716691733437,
+            "silver_motion_mapping_calibrated": false,
+            "installation_pitch_y_deg": -40.0,
+            "installation_photo_estimate": true,
+            "shared_installation_across_needle_profiles": true,
+            "alignment_status": "exact driver algebra in one visually aligned, uncalibrated world frame"
+          },
+          {
+            "profile": "new",
+            "robot": [
+              -3750,
+              1089865,
+              893518,
+              0
+            ],
+            "A_deg": -6.75,
+            "B_relative_deg": -4.500000438061022,
+            "B_alpha_deg": 49.73600481238502,
+            "C_axial_mm": -1.3036111035091835e-07,
+            "max_fk_error_m": 3.060346736974325e-13,
+            "tip_world_m": [
+              0.35475501811276583,
+              0.0704464646922315,
+              0.3580098674175805
+            ],
+            "junction_world_m": [
+              0.35196302046131084,
+              0.0700000000145504,
+              0.3608392522280743
+            ],
+            "silver_linear_travel_mm": -5.893716691733437,
+            "silver_motion_mapping_calibrated": false,
+            "installation_pitch_y_deg": -40.0,
+            "installation_photo_estimate": true,
+            "shared_installation_across_needle_profiles": true,
+            "alignment_status": "exact driver algebra in one visually aligned, uncalibrated world frame"
+          },
+          {
+            "profile": "new",
+            "robot": [
+              -3750,
+              1089865,
+              904768,
+              0
+            ],
+            "A_deg": -6.75,
+            "B_relative_deg": -4.500000438061022,
+            "B_alpha_deg": 49.73600481238502,
+            "C_axial_mm": 0.17626940034049454,
+            "max_fk_error_m": 3.0604952523150805e-13,
+            "tip_world_m": [
+              0.35463198208383034,
+              0.07042679016242907,
+              0.3581345510007605
+            ],
+            "junction_world_m": [
+              0.35183998443237535,
+              0.06998032548474797,
+              0.3609639358112543
+            ],
+            "silver_linear_travel_mm": -5.893716691733437,
+            "silver_motion_mapping_calibrated": false,
+            "installation_pitch_y_deg": -40.0,
+            "installation_photo_estimate": true,
+            "shared_installation_across_needle_profiles": true,
+            "alignment_status": "exact driver algebra in one visually aligned, uncalibrated world frame"
+          },
+          {
+            "profile": "new",
+            "robot": [
+              -3750,
+              1466018,
+              882268,
+              0
+            ],
+            "A_deg": -6.75,
+            "B_relative_deg": 0.0,
+            "B_alpha_deg": 54.23600525044604,
+            "C_axial_mm": -0.17626966106271702,
+            "max_fk_error_m": 3.059738856529169e-13,
+            "tip_world_m": [
+              0.35463504521481354,
+              0.07047677209801032,
+              0.35766526431166296
+            ],
+            "junction_world_m": [
+              0.35207579970496805,
+              0.07002012333085288,
+              0.36070528640431115
+            ],
+            "silver_linear_travel_mm": 0.0,
+            "silver_motion_mapping_calibrated": false,
+            "installation_pitch_y_deg": -40.0,
+            "installation_photo_estimate": true,
+            "shared_installation_across_needle_profiles": true,
+            "alignment_status": "exact driver algebra in one visually aligned, uncalibrated world frame"
+          },
+          {
+            "profile": "new",
+            "robot": [
+              -3750,
+              1466018,
+              893518,
+              0
+            ],
+            "A_deg": -6.75,
+            "B_relative_deg": 0.0,
+            "B_alpha_deg": 54.23600525044604,
+            "C_axial_mm": -1.3036111035091835e-07,
+            "max_fk_error_m": 3.060346736974325e-13,
+            "tip_world_m": [
+              0.35452226596357084,
+              0.07045664878203974,
+              0.3577992301285614
+            ],
+            "junction_world_m": [
+              0.35196302045372535,
+              0.0700000000148823,
+              0.3608392522212096
+            ],
+            "silver_linear_travel_mm": 0.0,
+            "silver_motion_mapping_calibrated": false,
+            "installation_pitch_y_deg": -40.0,
+            "installation_photo_estimate": true,
+            "shared_installation_across_needle_profiles": true,
+            "alignment_status": "exact driver algebra in one visually aligned, uncalibrated world frame"
+          },
+          {
+            "profile": "new",
+            "robot": [
+              -3750,
+              1466018,
+              904768,
+              0
+            ],
+            "A_deg": -6.75,
+            "B_relative_deg": 0.0,
+            "B_alpha_deg": 54.23600525044604,
+            "C_axial_mm": 0.17626940034049454,
+            "max_fk_error_m": 3.0604952523150805e-13,
+            "tip_world_m": [
+              0.3544094867123282,
+              0.07043652546606917,
+              0.3579331959454598
+            ],
+            "junction_world_m": [
+              0.3518502412024827,
+              0.06997987669891173,
+              0.360973218038108
+            ],
+            "silver_linear_travel_mm": 0.0,
+            "silver_motion_mapping_calibrated": false,
+            "installation_pitch_y_deg": -40.0,
+            "installation_photo_estimate": true,
+            "shared_installation_across_needle_profiles": true,
+            "alignment_status": "exact driver algebra in one visually aligned, uncalibrated world frame"
+          },
+          {
+            "profile": "new",
+            "robot": [
+              -3750,
+              1860213,
+              882268,
+              0
+            ],
+            "A_deg": -6.75,
+            "B_relative_deg": 4.499994528863567,
+            "B_alpha_deg": 58.73599977930961,
+            "C_axial_mm": -0.17626966106271702,
+            "max_fk_error_m": 3.059738856529169e-13,
+            "tip_world_m": [
+              0.3543755627138831,
+              0.07048446550673777,
+              0.35746491373395356
+            ],
+            "junction_world_m": [
+              0.35206484761226264,
+              0.07002044804995841,
+              0.3606968301188477
+            ],
+            "silver_linear_travel_mm": 6.176406013770626,
+            "silver_motion_mapping_calibrated": false,
+            "installation_pitch_y_deg": -40.0,
+            "installation_photo_estimate": true,
+            "shared_installation_across_needle_profiles": true,
+            "alignment_status": "exact driver algebra in one visually aligned, uncalibrated world frame"
+          },
+          {
+            "profile": "new",
+            "robot": [
+              -3750,
+              1860213,
+              893518,
+              0
+            ],
+            "A_deg": -6.75,
+            "B_relative_deg": 4.499994528863567,
+            "B_alpha_deg": 58.73599977930961,
+            "C_axial_mm": -1.3036111035091835e-07,
+            "max_fk_error_m": 3.060346736974325e-13,
+            "tip_world_m": [
+              0.35427373554724617,
+              0.07046401747190181,
+              0.35760733583006155
+            ],
+            "junction_world_m": [
+              0.3519630204456257,
+              0.07000000001512245,
+              0.36083925221495566
+            ],
+            "silver_linear_travel_mm": 6.176406013770626,
+            "silver_motion_mapping_calibrated": false,
+            "installation_pitch_y_deg": -40.0,
+            "installation_photo_estimate": true,
+            "shared_installation_across_needle_profiles": true,
+            "alignment_status": "exact driver algebra in one visually aligned, uncalibrated world frame"
+          },
+          {
+            "profile": "new",
+            "robot": [
+              -3750,
+              1860213,
+              904768,
+              0
+            ],
+            "A_deg": -6.75,
+            "B_relative_deg": 4.499994528863567,
+            "B_alpha_deg": 58.73599977930961,
+            "C_axial_mm": 0.17626940034049454,
+            "max_fk_error_m": 3.060955000053461e-13,
+            "tip_world_m": [
+              0.3541719083806092,
+              0.07044356943706585,
+              0.3577497579261696
+            ],
+            "junction_world_m": [
+              0.35186119327898874,
+              0.06997955198028649,
+              0.3609816743110637
+            ],
+            "silver_linear_travel_mm": 6.176406013770626,
+            "silver_motion_mapping_calibrated": false,
+            "installation_pitch_y_deg": -40.0,
+            "installation_photo_estimate": true,
+            "shared_installation_across_needle_profiles": true,
+            "alignment_status": "exact driver algebra in one visually aligned, uncalibrated world frame"
+          },
+          {
+            "profile": "new",
+            "robot": [
+              0,
+              1089865,
+              882268,
+              0
+            ],
+            "A_deg": 0.0,
+            "B_relative_deg": -4.500000438061022,
+            "B_alpha_deg": 49.73600481238502,
+            "C_axial_mm": -0.17626966106271702,
+            "max_fk_error_m": 3.060198415817316e-13,
+            "tip_world_m": [
+              0.3548902064887479,
+              0.06999999999999999,
+              0.3578605261311245
+            ],
+            "junction_world_m": [
+              0.352086569409734,
+              0.06999999999999999,
+              0.3607135279063042
+            ],
+            "silver_linear_travel_mm": -5.893716691733437,
+            "silver_motion_mapping_calibrated": false,
+            "installation_pitch_y_deg": -40.0,
+            "installation_photo_estimate": true,
+            "shared_installation_across_needle_profiles": true,
+            "alignment_status": "exact driver algebra in one visually aligned, uncalibrated world frame"
+          },
+          {
+            "profile": "new",
+            "robot": [
+              0,
+              1089865,
+              893518,
+              0
+            ],
+            "A_deg": 0.0,
+            "B_relative_deg": -4.500000438061022,
+            "B_alpha_deg": 49.73600481238502,
+            "C_axial_mm": -1.3036111035091835e-07,
+            "max_fk_error_m": 3.060346736974325e-13,
+            "tip_world_m": [
+              0.3547666575407041,
+              0.06999999999999999,
+              0.35798625045212495
+            ],
+            "junction_world_m": [
+              0.35196302046169015,
+              0.06999999999999999,
+              0.3608392522273046
+            ],
+            "silver_linear_travel_mm": -5.893716691733437,
+            "silver_motion_mapping_calibrated": false,
+            "installation_pitch_y_deg": -40.0,
+            "installation_photo_estimate": true,
+            "shared_installation_across_needle_profiles": true,
+            "alignment_status": "exact driver algebra in one visually aligned, uncalibrated world frame"
+          },
+          {
+            "profile": "new",
+            "robot": [
+              0,
+              1089865,
+              904768,
+              0
+            ],
+            "A_deg": 0.0,
+            "B_relative_deg": -4.500000438061022,
+            "B_alpha_deg": 49.73600481238502,
+            "C_axial_mm": 0.17626940034049454,
+            "max_fk_error_m": 3.0604952523150805e-13,
+            "tip_world_m": [
+              0.35464310859266024,
+              0.06999999999999999,
+              0.3581119747731254
+            ],
+            "junction_world_m": [
+              0.3518394715136463,
+              0.06999999999999999,
+              0.36096497654830506
+            ],
+            "silver_linear_travel_mm": -5.893716691733437,
+            "silver_motion_mapping_calibrated": false,
+            "installation_pitch_y_deg": -40.0,
+            "installation_photo_estimate": true,
+            "shared_installation_across_needle_profiles": true,
+            "alignment_status": "exact driver algebra in one visually aligned, uncalibrated world frame"
+          },
+          {
+            "profile": "new",
+            "robot": [
+              0,
+              1466018,
+              882268,
+              0
+            ],
+            "A_deg": 0.0,
+            "B_relative_deg": 0.0,
+            "B_alpha_deg": 54.23600525044604,
+            "C_axial_mm": -0.17626966106271702,
+            "max_fk_error_m": 3.060198415817316e-13,
+            "tip_world_m": [
+              0.35464747476316155,
+              0.06999999999999999,
+              0.3576400441534628
+            ],
+            "junction_world_m": [
+              0.35207632432441366,
+              0.06999999999999999,
+              0.36070422192593726
+            ],
+            "silver_linear_travel_mm": 0.0,
+            "silver_motion_mapping_calibrated": false,
+            "installation_pitch_y_deg": -40.0,
+            "installation_photo_estimate": true,
+            "shared_installation_across_needle_profiles": true,
+            "alignment_status": "exact driver algebra in one visually aligned, uncalibrated world frame"
+          },
+          {
+            "profile": "new",
+            "robot": [
+              0,
+              1466018,
+              893518,
+              0
+            ],
+            "A_deg": 0.0,
+            "B_relative_deg": 0.0,
+            "B_alpha_deg": 54.23600525044604,
+            "C_axial_mm": -1.3036111035091835e-07,
+            "max_fk_error_m": 3.060346736974325e-13,
+            "tip_world_m": [
+              0.35453417089286127,
+              0.06999999999999999,
+              0.35777507444794787
+            ],
+            "junction_world_m": [
+              0.3519630204541134,
+              0.06999999999999999,
+              0.36083925222042235
+            ],
+            "silver_linear_travel_mm": 0.0,
+            "silver_motion_mapping_calibrated": false,
+            "installation_pitch_y_deg": -40.0,
+            "installation_photo_estimate": true,
+            "shared_installation_across_needle_profiles": true,
+            "alignment_status": "exact driver algebra in one visually aligned, uncalibrated world frame"
+          },
+          {
+            "profile": "new",
+            "robot": [
+              0,
+              1466018,
+              904768,
+              0
+            ],
+            "A_deg": 0.0,
+            "B_relative_deg": 0.0,
+            "B_alpha_deg": 54.23600525044604,
+            "C_axial_mm": 0.17626940034049454,
+            "max_fk_error_m": 3.0604952523150805e-13,
+            "tip_world_m": [
+              0.3544208670225609,
+              0.06999999999999999,
+              0.35791010474243296
+            ],
+            "junction_world_m": [
+              0.35184971658381303,
+              0.06999999999999999,
+              0.36097428251490743
+            ],
+            "silver_linear_travel_mm": 0.0,
+            "silver_motion_mapping_calibrated": false,
+            "installation_pitch_y_deg": -40.0,
+            "installation_photo_estimate": true,
+            "shared_installation_across_needle_profiles": true,
+            "alignment_status": "exact driver algebra in one visually aligned, uncalibrated world frame"
+          },
+          {
+            "profile": "new",
+            "robot": [
+              0,
+              1860213,
+              882268,
+              0
+            ],
+            "A_deg": 0.0,
+            "B_relative_deg": 4.499994528863567,
+            "B_alpha_deg": 58.73599977930961,
+            "C_axial_mm": -0.17626966106271702,
+            "max_fk_error_m": 3.060198415817316e-13,
+            "tip_world_m": [
+              0.35438819283100625,
+              0.06999999999999999,
+              0.35743928661195234
+            ],
+            "junction_world_m": [
+              0.3520653806972033,
+              0.06999999999999999,
+              0.36069574846357255
+            ],
+            "silver_linear_travel_mm": 6.176406013770626,
+            "silver_motion_mapping_calibrated": false,
+            "installation_pitch_y_deg": -40.0,
+            "installation_photo_estimate": true,
+            "shared_installation_across_needle_profiles": true,
+            "alignment_status": "exact driver algebra in one visually aligned, uncalibrated world frame"
+          },
+          {
+            "profile": "new",
+            "robot": [
+              0,
+              1860213,
+              893518,
+              0
+            ],
+            "A_deg": 0.0,
+            "B_relative_deg": 4.499994528863567,
+            "B_alpha_deg": 58.73599977930961,
+            "C_axial_mm": -1.3036111035091835e-07,
+            "max_fk_error_m": 3.060346736974325e-13,
+            "tip_world_m": [
+              0.35428583257982293,
+              0.06999999999999999,
+              0.35758279036253554
+            ],
+            "junction_world_m": [
+              0.35196302044601996,
+              0.06999999999999999,
+              0.36083925221415575
+            ],
+            "silver_linear_travel_mm": 6.176406013770626,
+            "silver_motion_mapping_calibrated": false,
+            "installation_pitch_y_deg": -40.0,
+            "installation_photo_estimate": true,
+            "shared_installation_across_needle_profiles": true,
+            "alignment_status": "exact driver algebra in one visually aligned, uncalibrated world frame"
+          },
+          {
+            "profile": "new",
+            "robot": [
+              0,
+              1860213,
+              904768,
+              0
+            ],
+            "A_deg": 0.0,
+            "B_relative_deg": 4.499994528863567,
+            "B_alpha_deg": 58.73599977930961,
+            "C_axial_mm": 0.17626940034049454,
+            "max_fk_error_m": 3.0604952523150805e-13,
+            "tip_world_m": [
+              0.35418347232863956,
+              0.06999999999999999,
+              0.35772629411311874
+            ],
+            "junction_world_m": [
+              0.3518606601948366,
+              0.06999999999999999,
+              0.36098275596473894
+            ],
+            "silver_linear_travel_mm": 6.176406013770626,
+            "silver_motion_mapping_calibrated": false,
+            "installation_pitch_y_deg": -40.0,
+            "installation_photo_estimate": true,
+            "shared_installation_across_needle_profiles": true,
+            "alignment_status": "exact driver algebra in one visually aligned, uncalibrated world frame"
+          },
+          {
+            "profile": "new",
+            "robot": [
+              3750,
+              1089865,
+              882268,
+              0
+            ],
+            "A_deg": 6.75,
+            "B_relative_deg": -4.500000438061022,
+            "B_alpha_deg": 49.73600481238502,
+            "C_axial_mm": -0.17626966106271702,
+            "max_fk_error_m": 3.060198415817316e-13,
+            "tip_world_m": [
+              0.3548780541417013,
+              0.06953386077796607,
+              0.35788518383440054
+            ],
+            "junction_world_m": [
+              0.3520860564902463,
+              0.06998032545564717,
+              0.3607145686448943
+            ],
+            "silver_linear_travel_mm": -5.893716691733437,
+            "silver_motion_mapping_calibrated": false,
+            "installation_pitch_y_deg": -40.0,
+            "installation_photo_estimate": true,
+            "shared_installation_across_needle_profiles": true,
+            "alignment_status": "exact driver algebra in one visually aligned, uncalibrated world frame"
+          },
+          {
+            "profile": "new",
+            "robot": [
+              3750,
+              1089865,
+              893518,
+              0
+            ],
+            "A_deg": 6.75,
+            "B_relative_deg": -4.500000438061022,
+            "B_alpha_deg": 49.73600481238502,
+            "C_axial_mm": -1.3036111035091835e-07,
+            "max_fk_error_m": 3.060346736974325e-13,
+            "tip_world_m": [
+              0.35475501811276583,
+              0.06955353530776849,
+              0.3580098674175805
+            ],
+            "junction_world_m": [
+              0.35196302046131084,
+              0.06999999998544959,
+              0.3608392522280743
+            ],
+            "silver_linear_travel_mm": -5.893716691733437,
+            "silver_motion_mapping_calibrated": false,
+            "installation_pitch_y_deg": -40.0,
+            "installation_photo_estimate": true,
+            "shared_installation_across_needle_profiles": true,
+            "alignment_status": "exact driver algebra in one visually aligned, uncalibrated world frame"
+          },
+          {
+            "profile": "new",
+            "robot": [
+              3750,
+              1089865,
+              904768,
+              0
+            ],
+            "A_deg": 6.75,
+            "B_relative_deg": -4.500000438061022,
+            "B_alpha_deg": 49.73600481238502,
+            "C_axial_mm": 0.17626940034049454,
+            "max_fk_error_m": 3.0604952523150805e-13,
+            "tip_world_m": [
+              0.35463198208383034,
+              0.06957320983757091,
+              0.3581345510007605
+            ],
+            "junction_world_m": [
+              0.35183998443237535,
+              0.07001967451525201,
+              0.3609639358112543
+            ],
+            "silver_linear_travel_mm": -5.893716691733437,
+            "silver_motion_mapping_calibrated": false,
+            "installation_pitch_y_deg": -40.0,
+            "installation_photo_estimate": true,
+            "shared_installation_across_needle_profiles": true,
+            "alignment_status": "exact driver algebra in one visually aligned, uncalibrated world frame"
+          },
+          {
+            "profile": "new",
+            "robot": [
+              3750,
+              1466018,
+              882268,
+              0
+            ],
+            "A_deg": 6.75,
+            "B_relative_deg": 0.0,
+            "B_alpha_deg": 54.23600525044604,
+            "C_axial_mm": -0.17626966106271702,
+            "max_fk_error_m": 3.059738856529169e-13,
+            "tip_world_m": [
+              0.35463504521481354,
+              0.06952322790198967,
+              0.35766526431166296
+            ],
+            "junction_world_m": [
+              0.35207579970496805,
+              0.06997987666914711,
+              0.36070528640431115
+            ],
+            "silver_linear_travel_mm": 0.0,
+            "silver_motion_mapping_calibrated": false,
+            "installation_pitch_y_deg": -40.0,
+            "installation_photo_estimate": true,
+            "shared_installation_across_needle_profiles": true,
+            "alignment_status": "exact driver algebra in one visually aligned, uncalibrated world frame"
+          },
+          {
+            "profile": "new",
+            "robot": [
+              3750,
+              1466018,
+              893518,
+              0
+            ],
+            "A_deg": 6.75,
+            "B_relative_deg": 0.0,
+            "B_alpha_deg": 54.23600525044604,
+            "C_axial_mm": -1.3036111035091835e-07,
+            "max_fk_error_m": 3.060346736974325e-13,
+            "tip_world_m": [
+              0.35452226596357084,
+              0.06954335121796025,
+              0.3577992301285614
+            ],
+            "junction_world_m": [
+              0.35196302045372535,
+              0.06999999998511769,
+              0.3608392522212096
+            ],
+            "silver_linear_travel_mm": 0.0,
+            "silver_motion_mapping_calibrated": false,
+            "installation_pitch_y_deg": -40.0,
+            "installation_photo_estimate": true,
+            "shared_installation_across_needle_profiles": true,
+            "alignment_status": "exact driver algebra in one visually aligned, uncalibrated world frame"
+          },
+          {
+            "profile": "new",
+            "robot": [
+              3750,
+              1466018,
+              904768,
+              0
+            ],
+            "A_deg": 6.75,
+            "B_relative_deg": 0.0,
+            "B_alpha_deg": 54.23600525044604,
+            "C_axial_mm": 0.17626940034049454,
+            "max_fk_error_m": 3.0604952523150805e-13,
+            "tip_world_m": [
+              0.3544094867123282,
+              0.06956347453393082,
+              0.3579331959454598
+            ],
+            "junction_world_m": [
+              0.3518502412024827,
+              0.07002012330108826,
+              0.360973218038108
+            ],
+            "silver_linear_travel_mm": 0.0,
+            "silver_motion_mapping_calibrated": false,
+            "installation_pitch_y_deg": -40.0,
+            "installation_photo_estimate": true,
+            "shared_installation_across_needle_profiles": true,
+            "alignment_status": "exact driver algebra in one visually aligned, uncalibrated world frame"
+          },
+          {
+            "profile": "new",
+            "robot": [
+              3750,
+              1860213,
+              882268,
+              0
+            ],
+            "A_deg": 6.75,
+            "B_relative_deg": 4.499994528863567,
+            "B_alpha_deg": 58.73599977930961,
+            "C_axial_mm": -0.17626966106271702,
+            "max_fk_error_m": 3.059738856529169e-13,
+            "tip_world_m": [
+              0.3543755627138831,
+              0.06951553449326221,
+              0.35746491373395356
+            ],
+            "junction_world_m": [
+              0.35206484761226264,
+              0.06997955195004157,
+              0.3606968301188477
+            ],
+            "silver_linear_travel_mm": 6.176406013770626,
+            "silver_motion_mapping_calibrated": false,
+            "installation_pitch_y_deg": -40.0,
+            "installation_photo_estimate": true,
+            "shared_installation_across_needle_profiles": true,
+            "alignment_status": "exact driver algebra in one visually aligned, uncalibrated world frame"
+          },
+          {
+            "profile": "new",
+            "robot": [
+              3750,
+              1860213,
+              893518,
+              0
+            ],
+            "A_deg": 6.75,
+            "B_relative_deg": 4.499994528863567,
+            "B_alpha_deg": 58.73599977930961,
+            "C_axial_mm": -1.3036111035091835e-07,
+            "max_fk_error_m": 3.060346736974325e-13,
+            "tip_world_m": [
+              0.35427373554724617,
+              0.06953598252809817,
+              0.35760733583006155
+            ],
+            "junction_world_m": [
+              0.3519630204456257,
+              0.06999999998487753,
+              0.36083925221495566
+            ],
+            "silver_linear_travel_mm": 6.176406013770626,
+            "silver_motion_mapping_calibrated": false,
+            "installation_pitch_y_deg": -40.0,
+            "installation_photo_estimate": true,
+            "shared_installation_across_needle_profiles": true,
+            "alignment_status": "exact driver algebra in one visually aligned, uncalibrated world frame"
+          },
+          {
+            "profile": "new",
+            "robot": [
+              3750,
+              1860213,
+              904768,
+              0
+            ],
+            "A_deg": 6.75,
+            "B_relative_deg": 4.499994528863567,
+            "B_alpha_deg": 58.73599977930961,
+            "C_axial_mm": 0.17626940034049454,
+            "max_fk_error_m": 3.060955000053461e-13,
+            "tip_world_m": [
+              0.3541719083806092,
+              0.06955643056293413,
+              0.3577497579261696
+            ],
+            "junction_world_m": [
+              0.35186119327898874,
+              0.0700204480197135,
+              0.3609816743110637
+            ],
+            "silver_linear_travel_mm": 6.176406013770626,
+            "silver_motion_mapping_calibrated": false,
+            "installation_pitch_y_deg": -40.0,
+            "installation_photo_estimate": true,
+            "shared_installation_across_needle_profiles": true,
+            "alignment_status": "exact driver algebra in one visually aligned, uncalibrated world frame"
+          }
+        ]
+      },
+      {
+        "needle_profile": "legacy",
+        "samples": 28,
+        "max_fk_error_m": 3.06858142993e-13,
+        "diagnostics": [
+          {
+            "profile": "legacy",
+            "robot": [
+              0,
+              1466018,
+              893518,
+              0
+            ],
+            "A_deg": 0.0,
+            "B_relative_deg": 0.0,
+            "B_alpha_deg": 54.23600525044604,
+            "C_axial_mm": -1.3036111035091835e-07,
+            "max_fk_error_m": 3.0665799469334923e-13,
+            "tip_world_m": [
+              0.3493918700153655,
+              0.06999999999999999,
+              0.3639034299928968
+            ],
+            "junction_world_m": [
+              0.3519630204541134,
+              0.06999999999999999,
+              0.36083925222042235
+            ],
+            "silver_linear_travel_mm": 0.0,
+            "silver_motion_mapping_calibrated": false,
+            "installation_pitch_y_deg": -40.0,
+            "installation_photo_estimate": true,
+            "shared_installation_across_needle_profiles": true,
+            "alignment_status": "exact driver algebra in one visually aligned, uncalibrated world frame"
+          },
+          {
+            "profile": "legacy",
+            "robot": [
+              -3750,
+              1089865,
+              882268,
+              0
+            ],
+            "A_deg": -6.75,
+            "B_relative_deg": -4.500000438061022,
+            "B_alpha_deg": 49.73600481238502,
+            "C_axial_mm": -0.17626966106271702,
+            "max_fk_error_m": 3.064424716422868e-13,
+            "tip_world_m": [
+              0.34929405883879133,
+              0.06957320986667172,
+              0.3635439534553881
+            ],
+            "junction_world_m": [
+              0.3520860564902463,
+              0.07001967454435282,
+              0.3607145686448943
+            ],
+            "silver_linear_travel_mm": -5.893716691733437,
+            "silver_motion_mapping_calibrated": false,
+            "installation_pitch_y_deg": -40.0,
+            "installation_photo_estimate": true,
+            "shared_installation_across_needle_profiles": true,
+            "alignment_status": "exact driver algebra in one visually aligned, uncalibrated world frame"
+          },
+          {
+            "profile": "legacy",
+            "robot": [
+              -3750,
+              1089865,
+              893518,
+              0
+            ],
+            "A_deg": -6.75,
+            "B_relative_deg": -4.500000438061022,
+            "B_alpha_deg": 49.73600481238502,
+            "C_axial_mm": -1.3036111035091835e-07,
+            "max_fk_error_m": 3.0642705086661437e-13,
+            "tip_world_m": [
+              0.34917102280985585,
+              0.0695535353368693,
+              0.36366863703856805
+            ],
+            "junction_world_m": [
+              0.35196302046131084,
+              0.0700000000145504,
+              0.3608392522280743
+            ],
+            "silver_linear_travel_mm": -5.893716691733437,
+            "silver_motion_mapping_calibrated": false,
+            "installation_pitch_y_deg": -40.0,
+            "installation_photo_estimate": true,
+            "shared_installation_across_needle_profiles": true,
+            "alignment_status": "exact driver algebra in one visually aligned, uncalibrated world frame"
+          },
+          {
+            "profile": "legacy",
+            "robot": [
+              -3750,
+              1089865,
+              904768,
+              0
+            ],
+            "A_deg": -6.75,
+            "B_relative_deg": -4.500000438061022,
+            "B_alpha_deg": 49.73600481238502,
+            "C_axial_mm": 0.17626940034049454,
+            "max_fk_error_m": 3.064886539077497e-13,
+            "tip_world_m": [
+              0.34904798678092036,
+              0.06953386080706687,
+              0.3637933206217481
+            ],
+            "junction_world_m": [
+              0.35183998443237535,
+              0.06998032548474797,
+              0.3609639358112543
+            ],
+            "silver_linear_travel_mm": -5.893716691733437,
+            "silver_motion_mapping_calibrated": false,
+            "installation_pitch_y_deg": -40.0,
+            "installation_photo_estimate": true,
+            "shared_installation_across_needle_profiles": true,
+            "alignment_status": "exact driver algebra in one visually aligned, uncalibrated world frame"
+          },
+          {
+            "profile": "legacy",
+            "robot": [
+              -3750,
+              1466018,
+              882268,
+              0
+            ],
+            "A_deg": -6.75,
+            "B_relative_deg": 0.0,
+            "B_alpha_deg": 54.23600525044604,
+            "C_axial_mm": -0.17626966106271702,
+            "max_fk_error_m": 3.0659644577836207e-13,
+            "tip_world_m": [
+              0.34951655419512256,
+              0.06956347456369544,
+              0.36374530849695935
+            ],
+            "junction_world_m": [
+              0.35207579970496805,
+              0.07002012333085288,
+              0.36070528640431115
+            ],
+            "silver_linear_travel_mm": 0.0,
+            "silver_motion_mapping_calibrated": false,
+            "installation_pitch_y_deg": -40.0,
+            "installation_photo_estimate": true,
+            "shared_installation_across_needle_profiles": true,
+            "alignment_status": "exact driver algebra in one visually aligned, uncalibrated world frame"
+          },
+          {
+            "profile": "legacy",
+            "robot": [
+              -3750,
+              1466018,
+              893518,
+              0
+            ],
+            "A_deg": -6.75,
+            "B_relative_deg": 0.0,
+            "B_alpha_deg": 54.23600525044604,
+            "C_axial_mm": -1.3036111035091835e-07,
+            "max_fk_error_m": 3.0665799469334923e-13,
+            "tip_world_m": [
+              0.34940377494387986,
+              0.06954335124772486,
+              0.3638792743138578
+            ],
+            "junction_world_m": [
+              0.35196302045372535,
+              0.0700000000148823,
+              0.3608392522212096
+            ],
+            "silver_linear_travel_mm": 0.0,
+            "silver_motion_mapping_calibrated": false,
+            "installation_pitch_y_deg": -40.0,
+            "installation_photo_estimate": true,
+            "shared_installation_across_needle_profiles": true,
+            "alignment_status": "exact driver algebra in one visually aligned, uncalibrated world frame"
+          },
+          {
+            "profile": "legacy",
+            "robot": [
+              -3750,
+              1466018,
+              904768,
+              0
+            ],
+            "A_deg": -6.75,
+            "B_relative_deg": 0.0,
+            "B_alpha_deg": 54.23600525044604,
+            "C_axial_mm": 0.17626940034049454,
+            "max_fk_error_m": 3.0667338878407035e-13,
+            "tip_world_m": [
+              0.3492909956926372,
+              0.06952322793175429,
+              0.3640132401307562
+            ],
+            "junction_world_m": [
+              0.3518502412024827,
+              0.06997987669891173,
+              0.360973218038108
+            ],
+            "silver_linear_travel_mm": 0.0,
+            "silver_motion_mapping_calibrated": false,
+            "installation_pitch_y_deg": -40.0,
+            "installation_photo_estimate": true,
+            "shared_installation_across_needle_profiles": true,
+            "alignment_status": "exact driver algebra in one visually aligned, uncalibrated world frame"
+          },
+          {
+            "profile": "legacy",
+            "robot": [
+              -3750,
+              1860213,
+              882268,
+              0
+            ],
+            "A_deg": -6.75,
+            "B_relative_deg": 4.499994528863567,
+            "B_alpha_deg": 58.73599977930961,
+            "C_axial_mm": -0.17626966106271702,
+            "max_fk_error_m": 3.0678124632501733e-13,
+            "tip_world_m": [
+              0.3497541325106422,
+              0.06955643059317905,
+              0.3639287465037418
+            ],
+            "junction_world_m": [
+              0.35206484761226264,
+              0.07002044804995841,
+              0.3606968301188477
+            ],
+            "silver_linear_travel_mm": 6.176406013770626,
+            "silver_motion_mapping_calibrated": false,
+            "installation_pitch_y_deg": -40.0,
+            "installation_photo_estimate": true,
+            "shared_installation_across_needle_profiles": true,
+            "alignment_status": "exact driver algebra in one visually aligned, uncalibrated world frame"
+          },
+          {
+            "profile": "legacy",
+            "robot": [
+              -3750,
+              1860213,
+              893518,
+              0
+            ],
+            "A_deg": -6.75,
+            "B_relative_deg": 4.499994528863567,
+            "B_alpha_deg": 58.73599977930961,
+            "C_axial_mm": -1.3036111035091835e-07,
+            "max_fk_error_m": 3.067657823086743e-13,
+            "tip_world_m": [
+              0.34965230534400527,
+              0.06953598255834309,
+              0.3640711685998498
+            ],
+            "junction_world_m": [
+              0.3519630204456257,
+              0.07000000001512245,
+              0.36083925221495566
+            ],
+            "silver_linear_travel_mm": 6.176406013770626,
+            "silver_motion_mapping_calibrated": false,
+            "installation_pitch_y_deg": -40.0,
+            "installation_photo_estimate": true,
+            "shared_installation_across_needle_profiles": true,
+            "alignment_status": "exact driver algebra in one visually aligned, uncalibrated world frame"
+          },
+          {
+            "profile": "legacy",
+            "robot": [
+              -3750,
+              1860213,
+              904768,
+              0
+            ],
+            "A_deg": -6.75,
+            "B_relative_deg": 4.499994528863567,
+            "B_alpha_deg": 58.73599977930961,
+            "C_axial_mm": 0.17626940034049454,
+            "max_fk_error_m": 3.0682734747045306e-13,
+            "tip_world_m": [
+              0.3495504781773683,
+              0.06951553452350713,
+              0.3642135906959578
+            ],
+            "junction_world_m": [
+              0.35186119327898874,
+              0.06997955198028649,
+              0.3609816743110637
+            ],
+            "silver_linear_travel_mm": 6.176406013770626,
+            "silver_motion_mapping_calibrated": false,
+            "installation_pitch_y_deg": -40.0,
+            "installation_photo_estimate": true,
+            "shared_installation_across_needle_profiles": true,
+            "alignment_status": "exact driver algebra in one visually aligned, uncalibrated world frame"
+          },
+          {
+            "profile": "legacy",
+            "robot": [
+              0,
+              1089865,
+              882268,
+              0
+            ],
+            "A_deg": 0.0,
+            "B_relative_deg": -4.500000438061022,
+            "B_alpha_deg": 49.73600481238502,
+            "C_axial_mm": -0.17626966106271702,
+            "max_fk_error_m": 3.064886488806665e-13,
+            "tip_world_m": [
+              0.34928293233072005,
+              0.06999999999999999,
+              0.36356652968148384
+            ],
+            "junction_world_m": [
+              0.352086569409734,
+              0.06999999999999999,
+              0.3607135279063042
+            ],
+            "silver_linear_travel_mm": -5.893716691733437,
+            "silver_motion_mapping_calibrated": false,
+            "installation_pitch_y_deg": -40.0,
+            "installation_photo_estimate": true,
+            "shared_installation_across_needle_profiles": true,
+            "alignment_status": "exact driver algebra in one visually aligned, uncalibrated world frame"
+          },
+          {
+            "profile": "legacy",
+            "robot": [
+              0,
+              1089865,
+              893518,
+              0
+            ],
+            "A_deg": 0.0,
+            "B_relative_deg": -4.500000438061022,
+            "B_alpha_deg": 49.73600481238502,
+            "C_axial_mm": -1.3036111035091835e-07,
+            "max_fk_error_m": 3.0650403136941644e-13,
+            "tip_world_m": [
+              0.3491593833826762,
+              0.06999999999999999,
+              0.3636922540024843
+            ],
+            "junction_world_m": [
+              0.35196302046169015,
+              0.06999999999999999,
+              0.3608392522273046
+            ],
+            "silver_linear_travel_mm": -5.893716691733437,
+            "silver_motion_mapping_calibrated": false,
+            "installation_pitch_y_deg": -40.0,
+            "installation_photo_estimate": true,
+            "shared_installation_across_needle_profiles": true,
+            "alignment_status": "exact driver algebra in one visually aligned, uncalibrated world frame"
+          },
+          {
+            "profile": "legacy",
+            "robot": [
+              0,
+              1089865,
+              904768,
+              0
+            ],
+            "A_deg": 0.0,
+            "B_relative_deg": -4.500000438061022,
+            "B_alpha_deg": 49.73600481238502,
+            "C_axial_mm": 0.17626940034049454,
+            "max_fk_error_m": 3.0651943319251973e-13,
+            "tip_world_m": [
+              0.3490358344346324,
+              0.06999999999999999,
+              0.3638179783234847
+            ],
+            "junction_world_m": [
+              0.3518394715136463,
+              0.06999999999999999,
+              0.36096497654830506
+            ],
+            "silver_linear_travel_mm": -5.893716691733437,
+            "silver_motion_mapping_calibrated": false,
+            "installation_pitch_y_deg": -40.0,
+            "installation_photo_estimate": true,
+            "shared_installation_across_needle_profiles": true,
+            "alignment_status": "exact driver algebra in one visually aligned, uncalibrated world frame"
+          },
+          {
+            "profile": "legacy",
+            "robot": [
+              0,
+              1466018,
+              882268,
+              0
+            ],
+            "A_deg": 0.0,
+            "B_relative_deg": 0.0,
+            "B_alpha_deg": 54.23600525044604,
+            "C_axial_mm": -0.17626966106271702,
+            "max_fk_error_m": 3.0667343400056154e-13,
+            "tip_world_m": [
+              0.34950517388566577,
+              0.06999999999999999,
+              0.36376839969841174
+            ],
+            "junction_world_m": [
+              0.35207632432441366,
+              0.06999999999999999,
+              0.36070422192593726
+            ],
+            "silver_linear_travel_mm": 0.0,
+            "silver_motion_mapping_calibrated": false,
+            "installation_pitch_y_deg": -40.0,
+            "installation_photo_estimate": true,
+            "shared_installation_across_needle_profiles": true,
+            "alignment_status": "exact driver algebra in one visually aligned, uncalibrated world frame"
+          },
+          {
+            "profile": "legacy",
+            "robot": [
+              0,
+              1466018,
+              893518,
+              0
+            ],
+            "A_deg": 0.0,
+            "B_relative_deg": 0.0,
+            "B_alpha_deg": 54.23600525044604,
+            "C_axial_mm": -1.3036111035091835e-07,
+            "max_fk_error_m": 3.0665799469334923e-13,
+            "tip_world_m": [
+              0.3493918700153655,
+              0.06999999999999999,
+              0.3639034299928968
+            ],
+            "junction_world_m": [
+              0.3519630204541134,
+              0.06999999999999999,
+              0.36083925222042235
+            ],
+            "silver_linear_travel_mm": 0.0,
+            "silver_motion_mapping_calibrated": false,
+            "installation_pitch_y_deg": -40.0,
+            "installation_photo_estimate": true,
+            "shared_installation_across_needle_profiles": true,
+            "alignment_status": "exact driver algebra in one visually aligned, uncalibrated world frame"
+          },
+          {
+            "profile": "legacy",
+            "robot": [
+              0,
+              1466018,
+              904768,
+              0
+            ],
+            "A_deg": 0.0,
+            "B_relative_deg": 0.0,
+            "B_alpha_deg": 54.23600525044604,
+            "C_axial_mm": 0.17626940034049454,
+            "max_fk_error_m": 3.0667338878407035e-13,
+            "tip_world_m": [
+              0.34927856614506514,
+              0.06999999999999999,
+              0.3640384602873819
+            ],
+            "junction_world_m": [
+              0.35184971658381303,
+              0.06999999999999999,
+              0.36097428251490743
+            ],
+            "silver_linear_travel_mm": 0.0,
+            "silver_motion_mapping_calibrated": false,
+            "installation_pitch_y_deg": -40.0,
+            "installation_photo_estimate": true,
+            "shared_installation_across_needle_profiles": true,
+            "alignment_status": "exact driver algebra in one visually aligned, uncalibrated world frame"
+          },
+          {
+            "profile": "legacy",
+            "robot": [
+              0,
+              1860213,
+              882268,
+              0
+            ],
+            "A_deg": 0.0,
+            "B_relative_deg": 4.499994528863567,
+            "B_alpha_deg": 58.73599977930961,
+            "C_axial_mm": -0.17626966106271702,
+            "max_fk_error_m": 3.0678124632501733e-13,
+            "tip_world_m": [
+              0.3497425685634003,
+              0.06999999999999999,
+              0.36395221031519276
+            ],
+            "junction_world_m": [
+              0.3520653806972033,
+              0.06999999999999999,
+              0.36069574846357255
+            ],
+            "silver_linear_travel_mm": 6.176406013770626,
+            "silver_motion_mapping_calibrated": false,
+            "installation_pitch_y_deg": -40.0,
+            "installation_photo_estimate": true,
+            "shared_installation_across_needle_profiles": true,
+            "alignment_status": "exact driver algebra in one visually aligned, uncalibrated world frame"
+          },
+          {
+            "profile": "legacy",
+            "robot": [
+              0,
+              1860213,
+              893518,
+              0
+            ],
+            "A_deg": 0.0,
+            "B_relative_deg": 4.499994528863567,
+            "B_alpha_deg": 58.73599977930961,
+            "C_axial_mm": -1.3036111035091835e-07,
+            "max_fk_error_m": 3.067965940550629e-13,
+            "tip_world_m": [
+              0.349640208312217,
+              0.06999999999999999,
+              0.36409571406577595
+            ],
+            "junction_world_m": [
+              0.35196302044601996,
+              0.06999999999999999,
+              0.36083925221415575
+            ],
+            "silver_linear_travel_mm": 6.176406013770626,
+            "silver_motion_mapping_calibrated": false,
+            "installation_pitch_y_deg": -40.0,
+            "installation_photo_estimate": true,
+            "shared_installation_across_needle_profiles": true,
+            "alignment_status": "exact driver algebra in one visually aligned, uncalibrated world frame"
+          },
+          {
+            "profile": "legacy",
+            "robot": [
+              0,
+              1860213,
+              904768,
+              0
+            ],
+            "A_deg": 0.0,
+            "B_relative_deg": 4.499994528863567,
+            "B_alpha_deg": 58.73599977930961,
+            "C_axial_mm": 0.17626940034049454,
+            "max_fk_error_m": 3.06858142993e-13,
+            "tip_world_m": [
+              0.3495378480610336,
+              0.06999999999999999,
+              0.36423921781635915
+            ],
+            "junction_world_m": [
+              0.3518606601948366,
+              0.06999999999999999,
+              0.36098275596473894
+            ],
+            "silver_linear_travel_mm": 6.176406013770626,
+            "silver_motion_mapping_calibrated": false,
+            "installation_pitch_y_deg": -40.0,
+            "installation_photo_estimate": true,
+            "shared_installation_across_needle_profiles": true,
+            "alignment_status": "exact driver algebra in one visually aligned, uncalibrated world frame"
+          },
+          {
+            "profile": "legacy",
+            "robot": [
+              3750,
+              1089865,
+              882268,
+              0
+            ],
+            "A_deg": 6.75,
+            "B_relative_deg": -4.500000438061022,
+            "B_alpha_deg": 49.73600481238502,
+            "C_axial_mm": -0.17626966106271702,
+            "max_fk_error_m": 3.064424716422868e-13,
+            "tip_world_m": [
+              0.34929405883879133,
+              0.07042679013332827,
+              0.3635439534553881
+            ],
+            "junction_world_m": [
+              0.3520860564902463,
+              0.06998032545564717,
+              0.3607145686448943
+            ],
+            "silver_linear_travel_mm": -5.893716691733437,
+            "silver_motion_mapping_calibrated": false,
+            "installation_pitch_y_deg": -40.0,
+            "installation_photo_estimate": true,
+            "shared_installation_across_needle_profiles": true,
+            "alignment_status": "exact driver algebra in one visually aligned, uncalibrated world frame"
+          },
+          {
+            "profile": "legacy",
+            "robot": [
+              3750,
+              1089865,
+              893518,
+              0
+            ],
+            "A_deg": 6.75,
+            "B_relative_deg": -4.500000438061022,
+            "B_alpha_deg": 49.73600481238502,
+            "C_axial_mm": -1.3036111035091835e-07,
+            "max_fk_error_m": 3.0642705086661437e-13,
+            "tip_world_m": [
+              0.34917102280985585,
+              0.07044646466313069,
+              0.36366863703856805
+            ],
+            "junction_world_m": [
+              0.35196302046131084,
+              0.06999999998544959,
+              0.3608392522280743
+            ],
+            "silver_linear_travel_mm": -5.893716691733437,
+            "silver_motion_mapping_calibrated": false,
+            "installation_pitch_y_deg": -40.0,
+            "installation_photo_estimate": true,
+            "shared_installation_across_needle_profiles": true,
+            "alignment_status": "exact driver algebra in one visually aligned, uncalibrated world frame"
+          },
+          {
+            "profile": "legacy",
+            "robot": [
+              3750,
+              1089865,
+              904768,
+              0
+            ],
+            "A_deg": 6.75,
+            "B_relative_deg": -4.500000438061022,
+            "B_alpha_deg": 49.73600481238502,
+            "C_axial_mm": 0.17626940034049454,
+            "max_fk_error_m": 3.064886539077497e-13,
+            "tip_world_m": [
+              0.34904798678092036,
+              0.07046613919293311,
+              0.3637933206217481
+            ],
+            "junction_world_m": [
+              0.35183998443237535,
+              0.07001967451525201,
+              0.3609639358112543
+            ],
+            "silver_linear_travel_mm": -5.893716691733437,
+            "silver_motion_mapping_calibrated": false,
+            "installation_pitch_y_deg": -40.0,
+            "installation_photo_estimate": true,
+            "shared_installation_across_needle_profiles": true,
+            "alignment_status": "exact driver algebra in one visually aligned, uncalibrated world frame"
+          },
+          {
+            "profile": "legacy",
+            "robot": [
+              3750,
+              1466018,
+              882268,
+              0
+            ],
+            "A_deg": 6.75,
+            "B_relative_deg": 0.0,
+            "B_alpha_deg": 54.23600525044604,
+            "C_axial_mm": -0.17626966106271702,
+            "max_fk_error_m": 3.0659644577836207e-13,
+            "tip_world_m": [
+              0.34951655419512256,
+              0.07043652543630455,
+              0.36374530849695935
+            ],
+            "junction_world_m": [
+              0.35207579970496805,
+              0.06997987666914711,
+              0.36070528640431115
+            ],
+            "silver_linear_travel_mm": 0.0,
+            "silver_motion_mapping_calibrated": false,
+            "installation_pitch_y_deg": -40.0,
+            "installation_photo_estimate": true,
+            "shared_installation_across_needle_profiles": true,
+            "alignment_status": "exact driver algebra in one visually aligned, uncalibrated world frame"
+          },
+          {
+            "profile": "legacy",
+            "robot": [
+              3750,
+              1466018,
+              893518,
+              0
+            ],
+            "A_deg": 6.75,
+            "B_relative_deg": 0.0,
+            "B_alpha_deg": 54.23600525044604,
+            "C_axial_mm": -1.3036111035091835e-07,
+            "max_fk_error_m": 3.0665799469334923e-13,
+            "tip_world_m": [
+              0.34940377494387986,
+              0.07045664875227513,
+              0.3638792743138578
+            ],
+            "junction_world_m": [
+              0.35196302045372535,
+              0.06999999998511769,
+              0.3608392522212096
+            ],
+            "silver_linear_travel_mm": 0.0,
+            "silver_motion_mapping_calibrated": false,
+            "installation_pitch_y_deg": -40.0,
+            "installation_photo_estimate": true,
+            "shared_installation_across_needle_profiles": true,
+            "alignment_status": "exact driver algebra in one visually aligned, uncalibrated world frame"
+          },
+          {
+            "profile": "legacy",
+            "robot": [
+              3750,
+              1466018,
+              904768,
+              0
+            ],
+            "A_deg": 6.75,
+            "B_relative_deg": 0.0,
+            "B_alpha_deg": 54.23600525044604,
+            "C_axial_mm": 0.17626940034049454,
+            "max_fk_error_m": 3.0667338878407035e-13,
+            "tip_world_m": [
+              0.3492909956926372,
+              0.0704767720682457,
+              0.3640132401307562
+            ],
+            "junction_world_m": [
+              0.3518502412024827,
+              0.07002012330108826,
+              0.360973218038108
+            ],
+            "silver_linear_travel_mm": 0.0,
+            "silver_motion_mapping_calibrated": false,
+            "installation_pitch_y_deg": -40.0,
+            "installation_photo_estimate": true,
+            "shared_installation_across_needle_profiles": true,
+            "alignment_status": "exact driver algebra in one visually aligned, uncalibrated world frame"
+          },
+          {
+            "profile": "legacy",
+            "robot": [
+              3750,
+              1860213,
+              882268,
+              0
+            ],
+            "A_deg": 6.75,
+            "B_relative_deg": 4.499994528863567,
+            "B_alpha_deg": 58.73599977930961,
+            "C_axial_mm": -0.17626966106271702,
+            "max_fk_error_m": 3.0678124632501733e-13,
+            "tip_world_m": [
+              0.3497541325106422,
+              0.07044356940682094,
+              0.3639287465037418
+            ],
+            "junction_world_m": [
+              0.35206484761226264,
+              0.06997955195004157,
+              0.3606968301188477
+            ],
+            "silver_linear_travel_mm": 6.176406013770626,
+            "silver_motion_mapping_calibrated": false,
+            "installation_pitch_y_deg": -40.0,
+            "installation_photo_estimate": true,
+            "shared_installation_across_needle_profiles": true,
+            "alignment_status": "exact driver algebra in one visually aligned, uncalibrated world frame"
+          },
+          {
+            "profile": "legacy",
+            "robot": [
+              3750,
+              1860213,
+              893518,
+              0
+            ],
+            "A_deg": 6.75,
+            "B_relative_deg": 4.499994528863567,
+            "B_alpha_deg": 58.73599977930961,
+            "C_axial_mm": -1.3036111035091835e-07,
+            "max_fk_error_m": 3.067657823086743e-13,
+            "tip_world_m": [
+              0.34965230534400527,
+              0.0704640174416569,
+              0.3640711685998498
+            ],
+            "junction_world_m": [
+              0.3519630204456257,
+              0.06999999998487753,
+              0.36083925221495566
+            ],
+            "silver_linear_travel_mm": 6.176406013770626,
+            "silver_motion_mapping_calibrated": false,
+            "installation_pitch_y_deg": -40.0,
+            "installation_photo_estimate": true,
+            "shared_installation_across_needle_profiles": true,
+            "alignment_status": "exact driver algebra in one visually aligned, uncalibrated world frame"
+          },
+          {
+            "profile": "legacy",
+            "robot": [
+              3750,
+              1860213,
+              904768,
+              0
+            ],
+            "A_deg": 6.75,
+            "B_relative_deg": 4.499994528863567,
+            "B_alpha_deg": 58.73599977930961,
+            "C_axial_mm": 0.17626940034049454,
+            "max_fk_error_m": 3.0682734747045306e-13,
+            "tip_world_m": [
+              0.3495504781773683,
+              0.07048446547649286,
+              0.3642135906959578
+            ],
+            "junction_world_m": [
+              0.35186119327898874,
+              0.0700204480197135,
+              0.3609816743110637
+            ],
+            "silver_linear_travel_mm": 6.176406013770626,
+            "silver_motion_mapping_calibrated": false,
+            "installation_pitch_y_deg": -40.0,
+            "installation_photo_estimate": true,
+            "shared_installation_across_needle_profiles": true,
+            "alignment_status": "exact driver algebra in one visually aligned, uncalibrated world frame"
+          }
+        ]
+      }
+    ]
+  }
+}

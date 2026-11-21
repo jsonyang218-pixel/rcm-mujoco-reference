@@ -14,7 +14,7 @@ import argparse,json,csv,math
 import numpy as np
 import mujoco
 from PIL import Image,ImageDraw
-from driver_loader import load_driver
+from driver_loader import load_driver, driver_identity
 from motor_backend import MotorBackend
 from model_sync import DriverModel
 
@@ -68,7 +68,7 @@ def main():
     with (out/'driver_trace.csv').open('w',newline='') as stream:
         w=csv.DictWriter(stream,fieldnames=list(rows[0]));w.writeheader();w.writerows(rows)
     (out/'control_commands.jsonl').write_text(''.join(json.dumps(r)+'\n' for r in events))
-    result={'status':'PASS','source_commit':'c2a3ffc5f0801706a48559b3f514b9d32cae0435','profile':args.profile,
+    result={'status':'PASS','driver':driver_identity(),'profile':args.profile,
         'simulation_duration_s':duration,'integration_steps':len(rows),'accepted_control_packets':len(events),
         'rendered_frames':len(frames),'max_mujoco_vs_driver_fk_error_m':maximum_error,
         'ros_transport_tested':False,'hardware_connected':False,'simulation_dynamics':'chosen first-order motor response, tau=.04s; not identified',

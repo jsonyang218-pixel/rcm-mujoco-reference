@@ -26,6 +26,10 @@ python -m scripts.datasets.collect_v9_dataset --output-dir runs/v9_motor_random 
 
 ## 执行链
 
+2026-11-21 起默认使用 G15 原文件快照；新进程可通过 `RCM_DRIVER_VARIANT=g10`
+复现原换算。电机摘要与逐拍记录包含驱动身份；采集来源哈希包含选定的运动学文件，
+防止将不同驱动生成的样本继续追加到同一个未完成数据集。原有数据不会改写。
+
 ```text
 视觉测量误差 → 有速率约束的累计目标 q_command
   → Reference 编码器换算

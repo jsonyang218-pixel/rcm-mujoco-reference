@@ -39,6 +39,16 @@ rcm_4090_deploy/
 
 ## 启动当前模型
 
+当前默认控制驱动为 **G15**，加载 `mujoco_model/vendor/simulation_driver_g15/`
+中的原文件快照。模型零位仍为针尖超过 RCM 约 4 mm；每个手柄计数的名义步长为
+A=0.0225°、B=0.01125°、C≈1.762695 µm。G15 的步长比 G10 大 50%，不代表定位精度改善。
+启动摘要与电机记录包含实际驱动版本、源码路径和 SHA-256。
+
+需要复现原 G10 时，在新进程启动前指定 `RCM_DRIVER_VARIANT=g10`，例如
+`RCM_DRIVER_VARIANT=g10 python run_reference.py --no-viewer`。恢复 G15 可指定
+`RCM_DRIVER_VARIANT=g15`；未设置此变量时默认 G15。已经运行的进程需要重新启动。
+切换驱动不会自动启用电机、改变针具或接入规划中的策略连续目标累积。
+
 ```bash
 python -m pip install -r requirements.txt
 python run_reference.py

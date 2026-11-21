@@ -10,7 +10,7 @@ import math
 import traceback
 import numpy as np
 
-from driver_loader import load_driver, get_message_types
+from driver_loader import load_driver, get_message_types, driver_identity
 from motor_backend import MotorBackend
 
 HERE=Path(__file__).resolve().parent
@@ -44,7 +44,16 @@ def protocol_checks():
     receipt=plant.consume(packet,0)
     expected=KIN.predicted_robot_encoders(HOME,(9,-7,13,0))
     assert plant.target==expected
-    plant.step(.02,.02)
+    # Finish the first move before checking retransmission. With G15, the
+    # nine-count A move takes >20 ms at 10 deg/s even when tau is zero.
+    native_target = plant._to_native(expected)
+    native_home = plant._to_native(HOME)
+    travel_s = max(abs(target-start)/speed for target,start,speed in
+                   zip(native_target,native_home,plant.speed_limits))
+    settle_s = max(.02,travel_s+1e-6)
+    assert settle_s < .03, 'Protocol fixture exceeds its retransmission timestamp'
+    plant.step(settle_s,settle_s)
+    assert plant.robot==expected,'First command has not reached its target'
     robot=plant.robot
     duplicate=plant.consume(packet,.03)
     assert duplicate['duplicate'] and plant.target==expected
@@ -173,7 +182,8 @@ def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--output-dir',type=Path,default=HERE/'outputs')
     args=parser.parse_args();args.output_dir.mkdir(exist_ok=True,parents=True)
-    result={'scope':'ROS-free original controller integration; virtual time, not real robot or ROS transport validation'}
+    result={'driver':driver_identity(),
+            'scope':'ROS-free original controller integration; virtual time, not real robot or ROS transport validation'}
     try:
         result['protocol']=protocol_checks()
         result['original_controller'],rows=original_closed_loop()

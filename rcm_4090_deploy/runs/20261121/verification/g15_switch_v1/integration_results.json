@@ -1,0 +1,17 @@
+[
+  {
+    "timestamp": "2026-11-21T13:22:21.318086+08:00",
+    "stage": "g15_protocol_geometry",
+    "command": [
+      "/home/him1/mujoco_bc/rcm_4090_deploy/.venv/bin/python",
+      "-E",
+      "-B",
+      "-c",
+      "import json, sys\nsys.path.insert(0, \"mujoco_model\")\nfrom driver_loader import driver_identity\nfrom validate_driver_integration import protocol_checks, model_checks\nresult = {\"driver\": driver_identity(), \"protocol\": protocol_checks(), \"model\": model_checks([])}\nprint(json.dumps(result, indent=2, default=str))\n"
+    ],
+    "driver_environment": "default",
+    "status": "FAIL",
+    "returncode": 1,
+    "log": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/verification/g15_switch_v1/g15_protocol_geometry.log"
+  }
+]

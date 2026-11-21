@@ -228,6 +228,8 @@ def main():
     config = json.loads(args.config.read_text())
     config['motor_execution'] = {**config.get('motor_execution', {}), 'enabled': True}
     config['navigation']['visual_servo']['perception_backend'] = 'strict_rgbd'
+    from driver_loader import driver_identity
+    driver = driver_identity()
     source_files = {
         'scripts/datasets/collect_v9_dataset.py': Path(__file__).resolve(),
         'rcm/motor_execution.py': HERE / 'rcm/motor_execution.py',
@@ -237,6 +239,8 @@ def main():
         'rcm/visual_geometry.py': HERE / 'rcm/visual_geometry.py',
         'rcm/waypoint_dataset.py': HERE / 'rcm/waypoint_dataset.py',
         'mujoco_model/motor_backend.py': HERE / 'mujoco_model/motor_backend.py',
+        'mujoco_model/driver_loader.py': HERE / 'mujoco_model/driver_loader.py',
+        'selected_driver_kinematics.py': Path(driver['kinematics_path']),
         'mujoco_model/model_sync.py': HERE / 'mujoco_model/model_sync.py',
         'v9_eye_scene.xml': HERE / 'v9_eye_scene.xml',
         'rcm/strict_rgbd.py': HERE / 'rcm/strict_rgbd.py',
@@ -247,6 +251,7 @@ def main():
         for name, path in source_files.items()
     }
     provenance = {'scene': 'RCMSceneV9', 'execution': 'MotorBackend consume/step -> feedback -> qpos',
+        'driver': driver,
         'scope': 'Single-target independent episodes; no RRT/PRM/multitarget motor validation or hardware data',
         'seed': args.seed, 'requested_episodes': args.episodes, 'random_targets': args.random_targets,
         'start_task_mode': args.start_task_mode,

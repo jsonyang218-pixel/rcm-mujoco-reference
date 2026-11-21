@@ -22,10 +22,13 @@ REQUIRED_CAMERAS = ("overview", "eye_internal")
 
 
 def _scene_summary(scene):
+    from driver_loader import driver_identity
+
     metrics = scene.metrics()
     return {
         "status": "PASS",
         "model_backend": "RCMSceneV9",
+        "driver": driver_identity(),
         "scene": "v9 eye-injected scanned arm",
         "task_A_deg_B_deg_C_mm": (scene.current_task() * np.array(
             [180.0 / math.pi, 180.0 / math.pi, 1000.0])).tolist(),

@@ -27,11 +27,16 @@ class MotorExecutionTests(unittest.TestCase):
         self.assertEqual(tuple(getattr(command,'handleEncoder'+a) for a in 'ABCE'),
                          tuple(a+b for a,b in zip(motor.initial_handles,expected)))
         receipt = motor.consume(command,0.)
-        # Protocol quantization tolerances: < one handle on each axis.
-        self.assertLess(abs(receipt['target'][0]-desired[0]),9)
-        self.assertLess(abs(receipt['target'][2]-desired[2]),39)
+        # Nearest integer handle, plus half an encoder count for rounding.
+        gear = motor.kin.CONTROL_GEAR
+        a_counts_per_handle = (2. * gear * 3. / 4000.) * (200000. / 360.)
+        self.assertLessEqual(abs(receipt['target'][0]-desired[0]),
+                             .5*a_counts_per_handle+.5)
+        self.assertLessEqual(abs(receipt['target'][2]-desired[2]),
+                             .5*motor.kin.C_ENCODER_COUNTS_PER_HANDLE+.5)
         self.assertLess(abs(motor.kin.b_alpha_from_robot_encoder(receipt['target'][1])-
-                            motor.kin.b_alpha_from_robot_encoder(desired[1])),.004)
+                            motor.kin.b_alpha_from_robot_encoder(desired[1])),
+                        .5*gear*3./4000.+.0001)
 
     def test_lag_and_feedback_decoding_with_substeps(self):
         ref=self.make_reference();goal=np.array([.02,-.01,.001])
