@@ -1,0 +1,39 @@
+{
+  "purpose": "Read-only diagnosis after user reported stalled workflow",
+  "observation_time_system": "2026-11-21T15:05:25+08:00",
+  "recorded_at_utc": "2026-11-21T07:06:10.446642+00:00",
+  "workflow": "runs/20261121/control_p2_diagnostics_v2",
+  "card": "configs/experiment_card_control_p2_diagnostics_20261121_v2.json",
+  "stage": "s2_g10_rgbd",
+  "stage_started_at": "2026-11-21T14:48:27+08:00",
+  "child_pid": 28792,
+  "child_process_state": "R (running)",
+  "supervisor_pid": 28302,
+  "supervisor_wait_channel": "hrtimer_nanosleep",
+  "log": "runs/20261121/control_p2_diagnostics_v2/s2_g10_rgbd.log",
+  "log_age_s": 13.0,
+  "completed_episodes": 1,
+  "total_episodes": 5,
+  "active_episode_index": 2,
+  "last_logged_step": 1500,
+  "max_steps_per_episode": 1600,
+  "last_logged_error_um": 1.224716,
+  "log_is_pre_action_current_error_not_final_result": true,
+  "gpu_name": "NVIDIA GeForce RTX 4090",
+  "instant_gpu_utilization_percent": 9,
+  "instant_gpu_memory_used_MiB": 1362,
+  "diagnosis": "Evidence of active progress; no evidence of a deadlock in this snapshot. Near-target error fluctuation does not satisfy the registered strict stop criterion.",
+  "performance_hotspot": "Not profiled; low instantaneous GPU utilization alone does not prove a specific bottleneck.",
+  "stage_budget_s": 1800,
+  "observed_approx_episode_wall_minutes": [
+    8,
+    9
+  ],
+  "estimated_five_episode_minutes": [
+    40,
+    45
+  ],
+  "budget_risk": "Observed throughput suggests the registered 30-minute stage budget may be exceeded. Estimate only.",
+  "action": "Preserved active processes, original parameters, budget and pinned assets; no restart, retry or new experiment.",
+  "scope": "Partial live status, not a final experiment result"
+}

@@ -1,0 +1,84 @@
+Warning: wandb not available, logging will be local only
+加载模型: outputs/overnight_c_fix_symlog_081234/task2_train/step_004000.pth
+模型加载完成 (type=dit_rectified_flow, epoch=3, train_loss=0.116777, val_loss=0.148003)
+
+评估 episodes:   0%|          | 0/1 [00:00<?, ?it/s]
+Episode 1/1
+  目标世界坐标: [348.825, -16.156, 373.943] mm
+  closed-loop step 1/1000, error=19548.126 um
+  closed-loop step 100/1000, error=16612.959 um
+  closed-loop step 200/1000, error=13625.580 um
+  closed-loop step 300/1000, error=10630.363 um
+  closed-loop step 400/1000, error=7643.208 um
+  closed-loop step 500/1000, error=4640.863 um
+  closed-loop step 600/1000, error=1652.096 um
+  closed-loop step 700/1000, error=132.181 um
+  closed-loop step 800/1000, error=78.380 um
+  closed-loop step 900/1000, error=69.768 um
+  closed-loop step 1000/1000, error=63.251 um
+  ✗ 失败: 1000 步, 误差 0.064 mm
+
+评估 episodes: 100%|██████████| 1/1 [05:31<00:00, 331.82s/it]
+评估 episodes: 100%|██████████| 1/1 [05:31<00:00, 331.82s/it]
+
+============================================================
+评估结果汇总:
+  成功率: 0.0% (0/1)
+  平均步数: 1000.0
+  平均最终误差: 0.064 mm
+============================================================
+
+结果已保存到: /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v3/s3_v0/E00/evaluation_results.json
+Result: /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v3/s3_v0; completed=1/5
+
+评估 episodes:   0%|          | 0/1 [00:00<?, ?it/s]
+Episode 3/1
+  目标世界坐标: [349.875, -15.579, 374.656] mm
+  closed-loop step 1/1000, error=19545.438 um
+  closed-loop step 100/1000, error=16630.400 um
+  closed-loop step 200/1000, error=13619.929 um
+  closed-loop step 300/1000, error=10617.437 um
+  closed-loop step 400/1000, error=7620.529 um
+  closed-loop step 500/1000, error=4618.496 um
+  closed-loop step 600/1000, error=1618.718 um
+  closed-loop step 700/1000, error=63.881 um
+  closed-loop step 800/1000, error=63.856 um
+  closed-loop step 900/1000, error=48.760 um
+
+评估 episodes:   0%|          | 0/1 [05:36<?, ?it/s]
+Stage interrupted: /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v3/s3_v0/status.json
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/him1/mujoco_bc/rcm_4090_deploy/scripts/research/control_g15_diagnostics.py", line 404, in <module>
+    main()
+  File "/home/him1/mujoco_bc/rcm_4090_deploy/scripts/research/control_g15_diagnostics.py", line 380, in main
+    row = policy_episode(evaluator, targets, index, steps, folder)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/him1/mujoco_bc/rcm_4090_deploy/scripts/research/control_g15_diagnostics.py", line 111, in policy_episode
+    payload = evaluator.evaluate(num_episodes=1, output_dir=folder, seed=42,
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/him1/mujoco_bc/rcm_4090_deploy/lerobot_training/eval_policy.py", line 1291, in evaluate
+    result = self.evaluate_episode(
+             ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/him1/mujoco_bc/rcm_4090_deploy/lerobot_training/eval_policy.py", line 985, in evaluate_episode
+    observation = sensor.observe()
+                  ^^^^^^^^^^^^^^^^
+  File "/home/him1/mujoco_bc/rcm_4090_deploy/rcm/strict_rgbd.py", line 106, in observe
+    return self.measure(rgb,depth,timestamp,metadata)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/him1/mujoco_bc/rcm_4090_deploy/rcm/strict_rgbd.py", line 126, in measure
+    masks=self.detector.detect(rgb)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/him1/mujoco_bc/rcm_4090_deploy/rcm/rgb_features.py", line 71, in detect
+    saturation = (value - np.min(color, axis=2)) / np.maximum(value, 1.)
+                          ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/him1/mujoco_bc/rcm_4090_deploy/.venv/lib/python3.12/site-packages/numpy/_core/fromnumeric.py", line 3299, in min
+    return _wrapreduction(a, np.minimum, 'min', axis, None, out,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/him1/mujoco_bc/rcm_4090_deploy/.venv/lib/python3.12/site-packages/numpy/_core/fromnumeric.py", line 83, in _wrapreduction
+    return ufunc.reduce(obj, axis, dtype, out, **passkwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/him1/mujoco_bc/rcm_4090_deploy/scripts/research/control_g15_diagnostics.py", line 345, in interrupt
+    raise KeyboardInterrupt(f'received {signal.Signals(signum).name}')
+KeyboardInterrupt: received SIGTERM

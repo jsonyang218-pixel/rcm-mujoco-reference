@@ -1,0 +1,64 @@
+{
+  "status": "interrupted",
+  "mode": "policy",
+  "episodes": [
+    {
+      "episode_index": 0,
+      "target_id": "target_d30721d6bc45",
+      "seed": 42,
+      "target_robot_mm": [
+        -4.895682513721456,
+        6.559561331997307,
+        21.960349202481627
+      ],
+      "steps": 1000,
+      "final_error_um": 63.7819498552562,
+      "strict_success": false,
+      "a_nonzero_command_frames": 999,
+      "a_nonzero_command_no_motion_frames": 327,
+      "a_nonzero_command_no_motion_fraction": 0.32732732732732733,
+      "driver": {
+        "variant": "g10",
+        "control_gear": 10,
+        "kinematics_path": "/home/him1/mujoco_bc/rcm_4090_deploy/mujoco_model/vendor/simulation_driver/ros_msg/src/robot_control/kinematics.py",
+        "kinematics_sha256": "e48eb4a909208e8d1caa3ee2a7aff157de91c808730282dd17ccb17a46591530"
+      },
+      "result_path": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v3/s3_v0/E00/evaluation_results.json"
+    }
+  ],
+  "identity": {
+    "code_sha256": "84770e426bd6e72d2dc67e903cf6b3799444624fac7159c0d566b4ed22e10e6c",
+    "scene_sha256": "265c927ef7e7ac71536963b3000ffb161b7ff7ac03bb86cdb8480ed988c17028",
+    "module_sha256": "70a8cd88e3fbe71e4f72b606ca29530529ef00ea4863a2ab8e5f9060bfcba2d2",
+    "manifest_sha256": "fcc4872a9d5b58bb7158b36d3c0ab6d7452e4d8d747317dfb077b6e7bbc815c7",
+    "checkpoint_sha256": "185a6ef02caea4ea74ba752d67618d459c906450f5b315cd8010c3c5f1703f1b"
+  },
+  "protocol": {
+    "indices": [
+      0,
+      2,
+      6,
+      8,
+      10
+    ],
+    "seeds": [
+      42,
+      44,
+      48,
+      50,
+      52
+    ],
+    "max_steps": 1000,
+    "control_period_s": 0.05,
+    "error_threshold_um": 0.35,
+    "settled_frames": 3,
+    "render_quality": {
+      "offsamples": 0,
+      "numslices": 112,
+      "numstacks": 64
+    },
+    "tier": "diagnostic_fast5"
+  },
+  "device": "NVIDIA GeForce RTX 4090",
+  "error": "KeyboardInterrupt('received SIGTERM')"
+}

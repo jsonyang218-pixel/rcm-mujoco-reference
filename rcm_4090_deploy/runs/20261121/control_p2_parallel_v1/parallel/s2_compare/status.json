@@ -1,0 +1,83 @@
+{
+  "status": "completed",
+  "mode": "compare-teachers",
+  "episodes": [],
+  "identity": {
+    "code_sha256": "84770e426bd6e72d2dc67e903cf6b3799444624fac7159c0d566b4ed22e10e6c",
+    "scene_sha256": "265c927ef7e7ac71536963b3000ffb161b7ff7ac03bb86cdb8480ed988c17028",
+    "module_sha256": "70a8cd88e3fbe71e4f72b606ca29530529ef00ea4863a2ab8e5f9060bfcba2d2",
+    "manifest_sha256": "fcc4872a9d5b58bb7158b36d3c0ab6d7452e4d8d747317dfb077b6e7bbc815c7",
+    "checkpoint_sha256": "185a6ef02caea4ea74ba752d67618d459c906450f5b315cd8010c3c5f1703f1b"
+  },
+  "drivers": {
+    "g10": {
+      "paired": [
+        {
+          "episode_index": 0,
+          "seed": 42,
+          "delta_final_um": -0.08097366466235778
+        },
+        {
+          "episode_index": 2,
+          "seed": 44,
+          "delta_final_um": -0.004862057134837672
+        },
+        {
+          "episode_index": 6,
+          "seed": 48,
+          "delta_final_um": 0.016630480638830658
+        },
+        {
+          "episode_index": 8,
+          "seed": 50,
+          "delta_final_um": 0.014851058223722458
+        },
+        {
+          "episode_index": 10,
+          "seed": 52,
+          "delta_final_um": 0.02862352115143585
+        }
+      ],
+      "mean_excess_um": -0.0051461323566412975,
+      "max_excess_um": 0.02862352115143585,
+      "gate2b_passed": true,
+      "gate": "mean RGB-D-minus-Oracle <=1 um AND max per-target excess <=3 um"
+    },
+    "g15": {
+      "paired": [
+        {
+          "episode_index": 0,
+          "seed": 42,
+          "delta_final_um": -0.626191879763172
+        },
+        {
+          "episode_index": 2,
+          "seed": 44,
+          "delta_final_um": 0.22309982410740292
+        },
+        {
+          "episode_index": 6,
+          "seed": 48,
+          "delta_final_um": -1.223566078479712
+        },
+        {
+          "episode_index": 8,
+          "seed": 50,
+          "delta_final_um": 1.3191375121356446
+        },
+        {
+          "episode_index": 10,
+          "seed": 52,
+          "delta_final_um": 0.2642006857603536
+        }
+      ],
+      "mean_excess_um": -0.008663987247896587,
+      "max_excess_um": 1.3191375121356446,
+      "gate2b_passed": true,
+      "gate": "mean RGB-D-minus-Oracle <=1 um AND max per-target excess <=3 um"
+    }
+  },
+  "gate2b_passed": true,
+  "step3_allowed": true,
+  "scope": "diagnostic fast5; no global physical lower bound established"
+}

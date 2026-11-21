@@ -1,0 +1,112 @@
+{
+  "status": "completed",
+  "mode": "smoke",
+  "episodes": [
+    {
+      "episode_index": 0,
+      "target_id": "target_d30721d6bc45",
+      "seed": 42,
+      "target_robot_mm": [
+        -4.895682513721456,
+        6.559561331997307,
+        21.960349202481627
+      ],
+      "steps": 120,
+      "final_error_um": 15983.827728644497,
+      "strict_success": false,
+      "a_nonzero_command_frames": 119,
+      "a_nonzero_command_no_motion_frames": 0,
+      "a_nonzero_command_no_motion_fraction": 0.0,
+      "driver": {
+        "variant": "g10",
+        "control_gear": 10,
+        "kinematics_path": "/home/him1/mujoco_bc/rcm_4090_deploy/mujoco_model/vendor/simulation_driver/ros_msg/src/robot_control/kinematics.py",
+        "kinematics_sha256": "e48eb4a909208e8d1caa3ee2a7aff157de91c808730282dd17ccb17a46591530"
+      },
+      "result_path": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v3/s1_v0/E00/evaluation_results.json"
+    },
+    {
+      "episode_index": 1,
+      "target_id": "target_aa2ca282c44d",
+      "seed": 43,
+      "target_robot_mm": [
+        -4.376036993380837,
+        3.453538266958512,
+        22.795996108808982
+      ],
+      "steps": 120,
+      "final_error_um": 16033.324877463887,
+      "strict_success": false,
+      "a_nonzero_command_frames": 119,
+      "a_nonzero_command_no_motion_frames": 0,
+      "a_nonzero_command_no_motion_fraction": 0.0,
+      "driver": {
+        "variant": "g10",
+        "control_gear": 10,
+        "kinematics_path": "/home/him1/mujoco_bc/rcm_4090_deploy/mujoco_model/vendor/simulation_driver/ros_msg/src/robot_control/kinematics.py",
+        "kinematics_sha256": "e48eb4a909208e8d1caa3ee2a7aff157de91c808730282dd17ccb17a46591530"
+      },
+      "result_path": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v3/s1_v0/E01/evaluation_results.json"
+    },
+    {
+      "episode_index": 2,
+      "target_id": "target_26985bd28045",
+      "seed": 44,
+      "target_robot_mm": [
+        -4.318072172943514,
+        7.796396643991712,
+        21.676382035161915
+      ],
+      "steps": 120,
+      "final_error_um": 16001.541725832392,
+      "strict_success": false,
+      "a_nonzero_command_frames": 119,
+      "a_nonzero_command_no_motion_frames": 0,
+      "a_nonzero_command_no_motion_fraction": 0.0,
+      "driver": {
+        "variant": "g10",
+        "control_gear": 10,
+        "kinematics_path": "/home/him1/mujoco_bc/rcm_4090_deploy/mujoco_model/vendor/simulation_driver/ros_msg/src/robot_control/kinematics.py",
+        "kinematics_sha256": "e48eb4a909208e8d1caa3ee2a7aff157de91c808730282dd17ccb17a46591530"
+      },
+      "result_path": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v3/s1_v0/E02/evaluation_results.json"
+    }
+  ],
+  "identity": {
+    "code_sha256": "84770e426bd6e72d2dc67e903cf6b3799444624fac7159c0d566b4ed22e10e6c",
+    "scene_sha256": "265c927ef7e7ac71536963b3000ffb161b7ff7ac03bb86cdb8480ed988c17028",
+    "module_sha256": "70a8cd88e3fbe71e4f72b606ca29530529ef00ea4863a2ab8e5f9060bfcba2d2",
+    "manifest_sha256": "fcc4872a9d5b58bb7158b36d3c0ab6d7452e4d8d747317dfb077b6e7bbc815c7",
+    "checkpoint_sha256": "185a6ef02caea4ea74ba752d67618d459c906450f5b315cd8010c3c5f1703f1b"
+  },
+  "protocol": {
+    "indices": [
+      0,
+      1,
+      2
+    ],
+    "seeds": [
+      42,
+      43,
+      44
+    ],
+    "max_steps": 120,
+    "control_period_s": 0.05,
+    "error_threshold_um": 0.35,
+    "settled_frames": 3,
+    "render_quality": {
+      "offsamples": 0,
+      "numslices": 112,
+      "numstacks": 64
+    },
+    "tier": "smoke"
+  },
+  "device": "NVIDIA GeForce RTX 4090",
+  "completed_targets": 3,
+  "final_mean_um": 16006.23144398026,
+  "final_median_um": 16001.541725832392,
+  "final_max_um": 16033.324877463887,
+  "hit_5um_count": 0,
+  "hit_10um_count": 0,
+  "strict_success_count": 0
+}

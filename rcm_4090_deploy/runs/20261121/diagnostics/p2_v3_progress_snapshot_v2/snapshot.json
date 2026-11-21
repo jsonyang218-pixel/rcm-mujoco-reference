@@ -1,0 +1,50 @@
+{
+  "recorded_at_utc": "2026-11-21T08:52:58.876583+00:00",
+  "observation_time_system": "2026-11-21T16:52:32+08:00",
+  "status": "running_partial",
+  "card": "configs/experiment_card_control_p2_diagnostics_20261121_v3.json",
+  "workflow_output": "runs/20261121/control_p2_diagnostics_v3",
+  "completed_stages": 6,
+  "total_stages": 12,
+  "completed_teacher_results": {
+    "s2_g10_oracle": {
+      "status": "completed",
+      "completed_targets": 5,
+      "final_mean_um": 1.7052728586923003,
+      "final_max_um": 3.4917810262350604,
+      "strict_success_count": 0
+    },
+    "s2_g10_rgbd": {
+      "status": "completed",
+      "completed_targets": 5,
+      "final_mean_um": 1.7001267263356588,
+      "final_max_um": 3.506632084458783,
+      "strict_success_count": 0
+    },
+    "s2_g15_oracle": {
+      "status": "completed",
+      "completed_targets": 5,
+      "final_mean_um": 2.5344842000154744,
+      "final_max_um": 3.3508583588645666,
+      "strict_success_count": 0
+    }
+  },
+  "active_g15_rgbd": {
+    "completed_targets_at_snapshot": 3,
+    "total_targets": 5,
+    "completed_final_errors_um": [
+      2.4705126203569403,
+      2.2159752402560664,
+      2.1272922803848546
+    ],
+    "completed_strict_success_count": 0,
+    "active_episode": "E08",
+    "last_logged_step": 1500,
+    "max_steps": 1600,
+    "log_age_seconds": 11.4
+  },
+  "protocol": "Teacher fast5 indices0/2/6/8/10 seeds42/44/48/50/52;1600steps50ms;strict<=0.35um+3settledframes;GPU0/EGL;no policy checkpoint used for teachers",
+  "interpretation": "G10 RGB-D and Oracle completed; G15 RGB-D incomplete, aggregate Gate2b not yet available; learned policy1000-step comparisons still pending",
+  "new_error_observed": false,
+  "new_experiment_launched": false
+}

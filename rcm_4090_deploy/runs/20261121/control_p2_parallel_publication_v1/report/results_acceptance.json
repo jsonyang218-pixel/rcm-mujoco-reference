@@ -1,0 +1,56 @@
+{
+  "timestamp_utc": "2026-11-21T09:48:49.966832+00:00",
+  "status": "complete_diagnostic_results_verified",
+  "workflow_completion": "Three variants x5targets x1000steps and final comparison completed",
+  "metrics": {
+    "V0": {
+      "completed_targets": 5,
+      "final_mean_um": 63.137604732416676,
+      "final_max_um": 72.40819854931978,
+      "strict_success_count": 0
+    },
+    "V3": {
+      "completed_targets": 5,
+      "final_mean_um": 117.73364811311788,
+      "final_max_um": 172.83623941365303,
+      "strict_success_count": 0
+    },
+    "V2": {
+      "completed_targets": 5,
+      "final_mean_um": 100.45781209841957,
+      "final_max_um": 186.37645814799475,
+      "strict_success_count": 0
+    }
+  },
+  "winner": "V0",
+  "improvement": "P2 variants did not improve mean error relative to V0 in this fixed fast5",
+  "strict_success": "0/5 per variant,0/15 overall",
+  "comparison_scope": "Diagnostic fast5, not screen10/dev20/final_test; no training",
+  "parallel_wall_time": {
+    "started_at": "2026-11-21T17:12:31+08:00",
+    "finished_at": "2026-11-21T17:45:21+08:00",
+    "elapsed_seconds": 1970,
+    "speedup": "No full matched sequential timing benchmark; do not infer measured3x speedup"
+  },
+  "verified_pinned_assets": 156,
+  "verified_reuse_files": 61,
+  "excluded_weights": [
+    {
+      "path": "outputs/overnight_c_fix_symlog_081234/task2_train/step_004000.pth",
+      "sha256": "185a6ef02caea4ea74ba752d67618d459c906450f5b315cd8010c3c5f1703f1b",
+      "bytes": 414733455,
+      "reason": "Weight identity retained; model binary excluded"
+    }
+  ],
+  "raw_evidence_file_count": 264,
+  "source_identity": {
+    "code_sha256": "84770e426bd6e72d2dc67e903cf6b3799444624fac7159c0d566b4ed22e10e6c",
+    "scene_sha256": "265c927ef7e7ac71536963b3000ffb161b7ff7ac03bb86cdb8480ed988c17028",
+    "module_sha256": "70a8cd88e3fbe71e4f72b606ca29530529ef00ea4863a2ab8e5f9060bfcba2d2",
+    "manifest_sha256": "fcc4872a9d5b58bb7158b36d3c0ab6d7452e4d8d747317dfb077b6e7bbc815c7",
+    "checkpoint_sha256": "185a6ef02caea4ea74ba752d67618d459c906450f5b315cd8010c3c5f1703f1b"
+  },
+  "v2_status": "timeout interrupted, partial evidence retained",
+  "v3_status": "intentionally interrupted for authorized parallel migration; partial policy retained separately",
+  "new_experiment_launched": false
+}

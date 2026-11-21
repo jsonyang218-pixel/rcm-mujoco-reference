@@ -5950,3 +5950,1572 @@ Appended local experiment records; earlier GitHub log bytes preserved.
 - 指标：G10 Oracle 5 目标均值 1.705273 µm、最大 3.491781 µm、严格成功 0/5；尚无完整感知/策略比较。
 - 证据：runs/20261121/control_p2_publication_v1/；保留原始证据路径及历史失败。
 - GPU：沿用原 CUDA GPU0 RTX4090 / EGL；本次归档是 I/O 工作，CPU 处理。
+
+
+## Local continuation records (append-only publication)
+
+- 2026-11-19 08:52:20 CST：经验回放边界、共享索引和比例实验完成。
+  `valid_window_indices` 修复了审计器多检查一帧的问题；20 帧、2 帧历史、
+  16 步动作测试得到 4 个窗口。训练与审计共享 220,816 个有效索引，SHA-256
+  `3f852d9c7b296cdcc4c4abbca6a12e0e099050bc5bbfc4254aae979830fb927d`；
+  自然纠正比例 `6.5987%`。剔除 episode 边界 `13,408`、源帧间断 `48`、
+  时间异常 `0`、无效输入 `28`。未知标签来源改为直接报错。契约报告
+  SHA-256
+  `aa08478b826b9caf732041b637f8899f635f6fe06f632c319c168493e12a1ae7`。
+- 2026-11-19 08:52:20 CST：比例实验零更新复现 PASS。220 个权重张量完全
+  一致，固定噪声单步动作完全一致；3 个固定开发目标的 states/errors/
+  velocities/settle flags 逐帧一致，原始动作最大差 `2.015e-6`。报告
+  `runs/20261118/verification/zero_update_reproduction/zero_update_verification.json`
+  SHA-256
+  `26f13c8bd6fcf4f8d5cded916fb8b9da5e1e08a78ed85dd411811a17125d0d91`，
+  轨迹对照
+  `runs/20261118/verification/zero_update_trajectory_parity.json` SHA-256
+  `1555f47806836e34c01c4c0aa15c36f91f31da68544fe715dbd6d0edab454bf4`。
+- 2026-11-19 08:52:20 CST：纠正比例 R0/R10/R20 完整流水线全部完成，
+  均未达到严格成功门限，均无编码器停稳，safety-limited steps 均为 0。
+  R0 自然 `6.5987%` 最终误差 mean/median/P90/max=
+  `247.936/170.736/566.363/658.363 µm`，与 v1 配对 19 改善、1 恶化；
+  R10 为 `980.699/549.848/2435.211/2521.840 µm`，9 改善、11 恶化；
+  R20 为 `589.481/227.022/1430.254/2202.496 µm`，11 改善、9 恶化。结论为
+  自然比例最佳，提高纠正比例会造成退化。汇总
+  `runs/20261119/analysis/experience_ratio/ratio_comparison.json` SHA-256
+  `a72959710b0f356cfdb8050d33052c7fca40fc715c996c78bebb259e3531f599`。
+  结果目录
+  `outputs/state_attention_experience_ratio_20261118_1/`。
+- 2026-11-19 08:52:20 CST：规划 2 采集试点完成并开始剩余训练数据采集。
+  初次编排目录 `data/experience_replay_plan2_20261118/` 只生成 seeds，
+  因创建顺序错误未采轨迹；`_retry1` 因 DAgger 未分派状态注意力架构而未采
+  轨迹，两者均保留。修复后 `_retry2` 完成 D1/D2/D4 共 15 条，另用
+  `data/experience_replay_plan2_d3_pilot_beta1_20261119/` 完成专家主导
+  D3 5 条；验收试点共 20 条、8,538 帧。D3 `beta=0.5` 试点中 2/5 恶化，
+  改为 `beta=1.0` 后已采集轨迹从 `20–77 µm` 改善到 `0.016–4.081 µm`，
+  原 D3 试点作为 superseded 保留。剩余 180 条训练轨迹已启动，目录
+  `data/experience_replay_plan2_20261119_remaining1/`；验证和测试各 40 条
+  待训练集完成后采集。紧凑汇总
+  `runs/20261119/analysis/plan2_collection/plan2_collection.json` SHA-256
+  `a492e128bb05457ae2017697d9ab4fdb945243498e3b9d9e758bfe9061f7969d`。
+  采集数据仅为仿真数据，不代表硬件或临床精度。
+- 2026-11-19 15:40:00 CST：规划 2 专家纠正数据集采集完成。按用户确认将
+  测试集上限从 40 调整为 35 条，最终接受训练/验证/测试
+  `200/40/35`，共 `275` 条、`110,771` 帧。分类结果为：训练
+  D1/D2/D3/D4=`70/50/50/30`，验证=`14/10/10/6`，测试=`14/10/10/1`。
+  训练集 D4 有一条重复 target seed，已从接受计数中排除（重复帧 1,600）；
+  测试 D4 分片在达到 35 条上限后停止，未完成目录保留为 interrupted
+  evidence，不计入最终数据。并行续采期间，所有中断中的 episode 均归档为
+  `partial_episode_*`，已完成 control report 保留。最终原始数据目录为
+  `data/experience_replay_plan2_20261118_retry2/`、
+  `data/experience_replay_plan2_d3_pilot_beta1_20261119/`、
+  `data/experience_replay_plan2_20261119_remaining1/`、
+  `data/experience_replay_plan2_20261119_validation1/`、
+  `data/experience_replay_plan2_20261119_test1/`；最终清单
+  `github_reports/model_status_20261119_plan2_collection/plan2_final_summary.json`。
+  所有采集进程已结束，结果仅为 MuJoCo 仿真数据。
+- 2026-11-19 16:10:16 CST：规划 2 的 200 条训练轨迹已转换为 224×224
+  LeRobot 数据并训练原始 DiT-Flow 架构。合并数据为 200 episodes、
+  85,381 frames、80,818 valid train windows；验证集 26,650 windows。
+  首次运行
+  `outputs/dit_rectified_flow_plan2_new200_20261119_1/` 因从新数据重算
+  归一化统计而产生 `val_loss=167.6–161.9`，判定无效并保留；修复为继承
+  初始 checkpoint 的归一化统计后重跑
+  `outputs/dit_rectified_flow_plan2_new200_20261119_correctstats_1/`。
+  有效 4 epochs 的 train/val loss 为
+  `0.091189/0.189130`、`0.084789/0.203877`、
+  `0.082460/0.212826`、`0.081821/0.213401`；训练 loss 下降但验证 loss
+  持续恶化，best epoch 为 0。best checkpoint SHA-256
+  `12b9b8b218a19df11031293fbb8747bbf682f917098b8bbe58d48ac883571ab7`。
+  曲线和摘要位于
+  `runs/20261119/original_arch_plan2_training/training_curves.png` 与
+  `runs/20261119/original_arch_plan2_training/training_summary.json`。
+  这是仅使用新增纠正训练集的离线 Flow 训练结果，尚未进行闭环评测；结果
+  说明需要与原始数据混合或降低更新强度，不能只凭训练 loss 判断有效。
+- 2026-11-19 16:33:48 CST：原 DiT-Flow 架构加入历史训练集后重新训练
+  PASS（离线 Flow 曲线）。将原 839 episodes/234,316 frames 与规划 2 的
+  200 episodes/85,381 frames 合并，得到 1,039 episodes/319,697 frames，
+  301,634 个 valid train windows；验证集 26,650 windows。
+  `train_dit_rectified_flow.py` 改为使用初始 checkpoint 的固定归一化统计，
+  避免新旧数据统计漂移。4 epochs 的 train/val loss 为
+  `0.117040/0.148789`、`0.113280/0.147219`、
+  `0.111231/0.147659`、`0.110118/0.146885`；best epoch 3，
+  val loss 较初始 checkpoint 的 `0.161541` 改善约 9.1%。checkpoint
+  SHA-256
+  `4e4b2865fc9939a22ff7d5f6953d2a378af9d4baeead887fd053ff32a243d275`。
+  曲线和摘要位于
+  `runs/20261119/original_arch_plan2_plus_original_training/training_curves.png`
+  与 `training_summary.json`。本次仅为离线训练结果，尚未做闭环评测。
+- 2026-11-19 17:33:22 CST：原始 DiT-Flow 架构在“原 839 episodes + 规划 2
+  200 episodes”合并训练 checkpoint 上完成固定 20 目标闭环评测 FAIL。
+  checkpoint `outputs/dit_rectified_flow_plan2_plus_original200_20261119_1/best_model.pth`
+  SHA-256
+  `4e4b2865fc9939a22ff7d5f6953d2a378af9d4baeead887fd053ff32a243d275`；
+  使用 12 分片、seed 42、1600 步、0.35 µm＋连续三帧停稳协议。canonical
+  success `0/20`，最终误差 mean/median/min/max=
+  `1151.149/1392.104/83.444/1952.920 µm`，仅 4/20 最终误差 ≤300 µm、
+  2/20 ≤100 µm；每目标最小误差均值 `72.032 µm`，编码器停稳 `0/20`，
+  safety-limited steps 0。与 state-attention v1 配对：5 改善、15 恶化，
+  最终误差均值恶化 `716.752 µm`。结果目录
+  `outputs/evaluation_dit_rectified_flow_plan2_plus_original200_20261119_dev20_0p35um_shards12/`；
+  `summary.json` SHA-256
+  `a06309ef8a8f69f7099400e9f111ff6ea6829471c82ebd0bb3aeef75b840d61c`，
+  `comparison.json` SHA-256
+  `6ff0602f00cc55a9cc1463f948055e2155fb889845e125ff78c66c58be000c32`。
+  结果仅为 MuJoCo 仿真，不代表硬件或临床精度。
+- 2026-11-19：原 DiT-Flow 20 目标评测做过两次资源调度尝试，均不用于最终
+  指标：10 分片版本运行约 4 分钟后因切换更高并行度而中断，保留目录
+  `outputs/evaluation_dit_rectified_flow_plan2_plus_original200_20261119_dev20_0p35um/`；
+  18 分片版本启动后因主机内存压力被系统终止，完成分片 `0/18`，保留目录
+  `outputs/evaluation_dit_rectified_flow_plan2_plus_original200_20261119_dev20_0p35um_shards18/`。
+  最终 12 分片版本正常完成 `12/12`，上述指标与结果只引用
+  `_shards12` 目录。
+- 2026-11-17 20:52:25 CST：E1 轨迹误差图生成 PASS。绘图脚本新增可配置
+  candidate/baseline 图例与配对文件名；使用 E1 20 目标完整轨迹和冻结 v1
+  基线生成 4 张图：全部轨迹、20 宫格、best/final 对比、E1 对 v1 最终误差
+  配对柱状图。图中成功门限为 `0.35 µm`，图例明确标为
+  `State-attention E1` 与 `State-attention v1 baseline`。输出目录
+  `outputs/state_attention_v1_continue_20261117_1/plots_state_attention_e1_20261117/`；
+  `error_curves_all.png` SHA-256
+  `ee4ad3b9effae39dca7e3a794b1b2841331d0b33355c2d2f82a80ccfde338c90`，
+  `error_curves_small_multiples.png` SHA-256
+  `dc452fe8cb04f3f1967a629b00f97e53a2654f6cc7d395ba79e5665f1a6b8f07`，
+  `best_and_final_error.png` SHA-256
+  `8eaaf50188bac17e9e0c4c45195575bfa766b79bb218820e03dab2ed5bfbb147`，
+  `final_error_vs_v1.png` SHA-256
+  `0c79ef36ee9829f1592d21860629fb2a83b6b6995f16fc0e193f4f00b4abd08d`。
+  绘图脚本 SHA-256
+  `f6478b50296dacacf9d44b4bbed6cf452e89b467e60fc47e90fe7e4d9bb70a67`。
+  图像已同步到 E1 GitHub 报告目录，尚未另行推送远端。
+- 2026-11-18 08:46:12 CST：KV8/E2 完整流水线 FAIL。Q/输出保持 16 token，
+  K/V/偏置键使用固定相邻平均压缩到 8，v1 checkpoint 严格加载且参数量仍为
+  34,538,115；GPU 前向有限。模型源码
+  `lerobot_training/dit_state_attention_kv8.py` SHA-256
+  `1b57216b9bea596c73d64fee9bcee01848f0e7b546b18dc6c8d1071823fddad8`，
+  配置 SHA-256
+  `c9b5a2602dacf0f10976371b01b1956366e0fe11260d35ef86b44870b74abce6`。
+  4×1000 步训练 best epoch 3，best val loss `0.174219`；best checkpoint
+  SHA-256
+  `06d36598f35b83ec87e8f71498201f16fea733d98b74508f364d4a9db91ccea2`。
+  20 目标闭环 canonical success `0/20`，最终误差
+  mean/median/min/max=`1513.620/1713.822/166.260/2983.236 µm`，每目标最小
+  误差均值 `80.416 µm`，safety-limited steps 0。与 v1 配对：4 改善、16
+  恶化，最终误差均值恶化 `1079.223 µm`。结果目录
+  `outputs/state_attention_kv8_20261117_1/`；`summary.json` SHA-256
+  `c3fcedb5502a05311d7d6fbfc1a237f253446fe1a4073c41170a63d998ef4e55`，
+  `comparison.json` SHA-256
+  `0b0277e46b88bf8d54dd4d93e5a90458fb701ab89cee55a6de9de80623095039`。
+  KV8 不能替代 v1，也不值得进入 KV4。
+- 2026-11-18 08:46:12 CST：Replay actor-critic v1 完整流水线 FAIL（严格
+  成功门限），但为当前最佳最终误差版本。Replay 6/6 数据与梯度单元测试 PASS；
+  真实数据 GPU smoke PASS；经验池包含 225,614 个连续、OCT 有效转移。
+  入口源码 SHA-256
+  `10dbd2a0cc51d01ba13a77d2a8a6c8c90f02f212837d28fd42604ff0274961c0`，
+  回放模块 SHA-256
+  `50104076ef5aa617c294f70f8187d28ec4ec4ef1ab5d838fde5c6879d4aeff22`，
+  配置 SHA-256
+  `338d7cb54248291fa70d13e11072fcad633ec03edd70c9698493cf4b7487e46a`。
+  4×1000 步训练 best epoch 3，best val loss `0.148059`；best checkpoint
+  SHA-256
+  `015bb3d2330693f9d8a46967c4f40698e2e54b708f2da2a8e1e87398fe740c8c`。
+  20 目标 canonical success `0/20`，最终误差
+  mean/median/min/max=`171.028/161.439/92.671/269.203 µm`，20/20 最终误差
+  ≤300 µm，每目标最小误差均值 `77.841 µm`，全组最好瞬间误差 `28.463 µm`，
+  从未进入 `0.35 µm`；safety-limited steps 0。与 v1 配对：19 改善、
+  1 恶化，均值/中位数改善 `263.369/74.930 µm`；与 E1 配对：17 改善、
+  3 恶化，均值改善 `807.787 µm`。Policy Q 均值从 `-2.256` 漂移至
+  `-10.455`，critic 尺度稳定性仍需修复。结果目录
+  `outputs/state_attention_replay_v1_20261117_1/`；`summary.json` SHA-256
+  `9eca5e1699cda6cb76e3d842a480ca1e57ba876de2938987a0d16e607d87e443`，
+  `comparison.json` SHA-256
+  `4d1448281a0d6d0ee55d35b5039050952428af2089b59a927a2c651912bc16cd`。
+  结果仅为 MuJoCo 仿真，不代表硬件或临床精度。
+- 2026-11-18 13:44:11 CST：ILOSAC 来源与公式审计接入 PASS。新增
+  `docs/ILOSAC_SOURCE_FORMULA_AUDIT.md`、原始论文
+  `docs/references/ILOSAC_cit2.70076_original.pdf`（SHA-256
+  `14fedf6a282501f1b356868c3f775d4dd22343d818c62251f3a7aa042faa5816`）
+  和机器可读来源状态
+  `docs/references/ILOSAC_source_status_20261118.json`；PDF 哈希与状态 JSON
+  完全一致。文档索引已加入 ILOSAC 审计和 Replay actor-critic 条目，
+  `REPLAY_ACTOR_CRITIC.md` 已明确当前实现不是已验证的 ILOSAC/THMM 复现，
+  官方源码状态仍为 `not_verified`。已核对原 PDF 第 7 页式(17)软 Q 项确实
+  带平方，式(20)使用示范策略 KL 约束；当前 Flow matching 不能等价替代该
+  KL。本次仅接入审计资料，没有实现或启动新的 ILOSAC 复现实验。
+- 2026-11-18 15:15:05 CST：ILOSAC-inspired Flow v2 完整流水线 FAIL
+  （严格成功门限），但为当前最佳最终误差版本。模块标记为
+  `flow_ilosac_inspired_offline_v1`，不是 ILOSAC 复现。实现加入冻结示范
+  策略动作锚定（KL 近似）和 TD target `[-5,5]` 裁剪；明确未实现 THMM、
+  持续时间模型、在线约束与 entropy temperature。6/6 replay 单元测试和 GPU
+  smoke PASS。4×1000 步训练 best epoch 1，best/last val loss
+  `0.1482578143/0.1484347544`；checkpoint SHA-256
+  `1ab324fca7f388b5747cc976d42ccc62e24781c47a78e86e9131fcde021d0015`。
+  20 目标 canonical success `0/20`，最终误差
+  mean/median/min/max=`162.215/148.591/88.933/342.324 µm`，19/20 最终误差
+  ≤300 µm，每目标最小误差均值 `63.193 µm`，全组最好瞬间误差
+  `31.557 µm`，从未进入 `0.35 µm`，safety-limited steps 0。与 v1 配对：
+  18 改善、2 恶化，均值/中位数改善 `272.182/81.240 µm`。Policy Q 均值从
+  `-2.031` 到 `-3.712`，明显优于 Replay v1 的 `-10.455` 漂移。结果目录
+  `outputs/state_attention_ilosac_flow_v2_20261118_1/`；`summary.json`
+  SHA-256
+  `62831313b3eaf5ae4d38adb830ef2358d7ec656b22fa2affde133c538a35a6a7`，
+  `comparison.json` SHA-256
+  `5dc358495ea3a484213a5cb3f450292f11594a36e420a83ad084d37cdadbdbd0`。
+  模型入口 SHA-256
+  `3777214a3cb87cece928771cd33d1cd342b8b594cc40ca4b39560b1a01b730a5`，
+  配置 SHA-256
+  `81481e8f6ba1d6e82aa995374852dfa53ed00899bf8a09bd2e3dec2144da59fe`。
+  结果仅为 MuJoCo 仿真，不代表硬件或临床精度。
+- 2026-11-18 16:05:48 CST：Frontiers 2022 Algorithm 1 DDPG + DiT-Flow/RCM
+  完整流水线 FAIL（严格成功门限）。从
+  `Frontiers2022_DDPG_linux_20261118.zip` 接入独立实现，并在共享 Replay
+  入口增加可替换 policy/critic/update/reward 组件；保留当前 ILOSAC-inspired
+  Flow v2 的 twin-Q、TD clip、demonstration anchor 路径。5/5 Frontiers 单元
+  测试和 6/6 Replay 回归测试 PASS。启动命令为
+  `bash scripts/run_frontiers2022_ddpg.sh --output-dir outputs/state_attention_frontiers2022_ddpg_20261118_1`，
+  配置 `configs/frontiers2022_ddpg_pipeline.json`；训练集
+  `lerobot_v12_oct_dit_rf_dagger2_acthist_20261116_224`、验证集
+  `lerobot_rcm_val_acthist_20261117_224`、初始 checkpoint
+  `dit_rectified_flow_state_attention_v1_acthist_20261117/best_model.pth`、
+  seed `20261117`、固定 Flow 噪声 seed `20261118`。回放缓存保留 225,614 个
+  连续 OCT-valid transitions；4×1000 步训练完成 3,750 次 actor 更新，best
+  epoch 0 val loss `1.103461`，last epoch val loss `16.239620`。best
+  checkpoint SHA-256
+  `5559f5b3f1b986aceeda6aab76d64694880d931a58f9c8b4e65124ffdc51be4d`。
+  20 目标闭环 canonical success `0/20`，最终误差
+  mean/median/min/max=`15909.594/13546.894/11030.918/23944.568 µm`，
+  每目标最小误差均值 `12334.938 µm`，退出时编码器停稳 `5/20`，
+  safety-limited steps `108`。与 `state_attention_replay_v1_20261117_1`
+  逐目标配对：0 改善、20 恶化，最终误差均值恶化 `15738.567 µm`。结果目录
+  `outputs/state_attention_frontiers2022_ddpg_20261118_1/`；`summary.json`
+  SHA-256
+  `a49cd89b248d62602165aa3d3fd8f0f2a5588e28191fddf5b9dd7c170cec61b0`，
+  `comparison.json` SHA-256
+  `63d44dcef7a64fa4b7827e30a8246c0f4cf35984c1e105f21026db8ca11de3ce`。
+  结果仅为 MuJoCo 仿真，不代表硬件或临床精度。
+- 2026-11-18 18:21:33 CST：专家纠正历史经验回放 A/B/C 接入，A 完整
+  FAIL、B 评测中、C 待运行。新增纯 Flow 训练入口
+  `lerobot_training/dit_experience_replay.py`、固定 8+8 平衡采样器、
+  `run_experience_replay_abc.sh`、契约审计和 A/B/C 汇总器。单元测试合计
+  11/11 PASS，覆盖平衡批次、source 拆分、可复现性、reservoir 和旧 Replay
+  回归。首次契约审计因窗口掩码初始化为全 False，错误报告
+  `valid_windows=0`，判定 FAIL 并保留于
+  `runs/20261118/verification/experience_replay_contract/`；修正后用
+  `runs/20261118/verification/experience_replay_contract_retry1/` 重跑
+  PASS：234,316 帧、839 episodes、219,967 个连续有效动作窗口，其中教师
+  纠正 14,489 个；教师近目标 `<30/30–100/100–300 µm` 窗口数为
+  `2048/2863/5268`。真实 GPU 1-step balanced smoke 和 2-step 评测入口
+  smoke PASS，目录为 `runs/20261118/smoke/experience_replay_balanced/`
+  与 `runs/20261118/smoke/experience_replay_eval/`。
+- 2026-11-18 18:21:33 CST：Experience Replay A 原始继续训练完整流水线
+  FAIL（严格成功门限）。命令
+  `bash scripts/run_experience_replay_abc.sh outputs/state_attention_experience_replay_abc_20261118_1`，
+  配置 `configs/state_attention_experience_replay_a_original_20261118.json`；
+  从 state-attention v1 epoch 3 开始，4×1000 updates、batch 16、backbone
+  lr `1e-6`、attention lr `1e-5`。best epoch 3 val loss `0.144550`。
+  20 目标 canonical success `0/20`，最终误差
+  mean/median/min/max=`1087.778/883.749/112.620/2466.592 µm`，仅 6/20
+  最终误差 ≤300 µm，编码器停稳 0/20，safety-limited steps 0。与 v1 配对：
+  7 改善、13 恶化，最终误差均值恶化 `653.381 µm`；每目标最小误差均值从
+  `93.680` 改善至 `63.988 µm`，说明接近能力局部改善但无法保持。结果目录
+  `outputs/state_attention_experience_replay_abc_20261118_1/a_original/`；
+  `summary.json` SHA-256
+  `9de7f96b0498a5d589261b1ea5c9ddc5697f189316303fa7f60875d521f3548b`，
+  `comparison.json` SHA-256
+  `dfd62c594dcf4f9e29dc8c5d2d737a45089644dabd2fd6e567c6607804989c4e`。
+- 2026-11-18 18:21:33 CST：Experience Replay B/C 为部分状态，不作最终
+  结论。B static 训练完成，best epoch 3 val loss `0.145008`，checkpoint
+  SHA-256 `edc72afcd36b71fc9e969d0c58ba2aa92c97b317f95b5bda3f957f3af58afa56`；
+  上传时 B 处于 10 分片闭环评测中，C balanced 因顺序执行尚未启动。状态
+  快照位于 `outputs/state_attention_experience_replay_abc_20261118_1/b_static/status.json`。
+  结果仅为 MuJoCo 仿真，不代表硬件或临床精度。
+- 2026-11-18 19:24:05 CST：Experience Replay B/C 完成，A/B/C 全量对照
+  结论为“新增专家纠正数据有效，但固定 50/50 回放组织无效”。B static
+  最终误差 mean/median/P90/max=`207.290/141.257/510.406/677.360 µm`，
+  17/20 最终误差 ≤300 µm，与 v1 配对 18 改善、2 恶化，均值改善
+  `227.107 µm`；best epoch 3 val loss `0.145008`。C balanced 最终误差
+  mean/median/P90/max=`1486.514/1637.206/2661.735/2915.647 µm`，仅
+  4/20 最终误差 ≤300 µm，与 v1 配对 4 改善、16 恶化，均值恶化
+  `1052.117 µm`；相对 B 仅 3 改善、17 恶化。三组 canonical success 均为
+  `0/20`，编码器停稳均为 `0/20`，safety-limited steps 均为 0。B 在
+  19/20 目标曾进入 100 µm，但 19/20 均在首次进入后离开，说明仍需补足
+  保持和停稳行为。结果目录
+  `outputs/state_attention_experience_replay_abc_20261118_1/`；B
+  `summary/comparison` SHA-256
+  `26f1ad0a070779a4cf1310cc37ec20637797d1d9beeb1155588de19e6231ba9f`/
+  `11769abe6340597abf7f491684bf2d17de6b219c88764ea8ac7408e72d3d8e57`；
+  C `summary/comparison` SHA-256
+  `0d4cc724a077f4bb95b9d18ad68f41863b3d519858c97abcb8d5e1d86bc43a54`/
+  `2fcd8de80578da155f4ecce0d6bb5136ea45a7226644e007aba81fa62dab348b`。
+  汇总目录 `runs/20261118/analysis/experience_replay_abc/`；`abc_comparison.json`
+  SHA-256
+  `81ae86f7557801e33a5e0cf535ba85c0b8f5c9404b09c6848e968e92fe56513d`。
+  结果仅为 MuJoCo 仿真，不代表硬件或临床精度。
+- 2026-11-19 19:11:51 CST：state-attention v1 使用“原 839 episodes + 规划 2
+  200 episodes”合并数据训练完成，4/4 epochs 正常退出。命令为
+  `python lerobot_training/dit_state_attention.py train --data-dir data/plan2_plus_original_train_224_20261119 --val-data-dir data/lerobot_rcm_val_acthist_20261117_224 --init-from outputs/dit_rectified_flow_state_attention_v1_acthist_20261117/best_model.pth --output-dir outputs/state_attention_v1_plan2_plus_original200_20261119_1 --epochs 4 --batch-size 64 --val-batch-size 64 --num-workers 8 --lr 1e-4 --weight-decay 1e-4 --dagger-episode-start 839 --dagger-repeat 10 --seed 20261116`。
+  训练集 1,039 episodes/319,697 frames、301,634 valid windows；验证集
+  40 episodes/27,290 frames、26,650 windows。train/val loss 依次为
+  `0.094976/0.151036`、`0.090775/0.149849`、
+  `0.089364/0.150341`、`0.088714/0.149910`，best epoch 1，
+  best val loss `0.149849`。最佳 checkpoint 为
+  `outputs/state_attention_v1_plan2_plus_original200_20261119_1/best_model.pth`，
+  SHA-256 `6a8572a6f2646f2fc9f0525cff3a9b667c6e9962a162c8c86151137f30dacd4c`；
+  架构校验为 `state_conditioned_temporal_attention_v1`、34.538115M 参数。
+  本次只完成离线训练，尚未运行闭环评测；结果仅为 MuJoCo 仿真，不代表硬件
+  或临床精度。
+- 2026-11-19 19:38:29 CST：state-attention v1 新 checkpoint 的 20 目标评测
+  在启动约 14 秒后按用户要求中断，保留目录
+  `outputs/evaluation_state_attention_v1_plan2_plus_original200_20261119_dev20_0p35um_shards12/`，
+  未产生可用于指标的完整 episode。
+- 2026-11-19 19:38:29 CST：state-attention v1 新 checkpoint 的 10 目标闭环
+  评测 FAIL。命令
+  `.venv/bin/python -u lerobot_training/run_model_pipeline.py --config configs/state_attention_v1_plan2_plus_original200_eval_dev10_shards10_20261119.json --eval-only outputs/state_attention_v1_plan2_plus_original200_20261119_1/best_model.pth --output-dir outputs/evaluation_state_attention_v1_plan2_plus_original200_20261119_dev10_0p35um_shards10`；
+  10/10 shards 和 10/10 episodes 均完成，协议为 seed 42、1600 步、
+  `0.35 µm`＋连续三帧停稳。自动流水线因冻结 v1 baseline 含 20 个 episode
+  索引而拒绝生成最终对照；随后使用目标 ID 完全一致的前 10 条 baseline
+  记录形成独立分析。结果：canonical success `0/10`，最终误差
+  mean/median/min/max=`3458.685/4308.960/287.678/6447.226 µm`，仅
+  1/10 最终误差 ≤300 µm、0/10 ≤100 µm；每目标最小误差均值
+  `3204.780 µm`，仅 1/10 曾进入 100 µm，从未进入 0.35 µm，编码器停稳
+  `0/10`，safety-limited steps 0。与 v1 前 10 目标配对：2 改善、8 恶化，
+  最终误差均值恶化 `3107.522 µm`。原始结果目录
+  `outputs/evaluation_state_attention_v1_plan2_plus_original200_20261119_dev10_0p35um_shards10/`；
+  独立分析目录
+  `runs/20261119/analysis/state_attention_v1_plan2_plus_original200_dev10_1/`，
+  `summary.json` SHA-256
+  `cdeea4e3f9dfe8e6ac18e4f6bf954f977838d12f0137d266bbd3c4d125d1f9c9`。
+  结果仅为 MuJoCo 仿真，不代表硬件或临床精度。
+
+- 2026-11-19T20:11:10+08:00：模型流水线 `dit_rectified_flow_pipeline_smoke` **completed**（阶段 `completed`；配置 `runs/20261119/verification/model_pipeline/dit_rectified_flow.json`）。
+  运行目录 `runs/20261119/verification/model_pipeline/dit_rectified_flow`；命令和状态见 `commands.jsonl`、`status.json`。
+  训练集 `data/model_pipeline_smoke_20261119/train`，验证集 `data/model_pipeline_smoke_20261119/val`，初始化 `outputs/dit_rectified_flow_v12_oct_dit_rf_dagger2_acthist_20261117/best_model.pth`，训练 seed `20261116`。
+  评测 checkpoint `runs/20261119/verification/model_pipeline/dit_rectified_flow/training/best_model.pth`；SHA-256 `35bbaa0114205bdc3fee1efe077c2729c55eae6f55c7c2a07a2cc848f626aa9f`。
+  评测清单 `configs/v12_reachable_development_targets_0p35um.json`，split `development`，seed `42`，协议见本次 `config.json`。
+  最佳验证 loss `0.407145`（epoch 0）。
+  `summary.json`：成功 0/1，最终误差均值 19546.852 µm。
+  结果仅适用于 MuJoCo 仿真。
+
+- 2026-11-19T20:11:19+08:00：模型流水线 `state_attention_v1_pipeline_smoke` **completed**（阶段 `completed`；配置 `runs/20261119/verification/model_pipeline/state_attention_v1.json`）。
+  运行目录 `runs/20261119/verification/model_pipeline/state_attention_v1`；命令和状态见 `commands.jsonl`、`status.json`。
+  训练集 `data/model_pipeline_smoke_20261119/train`，验证集 `data/model_pipeline_smoke_20261119/val`，初始化 `outputs/dit_rectified_flow_state_attention_v1_acthist_20261117/best_model.pth`，训练 seed `20261116`。
+  评测 checkpoint `runs/20261119/verification/model_pipeline/state_attention_v1/training/best_model.pth`；SHA-256 `f0f31fc91d71206a83881616f4403bab79e9c9813301f7fcb5a9044e4ee8fefa`。
+  评测清单 `configs/v12_reachable_development_targets_0p35um.json`，split `development`，seed `42`，协议见本次 `config.json`。
+  最佳验证 loss `0.275832`（epoch 0）。
+  `summary.json`：成功 0/1，最终误差均值 19544.659 µm。
+  结果仅适用于 MuJoCo 仿真。
+
+- 2026-11-19T20:12:11+08:00：训练评测流水线基线回归 **PASS**。使用两份新增完整流水线配置，读取已保留的原始闭环分片（未重新仿真）：State Attention v1 合并训练 checkpoint 的 development 前 10 目标，seed 42，与冻结 v1 配对 2 改善/8 恶化、平均最终误差差 +3107.522 µm；原版 DiT-Flow 合并训练 checkpoint 的前 20 目标，seed 42，5 改善/15 恶化、+716.752 µm。均为 1600 步、0.35 µm 协议；错误 seed 和错误 target ID 均被拒绝。来源运行、配置和证据见 `runs/20261119/verification/model_pipeline/baseline_regression/verification.json`。仅汇总，未使用 GPU。
+
+- 2026-11-19T20:13:11+08:00：模型流水线 `dit_rectified_flow_pipeline_smoke` **failed**（阶段 `preparing`；配置 `runs/20261119/verification/model_pipeline/dit_rectified_flow.json`）。
+  运行目录 `runs/20261119/verification/model_pipeline/missing_checkpoint`；命令和状态见 `commands.jsonl`、`status.json`。
+  评测 checkpoint `runs/20261119/verification/model_pipeline/nonexistent.pth`；SHA-256 `未记录`。
+  评测清单 `configs/v12_reachable_development_targets_0p35um.json`，split `development`，seed `42`，协议见本次 `config.json`。
+  失败或中断原因：FileNotFoundError: 评测 checkpoint 不存在: /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261119/verification/model_pipeline/nonexistent.pth。
+  结果仅适用于 MuJoCo 仿真。
+
+- 2026-11-19T20:13:12+08:00：模型流水线 `dit_rectified_flow_pipeline_smoke` **interrupted**（阶段 `training_and_validation`；配置 `runs/20261119/verification/model_pipeline/dit_rectified_flow.json`）。
+  运行目录 `runs/20261119/verification/model_pipeline/interrupted`；命令和状态见 `commands.jsonl`、`status.json`。
+  训练集 `data/model_pipeline_smoke_20261119/train`，验证集 `data/model_pipeline_smoke_20261119/val`，初始化 `outputs/dit_rectified_flow_v12_oct_dit_rf_dagger2_acthist_20261117/best_model.pth`，训练 seed `20261116`。
+  评测清单 `configs/v12_reachable_development_targets_0p35um.json`，split `development`，seed `42`，协议见本次 `config.json`。
+  失败或中断原因：KeyboardInterrupt: SIGTERM。
+  结果仅适用于 MuJoCo 仿真。
+
+- 2026-11-19T20:13:17+08:00：模型流水线 `state_attention_v1_pipeline_smoke` **completed**（阶段 `completed`；配置 `runs/20261119/verification/model_pipeline/state_attention_v1.json`）。
+  运行目录 `runs/20261119/verification/model_pipeline/eval_only`；命令和状态见 `commands.jsonl`、`status.json`。
+  评测 checkpoint `runs/20261119/verification/model_pipeline/state_attention_v1/training/best_model.pth`；SHA-256 `f0f31fc91d71206a83881616f4403bab79e9c9813301f7fcb5a9044e4ee8fefa`。
+  评测清单 `configs/v12_reachable_development_targets_0p35um.json`，split `development`，seed `42`，协议见本次 `config.json`。
+  `summary.json`：成功 0/1，最终误差均值 19544.659 µm。
+  结果仅适用于 MuJoCo 仿真。
+
+- 2026-11-19T21:09:05+08:00：模型流水线 `state_attention_v1_plan2_plus_original200_natural` **completed**（阶段 `completed`；配置 `configs/state_attention_v1_plan2_plus_original200_natural_pipeline_20261119.json`）。
+  运行目录 `outputs/state_attention_v1_plan2_plus_original200_natural_20261119_1`；命令和状态见 `commands.jsonl`、`status.json`。
+  训练集 `data/plan2_plus_original_train_224_20261119`，验证集 `data/lerobot_rcm_val_acthist_20261117_224`，初始化 `outputs/dit_rectified_flow_state_attention_v1_acthist_20261117/best_model.pth`，训练 seed `20261116`。
+  评测 checkpoint `outputs/state_attention_v1_plan2_plus_original200_natural_20261119_1/training/best_model.pth`；SHA-256 `70815e88cc41f6f92bb0bb043370c8b86cae23687705ce1b7090fa939393fe2f`。
+  评测清单 `configs/v12_reachable_development_targets_0p35um.json`，split `development`，seed `42`，协议见本次 `config.json`。
+  最佳验证 loss `0.144349`（epoch 3）。
+  `summary.json`：成功 0/10，最终误差均值 1426.520 µm。
+  相对 `state_attention_v1_20261117` 的配对最终误差均值差 +1075.357 µm，见 `comparison.json`。
+  结果仅适用于 MuJoCo 仿真。
+
+- 2026-11-19T21:09:18+08:00：State Attention v1 自然采样与 10 倍采样对照。同一批 10 个 development 目标（seed 42、1600 步、0.35 µm＋连续三帧停稳），自然采样/新增数据 10 倍采样的最终误差均值为 1426.520/3458.685 µm；自然采样相对 10 倍采样 7 改善/3 恶化/0 不变。模型 checkpoint 标识和冻结 V1 基线的对照见结果文件。
+  训练集为原 839 条＋规划 2 新增 200 条，训练 seed 20261116；读取已有结果并配对，未重新仿真。命令 `python runs/20261119/analysis/state_attention_v1_natural_20261119_1/compare_sampling.py`，结果 `runs/20261119/analysis/state_attention_v1_natural_20261119_1/sampling_comparison.json`。
+
+- 2026-11-19T21:13:29+08:00：State Attention v1 自然采样闭环轨迹绘图 **PASS**。使用 `lerobot_training.plot_closed_loop_errors` 和 `runs/20261119/analysis/state_attention_v1_natural_20261119_1/plot_tip_paths.py`，读取 RTX 4090 评估保留的 10 个 development 目标（seed 42、1600 步、0.35 µm＋三帧停稳）；本次绘制和运动学还原在 CPU 上完成。16,010 个姿态通过坐标/误差核对，与 10 倍采样逐目标对照 7 改善/3 恶化。checkpoint `70815e88cc41f6f92bb0bb043370c8b86cae23687705ce1b7090fa939393fe2f`，数据集为 839＋200 条合并训练集。产物 `outputs/state_attention_v1_natural_trajectory_report_20261119_1/`。
+
+- 2026-11-19T21:14:12+08:00：自然采样闭环轨迹 GitHub 上传 **PASS**，远端已核对：分支 `experiment/state-attention-v1-20261117`，提交 `a146f9c3216b1c5c38bc7162496e798b7483ea3f`，报告目录 `rcm_4090_deploy/github_reports/model_status_20261119_state_attention_plan2_natural/`。本地对应 `outputs/state_attention_v1_natural_trajectory_report_20261119_1/`。
+
+- 2026-11-19T21:35:12+08:00：自然采样四目标 A/B/C 闭环诊断图 **PASS**。`MUJOCO_GL=egl python runs/20261119/analysis/state_attention_v1_natural_axes_20261119_1/plot_axis_diagnostics.py --evaluation-json outputs/state_attention_v1_plan2_plus_original200_natural_20261119_1/evaluation/evaluation_results.json --output-dir outputs/state_attention_v1_natural_axis_diagnostics_20261119_1`；State Attention v1 checkpoint `70815e88cc41f6f92bb0bb043370c8b86cae23687705ce1b7090fa939393fe2f`，839＋200 条训练集，development split，base seed 42。E08/E00/E02/E06 对齐窗口共 404 帧，NVIDIA EGL RGB-D 重算得到 404 个有效专家动作；E08/E00/E02 的 C 轴最早出现连续偏离，E06 最低点位于最后记录帧。姿态误差复核均通过，4 页 PDF 和逐帧 CSV 见 `outputs/state_attention_v1_natural_axis_diagnostics_20261119_1/`。
+
+- 2026-11-19T21:36:03+08:00：E08/E00/E02/E06 三轴诊断图 GitHub 上传 **PASS**。远端 `experiment/state-attention-v1-20261117` 已核对提交 `3d69226b79a46222fe1dbe5526026b7af6f292ed`；本地报告 `outputs/state_attention_v1_natural_axis_diagnostics_20261119_1/`。
+
+- 2026-11-19T21:53:00+08:00：C 轴教师分解首跑 **FAILED**（0 帧写出）。`replay.py teacher plan2 --episodes 8 0 2 6` 的诊断断言把三轴布尔掩码当作整数索引，已改为校验所有轴启用后重跑；模型、仿真控制器和数据未修改。运行目录 `runs/20261119/analysis/c_retraction_20261119_1/teacher_plan2/`，使用上述自然采样 checkpoint 的同一 development 轨迹和种子。
+
+- 2026-11-19T21:52:18+08:00：C 轴回撤标签审计 **completed**。`python runs/20261119/analysis/c_retraction_20261119_1/audit_labels.py --output-dir runs/20261119/analysis/c_retraction_20261119_1/labels`；CPU 扫描 `data/plan2_plus_original_train_224_20261119` 的 319,697 帧、301,634 个 2×16 合法窗口起点。原集/Plan 2 全部负 dC 4.4%/13.0%，有效 OCT 距离 <200 µm 则为 18.4%/14.5%。原集与 Plan 2 分别有 193 和 200 条带真实目标元数据。结果 `outputs/state_attention_v1_c_retraction_20261119_1/labels/label_audit.json` 与 CSV。
+
+- 2026-11-19T21:53:05+08:00：RGB-D 教师 C 轴分解重跑 **completed**。`MUJOCO_GL=egl python runs/20261119/analysis/c_retraction_20261119_1/replay.py teacher plan2 --episodes 8 0 2 6 --output-dir runs/20261119/analysis/c_retraction_20261119_1/teacher_plan2`；相同自然采样 checkpoint `70815e88cc41f6f92bb0bb043370c8b86cae23687705ce1b7090fa939393fe2f`，development，seed `42 + episode_index`，50 ms。404/404 帧有效。三集最低点后各 80 帧中，几何求解均为正，150 次教师负指令均为继承负速度并触发加速度限制；零初速对照 0 次。证据 `outputs/state_attention_v1_c_retraction_20261119_1/teacher_plan2/` 和 `results.json`。
+
+- 2026-11-19T21:51:59+08:00：I0–I3 Plan 2 固定状态回放 **completed，退出清理报错**。`replay.py flow plan2 --episodes 8 0 2 6 --output-dir runs/20261119/analysis/c_retraction_20261119_1/flow_plan2` 在 RTX 4090 写完 404 帧后，试图关闭未初始化的评估器参考场景；四段 CSV 完整，与教师逐帧键一致，清理条件已修复。checkpoint `70815e88cc41f6f92bb0bb043370c8b86cae23687705ce1b7090fa939393fe2f`，合并自然采样集，development，轨迹 seed `42 + episode_index`，逐帧噪声 seed `2026111900 + episode_index*10000 + step`。I0/I1/I2/I3 的 240 帧近最低点后 C 负数为 216/197/230/203。输出 `outputs/state_attention_v1_c_retraction_20261119_1/flow_plan2/`。固定状态实验不计作闭环验收。
+
+- 2026-11-19T21:53:59+08:00：I0–I3 R0 固定状态回放 **completed**。`replay.py flow r0 --episodes 8 0 2 6 --output-dir runs/20261119/analysis/c_retraction_20261119_1/flow_r0`；RTX 4090，原训练集 `data/lerobot_v12_oct_dit_rf_dagger2_acthist_20261116_224`，checkpoint `step_004000.pth`（`b504146485c38c1c26bd960d8aa831beba0df7e564f1f20267862a79b7dc1733`），development、轨迹和共享噪声种子同上一条。703 帧，359 对近目标连续帧；I0 到 I3 的 A/B 平均帧间动作变化由 0.00672°/0.00403° 到 0.00311°/0.00187°。输出 `outputs/state_attention_v1_c_retraction_20261119_1/flow_r0/` 和 `results.json`。固定状态实验不计作闭环验收。
+
+- 2026-11-19T21:55:26+08:00：E08/E00 C 轴跨 checkpoint 图和四页汇总 **completed**。`python runs/20261119/analysis/c_retraction_20261119_1/summarize.py --input-dir runs/20261119/analysis/c_retraction_20261119_1 --output-dir outputs/state_attention_v1_c_retraction_20261119_1`；在 CPU 重算真值目标和绘图。基线 R0/Frozen V1（Frozen checkpoint `d1e2527fe087ad1f619450bdd83eac24e63d1e3a0d96186dc2cdd849fdfbc424`），比较 Plan 2 natural；同 development target ID、seed 50/42、50 ms。E08/E00 最低点后 80 步，C 距离新增 119/71 µm（R0）、800/644 µm（Frozen）、414/475 µm（Plan 2 natural）。核对绝对窗口和最低点相对窗口，报告、复核 CSV 及完整 SHA-256 在 `outputs/state_attention_v1_c_retraction_20261119_1/`。
+
+- 2026-11-19T21:59:35+08:00：C 轴回撤、标签与推理消融报告 GitHub 上传 **PASS**。远端 `experiment/state-attention-v1-20261117` 已独立核对提交 `26981e4312503546b7e45915f15ccb1b8143afda`；上传 `rcm_4090_deploy/github_reports/model_status_20261119_state_attention_plan2_natural/c_retraction/` 的 22 个报告、图和结构化文件。本地产物 `outputs/state_attention_v1_c_retraction_20261119_1/`。
+
+- 2026-11-19T07:50:21-07:00：夜间实验资产和回放预检 **PASS**。`python -m scripts.research.overnight_cfix preflight --output-dir runs/20261119/verification/overnight_preflight_075021`；合并训练集 301,634 个有效窗口，4 个 epoch 的 8% 采样配额均为 1,280/16,000，C-only 覆盖未改变执行动作或窗口。冻结 v1、R0 在 RTX 4090 上的 FP32/AMP step-0 最大差均为 0。冻结 R0 的 development E00–E19、seed 42+index、每目标 1,600 步参考终值均值 247.9363 µm；并非本次新闭环结果。哈希和数值证据见目录内 `preflight.json` 和 `step_zero_*.json`。
+
+- 2026-11-19T07:50:22-07:00：`python -m unittest discover -v -s tests` **PASS**，34/34。证据 `runs/20261119/verification/overnight_tests_075022/unittest.log`。
+
+- 2026-11-19T08:00:06-07:00：`python -m scripts.research.overnight_cfix_data audit --smoke --dataset-dir data/plan2_plus_original_train_224_20261119 --output-dir runs/20261119/verification/overnight_audit_smoke_080006/audit` **PASS（仅冒烟）**。EGL 单帧回放复现 Original、D1、D2、D4 各 8 条原标签；D3 无候选。32/32 不是全量分母，不授权改标签。证据见 `contamination_audit.json`、CSV 与 `replay_failures.json`。结果仅适用于 MuJoCo 仿真。
+
+- 2026-11-19T08:04:52-07:00：`python -m scripts.research.overnight_cfix_eval --arm I3 --smoke` **FAILED**。冻结 R0、development E00、seed 42，首帧历史未满、未调用模型，计时字段未初始化；未生成闭环指标。命令配置和 traceback 见 `runs/20261119/verification/overnight_eval_smoke_080452/eval.log`。
+
+- 2026-11-19T08:06:29-07:00：I3 闭环冒烟复测 **PASS**。`python -m scripts.research.overnight_cfix_eval --arm I3 --smoke`，冻结 R0，development E00，seed 42，RTX 4090 / EGL，2 步均通过轨迹检查，首帧不计时；首个真实推理调用约 165 ms（冷启动，不代表稳态）。证据 `runs/20261119/verification/overnight_eval_smoke_080629/evaluation/smoke.json`。
+
+- 2026-11-19T08:07:09-07:00：OCT symlog 回放训练冒烟 **PASS**。`python -m lerobot_training.dit_experience_replay train --mode ratio --correction-ratio 0.08 --oct-symlog --epochs 1 --steps-per-epoch 5 --checkpoint-every-steps 5 --validation-max-batches 1`。冻结 R0 初始化、Plan-2 合并训练集、冻结 v12 验证集、seed 20261118，RTX 4090 AMP：5/5 更新，采样 6/80 纠偏（短跑配额取整），train/val loss 0.104622/0.233803。证据 `runs/20261119/verification/overnight_train_smoke_080709/training/training_history.json`；非正式训练结果。
+
+- 2026-11-19T08:10:57-07:00：symlog checkpoint 加载及 EGL 闭环冒烟 **PASS**。`python -m scripts.research.overnight_cfix_eval --arm I0 --smoke`，使用 `runs/20261119/verification/overnight_train_smoke_080709/training/step_000005.pth`，E00、seed 42、2 步，见 `runs/20261119/verification/overnight_symlog_eval_smoke_081057/evaluation/smoke.json`。不计作正式评估。
+
+- 2026-11-19T08:10:57-07:00：夜间实验启动前回归 **PASS**。`python -m py_compile` 检查六个改动模块，`python -m unittest discover -v -s tests` 34/34 通过。日志 `runs/20261119/verification/overnight_regression_081057/`。
+
+- 2026-11-19T08:12:34-07:00：无人值守夜间实验 **RUNNING**，本地部署目录启动器 PID `412097`，独立 session `412097`，无 TTY；当前 Task 1 全量审计进度 600/11,400，原标签已复现 600 条、失败 0。资产哈希/回放预检与 I3 EGL 冒烟通过。运行证据 `runs/20261119/overnight_c_fix_symlog_081234/`，阶段报告 `github_reports/overnight_c_fix_symlog_081234/`。只在仿真中运行；不会推送，不依赖聊天窗口。
+
+- 2026-11-19T08:12:41.009278-07:00: `overnight_c_fix_symlog_081234/preflight` **completed**. {"output": "runs/20261119/overnight_c_fix_symlog_081234/preflight.json", "dataset": "data/plan2_plus_original_train_224_20261119", "checkpoints": ["outputs/dit_rectified_flow_state_attention_v1_acthist_20261117/best_model.pth", "outputs/state_attention_experience_ratio_20261118_1/r0_natural/training/step_004000.pth"], "gpu": "NVIDIA GeForce RTX 4090", "assets": {"data/plan2_plus_original_train_224_20261119/data/dataset.npz": "9d80523f519faf4e00bbaef3d30e29dec1401181f3dcddd438c5087c05eb54db", "data/plan2_plus_original_train_224_20261119/metadata.json": "7f02f265acadf965a9dc0de29b2058cfccc240ea39d06dc88050179d0ae2698d", "outputs/state_attention_experience_ratio_20261118_1/r0_natural/training/step_004000.pth": "b504146485c38c1c26bd960d8aa831beba0df7e564f1f20267862a79b7dc1733", "outputs/dit_rectified_flow_state_attention_v1_acthist_20261117/best_model.pth": "d1e2527fe087ad1f619450bdd83eac24e63d1e3a0d96186dc2cdd849fdfbc424", "configs/v12_reachable_development_targets_0p35um.json": "fcc4872a9d5b58bb7158b36d3c0ab6d7452e4d8d747317dfb077b6e7bbc815c7"}, "original_windows": 220816, "correction_and_plan2_windows": 80818, "window_diagnostics": {"candidate_windows": 319681, "trajectory_boundary_excluded": 16599, "source_frame_gap_excluded": 1420, "time_interval_excluded": 0, "invalid_input_excluded": 28, "valid_windows": 301634}, "overlay_arrays_isolated": true, "correction_samples_per_epoch": [1280, 1280, 1280, 1280], "total_samples_per_epoch": 16000, "r0_final_mean_um": 247.93630506807492, "c_reference_path": "outputs/state_attention_v1_c_retraction_20261119_1/results.json", "c_reference_retreat_um": {"r0": {"E08": 119.33055518430535, "E00": 71.49492165257598}, "plan2": {"E08": 414.0532105173875, "E00": 475.09730754969223}}, "result_status": "PASS", "commands": [{"stage": "preflight", "time": "2026-11-19T08:12:34.131643-07:00", "argv": ["/home/him1/mujoco_bc/rcm_4090_deploy/.venv/bin/python", "-m", "scripts.research.overnight_cfix", "preflight", "--output-dir", "runs/20261119/overnight_c_fix_symlog_081234"], "log": "runs/20261119/overnight_c_fix_symlog_081234/preflight.log"}]}. MuJoCo simulation only.
+
+- 2026-11-19T08:12:46.184078-07:00: `overnight_c_fix_symlog_081234/eval_smoke` **completed**. {"checkpoint": "outputs/state_attention_experience_ratio_20261118_1/r0_natural/training/step_004000.pth", "output": "runs/20261119/overnight_c_fix_symlog_081234/eval_smoke", "steps": 2, "arm": "I3", "target_id": "target_d30721d6bc45", "seed": 42, "latency_ms": [null, 174.63177490234375], "result_status": "passed", "commands": [{"stage": "eval_smoke", "time": "2026-11-19T08:12:41.009829-07:00", "argv": ["/home/him1/mujoco_bc/rcm_4090_deploy/.venv/bin/python", "-m", "scripts.research.overnight_cfix_eval", "--checkpoint", "outputs/state_attention_experience_ratio_20261118_1/r0_natural/training/step_004000.pth", "--target-manifest", "configs/v12_reachable_development_targets_0p35um.json", "--output-dir", "runs/20261119/overnight_c_fix_symlog_081234/eval_smoke", "--arm", "I3", "--smoke"], "log": "runs/20261119/overnight_c_fix_symlog_081234/eval_smoke.log"}]}. MuJoCo simulation only.
+
+- 2026-11-19T09:13:13.569426-07:00: `overnight_c_fix_symlog_081234/task1` **completed**. {"dataset": "data/plan2_plus_original_train_224_20261119", "output": "runs/20261119/overnight_c_fix_symlog_081234/task1", "candidate_count": 11400, "replayed_count": 11400, "reproduced_count": 11400, "dragged_negative_fraction": 0.9674561403508772, "threshold_reached": true, "failure_count": 0, "commands": [{"stage": "task1", "time": "2026-11-19T08:12:46.184653-07:00", "argv": ["/home/him1/mujoco_bc/rcm_4090_deploy/.venv/bin/python", "-m", "scripts.research.overnight_cfix_data", "audit", "--dataset-dir", "data/plan2_plus_original_train_224_20261119", "--output-dir", "runs/20261119/overnight_c_fix_symlog_081234/task1"], "log": "runs/20261119/overnight_c_fix_symlog_081234/task1.log"}]}. MuJoCo simulation only.
+
+- 2026-11-19T09:13:13.934706-07:00: `overnight_c_fix_symlog_081234/task2_overlay` **completed**. {"output": "data/overnight_c_fix_symlog_081234_overlay/label_override.npz", "dataset": "data/plan2_plus_original_train_224_20261119", "source_dataset": "/home/him1/mujoco_bc/rcm_4090_deploy/data/plan2_plus_original_train_224_20261119", "audit": "runs/20261119/overnight_c_fix_symlog_081234/task1/contamination_audit.json", "updated_action_rows": 11029, "executed_action_unchanged": true, "valid_windows_2x16": 301634, "commands": [{"stage": "task2_overlay", "time": "2026-11-19T09:13:13.569757-07:00", "argv": ["/home/him1/mujoco_bc/rcm_4090_deploy/.venv/bin/python", "-m", "scripts.research.overnight_cfix_data", "prepare-clean", "--dataset-dir", "data/plan2_plus_original_train_224_20261119", "--output-dir", "data/overnight_c_fix_symlog_081234_overlay", "--audit-csv", "runs/20261119/overnight_c_fix_symlog_081234/task1/contamination_audit.csv", "--audit-json", "runs/20261119/overnight_c_fix_symlog_081234/task1/contamination_audit.json"], "log": "runs/20261119/overnight_c_fix_symlog_081234/task2_overlay.log"}]}. MuJoCo simulation only.
+
+- 2026-11-19T09:15:56.189789-07:00: `overnight_c_fix_symlog_081234/task2_train` **completed**. {"checkpoint": "outputs/dit_rectified_flow_state_attention_v1_acthist_20261117/best_model.pth", "dataset": "data/plan2_plus_original_train_224_20261119", "validation": "data/lerobot_rcm_val_acthist_20261117_224", "overlay": "data/overnight_c_fix_symlog_081234_overlay/label_override.npz", "output": "outputs/overnight_c_fix_symlog_081234/task2_train", "seed": 20261118, "sampling_counts": {"original": 58880, "correction": 5120}, "train_loss": 0.116777173448354, "val_loss": 0.14800261818676544, "batches_seen": 4000, "optimizer_updates": 3998, "amp_skipped_batches": 2, "replay_labels": "C-only overlay", "commands": [{"stage": "task2_train", "time": "2026-11-19T09:13:13.935069-07:00", "argv": ["/home/him1/mujoco_bc/rcm_4090_deploy/.venv/bin/python", "-m", "lerobot_training.dit_experience_replay", "train", "--data-dir", "data/plan2_plus_original_train_224_20261119", "--val-data-dir", "data/lerobot_rcm_val_acthist_20261117_224", "--init-from", "outputs/dit_rectified_flow_state_attention_v1_acthist_20261117/best_model.pth", "--output-dir", "outputs/overnight_c_fix_symlog_081234/task2_train", "--mode", "ratio", "--correction-ratio", "0.08", "--epochs", "4", "--steps-per-epoch", "1000", "--checkpoint-every-steps", "1000", "--label-overlay", "data/overnight_c_fix_symlog_081234_overlay/label_override.npz"], "log": "runs/20261119/overnight_c_fix_symlog_081234/task2_train.log"}]}. MuJoCo simulation only.
+
+- 2026-11-19T12:14:05.373513-07:00: `overnight_c_fix_symlog_081234/task2_step2000` **completed**. {"output": "runs/20261119/overnight_c_fix_symlog_081234/task2_step2000", "checkpoint": "outputs/overnight_c_fix_symlog_081234/task2_train/step_002000.pth", "arm": "I0", "protocol": "development E00-E19, seed 42+index, 1600 steps, 0.35 um", "target_count": 20, "base_seed": 42, "max_steps": 1600, "error_threshold_um": 0.35, "flow_steps": 4, "samples": 1, "final_mean_um": 61.994802515134914, "final_median_um": 61.33628736511069, "final_min_um": 36.36983277166861, "minimum_mean_um": 31.20141174197486, "canonical_success_count": 0, "encoder_settled_at_exit_count": 0, "encoder_settled_near_target_frames": 1, "inference_median_ms": 9.062160015106201, "inference_p90_ms": 9.321791648864746, "inference_timing": "CUDA events: sample and aggregate, excluding initial history fill and host transfer", "near_target_ab_mean_change_deg": [0.006476823841017499, 0.0038017866548822592], "near_target_ab_pairs": 18720, "c_retraction": {"E08": {"minimum_step": 1579, "C_residual_at_min_um": -15.417708285369258, "C_retreat_after_80_steps_um": null, "post_min_negative_commands": 19, "post_min_under_target_negative_commands": 19, "post_min_command_frames": 21}, "E00": {"minimum_step": 1002, "C_residual_at_min_um": -29.205902686911145, "C_retreat_after_80_steps_um": 26.056553738381893, "post_min_negative_commands": 51, "post_min_under_target_negative_commands": 51, "post_min_command_frames": 80}, "E02": {"minimum_step": 1499, "C_residual_at_min_um": -22.625173540724575, "C_retreat_after_80_steps_um": -0.7364149282658161, "post_min_negative_commands": 33, "post_min_under_target_negative_commands": 33, "post_min_command_frames": 80}, "E06": {"minimum_step": 1183, "C_residual_at_min_um": -45.17200506780128, "C_retreat_after_80_steps_um": 20.21223952045048, "post_min_negative_commands": 46, "post_min_under_target_negative_commands": 46, "post_min_command_frames": 80}}, "result_status": "completed", "commands": [{"stage": "task2_step2000", "time": "2026-11-19T09:15:56.190720-07:00", "argv": ["/home/him1/mujoco_bc/rcm_4090_deploy/.venv/bin/python", "-m", "scripts.research.overnight_cfix_eval", "--checkpoint", "outputs/overnight_c_fix_symlog_081234/task2_train/step_002000.pth", "--target-manifest", "configs/v12_reachable_development_targets_0p35um.json", "--output-dir", "runs/20261119/overnight_c_fix_symlog_081234/task2_step2000", "--arm", "I0"], "log": "runs/20261119/overnight_c_fix_symlog_081234/task2_step2000.log"}]}. MuJoCo simulation only.
+
+- 2026-11-19T15:11:26.572276-07:00: `overnight_c_fix_symlog_081234/task2_step4000` **completed**. {"output": "runs/20261119/overnight_c_fix_symlog_081234/task2_step4000", "checkpoint": "outputs/overnight_c_fix_symlog_081234/task2_train/step_004000.pth", "arm": "I0", "protocol": "development E00-E19, seed 42+index, 1600 steps, 0.35 um", "target_count": 20, "base_seed": 42, "max_steps": 1600, "error_threshold_um": 0.35, "flow_steps": 4, "samples": 1, "final_mean_um": 53.94992340639875, "final_median_um": 52.14944434522449, "final_min_um": 26.773429507496655, "minimum_mean_um": 30.396917993974448, "canonical_success_count": 0, "encoder_settled_at_exit_count": 0, "encoder_settled_near_target_frames": 20, "inference_median_ms": 9.10371208190918, "inference_p90_ms": 9.31699504852295, "inference_timing": "CUDA events: sample and aggregate, excluding initial history fill and host transfer", "near_target_ab_mean_change_deg": [0.006378195392980649, 0.0037169537593039308], "near_target_ab_pairs": 18749, "c_retraction": {"E08": {"minimum_step": 1575, "C_residual_at_min_um": -15.637065923574056, "C_retreat_after_80_steps_um": null, "post_min_negative_commands": 21, "post_min_under_target_negative_commands": 21, "post_min_command_frames": 25}, "E00": {"minimum_step": 1585, "C_residual_at_min_um": -28.077777690423744, "C_retreat_after_80_steps_um": null, "post_min_negative_commands": 12, "post_min_under_target_negative_commands": 12, "post_min_command_frames": 15}, "E02": {"minimum_step": 1240, "C_residual_at_min_um": -22.67217874890548, "C_retreat_after_80_steps_um": 42.53971340932239, "post_min_negative_commands": 59, "post_min_under_target_negative_commands": 59, "post_min_command_frames": 80}, "E06": {"minimum_step": 1466, "C_residual_at_min_um": -10.200130176595934, "C_retreat_after_80_steps_um": 4.888541651464351, "post_min_negative_commands": 47, "post_min_under_target_negative_commands": 47, "post_min_command_frames": 80}}, "result_status": "completed", "commands": [{"stage": "task2_step4000", "time": "2026-11-19T12:14:05.373995-07:00", "argv": ["/home/him1/mujoco_bc/rcm_4090_deploy/.venv/bin/python", "-m", "scripts.research.overnight_cfix_eval", "--checkpoint", "outputs/overnight_c_fix_symlog_081234/task2_train/step_004000.pth", "--target-manifest", "configs/v12_reachable_development_targets_0p35um.json", "--output-dir", "runs/20261119/overnight_c_fix_symlog_081234/task2_step4000", "--arm", "I0"], "log": "runs/20261119/overnight_c_fix_symlog_081234/task2_step4000.log"}]}. MuJoCo simulation only.
+
+- 2026-11-19T15:11:26.572754-07:00: `overnight_c_fix_symlog_081234/task2_selection` **completed**. {"checkpoint": "outputs/overnight_c_fix_symlog_081234/task2_train/step_004000.pth", "r0_final_mean_um": 247.93630506807492, "best_replay_final_mean_um": 53.94992340639875, "dataset": "data/plan2_plus_original_train_224_20261119", "protocol": "paired development E00-E19 at 42+index, 1600 steps, I0", "commands": []}. MuJoCo simulation only.
+
+- 2026-11-19T15:12:34.296111-07:00: `overnight_c_fix_symlog_081234/task3_I0` **interrupted**. {"output": "runs/20261119/overnight_c_fix_symlog_081234/task3_I0", "checkpoint": "outputs/overnight_c_fix_symlog_081234/task2_train/step_004000.pth", "arm": "I0", "protocol": "development E00-E19, seed 42+index, 1600 steps, 0.35 um", "reason": "Command '['/home/him1/mujoco_bc/rcm_4090_deploy/.venv/bin/python', '-m', 'scripts.research.overnight_cfix_eval', '--checkpoint', 'outputs/overnight_c_fix_symlog_081234/task2_train/step_004000.pth', '--target-manifest', 'configs/v12_reachable_development_targets_0p35um.json', '--output-dir', 'runs/20261119/overnight_c_fix_symlog_081234/task3_I0', '--arm', 'I0']' timed out after 67.55822070105933 seconds", "commands": [{"stage": "task3_I0", "time": "2026-11-19T15:11:26.573224-07:00", "argv": ["/home/him1/mujoco_bc/rcm_4090_deploy/.venv/bin/python", "-m", "scripts.research.overnight_cfix_eval", "--checkpoint", "outputs/overnight_c_fix_symlog_081234/task2_train/step_004000.pth", "--target-manifest", "configs/v12_reachable_development_targets_0p35um.json", "--output-dir", "runs/20261119/overnight_c_fix_symlog_081234/task3_I0", "--arm", "I0"], "log": "runs/20261119/overnight_c_fix_symlog_081234/task3_I0.log"}]}. MuJoCo simulation only.
+
+- 2026-11-20T08:53:29+08:00：夜间 C 标签回放实验报告 GitHub 上传 **PASS**。`git push` 新建 `experiment/overnight-c-fix-symlog-20261119`，`git ls-remote` 独立核对提交 `e3648a82e0170b1508adfa1a609d9fc0a2a33dc4`（基线 `26981e4312503546b7e45915f15ccb1b8143afda`）。仅上传 `rcm_4090_deploy/github_reports/overnight_c_fix_symlog_081234/` 的 22 个报告、结构化结果和诊断图。保留 Task 3 超时及 Task 4/5 未开始的状态；未上传模型权重、数据、原始日志，未重跑仿真。
+
+- 2026-11-20T09:08:33+08:00：夜间 C 标签回放实验，离线针尖轨迹绘图 **PASS**。命令：`.venv/bin/python -m scripts.research.plot_overnight_tip_paths --r0-json outputs/state_attention_experience_ratio_20261118_1/r0_natural/evaluation/evaluation_results.json --overnight-dir runs/20261119/overnight_c_fix_symlog_081234 --output-dir outputs/overnight_c_fix_symlog_081234_trajectory_20261120_090658`。输入为 I0 闭环记录（development E00–E19，seed 42+index，1,600 步，周期 0.05 s），对应冻结 R0 `outputs/state_attention_experience_ratio_20261118_1/r0_natural/training/step_004000.pth` 和 `outputs/overnight_c_fix_symlog_081234/task2_train/step_{002000,004000}.pth`（训练数据 `data/plan2_plus_original_train_224_20261119`，仅覆盖 C 标签）。CPU 正运动学核对 96,060 个姿态，最大距离和终点位置差均为 0 µm。终值均值 247.936 / 61.995 / 53.950 µm，三组成功均为 0/20。两张 PNG 均非空，两份 PDF 均为一页；输入索引和校验详情见输出目录的 `trajectory_reconstruction.json`。仅对仿真记录绘图，未重新训练、推理、运行闭环或上传。
+
+- 2026-11-20T09:20:50+08:00：轨迹图 GitHub 上传 **PASS**。将 `needle_tip_trajectories_3d.{png,pdf}`、`needle_tip_near_target.{png,pdf}` 及 `SUMMARY.md` 的图表索引发布到 `jsonyang218-pixel/rcm-mujoco-reference` 的 `experiment/overnight-c-fix-symlog-20261119` 分支。远端核对提交 `b0efcd0b472daf9d055f4fae615441e5e2245b49`（父提交 `e3648a82e0170b1508adfa1a609d9fc0a2a33dc4`）。未上传权重、数据集或原始运行日志。
+
+- 2026-11-20T10:04:16+08:00：模型流水线 `sop_fixture` **completed**（阶段 `completed`；配置 `runs/20261120/verification/experiment_sop_v1/gated_config.json`）。
+  运行目录 `runs/20261120/verification/experiment_sop_v1/gated/trial`；命令和状态见 `commands.jsonl`、`status.json`。
+  训练集 `data/model_pipeline_smoke_20261119/train`，验证集 `data/model_pipeline_smoke_20261119/val`，初始化 `None`，训练 seed `None`。
+  评测 checkpoint `runs/20261120/verification/experiment_sop_v1/gated/trial/training/best_model.pth`；SHA-256 `6fb82a46696074977f095af25a85171d2ea451cec7bef4bbbbb655d57fe5f61f`。
+  评测清单 `configs/v12_reachable_development_targets_0p35um.json`，split `development`，seed `42`，协议见本次 `config.json`。
+  最佳验证 loss `0.250000`（epoch 0）。
+  `summary.json`：成功 0/2，最终误差均值 10.000 µm。
+  结果仅适用于 MuJoCo 仿真。
+
+- 2026-11-20T10:04:16+08:00：实验 SOP `gated/trial` **completed**；卡 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v1/gated_card.json`；目录 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v1/gated`。
+  命令 `/home/him1/mujoco_bc/rcm_4090_deploy/.venv/bin/python -B -u lerobot_training/run_model_pipeline.py --config /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v1/gated_config.json --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v1/gated/trial --training-max-val-loss 0.5`；配置 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v1/gated_config.json`。
+  档位 `smoke`；权重 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v1/gated/trial/training/best_model.pth`；目标、种子、基线和协议见 `preflight.json`。
+  结果：/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v1/gated/trial/summary.json; success 0/2; mean final error 10.000 um。
+  仅验证软件/仿真，不代表临床或硬件就绪。
+
+- 2026-11-20T10:04:16+08:00：实验 SOP `gated/branch` **skipped**；卡 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v1/gated_card.json`；目录 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v1/gated`。
+  命令 `/home/him1/mujoco_bc/rcm_4090_deploy/.venv/bin/python -B -u lerobot_training/run_model_pipeline.py --config /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v1/gated_config.json --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v1/gated/branch --eval-only /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v1/gated/trial/training/best_model.pth`；配置 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v1/gated_config.json`。
+  档位 `smoke`；权重 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v1/gated/trial/training/best_model.pth`；目标、种子、基线和协议见 `preflight.json`。
+  原因：branch not selected: successes=0 == 1 (/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v1/gated/trial/summary.json)。
+  仅验证软件/仿真，不代表临床或硬件就绪。
+
+- 2026-11-20T10:04:16+08:00：模型流水线 `sop_fixture` **completed**（阶段 `completed`；配置 `runs/20261120/verification/experiment_sop_v1/gated_config.json`）。
+  运行目录 `runs/20261120/verification/experiment_sop_v1/gated/followup`；命令和状态见 `commands.jsonl`、`status.json`。
+  评测 checkpoint `runs/20261120/verification/experiment_sop_v1/gated/trial/training/best_model.pth`；SHA-256 `6fb82a46696074977f095af25a85171d2ea451cec7bef4bbbbb655d57fe5f61f`。
+  评测清单 `configs/v12_reachable_development_targets_0p35um.json`，split `development`，seed `42`，协议见本次 `config.json`。
+  `summary.json`：成功 0/2，最终误差均值 10.000 µm。
+  结果仅适用于 MuJoCo 仿真。
+
+- 2026-11-20T10:04:16+08:00：实验 SOP `gated/followup` **completed**；卡 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v1/gated_card.json`；目录 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v1/gated`。
+  命令 `/home/him1/mujoco_bc/rcm_4090_deploy/.venv/bin/python -B -u lerobot_training/run_model_pipeline.py --config /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v1/gated_config.json --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v1/gated/followup --eval-only /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v1/gated/trial/training/best_model.pth`；配置 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v1/gated_config.json`。
+  档位 `smoke`；权重 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v1/gated/trial/training/best_model.pth`；目标、种子、基线和协议见 `preflight.json`。
+  结果：/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v1/gated/followup/summary.json; success 0/2; mean final error 10.000 um。
+  仅验证软件/仿真，不代表临床或硬件就绪。
+
+- 2026-11-20T10:04:16+08:00：实验 SOP `gated` **completed**；卡 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v1/gated_card.json`；目录 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v1/gated`。
+  结果：/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v1/gated/workflow_status.json。
+  仅验证软件/仿真，不代表临床或硬件就绪。
+
+- 2026-11-20T10:04:18+08:00：模型流水线 `sop_fixture` **failed**（阶段 `training_completed`；配置 `runs/20261120/verification/experiment_sop_v1/denied_config.json`）。
+  运行目录 `runs/20261120/verification/experiment_sop_v1/denied/trial`；命令和状态见 `commands.jsonl`、`status.json`。
+  训练集 `data/model_pipeline_smoke_20261119/train`，验证集 `data/model_pipeline_smoke_20261119/val`，初始化 `None`，训练 seed `None`。
+  评测 checkpoint `runs/20261120/verification/experiment_sop_v1/denied/trial/training/best_model.pth`；SHA-256 `6fb82a46696074977f095af25a85171d2ea451cec7bef4bbbbb655d57fe5f61f`。
+  评测清单 `configs/v12_reachable_development_targets_0p35um.json`，split `development`，seed `42`，协议见本次 `config.json`。
+  最佳验证 loss `0.250000`（epoch 0）。
+  失败或中断原因：RuntimeError: 验证 loss 门禁失败: 0.25 > 0.1；未启动闭环评测。
+  结果仅适用于 MuJoCo 仿真。
+
+- 2026-11-20T10:04:18+08:00：实验 SOP `denied/trial` **failed**；卡 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v1/denied_card.json`；目录 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v1/denied`。
+  命令 `/home/him1/mujoco_bc/rcm_4090_deploy/.venv/bin/python -B -u lerobot_training/run_model_pipeline.py --config /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v1/denied_config.json --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v1/denied/trial --training-max-val-loss 0.1`；配置 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v1/denied_config.json`。
+  档位 `smoke`；权重 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v1/denied/trial/training/best_model.pth`；目标、种子、基线和协议见 `preflight.json`。
+  原因：RuntimeError: 验证 loss 门禁失败: 0.25 > 0.1；未启动闭环评测。
+  仅验证软件/仿真，不代表临床或硬件就绪。
+
+- 2026-11-20T10:04:18+08:00：实验 SOP `denied/dependent` **skipped**；卡 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v1/denied_card.json`；目录 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v1/denied`。
+  命令 `/home/him1/mujoco_bc/rcm_4090_deploy/.venv/bin/python -B -u lerobot_training/run_model_pipeline.py --config /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v1/denied_config.json --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v1/denied/dependent --eval-only /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v1/denied/trial/training/best_model.pth`；配置 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v1/denied_config.json`。
+  档位 `smoke`；权重 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v1/denied/trial/training/best_model.pth`；目标、种子、基线和协议见 `preflight.json`。
+  原因：dependency not passed: trial。
+  仅验证软件/仿真，不代表临床或硬件就绪。
+
+- 2026-11-20T10:04:18+08:00：实验 SOP `denied` **failed**；卡 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v1/denied_card.json`；目录 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v1/denied`。
+  结果：/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v1/denied/workflow_status.json。
+  仅验证软件/仿真，不代表临床或硬件就绪。
+
+- 2026-11-20T10:04:20+08:00：实验 SOP `terminal_failure` **failed**；卡 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v1/terminal_failure_card.json`；目录 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v1/terminal_failure`。
+  结果：/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v1/terminal_failure/workflow_status.json。
+  原因：GNOME Terminal failed (exit 7); see /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v1/terminal_failure/terminal_launch.log。
+  仅验证软件/仿真，不代表临床或硬件就绪。
+
+- 2026-11-20T10:04:24+08:00：模型流水线 `sop_fixture` **completed**（阶段 `completed`；配置 `runs/20261120/verification/experiment_sop_v1/terminal_once_config.json`）。
+  运行目录 `runs/20261120/verification/experiment_sop_v1/terminal_once/trial`；命令和状态见 `commands.jsonl`、`status.json`。
+  训练集 `data/model_pipeline_smoke_20261119/train`，验证集 `data/model_pipeline_smoke_20261119/val`，初始化 `None`，训练 seed `None`。
+  评测 checkpoint `runs/20261120/verification/experiment_sop_v1/terminal_once/trial/training/best_model.pth`；SHA-256 `6fb82a46696074977f095af25a85171d2ea451cec7bef4bbbbb655d57fe5f61f`。
+  评测清单 `configs/v12_reachable_development_targets_0p35um.json`，split `development`，seed `42`，协议见本次 `config.json`。
+  最佳验证 loss `0.250000`（epoch 0）。
+  `summary.json`：成功 0/2，最终误差均值 10.000 µm。
+  结果仅适用于 MuJoCo 仿真。
+
+- 2026-11-20T10:04:24+08:00：实验 SOP `terminal_once/trial` **completed**；卡 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v1/terminal_once_card.json`；目录 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v1/terminal_once`。
+  命令 `/home/him1/mujoco_bc/rcm_4090_deploy/.venv/bin/python -B -u lerobot_training/run_model_pipeline.py --config /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v1/terminal_once_config.json --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v1/terminal_once/trial`；配置 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v1/terminal_once_config.json`。
+  档位 `smoke`；权重 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v1/terminal_once/trial/training/best_model.pth`；目标、种子、基线和协议见 `preflight.json`。
+  结果：/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v1/terminal_once/trial/summary.json; success 0/2; mean final error 10.000 um。
+  仅验证软件/仿真，不代表临床或硬件就绪。
+
+- 2026-11-20T10:04:24+08:00：实验 SOP `terminal_once` **completed**；卡 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v1/terminal_once_card.json`；目录 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v1/terminal_once`。
+  结果：/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v1/terminal_once/workflow_status.json。
+  仅验证软件/仿真，不代表临床或硬件就绪。
+
+- 2026-11-20T10:04:27+08:00：模型流水线 `sop_fixture` **interrupted**（阶段 `evaluation`；配置 `runs/20261120/verification/experiment_sop_v1/interrupted_config.json`）。
+  运行目录 `runs/20261120/verification/experiment_sop_v1/interrupted/trial`；命令和状态见 `commands.jsonl`、`status.json`。
+  训练集 `data/model_pipeline_smoke_20261119/train`，验证集 `data/model_pipeline_smoke_20261119/val`，初始化 `None`，训练 seed `None`。
+  评测 checkpoint `runs/20261120/verification/experiment_sop_v1/interrupted/trial/training/best_model.pth`；SHA-256 `6fb82a46696074977f095af25a85171d2ea451cec7bef4bbbbb655d57fe5f61f`。
+  评测清单 `configs/v12_reachable_development_targets_0p35um.json`，split `development`，seed `42`，协议见本次 `config.json`。
+  最佳验证 loss `0.250000`（epoch 0）。
+  失败或中断原因：KeyboardInterrupt: SIGTERM。
+  部分结果：1/2 分片、1 目标，见 `evaluation/partial_summary.json`。
+  结果仅适用于 MuJoCo 仿真。
+
+- 2026-11-20T10:04:27+08:00：实验 SOP `interrupted/trial` **interrupted**；卡 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v1/interrupted_card.json`；目录 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v1/interrupted`。
+  命令 `/home/him1/mujoco_bc/rcm_4090_deploy/.venv/bin/python -B -u lerobot_training/run_model_pipeline.py --config /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v1/interrupted_config.json --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v1/interrupted/trial`；配置 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v1/interrupted_config.json`。
+  档位 `smoke`；权重 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v1/interrupted/trial/training/best_model.pth`；目标、种子、基线和协议见 `preflight.json`。
+  部分结果：1/2 分片、1 目标，见 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v1/interrupted/trial/evaluation/partial_summary.json`。
+  原因：SIGTERM。
+  仅验证软件/仿真，不代表临床或硬件就绪。
+
+- 2026-11-20T10:04:27+08:00：实验 SOP `interrupted` **interrupted**；卡 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v1/interrupted_card.json`；目录 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v1/interrupted`。
+  结果：/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v1/interrupted/workflow_status.json。
+  原因：SIGTERM。
+  仅验证软件/仿真，不代表临床或硬件就绪。
+
+- 2026-11-20T10:04:29+08:00：实验 SOP `reuse/trial` **reused**；卡 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v1/reuse_card.json`；目录 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v1/reuse`。
+  命令 `/home/him1/mujoco_bc/rcm_4090_deploy/.venv/bin/python -B -u lerobot_training/run_model_pipeline.py --config /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v1/gated_config.json --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v1/reuse/trial --eval-only /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v1/gated/trial/training/best_model.pth`；配置 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v1/gated_config.json`。
+  档位 `smoke`；权重 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v1/gated/trial/training/best_model.pth`；目标、种子、基线和协议见 `preflight.json`。
+  结果：/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v1/reuse/trial/summary.json; success 0/2; mean final error 10.000 um。
+  仅验证软件/仿真，不代表临床或硬件就绪。
+
+- 2026-11-20T10:04:29+08:00：实验 SOP `reuse` **completed**；卡 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v1/reuse_card.json`；目录 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v1/reuse`。
+  结果：/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v1/reuse/workflow_status.json。
+  仅验证软件/仿真，不代表临床或硬件就绪。
+
+- 2026-11-20T10:04:31+08:00：实验 SOP 轻量验收 **PASS**。`python -B -m scripts.verification.verify_experiment_workflow --output-dir runs/20261120/verification/experiment_sop_v1`；7 项通过，证据 `runs/20261120/verification/experiment_sop_v1/verification.json`。 使用 CPU 文件/进程夹具，未训练或闭环推理。
+
+- 2026-11-20T10:06:13+08:00：模型流水线 `experiment_sop_gnome_smoke` **completed**（阶段 `completed`；配置 `runs/20261120/verification/experiment_sop_gnome/config.json`）。
+  运行目录 `runs/20261120/verification/experiment_sop_gnome/run/smoke`；命令和状态见 `commands.jsonl`、`status.json`。
+  评测 checkpoint `outputs/dit_rectified_flow_state_attention_v1_acthist_20261117/best_model.pth`；SHA-256 `d1e2527fe087ad1f619450bdd83eac24e63d1e3a0d96186dc2cdd849fdfbc424`。
+  评测清单 `configs/v12_reachable_development_targets_0p35um.json`，split `development`，seed `42`，协议见本次 `config.json`。
+  `summary.json`：成功 0/1，最终误差均值 19544.659 µm。
+  结果仅适用于 MuJoCo 仿真。
+
+- 2026-11-20T10:06:14+08:00：实验 SOP `experiment_sop_gnome_smoke/smoke` **completed**；卡 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_gnome/card.json`；目录 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_gnome/run`。
+  命令 `/home/him1/mujoco_bc/rcm_4090_deploy/.venv/bin/python -B -u lerobot_training/run_model_pipeline.py --config /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_gnome/config.json --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_gnome/run/smoke --eval-only /home/him1/mujoco_bc/rcm_4090_deploy/outputs/dit_rectified_flow_state_attention_v1_acthist_20261117/best_model.pth`；配置 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_gnome/config.json`。
+  档位 `smoke`；权重 `/home/him1/mujoco_bc/rcm_4090_deploy/outputs/dit_rectified_flow_state_attention_v1_acthist_20261117/best_model.pth`；目标、种子、基线和协议见 `preflight.json`。
+  结果：/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_gnome/run/smoke/summary.json; success 0/1; mean final error 19544.659 um。
+  仅验证软件/仿真，不代表临床或硬件就绪。
+
+- 2026-11-20T10:06:14+08:00：实验 SOP `experiment_sop_gnome_smoke` **completed**；卡 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_gnome/card.json`；目录 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_gnome/run`。
+  结果：/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_gnome/run/workflow_status.json。
+  仅验证软件/仿真，不代表临床或硬件就绪。
+
+- 2026-11-20T10:14:33+08:00：模型流水线 `sop_fixture` **completed**（阶段 `completed`；配置 `runs/20261120/verification/experiment_sop_v2/gated_config.json`）。
+  运行目录 `runs/20261120/verification/experiment_sop_v2/gated/trial`；命令和状态见 `commands.jsonl`、`status.json`。
+  训练集 `data/model_pipeline_smoke_20261119/train`，验证集 `data/model_pipeline_smoke_20261119/val`，初始化 `None`，训练 seed `None`。
+  评测 checkpoint `runs/20261120/verification/experiment_sop_v2/gated/trial/training/best_model.pth`；SHA-256 `6fb82a46696074977f095af25a85171d2ea451cec7bef4bbbbb655d57fe5f61f`。
+  评测清单 `configs/v12_reachable_development_targets_0p35um.json`，split `development`，seed `42`，协议见本次 `config.json`。
+  最佳验证 loss `0.250000`（epoch 0）。
+  `summary.json`：成功 0/2，最终误差均值 10.000 µm。
+  结果仅适用于 MuJoCo 仿真。
+
+- 2026-11-20T10:14:33+08:00：实验 SOP `gated/trial` **completed**；卡 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v2/gated_card.json`；目录 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v2/gated`。
+  命令 `/home/him1/mujoco_bc/rcm_4090_deploy/.venv/bin/python -B -u lerobot_training/run_model_pipeline.py --config /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v2/gated_config.json --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v2/gated/trial --training-max-val-loss 0.5`；配置 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v2/gated_config.json`。
+  档位 `smoke`；权重 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v2/gated/trial/training/best_model.pth`；目标、种子、基线和协议见 `preflight.json`。
+  结果：/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v2/gated/trial/summary.json; success 0/2; mean final error 10.000 um。
+  仅验证软件/仿真，不代表临床或硬件就绪。
+
+- 2026-11-20T10:14:33+08:00：实验 SOP `gated/branch` **skipped**；卡 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v2/gated_card.json`；目录 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v2/gated`。
+  命令 `/home/him1/mujoco_bc/rcm_4090_deploy/.venv/bin/python -B -u lerobot_training/run_model_pipeline.py --config /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v2/gated_config.json --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v2/gated/branch --eval-only /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v2/gated/trial/training/best_model.pth`；配置 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v2/gated_config.json`。
+  档位 `smoke`；权重 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v2/gated/trial/training/best_model.pth`；目标、种子、基线和协议见 `preflight.json`。
+  原因：branch not selected: successes=0 == 1 (/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v2/gated/trial/summary.json)。
+  仅验证软件/仿真，不代表临床或硬件就绪。
+
+- 2026-11-20T10:14:33+08:00：模型流水线 `sop_fixture` **completed**（阶段 `completed`；配置 `runs/20261120/verification/experiment_sop_v2/gated_config.json`）。
+  运行目录 `runs/20261120/verification/experiment_sop_v2/gated/followup`；命令和状态见 `commands.jsonl`、`status.json`。
+  评测 checkpoint `runs/20261120/verification/experiment_sop_v2/gated/trial/training/best_model.pth`；SHA-256 `6fb82a46696074977f095af25a85171d2ea451cec7bef4bbbbb655d57fe5f61f`。
+  评测清单 `configs/v12_reachable_development_targets_0p35um.json`，split `development`，seed `42`，协议见本次 `config.json`。
+  `summary.json`：成功 0/2，最终误差均值 10.000 µm。
+  结果仅适用于 MuJoCo 仿真。
+
+- 2026-11-20T10:14:33+08:00：实验 SOP `gated/followup` **completed**；卡 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v2/gated_card.json`；目录 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v2/gated`。
+  命令 `/home/him1/mujoco_bc/rcm_4090_deploy/.venv/bin/python -B -u lerobot_training/run_model_pipeline.py --config /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v2/gated_config.json --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v2/gated/followup --eval-only /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v2/gated/trial/training/best_model.pth`；配置 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v2/gated_config.json`。
+  档位 `smoke`；权重 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v2/gated/trial/training/best_model.pth`；目标、种子、基线和协议见 `preflight.json`。
+  结果：/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v2/gated/followup/summary.json; success 0/2; mean final error 10.000 um。
+  仅验证软件/仿真，不代表临床或硬件就绪。
+
+- 2026-11-20T10:14:33+08:00：实验 SOP `gated` **completed**；卡 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v2/gated_card.json`；目录 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v2/gated`。
+  结果：/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v2/gated/workflow_status.json。
+  仅验证软件/仿真，不代表临床或硬件就绪。
+
+- 2026-11-20T10:14:36+08:00：模型流水线 `sop_fixture` **failed**（阶段 `training_completed`；配置 `runs/20261120/verification/experiment_sop_v2/denied_config.json`）。
+  运行目录 `runs/20261120/verification/experiment_sop_v2/denied/trial`；命令和状态见 `commands.jsonl`、`status.json`。
+  训练集 `data/model_pipeline_smoke_20261119/train`，验证集 `data/model_pipeline_smoke_20261119/val`，初始化 `None`，训练 seed `None`。
+  评测 checkpoint `runs/20261120/verification/experiment_sop_v2/denied/trial/training/best_model.pth`；SHA-256 `6fb82a46696074977f095af25a85171d2ea451cec7bef4bbbbb655d57fe5f61f`。
+  评测清单 `configs/v12_reachable_development_targets_0p35um.json`，split `development`，seed `42`，协议见本次 `config.json`。
+  最佳验证 loss `0.250000`（epoch 0）。
+  失败或中断原因：RuntimeError: 验证 loss 门禁失败: 0.25 > 0.1；未启动闭环评测。
+  结果仅适用于 MuJoCo 仿真。
+
+- 2026-11-20T10:14:36+08:00：实验 SOP `denied/trial` **failed**；卡 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v2/denied_card.json`；目录 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v2/denied`。
+  命令 `/home/him1/mujoco_bc/rcm_4090_deploy/.venv/bin/python -B -u lerobot_training/run_model_pipeline.py --config /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v2/denied_config.json --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v2/denied/trial --training-max-val-loss 0.1`；配置 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v2/denied_config.json`。
+  档位 `smoke`；权重 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v2/denied/trial/training/best_model.pth`；目标、种子、基线和协议见 `preflight.json`。
+  原因：RuntimeError: 验证 loss 门禁失败: 0.25 > 0.1；未启动闭环评测。
+  仅验证软件/仿真，不代表临床或硬件就绪。
+
+- 2026-11-20T10:14:36+08:00：实验 SOP `denied/dependent` **skipped**；卡 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v2/denied_card.json`；目录 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v2/denied`。
+  命令 `/home/him1/mujoco_bc/rcm_4090_deploy/.venv/bin/python -B -u lerobot_training/run_model_pipeline.py --config /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v2/denied_config.json --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v2/denied/dependent --eval-only /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v2/denied/trial/training/best_model.pth`；配置 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v2/denied_config.json`。
+  档位 `smoke`；权重 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v2/denied/trial/training/best_model.pth`；目标、种子、基线和协议见 `preflight.json`。
+  原因：dependency not passed: trial。
+  仅验证软件/仿真，不代表临床或硬件就绪。
+
+- 2026-11-20T10:14:36+08:00：实验 SOP `denied` **failed**；卡 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v2/denied_card.json`；目录 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v2/denied`。
+  结果：/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v2/denied/workflow_status.json。
+  仅验证软件/仿真，不代表临床或硬件就绪。
+
+- 2026-11-20T10:14:37+08:00：实验 SOP `terminal_failure` **failed**；卡 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v2/terminal_failure_card.json`；目录 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v2/terminal_failure`。
+  结果：/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v2/terminal_failure/workflow_status.json。
+  原因：GNOME Terminal failed (exit 7); see /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v2/terminal_failure/terminal_launch.log。
+  仅验证软件/仿真，不代表临床或硬件就绪。
+
+- 2026-11-20T10:14:41+08:00：模型流水线 `sop_fixture` **completed**（阶段 `completed`；配置 `runs/20261120/verification/experiment_sop_v2/terminal_once_config.json`）。
+  运行目录 `runs/20261120/verification/experiment_sop_v2/terminal_once/trial`；命令和状态见 `commands.jsonl`、`status.json`。
+  训练集 `data/model_pipeline_smoke_20261119/train`，验证集 `data/model_pipeline_smoke_20261119/val`，初始化 `None`，训练 seed `None`。
+  评测 checkpoint `runs/20261120/verification/experiment_sop_v2/terminal_once/trial/training/best_model.pth`；SHA-256 `6fb82a46696074977f095af25a85171d2ea451cec7bef4bbbbb655d57fe5f61f`。
+  评测清单 `configs/v12_reachable_development_targets_0p35um.json`，split `development`，seed `42`，协议见本次 `config.json`。
+  最佳验证 loss `0.250000`（epoch 0）。
+  `summary.json`：成功 0/2，最终误差均值 10.000 µm。
+  结果仅适用于 MuJoCo 仿真。
+
+- 2026-11-20T10:14:41+08:00：实验 SOP `terminal_once/trial` **completed**；卡 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v2/terminal_once_card.json`；目录 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v2/terminal_once`。
+  命令 `/home/him1/mujoco_bc/rcm_4090_deploy/.venv/bin/python -B -u lerobot_training/run_model_pipeline.py --config /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v2/terminal_once_config.json --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v2/terminal_once/trial`；配置 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v2/terminal_once_config.json`。
+  档位 `smoke`；权重 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v2/terminal_once/trial/training/best_model.pth`；目标、种子、基线和协议见 `preflight.json`。
+  结果：/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v2/terminal_once/trial/summary.json; success 0/2; mean final error 10.000 um。
+  仅验证软件/仿真，不代表临床或硬件就绪。
+
+- 2026-11-20T10:14:41+08:00：实验 SOP `terminal_once` **completed**；卡 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v2/terminal_once_card.json`；目录 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v2/terminal_once`。
+  结果：/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v2/terminal_once/workflow_status.json。
+  仅验证软件/仿真，不代表临床或硬件就绪。
+
+- 2026-11-20T10:14:44+08:00：模型流水线 `sop_fixture` **interrupted**（阶段 `evaluation`；配置 `runs/20261120/verification/experiment_sop_v2/interrupted_config.json`）。
+  运行目录 `runs/20261120/verification/experiment_sop_v2/interrupted/trial`；命令和状态见 `commands.jsonl`、`status.json`。
+  训练集 `data/model_pipeline_smoke_20261119/train`，验证集 `data/model_pipeline_smoke_20261119/val`，初始化 `None`，训练 seed `None`。
+  评测 checkpoint `runs/20261120/verification/experiment_sop_v2/interrupted/trial/training/best_model.pth`；SHA-256 `6fb82a46696074977f095af25a85171d2ea451cec7bef4bbbbb655d57fe5f61f`。
+  评测清单 `configs/v12_reachable_development_targets_0p35um.json`，split `development`，seed `42`，协议见本次 `config.json`。
+  最佳验证 loss `0.250000`（epoch 0）。
+  失败或中断原因：KeyboardInterrupt: SIGTERM。
+  部分结果：1/2 分片、1 目标，见 `evaluation/partial_summary.json`。
+  结果仅适用于 MuJoCo 仿真。
+
+- 2026-11-20T10:14:44+08:00：实验 SOP `interrupted/trial` **interrupted**；卡 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v2/interrupted_card.json`；目录 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v2/interrupted`。
+  命令 `/home/him1/mujoco_bc/rcm_4090_deploy/.venv/bin/python -B -u lerobot_training/run_model_pipeline.py --config /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v2/interrupted_config.json --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v2/interrupted/trial`；配置 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v2/interrupted_config.json`。
+  档位 `smoke`；权重 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v2/interrupted/trial/training/best_model.pth`；目标、种子、基线和协议见 `preflight.json`。
+  部分结果：1/2 分片、1 目标，见 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v2/interrupted/trial/evaluation/partial_summary.json`。
+  原因：SIGTERM。
+  仅验证软件/仿真，不代表临床或硬件就绪。
+
+- 2026-11-20T10:14:44+08:00：实验 SOP `interrupted` **interrupted**；卡 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v2/interrupted_card.json`；目录 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v2/interrupted`。
+  结果：/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v2/interrupted/workflow_status.json。
+  原因：SIGTERM。
+  仅验证软件/仿真，不代表临床或硬件就绪。
+
+- 2026-11-20T10:14:46+08:00：实验 SOP `reuse/trial` **reused**；卡 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v2/reuse_card.json`；目录 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v2/reuse`。
+  命令 `/home/him1/mujoco_bc/rcm_4090_deploy/.venv/bin/python -B -u lerobot_training/run_model_pipeline.py --config /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v2/gated_config.json --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v2/reuse/trial --eval-only /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v2/gated/trial/training/best_model.pth`；配置 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v2/gated_config.json`。
+  档位 `smoke`；权重 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v2/gated/trial/training/best_model.pth`；目标、种子、基线和协议见 `preflight.json`。
+  结果：/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v2/reuse/trial/summary.json; success 0/2; mean final error 10.000 um。
+  仅验证软件/仿真，不代表临床或硬件就绪。
+
+- 2026-11-20T10:14:46+08:00：实验 SOP `reuse` **completed**；卡 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v2/reuse_card.json`；目录 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v2/reuse`。
+  结果：/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v2/reuse/workflow_status.json。
+  仅验证软件/仿真，不代表临床或硬件就绪。
+
+- 2026-11-20T10:14:48+08:00：实验 SOP `reuse_failed_gate/trial` **failed**；卡 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v2/reuse_failed_gate_card.json`；目录 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v2/reuse_failed_gate`。
+  命令 `/home/him1/mujoco_bc/rcm_4090_deploy/.venv/bin/python -B -u lerobot_training/run_model_pipeline.py --config /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v2/gated_config.json --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v2/reuse_failed_gate/trial --eval-only /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v2/gated/trial/training/best_model.pth`；配置 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v2/gated_config.json`。
+  档位 `smoke`；权重 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v2/gated/trial/training/best_model.pth`；目标、种子、基线和协议见 `preflight.json`。
+  结果：/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v2/reuse_failed_gate/trial/summary.json; success 0/2; mean final error 10.000 um。
+  原因：gate failed: successes=0 > 0 (/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v2/reuse_failed_gate/trial/summary.json)。
+  仅验证软件/仿真，不代表临床或硬件就绪。
+
+- 2026-11-20T10:14:48+08:00：实验 SOP `reuse_failed_gate` **failed**；卡 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v2/reuse_failed_gate_card.json`；目录 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v2/reuse_failed_gate`。
+  结果：/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_v2/reuse_failed_gate/workflow_status.json。
+  仅验证软件/仿真，不代表临床或硬件就绪。
+
+- 2026-11-20T10:14:50+08:00：实验 SOP 轻量验收 **PASS**。`python -B -m scripts.verification.verify_experiment_workflow --output-dir runs/20261120/verification/experiment_sop_v2`；8 项通过，证据 `runs/20261120/verification/experiment_sop_v2/verification.json`。 使用 CPU 文件/进程夹具，未训练或闭环推理。
+
+- 2026-11-20T10:16:24+08:00：实验 SOP 正式档位只读预检 **PASS**。`python -B -m scripts.tools.experiment_workflow preflight --card` 分别读取 `configs/experiment_card_screen10_example.json` 和 `runs/20261120/verification/experiment_sop_formal_preflight/dev20_card.json`；固定索引 0–9、0–19，seed 42 + index，1600 步、0.35 µm，冻结基线 `state_attention_v1_20261117`；候选 `outputs/state_attention_v1_plan2_plus_original200_20261119_1/best_model.pth`。输出 `runs/20261120/verification/experiment_sop_formal_preflight/{screen10,dev20}_preflight.json`；未创建运行目录、训练或闭环。
+
+- 2026-11-20T10:16:24+08:00：实验 SOP 代码编译及既有策略数据/成功判定契约 **PASS**。`python -m py_compile` 检查工作流、验收脚本、模型流水线和评估入口；`python -B -m unittest discover -v -s tests -p test_policy_data_contract.py` 6/6，通过。证据 `runs/20261120/verification/experiment_sop_policy_contract/unittest.log`；CPU 单元测试，无模型训练或评估。
+
+- 2026-11-20T10:17:37+08:00：模型流水线 `experiment_sop_gnome_smoke` **completed**（阶段 `completed`；配置 `runs/20261120/verification/experiment_sop_gnome/config.json`）。
+  运行目录 `runs/20261120/verification/experiment_sop_gnome_v2/run/smoke`；命令和状态见 `commands.jsonl`、`status.json`。
+  评测 checkpoint `outputs/dit_rectified_flow_state_attention_v1_acthist_20261117/best_model.pth`；SHA-256 `d1e2527fe087ad1f619450bdd83eac24e63d1e3a0d96186dc2cdd849fdfbc424`。
+  评测清单 `configs/v12_reachable_development_targets_0p35um.json`，split `development`，seed `42`，协议见本次 `config.json`。
+  `summary.json`：成功 0/1，最终误差均值 19544.659 µm。
+  结果仅适用于 MuJoCo 仿真。
+
+- 2026-11-20T10:17:37+08:00：实验 SOP `experiment_sop_gnome_smoke_v2/smoke` **completed**；卡 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_gnome_v2/card.json`；目录 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_gnome_v2/run`。
+  命令 `/home/him1/mujoco_bc/rcm_4090_deploy/.venv/bin/python -B -u lerobot_training/run_model_pipeline.py --config /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_gnome/config.json --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_gnome_v2/run/smoke --eval-only /home/him1/mujoco_bc/rcm_4090_deploy/outputs/dit_rectified_flow_state_attention_v1_acthist_20261117/best_model.pth`；配置 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_gnome/config.json`。
+  档位 `smoke`；权重 `/home/him1/mujoco_bc/rcm_4090_deploy/outputs/dit_rectified_flow_state_attention_v1_acthist_20261117/best_model.pth`；目标、种子、基线和协议见 `preflight.json`。
+  结果：/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_gnome_v2/run/smoke/summary.json; success 0/1; mean final error 19544.659 um。
+  仅验证软件/仿真，不代表临床或硬件就绪。
+
+- 2026-11-20T10:17:37+08:00：实验 SOP `experiment_sop_gnome_smoke_v2` **completed**；卡 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_gnome_v2/card.json`；目录 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_gnome_v2/run`。
+  结果：/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/verification/experiment_sop_gnome_v2/run/workflow_status.json。
+  仅验证软件/仿真，不代表临床或硬件就绪。
+
+- 2026-11-19T19:26:34-07:00：夜间计划实验 4 step-0 **PASS**，正式训练与闭环**未启动**。部署 `.venv` / RTX 4090 调用 `scripts.research.overnight_cfix.step_zero`，初始化 `outputs/overnight_c_fix_symlog_081234/task2_train/step_004000.pth`，同输入、seed 42，FP32/AMP FP16 最大绝对差均为 0.0（要求 <1e-6）。训练集 `data/plan2_plus_original_train_224_20261119`，验证集 `data/lerobot_rcm_val_acthist_20261117_224`，Task 2 C-only 清洗覆盖与四轮 8% 配额通过预检。Task 3 没有完整的 I0/I1/I3 对照及入选配置；历史 Task 2 I0 缺执行时的代码/场景指纹，不复用。证据 `runs/20261120/task4_oct_symlog_preflight_192534/STATUS.md`、同目录 `assets.json`、`step_zero_selected.json`。未训练或运行闭环，无实验 4 指标或严格成功结论。仅验证软件和 MuJoCo 仿真。
+
+- 2026-11-20T10:42:13+08:00：实验 3/4 续跑风险预检 **PASS**。上次 7 小时总时限仅余 67.6 秒即启动 I0；本续跑配置 `configs/experiment_card_overnight_task34_20261120.json` 增加独立的 30 小时总预算和 I0/I1/I3 单组 5/5/7 小时上限。CPU 语法检查及 `python -B -m unittest discover -s tests -p test_overnight_cfix.py -v`（4/4）通过；SOP 卡、训练资产及场景/执行代码指纹见 `runs/20261120/verification/overnight_task34_v1/`。RTX 4090、EGL 下运行 `python -B -u -m scripts.research.overnight_cfix_eval --smoke --smoke-steps 100`，使用实验 2 入选 `outputs/overnight_c_fix_symlog_081234/task2_train/step_004000.pth` 和冻结 development 清单，I0/I1/I3 分别在 E00、seed 42 下跑满 100 步，轨迹校验通过，约 36–37 秒/组（闭环部分）。仅为链路冒烟，无正式成功率或性能结论，无完整 `summary.json`。证据 `runs/20261120/verification/overnight_task34_smoke_v1/{I0,I1,I3}/smoke.json` 与各组日志；未重训。仅验证 MuJoCo 仿真。
+
+- 2026-11-19T19:43:23.475892-07:00: `overnight_task34_20261120_v1/continuation_preflight` **completed**. {"asset_receipt": "runs/20261120/task4_oct_symlog_preflight_192534/assets.json", "checkpoint": "outputs/overnight_c_fix_symlog_081234/task2_train/step_004000.pth", "overlay": "data/overnight_c_fix_symlog_081234_overlay/label_override.npz", "total_hours": 30, "per_arm_hours": {"I0": 5, "I1": 5, "I3": 7}, "source_identity": {"code_sha256": "f8e3dd829b0b8fa074fad73d9224ea1ed2f41bc869b163a081ec1876e46bd1de", "scene_sha256": "265c927ef7e7ac71536963b3000ffb161b7ff7ac03bb86cdb8480ed988c17028", "target_manifest_sha256": "fcc4872a9d5b58bb7158b36d3c0ab6d7452e4d8d747317dfb077b6e7bbc815c7", "runner_sha256": "87e9af12a861394cefc2fd6c3598ba43fbf553a28918cc23fdf383624bb7c950", "evaluator_sha256": "300a9166ba2465e6bc2cb9daab644358a4c03b00cdc55cf6a1934b670867c72d", "overlay_code_sha256": "149da9c675a3a4f878ab8d6aa13925abc6fb602119cf023cf79a958b167e0093"}, "commands": []}. MuJoCo simulation only.
+
+- 2026-11-19T20:38:05.870141-07:00: `overnight_task34_20261120_v1/task3_I0` **interrupted**. {"output": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/overnight_task34_20261120_v1/task34/task3_I0", "checkpoint": "outputs/overnight_c_fix_symlog_081234/task2_train/step_004000.pth", "arm": "I0", "protocol": "development E00-E19, seed 42+index, 1600 steps, 0.35 um", "identity": {"code_sha256": "f8e3dd829b0b8fa074fad73d9224ea1ed2f41bc869b163a081ec1876e46bd1de", "scene_sha256": "265c927ef7e7ac71536963b3000ffb161b7ff7ac03bb86cdb8480ed988c17028", "target_manifest_sha256": "fcc4872a9d5b58bb7158b36d3c0ab6d7452e4d8d747317dfb077b6e7bbc815c7", "runner_sha256": "87e9af12a861394cefc2fd6c3598ba43fbf553a28918cc23fdf383624bb7c950", "evaluator_sha256": "300a9166ba2465e6bc2cb9daab644358a4c03b00cdc55cf6a1934b670867c72d", "overlay_code_sha256": "149da9c675a3a4f878ab8d6aa13925abc6fb602119cf023cf79a958b167e0093", "checkpoint_sha256": "185a6ef02caea4ea74ba752d67618d459c906450f5b315cd8010c3c5f1703f1b", "target_manifest": "configs/v12_reachable_development_targets_0p35um.json", "renderer": "egl", "cuda_visible_devices": "0"}, "partial_evidence": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/overnight_task34_20261120_v1/task34/task3_I0/progress.json", "partial_progress": {"validated_targets": 6, "expected": 20}, "reason": "received SIGTERM", "commands": [{"stage": "task3_I0", "time": "2026-11-19T19:43:23.692182-07:00", "argv": ["/home/him1/mujoco_bc/rcm_4090_deploy/.venv/bin/python", "-B", "-u", "-m", "scripts.research.overnight_cfix_eval", "--checkpoint", "outputs/overnight_c_fix_symlog_081234/task2_train/step_004000.pth", "--target-manifest", "configs/v12_reachable_development_targets_0p35um.json", "--output-dir", "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/overnight_task34_20261120_v1/task34/task3_I0", "--arm", "I0"], "timeout_s": 18000, "log": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/overnight_task34_20261120_v1/task34/task3_I0.log"}]}. MuJoCo simulation only.
+
+- 2026-11-20T11:38:05+08:00：实验 SOP `overnight_task34_20261120_v1/task34` **interrupted**；卡 `/home/him1/mujoco_bc/rcm_4090_deploy/configs/experiment_card_overnight_task34_20261120.json`；目录 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/overnight_task34_20261120_v1`。
+  命令 `/home/him1/mujoco_bc/rcm_4090_deploy/.venv/bin/python -B -u -m scripts.research.overnight_cfix run34 --asset-receipt runs/20261120/task4_oct_symlog_preflight_192534/assets.json --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/overnight_task34_20261120_v1/task34`；配置 `见实验卡`。
+  原因：stage interrupted (exit 130); see /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/overnight_task34_20261120_v1/task34.log。
+  仅验证软件/仿真，不代表临床或硬件就绪。
+
+- 2026-11-20T11:38:05+08:00：实验 SOP `overnight_task34_20261120_v1` **interrupted**；卡 `/home/him1/mujoco_bc/rcm_4090_deploy/configs/experiment_card_overnight_task34_20261120.json`；目录 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/overnight_task34_20261120_v1`。
+  结果：/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/overnight_task34_20261120_v1/workflow_status.json。
+  原因：stage interrupted (exit 130); see /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/overnight_task34_20261120_v1/task34.log。
+  仅验证软件/仿真，不代表临床或硬件就绪。
+
+- 2026-11-20T13:38:52+08:00：模型流水线 `sop_fixture` **completed**（阶段 `completed`；配置 `runs/20261120/fast5_acceptance_v1/sop/gated_config.json`）。
+  运行目录 `runs/20261120/fast5_acceptance_v1/sop/gated/trial`；命令和状态见 `commands.jsonl`、`status.json`。
+  训练集 `data/model_pipeline_smoke_20261119/train`，验证集 `data/model_pipeline_smoke_20261119/val`，初始化 `None`，训练 seed `None`。
+  评测 checkpoint `runs/20261120/fast5_acceptance_v1/sop/gated/trial/training/best_model.pth`；SHA-256 `6fb82a46696074977f095af25a85171d2ea451cec7bef4bbbbb655d57fe5f61f`。
+  评测清单 `configs/v12_reachable_development_targets_0p35um.json`，split `development`，seed `42`，协议见本次 `config.json`。
+  最佳验证 loss `0.250000`（epoch 0）。
+  `summary.json`：成功 0/2，最终误差均值 10.000 µm。
+  结果仅适用于 MuJoCo 仿真。
+
+- 2026-11-20T13:38:52+08:00：实验 SOP `gated/trial` **completed**；卡 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/fast5_acceptance_v1/sop/gated_card.json`；目录 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/fast5_acceptance_v1/sop/gated`。
+  命令 `/home/him1/mujoco_bc/rcm_4090_deploy/.venv/bin/python -B -u lerobot_training/run_model_pipeline.py --config /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/fast5_acceptance_v1/sop/gated_config.json --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/fast5_acceptance_v1/sop/gated/trial --training-max-val-loss 0.5`；配置 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/fast5_acceptance_v1/sop/gated_config.json`。
+  档位 `smoke`；权重 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/fast5_acceptance_v1/sop/gated/trial/training/best_model.pth`；目标、种子、基线和协议见 `preflight.json`。
+  结果：/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/fast5_acceptance_v1/sop/gated/trial/summary.json; success 0/2; mean final error 10.000 um。
+  仅验证软件/仿真，不代表临床或硬件就绪。
+
+- 2026-11-20T13:38:52+08:00：实验 SOP `gated/branch` **skipped**；卡 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/fast5_acceptance_v1/sop/gated_card.json`；目录 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/fast5_acceptance_v1/sop/gated`。
+  命令 `/home/him1/mujoco_bc/rcm_4090_deploy/.venv/bin/python -B -u lerobot_training/run_model_pipeline.py --config /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/fast5_acceptance_v1/sop/gated_config.json --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/fast5_acceptance_v1/sop/gated/branch --eval-only /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/fast5_acceptance_v1/sop/gated/trial/training/best_model.pth`；配置 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/fast5_acceptance_v1/sop/gated_config.json`。
+  档位 `smoke`；权重 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/fast5_acceptance_v1/sop/gated/trial/training/best_model.pth`；目标、种子、基线和协议见 `preflight.json`。
+  原因：branch not selected: successes=0 == 1 (/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/fast5_acceptance_v1/sop/gated/trial/summary.json)。
+  仅验证软件/仿真，不代表临床或硬件就绪。
+
+- 2026-11-20T13:38:52+08:00：模型流水线 `sop_fixture` **completed**（阶段 `completed`；配置 `runs/20261120/fast5_acceptance_v1/sop/gated_config.json`）。
+  运行目录 `runs/20261120/fast5_acceptance_v1/sop/gated/followup`；命令和状态见 `commands.jsonl`、`status.json`。
+  评测 checkpoint `runs/20261120/fast5_acceptance_v1/sop/gated/trial/training/best_model.pth`；SHA-256 `6fb82a46696074977f095af25a85171d2ea451cec7bef4bbbbb655d57fe5f61f`。
+  评测清单 `configs/v12_reachable_development_targets_0p35um.json`，split `development`，seed `42`，协议见本次 `config.json`。
+  `summary.json`：成功 0/2，最终误差均值 10.000 µm。
+  结果仅适用于 MuJoCo 仿真。
+
+- 2026-11-20T13:38:52+08:00：实验 SOP `gated/followup` **completed**；卡 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/fast5_acceptance_v1/sop/gated_card.json`；目录 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/fast5_acceptance_v1/sop/gated`。
+  命令 `/home/him1/mujoco_bc/rcm_4090_deploy/.venv/bin/python -B -u lerobot_training/run_model_pipeline.py --config /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/fast5_acceptance_v1/sop/gated_config.json --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/fast5_acceptance_v1/sop/gated/followup --eval-only /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/fast5_acceptance_v1/sop/gated/trial/training/best_model.pth`；配置 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/fast5_acceptance_v1/sop/gated_config.json`。
+  档位 `smoke`；权重 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/fast5_acceptance_v1/sop/gated/trial/training/best_model.pth`；目标、种子、基线和协议见 `preflight.json`。
+  结果：/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/fast5_acceptance_v1/sop/gated/followup/summary.json; success 0/2; mean final error 10.000 um。
+  仅验证软件/仿真，不代表临床或硬件就绪。
+
+- 2026-11-20T13:38:52+08:00：实验 SOP `gated` **completed**；卡 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/fast5_acceptance_v1/sop/gated_card.json`；目录 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/fast5_acceptance_v1/sop/gated`。
+  结果：/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/fast5_acceptance_v1/sop/gated/workflow_status.json。
+  仅验证软件/仿真，不代表临床或硬件就绪。
+
+- 2026-11-20T13:38:55+08:00：模型流水线 `sop_fixture` **failed**（阶段 `training_completed`；配置 `runs/20261120/fast5_acceptance_v1/sop/denied_config.json`）。
+  运行目录 `runs/20261120/fast5_acceptance_v1/sop/denied/trial`；命令和状态见 `commands.jsonl`、`status.json`。
+  训练集 `data/model_pipeline_smoke_20261119/train`，验证集 `data/model_pipeline_smoke_20261119/val`，初始化 `None`，训练 seed `None`。
+  评测 checkpoint `runs/20261120/fast5_acceptance_v1/sop/denied/trial/training/best_model.pth`；SHA-256 `6fb82a46696074977f095af25a85171d2ea451cec7bef4bbbbb655d57fe5f61f`。
+  评测清单 `configs/v12_reachable_development_targets_0p35um.json`，split `development`，seed `42`，协议见本次 `config.json`。
+  最佳验证 loss `0.250000`（epoch 0）。
+  失败或中断原因：RuntimeError: 验证 loss 门禁失败: 0.25 > 0.1；未启动闭环评测。
+  结果仅适用于 MuJoCo 仿真。
+
+- 2026-11-20T13:38:55+08:00：实验 SOP `denied/trial` **failed**；卡 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/fast5_acceptance_v1/sop/denied_card.json`；目录 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/fast5_acceptance_v1/sop/denied`。
+  命令 `/home/him1/mujoco_bc/rcm_4090_deploy/.venv/bin/python -B -u lerobot_training/run_model_pipeline.py --config /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/fast5_acceptance_v1/sop/denied_config.json --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/fast5_acceptance_v1/sop/denied/trial --training-max-val-loss 0.1`；配置 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/fast5_acceptance_v1/sop/denied_config.json`。
+  档位 `smoke`；权重 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/fast5_acceptance_v1/sop/denied/trial/training/best_model.pth`；目标、种子、基线和协议见 `preflight.json`。
+  原因：RuntimeError: 验证 loss 门禁失败: 0.25 > 0.1；未启动闭环评测。
+  仅验证软件/仿真，不代表临床或硬件就绪。
+
+- 2026-11-20T13:38:55+08:00：实验 SOP `denied/dependent` **skipped**；卡 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/fast5_acceptance_v1/sop/denied_card.json`；目录 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/fast5_acceptance_v1/sop/denied`。
+  命令 `/home/him1/mujoco_bc/rcm_4090_deploy/.venv/bin/python -B -u lerobot_training/run_model_pipeline.py --config /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/fast5_acceptance_v1/sop/denied_config.json --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/fast5_acceptance_v1/sop/denied/dependent --eval-only /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/fast5_acceptance_v1/sop/denied/trial/training/best_model.pth`；配置 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/fast5_acceptance_v1/sop/denied_config.json`。
+  档位 `smoke`；权重 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/fast5_acceptance_v1/sop/denied/trial/training/best_model.pth`；目标、种子、基线和协议见 `preflight.json`。
+  原因：dependency not passed: trial。
+  仅验证软件/仿真，不代表临床或硬件就绪。
+
+- 2026-11-20T13:38:55+08:00：实验 SOP `denied` **failed**；卡 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/fast5_acceptance_v1/sop/denied_card.json`；目录 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/fast5_acceptance_v1/sop/denied`。
+  结果：/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/fast5_acceptance_v1/sop/denied/workflow_status.json。
+  仅验证软件/仿真，不代表临床或硬件就绪。
+
+- 2026-11-20T13:38:57+08:00：实验 SOP `terminal_failure` **failed**；卡 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/fast5_acceptance_v1/sop/terminal_failure_card.json`；目录 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/fast5_acceptance_v1/sop/terminal_failure`。
+  结果：/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/fast5_acceptance_v1/sop/terminal_failure/workflow_status.json。
+  原因：GNOME Terminal failed (exit 7); see /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/fast5_acceptance_v1/sop/terminal_failure/terminal_launch.log。
+  仅验证软件/仿真，不代表临床或硬件就绪。
+
+- 2026-11-20T13:39:01+08:00：模型流水线 `sop_fixture` **completed**（阶段 `completed`；配置 `runs/20261120/fast5_acceptance_v1/sop/terminal_once_config.json`）。
+  运行目录 `runs/20261120/fast5_acceptance_v1/sop/terminal_once/trial`；命令和状态见 `commands.jsonl`、`status.json`。
+  训练集 `data/model_pipeline_smoke_20261119/train`，验证集 `data/model_pipeline_smoke_20261119/val`，初始化 `None`，训练 seed `None`。
+  评测 checkpoint `runs/20261120/fast5_acceptance_v1/sop/terminal_once/trial/training/best_model.pth`；SHA-256 `6fb82a46696074977f095af25a85171d2ea451cec7bef4bbbbb655d57fe5f61f`。
+  评测清单 `configs/v12_reachable_development_targets_0p35um.json`，split `development`，seed `42`，协议见本次 `config.json`。
+  最佳验证 loss `0.250000`（epoch 0）。
+  `summary.json`：成功 0/2，最终误差均值 10.000 µm。
+  结果仅适用于 MuJoCo 仿真。
+
+- 2026-11-20T13:39:01+08:00：实验 SOP `terminal_once/trial` **completed**；卡 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/fast5_acceptance_v1/sop/terminal_once_card.json`；目录 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/fast5_acceptance_v1/sop/terminal_once`。
+  命令 `/home/him1/mujoco_bc/rcm_4090_deploy/.venv/bin/python -B -u lerobot_training/run_model_pipeline.py --config /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/fast5_acceptance_v1/sop/terminal_once_config.json --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/fast5_acceptance_v1/sop/terminal_once/trial`；配置 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/fast5_acceptance_v1/sop/terminal_once_config.json`。
+  档位 `smoke`；权重 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/fast5_acceptance_v1/sop/terminal_once/trial/training/best_model.pth`；目标、种子、基线和协议见 `preflight.json`。
+  结果：/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/fast5_acceptance_v1/sop/terminal_once/trial/summary.json; success 0/2; mean final error 10.000 um。
+  仅验证软件/仿真，不代表临床或硬件就绪。
+
+- 2026-11-20T13:39:01+08:00：实验 SOP `terminal_once` **completed**；卡 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/fast5_acceptance_v1/sop/terminal_once_card.json`；目录 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/fast5_acceptance_v1/sop/terminal_once`。
+  结果：/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/fast5_acceptance_v1/sop/terminal_once/workflow_status.json。
+  仅验证软件/仿真，不代表临床或硬件就绪。
+
+- 2026-11-20T13:39:03+08:00：模型流水线 `sop_fixture` **interrupted**（阶段 `evaluation`；配置 `runs/20261120/fast5_acceptance_v1/sop/interrupted_config.json`）。
+  运行目录 `runs/20261120/fast5_acceptance_v1/sop/interrupted/trial`；命令和状态见 `commands.jsonl`、`status.json`。
+  训练集 `data/model_pipeline_smoke_20261119/train`，验证集 `data/model_pipeline_smoke_20261119/val`，初始化 `None`，训练 seed `None`。
+  评测 checkpoint `runs/20261120/fast5_acceptance_v1/sop/interrupted/trial/training/best_model.pth`；SHA-256 `6fb82a46696074977f095af25a85171d2ea451cec7bef4bbbbb655d57fe5f61f`。
+  评测清单 `configs/v12_reachable_development_targets_0p35um.json`，split `development`，seed `42`，协议见本次 `config.json`。
+  最佳验证 loss `0.250000`（epoch 0）。
+  失败或中断原因：KeyboardInterrupt: SIGTERM。
+  部分结果：1/2 分片、1 目标，见 `evaluation/partial_summary.json`。
+  结果仅适用于 MuJoCo 仿真。
+
+- 2026-11-20T13:39:03+08:00：实验 SOP `interrupted/trial` **interrupted**；卡 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/fast5_acceptance_v1/sop/interrupted_card.json`；目录 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/fast5_acceptance_v1/sop/interrupted`。
+  命令 `/home/him1/mujoco_bc/rcm_4090_deploy/.venv/bin/python -B -u lerobot_training/run_model_pipeline.py --config /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/fast5_acceptance_v1/sop/interrupted_config.json --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/fast5_acceptance_v1/sop/interrupted/trial`；配置 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/fast5_acceptance_v1/sop/interrupted_config.json`。
+  档位 `smoke`；权重 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/fast5_acceptance_v1/sop/interrupted/trial/training/best_model.pth`；目标、种子、基线和协议见 `preflight.json`。
+  部分结果：1/2 分片、1 目标，见 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/fast5_acceptance_v1/sop/interrupted/trial/evaluation/partial_summary.json`。
+  原因：SIGTERM。
+  仅验证软件/仿真，不代表临床或硬件就绪。
+
+- 2026-11-20T13:39:03+08:00：实验 SOP `interrupted` **interrupted**；卡 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/fast5_acceptance_v1/sop/interrupted_card.json`；目录 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/fast5_acceptance_v1/sop/interrupted`。
+  结果：/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/fast5_acceptance_v1/sop/interrupted/workflow_status.json。
+  原因：SIGTERM。
+  仅验证软件/仿真，不代表临床或硬件就绪。
+
+- 2026-11-20T13:39:05+08:00：实验 SOP `reuse/trial` **reused**；卡 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/fast5_acceptance_v1/sop/reuse_card.json`；目录 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/fast5_acceptance_v1/sop/reuse`。
+  命令 `/home/him1/mujoco_bc/rcm_4090_deploy/.venv/bin/python -B -u lerobot_training/run_model_pipeline.py --config /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/fast5_acceptance_v1/sop/gated_config.json --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/fast5_acceptance_v1/sop/reuse/trial --eval-only /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/fast5_acceptance_v1/sop/gated/trial/training/best_model.pth`；配置 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/fast5_acceptance_v1/sop/gated_config.json`。
+  档位 `smoke`；权重 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/fast5_acceptance_v1/sop/gated/trial/training/best_model.pth`；目标、种子、基线和协议见 `preflight.json`。
+  结果：/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/fast5_acceptance_v1/sop/reuse/trial/summary.json; success 0/2; mean final error 10.000 um。
+  仅验证软件/仿真，不代表临床或硬件就绪。
+
+- 2026-11-20T13:39:05+08:00：实验 SOP `reuse` **completed**；卡 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/fast5_acceptance_v1/sop/reuse_card.json`；目录 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/fast5_acceptance_v1/sop/reuse`。
+  结果：/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/fast5_acceptance_v1/sop/reuse/workflow_status.json。
+  仅验证软件/仿真，不代表临床或硬件就绪。
+
+- 2026-11-20T13:39:07+08:00：实验 SOP `reuse_failed_gate/trial` **failed**；卡 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/fast5_acceptance_v1/sop/reuse_failed_gate_card.json`；目录 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/fast5_acceptance_v1/sop/reuse_failed_gate`。
+  命令 `/home/him1/mujoco_bc/rcm_4090_deploy/.venv/bin/python -B -u lerobot_training/run_model_pipeline.py --config /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/fast5_acceptance_v1/sop/gated_config.json --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/fast5_acceptance_v1/sop/reuse_failed_gate/trial --eval-only /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/fast5_acceptance_v1/sop/gated/trial/training/best_model.pth`；配置 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/fast5_acceptance_v1/sop/gated_config.json`。
+  档位 `smoke`；权重 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/fast5_acceptance_v1/sop/gated/trial/training/best_model.pth`；目标、种子、基线和协议见 `preflight.json`。
+  结果：/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/fast5_acceptance_v1/sop/reuse_failed_gate/trial/summary.json; success 0/2; mean final error 10.000 um。
+  原因：gate failed: successes=0 > 0 (/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/fast5_acceptance_v1/sop/reuse_failed_gate/trial/summary.json)。
+  仅验证软件/仿真，不代表临床或硬件就绪。
+
+- 2026-11-20T13:39:07+08:00：实验 SOP `reuse_failed_gate` **failed**；卡 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/fast5_acceptance_v1/sop/reuse_failed_gate_card.json`；目录 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/fast5_acceptance_v1/sop/reuse_failed_gate`。
+  结果：/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/fast5_acceptance_v1/sop/reuse_failed_gate/workflow_status.json。
+  仅验证软件/仿真，不代表临床或硬件就绪。
+
+- 2026-11-20T13:39:09+08:00：实验 SOP 轻量验收 **PASS**。`python -B -m scripts.verification.verify_experiment_workflow --output-dir runs/20261120/fast5_acceptance_v1/sop`；8 项通过，证据 `runs/20261120/fast5_acceptance_v1/sop/verification.json`。 使用 CPU 文件/进程夹具，未训练或闭环推理。
+
+- 2026-11-20T13:40:07.101433+08:00: fast5 implementation acceptance **PASS**. Initial eight logic fixtures passed (`python -B -m scripts.verification.verify_overnight_fast5 --output-dir runs/20261120/fast5_acceptance_v1/unit`); parallel CUDA/EGL I3 smoke completed E00/E02/E06, seeds42/44/48, 3 steps each, baseline `outputs/overnight_c_fix_symlog_081234/task2_train/step_004000.pth`, flow8/samples5, real logs in `runs/20261120/fast5_acceptance_v1/parallel_smoke/E*.log`; evidence `runs/20261120/fast5_acceptance_v1/parallel_smoke/smoke.json`. Smoke validates pipeline only, not model improvement or a final fast5 result. Frozen asset hashes revalidated. MuJoCo simulation only.
+
+- 2026-11-20T13:40:36.643225+08:00: fast5 final acceptance **PASS**. `python -B -m scripts.verification.verify_overnight_fast5 --output-dir runs/20261120/fast5_acceptance_v1/unit_final`: 10/10 fixtures, including real CPU subprocess failure/SIGTERM sibling cleanup, no partial final summary, original target/seed pairing, step-zero failure stops training, failed fast5 gate skips dev20, passed gate launches exactly one dev20. SOP lightweight acceptance PASS (8 checks; `runs/20261120/fast5_acceptance_v1/sop/verification.json`) covers plan-only, automatic gated execution, single launch, live/disk logs, terminal failure, interrupted partial snapshot, provenance refusal. Preflight passed (`runs/20261120/fast5_acceptance_v1/preflight.json`); no training/full20 for acceptance. Compute-independent orchestration fixtures use CPU; policy smoke uses RTX4090 CUDA/EGL.
+
+- 2026-11-19T22:40:49.483369-07:00: `overnight_fast5_20261120_v1/continuation_preflight` **completed**. {"asset_receipt": "runs/20261120/task4_oct_symlog_preflight_192534/assets.json", "checkpoint": "outputs/overnight_c_fix_symlog_081234/task2_train/step_004000.pth", "dataset": "data/plan2_plus_original_train_224_20261119", "overlay": "data/overnight_c_fix_symlog_081234_overlay/label_override.npz", "source_identity": {"code_sha256": "f8e3dd829b0b8fa074fad73d9224ea1ed2f41bc869b163a081ec1876e46bd1de", "scene_sha256": "265c927ef7e7ac71536963b3000ffb161b7ff7ac03bb86cdb8480ed988c17028", "target_manifest_sha256": "fcc4872a9d5b58bb7158b36d3c0ab6d7452e4d8d747317dfb077b6e7bbc815c7", "runner_sha256": "87e9af12a861394cefc2fd6c3598ba43fbf553a28918cc23fdf383624bb7c950", "evaluator_sha256": "0a967958159c178e51da3c666f109904f4aadb673942f42f4eee617d9701f81f", "overlay_code_sha256": "149da9c675a3a4f878ab8d6aa13925abc6fb602119cf023cf79a958b167e0093", "fast_runner_sha256": "c2555b7e801a18ade9107d44027f84fac1774bb44d2491bc60f5f6f9bc8323de"}, "workers": 5, "gpu": "NVIDIA GeForce RTX 4090", "total_budget_hours": 12, "commands": []}. MuJoCo simulation only.
+
+- 2026-11-19T22:49:46.025903-07:00: `overnight_fast5_20261120_v1/task3_I0` **completed**. {"output": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/overnight_fast5_20261120_v1/task34/task3_I0", "checkpoint": "outputs/overnight_c_fix_symlog_081234/task2_train/step_004000.pth", "arm": "I0", "tier": "fast5", "protocol": "fast5; original indices; seeds 42+index; 1000 steps; 50 ms; 0.35 um", "target_count": 5, "base_seed": 42, "max_steps": 1000, "episode_indices": [0, 2, 6, 8, 10], "parallel_workers": 5, "error_threshold_um": 0.35, "flow_steps": 4, "samples": 1, "final_mean_um": 61.84089435709457, "final_median_um": 58.89666963498952, "final_min_um": 56.359870825210265, "minimum_mean_um": 52.09680698924613, "canonical_success_count": 0, "encoder_settled_at_exit_count": 0, "encoder_settled_near_target_frames": 1, "inference_median_ms": 12.034815788269043, "inference_p90_ms": 13.965907096862795, "inference_timing": "CUDA events: sample and aggregate, excluding initial history fill and host transfer; observed under concurrent workers, conservative real-time gate", "near_target_ab_mean_change_deg": [0.0065694157361716726, 0.0038598342532623064], "near_target_ab_pairs": 1664, "c_retraction": {"E08": {"minimum_step": 662, "C_residual_at_min_um": -44.34157972315944, "C_retreat_after_80_steps_um": 41.724956467412255, "post_min_negative_commands": 54, "post_min_under_target_negative_commands": 54, "post_min_command_frames": 80}, "E00": {"minimum_step": 998, "C_residual_at_min_um": -53.88363698513743, "C_retreat_after_80_steps_um": null, "post_min_negative_commands": 2, "post_min_under_target_negative_commands": 2, "post_min_command_frames": 2}, "E02": {"minimum_step": 663, "C_residual_at_min_um": -19.679513827664863, "C_retreat_after_80_steps_um": 9.698741289270174, "post_min_negative_commands": 47, "post_min_under_target_negative_commands": 47, "post_min_command_frames": 80}, "E06": {"minimum_step": 999, "C_residual_at_min_um": -68.36124110676778, "C_retreat_after_80_steps_um": null, "post_min_negative_commands": 0, "post_min_under_target_negative_commands": 0, "post_min_command_frames": 1}}, "result_status": "completed", "commands": [{"stage": "task3_I0", "time": "2026-11-19T22:40:49.702142-07:00", "argv": ["/home/him1/mujoco_bc/rcm_4090_deploy/.venv/bin/python", "-B", "-u", "-m", "scripts.research.overnight_cfix_eval", "--checkpoint", "outputs/overnight_c_fix_symlog_081234/task2_train/step_004000.pth", "--target-manifest", "configs/v12_reachable_development_targets_0p35um.json", "--output-dir", "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/overnight_fast5_20261120_v1/task34/task3_I0", "--arm", "I0", "--tier", "fast5", "--workers", "5"], "timeout_s": 5400, "log": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/overnight_fast5_20261120_v1/task34/task3_I0.log"}]}. MuJoCo simulation only.
+
+- 2026-11-19T22:58:58.318510-07:00: `overnight_fast5_20261120_v1/task3_I1` **completed**. {"output": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/overnight_fast5_20261120_v1/task34/task3_I1", "checkpoint": "outputs/overnight_c_fix_symlog_081234/task2_train/step_004000.pth", "arm": "I1", "tier": "fast5", "protocol": "fast5; original indices; seeds 42+index; 1000 steps; 50 ms; 0.35 um", "target_count": 5, "base_seed": 42, "max_steps": 1000, "episode_indices": [0, 2, 6, 8, 10], "parallel_workers": 5, "error_threshold_um": 0.35, "flow_steps": 8, "samples": 1, "final_mean_um": 134.55948256166585, "final_median_um": 151.4327694302106, "final_min_um": 18.49202368388006, "minimum_mean_um": 126.82512905541466, "canonical_success_count": 0, "encoder_settled_at_exit_count": 0, "encoder_settled_near_target_frames": 0, "inference_median_ms": 21.91766357421875, "inference_p90_ms": 28.721395111083986, "inference_timing": "CUDA events: sample and aggregate, excluding initial history fill and host transfer; observed under concurrent workers, conservative real-time gate", "near_target_ab_mean_change_deg": [0.0028154778760434806, 0.0017262933599327239], "near_target_ab_pairs": 1088, "c_retraction": {"E08": {"minimum_step": 954, "C_residual_at_min_um": -5.311588525142241, "C_retreat_after_80_steps_um": null, "post_min_negative_commands": 26, "post_min_under_target_negative_commands": 26, "post_min_command_frames": 46}, "E00": {"minimum_step": 998, "C_residual_at_min_um": -100.74782954767159, "C_retreat_after_80_steps_um": null, "post_min_negative_commands": 1, "post_min_under_target_negative_commands": 1, "post_min_command_frames": 2}, "E02": {"minimum_step": 994, "C_residual_at_min_um": -144.99539885445856, "C_retreat_after_80_steps_um": null, "post_min_negative_commands": 6, "post_min_under_target_negative_commands": 6, "post_min_command_frames": 6}, "E06": {"minimum_step": 869, "C_residual_at_min_um": -127.86983467162827, "C_retreat_after_80_steps_um": 24.066666591792796, "post_min_negative_commands": 55, "post_min_under_target_negative_commands": 55, "post_min_command_frames": 80}}, "result_status": "completed", "commands": [{"stage": "task3_I1", "time": "2026-11-19T22:49:46.239679-07:00", "argv": ["/home/him1/mujoco_bc/rcm_4090_deploy/.venv/bin/python", "-B", "-u", "-m", "scripts.research.overnight_cfix_eval", "--checkpoint", "outputs/overnight_c_fix_symlog_081234/task2_train/step_004000.pth", "--target-manifest", "configs/v12_reachable_development_targets_0p35um.json", "--output-dir", "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/overnight_fast5_20261120_v1/task34/task3_I1", "--arm", "I1", "--tier", "fast5", "--workers", "5"], "timeout_s": 5400, "log": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/overnight_fast5_20261120_v1/task34/task3_I1.log"}]}. MuJoCo simulation only.
+
+- 2026-11-19T23:08:17.492395-07:00: `overnight_fast5_20261120_v1/task3_I3` **completed**. {"output": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/overnight_fast5_20261120_v1/task34/task3_I3", "checkpoint": "outputs/overnight_c_fix_symlog_081234/task2_train/step_004000.pth", "arm": "I3", "tier": "fast5", "protocol": "fast5; original indices; seeds 42+index; 1000 steps; 50 ms; 0.35 um", "target_count": 5, "base_seed": 42, "max_steps": 1000, "episode_indices": [0, 2, 6, 8, 10], "parallel_workers": 5, "error_threshold_um": 0.35, "flow_steps": 8, "samples": 5, "final_mean_um": 119.56355865574703, "final_median_um": 58.443066260272, "final_min_um": 20.970555873750165, "minimum_mean_um": 115.3903908027645, "canonical_success_count": 0, "encoder_settled_at_exit_count": 1, "encoder_settled_near_target_frames": 43, "inference_median_ms": 22.777856826782227, "inference_p90_ms": 31.09940452575684, "inference_timing": "CUDA events: sample and aggregate, excluding initial history fill and host transfer; observed under concurrent workers, conservative real-time gate", "near_target_ab_mean_change_deg": [0.0016126801293696528, 0.0009989946920472084], "near_target_ab_pairs": 1054, "c_retraction": {"E08": {"minimum_step": 965, "C_residual_at_min_um": -7.426822893560114, "C_retreat_after_80_steps_um": null, "post_min_negative_commands": 19, "post_min_under_target_negative_commands": 19, "post_min_command_frames": 35}, "E00": {"minimum_step": 724, "C_residual_at_min_um": -146.7189231546513, "C_retreat_after_80_steps_um": 11.735633644040178, "post_min_negative_commands": 54, "post_min_under_target_negative_commands": 54, "post_min_command_frames": 80}, "E02": {"minimum_step": 763, "C_residual_at_min_um": -168.48233454527772, "C_retreat_after_80_steps_um": 11.688628435859272, "post_min_negative_commands": 43, "post_min_under_target_negative_commands": 43, "post_min_command_frames": 80}, "E06": {"minimum_step": 888, "C_residual_at_min_um": -35.19123252940659, "C_retreat_after_80_steps_um": 7.035112825334977, "post_min_negative_commands": 41, "post_min_under_target_negative_commands": 41, "post_min_command_frames": 80}}, "result_status": "completed", "commands": [{"stage": "task3_I3", "time": "2026-11-19T22:58:58.532457-07:00", "argv": ["/home/him1/mujoco_bc/rcm_4090_deploy/.venv/bin/python", "-B", "-u", "-m", "scripts.research.overnight_cfix_eval", "--checkpoint", "outputs/overnight_c_fix_symlog_081234/task2_train/step_004000.pth", "--target-manifest", "configs/v12_reachable_development_targets_0p35um.json", "--output-dir", "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/overnight_fast5_20261120_v1/task34/task3_I3", "--arm", "I3", "--tier", "fast5", "--workers", "5"], "timeout_s": 5400, "log": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/overnight_fast5_20261120_v1/task34/task3_I3.log"}]}. MuJoCo simulation only.
+
+- 2026-11-19T23:08:17.493146-07:00: `overnight_fast5_20261120_v1/task3_selection` **completed**. {"arm": "I0", "checkpoint": "outputs/overnight_c_fix_symlog_081234/task2_train/step_004000.pth", "rule": ">=10% final/minimum mean improvement; final mean cannot regress; median AND P90 <50ms; otherwise I0", "latency_context": "five concurrent GPU workers; conservative observed realtime gate", "paired_evidence": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/overnight_fast5_20261120_v1/task34/task3_paired.json", "summaries": {"I0": {"status": "completed", "checkpoint": "outputs/overnight_c_fix_symlog_081234/task2_train/step_004000.pth", "arm": "I0", "target_count": 5, "base_seed": 42, "max_steps": 1000, "tier": "fast5", "episode_indices": [0, 2, 6, 8, 10], "parallel_workers": 5, "error_threshold_um": 0.35, "flow_steps": 4, "samples": 1, "final_mean_um": 61.84089435709457, "final_median_um": 58.89666963498952, "final_min_um": 56.359870825210265, "minimum_mean_um": 52.09680698924613, "canonical_success_count": 0, "encoder_settled_at_exit_count": 0, "encoder_settled_near_target_frames": 1, "inference_median_ms": 12.034815788269043, "inference_p90_ms": 13.965907096862795, "inference_timing": "CUDA events: sample and aggregate, excluding initial history fill and host transfer; observed under concurrent workers, conservative real-time gate", "near_target_ab_mean_change_deg": [0.0065694157361716726, 0.0038598342532623064], "near_target_ab_pairs": 1664, "c_retraction": {"E08": {"minimum_step": 662, "C_residual_at_min_um": -44.34157972315944, "C_retreat_after_80_steps_um": 41.724956467412255, "post_min_negative_commands": 54, "post_min_under_target_negative_commands": 54, "post_min_command_frames": 80}, "E00": {"minimum_step": 998, "C_residual_at_min_um": -53.88363698513743, "C_retreat_after_80_steps_um": null, "post_min_negative_commands": 2, "post_min_under_target_negative_commands": 2, "post_min_command_frames": 2}, "E02": {"minimum_step": 663, "C_residual_at_min_um": -19.679513827664863, "C_retreat_after_80_steps_um": 9.698741289270174, "post_min_negative_commands": 47, "post_min_under_target_negative_commands": 47, "post_min_command_frames": 80}, "E06": {"minimum_step": 999, "C_residual_at_min_um": -68.36124110676778, "C_retreat_after_80_steps_um": null, "post_min_negative_commands": 0, "post_min_under_target_negative_commands": 0, "post_min_command_frames": 1}}}, "I1": {"status": "completed", "checkpoint": "outputs/overnight_c_fix_symlog_081234/task2_train/step_004000.pth", "arm": "I1", "target_count": 5, "base_seed": 42, "max_steps": 1000, "tier": "fast5", "episode_indices": [0, 2, 6, 8, 10], "parallel_workers": 5, "error_threshold_um": 0.35, "flow_steps": 8, "samples": 1, "final_mean_um": 134.55948256166585, "final_median_um": 151.4327694302106, "final_min_um": 18.49202368388006, "minimum_mean_um": 126.82512905541466, "canonical_success_count": 0, "encoder_settled_at_exit_count": 0, "encoder_settled_near_target_frames": 0, "inference_median_ms": 21.91766357421875, "inference_p90_ms": 28.721395111083986, "inference_timing": "CUDA events: sample and aggregate, excluding initial history fill and host transfer; observed under concurrent workers, conservative real-time gate", "near_target_ab_mean_change_deg": [0.0028154778760434806, 0.0017262933599327239], "near_target_ab_pairs": 1088, "c_retraction": {"E08": {"minimum_step": 954, "C_residual_at_min_um": -5.311588525142241, "C_retreat_after_80_steps_um": null, "post_min_negative_commands": 26, "post_min_under_target_negative_commands": 26, "post_min_command_frames": 46}, "E00": {"minimum_step": 998, "C_residual_at_min_um": -100.74782954767159, "C_retreat_after_80_steps_um": null, "post_min_negative_commands": 1, "post_min_under_target_negative_commands": 1, "post_min_command_frames": 2}, "E02": {"minimum_step": 994, "C_residual_at_min_um": -144.99539885445856, "C_retreat_after_80_steps_um": null, "post_min_negative_commands": 6, "post_min_under_target_negative_commands": 6, "post_min_command_frames": 6}, "E06": {"minimum_step": 869, "C_residual_at_min_um": -127.86983467162827, "C_retreat_after_80_steps_um": 24.066666591792796, "post_min_negative_commands": 55, "post_min_under_target_negative_commands": 55, "post_min_command_frames": 80}}}, "I3": {"status": "completed", "checkpoint": "outputs/overnight_c_fix_symlog_081234/task2_train/step_004000.pth", "arm": "I3", "target_count": 5, "base_seed": 42, "max_steps": 1000, "tier": "fast5", "episode_indices": [0, 2, 6, 8, 10], "parallel_workers": 5, "error_threshold_um": 0.35, "flow_steps": 8, "samples": 5, "final_mean_um": 119.56355865574703, "final_median_um": 58.443066260272, "final_min_um": 20.970555873750165, "minimum_mean_um": 115.3903908027645, "canonical_success_count": 0, "encoder_settled_at_exit_count": 1, "encoder_settled_near_target_frames": 43, "inference_median_ms": 22.777856826782227, "inference_p90_ms": 31.09940452575684, "inference_timing": "CUDA events: sample and aggregate, excluding initial history fill and host transfer; observed under concurrent workers, conservative real-time gate", "near_target_ab_mean_change_deg": [0.0016126801293696528, 0.0009989946920472084], "near_target_ab_pairs": 1054, "c_retraction": {"E08": {"minimum_step": 965, "C_residual_at_min_um": -7.426822893560114, "C_retreat_after_80_steps_um": null, "post_min_negative_commands": 19, "post_min_under_target_negative_commands": 19, "post_min_command_frames": 35}, "E00": {"minimum_step": 724, "C_residual_at_min_um": -146.7189231546513, "C_retreat_after_80_steps_um": 11.735633644040178, "post_min_negative_commands": 54, "post_min_under_target_negative_commands": 54, "post_min_command_frames": 80}, "E02": {"minimum_step": 763, "C_residual_at_min_um": -168.48233454527772, "C_retreat_after_80_steps_um": 11.688628435859272, "post_min_negative_commands": 43, "post_min_under_target_negative_commands": 43, "post_min_command_frames": 80}, "E06": {"minimum_step": 888, "C_residual_at_min_um": -35.19123252940659, "C_retreat_after_80_steps_um": 7.035112825334977, "post_min_negative_commands": 41, "post_min_under_target_negative_commands": 41, "post_min_command_frames": 80}}}}, "commands": []}. MuJoCo simulation only.
+
+- 2026-11-19T23:08:20.868298-07:00: `overnight_fast5_20261120_v1/task4_step_zero` **completed**. {"checkpoint": "outputs/overnight_c_fix_symlog_081234/task2_train/step_004000.pth", "dataset": "data/plan2_plus_original_train_224_20261119", "output": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/overnight_fast5_20261120_v1/task34/step_zero_selected.json", "max_abs_diff": 0.0, "by_mode": {"fp32": 0.0, "amp_fp16": 0.0}, "limit": 1e-06, "result_status": "PASS", "commands": [{"stage": "task4_step_zero", "time": "2026-11-19T23:08:18.096475-07:00", "argv": ["/home/him1/mujoco_bc/rcm_4090_deploy/.venv/bin/python", "-B", "-u", "-m", "scripts.research.overnight_cfix", "step-zero", "--checkpoint", "outputs/overnight_c_fix_symlog_081234/task2_train/step_004000.pth", "--output-dir", "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/overnight_fast5_20261120_v1/task34"], "timeout_s": 600, "log": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/overnight_fast5_20261120_v1/task34/task4_step_zero.log"}]}. MuJoCo simulation only.
+
+- 2026-11-19T23:11:03.973086-07:00: `overnight_fast5_20261120_v1/task4_train` **completed**. {"checkpoint": "outputs/overnight_c_fix_symlog_081234/task2_train/step_004000.pth", "dataset": "data/plan2_plus_original_train_224_20261119", "validation": "data/lerobot_rcm_val_acthist_20261117_224", "overlay": "data/overnight_c_fix_symlog_081234_overlay/label_override.npz", "output": "outputs/overnight_fast5_20261120_v1/task4_train", "seed": 20261118, "sampling_counts": {"original": 58880, "correction": 5120}, "train_loss": 0.1145498164743185, "val_loss": 0.14787177321650713, "batches_seen": 4000, "optimizer_updates": 3998, "amp_skipped_batches": 2, "replay_labels": "C-only overlay", "commands": [{"stage": "task4_train", "time": "2026-11-19T23:08:20.869545-07:00", "argv": ["/home/him1/mujoco_bc/rcm_4090_deploy/.venv/bin/python", "-B", "-u", "-m", "lerobot_training.dit_experience_replay", "train", "--data-dir", "data/plan2_plus_original_train_224_20261119", "--val-data-dir", "data/lerobot_rcm_val_acthist_20261117_224", "--init-from", "outputs/overnight_c_fix_symlog_081234/task2_train/step_004000.pth", "--output-dir", "outputs/overnight_fast5_20261120_v1/task4_train", "--mode", "ratio", "--correction-ratio", "0.08", "--epochs", "4", "--steps-per-epoch", "1000", "--checkpoint-every-steps", "1000", "--label-overlay", "data/overnight_c_fix_symlog_081234_overlay/label_override.npz", "--oct-symlog"], "timeout_s": 2700, "log": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/overnight_fast5_20261120_v1/task34/task4_train.log"}]}. MuJoCo simulation only.
+
+- 2026-11-19T23:19:50.921169-07:00: `overnight_fast5_20261120_v1/task4_step2000_I0` **completed**. {"output": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/overnight_fast5_20261120_v1/task34/task4_step2000_I0", "checkpoint": "outputs/overnight_fast5_20261120_v1/task4_train/step_002000.pth", "arm": "I0", "tier": "fast5", "protocol": "fast5; original indices; seeds 42+index; 1000 steps; 50 ms; 0.35 um", "target_count": 5, "base_seed": 42, "max_steps": 1000, "episode_indices": [0, 2, 6, 8, 10], "parallel_workers": 5, "error_threshold_um": 0.35, "flow_steps": 4, "samples": 1, "final_mean_um": 48.905758898853534, "final_median_um": 51.64129244593653, "final_min_um": 36.61796118179339, "minimum_mean_um": 40.20874860922983, "canonical_success_count": 0, "encoder_settled_at_exit_count": 0, "encoder_settled_near_target_frames": 0, "inference_median_ms": 12.263551712036133, "inference_p90_ms": 13.984838485717777, "inference_timing": "CUDA events: sample and aggregate, excluding initial history fill and host transfer; observed under concurrent workers, conservative real-time gate", "near_target_ab_mean_change_deg": [0.0065349315030920445, 0.0038672300517561555], "near_target_ab_pairs": 1673, "c_retraction": {"E08": {"minimum_step": 845, "C_residual_at_min_um": -47.396918255319775, "C_retreat_after_80_steps_um": 29.143229076002086, "post_min_negative_commands": 49, "post_min_under_target_negative_commands": 49, "post_min_command_frames": 80}, "E00": {"minimum_step": 998, "C_residual_at_min_um": -49.183116166428675, "C_retreat_after_80_steps_um": null, "post_min_negative_commands": 2, "post_min_under_target_negative_commands": 2, "post_min_command_frames": 2}, "E02": {"minimum_step": 932, "C_residual_at_min_um": -13.647178776988511, "C_retreat_after_80_steps_um": null, "post_min_negative_commands": 30, "post_min_under_target_negative_commands": 29, "post_min_command_frames": 68}, "E06": {"minimum_step": 999, "C_residual_at_min_um": -35.112890515762274, "C_retreat_after_80_steps_um": null, "post_min_negative_commands": 0, "post_min_under_target_negative_commands": 0, "post_min_command_frames": 1}}, "result_status": "completed", "commands": [{"stage": "task4_step2000_I0", "time": "2026-11-19T23:11:04.203356-07:00", "argv": ["/home/him1/mujoco_bc/rcm_4090_deploy/.venv/bin/python", "-B", "-u", "-m", "scripts.research.overnight_cfix_eval", "--checkpoint", "outputs/overnight_fast5_20261120_v1/task4_train/step_002000.pth", "--target-manifest", "configs/v12_reachable_development_targets_0p35um.json", "--output-dir", "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/overnight_fast5_20261120_v1/task34/task4_step2000_I0", "--arm", "I0", "--tier", "fast5", "--workers", "5"], "timeout_s": 5400, "log": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/overnight_fast5_20261120_v1/task34/task4_step2000_I0.log"}]}. MuJoCo simulation only.
+
+- 2026-11-19T23:28:38.615381-07:00: `overnight_fast5_20261120_v1/task4_step4000_I0` **completed**. {"output": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/overnight_fast5_20261120_v1/task34/task4_step4000_I0", "checkpoint": "outputs/overnight_fast5_20261120_v1/task4_train/step_004000.pth", "arm": "I0", "tier": "fast5", "protocol": "fast5; original indices; seeds 42+index; 1000 steps; 50 ms; 0.35 um", "target_count": 5, "base_seed": 42, "max_steps": 1000, "episode_indices": [0, 2, 6, 8, 10], "parallel_workers": 5, "error_threshold_um": 0.35, "flow_steps": 4, "samples": 1, "final_mean_um": 62.79889217933527, "final_median_um": 59.01388413284856, "final_min_um": 39.758742705204895, "minimum_mean_um": 51.531059491018766, "canonical_success_count": 0, "encoder_settled_at_exit_count": 0, "encoder_settled_near_target_frames": 0, "inference_median_ms": 12.103551864624023, "inference_p90_ms": 13.789759826660157, "inference_timing": "CUDA events: sample and aggregate, excluding initial history fill and host transfer; observed under concurrent workers, conservative real-time gate", "near_target_ab_mean_change_deg": [0.006524969922636251, 0.0038377827623134043], "near_target_ab_pairs": 1528, "c_retraction": {"E08": {"minimum_step": 663, "C_residual_at_min_um": -33.06032975825701, "C_retreat_after_80_steps_um": 34.61150162843296, "post_min_negative_commands": 50, "post_min_under_target_negative_commands": 50, "post_min_command_frames": 80}, "E00": {"minimum_step": 999, "C_residual_at_min_um": -73.37512998005025, "C_retreat_after_80_steps_um": null, "post_min_negative_commands": 1, "post_min_under_target_negative_commands": 1, "post_min_command_frames": 1}, "E02": {"minimum_step": 914, "C_residual_at_min_um": -24.7560763118706, "C_retreat_after_80_steps_um": -8.225911432742095, "post_min_negative_commands": 36, "post_min_under_target_negative_commands": 36, "post_min_command_frames": 80}, "E06": {"minimum_step": 982, "C_residual_at_min_um": -58.41180537383295, "C_retreat_after_80_steps_um": null, "post_min_negative_commands": 8, "post_min_under_target_negative_commands": 8, "post_min_command_frames": 18}}, "result_status": "completed", "commands": [{"stage": "task4_step4000_I0", "time": "2026-11-19T23:19:51.135735-07:00", "argv": ["/home/him1/mujoco_bc/rcm_4090_deploy/.venv/bin/python", "-B", "-u", "-m", "scripts.research.overnight_cfix_eval", "--checkpoint", "outputs/overnight_fast5_20261120_v1/task4_train/step_004000.pth", "--target-manifest", "configs/v12_reachable_development_targets_0p35um.json", "--output-dir", "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/overnight_fast5_20261120_v1/task34/task4_step4000_I0", "--arm", "I0", "--tier", "fast5", "--workers", "5"], "timeout_s": 5400, "log": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/overnight_fast5_20261120_v1/task34/task4_step4000_I0.log"}]}. MuJoCo simulation only.
+
+- 2026-11-19T23:28:38.616282-07:00: `overnight_fast5_20261120_v1/task4_selection` **completed**. {"winner": "task4_step2000_I0", "checkpoint": "outputs/overnight_fast5_20261120_v1/task4_train/step_002000.pth", "arm": "I0", "paired": {"baseline_final_um": 61.84089435709457, "candidate_final_um": 48.905758898853534, "baseline_minimum_um": 52.09680698924613, "candidate_minimum_um": 40.20874860922983, "paired_targets": 5, "arm": "I0", "baseline": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/overnight_fast5_20261120_v1/task34/task3_I0", "candidate": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/overnight_fast5_20261120_v1/task34/task4_step2000_I0", "final_improvement_fraction": 0.20916798815276316, "minimum_improvement_fraction": 0.2281916890313498, "improved_final_count": 4, "gate_passed": true, "rule": "same-arm paired fast5 final mean OR minimum mean improves at least 10%"}, "rule": "minimum fast5 final mean across both checkpoints and I0/BEST_ARM", "commands": []}. MuJoCo simulation only.
+
+- 2026-11-20T15:01:15.155460+08:00: `overnight_fast5_20261120_v1` **partial snapshot 10/20; full dev20 still running**. Card `experiment_card.json`; dataset `data/plan2_plus_original_train_224_20261119`; checkpoint `outputs/overnight_fast5_20261120_v1/task4_train/step_002000.pth` sha256 `8b3b998a46708c5bafc79c84a140bcf520e778a4e7dd6119e265ed1078c4e467`; E00-E09, seeds42-51, max1600steps, I0, 50ms, strict0.35um+3settled frames. Final mean 63.318354um, minimum mean 27.852110um, strict 0/10. Evidence `runs/20261120/github_partial10_20261120_v1/report/partial_summary.json`; no rerun/parameter changes; historical comparison is same-target descriptive only, no provenance match. MuJoCo simulation only.
+
+- 2026-11-20T15:07:15.813513+08:00: **Published and remote-verified PARTIAL10 snapshot (not final dev20)**. Repository `jsonyang218-pixel/rcm-mujoco-reference`, branch `experiment/overnight-c-fix-symlog-20261119`, commit `be0da86d32102035cce7c9817ab30aa1d16f9c3e`, report `rcm_4090_deploy/github_reports/overnight_fast5_20261120_v1_partial10/SUMMARY.md`. 56 report/evidence files; no weights, raw datasets or evaluation parameter changes; original full20 run continues unchanged. Publication receipt `runs/20261120/github_partial10_20261120_v1/publication_status.json`; immutable snapshot `runs/20261120/github_partial10_20261120_v1/report/partial_summary.json`. E00-E09, seeds42-51, I0, max1600steps, 50ms; checkpoint step002000, baseline identified in report; partial final mean63.318354um, trajectory minimum mean27.852110um, strict0/10. Only the new report path added to the remote branch; no source or frozen assets overwritten.
+
+- 2026-11-20T00:24:02.093579-07:00: `overnight_fast5_20261120_v1/task4_dev20` **completed**. {"output": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/overnight_fast5_20261120_v1/task34/task4_dev20", "checkpoint": "outputs/overnight_fast5_20261120_v1/task4_train/step_002000.pth", "arm": "I0", "tier": "dev20", "protocol": "dev20; original indices; seeds 42+index; 1600 steps; 50 ms; 0.35 um", "target_count": 20, "base_seed": 42, "max_steps": 1600, "episode_indices": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19], "parallel_workers": 5, "error_threshold_um": 0.35, "flow_steps": 4, "samples": 1, "final_mean_um": 58.680609571619115, "final_median_um": 59.05211908164884, "final_min_um": 34.3617111014471, "minimum_mean_um": 25.26131928707095, "canonical_success_count": 0, "encoder_settled_at_exit_count": 0, "encoder_settled_near_target_frames": 9, "inference_median_ms": 12.420032024383545, "inference_p90_ms": 14.447392463684082, "inference_timing": "CUDA events: sample and aggregate, excluding initial history fill and host transfer; observed under concurrent workers, conservative real-time gate", "near_target_ab_mean_change_deg": [0.006381422366113545, 0.003763286268887312], "near_target_ab_pairs": 18757, "c_retraction": {"E08": {"minimum_step": 1575, "C_residual_at_min_um": -9.651736081085716, "C_retreat_after_80_steps_um": null, "post_min_negative_commands": 19, "post_min_under_target_negative_commands": 19, "post_min_command_frames": 25}, "E00": {"minimum_step": 1449, "C_residual_at_min_um": -23.941319369960468, "C_retreat_after_80_steps_um": 4.935546859645257, "post_min_negative_commands": 45, "post_min_under_target_negative_commands": 45, "post_min_command_frames": 80}, "E02": {"minimum_step": 1499, "C_residual_at_min_um": -24.959765547347246, "C_retreat_after_80_steps_um": -14.837977384392076, "post_min_negative_commands": 37, "post_min_under_target_negative_commands": 37, "post_min_command_frames": 80}, "E06": {"minimum_step": 1457, "C_residual_at_min_um": -12.989105862367012, "C_retreat_after_80_steps_um": -5.750303801551837, "post_min_negative_commands": 44, "post_min_under_target_negative_commands": 44, "post_min_command_frames": 80}}, "result_status": "completed", "commands": [{"stage": "task4_dev20", "time": "2026-11-19T23:28:38.830883-07:00", "argv": ["/home/him1/mujoco_bc/rcm_4090_deploy/.venv/bin/python", "-B", "-u", "-m", "scripts.research.overnight_cfix_eval", "--checkpoint", "outputs/overnight_fast5_20261120_v1/task4_train/step_002000.pth", "--target-manifest", "configs/v12_reachable_development_targets_0p35um.json", "--output-dir", "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/overnight_fast5_20261120_v1/task34/task4_dev20", "--arm", "I0", "--tier", "dev20", "--workers", "5"], "timeout_s": 14400, "log": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/overnight_fast5_20261120_v1/task34/task4_dev20.log"}]}. MuJoCo simulation only.
+
+- 2026-11-20T00:24:08.300679-07:00: `overnight_fast5_20261120_v1/task4_dev20_report` **completed**. {"output": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/overnight_fast5_20261120_v1/task34/task4_dev20", "artifacts": ["/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/overnight_fast5_20261120_v1/task34/task4_dev20/summary.json", "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/overnight_fast5_20261120_v1/task34/task4_dev20/episodes.csv", "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/overnight_fast5_20261120_v1/task34/task4_dev20/error_curves_all.png", "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/overnight_fast5_20261120_v1/task34/task4_dev20/best_and_final_error.png", "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/overnight_fast5_20261120_v1/task34/task4_dev20/c_min_aligned.png", "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/overnight_fast5_20261120_v1/task34/task4_dev20/needle_tip_near_target.png"], "historical_provenance_matched": false, "strict_success_count": 0, "target_count": 20, "historical_reference": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/overnight_fast5_20261120_v1/task34/task4_dev20/historical_reference.json", "commands": []}. MuJoCo simulation only.
+
+- 2026-11-20T15:24:08+08:00：实验 SOP `overnight_fast5_20261120_v1/task34` **completed**；卡 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/fast5_acceptance_v1/experiment_card.json`；目录 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/overnight_fast5_20261120_v1`。
+  命令 `/home/him1/mujoco_bc/rcm_4090_deploy/.venv/bin/python -B -u -m scripts.research.overnight_cfix_fast --asset-receipt runs/20261120/task4_oct_symlog_preflight_192534/assets.json --workers 5 --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/overnight_fast5_20261120_v1/task34`；配置 `见实验卡`。
+  仅验证软件/仿真，不代表临床或硬件就绪。
+
+- 2026-11-20T15:24:08+08:00：实验 SOP `overnight_fast5_20261120_v1` **completed**；卡 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/fast5_acceptance_v1/experiment_card.json`；目录 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/overnight_fast5_20261120_v1`。
+  结果：/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/overnight_fast5_20261120_v1/workflow_status.json。
+  仅验证软件/仿真，不代表临床或硬件就绪。
+
+- 2026-11-20T15:54:36.287084+08:00: step680_axes_v1 syntax and four regression checks **PASS**; command `python -m py_compile scripts/research/diagnose_step680_axes.py scripts/verification/verify_step680_axes.py; python -B -m scripts.verification.verify_step680_axes`; dataset/checkpoint N/A, synthetic algebra and timing checks only; evidence `runs/20261120/verification/step680_axes_v1/verification.json` and `verification.log`.
+
+- 2026-11-20T15:54:54.572729+08:00: step680_axes_v1 offline diagnostic **completed**; command `python -B -m scripts.research.diagnose_step680_axes --source-dir runs/20261120/overnight_fast5_20261120_v1/task34/task4_dev20 --output-dir github_reports/diag_20261120_step680_axes`; source `runs/20261120/overnight_fast5_20261120_v1/task34/task4_dev20`; checkpoint `outputs/overnight_fast5_20261120_v1/task4_train/step_002000.pth`; E00/E02/E06/E08 seeds42/44/48/50 I0 1600-step frozen trajectories, no rollout/training; case=1; evidence `github_reports/diag_20261120_step680_axes/axis_floor_summary.json`; failure=none. CPU NumPy analysis (small/I/O-bound); NVIDIA EGL scene initialization. Simulation only.
+
+- 2026-11-20T15:57:47.196488+08:00: step680_case1 motor syntax and MotorExecution regression **PASS**; command `python -m py_compile scripts/research/step680_motor_reachability.py; python -B -m scripts.verification.verify_motor_execution`; dataset/checkpoint N/A; evidence `runs/20261120/verification/step680_axes_v1/motor_verification.json` and `motor_verification.log`; simulation only.
+
+- 2026-11-20T15:58:22.704638+08:00: step680_case1_audit_v1 **completed**; command `python -B -m scripts.research.step680_motor_reachability audit --output-dir github_reports/diag_20261120_step680_axes/motor_protocol_audit`; config `configs/experiment_card_step680_case1_expert_20261120_v1.json`; frozen target manifest `configs/v12_reachable_development_targets_0p35um.json` sha256 `fcc4872a9d5b58bb7158b36d3c0ab6d7452e4d8d747317dfb077b6e7bbc815c7`; dataset/checkpoint N/A (oracle/no training); seeds42/44/48/50/52; strict=N/A/5; final_mean_um=N/A; failure=none; evidence `github_reports/diag_20261120_step680_axes/motor_protocol_audit/motor_protocol_audit.json`. CPU scalar kinematics/protocol checks, NVIDIA EGL. Simulation only.
+
+- 2026-11-20T16:00:16.143584+08:00: step680_case1_expert_v1 preflight **PASS**; command `python -B -m scripts.tools.experiment_workflow preflight --card configs/experiment_card_step680_case1_expert_20261120_v1.json`; no experiment launched by preflight, no training/checkpoint; planned five-target oracle seeds42/44/48/50/52, max1600, 50ms, strict0.35um+3settled frames; evidence `runs/20261120/verification/step680_axes_v1/expert_preflight.json`.
+
+- 2026-11-20T16:00:18.491198+08:00: step680_axes_v1 final artifact acceptance **PASS**: 4 targets x 3 axes x 4 metric groups, 8 transition/steady plots plus contribution bar, exact saved-error FK reconstruction (max0um), 4 diagnostic + 7 motor regression tests pass. Current I0 step2000 dev20 20/20: final58.680610um, minimum25.261319um, strict0/20; historical task2_step4000 final53.949923um is descriptive only (missing code/scene provenance), seeds42-61 same frozen development targets, max1600, 50ms, strict0.35um+3settled. Case1 selected: A no-motion42.22-44.78%; local protocol best0.884319-3.196515um on E00/E02/E06/E08/E10; no Fine DiT training. Evidence `github_reports/diag_20261120_step680_axes/acceptance.json` and `motor_protocol_audit/motor_protocol_audit.json`; expert preflight passed, launch separately per SOP.
+
+- 2026-11-20T16:03:49.176874+08:00: step680 diagnostic publication **published_verified**; commit `33d4fd7ec71dd608981ef768388295b544cf6d7c` branch `experiment/overnight-c-fix-symlog-20261119`; 31 report files plus 4 source/config files, remote HEAD and local blob SHA256 verified; evidence `runs/20261120/step680_publication_v1/publication_status.json`; no training/checkpoints/dataset publication; five-target expert preflight only, no final expert results claimed.
+
+- 2026-11-20T16:04:28.267034+08:00: step680_case1_expert_v1 **completed**; command `python -B -m scripts.research.step680_motor_reachability expert --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/step680_case1_expert_v1/physical_check`; config `configs/experiment_card_step680_case1_expert_20261120_v1.json`; frozen target manifest `configs/v12_reachable_development_targets_0p35um.json` sha256 `fcc4872a9d5b58bb7158b36d3c0ab6d7452e4d8d747317dfb077b6e7bbc815c7`; dataset/checkpoint N/A (oracle/no training); seeds42/44/48/50/52; strict=0/5; final_mean_um=1.6710929557202785; failure=none; evidence `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/step680_case1_expert_v1/physical_check/expert_summary.json`. CPU scalar kinematics/protocol checks, NVIDIA EGL. Simulation only.
+
+- 2026-11-20T16:04:28+08:00：实验 SOP `step680_case1_expert_20261120_v1/physical_check` **failed**；卡 `/home/him1/mujoco_bc/rcm_4090_deploy/configs/experiment_card_step680_case1_expert_20261120_v1.json`；目录 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/step680_case1_expert_v1`。
+  命令 `/home/him1/mujoco_bc/rcm_4090_deploy/.venv/bin/python -B -u -m scripts.research.step680_motor_reachability expert --audit-summary github_reports/diag_20261120_step680_axes/motor_protocol_audit/motor_protocol_audit.json --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/step680_case1_expert_v1/physical_check`；配置 `见实验卡`。
+  原因：gate failed: strict_success_count=0 == 5 (/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/step680_case1_expert_v1/physical_check/expert_summary.json)。
+  仅验证软件/仿真，不代表临床或硬件就绪。
+
+- 2026-11-20T16:04:28+08:00：实验 SOP `step680_case1_expert_20261120_v1` **failed**；卡 `/home/him1/mujoco_bc/rcm_4090_deploy/configs/experiment_card_step680_case1_expert_20261120_v1.json`；目录 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/step680_case1_expert_v1`。
+  结果：/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/step680_case1_expert_v1/workflow_status.json。
+  仅验证软件/仿真，不代表临床或硬件就绪。
+
+- 2026-11-20T16:29:21.989061+08:00: motor_perception_gate_v1 E00 step1200 fixed-state perception preflight probe **completed**; source step2000 I0 dev20 frozen trajectory; no rollout/training; command inline StrictRGBDSensor observe + geometry/calibration checks; output `runs/20261120/verification/motor_perception_gate_v1/initial_bias_probe.json`, RGB-D evidence `E00_frame1200.npz`; evaluation truth used for diagnostics only. CPU scalar statistics; NVIDIA EGL render.
+
+- 2026-11-20T16:30:55.386353+08:00: motor_perception_gate_v1 fixed-frame E00 mask attribution **completed**; source `E00_frame1200.npz`; hypothesis RGB boundary/depth disagreement; unchanged stored depth, five explicit mask ablations, no rollout/training; results `runs/20261120/verification/motor_perception_gate_v1/mask_attribution_probe.json`; CPU small sphere fits, NVIDIA EGL calibration scene.
+
+- 2026-11-20T16:37:13.178270+08:00: motor_perception_gate render-sampling attribution **failed**; fixed E00 step1200, original scene vs explicitly zero offsamples; no training/rollout, no production edit; evidence `runs/20261120/verification/motor_perception_gate_v1/render_sampling_probe.json`; variants []; CPU small fits, NVIDIA EGL rendering. Simulation only.
+
+- 2026-11-20T16:37:59.007995+08:00: motor_perception_gate render-sampling attribution harness correction **completed**; fixed E00 step1200, explicit deg/deg/mm to SI conversion; references failed render_sampling_probe.json (no render completed); no training/rollout/production edit; evidence `runs/20261120/verification/motor_perception_gate_v1/render_sampling_probe_v2.json`; variants [{"requested_offsamples": null, "default_offsamples": 4, "effective_offsamples": 4, "target_error_um": 9.915454077991432, "target_error_camera_um": [1.6231088688924993, 9.761520497358084, 0.6280642898122335], "tip_error_um": 0.580463167949866, "target_quality": {"source": "target_sphere_fit", "support": 46, "residual_mm": 0.0015938267725654045, "fit_quality_mm": 0.004781480317696213}}, {"requested_offsamples": 0, "default_offsamples": 4, "effective_offsamples": 0, "target_error_um": 1.216361324250908, "target_error_camera_um": [-0.06074356017880677, 0.38453166156639496, -1.152380359205767], "tip_error_um": 0.04748311909854306, "target_quality": {"source": "target_sphere_fit", "support": 58, "residual_mm": 0.0003221967725652185, "fit_quality_mm": 0.002}}]; CPU small fits, NVIDIA EGL. Simulation only.
+
+- 2026-11-20T16:39:08.688560+08:00: motor_perception_gate fixed E00 tessellation attribution **completed**; known .15mm sphere at same saved state; compare112 slices64 stacks at4 vs0 offsamples; no production edit/training/rollout; output `runs/20261120/verification/motor_perception_gate_v1/tessellation_probe.json`; [{"offsamples": 4, "numslices": 112, "numstacks": 64, "target_error_um": 9.33086383506632, "target_error_camera_um": [2.338145289449792, 8.968381117509375, 1.0799243700711412], "tip_error_um": 0.5685186524423845, "target_quality": {"source": "target_sphere_fit", "support": 48, "residual_mm": 0.0007416966025216829, "fit_quality_mm": 0.0022250898075650487}}, {"offsamples": 0, "numslices": 112, "numstacks": 64, "target_error_um": 0.08378697382424333, "target_error_camera_um": [0.003702775643646753, 0.03156867563639452, -0.0775239650283792], "tip_error_um": 0.052244509986812376, "target_quality": {"source": "target_sphere_fit", "support": 55, "residual_mm": 2.2691806520402418e-05, "fit_quality_mm": 0.002}}]; CPU small fits and NVIDIA EGL. Simulation only.
+
+- 2026-11-20T16:45:14.905937+08:00: motor_perception_gate source verification geometry_motor **PASS**; command ['/home/him1/mujoco_bc/rcm_4090_deploy/.venv/bin/python', '-B', '-m', 'unittest', '-v', 'scripts.verification.verify_motor_perception_gates', 'scripts.verification.verify_motor_execution']; checkpoint/dataset N/A; evidence `runs/20261120/verification/motor_perception_gate_source_v1/geometry_motor.log`; CPU scalar checks, NVIDIA EGL rendering; no training.
+
+- 2026-11-20T16:45:21.186691+08:00: motor_perception_gate source verification strict_rgbd **PASS**; command ['/home/him1/mujoco_bc/rcm_4090_deploy/.venv/bin/python', '-B', '-m', 'scripts.verification.verify_strict_rgbd', '--output-dir', 'runs/20261120/verification/motor_perception_gate_source_v1/strict_rgbd']; checkpoint/dataset N/A; evidence `runs/20261120/verification/motor_perception_gate_source_v1/strict_rgbd.log`; CPU scalar checks, NVIDIA EGL rendering; no training.
+
+- 2026-11-20T16:46:05.968434+08:00: motor_perception_gate supplemental preflight **failed** before launch; exact saved-target equality assertion; no rollout/training; diagnostic `runs/20261120/verification/motor_perception_gate_source_v1/preflight_failed.json`; config `configs/experiment_card_motor_perception_gate_20261120_v1.json`.
+
+- 2026-11-20T16:47:12.556029+08:00: motor_perception_gate_v1 source acceptance and corrected supplemental preflight **PASS**; syntax4 files, geometry/motor9 tests and strictRGBD11 tests passed; source datasets/checkpoints per config `configs/experiment_card_motor_perception_gate_20261120_v1.json`; targets E00/E02/E06/E08/E10 seeds42/44/48/50/52 validated, target roundtrip max3.552713678800501e-15mm, no experiment launched by preflight; assets/protocol/destinations checked, hardware calibration unavailable; evidence `runs/20261120/verification/motor_perception_gate_source_v1/preflight.json`. No threshold/target change or experiment retry.
+
+- 2026-11-20T16:51:33.547271+08:00: motor_perception_gate geometry/target ancestry regression **PASS**; command `['/home/him1/mujoco_bc/rcm_4090_deploy/.venv/bin/python', '-B', '-m', 'scripts.verification.verify_motor_perception_gates']`; syntax2files and3checks including merge-local versus raw episode indexing; evidence `runs/20261120/verification/motor_perception_gate_source_v1/geometry_ancestry.log`; no rollout/training.
+
+- 2026-11-20T16:53:21.915098+08:00: motor_perception_gate_v1 final preflight **PASS**; config `/home/him1/mujoco_bc/rcm_4090_deploy/configs/experiment_card_motor_perception_gate_20261120_v1.json`;21 distinct regression checks and syntax pass, source metadata/audit ancestry resolved1001/1039 episodes (Original801/839, Plan2 200/200;38 Original unresolved explicitly excluded from target-error audit), all required assets pinned, new run/report destinations available; no training/rollout launched by this preflight. Evidence `runs/20261120/verification/motor_perception_gate_source_v1/final_preflight.json` and `target_ancestry_preflight.json`; prior exact-float preflight assertion corrected without changing targets/protocol; original MotorBackend preserved.
+
+- 2026-11-20T16:53:53.911283+08:00: motor_perception_gate_v1 **gnome_launch_accepted**; command `['/home/him1/mujoco_bc/rcm_4090_deploy/.venv/bin/python', '-B', '-m', 'scripts.tools.experiment_workflow', 'launch', '--card', 'configs/experiment_card_motor_perception_gate_20261120_v1.json']`; new GNOME Terminal launch once; run `runs/20261120/motor_perception_gate_v1`, card `configs/experiment_card_motor_perception_gate_20261120_v1.json`; E00/E02/E06/E08/E10 seeds42/44/48/50/52 max1600 x50ms strict0.35um+3settled; no neural training, no completion or strict success claimed; no post-launch polling; receipt `runs/20261120/verification/motor_perception_gate_source_v1/launch_receipt.json`.
+
+- 2026-11-20T16:53:56+08:00: Gate1a E00 **completed**; `python -B -m scripts.research.motor_perception_gates`; seed=42, original manifest, geometry oracle, max1600 x50ms; final=0.840916942595071um, strict=False; failure=None; evidence `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/motor_perception_gate_v1/oracle/E00_oracle.json`. CPU scalar kinematics/statistics (small/I/O-bound), NVIDIA EGL rendering; no training. MuJoCo simulation only.
+
+- 2026-11-20T16:53:58+08:00: Gate1a E02 **completed**; `python -B -m scripts.research.motor_perception_gates`; seed=44, original manifest, geometry oracle, max1600 x50ms; final=1.0374667341986648um, strict=False; failure=None; evidence `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/motor_perception_gate_v1/oracle/E02_oracle.json`. CPU scalar kinematics/statistics (small/I/O-bound), NVIDIA EGL rendering; no training. MuJoCo simulation only.
+
+- 2026-11-20T16:53:59+08:00: Gate1a E06 **completed**; `python -B -m scripts.research.motor_perception_gates`; seed=48, original manifest, geometry oracle, max1600 x50ms; final=1.8193523210130116um, strict=False; failure=None; evidence `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/motor_perception_gate_v1/oracle/E06_oracle.json`. CPU scalar kinematics/statistics (small/I/O-bound), NVIDIA EGL rendering; no training. MuJoCo simulation only.
+
+- 2026-11-20T16:54:01+08:00: Gate1a E08 **completed**; `python -B -m scripts.research.motor_perception_gates`; seed=50, original manifest, geometry oracle, max1600 x50ms; final=3.4917810262367848um, strict=False; failure=None; evidence `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/motor_perception_gate_v1/oracle/E08_oracle.json`. CPU scalar kinematics/statistics (small/I/O-bound), NVIDIA EGL rendering; no training. MuJoCo simulation only.
+
+- 2026-11-20T16:54:02+08:00: Gate1a E10 **completed**; `python -B -m scripts.research.motor_perception_gates`; seed=52, original manifest, geometry oracle, max1600 x50ms; final=1.3368472694170805um, strict=False; failure=None; evidence `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/motor_perception_gate_v1/oracle/E10_oracle.json`. CPU scalar kinematics/statistics (small/I/O-bound), NVIDIA EGL rendering; no training. MuJoCo simulation only.
+
+- 2026-11-20T16:54:02+08:00: motor_perception_gate_v1/oracle **completed**; `python -B -m scripts.research.motor_perception_gates`; config configs/experiment_card_motor_perception_gate_20261120_v1.json; strict=0/5; final_mean=1.7052728586921226um; failure=None; evidence `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/motor_perception_gate_v1/oracle/oracle_dev5_summary.json`. CPU scalar kinematics/statistics (small/I/O-bound), NVIDIA EGL rendering; no training. MuJoCo simulation only.
+
+- 2026-11-20T16:54:02+08:00：实验 SOP `motor_perception_gate_20261120_v1/oracle` **failed**；卡 `/home/him1/mujoco_bc/rcm_4090_deploy/configs/experiment_card_motor_perception_gate_20261120_v1.json`；目录 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/motor_perception_gate_v1`。
+  命令 `/home/him1/mujoco_bc/rcm_4090_deploy/.venv/bin/python -B -u -m scripts.research.motor_perception_gates oracle --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/motor_perception_gate_v1/oracle`；配置 `见实验卡`。
+  原因：gate failed: strict_success_count=0 == 5 (/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/motor_perception_gate_v1/oracle/oracle_dev5_summary.json)。
+  仅验证软件/仿真，不代表临床或硬件就绪。
+
+- 2026-11-20T16:54:52+08:00: motor_perception_gate_v1/perception **completed**; `python -B -m scripts.research.motor_perception_gates`; config configs/experiment_card_motor_perception_gate_20261120_v1.json; strict=N/A/5; final_mean=Noneum; failure=None; evidence `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/motor_perception_gate_v1/perception/oct_bias_breakdown.json`. CPU scalar kinematics/statistics (small/I/O-bound), NVIDIA EGL rendering; no training. MuJoCo simulation only.
+
+- 2026-11-20T16:54:52+08:00：实验 SOP `motor_perception_gate_20261120_v1/perception` **completed**；卡 `/home/him1/mujoco_bc/rcm_4090_deploy/configs/experiment_card_motor_perception_gate_20261120_v1.json`；目录 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/motor_perception_gate_v1`。
+  命令 `/home/him1/mujoco_bc/rcm_4090_deploy/.venv/bin/python -B -u -m scripts.research.motor_perception_gates perception --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/motor_perception_gate_v1/perception`；配置 `见实验卡`。
+  仅验证软件/仿真，不代表临床或硬件就绪。
+
+- 2026-11-20T16:54:52+08:00: motor_perception_gate_v1/reports **completed**; `python -B -m scripts.research.motor_perception_gates`; config configs/experiment_card_motor_perception_gate_20261120_v1.json; strict=N/A/5; final_mean=Noneum; failure=None; evidence `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/motor_perception_gate_v1/reports/report_receipt.json`. CPU scalar kinematics/statistics (small/I/O-bound), NVIDIA EGL rendering; no training. MuJoCo simulation only.
+
+- 2026-11-20T16:54:52+08:00：实验 SOP `motor_perception_gate_20261120_v1/reports` **completed**；卡 `/home/him1/mujoco_bc/rcm_4090_deploy/configs/experiment_card_motor_perception_gate_20261120_v1.json`；目录 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/motor_perception_gate_v1`。
+  命令 `/home/him1/mujoco_bc/rcm_4090_deploy/.venv/bin/python -B -u -m scripts.research.motor_perception_gates reports --workflow-dir runs/20261120/motor_perception_gate_v1 --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/motor_perception_gate_v1/reports`；配置 `见实验卡`。
+  仅验证软件/仿真，不代表临床或硬件就绪。
+
+- 2026-11-20T16:54:52+08:00：实验 SOP `motor_perception_gate_20261120_v1` **failed**；卡 `/home/him1/mujoco_bc/rcm_4090_deploy/configs/experiment_card_motor_perception_gate_20261120_v1.json`；目录 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/motor_perception_gate_v1`。
+  结果：/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/motor_perception_gate_v1/workflow_status.json。
+  仅验证软件/仿真，不代表临床或硬件就绪。
+
+- 2026-11-20T17:01:37.946087+08:00: motor_perception_gate_v1 publication acceptance **PASS**; no new experiment; five complete1600-step Oracle traces and motor records verified, finalmean1.705272859um strict0/5,20paired frames/variant OCT median9.317192738->0.076532675um max0.114763666um;21 source checks passed, source SHA matches executed snapshots; workflowfailed due strict gate, Gate2b/Phase3 notrun; evidence `github_reports/gate1_20261120_motor_oracle/publication_acceptance.json`; preparing explicit49-file publication plus appended TEST_LOG, no weights/raw training dataset.
+
+- 2026-11-20T17:07:01.111505+08:00: motor_perception_gate_v1 GitHub publication **published_verified**; user requested upload; repository `jsonyang218-pixel/rcm-mujoco-reference`, branch `experiment/overnight-c-fix-symlog-20261119`, commit `7f6b07c7fbb6ad3a174d3a391630b69c0b441864`;56explicit files (51added,5modified), remote HEAD and56committed blob SHA256 verified, no deletions; code/render fix, required source APIs, reports, paired frozen frames, five full Oracle traces and verification logs; old remote TEST_LOG prefix preserved; no weights or raw training dataset; Oracle5/5completed strict0/5, offline OCTmedian9.317193->0.076533um, Gate2b/Phase3 notrun, trainingpaused. Receipt `runs/20261120/motor_perception_publication_v1/publication_status.json`.
+
+- 2026-11-20T19:21:14.483285+08:00: motor_perception_gate_v1 publication GitHub URLs recorded; existing published_verified commit unchanged. Commit: https://github.com/jsonyang218-pixel/rcm-mujoco-reference/commit/7f6b07c7fbb6ad3a174d3a391630b69c0b441864; Gate1: https://github.com/jsonyang218-pixel/rcm-mujoco-reference/blob/7f6b07c7fbb6ad3a174d3a391630b69c0b441864/rcm_4090_deploy/github_reports/gate1_20261120_motor_oracle/README.md; Gate2: https://github.com/jsonyang218-pixel/rcm-mujoco-reference/blob/7f6b07c7fbb6ad3a174d3a391630b69c0b441864/rcm_4090_deploy/github_reports/gate2_20261120_oct_bias/README.md; receipt `runs/20261120/motor_perception_publication_v1/publication_status.json`.
+
+- 2026-11-20T19:24:18.552705+08:00：simulation_driver 原文件 GitHub 上传 **published_verified**；仓库 `jsonyang218-pixel/rcm-mujoco-reference`，独立分支 `upload/simulation-driver-20261120-192320`，提交 `d6cdd1a7693b35a70c8c94e9e30078a980cb0975`，基线 `7f6b07c7fbb6ad3a174d3a391630b69c0b441864`。命令：`git push origin HEAD:refs/heads/upload/simulation-driver-20261120-192320`，`git ls-remote origin refs/heads/upload/simulation-driver-20261120-192320`。共61个原文件、633045 bytes（包括已有字节码缓存）；原始文件内容未修改。远端提交一致，提交文件与原目录 SHA-256 61/61 匹配；目标目录精确匹配原目录，移除远端旧机器专用 ros_network.env；其余仓库内容与既有远端 TEST_LOG 前缀保留。未训练、仿真或运行代码测试；仅执行上传完整性校验。证据 `runs/20261120/simulation_driver_publication_192320/publication_status.json` 和 `publication_manifest.json`。
+
+- 2026-11-20T20:02:33.254827+08:00：kinematics review harness **FAIL (harness setup)**；command `.venv/bin/python -E -B runs/20261120/verification/kinematics_review_200156/review.py --output-dir runs/20261120/verification/kinematics_review_200156`；three unittest modules could not import because harness used wrong test directory; report-index append also failed due relative/absolute path mismatch. No actual unit tests executed; syntax and scalar quantization probes completed, source unchanged. Evidence `runs/20261120/verification/kinematics_review_200156/unit_tests.log`, `review_results.json`. Correct harness paths in separate output directory; no experiment parameters/source changes.
+
+- 2026-11-20T20:02:43.234352+08:00：kinematics.py G15 code review/unit verification **PASS**; command `.venv/bin/python -E -B runs/20261120/verification/kinematics_review_200233_v2/review.py --output-dir runs/20261120/verification/kinematics_review_200233_v2`; source `../simulation_driver/ros_msg/src/robot_control/kinematics.py`, SHA256 `3465daf19fd3269466f90fd77c6626149ab4da8ddde612c8f3d9a12c77d06088`; 22 tests, errors=0, failures=0, skipped=0; syntax PASS, B encoder roundtrip 7/7 exact. Findings: axial 0.35um gives raw C handle 0.195555556 then integer zero; 0.005um already lost to encoder rounding; B inverse accepts +inf/-inf and out-of-domain input. Offline message stub only, no ROS serialization/MuJoCo rollout/training/hardware; CPU small scalar verification, source unchanged; evidence `runs/20261120/verification/kinematics_review_200233_v2/review_results.json`, `unit_tests.log`.
+
+- 2026-11-20T20:48:50.157414+08:00：G15 kinematics model handoff documentation consistency **PASS**；document `docs/KINEMATICS_G15_MODEL_HANDOFF_20261120.md`，index `docs/README.md`；source SHA256 `3465daf19fd3269466f90fd77c6626149ab4da8ddde612c8f3d9a12c77d06088` unchanged，34 top-level functions covered，formula/unit checks and 2um->1 C handle /10um->6 C handles checked，G10 vendor manifest 29/29 unchanged；prior offline22-test PASS evidence referenced without rerun，no ROS/MuJoCo rollout/training/hardware；CPU small text/hash/scalar checks。Output `docs/KINEMATICS_G15_MODEL_HANDOFF_20261120.md`；acceptance evidence `runs/20261120/verification/kinematics_handoff_204850/documentation_check.json`。
+
+- 2026-11-20T20:58:47.412690+08:00：G15 A/B motion documentation arithmetic **PASS**；`docs/KINEMATICS_G15_MODEL_HANDOFF_20261120.md` section6.5；model Y-axis A rotation/B inclination change and finite-angle chord formulas documented；B=1466021, tip-RCM radius4mm: A1=1.525690um, B1=0.785398um; radius0.5mm: A1=0.190711um, B1=0.098175um; nominal angles before encoder quantization. Source SHA unchanged; CPU scalar arithmetic only, no simulation/training/hardware。Evidence `runs/20261120/verification/kinematics_ab_doc_205847/documentation_check.json`。
+
+- 2026-11-21T13:02:53+08:00：G15 control migration **PLAN ONLY / NOT RUN**；计划 `docs/CONTROL_G15_MIGRATION_PLAN_20261121.md`，已加入文档索引。只读核对配置默认针尖距 RCM=4mm、C 推进后距离变化、G10/G15 源码换算、历史 Gate1 失败及现有权重/数据路径；G15 SHA256 `3465daf19fd3269466f90fd77c6626149ab4da8ddde612c8f3d9a12c77d06088`，目标清单 SHA256 `fcc4872a9d5b58bb7158b36d3c0ab6d7452e4d8d747317dfb077b6e7bbc815c7`。后续卡拟用 `configs/experiment_card_control_g15_migration_20261121_v1.json`、权重 `outputs/overnight_fast5_20261120_v1/task4_train/step_002000.pth`；四变体配对、smoke→几何教师screen10→策略screen10→dev20 门禁和预算已定义；计划输出 `outputs/control_g15_migration_20261121_v1/`，尚未创建。控制代码及原驱动未修改，未运行代码测试、闭环、训练或硬件；无新增性能指标或门禁通过声明。
+
+- 2026-11-21T13:21:21.342261+08:00：G15 switch g15_unit **PASS**；syntax 6 files；command `/home/him1/mujoco_bc/rcm_4090_deploy/.venv/bin/python -E -B -m unittest -v scripts.verification.verify_driver_selection scripts.verification.verify_motor_execution scripts.verification.verify_motor_perception_gates`；dataset/checkpoint N/A；evidence `runs/20261121/verification/g15_switch_v1/g15_unit_result.json`, `runs/20261121/verification/g15_switch_v1/g15_unit.log`；CPU scalar/protocol and MuJoCo regression; no rendering/training/policy evaluation/hardware.
+
+- 2026-11-21T13:22:21.318086+08:00：G15 switch g15_protocol_geometry **FAIL**；command ["/home/him1/mujoco_bc/rcm_4090_deploy/.venv/bin/python", "-E", "-B", "-c", "import json, sys\nsys.path.insert(0, \"mujoco_model\")\nfrom driver_loader import driver_identity\nfrom validate_driver_integration import protocol_checks, model_checks\nresult = {\"driver\": driver_identity(), \"protocol\": protocol_checks(), \"model\": model_checks([])}\nprint(json.dumps(result, indent=2, default=str))\n"]；driver=default；dataset/checkpoint N/A；evidence `runs/20261121/verification/g15_switch_v1/integration_results.json`, `runs/20261121/verification/g15_switch_v1/g15_protocol_geometry.log`；CPU small scalar/protocol and MuJoCo scene checks; no policy rollout/training/hardware.
+
+- 2026-11-21T13:23:10.456498+08:00：G15 switch corrected-source g15_protocol_geometry **PASS**；command ["/home/him1/mujoco_bc/rcm_4090_deploy/.venv/bin/python", "-E", "-B", "-c", "import json, sys\nsys.path.insert(0, \"mujoco_model\")\nfrom driver_loader import driver_identity\nfrom validate_driver_integration import protocol_checks, model_checks\nresult = {\"driver\": driver_identity(), \"protocol\": protocol_checks(), \"model\": model_checks([])}\nprint(json.dumps(result, indent=2, default=str))\n"]；driver=default；dataset/checkpoint N/A (synthetic fixture only)；evidence `runs/20261121/verification/g15_switch_v2/integration_results.json`, `runs/20261121/verification/g15_switch_v2/g15_protocol_geometry.log`；CPU scalar/protocol/MuJoCo regression; no policy evaluation/training/hardware. Previous v1 protocol assertion assumed settled within20ms; fixture now waits the travel time implied by existing speed limits; dynamics unchanged.
+
+- 2026-11-21T13:23:12.367578+08:00：G15 switch corrected-source g10_motor_rollback **PASS**；command ["/home/him1/mujoco_bc/rcm_4090_deploy/.venv/bin/python", "-E", "-B", "-m", "unittest", "-v", "scripts.verification.verify_motor_execution"]；driver=g10；dataset/checkpoint N/A (synthetic fixture only)；evidence `runs/20261121/verification/g15_switch_v2/integration_results.json`, `runs/20261121/verification/g15_switch_v2/g10_motor_rollback.log`；CPU scalar/protocol/MuJoCo regression; no policy evaluation/training/hardware. Previous v1 protocol assertion assumed settled within20ms; fixture now waits the travel time implied by existing speed limits; dynamics unchanged.
+
+- 2026-11-21T13:23:14.153996+08:00：G15 switch corrected-source g15_entry **PASS**；command ["/home/him1/mujoco_bc/rcm_4090_deploy/.venv/bin/python", "-E", "-B", "run_reference.py", "--verify", "--report", "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/verification/g15_switch_v2/g15_entry.json"]；driver=default；dataset/checkpoint N/A (synthetic fixture only)；evidence `runs/20261121/verification/g15_switch_v2/integration_results.json`, `runs/20261121/verification/g15_switch_v2/g15_entry.log`；CPU scalar/protocol/MuJoCo regression; no policy evaluation/training/hardware. Previous v1 protocol assertion assumed settled within20ms; fixture now waits the travel time implied by existing speed limits; dynamics unchanged.
+
+- 2026-11-21T13:23:15.909018+08:00：G15 switch corrected-source g10_entry **PASS**；command ["/home/him1/mujoco_bc/rcm_4090_deploy/.venv/bin/python", "-E", "-B", "run_reference.py", "--no-viewer", "--report", "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/verification/g15_switch_v2/g10_entry.json"]；driver=g10；dataset/checkpoint N/A (synthetic fixture only)；evidence `runs/20261121/verification/g15_switch_v2/integration_results.json`, `runs/20261121/verification/g15_switch_v2/g10_entry.log`；CPU scalar/protocol/MuJoCo regression; no policy evaluation/training/hardware. Previous v1 protocol assertion assumed settled within20ms; fixture now waits the travel time implied by existing speed limits; dynamics unchanged.
+
+- 2026-11-21T13:23:16.596430+08:00：G15 switch corrected-source g15_dataset_replay **PASS**；command ["/home/him1/mujoco_bc/rcm_4090_deploy/.venv/bin/python", "-E", "-B", "-m", "unittest", "-v", "scripts.verification.verify_v9_motor_collection"]；driver=default；dataset/checkpoint N/A (synthetic fixture only)；evidence `runs/20261121/verification/g15_switch_v2/integration_results.json`, `runs/20261121/verification/g15_switch_v2/g15_dataset_replay.log`；CPU scalar/protocol/MuJoCo regression; no policy evaluation/training/hardware. Previous v1 protocol assertion assumed settled within20ms; fixture now waits the travel time implied by existing speed limits; dynamics unchanged.
+
+- 2026-11-21T13:24:17.807915+08:00：默认驱动切换 G15 **ACCEPTANCE PASS**；用户明确要求切换。默认 `RCM_DRIVER_VARIANT=g15`（未设变量同样为G15），原G10用新进程 `RCM_DRIVER_VARIANT=g10` 回退；G15 36原文件快照与根目录源文件逐项SHA256一致，G10 29文件清单保持匹配；G15项目回归22项、G10电机回退7项通过，协议幂等/拒绝/watchdog与两针具几何检查通过，G15/G10入口各通过；默认针尖距RCM=3.999999869638881mm。命令和逐项结果见 `runs/20261121/verification/g15_switch_v1/g15_unit_result.json`、`runs/20261121/verification/g15_switch_v2/integration_results.json`；最终证据 `runs/20261121/verification/g15_switch_v2/acceptance.json`。v1旧协议测试20ms到位假设失败已保留并在v2按实际速度所需行程时间修正；电机动力学未改。source/protocol/MuJoCo小规模回归使用CPU；无训练、策略完整闭环、ROS传输或硬件，无0.35um达标声明；策略连续目标累积尚未实施；旧数据及冻结结果不改。
+
+- 2026-11-21T13:30:21.200649+08:00：G15 single-packet hold_zero **PASS**；one packet, initial ABCE=(0, 1466018, 893518, 0), delta encoder=[0, 0, 0, 0]；tip travel=0.0um；three settled frames at 0.15s；command `.venv/bin/python -E -B runs/20261121/verification/g15_single_packet_v1/measure.py --output-dir runs/20261121/verification/g15_single_packet_v1`；dataset/checkpoint N/A, deterministic diagnostic, CPU small scalar/MuJoCo FK; evidence `runs/20261121/verification/g15_single_packet_v1/hold_zero.json`；no ROS/hardware or policy rollout.
+
+- 2026-11-21T13:30:21.218575+08:00：G15 single-packet A_plus1 **PASS**；one packet, initial ABCE=(0, 1466018, 893518, 0), delta encoder=[12, 0, 0, 0]；tip travel=1.4646616868639462um；three settled frames at 0.3s；command `.venv/bin/python -E -B runs/20261121/verification/g15_single_packet_v1/measure.py --output-dir runs/20261121/verification/g15_single_packet_v1`；dataset/checkpoint N/A, deterministic diagnostic, CPU small scalar/MuJoCo FK; evidence `runs/20261121/verification/g15_single_packet_v1/A_plus1.json`；no ROS/hardware or policy rollout.
+
+- 2026-11-21T13:30:21.236217+08:00：G15 single-packet A_minus1 **PASS**；one packet, initial ABCE=(0, 1466018, 893518, 0), delta encoder=[-12, 0, 0, 0]；tip travel=1.4646616868639462um；three settled frames at 0.3s；command `.venv/bin/python -E -B runs/20261121/verification/g15_single_packet_v1/measure.py --output-dir runs/20261121/verification/g15_single_packet_v1`；dataset/checkpoint N/A, deterministic diagnostic, CPU small scalar/MuJoCo FK; evidence `runs/20261121/verification/g15_single_packet_v1/A_minus1.json`；no ROS/hardware or policy rollout.
+
+- 2026-11-21T13:30:21.253909+08:00：G15 single-packet B_plus1 **PASS**；one packet, initial ABCE=(0, 1466018, 893518, 0), delta encoder=[0, 965, 0, 0]；tip travel=0.7851356081133212um；three settled frames at 0.5s；command `.venv/bin/python -E -B runs/20261121/verification/g15_single_packet_v1/measure.py --output-dir runs/20261121/verification/g15_single_packet_v1`；dataset/checkpoint N/A, deterministic diagnostic, CPU small scalar/MuJoCo FK; evidence `runs/20261121/verification/g15_single_packet_v1/B_plus1.json`；no ROS/hardware or policy rollout.
+
+- 2026-11-21T13:30:21.271638+08:00：G15 single-packet B_minus1 **PASS**；one packet, initial ABCE=(0, 1466018, 893518, 0), delta encoder=[0, -965, 0, 0]；tip travel=0.7852276218841813um；three settled frames at 0.5s；command `.venv/bin/python -E -B runs/20261121/verification/g15_single_packet_v1/measure.py --output-dir runs/20261121/verification/g15_single_packet_v1`；dataset/checkpoint N/A, deterministic diagnostic, CPU small scalar/MuJoCo FK; evidence `runs/20261121/verification/g15_single_packet_v1/B_minus1.json`；no ROS/hardware or policy rollout.
+
+- 2026-11-21T13:30:21.289011+08:00：G15 single-packet C_plus1 **PASS**；one packet, initial ABCE=(0, 1466018, 893518, 0), delta encoder=[0, 0, 112, 0]；tip travel=1.7548611056728018um；three settled frames at 0.4s；command `.venv/bin/python -E -B runs/20261121/verification/g15_single_packet_v1/measure.py --output-dir runs/20261121/verification/g15_single_packet_v1`；dataset/checkpoint N/A, deterministic diagnostic, CPU small scalar/MuJoCo FK; evidence `runs/20261121/verification/g15_single_packet_v1/C_plus1.json`；no ROS/hardware or policy rollout.
+
+- 2026-11-21T13:30:21.306748+08:00：G15 single-packet C_minus1 **PASS**；one packet, initial ABCE=(0, 1466018, 893518, 0), delta encoder=[0, 0, -112, 0]；tip travel=1.75486110563712um；three settled frames at 0.4s；command `.venv/bin/python -E -B runs/20261121/verification/g15_single_packet_v1/measure.py --output-dir runs/20261121/verification/g15_single_packet_v1`；dataset/checkpoint N/A, deterministic diagnostic, CPU small scalar/MuJoCo FK; evidence `runs/20261121/verification/g15_single_packet_v1/C_minus1.json`；no ROS/hardware or policy rollout.
+
+- 2026-11-21T13:30:21.308374+08:00：G15 single-packet diagnostic **COMPLETED / PASS 7/7**；three axes ±1 and zero control, single packet each, G15 pinned hash per preflight; no training/dataset/checkpoint or inference. Fractional handle rejected; baseline zero packet motion=0; acceptance and measured encoder/MuJoCo endpoint results in `runs/20261121/verification/g15_single_packet_v1/summary.json`；CPU small scalar/MuJoCo FK, no rendering; does not establish hardware accuracy, global XYZ resolution or strict0.35um navigation success.
+
+- 2026-11-21T13:37:23.014271+08:00：G15 switch and single-packet tests GitHub publication **PREPARED**；repository `jsonyang218-pixel/rcm-mujoco-reference`，branch `feature/g15-control-single-packet-20261121`，base `d6cdd1a7693b35a70c8c94e9e30078a980cb0975`；default G15 source snapshot, G10 rollback, docs, source-verification results including earlier failed fixture, 7/7 single-packet cases and all7full250-step traces included; G15 project22/G10rollback7 checks passed; HOME radius4mm, +1 handle tip displacements A1.464662/B0.785136/C1.754861um, software/MuJoCo only; no new experiments. Remote TEST_LOG prefix preserved exactly; append unpublished G15 records. Publication receipt `runs/20261121/g15_publication_v1/publication_status.json`.
+
+- 2026-11-21T13:43:18.000214+08:00：G15 switch and single-packet tests GitHub publication **published_verified**；repository `jsonyang218-pixel/rcm-mujoco-reference`，branch `feature/g15-control-single-packet-20261121`，commit `91427cfdd255578104b1f26b3eaf2cd138909665`；86explicit files (74added/12modified), zero deletions; remote HEAD and fetched committed blob SHA256 86/86 verified; remote prior TEST_LOG prefix preserved; top-level original61-file driver tree and G10 vendor tree unchanged. Includes G15snapshot36files, control/docs and source checks G15=22/G10rollback=7, all7single-packet cases with250step traces, test harness and prior failed fixture evidence. Single-packet +1 endpoint A1.464662/B0.785136/C1.754861um atHOME4mm; no new run/training/hardware or strict-navigation claim. Receipt `runs/20261121/g15_publication_v1/publication_status.json`；report https://github.com/jsonyang218-pixel/rcm-mujoco-reference/blob/91427cfdd255578104b1f26b3eaf2cd138909665/rcm_4090_deploy/runs/20261121/verification/g15_single_packet_v1/README.md .
+
+- 2026-11-21T14:07:37.410406+08:00：G15 single-packet RCM21mm hold_zero **PASS**；one packet at r=20.999997473000008mm, initial=(0, 1466018, 1978504, 0)；tip travel=0.0um；encoder delta=[0, 0, 0, 0]；command `.venv/bin/python -E -B runs/20261121/verification/g15_single_packet_rcm21mm_v1/measure.py --output-dir runs/20261121/verification/g15_single_packet_rcm21mm_v1`；dataset/checkpoint N/A; CPU small scalar/MuJoCo FK；evidence `runs/20261121/verification/g15_single_packet_rcm21mm_v1/hold_zero.json`；software simulation only.
+
+- 2026-11-21T14:07:37.428021+08:00：G15 single-packet RCM21mm A_plus1 **PASS**；one packet at r=20.999997473000008mm, initial=(0, 1466018, 1978504, 0)；tip travel=7.689473181367016um；encoder delta=[12, 0, 0, 0]；command `.venv/bin/python -E -B runs/20261121/verification/g15_single_packet_rcm21mm_v1/measure.py --output-dir runs/20261121/verification/g15_single_packet_rcm21mm_v1`；dataset/checkpoint N/A; CPU small scalar/MuJoCo FK；evidence `runs/20261121/verification/g15_single_packet_rcm21mm_v1/A_plus1.json`；software simulation only.
+
+- 2026-11-21T14:07:37.445637+08:00：G15 single-packet RCM21mm A_minus1 **PASS**；one packet at r=20.999997473000008mm, initial=(0, 1466018, 1978504, 0)；tip travel=7.689473181367016um；encoder delta=[-12, 0, 0, 0]；command `.venv/bin/python -E -B runs/20261121/verification/g15_single_packet_rcm21mm_v1/measure.py --output-dir runs/20261121/verification/g15_single_packet_rcm21mm_v1`；dataset/checkpoint N/A; CPU small scalar/MuJoCo FK；evidence `runs/20261121/verification/g15_single_packet_rcm21mm_v1/A_minus1.json`；software simulation only.
+
+- 2026-11-21T14:07:37.463250+08:00：G15 single-packet RCM21mm B_plus1 **PASS**；one packet at r=20.999997473000008mm, initial=(0, 1466018, 1978504, 0)；tip travel=4.121961581037133um；encoder delta=[0, 965, 0, 0]；command `.venv/bin/python -E -B runs/20261121/verification/g15_single_packet_rcm21mm_v1/measure.py --output-dir runs/20261121/verification/g15_single_packet_rcm21mm_v1`；dataset/checkpoint N/A; CPU small scalar/MuJoCo FK；evidence `runs/20261121/verification/g15_single_packet_rcm21mm_v1/B_plus1.json`；software simulation only.
+
+- 2026-11-21T14:07:37.480947+08:00：G15 single-packet RCM21mm B_minus1 **PASS**；one packet at r=20.999997473000008mm, initial=(0, 1466018, 1978504, 0)；tip travel=4.122444653158169um；encoder delta=[0, -965, 0, 0]；command `.venv/bin/python -E -B runs/20261121/verification/g15_single_packet_rcm21mm_v1/measure.py --output-dir runs/20261121/verification/g15_single_packet_rcm21mm_v1`；dataset/checkpoint N/A; CPU small scalar/MuJoCo FK；evidence `runs/20261121/verification/g15_single_packet_rcm21mm_v1/B_minus1.json`；software simulation only.
+
+- 2026-11-21T14:07:37.498446+08:00：G15 single-packet RCM21mm C_plus1 **PASS**；one packet at r=20.999997473000008mm, initial=(0, 1466018, 1978504, 0)；tip travel=1.75486110563712um；encoder delta=[0, 0, 112, 0]；command `.venv/bin/python -E -B runs/20261121/verification/g15_single_packet_rcm21mm_v1/measure.py --output-dir runs/20261121/verification/g15_single_packet_rcm21mm_v1`；dataset/checkpoint N/A; CPU small scalar/MuJoCo FK；evidence `runs/20261121/verification/g15_single_packet_rcm21mm_v1/C_plus1.json`；software simulation only.
+
+- 2026-11-21T14:07:37.515962+08:00：G15 single-packet RCM21mm C_minus1 **PASS**；one packet at r=20.999997473000008mm, initial=(0, 1466018, 1978504, 0)；tip travel=1.75486110563712um；encoder delta=[0, 0, -112, 0]；command `.venv/bin/python -E -B runs/20261121/verification/g15_single_packet_rcm21mm_v1/measure.py --output-dir runs/20261121/verification/g15_single_packet_rcm21mm_v1`；dataset/checkpoint N/A; CPU small scalar/MuJoCo FK；evidence `runs/20261121/verification/g15_single_packet_rcm21mm_v1/C_minus1.json`；software simulation only.
+
+- 2026-11-21T14:07:37.517322+08:00：G15 single-packet RCM21mm **COMPLETED / PASS 7/7**；radius21mm vs prior4mm, fixed A/B posture, matched G15 source/dynamics/one-packet protocol; A/B scale check passed, C axial step unchanged；command `.venv/bin/python -E -B runs/20261121/verification/g15_single_packet_rcm21mm_v1/measure.py --output-dir runs/20261121/verification/g15_single_packet_rcm21mm_v1`；dataset/checkpoint N/A; CPU small scalar/MuJoCo FK; no render/training/hardware or strict-navigation claim；summary `runs/20261121/verification/g15_single_packet_rcm21mm_v1/summary.json`。
+
+- 2026-11-21T14:22:37.109302+08:00: P2 control target FAIL; 11 tests, 0 failures, 8 errors; command `python -B -m scripts.verification.verify_control_target --output-dir runs/20261121/verification/p2_control_target_v1/g10`; driver {'variant': 'g10', 'control_gear': 10, 'kinematics_path': '/home/him1/mujoco_bc/rcm_4090_deploy/mujoco_model/vendor/simulation_driver/ros_msg/src/robot_control/kinematics.py', 'kinematics_sha256': 'e48eb4a909208e8d1caa3ee2a7aff157de91c808730282dd17ccb17a46591530'}; CPU: small scalar protocol/kinematics checks; checkpoint/dataset N/A; evidence `runs/20261121/verification/p2_control_target_v1/g10/summary.json`. Software simulation only.
+
+- 2026-11-21T14:22:37.112152+08:00: P2 control target FAIL; 11 tests, 0 failures, 8 errors; command `python -B -m scripts.verification.verify_control_target --output-dir runs/20261121/verification/p2_control_target_v1/g15`; driver {'variant': 'g15', 'control_gear': 15, 'kinematics_path': '/home/him1/mujoco_bc/rcm_4090_deploy/mujoco_model/vendor/simulation_driver_g15/ros_msg/src/robot_control/kinematics.py', 'kinematics_sha256': '3465daf19fd3269466f90fd77c6626149ab4da8ddde612c8f3d9a12c77d06088'}; CPU: small scalar protocol/kinematics checks; checkpoint/dataset N/A; evidence `runs/20261121/verification/p2_control_target_v1/g15/summary.json`. Software simulation only.
+
+- 2026-11-21T14:22:51.135168+08:00: P2 control target PASS; 11 tests, 0 failures, 0 errors; command `python -B -m scripts.verification.verify_control_target --output-dir runs/20261121/verification/p2_control_target_v2/g15`; driver {'variant': 'g15', 'control_gear': 15, 'kinematics_path': '/home/him1/mujoco_bc/rcm_4090_deploy/mujoco_model/vendor/simulation_driver_g15/ros_msg/src/robot_control/kinematics.py', 'kinematics_sha256': '3465daf19fd3269466f90fd77c6626149ab4da8ddde612c8f3d9a12c77d06088'}; CPU: small scalar protocol/kinematics checks; checkpoint/dataset N/A; evidence `runs/20261121/verification/p2_control_target_v2/g15/summary.json`. Software simulation only.
+
+- 2026-11-21T14:22:51.149747+08:00: P2 control target PASS; 11 tests, 0 failures, 0 errors; command `python -B -m scripts.verification.verify_control_target --output-dir runs/20261121/verification/p2_control_target_v2/g10`; driver {'variant': 'g10', 'control_gear': 10, 'kinematics_path': '/home/him1/mujoco_bc/rcm_4090_deploy/mujoco_model/vendor/simulation_driver/ros_msg/src/robot_control/kinematics.py', 'kinematics_sha256': 'e48eb4a909208e8d1caa3ee2a7aff157de91c808730282dd17ccb17a46591530'}; CPU: small scalar protocol/kinematics checks; checkpoint/dataset N/A; evidence `runs/20261121/verification/p2_control_target_v2/g10/summary.json`. Software simulation only.
+
+- 2026-11-21T14:23:49.496284+08:00: P2 control target PASS; 12 tests, 0 failures, 0 errors; command `python -B -m scripts.verification.verify_control_target --output-dir runs/20261121/verification/p2_control_target_v3/g10`; driver {'variant': 'g10', 'control_gear': 10, 'kinematics_path': '/home/him1/mujoco_bc/rcm_4090_deploy/mujoco_model/vendor/simulation_driver/ros_msg/src/robot_control/kinematics.py', 'kinematics_sha256': 'e48eb4a909208e8d1caa3ee2a7aff157de91c808730282dd17ccb17a46591530'}; CPU: small scalar protocol/kinematics checks; checkpoint/dataset N/A; evidence `runs/20261121/verification/p2_control_target_v3/g10/summary.json`. Software simulation only.
+
+- 2026-11-21T14:23:49.498561+08:00: P2 control target PASS; 12 tests, 0 failures, 0 errors; command `python -B -m scripts.verification.verify_control_target --output-dir runs/20261121/verification/p2_control_target_v3/g15`; driver {'variant': 'g15', 'control_gear': 15, 'kinematics_path': '/home/him1/mujoco_bc/rcm_4090_deploy/mujoco_model/vendor/simulation_driver_g15/ros_msg/src/robot_control/kinematics.py', 'kinematics_sha256': '3465daf19fd3269466f90fd77c6626149ab4da8ddde612c8f3d9a12c77d06088'}; CPU: small scalar protocol/kinematics checks; checkpoint/dataset N/A; evidence `runs/20261121/verification/p2_control_target_v3/g15/summary.json`. Software simulation only.
+
+- 2026-11-21T14:27:10.747006+08:00: P2 integration selection FAIL; command `['/home/him1/mujoco_bc/rcm_4090_deploy/.venv/bin/python', '-E', '-B', '-m', 'scripts.verification.verify_driver_selection']`; checkpoint/dataset N/A; CPU scalar protocol/kinematics; evidence `runs/20261121/verification/p2_integration_v1/selection.log`. MuJoCo only.
+
+- 2026-11-21T14:27:10.873820+08:00: P2 integration g10_motor FAIL; command `['/home/him1/mujoco_bc/rcm_4090_deploy/.venv/bin/python', '-E', '-B', '-m', 'scripts.verification.verify_motor_execution']`; checkpoint/dataset N/A; CPU scalar protocol/kinematics; evidence `runs/20261121/verification/p2_integration_v1/g10_motor.log`. MuJoCo only.
+
+- 2026-11-21T14:27:10.923826+08:00: P2 integration g15_motor FAIL; command `['/home/him1/mujoco_bc/rcm_4090_deploy/.venv/bin/python', '-E', '-B', '-m', 'scripts.verification.verify_motor_execution']`; checkpoint/dataset N/A; CPU scalar protocol/kinematics; evidence `runs/20261121/verification/p2_integration_v1/g15_motor.log`. MuJoCo only.
+
+- 2026-11-21T14:30:55.026075+08:00: P2 acceptance g15_motor PASS; command `['/home/him1/mujoco_bc/rcm_4090_deploy/.venv/bin/python', '-E', '-B', '-m', 'scripts.verification.verify_motor_execution']`; checkpoint/dataset N/A; CPU scalar protocol/kinematics; evidence `runs/20261121/verification/p2_acceptance_v1/g15_motor.log`. MuJoCo only.
+
+- 2026-11-21T14:30:56.193324+08:00: P2 control target PASS; 15 tests, 0 failures, 0 errors; command `python -B -m scripts.verification.verify_control_target --output-dir runs/20261121/verification/p2_acceptance_v1/g15_p2`; driver {'variant': 'g15', 'control_gear': 15, 'kinematics_path': '/home/him1/mujoco_bc/rcm_4090_deploy/mujoco_model/vendor/simulation_driver_g15/ros_msg/src/robot_control/kinematics.py', 'kinematics_sha256': '3465daf19fd3269466f90fd77c6626149ab4da8ddde612c8f3d9a12c77d06088'}; CPU: small scalar protocol/kinematics checks; checkpoint/dataset N/A; evidence `runs/20261121/verification/p2_acceptance_v1/g15_p2/summary.json`. Software simulation only.
+
+- 2026-11-21T14:30:56.234300+08:00: P2 control target PASS; 15 tests, 0 failures, 0 errors; command `python -B -m scripts.verification.verify_control_target --output-dir runs/20261121/verification/p2_acceptance_v1/g10_p2`; driver {'variant': 'g10', 'control_gear': 10, 'kinematics_path': '/home/him1/mujoco_bc/rcm_4090_deploy/mujoco_model/vendor/simulation_driver/ros_msg/src/robot_control/kinematics.py', 'kinematics_sha256': 'e48eb4a909208e8d1caa3ee2a7aff157de91c808730282dd17ccb17a46591530'}; CPU: small scalar protocol/kinematics checks; checkpoint/dataset N/A; evidence `runs/20261121/verification/p2_acceptance_v1/g10_p2/summary.json`. Software simulation only.
+
+- 2026-11-21T14:30:56.625149+08:00: P2 acceptance g15_p2 PASS; command `['/home/him1/mujoco_bc/rcm_4090_deploy/.venv/bin/python', '-E', '-B', '-m', 'scripts.verification.verify_control_target', '--output-dir', 'runs/20261121/verification/p2_acceptance_v1/g15_p2']`; checkpoint/dataset N/A; CPU scalar protocol/kinematics; evidence `runs/20261121/verification/p2_acceptance_v1/g15_p2.log`. MuJoCo only.
+
+- 2026-11-21T14:30:56.664758+08:00: P2 acceptance g10_p2 PASS; command `['/home/him1/mujoco_bc/rcm_4090_deploy/.venv/bin/python', '-E', '-B', '-m', 'scripts.verification.verify_control_target', '--output-dir', 'runs/20261121/verification/p2_acceptance_v1/g10_p2']`; checkpoint/dataset N/A; CPU scalar protocol/kinematics; evidence `runs/20261121/verification/p2_acceptance_v1/g10_p2.log`. MuJoCo only.
+
+- 2026-11-21T14:30:57.346841+08:00: P2 acceptance g10_motor PASS; command `['/home/him1/mujoco_bc/rcm_4090_deploy/.venv/bin/python', '-E', '-B', '-m', 'scripts.verification.verify_motor_execution']`; checkpoint/dataset N/A; CPU scalar protocol/kinematics; evidence `runs/20261121/verification/p2_acceptance_v1/g10_motor.log`. MuJoCo only.
+
+- 2026-11-21T14:30:58.576077+08:00: P2 acceptance selection PASS; command `['/home/him1/mujoco_bc/rcm_4090_deploy/.venv/bin/python', '-E', '-B', '-m', 'scripts.verification.verify_driver_selection']`; checkpoint/dataset N/A; CPU scalar protocol/kinematics; evidence `runs/20261121/verification/p2_acceptance_v1/selection.log`. MuJoCo only.
+
+- 2026-11-21T14:33:24.711366+08:00: P2 control target PASS; 15 tests, 0 failures, 0 errors; command `python -B -m scripts.verification.verify_control_target --output-dir runs/20261121/verification/p2_acceptance_v2/g15`; driver {'variant': 'g15', 'control_gear': 15, 'kinematics_path': '/home/him1/mujoco_bc/rcm_4090_deploy/mujoco_model/vendor/simulation_driver_g15/ros_msg/src/robot_control/kinematics.py', 'kinematics_sha256': '3465daf19fd3269466f90fd77c6626149ab4da8ddde612c8f3d9a12c77d06088'}; CPU: small scalar protocol/kinematics checks; checkpoint/dataset N/A; evidence `runs/20261121/verification/p2_acceptance_v2/g15/summary.json`. Software simulation only.
+
+- 2026-11-21T14:33:24.711362+08:00: P2 control target PASS; 15 tests, 0 failures, 0 errors; command `python -B -m scripts.verification.verify_control_target --output-dir runs/20261121/verification/p2_acceptance_v2/g10`; driver {'variant': 'g10', 'control_gear': 10, 'kinematics_path': '/home/him1/mujoco_bc/rcm_4090_deploy/mujoco_model/vendor/simulation_driver/ros_msg/src/robot_control/kinematics.py', 'kinematics_sha256': 'e48eb4a909208e8d1caa3ee2a7aff157de91c808730282dd17ccb17a46591530'}; CPU: small scalar protocol/kinematics checks; checkpoint/dataset N/A; evidence `runs/20261121/verification/p2_acceptance_v2/g10/summary.json`. Software simulation only.
+
+- 2026-11-21T14:34:11.066802+08:00: P2 S1-S3 preflight PASS; card `/home/him1/mujoco_bc/rcm_4090_deploy/configs/experiment_card_control_p2_diagnostics_20261121_v1.json`; 12 sequential stages, hard budget 16800 s, physical GPU0 RTX4090/EGL; checkpoint `185a6ef02caea4ea74ba752d67618d459c906450f5b315cd8010c3c5f1703f1b`, fixed development manifest `fcc4872a9d5b58bb7158b36d3c0ab6d7452e4d8d747317dfb077b6e7bbc815c7`; no training; no launch in this check; evidence `runs/20261121/verification/p2_preflight_v1/summary.json`, `runs/20261121/verification/p2_preflight_v1/preflight.json`.
+
+- 2026-11-21T14:35:10.721756+08:00: P2 implementation acceptance PASS, 52 checks (G15/G10 P2 15+15, motor 7+7, selection8), syntax checks PASS; latest per-component evidence and source SHA256 in `runs/20261121/verification/p2_release_v1/acceptance.json`; no checkpoint/dataset needed for scalar tests; GPU0 RTX4090/EGL preflight PASS for fixed step004000 checkpoint; earlier diagnostic-log API errors corrected and retained. Closed-loop benefit/strict success not yet evaluated.
+
+- 2026-11-21T14:36:19+08:00: P2 smoke/V0/E00 **completed**; command `/home/him1/mujoco_bc/rcm_4090_deploy/scripts/research/control_g15_diagnostics.py --mode smoke --variant V0 --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v1/s1_v0`; checkpoint=outputs/overnight_c_fix_symlog_081234/task2_train/step_004000.pth; sha256=185a6ef02caea4ea74ba752d67618d459c906450f5b315cd8010c3c5f1703f1b; seed=42; max_steps=120; final_um=15983.827728644497; strict=False; evidence `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v1/s1_v0/E00/evaluation_results.json`. Software/MuJoCo only.
+
+- 2026-11-21T14:36:59+08:00: P2 smoke/V0/E01 **completed**; command `/home/him1/mujoco_bc/rcm_4090_deploy/scripts/research/control_g15_diagnostics.py --mode smoke --variant V0 --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v1/s1_v0`; checkpoint=outputs/overnight_c_fix_symlog_081234/task2_train/step_004000.pth; sha256=185a6ef02caea4ea74ba752d67618d459c906450f5b315cd8010c3c5f1703f1b; seed=43; max_steps=120; final_um=16033.324877463887; strict=False; evidence `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v1/s1_v0/E01/evaluation_results.json`. Software/MuJoCo only.
+
+- 2026-11-21T14:37:39+08:00: P2 smoke/V0/E02 **completed**; command `/home/him1/mujoco_bc/rcm_4090_deploy/scripts/research/control_g15_diagnostics.py --mode smoke --variant V0 --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v1/s1_v0`; checkpoint=outputs/overnight_c_fix_symlog_081234/task2_train/step_004000.pth; sha256=185a6ef02caea4ea74ba752d67618d459c906450f5b315cd8010c3c5f1703f1b; seed=44; max_steps=120; final_um=16001.541725832392; strict=False; evidence `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v1/s1_v0/E02/evaluation_results.json`. Software/MuJoCo only.
+
+- 2026-11-21T14:37:40+08:00: P2 smoke **completed**; command `/home/him1/mujoco_bc/rcm_4090_deploy/scripts/research/control_g15_diagnostics.py --mode smoke --variant V0 --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v1/s1_v0`; variant=V0; teacher=oracle; driver=g15; completed=3; checkpoint=outputs/overnight_c_fix_symlog_081234/task2_train/step_004000.pth; no training; failure=None; evidence `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v1/s1_v0/status.json`. Software/MuJoCo only.
+
+- 2026-11-21T14:37:40+08:00：实验 SOP `control_p2_diagnostics_20261121_v1/s1_v0` **completed**；卡 `/home/him1/mujoco_bc/rcm_4090_deploy/configs/experiment_card_control_p2_diagnostics_20261121_v1.json`；目录 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v1`。
+  命令 `/home/him1/mujoco_bc/rcm_4090_deploy/.venv/bin/python -B -u -m scripts.research.control_g15_diagnostics --mode smoke --variant V0 --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v1/s1_v0`；配置 `见实验卡`。
+  仅验证软件/仿真，不代表临床或硬件就绪。
+
+- 2026-11-21T14:37:47+08:00: P2 smoke **failed**; command `/home/him1/mujoco_bc/rcm_4090_deploy/scripts/research/control_g15_diagnostics.py --mode smoke --variant V3 --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v1/s1_v3`; variant=V3; teacher=oracle; driver=g15; completed=0; checkpoint=outputs/overnight_c_fix_symlog_081234/task2_train/step_004000.pth; no training; failure=UnboundLocalError("cannot access local variable 'error' where it is not associated with a value"); evidence `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v1/s1_v3/status.json`. Software/MuJoCo only.
+
+- 2026-11-21T14:37:47+08:00：实验 SOP `control_p2_diagnostics_20261121_v1/s1_v3` **failed**；卡 `/home/him1/mujoco_bc/rcm_4090_deploy/configs/experiment_card_control_p2_diagnostics_20261121_v1.json`；目录 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v1`。
+  命令 `/home/him1/mujoco_bc/rcm_4090_deploy/.venv/bin/python -B -u -m scripts.research.control_g15_diagnostics --mode smoke --variant V3 --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v1/s1_v3`；配置 `见实验卡`。
+  原因：UnboundLocalError("cannot access local variable 'error' where it is not associated with a value")。
+  仅验证软件/仿真，不代表临床或硬件就绪。
+
+- 2026-11-21T14:37:47+08:00：实验 SOP `control_p2_diagnostics_20261121_v1/s1_v2` **skipped**；卡 `/home/him1/mujoco_bc/rcm_4090_deploy/configs/experiment_card_control_p2_diagnostics_20261121_v1.json`；目录 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v1`。
+  命令 `/home/him1/mujoco_bc/rcm_4090_deploy/.venv/bin/python -B -u -m scripts.research.control_g15_diagnostics --mode smoke --variant V2 --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v1/s1_v2`；配置 `见实验卡`。
+  原因：dependency not passed: s1_v3。
+  仅验证软件/仿真，不代表临床或硬件就绪。
+
+- 2026-11-21T14:37:47+08:00：实验 SOP `control_p2_diagnostics_20261121_v1/s2_g10_oracle` **skipped**；卡 `/home/him1/mujoco_bc/rcm_4090_deploy/configs/experiment_card_control_p2_diagnostics_20261121_v1.json`；目录 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v1`。
+  命令 `/home/him1/mujoco_bc/rcm_4090_deploy/.venv/bin/python -B -u -m scripts.research.control_g15_diagnostics --mode teacher --driver g10 --teacher oracle --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v1/s2_g10_oracle`；配置 `见实验卡`。
+  原因：dependency not passed: s1_v2。
+  仅验证软件/仿真，不代表临床或硬件就绪。
+
+- 2026-11-21T14:37:47+08:00：实验 SOP `control_p2_diagnostics_20261121_v1/s2_g10_rgbd` **skipped**；卡 `/home/him1/mujoco_bc/rcm_4090_deploy/configs/experiment_card_control_p2_diagnostics_20261121_v1.json`；目录 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v1`。
+  命令 `/home/him1/mujoco_bc/rcm_4090_deploy/.venv/bin/python -B -u -m scripts.research.control_g15_diagnostics --mode teacher --driver g10 --teacher rgbd --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v1/s2_g10_rgbd`；配置 `见实验卡`。
+  原因：dependency not passed: s2_g10_oracle。
+  仅验证软件/仿真，不代表临床或硬件就绪。
+
+- 2026-11-21T14:37:47+08:00：实验 SOP `control_p2_diagnostics_20261121_v1/s2_g15_oracle` **skipped**；卡 `/home/him1/mujoco_bc/rcm_4090_deploy/configs/experiment_card_control_p2_diagnostics_20261121_v1.json`；目录 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v1`。
+  命令 `/home/him1/mujoco_bc/rcm_4090_deploy/.venv/bin/python -B -u -m scripts.research.control_g15_diagnostics --mode teacher --driver g15 --teacher oracle --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v1/s2_g15_oracle`；配置 `见实验卡`。
+  原因：dependency not passed: s2_g10_rgbd。
+  仅验证软件/仿真，不代表临床或硬件就绪。
+
+- 2026-11-21T14:37:47+08:00：实验 SOP `control_p2_diagnostics_20261121_v1/s2_g15_rgbd` **skipped**；卡 `/home/him1/mujoco_bc/rcm_4090_deploy/configs/experiment_card_control_p2_diagnostics_20261121_v1.json`；目录 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v1`。
+  命令 `/home/him1/mujoco_bc/rcm_4090_deploy/.venv/bin/python -B -u -m scripts.research.control_g15_diagnostics --mode teacher --driver g15 --teacher rgbd --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v1/s2_g15_rgbd`；配置 `见实验卡`。
+  原因：dependency not passed: s2_g15_oracle。
+  仅验证软件/仿真，不代表临床或硬件就绪。
+
+- 2026-11-21T14:37:47+08:00：实验 SOP `control_p2_diagnostics_20261121_v1/s2_compare` **skipped**；卡 `/home/him1/mujoco_bc/rcm_4090_deploy/configs/experiment_card_control_p2_diagnostics_20261121_v1.json`；目录 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v1`。
+  命令 `/home/him1/mujoco_bc/rcm_4090_deploy/.venv/bin/python -B -u -m scripts.research.control_g15_diagnostics --mode compare-teachers --workflow-dir runs/20261121/control_p2_diagnostics_v1 --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v1/s2_compare`；配置 `见实验卡`。
+  原因：dependency not passed: s2_g15_rgbd。
+  仅验证软件/仿真，不代表临床或硬件就绪。
+
+- 2026-11-21T14:37:47+08:00：实验 SOP `control_p2_diagnostics_20261121_v1/s3_v0` **skipped**；卡 `/home/him1/mujoco_bc/rcm_4090_deploy/configs/experiment_card_control_p2_diagnostics_20261121_v1.json`；目录 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v1`。
+  命令 `/home/him1/mujoco_bc/rcm_4090_deploy/.venv/bin/python -B -u -m scripts.research.control_g15_diagnostics --mode policy --variant V0 --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v1/s3_v0`；配置 `见实验卡`。
+  原因：dependency not passed: s2_compare。
+  仅验证软件/仿真，不代表临床或硬件就绪。
+
+- 2026-11-21T14:37:47+08:00：实验 SOP `control_p2_diagnostics_20261121_v1/s3_v3` **skipped**；卡 `/home/him1/mujoco_bc/rcm_4090_deploy/configs/experiment_card_control_p2_diagnostics_20261121_v1.json`；目录 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v1`。
+  命令 `/home/him1/mujoco_bc/rcm_4090_deploy/.venv/bin/python -B -u -m scripts.research.control_g15_diagnostics --mode policy --variant V3 --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v1/s3_v3`；配置 `见实验卡`。
+  原因：dependency not passed: s3_v0。
+  仅验证软件/仿真，不代表临床或硬件就绪。
+
+- 2026-11-21T14:37:47+08:00：实验 SOP `control_p2_diagnostics_20261121_v1/s3_v2` **skipped**；卡 `/home/him1/mujoco_bc/rcm_4090_deploy/configs/experiment_card_control_p2_diagnostics_20261121_v1.json`；目录 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v1`。
+  命令 `/home/him1/mujoco_bc/rcm_4090_deploy/.venv/bin/python -B -u -m scripts.research.control_g15_diagnostics --mode policy --variant V2 --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v1/s3_v2`；配置 `见实验卡`。
+  原因：dependency not passed: s3_v3。
+  仅验证软件/仿真，不代表临床或硬件就绪。
+
+- 2026-11-21T14:37:47+08:00：实验 SOP `control_p2_diagnostics_20261121_v1/s3_compare` **skipped**；卡 `/home/him1/mujoco_bc/rcm_4090_deploy/configs/experiment_card_control_p2_diagnostics_20261121_v1.json`；目录 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v1`。
+  命令 `/home/him1/mujoco_bc/rcm_4090_deploy/.venv/bin/python -B -u -m scripts.research.control_g15_diagnostics --mode compare-policy --workflow-dir runs/20261121/control_p2_diagnostics_v1 --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v1/s3_compare`；配置 `见实验卡`。
+  原因：dependency not passed: s3_v2。
+  仅验证软件/仿真，不代表临床或硬件就绪。
+
+- 2026-11-21T14:37:47+08:00：实验 SOP `control_p2_diagnostics_20261121_v1` **failed**；卡 `/home/him1/mujoco_bc/rcm_4090_deploy/configs/experiment_card_control_p2_diagnostics_20261121_v1.json`；目录 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v1`。
+  结果：/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v1/workflow_status.json。
+  仅验证软件/仿真，不代表临床或硬件就绪。
+
+- 2026-11-21T14:39:13.687890+08:00: P2 control target FAIL; 16 tests, 0 failures, 1 errors; command `python -B -m scripts.verification.verify_control_target --output-dir runs/20261121/verification/p2_scaled_error_v1/reproduction_g10`; driver {'variant': 'g10', 'control_gear': 10, 'kinematics_path': '/home/him1/mujoco_bc/rcm_4090_deploy/mujoco_model/vendor/simulation_driver/ros_msg/src/robot_control/kinematics.py', 'kinematics_sha256': 'e48eb4a909208e8d1caa3ee2a7aff157de91c808730282dd17ccb17a46591530'}; CPU: small scalar protocol/kinematics checks; checkpoint/dataset N/A; evidence `runs/20261121/verification/p2_scaled_error_v1/reproduction_g10/summary.json`. Software simulation only.
+
+- 2026-11-21T14:39:43.851149+08:00: P2 diagnostic v1 failure audit; workflow completed 1/12 stages, failed V3 smoke and skipped 10 dependent stages. V0 G10 smoke E00/E01/E02 seeds42/43/44 completed 120 steps each; strict0/3, mean final 16006.231444 um (smoke only). V3 E00 partial: 6 persisted motor rows, last step 5; observer UnboundLocalError after a rejected scale and later commit. Fixed step004000 checkpoint 185a6ef02caea4ea74ba752d67618d459c906450f5b315cd8010c3c5f1703f1b; same frozen manifest; no training. Evidence `runs/20261121/verification/p2_scaled_error_v1/failure_audit.json`, `runs/20261121/control_p2_diagnostics_v1/s1_v3/E00/motor_steps.jsonl`, command/card `runs/20261121/control_p2_diagnostics_v1/experiment_card.json`. User requested continuation; repair and one same-parameter run in a new v2 directory, no reuse of v1 as paired baseline.
+
+- 2026-11-21T14:40:16.547657+08:00: P2 control target PASS; 16 tests, 0 failures, 0 errors; command `python -B -m scripts.verification.verify_control_target --output-dir runs/20261121/verification/p2_scaled_error_v1/fixed_g15`; driver {'variant': 'g15', 'control_gear': 15, 'kinematics_path': '/home/him1/mujoco_bc/rcm_4090_deploy/mujoco_model/vendor/simulation_driver_g15/ros_msg/src/robot_control/kinematics.py', 'kinematics_sha256': '3465daf19fd3269466f90fd77c6626149ab4da8ddde612c8f3d9a12c77d06088'}; CPU: small scalar protocol/kinematics checks; checkpoint/dataset N/A; evidence `runs/20261121/verification/p2_scaled_error_v1/fixed_g15/summary.json`. Software simulation only.
+
+- 2026-11-21T14:40:16.547786+08:00: P2 control target PASS; 16 tests, 0 failures, 0 errors; command `python -B -m scripts.verification.verify_control_target --output-dir runs/20261121/verification/p2_scaled_error_v1/fixed_g10`; driver {'variant': 'g10', 'control_gear': 10, 'kinematics_path': '/home/him1/mujoco_bc/rcm_4090_deploy/mujoco_model/vendor/simulation_driver/ros_msg/src/robot_control/kinematics.py', 'kinematics_sha256': 'e48eb4a909208e8d1caa3ee2a7aff157de91c808730282dd17ccb17a46591530'}; CPU: small scalar protocol/kinematics checks; checkpoint/dataset N/A; evidence `runs/20261121/verification/p2_scaled_error_v1/fixed_g10/summary.json`. Software simulation only.
+
+- 2026-11-21T14:41:32.301252+08:00: P2 rejected-scale observer fix acceptance PASS; 32/32 CPU scalar checks (16 G10 +16 G15), including regression reproduced before fix; syntax PASS, GPU0 RTX4090/EGL and v2 SOP preflight PASS. Card `/home/him1/mujoco_bc/rcm_4090_deploy/configs/experiment_card_control_p2_diagnostics_20261121_v2.json`, unchanged seeds/targets/weights/steps/gates/budget; checkpoint SHA256 185a6ef02caea4ea74ba752d67618d459c906450f5b315cd8010c3c5f1703f1b; no training. Evidence `runs/20261121/verification/p2_scaled_error_v1/preflight_v2/acceptance.json`, `runs/20261121/verification/p2_scaled_error_v1/preflight_v2/preflight.json`; prior failed workflow preserved.
+
+- 2026-11-21T14:42:39+08:00: P2 smoke/V0/E00 **completed**; command `/home/him1/mujoco_bc/rcm_4090_deploy/scripts/research/control_g15_diagnostics.py --mode smoke --variant V0 --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v2/s1_v0`; checkpoint=outputs/overnight_c_fix_symlog_081234/task2_train/step_004000.pth; sha256=185a6ef02caea4ea74ba752d67618d459c906450f5b315cd8010c3c5f1703f1b; seed=42; max_steps=120; final_um=15983.827728644497; strict=False; evidence `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v2/s1_v0/E00/evaluation_results.json`. Software/MuJoCo only.
+
+- 2026-11-21T14:43:19+08:00: P2 smoke/V0/E01 **completed**; command `/home/him1/mujoco_bc/rcm_4090_deploy/scripts/research/control_g15_diagnostics.py --mode smoke --variant V0 --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v2/s1_v0`; checkpoint=outputs/overnight_c_fix_symlog_081234/task2_train/step_004000.pth; sha256=185a6ef02caea4ea74ba752d67618d459c906450f5b315cd8010c3c5f1703f1b; seed=43; max_steps=120; final_um=16033.324877463887; strict=False; evidence `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v2/s1_v0/E01/evaluation_results.json`. Software/MuJoCo only.
+
+- 2026-11-21T14:43:59+08:00: P2 smoke/V0/E02 **completed**; command `/home/him1/mujoco_bc/rcm_4090_deploy/scripts/research/control_g15_diagnostics.py --mode smoke --variant V0 --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v2/s1_v0`; checkpoint=outputs/overnight_c_fix_symlog_081234/task2_train/step_004000.pth; sha256=185a6ef02caea4ea74ba752d67618d459c906450f5b315cd8010c3c5f1703f1b; seed=44; max_steps=120; final_um=16001.541725832392; strict=False; evidence `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v2/s1_v0/E02/evaluation_results.json`. Software/MuJoCo only.
+
+- 2026-11-21T14:43:59+08:00: P2 smoke **completed**; command `/home/him1/mujoco_bc/rcm_4090_deploy/scripts/research/control_g15_diagnostics.py --mode smoke --variant V0 --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v2/s1_v0`; variant=V0; teacher=oracle; driver=g15; completed=3; checkpoint=outputs/overnight_c_fix_symlog_081234/task2_train/step_004000.pth; no training; failure=None; evidence `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v2/s1_v0/status.json`. Software/MuJoCo only.
+
+- 2026-11-21T14:44:00+08:00：实验 SOP `control_p2_diagnostics_20261121_v2/s1_v0` **completed**；卡 `/home/him1/mujoco_bc/rcm_4090_deploy/configs/experiment_card_control_p2_diagnostics_20261121_v2.json`；目录 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v2`。
+  命令 `/home/him1/mujoco_bc/rcm_4090_deploy/.venv/bin/python -B -u -m scripts.research.control_g15_diagnostics --mode smoke --variant V0 --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v2/s1_v0`；配置 `见实验卡`。
+  仅验证软件/仿真，不代表临床或硬件就绪。
+
+- 2026-11-21T14:44:44+08:00: P2 smoke/V3/E00 **completed**; command `/home/him1/mujoco_bc/rcm_4090_deploy/scripts/research/control_g15_diagnostics.py --mode smoke --variant V3 --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v2/s1_v3`; checkpoint=outputs/overnight_c_fix_symlog_081234/task2_train/step_004000.pth; sha256=185a6ef02caea4ea74ba752d67618d459c906450f5b315cd8010c3c5f1703f1b; seed=42; max_steps=120; final_um=16320.562935438556; strict=False; evidence `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v2/s1_v3/E00/evaluation_results.json`. Software/MuJoCo only.
+
+- 2026-11-21T14:45:24+08:00: P2 smoke/V3/E01 **completed**; command `/home/him1/mujoco_bc/rcm_4090_deploy/scripts/research/control_g15_diagnostics.py --mode smoke --variant V3 --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v2/s1_v3`; checkpoint=outputs/overnight_c_fix_symlog_081234/task2_train/step_004000.pth; sha256=185a6ef02caea4ea74ba752d67618d459c906450f5b315cd8010c3c5f1703f1b; seed=43; max_steps=120; final_um=16309.032637017033; strict=False; evidence `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v2/s1_v3/E01/evaluation_results.json`. Software/MuJoCo only.
+
+- 2026-11-21T14:46:04+08:00: P2 smoke/V3/E02 **completed**; command `/home/him1/mujoco_bc/rcm_4090_deploy/scripts/research/control_g15_diagnostics.py --mode smoke --variant V3 --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v2/s1_v3`; checkpoint=outputs/overnight_c_fix_symlog_081234/task2_train/step_004000.pth; sha256=185a6ef02caea4ea74ba752d67618d459c906450f5b315cd8010c3c5f1703f1b; seed=44; max_steps=120; final_um=16225.551576271766; strict=False; evidence `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v2/s1_v3/E02/evaluation_results.json`. Software/MuJoCo only.
+
+- 2026-11-21T14:46:05+08:00: P2 smoke **completed**; command `/home/him1/mujoco_bc/rcm_4090_deploy/scripts/research/control_g15_diagnostics.py --mode smoke --variant V3 --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v2/s1_v3`; variant=V3; teacher=oracle; driver=g15; completed=3; checkpoint=outputs/overnight_c_fix_symlog_081234/task2_train/step_004000.pth; no training; failure=None; evidence `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v2/s1_v3/status.json`. Software/MuJoCo only.
+
+- 2026-11-21T14:46:05+08:00：实验 SOP `control_p2_diagnostics_20261121_v2/s1_v3` **completed**；卡 `/home/him1/mujoco_bc/rcm_4090_deploy/configs/experiment_card_control_p2_diagnostics_20261121_v2.json`；目录 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v2`。
+  命令 `/home/him1/mujoco_bc/rcm_4090_deploy/.venv/bin/python -B -u -m scripts.research.control_g15_diagnostics --mode smoke --variant V3 --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v2/s1_v3`；配置 `见实验卡`。
+  仅验证软件/仿真，不代表临床或硬件就绪。
+
+- 2026-11-21T14:46:49+08:00: P2 smoke/V2/E00 **completed**; command `/home/him1/mujoco_bc/rcm_4090_deploy/scripts/research/control_g15_diagnostics.py --mode smoke --variant V2 --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v2/s1_v2`; checkpoint=outputs/overnight_c_fix_symlog_081234/task2_train/step_004000.pth; sha256=185a6ef02caea4ea74ba752d67618d459c906450f5b315cd8010c3c5f1703f1b; seed=42; max_steps=120; final_um=14598.59605895981; strict=False; evidence `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v2/s1_v2/E00/evaluation_results.json`. Software/MuJoCo only.
+
+- 2026-11-21T14:47:29+08:00: P2 smoke/V2/E01 **completed**; command `/home/him1/mujoco_bc/rcm_4090_deploy/scripts/research/control_g15_diagnostics.py --mode smoke --variant V2 --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v2/s1_v2`; checkpoint=outputs/overnight_c_fix_symlog_081234/task2_train/step_004000.pth; sha256=185a6ef02caea4ea74ba752d67618d459c906450f5b315cd8010c3c5f1703f1b; seed=43; max_steps=120; final_um=14660.168295127414; strict=False; evidence `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v2/s1_v2/E01/evaluation_results.json`. Software/MuJoCo only.
+
+- 2026-11-21T14:48:09+08:00: P2 smoke/V2/E02 **completed**; command `/home/him1/mujoco_bc/rcm_4090_deploy/scripts/research/control_g15_diagnostics.py --mode smoke --variant V2 --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v2/s1_v2`; checkpoint=outputs/overnight_c_fix_symlog_081234/task2_train/step_004000.pth; sha256=185a6ef02caea4ea74ba752d67618d459c906450f5b315cd8010c3c5f1703f1b; seed=44; max_steps=120; final_um=14627.066326109298; strict=False; evidence `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v2/s1_v2/E02/evaluation_results.json`. Software/MuJoCo only.
+
+- 2026-11-21T14:48:10+08:00: P2 smoke **completed**; command `/home/him1/mujoco_bc/rcm_4090_deploy/scripts/research/control_g15_diagnostics.py --mode smoke --variant V2 --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v2/s1_v2`; variant=V2; teacher=oracle; driver=g15; completed=3; checkpoint=outputs/overnight_c_fix_symlog_081234/task2_train/step_004000.pth; no training; failure=None; evidence `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v2/s1_v2/status.json`. Software/MuJoCo only.
+
+- 2026-11-21T14:48:10+08:00：实验 SOP `control_p2_diagnostics_20261121_v2/s1_v2` **completed**；卡 `/home/him1/mujoco_bc/rcm_4090_deploy/configs/experiment_card_control_p2_diagnostics_20261121_v2.json`；目录 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v2`。
+  命令 `/home/him1/mujoco_bc/rcm_4090_deploy/.venv/bin/python -B -u -m scripts.research.control_g15_diagnostics --mode smoke --variant V2 --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v2/s1_v2`；配置 `见实验卡`。
+  仅验证软件/仿真，不代表临床或硬件就绪。
+
+- 2026-11-21T14:48:15+08:00: P2 oracle/E00 **completed**; command `/home/him1/mujoco_bc/rcm_4090_deploy/scripts/research/control_g15_diagnostics.py --mode teacher --driver g10 --teacher oracle --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v2/s2_g10_oracle`; max1600 x50ms; seed=42; no checkpoint/dataset; final_um=0.8409169425983414; strict=False; failure=None; evidence `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v2/s2_g10_oracle/E00.json`. Software/MuJoCo only.
+
+- 2026-11-21T14:48:18+08:00: P2 oracle/E02 **completed**; command `/home/him1/mujoco_bc/rcm_4090_deploy/scripts/research/control_g15_diagnostics.py --mode teacher --driver g10 --teacher oracle --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v2/s2_g10_oracle`; max1600 x50ms; seed=44; no checkpoint/dataset; final_um=1.0374667341974724; strict=False; failure=None; evidence `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v2/s2_g10_oracle/E02.json`. Software/MuJoCo only.
+
+- 2026-11-21T14:48:21+08:00: P2 oracle/E06 **completed**; command `/home/him1/mujoco_bc/rcm_4090_deploy/scripts/research/control_g15_diagnostics.py --mode teacher --driver g10 --teacher oracle --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v2/s2_g10_oracle`; max1600 x50ms; seed=48; no checkpoint/dataset; final_um=1.8193523210145026; strict=False; failure=None; evidence `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v2/s2_g10_oracle/E06.json`. Software/MuJoCo only.
+
+- 2026-11-21T14:48:23+08:00: P2 oracle/E08 **completed**; command `/home/him1/mujoco_bc/rcm_4090_deploy/scripts/research/control_g15_diagnostics.py --mode teacher --driver g10 --teacher oracle --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v2/s2_g10_oracle`; max1600 x50ms; seed=50; no checkpoint/dataset; final_um=3.4917810262350604; strict=False; failure=None; evidence `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v2/s2_g10_oracle/E08.json`. Software/MuJoCo only.
+
+- 2026-11-21T14:48:26+08:00: P2 oracle/E10 **completed**; command `/home/him1/mujoco_bc/rcm_4090_deploy/scripts/research/control_g15_diagnostics.py --mode teacher --driver g10 --teacher oracle --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v2/s2_g10_oracle`; max1600 x50ms; seed=52; no checkpoint/dataset; final_um=1.3368472694161244; strict=False; failure=None; evidence `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v2/s2_g10_oracle/E10.json`. Software/MuJoCo only.
+
+- 2026-11-21T14:48:26+08:00: P2 teacher **completed**; command `/home/him1/mujoco_bc/rcm_4090_deploy/scripts/research/control_g15_diagnostics.py --mode teacher --driver g10 --teacher oracle --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v2/s2_g10_oracle`; variant=V0; teacher=oracle; driver=g10; completed=5; checkpoint=outputs/overnight_c_fix_symlog_081234/task2_train/step_004000.pth; no training; failure=None; evidence `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v2/s2_g10_oracle/status.json`. Software/MuJoCo only.
+
+- 2026-11-21T14:48:27+08:00：实验 SOP `control_p2_diagnostics_20261121_v2/s2_g10_oracle` **completed**；卡 `/home/him1/mujoco_bc/rcm_4090_deploy/configs/experiment_card_control_p2_diagnostics_20261121_v2.json`；目录 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v2`。
+  命令 `/home/him1/mujoco_bc/rcm_4090_deploy/.venv/bin/python -B -u -m scripts.research.control_g15_diagnostics --mode teacher --driver g10 --teacher oracle --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v2/s2_g10_oracle`；配置 `见实验卡`。
+  仅验证软件/仿真，不代表临床或硬件就绪。
+
+- 2026-11-21T14:57:08+08:00: P2 rgbd/E00 **completed**; command `/home/him1/mujoco_bc/rcm_4090_deploy/scripts/research/control_g15_diagnostics.py --mode teacher --driver g10 --teacher rgbd --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v2/s2_g10_rgbd`; max1600 x50ms; seed=42; no checkpoint/dataset; final_um=0.7599432779359836; strict=False; failure=None; evidence `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v2/s2_g10_rgbd/E00.json`. Software/MuJoCo only.
+
+
+## 2026-11-21T06:58:32.176812+00:00 — P2 当前数据 GitHub 快照预检
+
+- 用户请求：上传当前数据；目的：发布现有诊断与验收证据，未启动新实验。
+- 命令/配置：runs/20261121/control_p2_publication_v1/prepare_snapshot.py；configs/experiment_card_control_p2_diagnostics_20261121_v2.json。
+- 数据/权重：固定 development 清单与 step_004000.pth，原始身份见快照 pinned_assets.json；权重不上传。
+- 状态：PARTIAL，快照已完成 4/12 阶段；156 项固定资产 SHA-256 与启动预检一致。
+- 指标：G10 Oracle 5 目标均值 1.705273 µm、最大 3.491781 µm、严格成功 0/5；尚无完整感知/策略比较。
+- 证据：runs/20261121/control_p2_publication_v1/；保留原始证据路径及历史失败。
+- GPU：沿用原 CUDA GPU0 RTX4090 / EGL；本次归档是 I/O 工作，CPU 处理。
+
+
+## 2026-11-21T07:00:12.672932+00:00 — P2 当前数据 GitHub 发布核验完成
+
+- 目的/命令：用户要求上传当前数据；git push origin refs/heads/feature/g15-control-single-packet-20261121:refs/heads/feature/g15-control-single-packet-20261121，随后 git fetch origin 同分支并逐文件校验。
+- 结果：PASS，提交 6b7883bee37e1c3b62c5c64cf72290fa6cab719e；新增或修改 152 文件，293 个快照文件在远端提交逐项 SHA-256 一致；无删除，原始/G10/G15 驱动树不变，远端 TEST_LOG 历史前缀完整保留。
+- 数据/权重：沿用 configs/experiment_card_control_p2_diagnostics_20261121_v2.json；414733455 字节固定权重仅登记身份，未上传；无新训练、测试或参数调整。
+- 实验状态：PARTIAL 快照，冻结时完成4/12阶段；本条为发布核验，不代表实验完成或指标通过。
+- 输出：runs/20261121/control_p2_publication_v1/publication_status.json；原始文件清单与快照见同目录；本核验记录在发布后追加，未包含于上述提交。
+
+- 2026-11-21T15:05:45+08:00: P2 rgbd/E02 **completed**; command `/home/him1/mujoco_bc/rcm_4090_deploy/scripts/research/control_g15_diagnostics.py --mode teacher --driver g10 --teacher rgbd --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v2/s2_g10_rgbd`; max1600 x50ms; seed=44; no checkpoint/dataset; final_um=1.0326046770626347; strict=False; failure=None; evidence `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v2/s2_g10_rgbd/E02.json`. Software/MuJoCo only.
+
+
+## 2026-11-21T07:06:10.446642+00:00 — P2 RGB-D 慢速进展诊断（PARTIAL）
+
+- 触发：用户反馈“现在卡住了”；只读检查实验状态、日志、/proc 和 nvidia-smi，未运行新实验。
+- 配置/数据/权重：configs/experiment_card_control_p2_diagnostics_20261121_v2.json；s2_g10_rgbd 几何教师，冻结development目标，无模型推理权重。
+- 观察：系统时间2026-11-21 15:05:25 +08:00；PID28792为R；日志13秒前更新，E00完成、E02到1500/1600步，当前记录误差1.224716µm（非最终误差）。GPU瞬时9%。
+- 结论：有持续执行证据，未见死锁证据；全卡状态仍running，阶段内状态不等于逐步进度。
+- 预算风险：每目标约8–9分钟，5目标估算40–45分钟，超过既定30分钟预算的风险；未改预算、精度、渲染或控制参数，未重启/重试。
+- 证据：runs/20261121/diagnostics/p2_slow_progress_v1/diagnosis.json；这是部分运行诊断，不代表实验完成。
+
+- 2026-11-21T15:14:14+08:00: P2 rgbd/E06 **completed**; command `/home/him1/mujoco_bc/rcm_4090_deploy/scripts/research/control_g15_diagnostics.py --mode teacher --driver g10 --teacher rgbd --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v2/s2_g10_rgbd`; max1600 x50ms; seed=48; no checkpoint/dataset; final_um=1.8359828016533333; strict=False; failure=None; evidence `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v2/s2_g10_rgbd/E06.json`. Software/MuJoCo only.
+
+
+## 2026-11-21T07:16:14.143783+00:00 — P2 日志显示诊断与只读窗口（PARTIAL）
+
+- 请求：用户反馈日志输出不动；一次状态快照、日志文件与线程等待通道检查。
+- 配置：configs/experiment_card_control_p2_diagnostics_20261121_v2.json；固定development目标，G10 RGB-D教师，不使用模型权重。
+- 观察：系统15:15:07+08:00时日志19.3秒前更新，已完成E00/E02/E06，共3/5，E08到100/1600；子进程CPU约100%，读取线程anon_pipe_read，未见终端写阻塞。
+- 结果：程序持续推进，用户界面停住的具体原因尚未证实；原程序每100步打印一次。新GNOME只读tail窗口启动返回码0；不代表已目视验证窗口。
+- 命令：gnome-terminal --window --title='P2 RGB-D 实时日志' -- /usr/bin/tail -n 35 -F /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v2/s2_g10_rgbd.log。
+- 未重启实验、未改变参数或预算；原30分钟阶段预算风险仍在。
+- 证据：runs/20261121/diagnostics/p2_log_display_v1/diagnosis.json；本条是部分状态，未启动新实验。
+
+- 2026-11-21T15:18:27+08:00: P2 rgbd/E08 **interrupted**; command `/home/him1/mujoco_bc/rcm_4090_deploy/scripts/research/control_g15_diagnostics.py --mode teacher --driver g10 --teacher rgbd --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v2/s2_g10_rgbd`; max1600 x50ms; seed=50; no checkpoint/dataset; final_um=None; strict=None; failure=KeyboardInterrupt('received SIGTERM'); evidence `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v2/s2_g10_rgbd/E08.json`. Software/MuJoCo only.
+
+- 2026-11-21T15:18:27+08:00: P2 teacher **interrupted**; command `/home/him1/mujoco_bc/rcm_4090_deploy/scripts/research/control_g15_diagnostics.py --mode teacher --driver g10 --teacher rgbd --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v2/s2_g10_rgbd`; variant=V0; teacher=rgbd; driver=g10; completed=3; checkpoint=outputs/overnight_c_fix_symlog_081234/task2_train/step_004000.pth; no training; failure=KeyboardInterrupt('received SIGTERM'); evidence `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v2/s2_g10_rgbd/status.json`. Software/MuJoCo only.
+
+- 2026-11-21T15:18:27+08:00：实验 SOP `control_p2_diagnostics_20261121_v2/s2_g10_rgbd` **interrupted**；卡 `/home/him1/mujoco_bc/rcm_4090_deploy/configs/experiment_card_control_p2_diagnostics_20261121_v2.json`；目录 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v2`。
+  命令 `/home/him1/mujoco_bc/rcm_4090_deploy/.venv/bin/python -B -u -m scripts.research.control_g15_diagnostics --mode teacher --driver g10 --teacher rgbd --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v2/s2_g10_rgbd`；配置 `见实验卡`。
+  原因：Command '['/home/him1/mujoco_bc/rcm_4090_deploy/.venv/bin/python', '-B', '-u', '-m', 'scripts.research.control_g15_diagnostics', '--mode', 'teacher', '--driver', 'g10', '--teacher', 'rgbd', '--output-dir', '/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v2/s2_g10_rgbd']' timed out after 1800 seconds。
+  仅验证软件/仿真，不代表临床或硬件就绪。
+
+- 2026-11-21T15:18:27+08:00：实验 SOP `control_p2_diagnostics_20261121_v2` **interrupted**；卡 `/home/him1/mujoco_bc/rcm_4090_deploy/configs/experiment_card_control_p2_diagnostics_20261121_v2.json`；目录 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v2`。
+  结果：/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v2/workflow_status.json。
+  原因：Command '['/home/him1/mujoco_bc/rcm_4090_deploy/.venv/bin/python', '-B', '-u', '-m', 'scripts.research.control_g15_diagnostics', '--mode', 'teacher', '--driver', 'g10', '--teacher', 'rgbd', '--output-dir', '/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v2/s2_g10_rgbd']' timed out after 1800 seconds。
+  仅验证软件/仿真，不代表临床或硬件就绪。
+
+
+## 2026-11-21T07:26:33.972379+00:00 — P2 v2 RGB-D 超时审计（INTERRUPTED / PARTIAL）
+
+- 命令/配置：configs/experiment_card_control_p2_diagnostics_20261121_v2.json，teacher --driver g10 --teacher rgbd；固定development目标0/2/6/8/10与种子42/44/48/50/52，无策略模型权重。
+- 原因：14:48:27至15:18:27（2026-11-21 +08:00）达到1800秒硬预算，管理器SIGTERM触发KeyboardInterrupt；NumPy堆栈为被中断位置，不是已证实的数值错误。
+- 完整范围：E00/E02/E06共3/5，终值分别0.759943/1.032605/1.835983µm，严格成功0/3；E08保存773条部分轨迹，E10未开始。不得作为完整fast5均值或Gate2b结论。
+- 全卡：4/12完成，1阶段中断，7阶段跳过；原始日志和结果未改写。
+- 后续提案：configs/experiment_card_control_p2_diagnostics_20261121_v3.json，仅两RGB-D阶段预算30->60分钟，目标/步数/渲染/控制/种子/门禁不变，在新目录全卡重跑；尚未获准重试、未启动。
+- 证据：runs/20261121/diagnostics/p2_timeout_audit_v1/audit.json；原始runs/20261121/control_p2_diagnostics_v2/。
+
+
+- 2026-11-21T07:26:55.294585+00:00: P2 timeout v3 proposed-card preflight **PASS**; command `/home/him1/mujoco_bc/rcm_4090_deploy/.venv/bin/python -E -B -m scripts.tools.experiment_workflow preflight --card configs/experiment_card_control_p2_diagnostics_20261121_v3.json`; frozen development manifest and step_004000.pth unchanged; no experiment launched, retry awaiting authorization; evidence `runs/20261121/diagnostics/p2_timeout_audit_v1/v3_preflight_acceptance.json`, `runs/20261121/diagnostics/p2_timeout_audit_v1/v3_preflight.json`; CPU used for asset hashing/I/O, CUDA GPU0/EGL retained for proposed run.
+
+
+## 2026-11-21T07:30:39.974047+00:00 — P2 v3 用户授权后启动（LAUNCH ACCEPTED，非完成结果）
+
+- 用户明确授权：“启动”；采用已通过预检的configs/experiment_card_control_p2_diagnostics_20261121_v3.json。卡内timeout_recovery_proposal的prepared状态描述提案生成时刻；本条与启动凭据登记后续明确授权，不改写已预检卡。
+- 命令：`env -u PYTHONHOME -u PYTHONPATH CUDA_VISIBLE_DEVICES=0 MUJOCO_GL=egl MPLBACKEND=Agg PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -E -B -m scripts.tools.experiment_workflow launch --card configs/experiment_card_control_p2_diagnostics_20261121_v3.json`。
+- GNOME Terminal返回启动已接受；只启动一次，无后台回退，启动后未查询/等待实验进展。
+- 改动：仅两个RGB-D阶段预算1800->3600秒；冻结目标、种子、步数、渲染质量、控制和门禁保持，12阶段全卡在新目录顺序重跑。
+- 数据/权重：configs/v12_reachable_development_targets_0p35um.json；outputs/overnight_c_fix_symlog_081234/task2_train/step_004000.pth，SHA256185a6ef02caea4ea74ba752d67618d459c906450f5b315cd8010c3c5f1703f1b；不训练。
+- 设备：CUDA物理GPU0 RTX4090、MUJOCO_GL=egl；CPU仅运行现有标量驱动及CPU感知代码，未声称完成GPU视觉改造。
+- 输出：runs/20261121/control_p2_diagnostics_v3/；启动凭据runs/20261121/diagnostics/p2_timeout_audit_v1/v3_launch_receipt.json；保留v2中断现场。
+
+- 2026-11-21T15:30:44+08:00: P2 smoke/V0/E00 **completed**; command `/home/him1/mujoco_bc/rcm_4090_deploy/scripts/research/control_g15_diagnostics.py --mode smoke --variant V0 --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v3/s1_v0`; checkpoint=outputs/overnight_c_fix_symlog_081234/task2_train/step_004000.pth; sha256=185a6ef02caea4ea74ba752d67618d459c906450f5b315cd8010c3c5f1703f1b; seed=42; max_steps=120; final_um=15983.827728644497; strict=False; evidence `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v3/s1_v0/E00/evaluation_results.json`. Software/MuJoCo only.
+
+- 2026-11-21T15:31:24+08:00: P2 smoke/V0/E01 **completed**; command `/home/him1/mujoco_bc/rcm_4090_deploy/scripts/research/control_g15_diagnostics.py --mode smoke --variant V0 --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v3/s1_v0`; checkpoint=outputs/overnight_c_fix_symlog_081234/task2_train/step_004000.pth; sha256=185a6ef02caea4ea74ba752d67618d459c906450f5b315cd8010c3c5f1703f1b; seed=43; max_steps=120; final_um=16033.324877463887; strict=False; evidence `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v3/s1_v0/E01/evaluation_results.json`. Software/MuJoCo only.
+
+- 2026-11-21T15:32:04+08:00: P2 smoke/V0/E02 **completed**; command `/home/him1/mujoco_bc/rcm_4090_deploy/scripts/research/control_g15_diagnostics.py --mode smoke --variant V0 --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v3/s1_v0`; checkpoint=outputs/overnight_c_fix_symlog_081234/task2_train/step_004000.pth; sha256=185a6ef02caea4ea74ba752d67618d459c906450f5b315cd8010c3c5f1703f1b; seed=44; max_steps=120; final_um=16001.541725832392; strict=False; evidence `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v3/s1_v0/E02/evaluation_results.json`. Software/MuJoCo only.
+
+- 2026-11-21T15:32:05+08:00: P2 smoke **completed**; command `/home/him1/mujoco_bc/rcm_4090_deploy/scripts/research/control_g15_diagnostics.py --mode smoke --variant V0 --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v3/s1_v0`; variant=V0; teacher=oracle; driver=g15; completed=3; checkpoint=outputs/overnight_c_fix_symlog_081234/task2_train/step_004000.pth; no training; failure=None; evidence `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v3/s1_v0/status.json`. Software/MuJoCo only.
+
+- 2026-11-21T15:32:05+08:00：实验 SOP `control_p2_diagnostics_20261121_v3/s1_v0` **completed**；卡 `/home/him1/mujoco_bc/rcm_4090_deploy/configs/experiment_card_control_p2_diagnostics_20261121_v3.json`；目录 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v3`。
+  命令 `/home/him1/mujoco_bc/rcm_4090_deploy/.venv/bin/python -B -u -m scripts.research.control_g15_diagnostics --mode smoke --variant V0 --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v3/s1_v0`；配置 `见实验卡`。
+  仅验证软件/仿真，不代表临床或硬件就绪。
+
+- 2026-11-21T15:32:49+08:00: P2 smoke/V3/E00 **completed**; command `/home/him1/mujoco_bc/rcm_4090_deploy/scripts/research/control_g15_diagnostics.py --mode smoke --variant V3 --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v3/s1_v3`; checkpoint=outputs/overnight_c_fix_symlog_081234/task2_train/step_004000.pth; sha256=185a6ef02caea4ea74ba752d67618d459c906450f5b315cd8010c3c5f1703f1b; seed=42; max_steps=120; final_um=16320.562935438556; strict=False; evidence `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v3/s1_v3/E00/evaluation_results.json`. Software/MuJoCo only.
+
+- 2026-11-21T15:33:29+08:00: P2 smoke/V3/E01 **completed**; command `/home/him1/mujoco_bc/rcm_4090_deploy/scripts/research/control_g15_diagnostics.py --mode smoke --variant V3 --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v3/s1_v3`; checkpoint=outputs/overnight_c_fix_symlog_081234/task2_train/step_004000.pth; sha256=185a6ef02caea4ea74ba752d67618d459c906450f5b315cd8010c3c5f1703f1b; seed=43; max_steps=120; final_um=16309.032637017033; strict=False; evidence `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v3/s1_v3/E01/evaluation_results.json`. Software/MuJoCo only.
+
+- 2026-11-21T15:34:10+08:00: P2 smoke/V3/E02 **completed**; command `/home/him1/mujoco_bc/rcm_4090_deploy/scripts/research/control_g15_diagnostics.py --mode smoke --variant V3 --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v3/s1_v3`; checkpoint=outputs/overnight_c_fix_symlog_081234/task2_train/step_004000.pth; sha256=185a6ef02caea4ea74ba752d67618d459c906450f5b315cd8010c3c5f1703f1b; seed=44; max_steps=120; final_um=16225.551576271766; strict=False; evidence `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v3/s1_v3/E02/evaluation_results.json`. Software/MuJoCo only.
+
+- 2026-11-21T15:34:10+08:00: P2 smoke **completed**; command `/home/him1/mujoco_bc/rcm_4090_deploy/scripts/research/control_g15_diagnostics.py --mode smoke --variant V3 --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v3/s1_v3`; variant=V3; teacher=oracle; driver=g15; completed=3; checkpoint=outputs/overnight_c_fix_symlog_081234/task2_train/step_004000.pth; no training; failure=None; evidence `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v3/s1_v3/status.json`. Software/MuJoCo only.
+
+- 2026-11-21T15:34:10+08:00：实验 SOP `control_p2_diagnostics_20261121_v3/s1_v3` **completed**；卡 `/home/him1/mujoco_bc/rcm_4090_deploy/configs/experiment_card_control_p2_diagnostics_20261121_v3.json`；目录 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v3`。
+  命令 `/home/him1/mujoco_bc/rcm_4090_deploy/.venv/bin/python -B -u -m scripts.research.control_g15_diagnostics --mode smoke --variant V3 --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v3/s1_v3`；配置 `见实验卡`。
+  仅验证软件/仿真，不代表临床或硬件就绪。
+
+- 2026-11-21T15:34:54+08:00: P2 smoke/V2/E00 **completed**; command `/home/him1/mujoco_bc/rcm_4090_deploy/scripts/research/control_g15_diagnostics.py --mode smoke --variant V2 --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v3/s1_v2`; checkpoint=outputs/overnight_c_fix_symlog_081234/task2_train/step_004000.pth; sha256=185a6ef02caea4ea74ba752d67618d459c906450f5b315cd8010c3c5f1703f1b; seed=42; max_steps=120; final_um=14598.59605895981; strict=False; evidence `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v3/s1_v2/E00/evaluation_results.json`. Software/MuJoCo only.
+
+- 2026-11-21T15:35:34+08:00: P2 smoke/V2/E01 **completed**; command `/home/him1/mujoco_bc/rcm_4090_deploy/scripts/research/control_g15_diagnostics.py --mode smoke --variant V2 --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v3/s1_v2`; checkpoint=outputs/overnight_c_fix_symlog_081234/task2_train/step_004000.pth; sha256=185a6ef02caea4ea74ba752d67618d459c906450f5b315cd8010c3c5f1703f1b; seed=43; max_steps=120; final_um=14660.168295127414; strict=False; evidence `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v3/s1_v2/E01/evaluation_results.json`. Software/MuJoCo only.
+
+- 2026-11-21T15:36:14+08:00: P2 smoke/V2/E02 **completed**; command `/home/him1/mujoco_bc/rcm_4090_deploy/scripts/research/control_g15_diagnostics.py --mode smoke --variant V2 --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v3/s1_v2`; checkpoint=outputs/overnight_c_fix_symlog_081234/task2_train/step_004000.pth; sha256=185a6ef02caea4ea74ba752d67618d459c906450f5b315cd8010c3c5f1703f1b; seed=44; max_steps=120; final_um=14627.066326109298; strict=False; evidence `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v3/s1_v2/E02/evaluation_results.json`. Software/MuJoCo only.
+
+- 2026-11-21T15:36:15+08:00: P2 smoke **completed**; command `/home/him1/mujoco_bc/rcm_4090_deploy/scripts/research/control_g15_diagnostics.py --mode smoke --variant V2 --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v3/s1_v2`; variant=V2; teacher=oracle; driver=g15; completed=3; checkpoint=outputs/overnight_c_fix_symlog_081234/task2_train/step_004000.pth; no training; failure=None; evidence `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v3/s1_v2/status.json`. Software/MuJoCo only.
+
+- 2026-11-21T15:36:15+08:00：实验 SOP `control_p2_diagnostics_20261121_v3/s1_v2` **completed**；卡 `/home/him1/mujoco_bc/rcm_4090_deploy/configs/experiment_card_control_p2_diagnostics_20261121_v3.json`；目录 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v3`。
+  命令 `/home/him1/mujoco_bc/rcm_4090_deploy/.venv/bin/python -B -u -m scripts.research.control_g15_diagnostics --mode smoke --variant V2 --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v3/s1_v2`；配置 `见实验卡`。
+  仅验证软件/仿真，不代表临床或硬件就绪。
+
+- 2026-11-21T15:36:20+08:00: P2 oracle/E00 **completed**; command `/home/him1/mujoco_bc/rcm_4090_deploy/scripts/research/control_g15_diagnostics.py --mode teacher --driver g10 --teacher oracle --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v3/s2_g10_oracle`; max1600 x50ms; seed=42; no checkpoint/dataset; final_um=0.8409169425983414; strict=False; failure=None; evidence `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v3/s2_g10_oracle/E00.json`. Software/MuJoCo only.
+
+- 2026-11-21T15:36:23+08:00: P2 oracle/E02 **completed**; command `/home/him1/mujoco_bc/rcm_4090_deploy/scripts/research/control_g15_diagnostics.py --mode teacher --driver g10 --teacher oracle --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v3/s2_g10_oracle`; max1600 x50ms; seed=44; no checkpoint/dataset; final_um=1.0374667341974724; strict=False; failure=None; evidence `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v3/s2_g10_oracle/E02.json`. Software/MuJoCo only.
+
+- 2026-11-21T15:36:26+08:00: P2 oracle/E06 **completed**; command `/home/him1/mujoco_bc/rcm_4090_deploy/scripts/research/control_g15_diagnostics.py --mode teacher --driver g10 --teacher oracle --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v3/s2_g10_oracle`; max1600 x50ms; seed=48; no checkpoint/dataset; final_um=1.8193523210145026; strict=False; failure=None; evidence `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v3/s2_g10_oracle/E06.json`. Software/MuJoCo only.
+
+- 2026-11-21T15:36:29+08:00: P2 oracle/E08 **completed**; command `/home/him1/mujoco_bc/rcm_4090_deploy/scripts/research/control_g15_diagnostics.py --mode teacher --driver g10 --teacher oracle --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v3/s2_g10_oracle`; max1600 x50ms; seed=50; no checkpoint/dataset; final_um=3.4917810262350604; strict=False; failure=None; evidence `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v3/s2_g10_oracle/E08.json`. Software/MuJoCo only.
+
+- 2026-11-21T15:36:31+08:00: P2 oracle/E10 **completed**; command `/home/him1/mujoco_bc/rcm_4090_deploy/scripts/research/control_g15_diagnostics.py --mode teacher --driver g10 --teacher oracle --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v3/s2_g10_oracle`; max1600 x50ms; seed=52; no checkpoint/dataset; final_um=1.3368472694161244; strict=False; failure=None; evidence `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v3/s2_g10_oracle/E10.json`. Software/MuJoCo only.
+
+- 2026-11-21T15:36:32+08:00: P2 teacher **completed**; command `/home/him1/mujoco_bc/rcm_4090_deploy/scripts/research/control_g15_diagnostics.py --mode teacher --driver g10 --teacher oracle --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v3/s2_g10_oracle`; variant=V0; teacher=oracle; driver=g10; completed=5; checkpoint=outputs/overnight_c_fix_symlog_081234/task2_train/step_004000.pth; no training; failure=None; evidence `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v3/s2_g10_oracle/status.json`. Software/MuJoCo only.
+
+- 2026-11-21T15:36:32+08:00：实验 SOP `control_p2_diagnostics_20261121_v3/s2_g10_oracle` **completed**；卡 `/home/him1/mujoco_bc/rcm_4090_deploy/configs/experiment_card_control_p2_diagnostics_20261121_v3.json`；目录 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v3`。
+  命令 `/home/him1/mujoco_bc/rcm_4090_deploy/.venv/bin/python -B -u -m scripts.research.control_g15_diagnostics --mode teacher --driver g10 --teacher oracle --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v3/s2_g10_oracle`；配置 `见实验卡`。
+  仅验证软件/仿真，不代表临床或硬件就绪。
+
+- 2026-11-21T15:45:01+08:00: P2 rgbd/E00 **completed**; command `/home/him1/mujoco_bc/rcm_4090_deploy/scripts/research/control_g15_diagnostics.py --mode teacher --driver g10 --teacher rgbd --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v3/s2_g10_rgbd`; max1600 x50ms; seed=42; no checkpoint/dataset; final_um=0.7599432779359836; strict=False; failure=None; evidence `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v3/s2_g10_rgbd/E00.json`. Software/MuJoCo only.
+
+- 2026-11-21T15:53:29+08:00: P2 rgbd/E02 **completed**; command `/home/him1/mujoco_bc/rcm_4090_deploy/scripts/research/control_g15_diagnostics.py --mode teacher --driver g10 --teacher rgbd --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v3/s2_g10_rgbd`; max1600 x50ms; seed=44; no checkpoint/dataset; final_um=1.0326046770626347; strict=False; failure=None; evidence `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v3/s2_g10_rgbd/E02.json`. Software/MuJoCo only.
+
+- 2026-11-21T16:01:54+08:00: P2 rgbd/E06 **completed**; command `/home/him1/mujoco_bc/rcm_4090_deploy/scripts/research/control_g15_diagnostics.py --mode teacher --driver g10 --teacher rgbd --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v3/s2_g10_rgbd`; max1600 x50ms; seed=48; no checkpoint/dataset; final_um=1.8359828016533333; strict=False; failure=None; evidence `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v3/s2_g10_rgbd/E06.json`. Software/MuJoCo only.
+
+- 2026-11-21T16:10:19+08:00: P2 rgbd/E08 **completed**; command `/home/him1/mujoco_bc/rcm_4090_deploy/scripts/research/control_g15_diagnostics.py --mode teacher --driver g10 --teacher rgbd --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v3/s2_g10_rgbd`; max1600 x50ms; seed=50; no checkpoint/dataset; final_um=3.506632084458783; strict=False; failure=None; evidence `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v3/s2_g10_rgbd/E08.json`. Software/MuJoCo only.
+
+
+## 2026-11-21T08:12:04.772278+00:00 — P2 v3 用户查询结果快照（RUNNING / PARTIAL）
+
+- 配置：configs/experiment_card_control_p2_diagnostics_20261121_v3.json；只读一次状态和已有结果，未启动新实验。
+- 时间：2026-11-21 16:11:38+08:00；全卡4/12阶段完成，G10 RGB-D完成4/5，E10日志200/1600步、13.2秒前更新，未发现新错误。
+- G10 Oracle完整fast5：均值1.705273µm、最大3.491781µm、严格成功0/5。
+- G10 RGB-D已完成E00/E02/E06/E08终值0.759943/1.032605/1.835983/3.506632µm，严格成功0/4；E10未完成，不报告完整fast5均值或Gate2b，不与不同分母Oracle汇总作改善结论。
+- 目标/种子/协议：0/2/6/8/10、42/44/48/50/52、1600步×50ms；教师不用策略权重。G15与1000步策略对照尚未执行。
+- 证据：runs/20261121/diagnostics/p2_v3_progress_snapshot_v1/snapshot.json；原始runs/20261121/control_p2_diagnostics_v3/。
+
+- 2026-11-21T16:18:46+08:00: P2 rgbd/E10 **completed**; command `/home/him1/mujoco_bc/rcm_4090_deploy/scripts/research/control_g15_diagnostics.py --mode teacher --driver g10 --teacher rgbd --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v3/s2_g10_rgbd`; max1600 x50ms; seed=52; no checkpoint/dataset; final_um=1.3654707905675603; strict=False; failure=None; evidence `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v3/s2_g10_rgbd/E10.json`. Software/MuJoCo only.
+
+- 2026-11-21T16:18:46+08:00: P2 teacher **completed**; command `/home/him1/mujoco_bc/rcm_4090_deploy/scripts/research/control_g15_diagnostics.py --mode teacher --driver g10 --teacher rgbd --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v3/s2_g10_rgbd`; variant=V0; teacher=rgbd; driver=g10; completed=5; checkpoint=outputs/overnight_c_fix_symlog_081234/task2_train/step_004000.pth; no training; failure=None; evidence `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v3/s2_g10_rgbd/status.json`. Software/MuJoCo only.
+
+- 2026-11-21T16:18:47+08:00：实验 SOP `control_p2_diagnostics_20261121_v3/s2_g10_rgbd` **completed**；卡 `/home/him1/mujoco_bc/rcm_4090_deploy/configs/experiment_card_control_p2_diagnostics_20261121_v3.json`；目录 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v3`。
+  命令 `/home/him1/mujoco_bc/rcm_4090_deploy/.venv/bin/python -B -u -m scripts.research.control_g15_diagnostics --mode teacher --driver g10 --teacher rgbd --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v3/s2_g10_rgbd`；配置 `见实验卡`。
+  仅验证软件/仿真，不代表临床或硬件就绪。
+
+- 2026-11-21T16:18:52+08:00: P2 oracle/E00 **completed**; command `/home/him1/mujoco_bc/rcm_4090_deploy/scripts/research/control_g15_diagnostics.py --mode teacher --driver g15 --teacher oracle --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v3/s2_g15_oracle`; max1600 x50ms; seed=42; no checkpoint/dataset; final_um=3.0967045001201123; strict=False; failure=None; evidence `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v3/s2_g15_oracle/E00.json`. Software/MuJoCo only.
+
+- 2026-11-21T16:18:54+08:00: P2 oracle/E02 **completed**; command `/home/him1/mujoco_bc/rcm_4090_deploy/scripts/research/control_g15_diagnostics.py --mode teacher --driver g15 --teacher oracle --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v3/s2_g15_oracle`; max1600 x50ms; seed=44; no checkpoint/dataset; final_um=1.9928754161486635; strict=False; failure=None; evidence `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v3/s2_g15_oracle/E02.json`. Software/MuJoCo only.
+
+- 2026-11-21T16:18:57+08:00: P2 oracle/E06 **completed**; command `/home/him1/mujoco_bc/rcm_4090_deploy/scripts/research/control_g15_diagnostics.py --mode teacher --driver g15 --teacher oracle --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v3/s2_g15_oracle`; max1600 x50ms; seed=48; no checkpoint/dataset; final_um=3.3508583588645666; strict=False; failure=None; evidence `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v3/s2_g15_oracle/E06.json`. Software/MuJoCo only.
+
+- 2026-11-21T16:19:00+08:00: P2 oracle/E08 **completed**; command `/home/him1/mujoco_bc/rcm_4090_deploy/scripts/research/control_g15_diagnostics.py --mode teacher --driver g15 --teacher oracle --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v3/s2_g15_oracle`; max1600 x50ms; seed=50; no checkpoint/dataset; final_um=1.492427738990683; strict=False; failure=None; evidence `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v3/s2_g15_oracle/E08.json`. Software/MuJoCo only.
+
+- 2026-11-21T16:19:03+08:00: P2 oracle/E10 **completed**; command `/home/him1/mujoco_bc/rcm_4090_deploy/scripts/research/control_g15_diagnostics.py --mode teacher --driver g15 --teacher oracle --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v3/s2_g15_oracle`; max1600 x50ms; seed=52; no checkpoint/dataset; final_um=2.7395549859533466; strict=False; failure=None; evidence `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v3/s2_g15_oracle/E10.json`. Software/MuJoCo only.
+
+- 2026-11-21T16:19:03+08:00: P2 teacher **completed**; command `/home/him1/mujoco_bc/rcm_4090_deploy/scripts/research/control_g15_diagnostics.py --mode teacher --driver g15 --teacher oracle --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v3/s2_g15_oracle`; variant=V0; teacher=oracle; driver=g15; completed=5; checkpoint=outputs/overnight_c_fix_symlog_081234/task2_train/step_004000.pth; no training; failure=None; evidence `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v3/s2_g15_oracle/status.json`. Software/MuJoCo only.
+
+- 2026-11-21T16:19:03+08:00：实验 SOP `control_p2_diagnostics_20261121_v3/s2_g15_oracle` **completed**；卡 `/home/him1/mujoco_bc/rcm_4090_deploy/configs/experiment_card_control_p2_diagnostics_20261121_v3.json`；目录 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v3`。
+  命令 `/home/him1/mujoco_bc/rcm_4090_deploy/.venv/bin/python -B -u -m scripts.research.control_g15_diagnostics --mode teacher --driver g15 --teacher oracle --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v3/s2_g15_oracle`；配置 `见实验卡`。
+  仅验证软件/仿真，不代表临床或硬件就绪。
+
+- 2026-11-21T16:27:33+08:00: P2 rgbd/E00 **completed**; command `/home/him1/mujoco_bc/rcm_4090_deploy/scripts/research/control_g15_diagnostics.py --mode teacher --driver g15 --teacher rgbd --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v3/s2_g15_rgbd`; max1600 x50ms; seed=42; no checkpoint/dataset; final_um=2.4705126203569403; strict=False; failure=None; evidence `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v3/s2_g15_rgbd/E00.json`. Software/MuJoCo only.
+
+- 2026-11-21T16:36:02+08:00: P2 rgbd/E02 **completed**; command `/home/him1/mujoco_bc/rcm_4090_deploy/scripts/research/control_g15_diagnostics.py --mode teacher --driver g15 --teacher rgbd --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v3/s2_g15_rgbd`; max1600 x50ms; seed=44; no checkpoint/dataset; final_um=2.2159752402560664; strict=False; failure=None; evidence `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v3/s2_g15_rgbd/E02.json`. Software/MuJoCo only.
+
+- 2026-11-21T16:44:26+08:00: P2 rgbd/E06 **completed**; command `/home/him1/mujoco_bc/rcm_4090_deploy/scripts/research/control_g15_diagnostics.py --mode teacher --driver g15 --teacher rgbd --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v3/s2_g15_rgbd`; max1600 x50ms; seed=48; no checkpoint/dataset; final_um=2.1272922803848546; strict=False; failure=None; evidence `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v3/s2_g15_rgbd/E06.json`. Software/MuJoCo only.
+
+- 2026-11-21T16:52:53+08:00: P2 rgbd/E08 **completed**; command `/home/him1/mujoco_bc/rcm_4090_deploy/scripts/research/control_g15_diagnostics.py --mode teacher --driver g15 --teacher rgbd --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v3/s2_g15_rgbd`; max1600 x50ms; seed=50; no checkpoint/dataset; final_um=2.8115652511263276; strict=False; failure=None; evidence `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v3/s2_g15_rgbd/E08.json`. Software/MuJoCo only.
+
+
+## 2026-11-21T08:52:58.876583+00:00 — P2 v3 第二次用户结果查询（RUNNING / PARTIAL）
+
+- 配置：configs/experiment_card_control_p2_diagnostics_20261121_v3.json；只读一次状态和现有结果，未启动新实验。
+- 观察时间：2026-11-21 16:52:32+08:00；全卡6/12阶段完成，无新错误；G15 RGB-D完成3/5，E08到1500/1600步，日志11.4秒前更新。
+- 完整fast5终值：G10 Oracle均值1.705273/最大3.491781µm/严格0/5；G10 RGB-D均值1.700127/最大3.506632µm/严格0/5；G15 Oracle均值2.534484/最大3.350858µm/严格0/5。
+- 目标与种子：0/2/6/8/10，42/44/48/50/52；1600步×50ms，严格阈值≤0.35µm且连续3帧编码器停稳；教师不用模型权重。
+- 解释：G10视觉教师终值与同协议真值教师接近；尚无完整G15 RGB-D、整体Gate2b或1000步学习策略对照，不宣称P2最终胜出或稳定定位精度。
+- 输出：runs/20261121/diagnostics/p2_v3_progress_snapshot_v2/snapshot.json；原始runs/20261121/control_p2_diagnostics_v3/。
+
+- 2026-11-21T17:01:20+08:00: P2 rgbd/E10 **completed**; command `/home/him1/mujoco_bc/rcm_4090_deploy/scripts/research/control_g15_diagnostics.py --mode teacher --driver g15 --teacher rgbd --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v3/s2_g15_rgbd`; max1600 x50ms; seed=52; no checkpoint/dataset; final_um=3.0037556717137; strict=False; failure=None; evidence `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v3/s2_g15_rgbd/E10.json`. Software/MuJoCo only.
+
+- 2026-11-21T17:01:21+08:00: P2 teacher **completed**; command `/home/him1/mujoco_bc/rcm_4090_deploy/scripts/research/control_g15_diagnostics.py --mode teacher --driver g15 --teacher rgbd --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v3/s2_g15_rgbd`; variant=V0; teacher=rgbd; driver=g15; completed=5; checkpoint=outputs/overnight_c_fix_symlog_081234/task2_train/step_004000.pth; no training; failure=None; evidence `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v3/s2_g15_rgbd/status.json`. Software/MuJoCo only.
+
+- 2026-11-21T17:01:21+08:00：实验 SOP `control_p2_diagnostics_20261121_v3/s2_g15_rgbd` **completed**；卡 `/home/him1/mujoco_bc/rcm_4090_deploy/configs/experiment_card_control_p2_diagnostics_20261121_v3.json`；目录 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v3`。
+  命令 `/home/him1/mujoco_bc/rcm_4090_deploy/.venv/bin/python -B -u -m scripts.research.control_g15_diagnostics --mode teacher --driver g15 --teacher rgbd --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v3/s2_g15_rgbd`；配置 `见实验卡`。
+  仅验证软件/仿真，不代表临床或硬件就绪。
+
+- 2026-11-21T17:01:22+08:00: P2 compare-teachers **completed**; command `/home/him1/mujoco_bc/rcm_4090_deploy/scripts/research/control_g15_diagnostics.py --mode compare-teachers --workflow-dir runs/20261121/control_p2_diagnostics_v3 --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v3/s2_compare`; variant=V0; teacher=oracle; driver=g15; completed=0; checkpoint=outputs/overnight_c_fix_symlog_081234/task2_train/step_004000.pth; no training; failure=None; evidence `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v3/s2_compare/status.json`. Software/MuJoCo only.
+
+- 2026-11-21T17:01:22+08:00：实验 SOP `control_p2_diagnostics_20261121_v3/s2_compare` **completed**；卡 `/home/him1/mujoco_bc/rcm_4090_deploy/configs/experiment_card_control_p2_diagnostics_20261121_v3.json`；目录 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v3`。
+  命令 `/home/him1/mujoco_bc/rcm_4090_deploy/.venv/bin/python -B -u -m scripts.research.control_g15_diagnostics --mode compare-teachers --workflow-dir runs/20261121/control_p2_diagnostics_v3 --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v3/s2_compare`；配置 `见实验卡`。
+  仅验证软件/仿真，不代表临床或硬件就绪。
+
+- 2026-11-21T17:06:56+08:00: P2 policy/V0/E00 **completed**; command `/home/him1/mujoco_bc/rcm_4090_deploy/scripts/research/control_g15_diagnostics.py --mode policy --variant V0 --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v3/s3_v0`; checkpoint=outputs/overnight_c_fix_symlog_081234/task2_train/step_004000.pth; sha256=185a6ef02caea4ea74ba752d67618d459c906450f5b315cd8010c3c5f1703f1b; seed=42; max_steps=1000; final_um=63.7819498552562; strict=False; evidence `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v3/s3_v0/E00/evaluation_results.json`. Software/MuJoCo only.
+
+
+- 2026-11-21T09:10:26.516291+00:00: P2 GPU parallel scheduler preflight **PASS**; source `scripts/research/control_p2_parallel.py`; fixed fast5 targets0/2/6/8/10 seeds42/44/48/50/52, same step_004000 checkpoint; checks=['syntax', 'eight_completed_stages_matching_identity_and_teacher_coverage', 'all_original_pinned_assets_match', 'relocation_preserves_original_command_protocol_and_budget', 'comparison_points_to_parallel_results', 'refuse_mismatched_supervisor_without_signalling', 'gpu0_4090_egl_available']; evidence `runs/20261121/verification/p2_parallel_preflight_v1/acceptance.json`; no rollouts launched. CPU handles scheduling/hash checks; CUDA4090/EGL checked.
+
+- 2026-11-21T09:11:53.965853+00:00: P2 parallel scheduler lifecycle **PASS**; success, child failure and timeout paths; all3workers started before monitoring, comparison only after all pass; mocked subprocesses, no rollouts/signals; evidence `runs/20261121/verification/p2_parallel_preflight_v1/scheduler_lifecycle_checks.json`.
+
+- 2026-11-21T09:12:14.880779+00:00: P2 GPU parallel SOP card preflight **PASS**; command `/home/him1/mujoco_bc/rcm_4090_deploy/.venv/bin/python -E -B -m scripts.tools.experiment_workflow preflight --card configs/experiment_card_control_p2_parallel_20261121_v1.json`; same checkpoint/fast5 protocol; no experiment launched; evidence `runs/20261121/verification/p2_parallel_preflight_v1/card_acceptance.json`; GPU0/EGL planned, hash/config validation CPU I/O.
+
+- 2026-11-21T17:12:32+08:00: P2 policy **interrupted**; command `/home/him1/mujoco_bc/rcm_4090_deploy/scripts/research/control_g15_diagnostics.py --mode policy --variant V0 --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v3/s3_v0`; variant=V0; teacher=oracle; driver=g15; completed=1; checkpoint=outputs/overnight_c_fix_symlog_081234/task2_train/step_004000.pth; no training; failure=KeyboardInterrupt('received SIGTERM'); evidence `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v3/s3_v0/status.json`. Software/MuJoCo only.
+
+- 2026-11-21T17:12:33+08:00：实验 SOP `control_p2_diagnostics_20261121_v3/s3_v0` **interrupted**；卡 `/home/him1/mujoco_bc/rcm_4090_deploy/configs/experiment_card_control_p2_diagnostics_20261121_v3.json`；目录 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v3`。
+  命令 `/home/him1/mujoco_bc/rcm_4090_deploy/.venv/bin/python -B -u -m scripts.research.control_g15_diagnostics --mode policy --variant V0 --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v3/s3_v0`；配置 `见实验卡`。
+  原因：SIGTERM。
+  仅验证软件/仿真，不代表临床或硬件就绪。
+
+- 2026-11-21T17:12:33+08:00：实验 SOP `control_p2_diagnostics_20261121_v3` **interrupted**；卡 `/home/him1/mujoco_bc/rcm_4090_deploy/configs/experiment_card_control_p2_diagnostics_20261121_v3.json`；目录 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v3`。
+  结果：/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v3/workflow_status.json。
+  原因：SIGTERM。
+  仅验证软件/仿真，不代表临床或硬件就绪。
+
+- 2026-11-21T17:12:33+08:00: P2 GPU parallel **source_interrupted**; command `/home/him1/mujoco_bc/rcm_4090_deploy/scripts/research/control_p2_parallel.py --source-workflow runs/20261121/control_p2_diagnostics_v3 --supervisor-pid 36340 --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_parallel_v1/parallel`; User authorized GPU parallel migration; source /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v3; original files preserved; output `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_parallel_v1/parallel`. Fixed fast5 seeds42/44/48/50/52, checkpoint step_004000.pth; software/MuJoCo only.
+
+- 2026-11-21T17:12:33+08:00: P2 GPU parallel **reuse_verified**; command `/home/him1/mujoco_bc/rcm_4090_deploy/scripts/research/control_p2_parallel.py --source-workflow runs/20261121/control_p2_diagnostics_v3 --supervisor-pid 36340 --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_parallel_v1/parallel`; Eight complete stages copied byte-for-byte from /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v3; matching identity and teacher target coverage; output `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_parallel_v1/parallel`. Fixed fast5 seeds42/44/48/50/52, checkpoint step_004000.pth; software/MuJoCo only.
+
+
+## 2026-11-21T09:12:56.648292+00:00 — 用户授权GPU三进程并行启动（LAUNCH ACCEPTED）
+
+- 用户指令：“可以使用gpu并行提速”；调度迁移已授权。
+- 命令：env -u PYTHONHOME -u PYTHONPATH CUDA_VISIBLE_DEVICES=0 MUJOCO_GL=egl MPLBACKEND=Agg PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -E -B -m scripts.tools.experiment_workflow launch --card configs/experiment_card_control_p2_parallel_20261121_v1.json。
+- 结果：新GNOME Terminal接受启动一次；启动后不查询/等待进展，未声称三组已完成或已测得加速。
+- 范围：管理器正常中断原未完成串行策略并保留记录；验证复用八个完整阶段，V0/V3/V2分进程并行共享GPU0，组内目标仍顺序，原40分钟单组预算不变；任一失败不重试，跳过依赖比较。
+- checkpoint：outputs/overnight_c_fix_symlog_081234/task2_train/step_004000.pth，SHA256185a6ef02caea4ea74ba752d67618d459c906450f5b315cd8010c3c5f1703f1b；固定fast5目标0/2/6/8/10、种子42/44/48/50/52、1000步×50ms；不训练不改精度。
+- 已完成教师：G10 RGB-D均值1.700127µm、G15 RGB-D均值2.525820µm；两驱动Gate2b通过，严格成功各0/5，与后续策略收益分别报告。
+- 输出：runs/20261121/control_p2_parallel_v1/parallel/；预检与凭据runs/20261121/verification/p2_parallel_preflight_v1/；原结果runs/20261121/control_p2_diagnostics_v3/保留。
+- CPU仍运行现有视觉几何/标量驱动，CUDA推理/EGL渲染并行；性能改进尚待实测。
+
+- 2026-11-21T17:19:10+08:00: P2 policy/V0/E00 **completed**; command `/home/him1/mujoco_bc/rcm_4090_deploy/scripts/research/control_g15_diagnostics.py --mode policy --variant V0 --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_parallel_v1/parallel/s3_v0`; checkpoint=outputs/overnight_c_fix_symlog_081234/task2_train/step_004000.pth; sha256=185a6ef02caea4ea74ba752d67618d459c906450f5b315cd8010c3c5f1703f1b; seed=42; max_steps=1000; final_um=63.7819498552562; strict=False; evidence `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_parallel_v1/parallel/s3_v0/E00/evaluation_results.json`. Software/MuJoCo only.
+
+- 2026-11-21T17:19:10+08:00: P2 policy/V3/E00 **completed**; command `/home/him1/mujoco_bc/rcm_4090_deploy/scripts/research/control_g15_diagnostics.py --mode policy --variant V3 --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_parallel_v1/parallel/s3_v3`; checkpoint=outputs/overnight_c_fix_symlog_081234/task2_train/step_004000.pth; sha256=185a6ef02caea4ea74ba752d67618d459c906450f5b315cd8010c3c5f1703f1b; seed=42; max_steps=1000; final_um=87.5629152762955; strict=False; evidence `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_parallel_v1/parallel/s3_v3/E00/evaluation_results.json`. Software/MuJoCo only.
+
+- 2026-11-21T17:19:11+08:00: P2 policy/V2/E00 **completed**; command `/home/him1/mujoco_bc/rcm_4090_deploy/scripts/research/control_g15_diagnostics.py --mode policy --variant V2 --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_parallel_v1/parallel/s3_v2`; checkpoint=outputs/overnight_c_fix_symlog_081234/task2_train/step_004000.pth; sha256=185a6ef02caea4ea74ba752d67618d459c906450f5b315cd8010c3c5f1703f1b; seed=42; max_steps=1000; final_um=41.19028891271827; strict=False; evidence `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_parallel_v1/parallel/s3_v2/E00/evaluation_results.json`. Software/MuJoCo only.
+
+- 2026-11-21T17:25:39+08:00: P2 policy/V0/E02 **completed**; command `/home/him1/mujoco_bc/rcm_4090_deploy/scripts/research/control_g15_diagnostics.py --mode policy --variant V0 --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_parallel_v1/parallel/s3_v0`; checkpoint=outputs/overnight_c_fix_symlog_081234/task2_train/step_004000.pth; sha256=185a6ef02caea4ea74ba752d67618d459c906450f5b315cd8010c3c5f1703f1b; seed=44; max_steps=1000; final_um=59.85688511692576; strict=False; evidence `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_parallel_v1/parallel/s3_v0/E02/evaluation_results.json`. Software/MuJoCo only.
+
+- 2026-11-21T17:25:40+08:00: P2 policy/V3/E02 **completed**; command `/home/him1/mujoco_bc/rcm_4090_deploy/scripts/research/control_g15_diagnostics.py --mode policy --variant V3 --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_parallel_v1/parallel/s3_v3`; checkpoint=outputs/overnight_c_fix_symlog_081234/task2_train/step_004000.pth; sha256=185a6ef02caea4ea74ba752d67618d459c906450f5b315cd8010c3c5f1703f1b; seed=44; max_steps=1000; final_um=83.73419448437987; strict=False; evidence `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_parallel_v1/parallel/s3_v3/E02/evaluation_results.json`. Software/MuJoCo only.
+
+- 2026-11-21T17:25:41+08:00: P2 policy/V2/E02 **completed**; command `/home/him1/mujoco_bc/rcm_4090_deploy/scripts/research/control_g15_diagnostics.py --mode policy --variant V2 --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_parallel_v1/parallel/s3_v2`; checkpoint=outputs/overnight_c_fix_symlog_081234/task2_train/step_004000.pth; sha256=185a6ef02caea4ea74ba752d67618d459c906450f5b315cd8010c3c5f1703f1b; seed=44; max_steps=1000; final_um=55.694477180947814; strict=False; evidence `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_parallel_v1/parallel/s3_v2/E02/evaluation_results.json`. Software/MuJoCo only.
+
+- 2026-11-21T17:32:09+08:00: P2 policy/V0/E06 **completed**; command `/home/him1/mujoco_bc/rcm_4090_deploy/scripts/research/control_g15_diagnostics.py --mode policy --variant V0 --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_parallel_v1/parallel/s3_v0`; checkpoint=outputs/overnight_c_fix_symlog_081234/task2_train/step_004000.pth; sha256=185a6ef02caea4ea74ba752d67618d459c906450f5b315cd8010c3c5f1703f1b; seed=48; max_steps=1000; final_um=72.40819854931978; strict=False; evidence `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_parallel_v1/parallel/s3_v0/E06/evaluation_results.json`. Software/MuJoCo only.
+
+- 2026-11-21T17:32:10+08:00: P2 policy/V2/E06 **completed**; command `/home/him1/mujoco_bc/rcm_4090_deploy/scripts/research/control_g15_diagnostics.py --mode policy --variant V2 --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_parallel_v1/parallel/s3_v2`; checkpoint=outputs/overnight_c_fix_symlog_081234/task2_train/step_004000.pth; sha256=185a6ef02caea4ea74ba752d67618d459c906450f5b315cd8010c3c5f1703f1b; seed=48; max_steps=1000; final_um=132.08921322949615; strict=False; evidence `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_parallel_v1/parallel/s3_v2/E06/evaluation_results.json`. Software/MuJoCo only.
+
+- 2026-11-21T17:32:11+08:00: P2 policy/V3/E06 **completed**; command `/home/him1/mujoco_bc/rcm_4090_deploy/scripts/research/control_g15_diagnostics.py --mode policy --variant V3 --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_parallel_v1/parallel/s3_v3`; checkpoint=outputs/overnight_c_fix_symlog_081234/task2_train/step_004000.pth; sha256=185a6ef02caea4ea74ba752d67618d459c906450f5b315cd8010c3c5f1703f1b; seed=48; max_steps=1000; final_um=146.63318861543922; strict=False; evidence `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_parallel_v1/parallel/s3_v3/E06/evaluation_results.json`. Software/MuJoCo only.
+
+- 2026-11-21T17:38:42+08:00: P2 policy/V0/E08 **completed**; command `/home/him1/mujoco_bc/rcm_4090_deploy/scripts/research/control_g15_diagnostics.py --mode policy --variant V0 --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_parallel_v1/parallel/s3_v0`; checkpoint=outputs/overnight_c_fix_symlog_081234/task2_train/step_004000.pth; sha256=185a6ef02caea4ea74ba752d67618d459c906450f5b315cd8010c3c5f1703f1b; seed=50; max_steps=1000; final_um=70.89930198426362; strict=False; evidence `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_parallel_v1/parallel/s3_v0/E08/evaluation_results.json`. Software/MuJoCo only.
+
+- 2026-11-21T17:38:44+08:00: P2 policy/V2/E08 **completed**; command `/home/him1/mujoco_bc/rcm_4090_deploy/scripts/research/control_g15_diagnostics.py --mode policy --variant V2 --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_parallel_v1/parallel/s3_v2`; checkpoint=outputs/overnight_c_fix_symlog_081234/task2_train/step_004000.pth; sha256=185a6ef02caea4ea74ba752d67618d459c906450f5b315cd8010c3c5f1703f1b; seed=50; max_steps=1000; final_um=186.37645814799475; strict=False; evidence `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_parallel_v1/parallel/s3_v2/E08/evaluation_results.json`. Software/MuJoCo only.
+
+- 2026-11-21T17:38:46+08:00: P2 policy/V3/E08 **completed**; command `/home/him1/mujoco_bc/rcm_4090_deploy/scripts/research/control_g15_diagnostics.py --mode policy --variant V3 --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_parallel_v1/parallel/s3_v3`; checkpoint=outputs/overnight_c_fix_symlog_081234/task2_train/step_004000.pth; sha256=185a6ef02caea4ea74ba752d67618d459c906450f5b315cd8010c3c5f1703f1b; seed=50; max_steps=1000; final_um=172.83623941365303; strict=False; evidence `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_parallel_v1/parallel/s3_v3/E08/evaluation_results.json`. Software/MuJoCo only.
+
+- 2026-11-21T17:45:13+08:00: P2 policy/V0/E10 **completed**; command `/home/him1/mujoco_bc/rcm_4090_deploy/scripts/research/control_g15_diagnostics.py --mode policy --variant V0 --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_parallel_v1/parallel/s3_v0`; checkpoint=outputs/overnight_c_fix_symlog_081234/task2_train/step_004000.pth; sha256=185a6ef02caea4ea74ba752d67618d459c906450f5b315cd8010c3c5f1703f1b; seed=52; max_steps=1000; final_um=48.74168815631798; strict=False; evidence `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_parallel_v1/parallel/s3_v0/E10/evaluation_results.json`. Software/MuJoCo only.
+
+- 2026-11-21T17:45:13+08:00: P2 policy **completed**; command `/home/him1/mujoco_bc/rcm_4090_deploy/scripts/research/control_g15_diagnostics.py --mode policy --variant V0 --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_parallel_v1/parallel/s3_v0`; variant=V0; teacher=oracle; driver=g15; completed=5; checkpoint=outputs/overnight_c_fix_symlog_081234/task2_train/step_004000.pth; no training; failure=None; evidence `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_parallel_v1/parallel/s3_v0/status.json`. Software/MuJoCo only.
+
+- 2026-11-21T17:45:14+08:00: P2 GPU parallel **completed**; command `/home/him1/mujoco_bc/rcm_4090_deploy/scripts/research/control_p2_parallel.py --source-workflow runs/20261121/control_p2_diagnostics_v3 --supervisor-pid 36340 --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_parallel_v1/parallel`; s3_v0: {"status": "completed", "pid": 42009, "started_at": "2026-11-21T17:12:33+08:00", "output_dir": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_parallel_v1/parallel/s3_v0", "timeout_s": 2400, "final_mean_um": 63.137604732416676, "strict_success_count": 0, "finished_at": "2026-11-21T17:45:14+08:00", "elapsed_s": 1960.5830827710015}; output `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_parallel_v1/parallel`. Fixed fast5 seeds42/44/48/50/52, checkpoint step_004000.pth; software/MuJoCo only.
+
+- 2026-11-21T17:45:15+08:00: P2 policy/V2/E10 **completed**; command `/home/him1/mujoco_bc/rcm_4090_deploy/scripts/research/control_g15_diagnostics.py --mode policy --variant V2 --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_parallel_v1/parallel/s3_v2`; checkpoint=outputs/overnight_c_fix_symlog_081234/task2_train/step_004000.pth; sha256=185a6ef02caea4ea74ba752d67618d459c906450f5b315cd8010c3c5f1703f1b; seed=52; max_steps=1000; final_um=86.93862302094088; strict=False; evidence `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_parallel_v1/parallel/s3_v2/E10/evaluation_results.json`. Software/MuJoCo only.
+
+- 2026-11-21T17:45:15+08:00: P2 policy **completed**; command `/home/him1/mujoco_bc/rcm_4090_deploy/scripts/research/control_g15_diagnostics.py --mode policy --variant V2 --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_parallel_v1/parallel/s3_v2`; variant=V2; teacher=oracle; driver=g15; completed=5; checkpoint=outputs/overnight_c_fix_symlog_081234/task2_train/step_004000.pth; no training; failure=None; evidence `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_parallel_v1/parallel/s3_v2/status.json`. Software/MuJoCo only.
+
+- 2026-11-21T17:45:16+08:00: P2 GPU parallel **completed**; command `/home/him1/mujoco_bc/rcm_4090_deploy/scripts/research/control_p2_parallel.py --source-workflow runs/20261121/control_p2_diagnostics_v3 --supervisor-pid 36340 --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_parallel_v1/parallel`; s3_v2: {"status": "completed", "pid": 42013, "started_at": "2026-11-21T17:12:33+08:00", "output_dir": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_parallel_v1/parallel/s3_v2", "timeout_s": 2400, "final_mean_um": 100.45781209841957, "strict_success_count": 0, "finished_at": "2026-11-21T17:45:16+08:00", "elapsed_s": 1962.5830354849986}; output `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_parallel_v1/parallel`. Fixed fast5 seeds42/44/48/50/52, checkpoint step_004000.pth; software/MuJoCo only.
+
+- 2026-11-21T17:45:18+08:00: P2 policy/V3/E10 **completed**; command `/home/him1/mujoco_bc/rcm_4090_deploy/scripts/research/control_g15_diagnostics.py --mode policy --variant V3 --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_parallel_v1/parallel/s3_v3`; checkpoint=outputs/overnight_c_fix_symlog_081234/task2_train/step_004000.pth; sha256=185a6ef02caea4ea74ba752d67618d459c906450f5b315cd8010c3c5f1703f1b; seed=52; max_steps=1000; final_um=97.90170277582176; strict=False; evidence `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_parallel_v1/parallel/s3_v3/E10/evaluation_results.json`. Software/MuJoCo only.
+
+- 2026-11-21T17:45:18+08:00: P2 policy **completed**; command `/home/him1/mujoco_bc/rcm_4090_deploy/scripts/research/control_g15_diagnostics.py --mode policy --variant V3 --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_parallel_v1/parallel/s3_v3`; variant=V3; teacher=oracle; driver=g15; completed=5; checkpoint=outputs/overnight_c_fix_symlog_081234/task2_train/step_004000.pth; no training; failure=None; evidence `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_parallel_v1/parallel/s3_v3/status.json`. Software/MuJoCo only.
+
+- 2026-11-21T17:45:19+08:00: P2 GPU parallel **completed**; command `/home/him1/mujoco_bc/rcm_4090_deploy/scripts/research/control_p2_parallel.py --source-workflow runs/20261121/control_p2_diagnostics_v3 --supervisor-pid 36340 --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_parallel_v1/parallel`; s3_v3: {"status": "completed", "pid": 42011, "started_at": "2026-11-21T17:12:33+08:00", "output_dir": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_parallel_v1/parallel/s3_v3", "timeout_s": 2400, "final_mean_um": 117.73364811311788, "strict_success_count": 0, "finished_at": "2026-11-21T17:45:19+08:00", "elapsed_s": 1965.5848512289995}; output `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_parallel_v1/parallel`. Fixed fast5 seeds42/44/48/50/52, checkpoint step_004000.pth; software/MuJoCo only.
+
+- 2026-11-21T17:45:20+08:00: P2 compare-policy **completed**; command `/home/him1/mujoco_bc/rcm_4090_deploy/scripts/research/control_g15_diagnostics.py --mode compare-policy --workflow-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_parallel_v1/parallel --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_parallel_v1/parallel/s3_compare`; variant=V0; teacher=oracle; driver=g15; completed=0; checkpoint=outputs/overnight_c_fix_symlog_081234/task2_train/step_004000.pth; no training; failure=None; evidence `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_parallel_v1/parallel/s3_compare/status.json`. Software/MuJoCo only.
+
+- 2026-11-21T17:45:21+08:00: P2 GPU parallel **completed**; command `/home/him1/mujoco_bc/rcm_4090_deploy/scripts/research/control_p2_parallel.py --source-workflow runs/20261121/control_p2_diagnostics_v3 --supervisor-pid 36340 --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_parallel_v1/parallel`; {"status": "completed", "workers": 3, "device": "CUDA physical GPU0 RTX4090 / EGL", "source": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v3", "stages": {"s3_v0": {"status": "completed", "pid": 42009, "started_at": "2026-11-21T17:12:33+08:00", "output_dir": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_parallel_v1/parallel/s3_v0", "timeout_s": 2400, "final_mean_um": 63.137604732416676, "strict_success_count": 0, "finished_at": "2026-11-21T17:45:14+08:00", "elapsed_s": 1960.5830827710015}, "s3_v3": {"status": "completed", "pid": 42011, "started_at": "2026-11-21T17:12:33+08:00", "output_dir": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_parallel_v1/parallel/s3_v3", "timeout_s": 2400, "final_mean_um": 117.73364811311788, "strict_success_count": 0, "finished_at": "2026-11-21T17:45:19+08:00", "elapsed_s": 1965.5848512289995}, "s3_v2": {"status": "completed", "pid": 42013, "started_at": "2026-11-21T17:12:33+08:00", "output_dir": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_parallel_v1/parallel/s3_v2", "timeout_s": 2400, "final_mean_um": 100.45781209841957, "strict_success_count": 0, "finished_at": "2026-11-21T17:45:16+08:00", "elapsed_s": 1962.5830354849986}}, "started_at": "2026-11-21T17:12:32+08:00", "updated_at": "2026-11-21T17:45:21+08:00", "comparison": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_parallel_v1/parallel/s3_compare/summary.json", "best_variant": "V0", "strict_success_not_regressed": true, "finished_at": "2026-11-21T17:45:21+08:00"}; output `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_parallel_v1/parallel`. Fixed fast5 seeds42/44/48/50/52, checkpoint step_004000.pth; software/MuJoCo only.
+
+- 2026-11-21T17:45:21+08:00：实验 SOP `control_p2_parallel_20261121_v1/parallel` **completed**；卡 `/home/him1/mujoco_bc/rcm_4090_deploy/configs/experiment_card_control_p2_parallel_20261121_v1.json`；目录 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_parallel_v1`。
+  命令 `/home/him1/mujoco_bc/rcm_4090_deploy/.venv/bin/python -B -u -m scripts.research.control_p2_parallel --source-workflow runs/20261121/control_p2_diagnostics_v3 --supervisor-pid 36340 --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_parallel_v1/parallel`；配置 `见实验卡`。
+  仅验证软件/仿真，不代表临床或硬件就绪。
+
+- 2026-11-21T17:45:21+08:00：实验 SOP `control_p2_parallel_20261121_v1` **completed**；卡 `/home/him1/mujoco_bc/rcm_4090_deploy/configs/experiment_card_control_p2_parallel_20261121_v1.json`；目录 `/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_parallel_v1`。
+  结果：/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_parallel_v1/workflow_status.json。
+  仅验证软件/仿真，不代表临床或硬件就绪。
+
+
+## 2026-11-21T09:48:49.966832+00:00 — GPU并行P2完整结果发布前验收
+
+- 用户要求上传GitHub；未启动新实验。命令/卡：configs/experiment_card_control_p2_parallel_20261121_v1.json；runs/20261121/control_p2_parallel_publication_v1/prepare.py。
+- 验收：PASS，流程与比较均completed，15目标×1000步，156项固定资产一致，61项复用文件SHA256一致；目标0/2/6/8/10、种子42/44/48/50/52、同step_004000权重和50ms协议。
+- 指标：V0均值63.137605/最大72.408199µm；V3均值117.733648/最大172.836239µm；V2均值100.457812/最大186.376458µm；严格成功各0/5，本轮P2未改善基线。
+- 耗时：2026-11-21 17:12:31至17:45:21+08:00约32分50秒；无完整配对串行计时，不声称实测加速倍数。
+- 记录完整原始数据与中断历史；不训练、不上传权重。发布证据runs/20261121/control_p2_parallel_publication_v1/；原结果runs/20261121/control_p2_parallel_v1/parallel/。
+- 归档为CPU I/O任务；实验使用CUDA物理GPU0/EGL。仅验证软件仿真。

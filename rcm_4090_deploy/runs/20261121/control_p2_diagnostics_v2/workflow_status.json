@@ -1,6 +1,6 @@
 {
   "id": "control_p2_diagnostics_20261121_v2",
-  "status": "running",
+  "status": "interrupted",
   "pid": 28302,
   "stages": {
     "s1_v0": {
@@ -56,46 +56,56 @@
       "finished_at": "2026-11-21T14:48:27+08:00"
     },
     "s2_g10_rgbd": {
-      "status": "running",
+      "status": "interrupted",
       "type": "module",
       "output_dir": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v2/s2_g10_rgbd",
-      "started_at": "2026-11-21T14:48:27+08:00"
+      "started_at": "2026-11-21T14:48:27+08:00",
+      "reason": "Command '['/home/him1/mujoco_bc/rcm_4090_deploy/.venv/bin/python', '-B', '-u', '-m', 'scripts.research.control_g15_diagnostics', '--mode', 'teacher', '--driver', 'g10', '--teacher', 'rgbd', '--output-dir', '/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v2/s2_g10_rgbd']' timed out after 1800 seconds",
+      "finished_at": "2026-11-21T15:18:27+08:00"
     },
     "s2_g15_oracle": {
-      "status": "pending",
+      "status": "skipped",
       "type": "module",
-      "output_dir": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v2/s2_g15_oracle"
+      "output_dir": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v2/s2_g15_oracle",
+      "reason": "workflow interrupted"
     },
     "s2_g15_rgbd": {
-      "status": "pending",
+      "status": "skipped",
       "type": "module",
-      "output_dir": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v2/s2_g15_rgbd"
+      "output_dir": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v2/s2_g15_rgbd",
+      "reason": "workflow interrupted"
     },
     "s2_compare": {
-      "status": "pending",
+      "status": "skipped",
       "type": "module",
-      "output_dir": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v2/s2_compare"
+      "output_dir": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v2/s2_compare",
+      "reason": "workflow interrupted"
     },
     "s3_v0": {
-      "status": "pending",
+      "status": "skipped",
       "type": "module",
-      "output_dir": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v2/s3_v0"
+      "output_dir": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v2/s3_v0",
+      "reason": "workflow interrupted"
     },
     "s3_v3": {
-      "status": "pending",
+      "status": "skipped",
       "type": "module",
-      "output_dir": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v2/s3_v3"
+      "output_dir": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v2/s3_v3",
+      "reason": "workflow interrupted"
     },
     "s3_v2": {
-      "status": "pending",
+      "status": "skipped",
       "type": "module",
-      "output_dir": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v2/s3_v2"
+      "output_dir": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v2/s3_v2",
+      "reason": "workflow interrupted"
     },
     "s3_compare": {
-      "status": "pending",
+      "status": "skipped",
       "type": "module",
-      "output_dir": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v2/s3_compare"
+      "output_dir": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v2/s3_compare",
+      "reason": "workflow interrupted"
     }
   },
-  "updated_at": "2026-11-21T14:48:27+08:00"
+  "updated_at": "2026-11-21T15:18:27+08:00",
+  "reason": "Command '['/home/him1/mujoco_bc/rcm_4090_deploy/.venv/bin/python', '-B', '-u', '-m', 'scripts.research.control_g15_diagnostics', '--mode', 'teacher', '--driver', 'g10', '--teacher', 'rgbd', '--output-dir', '/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v2/s2_g10_rgbd']' timed out after 1800 seconds"
 }

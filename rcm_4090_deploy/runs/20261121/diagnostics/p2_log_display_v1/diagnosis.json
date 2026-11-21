@@ -1,0 +1,42 @@
+{
+  "recorded_at_utc": "2026-11-21T07:16:14.143783+00:00",
+  "observation_time_system": "2026-11-21T15:15:07+08:00",
+  "workflow": "runs/20261121/control_p2_diagnostics_v2",
+  "purpose": "Diagnose apparently frozen terminal logs and expose actual file in a new terminal",
+  "observed_progress": {
+    "completed_targets": 3,
+    "total_targets": 5,
+    "active_episode_index": 8,
+    "last_logged_step": 100,
+    "last_logged_error_um": 16672.395837,
+    "log_age_seconds": 19.3
+  },
+  "process": {
+    "pid": 28792,
+    "state": "running",
+    "cpu_percent_lifetime": 100,
+    "supervisor_pid": 28302,
+    "log_reader_wchan": "anon_pipe_read"
+  },
+  "diagnosis": "Disk log is advancing; reader waits for next child output, not blocked on terminal write. Exact cause of user-visible frozen view is unconfirmed.",
+  "cadence": "Teacher logs step1 and every100 steps; observed throughput implies tens of seconds between lines.",
+  "terminal_command": [
+    "gnome-terminal",
+    "--window",
+    "--working-directory=/home/him1/mujoco_bc/rcm_4090_deploy",
+    "--title=P2 RGB-D 实时日志",
+    "--",
+    "/usr/bin/tail",
+    "-n",
+    "35",
+    "-F",
+    "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v2/s2_g10_rgbd.log"
+  ],
+  "terminal_launch_returncode": 0,
+  "terminal_stdout": "",
+  "terminal_stderr": "",
+  "terminal_result": "launch accepted; visual display not independently verified",
+  "experiment_action": "No restart, no retries, no pinned source or protocol changes; only a read-only log viewer launched.",
+  "budget": "Original 1800-second stage budget remains active; timeout risk previously recorded.",
+  "scope": "Partial runtime diagnosis, no final success or performance claim"
+}

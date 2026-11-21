@@ -1,0 +1,23 @@
+{
+  "timestamp": "2026-11-21T09:12:56.648292+00:00",
+  "status": "gnome_terminal_launch_accepted",
+  "authorization": "User explicitly requested GPU parallel acceleration",
+  "card": "configs/experiment_card_control_p2_parallel_20261121_v1.json",
+  "output_dir": "runs/20261121/control_p2_parallel_v1",
+  "results_dir": "runs/20261121/control_p2_parallel_v1/parallel",
+  "launch_count": 1,
+  "post_launch_status_polled": false,
+  "completion_not_observed": true,
+  "schedule": "Gracefully interrupt identified sequential supervisor; reuse eight complete fingerprint-matched stages; run V0/V3/V2 concurrently on CUDA GPU0 with separate processes and original2400second budgets; compare only if all5targets per variant complete",
+  "source_evidence_preserved": "runs/20261121/control_p2_diagnostics_v3",
+  "experiment_parameters": "Same1000steps,50ms,targets,seeds,weights,render,action and stop criteria; no numerical changes",
+  "resource_snapshot_before_launch": {
+    "gpu": "NVIDIA GeForce RTX4090",
+    "used_MiB": 2410,
+    "total_MiB": 49140,
+    "instant_utilization_percent": 2,
+    "cpu_affinity_count": 28
+  },
+  "preflight": "7 static/preflight checks plus3 mocked lifecycle cases and SOP card preflight PASS",
+  "limits": "Parallel speedup unmeasured; latency under resource contention differs from sequential latency"
+}

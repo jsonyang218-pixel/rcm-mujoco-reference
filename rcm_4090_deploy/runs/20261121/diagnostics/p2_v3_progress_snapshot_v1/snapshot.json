@@ -1,0 +1,34 @@
+{
+  "recorded_at_utc": "2026-11-21T08:12:04.772278+00:00",
+  "observation_time_system": "2026-11-21T16:11:38+08:00",
+  "status": "partial_running",
+  "card": "configs/experiment_card_control_p2_diagnostics_20261121_v3.json",
+  "workflow_output": "runs/20261121/control_p2_diagnostics_v3",
+  "completed_stages": 4,
+  "total_stages": 12,
+  "g10_oracle": {
+    "completed_targets": 5,
+    "final_mean_um": 1.7052728586923003,
+    "final_max_um": 3.4917810262350604,
+    "strict_success_count": 0
+  },
+  "g10_rgbd": {
+    "completed_targets": 4,
+    "total_targets": 5,
+    "completed_final_errors_um": {
+      "E00": 0.7599432779359836,
+      "E02": 1.0326046770626347,
+      "E06": 1.8359828016533333,
+      "E08": 3.506632084458783
+    },
+    "strict_success_count_completed": 0,
+    "active_episode": "E10",
+    "last_logged_step": 200,
+    "max_steps": 1600,
+    "log_age_s": 13.2
+  },
+  "remaining": "G15 teachers, teacher comparison, three1000-step policy variants and policy comparison pending",
+  "interpretation": "No complete G10 RGB-D fast5 mean or Gate2b yet; no final P2 improvement conclusion; completed smoke tests are not long-run accuracy results",
+  "comparison_protocol": "Teacher targets0,2,6,8,10; seeds42,44,48,50,52;1600steps50ms;strict<=0.35um+3settledframes;no policy checkpoint in teachers",
+  "new_experiment_launched": false
+}

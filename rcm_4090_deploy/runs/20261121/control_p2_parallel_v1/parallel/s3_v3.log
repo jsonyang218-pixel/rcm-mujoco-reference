@@ -1,0 +1,149 @@
+Warning: wandb not available, logging will be local only
+加载模型: outputs/overnight_c_fix_symlog_081234/task2_train/step_004000.pth
+模型加载完成 (type=dit_rectified_flow, epoch=3, train_loss=0.116777, val_loss=0.148003)
+
+评估 episodes:   0%|          | 0/1 [00:00<?, ?it/s]
+Episode 1/1
+  目标世界坐标: [348.825, -16.156, 373.943] mm
+  closed-loop step 1/1000, error=19548.126 um
+  closed-loop step 100/1000, error=16894.425 um
+  closed-loop step 200/1000, error=14162.194 um
+  closed-loop step 300/1000, error=11397.689 um
+  closed-loop step 400/1000, error=8619.802 um
+  closed-loop step 500/1000, error=5893.749 um
+  closed-loop step 600/1000, error=3218.632 um
+  closed-loop step 700/1000, error=512.232 um
+  closed-loop step 800/1000, error=171.720 um
+  closed-loop step 900/1000, error=140.484 um
+  closed-loop step 1000/1000, error=87.731 um
+  ✗ 失败: 1000 步, 误差 0.088 mm
+
+评估 episodes: 100%|██████████| 1/1 [06:34<00:00, 394.44s/it]
+评估 episodes: 100%|██████████| 1/1 [06:34<00:00, 394.44s/it]
+
+============================================================
+评估结果汇总:
+  成功率: 0.0% (0/1)
+  平均步数: 1000.0
+  平均最终误差: 0.088 mm
+============================================================
+
+结果已保存到: /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_parallel_v1/parallel/s3_v3/E00/evaluation_results.json
+Result: /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_parallel_v1/parallel/s3_v3; completed=1/5
+
+评估 episodes:   0%|          | 0/1 [00:00<?, ?it/s]
+Episode 3/1
+  目标世界坐标: [349.875, -15.579, 374.656] mm
+  closed-loop step 1/1000, error=19545.438 um
+  closed-loop step 100/1000, error=16798.387 um
+  closed-loop step 200/1000, error=14064.347 um
+  closed-loop step 300/1000, error=11300.323 um
+  closed-loop step 400/1000, error=8509.580 um
+  closed-loop step 500/1000, error=5815.300 um
+  closed-loop step 600/1000, error=3156.503 um
+  closed-loop step 700/1000, error=399.012 um
+  closed-loop step 800/1000, error=219.896 um
+  closed-loop step 900/1000, error=173.051 um
+  closed-loop step 1000/1000, error=82.050 um
+  ✗ 失败: 1000 步, 误差 0.084 mm
+
+评估 episodes: 100%|██████████| 1/1 [06:30<00:00, 390.11s/it]
+评估 episodes: 100%|██████████| 1/1 [06:30<00:00, 390.11s/it]
+
+============================================================
+评估结果汇总:
+  成功率: 0.0% (0/1)
+  平均步数: 1000.0
+  平均最终误差: 0.084 mm
+============================================================
+
+结果已保存到: /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_parallel_v1/parallel/s3_v3/E02/evaluation_results.json
+Result: /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_parallel_v1/parallel/s3_v3; completed=2/5
+
+评估 episodes:   0%|          | 0/1 [00:00<?, ?it/s]
+Episode 7/1
+  目标世界坐标: [346.941, -14.215, 371.865] mm
+  closed-loop step 1/1000, error=19798.171 um
+  closed-loop step 100/1000, error=17130.403 um
+  closed-loop step 200/1000, error=14435.882 um
+  closed-loop step 300/1000, error=11693.033 um
+  closed-loop step 400/1000, error=8951.559 um
+  closed-loop step 500/1000, error=6275.416 um
+  closed-loop step 600/1000, error=3633.752 um
+  closed-loop step 700/1000, error=950.323 um
+  closed-loop step 800/1000, error=280.724 um
+  closed-loop step 900/1000, error=249.560 um
+  closed-loop step 1000/1000, error=149.829 um
+  ✗ 失败: 1000 步, 误差 0.147 mm
+
+评估 episodes: 100%|██████████| 1/1 [06:30<00:00, 390.29s/it]
+评估 episodes: 100%|██████████| 1/1 [06:30<00:00, 390.29s/it]
+
+============================================================
+评估结果汇总:
+  成功率: 0.0% (0/1)
+  平均步数: 1000.0
+  平均最终误差: 0.147 mm
+============================================================
+
+结果已保存到: /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_parallel_v1/parallel/s3_v3/E06/evaluation_results.json
+Result: /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_parallel_v1/parallel/s3_v3; completed=3/5
+
+评估 episodes:   0%|          | 0/1 [00:00<?, ?it/s]
+Episode 9/1
+  目标世界坐标: [351.055, -13.612, 375.236] mm
+  closed-loop step 1/1000, error=19609.872 um
+  closed-loop step 100/1000, error=16980.936 um
+  closed-loop step 200/1000, error=14309.786 um
+  closed-loop step 300/1000, error=11563.248 um
+  closed-loop step 400/1000, error=8823.054 um
+  closed-loop step 500/1000, error=6146.888 um
+  closed-loop step 600/1000, error=3481.079 um
+  closed-loop step 700/1000, error=755.388 um
+  closed-loop step 800/1000, error=235.508 um
+  closed-loop step 900/1000, error=242.012 um
+  closed-loop step 1000/1000, error=172.459 um
+  ✗ 失败: 1000 步, 误差 0.173 mm
+
+评估 episodes: 100%|██████████| 1/1 [06:34<00:00, 394.66s/it]
+评估 episodes: 100%|██████████| 1/1 [06:34<00:00, 394.66s/it]
+
+============================================================
+评估结果汇总:
+  成功率: 0.0% (0/1)
+  平均步数: 1000.0
+  平均最终误差: 0.173 mm
+============================================================
+
+结果已保存到: /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_parallel_v1/parallel/s3_v3/E08/evaluation_results.json
+Result: /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_parallel_v1/parallel/s3_v3; completed=4/5
+
+评估 episodes:   0%|          | 0/1 [00:00<?, ?it/s]
+Episode 11/1
+  目标世界坐标: [345.728, -13.461, 371.177] mm
+  closed-loop step 1/1000, error=19730.540 um
+  closed-loop step 100/1000, error=17020.012 um
+  closed-loop step 200/1000, error=14255.288 um
+  closed-loop step 300/1000, error=11532.367 um
+  closed-loop step 400/1000, error=8823.285 um
+  closed-loop step 500/1000, error=6123.043 um
+  closed-loop step 600/1000, error=3482.499 um
+  closed-loop step 700/1000, error=799.686 um
+  closed-loop step 800/1000, error=220.427 um
+  closed-loop step 900/1000, error=129.418 um
+  closed-loop step 1000/1000, error=97.337 um
+  ✗ 失败: 1000 步, 误差 0.098 mm
+
+评估 episodes: 100%|██████████| 1/1 [06:32<00:00, 392.21s/it]
+评估 episodes: 100%|██████████| 1/1 [06:32<00:00, 392.21s/it]
+
+============================================================
+评估结果汇总:
+  成功率: 0.0% (0/1)
+  平均步数: 1000.0
+  平均最终误差: 0.098 mm
+============================================================
+
+结果已保存到: /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_parallel_v1/parallel/s3_v3/E10/evaluation_results.json
+Result: /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_parallel_v1/parallel/s3_v3; completed=5/5
+Stage completed: /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_parallel_v1/parallel/s3_v3/status.json

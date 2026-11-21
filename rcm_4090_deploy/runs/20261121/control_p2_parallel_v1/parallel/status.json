@@ -1,0 +1,47 @@
+{
+  "status": "completed",
+  "workers": 3,
+  "device": "CUDA physical GPU0 RTX4090 / EGL",
+  "source": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v3",
+  "stages": {
+    "s3_v0": {
+      "status": "completed",
+      "pid": 42009,
+      "started_at": "2026-11-21T17:12:33+08:00",
+      "output_dir": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_parallel_v1/parallel/s3_v0",
+      "timeout_s": 2400,
+      "final_mean_um": 63.137604732416676,
+      "strict_success_count": 0,
+      "finished_at": "2026-11-21T17:45:14+08:00",
+      "elapsed_s": 1960.5830827710015
+    },
+    "s3_v3": {
+      "status": "completed",
+      "pid": 42011,
+      "started_at": "2026-11-21T17:12:33+08:00",
+      "output_dir": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_parallel_v1/parallel/s3_v3",
+      "timeout_s": 2400,
+      "final_mean_um": 117.73364811311788,
+      "strict_success_count": 0,
+      "finished_at": "2026-11-21T17:45:19+08:00",
+      "elapsed_s": 1965.5848512289995
+    },
+    "s3_v2": {
+      "status": "completed",
+      "pid": 42013,
+      "started_at": "2026-11-21T17:12:33+08:00",
+      "output_dir": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_parallel_v1/parallel/s3_v2",
+      "timeout_s": 2400,
+      "final_mean_um": 100.45781209841957,
+      "strict_success_count": 0,
+      "finished_at": "2026-11-21T17:45:16+08:00",
+      "elapsed_s": 1962.5830354849986
+    }
+  },
+  "started_at": "2026-11-21T17:12:32+08:00",
+  "updated_at": "2026-11-21T17:45:21+08:00",
+  "comparison": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_parallel_v1/parallel/s3_compare/summary.json",
+  "best_variant": "V0",
+  "strict_success_not_regressed": true,
+  "finished_at": "2026-11-21T17:45:21+08:00"
+}

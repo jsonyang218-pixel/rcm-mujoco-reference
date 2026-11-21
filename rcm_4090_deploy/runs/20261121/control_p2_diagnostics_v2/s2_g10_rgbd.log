@@ -19,3 +19,74 @@ Result: /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostic
 rgbd/E02 1/1600 error=19545.438441 um
 rgbd/E02 100/1600 error=16584.236544 um
 rgbd/E02 200/1600 error=13584.129139 um
+rgbd/E02 300/1600 error=10584.021751 um
+rgbd/E02 400/1600 error=7583.914383 um
+rgbd/E02 500/1600 error=4583.808034 um
+rgbd/E02 600/1600 error=1583.715380 um
+rgbd/E02 700/1600 error=1.256740 um
+rgbd/E02 800/1600 error=1.347623 um
+rgbd/E02 900/1600 error=1.032605 um
+rgbd/E02 1000/1600 error=1.205623 um
+rgbd/E02 1100/1600 error=1.161293 um
+rgbd/E02 1200/1600 error=1.308613 um
+rgbd/E02 1300/1600 error=3.767265 um
+rgbd/E02 1400/1600 error=1.090438 um
+rgbd/E02 1500/1600 error=1.224716 um
+rgbd/E02 1600/1600 error=1.012453 um
+Result: /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v2/s2_g10_rgbd; completed=2/5
+rgbd/E06 1/1600 error=19798.171371 um
+rgbd/E06 100/1600 error=16897.212908 um
+rgbd/E06 200/1600 error=13897.105505 um
+rgbd/E06 300/1600 error=10896.998117 um
+rgbd/E06 400/1600 error=7896.890777 um
+rgbd/E06 500/1600 error=4896.783488 um
+rgbd/E06 600/1600 error=1896.692369 um
+rgbd/E06 700/1600 error=1.934517 um
+rgbd/E06 800/1600 error=2.294762 um
+rgbd/E06 900/1600 error=1.855363 um
+rgbd/E06 1000/1600 error=1.835983 um
+rgbd/E06 1100/1600 error=1.617950 um
+rgbd/E06 1200/1600 error=1.911530 um
+rgbd/E06 1300/1600 error=1.573080 um
+rgbd/E06 1400/1600 error=1.855363 um
+rgbd/E06 1500/1600 error=1.805064 um
+rgbd/E06 1600/1600 error=1.587338 um
+Result: /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v2/s2_g10_rgbd; completed=3/5
+rgbd/E08 1/1600 error=19609.872415 um
+rgbd/E08 100/1600 error=16672.395837 um
+rgbd/E08 200/1600 error=13672.248400 um
+rgbd/E08 300/1600 error=10672.140822 um
+rgbd/E08 400/1600 error=7672.033438 um
+rgbd/E08 500/1600 error=4671.926028 um
+rgbd/E08 600/1600 error=1671.834891 um
+rgbd/E08 700/1600 error=1.015134 um
+Stage interrupted: /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v2/s2_g10_rgbd/status.json
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/him1/mujoco_bc/rcm_4090_deploy/scripts/research/control_g15_diagnostics.py", line 404, in <module>
+    main()
+  File "/home/him1/mujoco_bc/rcm_4090_deploy/scripts/research/control_g15_diagnostics.py", line 377, in main
+    row = teacher_episode(targets, index, args.teacher, args.output_dir)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/him1/mujoco_bc/rcm_4090_deploy/scripts/research/control_g15_diagnostics.py", line 189, in teacher_episode
+    observation = sensor.observe()
+                  ^^^^^^^^^^^^^^^^
+  File "/home/him1/mujoco_bc/rcm_4090_deploy/rcm/strict_rgbd.py", line 106, in observe
+    return self.measure(rgb,depth,timestamp,metadata)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/him1/mujoco_bc/rcm_4090_deploy/rcm/strict_rgbd.py", line 143, in measure
+    point,quality=getattr(self.geometry,name)(observation)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/him1/mujoco_bc/rcm_4090_deploy/rcm/visual_geometry.py", line 191, in tip
+    axis, side_residual, angle_quality = fit_shaft_axis(
+                                         ^^^^^^^^^^^^^^^
+  File "/home/him1/mujoco_bc/rcm_4090_deploy/rcm/visual_geometry.py", line 103, in fit_shaft_axis
+    radial = np.linalg.norm(d-axial[:, None]*axis, axis=1)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/him1/mujoco_bc/rcm_4090_deploy/.venv/lib/python3.12/site-packages/numpy/linalg/_linalg.py", line 2821, in norm
+    return sqrt(add.reduce(s, axis=axis, keepdims=keepdims))
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/him1/mujoco_bc/rcm_4090_deploy/scripts/research/control_g15_diagnostics.py", line 345, in interrupt
+    raise KeyboardInterrupt(f'received {signal.Signals(signum).name}')
+KeyboardInterrupt: received SIGTERM

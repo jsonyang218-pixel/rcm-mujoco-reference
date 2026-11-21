@@ -1,0 +1,21 @@
+{
+  "timestamp_utc": "2026-11-21T07:26:55.294585+00:00",
+  "purpose": "Read-only preflight of proposed timeout recovery card",
+  "status": "PASS",
+  "returncode": 0,
+  "command": [
+    "/home/him1/mujoco_bc/rcm_4090_deploy/.venv/bin/python",
+    "-E",
+    "-B",
+    "-m",
+    "scripts.tools.experiment_workflow",
+    "preflight",
+    "--card",
+    "configs/experiment_card_control_p2_diagnostics_20261121_v3.json"
+  ],
+  "experiment_launched": false,
+  "output_dir": "runs/20261121/diagnostics/p2_timeout_audit_v1",
+  "cpu_reason": "Configuration, asset hashing and I/O only; planned inference/rendering retain CUDA GPU0/EGL",
+  "preflight_status": "preflight_passed",
+  "stages": 12
+}

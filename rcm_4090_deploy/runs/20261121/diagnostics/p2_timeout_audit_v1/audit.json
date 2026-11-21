@@ -1,0 +1,157 @@
+{
+  "recorded_at_utc": "2026-11-21T07:26:33.972379+00:00",
+  "status": "interrupted_partial",
+  "root_cause": "Registered stage wall timeout1800seconds; supervisor SIGTERM caused KeyboardInterrupt",
+  "stage": "s2_g10_rgbd",
+  "started_at": "2026-11-21T14:48:27+08:00",
+  "finished_at": "2026-11-21T15:18:27+08:00",
+  "traceback_interpretation": "NumPy fit_shaft_axis norm call was interrupted by SIGTERM; traceback is not evidence of a NumPy numerical fault",
+  "completed_rgbd_episodes": [
+    {
+      "episode_index": 0,
+      "seed": 42,
+      "status": "completed",
+      "steps": 1600,
+      "final_error_um": 0.7599432779359836,
+      "strict_success": false,
+      "failure": null,
+      "saved_trajectory_rows": 1600,
+      "saved_motor_records": 1600,
+      "evidence": "runs/20261121/control_p2_diagnostics_v2/s2_g10_rgbd/E00.json",
+      "last_recorded_state": {
+        "step": 1599,
+        "error_um": 3.557926188893582,
+        "encoder_settled": false,
+        "state_deg_deg_mm": [
+          -12.5586,
+          -2.4899984957966836,
+          19.43574481800546
+        ],
+        "geometry_quality_um": 5.7078954249477025,
+        "accepted_delta_deg_deg_mm": [
+          -0.0013376431258169674,
+          3.0688684845792125e-05,
+          6.687515624292928e-05
+        ]
+      }
+    },
+    {
+      "episode_index": 2,
+      "seed": 44,
+      "status": "completed",
+      "steps": 1600,
+      "final_error_um": 1.0326046770626347,
+      "strict_success": false,
+      "failure": null,
+      "saved_trajectory_rows": 1600,
+      "saved_motor_records": 1600,
+      "evidence": "runs/20261121/control_p2_diagnostics_v2/s2_g10_rgbd/E02.json",
+      "last_recorded_state": {
+        "step": 1599,
+        "error_um": 1.012453274088244,
+        "encoder_settled": false,
+        "state_deg_deg_mm": [
+          -11.2662,
+          -5.668324978786892,
+          19.43691994821014
+        ],
+        "geometry_quality_um": 5.7182111839279735,
+        "accepted_delta_deg_deg_mm": [
+          1.7346518836447444e-05,
+          0.00036450141889066145,
+          2.537319937445659e-05
+        ]
+      }
+    },
+    {
+      "episode_index": 6,
+      "seed": 48,
+      "status": "completed",
+      "steps": 1600,
+      "final_error_um": 1.8359828016533333,
+      "strict_success": false,
+      "failure": null,
+      "saved_trajectory_rows": 1600,
+      "saved_motor_records": 1600,
+      "evidence": "runs/20261121/control_p2_diagnostics_v2/s2_g10_rgbd/E06.json",
+      "last_recorded_state": {
+        "step": 1599,
+        "error_um": 1.5873376799144114,
+        "encoder_settled": false,
+        "state_deg_deg_mm": [
+          -7.255800000000001,
+          3.9433294910075816,
+          19.750350676401688
+        ],
+        "geometry_quality_um": 5.411413276675883,
+        "accepted_delta_deg_deg_mm": [
+          0.0005380357273550018,
+          -0.00017677619783862397,
+          -4.212895612809575e-05
+        ]
+      }
+    }
+  ],
+  "interrupted_rgbd_episodes": [
+    {
+      "episode_index": 8,
+      "seed": 50,
+      "status": "interrupted",
+      "steps": null,
+      "final_error_um": null,
+      "strict_success": null,
+      "failure": "KeyboardInterrupt('received SIGTERM')",
+      "saved_trajectory_rows": 773,
+      "saved_motor_records": 0,
+      "evidence": "runs/20261121/control_p2_diagnostics_v2/s2_g10_rgbd/E08.json",
+      "last_recorded_state": {
+        "step": 772,
+        "error_um": 1.5312482042703042,
+        "encoder_settled": false,
+        "state_deg_deg_mm": [
+          -6.2244,
+          -9.012897167234591,
+          19.524866692728192
+        ]
+      }
+    }
+  ],
+  "unstarted_episode_indices": [
+    10
+  ],
+  "workflow_completed_stages": [
+    "s1_v0",
+    "s1_v3",
+    "s1_v2",
+    "s2_g10_oracle"
+  ],
+  "workflow_skipped_stages": [
+    "s2_g15_oracle",
+    "s2_g15_rgbd",
+    "s2_compare",
+    "s3_v0",
+    "s3_v3",
+    "s3_v2",
+    "s3_compare"
+  ],
+  "full_gate2b_available": false,
+  "full_policy_comparison_available": false,
+  "baseline_and_data": "Frozen development indices0,2,6,8,10; seeds42,44,48,50,52. G10 RGB-D geometric teacher uses no policy checkpoint.",
+  "original_evidence_preserved": true,
+  "retry_launched": false,
+  "revised_card": "configs/experiment_card_control_p2_diagnostics_20261121_v3.json",
+  "proposed_changes": [
+    {
+      "stage": "s2_g10_rgbd",
+      "old_timeout_s": 1800,
+      "proposed_timeout_s": 3600
+    },
+    {
+      "stage": "s2_g15_rgbd",
+      "old_timeout_s": 1800,
+      "proposed_timeout_s": 3600
+    }
+  ],
+  "revised_total_stage_budget_s": 20400,
+  "scope": "Failure audit and executable proposal only; no new experiment"
+}

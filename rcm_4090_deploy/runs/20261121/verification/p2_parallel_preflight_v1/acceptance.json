@@ -1,0 +1,35 @@
+{
+  "status": "PASS",
+  "timestamp": "2026-11-21T09:10:26.516291+00:00",
+  "checks": [
+    "syntax",
+    "eight_completed_stages_matching_identity_and_teacher_coverage",
+    "all_original_pinned_assets_match",
+    "relocation_preserves_original_command_protocol_and_budget",
+    "comparison_points_to_parallel_results",
+    "refuse_mismatched_supervisor_without_signalling",
+    "gpu0_4090_egl_available"
+  ],
+  "device": "NVIDIA GeForce RTX 4090",
+  "checked_asset_count": 156,
+  "source_identity": {
+    "code_sha256": "84770e426bd6e72d2dc67e903cf6b3799444624fac7159c0d566b4ed22e10e6c",
+    "scene_sha256": "265c927ef7e7ac71536963b3000ffb161b7ff7ac03bb86cdb8480ed988c17028",
+    "module_sha256": "70a8cd88e3fbe71e4f72b606ca29530529ef00ea4863a2ab8e5f9060bfcba2d2",
+    "manifest_sha256": "fcc4872a9d5b58bb7158b36d3c0ab6d7452e4d8d747317dfb077b6e7bbc815c7",
+    "checkpoint_sha256": "185a6ef02caea4ea74ba752d67618d459c906450f5b315cd8010c3c5f1703f1b"
+  },
+  "reused_stages": [
+    "s1_v0",
+    "s1_v3",
+    "s1_v2",
+    "s2_g10_oracle",
+    "s2_g10_rgbd",
+    "s2_g15_oracle",
+    "s2_g15_rgbd",
+    "s2_compare"
+  ],
+  "output_dir": "runs/20261121/verification/p2_parallel_preflight_v1",
+  "experiment_launched": false,
+  "scope": "preflight and scheduler checks, not acceleration benchmark"
+}

@@ -1,0 +1,15 @@
+{
+  "timestamp_utc": "2026-11-21T07:30:39.974047+00:00",
+  "status": "gnome_terminal_launch_accepted",
+  "authorization": "User explicitly requested 启动 after reviewing the v3 card and timeout changes",
+  "card": "configs/experiment_card_control_p2_diagnostics_20261121_v3.json",
+  "output_dir": "runs/20261121/control_p2_diagnostics_v3",
+  "command": "env -u PYTHONHOME -u PYTHONPATH CUDA_VISIBLE_DEVICES=0 MUJOCO_GL=egl MPLBACKEND=Agg PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -E -B -m scripts.tools.experiment_workflow launch --card configs/experiment_card_control_p2_diagnostics_20261121_v3.json",
+  "protocol_change": "G10/G15 RGB-D stage wall budgets1800->3600seconds; remaining experimental parameters preserved",
+  "launch_count": 1,
+  "terminal": "New GNOME Terminal",
+  "device": "physical CUDA GPU0 RTX4090; EGL",
+  "post_launch_status_polled": false,
+  "experiment_completion": "not observed; launch receipt only",
+  "previous_output_preserved": "runs/20261121/control_p2_diagnostics_v2"
+}
