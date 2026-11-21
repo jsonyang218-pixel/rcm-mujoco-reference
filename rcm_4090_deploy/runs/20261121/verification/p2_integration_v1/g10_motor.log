@@ -1,0 +1,32 @@
+test_invalid_commands_never_teleport_or_advance_clock (__main__.MotorExecutionTests.test_invalid_commands_never_teleport_or_advance_clock) ... ok
+test_kinematic_queries_do_not_advance_motor (__main__.MotorExecutionTests.test_kinematic_queries_do_not_advance_motor) ... ok
+test_lag_and_feedback_decoding_with_substeps (__main__.MotorExecutionTests.test_lag_and_feedback_decoding_with_substeps) ... ok
+test_outer_loop_accumulates_sub_handle_corrections_and_settles (__main__.MotorExecutionTests.test_outer_loop_accumulates_sub_handle_corrections_and_settles) ... ok
+test_protocol_target_conversion_is_not_encoder_subtraction (__main__.MotorExecutionTests.test_protocol_target_conversion_is_not_encoder_subtraction) ... ok
+test_reset_clock_reanchors_and_allows_next_tick (__main__.MotorExecutionTests.test_reset_clock_reanchors_and_allows_next_tick) ... ok
+test_v9_has_one_motor_and_display_matches_feedback (__main__.MotorExecutionTests.test_v9_has_one_motor_and_display_matches_feedback) ... ERROR
+
+======================================================================
+ERROR: test_v9_has_one_motor_and_display_matches_feedback (__main__.MotorExecutionTests.test_v9_has_one_motor_and_display_matches_feedback)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/him1/mujoco_bc/rcm_4090_deploy/scripts/verification/verify_motor_execution.py", line 83, in test_v9_has_one_motor_and_display_matches_feedback
+    ref.set_task([.02,-.01,.001],motor_dt=.05)
+  File "/home/him1/mujoco_bc/rcm_4090_deploy/rcm/scene_v9.py", line 536, in set_task
+    actual = motor.advance(q, motor_dt)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/him1/mujoco_bc/rcm_4090_deploy/rcm/motor_execution.py", line 56, in advance
+    return self.commit(self.preview(desired_task, duration_s))
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/him1/mujoco_bc/rcm_4090_deploy/rcm/motor_execution.py", line 62, in preview
+    return self.preview_robot(desired_robot, duration_s, requested_task=desired)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/him1/mujoco_bc/rcm_4090_deploy/rcm/motor_execution.py", line 126, in preview_robot
+    'tip_rcm_radius_before_mm': float(np.linalg.norm(self.reference.forward_kinematics(before_task))),
+                                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'RCMSceneV9' object has no attribute 'forward_kinematics'
+
+----------------------------------------------------------------------
+Ran 7 tests in 2.060s
+
+FAILED (errors=1)

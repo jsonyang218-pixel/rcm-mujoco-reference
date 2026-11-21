@@ -1,0 +1,148 @@
+{
+  "status": "partial_snapshot",
+  "capture_started_utc": "2026-11-21T06:58:31.685373+00:00",
+  "capture_finished_utc": "2026-11-21T06:58:32.176339+00:00",
+  "repository": "jsonyang218-pixel/rcm-mujoco-reference",
+  "branch": "feature/g15-control-single-packet-20261121",
+  "base_commit": "91427cfdd255578104b1f26b3eaf2cd138909665",
+  "workflow_status": {
+    "id": "control_p2_diagnostics_20261121_v2",
+    "status": "running",
+    "pid": 28302,
+    "stages": {
+      "s1_v0": {
+        "status": "completed",
+        "type": "module",
+        "output_dir": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v2/s1_v0",
+        "started_at": "2026-11-21T14:41:55+08:00",
+        "gates": [
+          {
+            "passed": true,
+            "detail": "completed_targets=3 == 3 (/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v2/s1_v0/summary.json)"
+          }
+        ],
+        "finished_at": "2026-11-21T14:44:00+08:00"
+      },
+      "s1_v3": {
+        "status": "completed",
+        "type": "module",
+        "output_dir": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v2/s1_v3",
+        "started_at": "2026-11-21T14:44:00+08:00",
+        "gates": [
+          {
+            "passed": true,
+            "detail": "completed_targets=3 == 3 (/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v2/s1_v3/summary.json)"
+          }
+        ],
+        "finished_at": "2026-11-21T14:46:05+08:00"
+      },
+      "s1_v2": {
+        "status": "completed",
+        "type": "module",
+        "output_dir": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v2/s1_v2",
+        "started_at": "2026-11-21T14:46:05+08:00",
+        "gates": [
+          {
+            "passed": true,
+            "detail": "completed_targets=3 == 3 (/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v2/s1_v2/summary.json)"
+          }
+        ],
+        "finished_at": "2026-11-21T14:48:10+08:00"
+      },
+      "s2_g10_oracle": {
+        "status": "completed",
+        "type": "module",
+        "output_dir": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v2/s2_g10_oracle",
+        "started_at": "2026-11-21T14:48:10+08:00",
+        "gates": [
+          {
+            "passed": true,
+            "detail": "completed_targets=5 == 5 (/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v2/s2_g10_oracle/summary.json)"
+          }
+        ],
+        "finished_at": "2026-11-21T14:48:27+08:00"
+      },
+      "s2_g10_rgbd": {
+        "status": "running",
+        "type": "module",
+        "output_dir": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v2/s2_g10_rgbd",
+        "started_at": "2026-11-21T14:48:27+08:00"
+      },
+      "s2_g15_oracle": {
+        "status": "pending",
+        "type": "module",
+        "output_dir": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v2/s2_g15_oracle"
+      },
+      "s2_g15_rgbd": {
+        "status": "pending",
+        "type": "module",
+        "output_dir": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v2/s2_g15_rgbd"
+      },
+      "s2_compare": {
+        "status": "pending",
+        "type": "module",
+        "output_dir": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v2/s2_compare"
+      },
+      "s3_v0": {
+        "status": "pending",
+        "type": "module",
+        "output_dir": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v2/s3_v0"
+      },
+      "s3_v3": {
+        "status": "pending",
+        "type": "module",
+        "output_dir": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v2/s3_v3"
+      },
+      "s3_v2": {
+        "status": "pending",
+        "type": "module",
+        "output_dir": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v2/s3_v2"
+      },
+      "s3_compare": {
+        "status": "pending",
+        "type": "module",
+        "output_dir": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v2/s3_compare"
+      }
+    },
+    "updated_at": "2026-11-21T14:48:27+08:00"
+  },
+  "completed_stage_metrics": {
+    "s1_v0": {
+      "completed_targets": 3,
+      "final_mean_um": 16006.23144398026,
+      "final_max_um": 16033.324877463887,
+      "strict_success_count": 0
+    },
+    "s1_v3": {
+      "completed_targets": 3,
+      "final_mean_um": 16285.049049575784,
+      "final_max_um": 16320.562935438556,
+      "strict_success_count": 0
+    },
+    "s1_v2": {
+      "completed_targets": 3,
+      "final_mean_um": 14628.610226732175,
+      "final_max_um": 14660.168295127414,
+      "strict_success_count": 0
+    },
+    "s2_g10_oracle": {
+      "completed_targets": 5,
+      "final_mean_um": 1.7052728586923003,
+      "final_max_um": 3.4917810262350604,
+      "strict_success_count": 0
+    }
+  },
+  "pinned_assets_verified": 156,
+  "excluded_weights": [
+    {
+      "path": "outputs/overnight_c_fix_symlog_081234/task2_train/step_004000.pth",
+      "sha256": "185a6ef02caea4ea74ba752d67618d459c906450f5b315cd8010c3c5f1703f1b",
+      "bytes": 414733455,
+      "reason": "Model weights excluded; identity retained, exceeds ordinary GitHub blob limit"
+    }
+  ],
+  "raw_evidence_files": 125,
+  "no_experiments_launched": true,
+  "live_sources_modified": false,
+  "interpretation": "Incomplete diagnostic fast5; no final P2 winner, no completed RGB-D/Oracle comparison, no hardware claim"
+}

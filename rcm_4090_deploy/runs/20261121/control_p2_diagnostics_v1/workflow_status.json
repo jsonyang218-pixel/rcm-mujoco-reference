@@ -1,0 +1,99 @@
+{
+  "id": "control_p2_diagnostics_20261121_v1",
+  "status": "failed",
+  "pid": 26334,
+  "stages": {
+    "s1_v0": {
+      "status": "completed",
+      "type": "module",
+      "output_dir": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v1/s1_v0",
+      "started_at": "2026-11-21T14:35:34+08:00",
+      "gates": [
+        {
+          "passed": true,
+          "detail": "completed_targets=3 == 3 (/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v1/s1_v0/summary.json)"
+        }
+      ],
+      "finished_at": "2026-11-21T14:37:40+08:00"
+    },
+    "s1_v3": {
+      "status": "failed",
+      "type": "module",
+      "output_dir": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v1/s1_v3",
+      "started_at": "2026-11-21T14:37:40+08:00",
+      "reason": "UnboundLocalError(\"cannot access local variable 'error' where it is not associated with a value\")",
+      "finished_at": "2026-11-21T14:37:47+08:00"
+    },
+    "s1_v2": {
+      "status": "skipped",
+      "type": "module",
+      "output_dir": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v1/s1_v2",
+      "reason": "dependency not passed: s1_v3",
+      "finished_at": "2026-11-21T14:37:47+08:00"
+    },
+    "s2_g10_oracle": {
+      "status": "skipped",
+      "type": "module",
+      "output_dir": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v1/s2_g10_oracle",
+      "reason": "dependency not passed: s1_v2",
+      "finished_at": "2026-11-21T14:37:47+08:00"
+    },
+    "s2_g10_rgbd": {
+      "status": "skipped",
+      "type": "module",
+      "output_dir": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v1/s2_g10_rgbd",
+      "reason": "dependency not passed: s2_g10_oracle",
+      "finished_at": "2026-11-21T14:37:47+08:00"
+    },
+    "s2_g15_oracle": {
+      "status": "skipped",
+      "type": "module",
+      "output_dir": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v1/s2_g15_oracle",
+      "reason": "dependency not passed: s2_g10_rgbd",
+      "finished_at": "2026-11-21T14:37:47+08:00"
+    },
+    "s2_g15_rgbd": {
+      "status": "skipped",
+      "type": "module",
+      "output_dir": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v1/s2_g15_rgbd",
+      "reason": "dependency not passed: s2_g15_oracle",
+      "finished_at": "2026-11-21T14:37:47+08:00"
+    },
+    "s2_compare": {
+      "status": "skipped",
+      "type": "module",
+      "output_dir": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v1/s2_compare",
+      "reason": "dependency not passed: s2_g15_rgbd",
+      "finished_at": "2026-11-21T14:37:47+08:00"
+    },
+    "s3_v0": {
+      "status": "skipped",
+      "type": "module",
+      "output_dir": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v1/s3_v0",
+      "reason": "dependency not passed: s2_compare",
+      "finished_at": "2026-11-21T14:37:47+08:00"
+    },
+    "s3_v3": {
+      "status": "skipped",
+      "type": "module",
+      "output_dir": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v1/s3_v3",
+      "reason": "dependency not passed: s3_v0",
+      "finished_at": "2026-11-21T14:37:47+08:00"
+    },
+    "s3_v2": {
+      "status": "skipped",
+      "type": "module",
+      "output_dir": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v1/s3_v2",
+      "reason": "dependency not passed: s3_v3",
+      "finished_at": "2026-11-21T14:37:47+08:00"
+    },
+    "s3_compare": {
+      "status": "skipped",
+      "type": "module",
+      "output_dir": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v1/s3_compare",
+      "reason": "dependency not passed: s3_v2",
+      "finished_at": "2026-11-21T14:37:47+08:00"
+    }
+  },
+  "updated_at": "2026-11-21T14:37:47+08:00"
+}

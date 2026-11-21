@@ -1,0 +1,35 @@
+{
+  "status": "PASS",
+  "timestamp": "2026-11-21T14:41:32.301252+08:00",
+  "tests_run": 32,
+  "checks": [
+    {
+      "driver": "g10",
+      "status": "PASS",
+      "tests_run": 16,
+      "summary": "runs/20261121/verification/p2_scaled_error_v1/fixed_g10/summary.json"
+    },
+    {
+      "driver": "g15",
+      "status": "PASS",
+      "tests_run": 16,
+      "summary": "runs/20261121/verification/p2_scaled_error_v1/fixed_g15/summary.json"
+    }
+  ],
+  "gpu": "NVIDIA GeForce RTX 4090",
+  "identity": {
+    "code_sha256": "84770e426bd6e72d2dc67e903cf6b3799444624fac7159c0d566b4ed22e10e6c",
+    "scene_sha256": "265c927ef7e7ac71536963b3000ffb161b7ff7ac03bb86cdb8480ed988c17028",
+    "module_sha256": "70a8cd88e3fbe71e4f72b606ca29530529ef00ea4863a2ab8e5f9060bfcba2d2",
+    "manifest_sha256": "fcc4872a9d5b58bb7158b36d3c0ab6d7452e4d8d747317dfb077b6e7bbc815c7",
+    "checkpoint_sha256": "185a6ef02caea4ea74ba752d67618d459c906450f5b315cd8010c3c5f1703f1b"
+  },
+  "card": "/home/him1/mujoco_bc/rcm_4090_deploy/configs/experiment_card_control_p2_diagnostics_20261121_v2.json",
+  "stages": 12,
+  "budget_s": 16800,
+  "output_dir": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v2",
+  "changes": "Rename exception binding to preserve measured error; add scale-rejection regression. All experiment parameters unchanged; rerun baseline because code identity changed.",
+  "cpu_reason": "Small deterministic scalar protocol tests, no tensor workload; live policy diagnostics require CUDA4090/EGL",
+  "no_training": true,
+  "previous_failure_audit": "runs/20261121/verification/p2_scaled_error_v1/failure_audit.json"
+}

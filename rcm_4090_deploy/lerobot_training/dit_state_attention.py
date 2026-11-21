@@ -21,7 +21,10 @@ import torch
 from torch import nn
 from torch.nn import functional as F
 
-import dit_rectified_flow as _base
+try:
+    from . import dit_rectified_flow as _base
+except ImportError:
+    import dit_rectified_flow as _base
 
 
 NUM_TEMPLATES = 4
@@ -123,12 +126,67 @@ class StateConditionedDiTBlock(_base.DiTBlock):
 class StateConditionedDiTRectifiedFlowPolicy(_OriginalPolicy):
     """Reuse the original observations, normalization, Flow loss and sampler."""
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, oct_symlog_enabled=False, **kwargs):
         super().__init__(*args, **kwargs)
+        self.oct_symlog_enabled = bool(oct_symlog_enabled)
         self.blocks = nn.ModuleList([
             StateConditionedDiTBlock(block, self.n_action_steps)
             for block in self.blocks
         ])
+        if not self.oct_symlog_enabled:
+            return
+        hidden_dim = max(64, self.dit_dim // 2)
+        self.oct_symlog_geometry = nn.Sequential(
+            nn.Linear(3, hidden_dim),
+            nn.SiLU(),
+            nn.Linear(hidden_dim, self.dit_dim),
+        )
+        self.oct_symlog_global = nn.Sequential(
+            nn.Linear(3 * self.n_obs_steps, hidden_dim),
+            nn.SiLU(),
+            nn.Linear(hidden_dim, self.dit_dim),
+        )
+        nn.init.zeros_(self.oct_symlog_geometry[-1].weight)
+        nn.init.zeros_(self.oct_symlog_geometry[-1].bias)
+        nn.init.zeros_(self.oct_symlog_global[-1].weight)
+        nn.init.zeros_(self.oct_symlog_global[-1].bias)
+
+    def _condition(self, image, state, oct_feature, velocity, previous_action):
+        condition_tokens, global_condition = super()._condition(
+            image, state, oct_feature, velocity, previous_action
+        )
+        if not self.oct_symlog_enabled:
+            return condition_tokens, global_condition
+
+        device_type = oct_feature.device.type
+        with torch.autocast(device_type=device_type, enabled=False):
+            oct_float = oct_feature.float()
+            valid = (oct_float[..., 3:4] > 0.5).to(torch.float32)
+            oct_mm = torch.where(valid.bool(), oct_float[..., :3], 0.0)
+            oct_symlog = torch.sign(oct_mm) * torch.log1p(
+                torch.abs(oct_mm) / 0.001
+            )
+            scale = torch.log1p(self.oct_std[:3].float() / 0.001).clamp_min(1.0)
+            oct_symlog = oct_symlog / scale
+            geometry_residual = self.oct_symlog_geometry(oct_symlog)
+            geometry_residual = geometry_residual * valid
+            global_residual = self.oct_symlog_global(
+                oct_symlog.flatten(start_dim=1)
+            )
+            global_valid = valid.squeeze(-1).any(dim=1, keepdim=True)
+            global_residual = global_residual * global_valid
+
+        geometry_count = self.n_obs_steps
+        vision_tokens = condition_tokens[:, :-geometry_count]
+        geometry_tokens = condition_tokens[:, -geometry_count:]
+        condition_tokens = torch.cat(
+            [vision_tokens, geometry_tokens + geometry_residual.to(geometry_tokens.dtype)],
+            dim=1,
+        )
+        global_condition = global_condition + global_residual.to(
+            global_condition.dtype
+        )
+        return condition_tokens, global_condition
 
     def _predict_velocity_from_condition(
         self, interpolated_actions, timestep, condition_tokens, global_condition

@@ -6,6 +6,7 @@
 """
 
 import argparse
+import os
 import json
 import math
 from pathlib import Path
@@ -15,6 +16,7 @@ from torchvision import transforms
 from PIL import Image
 from tqdm import tqdm
 import sys
+from time import perf_counter
 
 # 添加项目根目录到路径
 sys.path.insert(0, str(Path(__file__).parent.parent))
@@ -36,6 +38,7 @@ except ImportError:
         proportional_guided_action,
     )
 from rcm.reference import Reference
+from rcm.control_target import ContinuousControlTarget
 
 
 TASK_TO_DEG_DEG_MM = np.array(
@@ -106,6 +109,10 @@ class PolicyEvaluator:
         fine_switch_error_mm=None,
         terminal_refine_error_mm=None,
         terminal_confirm_frames=8,
+        flow_integration_steps=None,
+        measure_inference=False,
+        controller_variant="feedback",
+        rgbd_render_quality=None,
     ):
         self.device = torch.device(device if torch.cuda.is_available() else 'cpu')
         self.num_action_samples = int(num_action_samples)
@@ -131,6 +138,13 @@ class PolicyEvaluator:
             else float(terminal_refine_error_mm)
         )
         self.terminal_confirm_frames = int(terminal_confirm_frames)
+        self.measure_inference = bool(measure_inference)
+        if controller_variant not in ('feedback', 'continuous'):
+            raise ValueError('Unknown controller variant')
+        self.controller_variant = controller_variant
+        self.rgbd_render_quality = rgbd_render_quality
+        if flow_integration_steps is not None and int(flow_integration_steps) < 1:
+            raise ValueError("flow integration steps must be positive")
         if self.terminal_confirm_frames < 1:
             raise ValueError("terminal confirm frames must be positive")
         if (self.fine_model_path is None) != (
@@ -298,10 +312,25 @@ class PolicyEvaluator:
             self.use_oct = True
             self.include_velocity = True
             self.include_previous_action = True
+            architecture = self.checkpoint.get("architecture")
+            if architecture == "state_conditioned_temporal_attention_v1":
+                try:
+                    from .dit_state_attention import (
+                        StateConditionedDiTRectifiedFlowPolicy,
+                    )
+                except ImportError:
+                    from dit_state_attention import (
+                        StateConditionedDiTRectifiedFlowPolicy,
+                    )
+                policy_class = StateConditionedDiTRectifiedFlowPolicy
+            else:
+                policy_class = DiTRectifiedFlowPolicy
             self.flow_integration_steps = int(
-                config.get('flow_integration_steps', 4)
+                flow_integration_steps
+                if flow_integration_steps is not None
+                else config.get("flow_integration_steps", 4)
             )
-            self.model = DiTRectifiedFlowPolicy(
+            self.model = policy_class(
                 n_obs_steps=self.n_obs_steps,
                 n_action_steps=self.n_action_steps,
                 dit_dim=int(config.get('dit_dim', 384)),
@@ -318,6 +347,16 @@ class PolicyEvaluator:
                 velocity_std=config['velocity_std'],
                 previous_action_mean=config['previous_action_mean'],
                 previous_action_std=config['previous_action_std'],
+                **(
+                    {
+                        "oct_symlog_enabled": bool(
+                            config.get("oct_symlog_enabled", False)
+                        )
+                    }
+                    if architecture
+                    == "state_conditioned_temporal_attention_v1"
+                    else {}
+                ),
             ).to(self.device)
         else:
             self.model = SimpleDiffusionPolicy(
@@ -684,6 +723,12 @@ class PolicyEvaluator:
         obs_images = obs_images.unsqueeze(0).to(self.device)  # [1, T, 3, 224, 224]
         if self.is_flow_temporal_unet or self.is_dit_rectified_flow:
             sample_count = self.num_action_samples
+            timing_cuda = self.measure_inference and self.device.type == "cuda"
+            if timing_cuda:
+                timing_start = torch.cuda.Event(enable_timing=True)
+                timing_end = torch.cuda.Event(enable_timing=True)
+                timing_start.record(torch.cuda.current_stream(self.device))
+            inference_started = perf_counter() if self.measure_inference else None
             try:
                 with torch.no_grad():
                     chunks = self.model.sample(
@@ -706,6 +751,8 @@ class PolicyEvaluator:
                         generator=self.action_generator,
                     )
             except torch.cuda.OutOfMemoryError:
+                if self.measure_inference:
+                    raise  # A fallback would change both latency and the RNG stream.
                 torch.cuda.empty_cache()
                 sampled_chunks = []
                 with torch.no_grad():
@@ -722,11 +769,18 @@ class PolicyEvaluator:
                             )[0]
                         )
                 chunks = torch.stack(sampled_chunks, dim=0)
-            action_chunk = (
-                chunks.median(dim=0).values.cpu().numpy()
-                if sample_count > 1
-                else chunks[0].cpu().numpy()
-            )
+            aggregated = chunks.median(dim=0).values if sample_count > 1 else chunks[0]
+            if timing_cuda:
+                timing_end.record(torch.cuda.current_stream(self.device))
+                timing_end.synchronize()
+                self.last_policy_inference_ms = timing_start.elapsed_time(timing_end)
+            elif inference_started is not None:
+                self.last_policy_inference_ms = (
+                    perf_counter() - inference_started
+                ) * 1000.0
+            if self.measure_inference and not bool(torch.isfinite(chunks).all()):
+                raise FloatingPointError("nonfinite policy sample before aggregation")
+            action_chunk = aggregated.cpu().numpy()
             if self.n_action_execute_steps > 1:
                 self.action_queue = action_chunk[
                     1:self.n_action_execute_steps
@@ -842,6 +896,7 @@ class PolicyEvaluator:
         sensor=None,
         start_error_mm=None,
         stagnation_steps=0,
+        progress_every=0,
     ):
         """
         评估单个 episode
@@ -886,7 +941,11 @@ class PolicyEvaluator:
             dtype=np.float64,
         )
 
+        accumulator = (ContinuousControlTarget(scene)
+                       if self.controller_variant == 'continuous' else None)
         trajectory = {
+            'raw_actions': [],
+            'control_targets': [],
             'states': [],
             'actions': [],
             'errors': [],
@@ -898,6 +957,8 @@ class PolicyEvaluator:
             'oct_navigation_valid': [],
             'simulation_time_s': [],
         }
+        if self.measure_inference:
+            trajectory['policy_inference_ms'] = []
 
         success = False
         consecutive_success = 0
@@ -940,6 +1001,13 @@ class PolicyEvaluator:
             # Ground truth is only used for evaluation, never for selecting the action.
             current_tip = scene.site_mm('needle_tip')
             error = np.linalg.norm(current_tip - target_world_mm)
+            if not (np.isfinite(error) and np.isfinite(state_abc).all()
+                    and np.isfinite(velocity_abc).all()):
+                raise FloatingPointError(f"nonfinite measured state or error at step {step}")
+
+            if progress_every and (step == 0 or (step + 1) % progress_every == 0):
+                print(f"  closed-loop step {step + 1}/{max_steps}, error={error * 1000:.3f} um",
+                      flush=True)
 
             # 记录轨迹
             trajectory['states'].append(state_abc.tolist())
@@ -1000,45 +1068,71 @@ class PolicyEvaluator:
                 break
 
             # 获取策略动作
+            if self.measure_inference:
+                self.last_policy_inference_ms = None
             action = self.get_action(rgb, state_abc, oct_feature)  # [dA, dB, dC]
+            if not np.isfinite(action).all():
+                raise FloatingPointError(f"nonfinite policy action at step {step}")
+            if self.measure_inference:
+                trajectory['policy_inference_ms'].append(self.last_policy_inference_ms)
 
             # 限制动作增量
+            trajectory['raw_actions'].append(action.tolist())
             action = np.clip(action, -action_limit, action_limit)
             trajectory['actions'].append(action.tolist())
 
-            # 执行动作 (增量控制)
-            new_state_abc = state_abc + action
-
-            # 限制状态范围
-            new_state_abc[0] = np.clip(new_state_abc[0], -30, 30)  # A: ±30度
-            new_state_abc[1] = np.clip(new_state_abc[1], -30, 30)  # B: ±30度
-            new_state_abc[2] = np.clip(new_state_abc[2], 0, 50)    # C: 0-50mm
-
-            target_task = state_abc_mm_to_task(new_state_abc)
+            # All scale attempts are read-only. Commit outside the rejection
+            # handler so an execution failure can never trigger a second tick.
             applied_action = action
             applied = False
+            selected = None
+            limited = False
+            if accumulator is not None:
+                accumulator.synchronize()
             for scale in (1.0, 0.5, 0.25, 0.125, 0.0625, 0.0):
-                trial_state = state_abc + scale * action
-                trial_task = state_abc_mm_to_task(trial_state)
                 try:
-                    scene.set_task(trial_task, motor_dt=control_period_s)
-                    applied = True
-                    applied_action = scale * action
-                    if scale < 1.0:
-                        safety_limited_steps += 1
-                        safety_limited_streak += 1
-                        self.invalidate_action_chunk()
+                    if accumulator is None:
+                        selected = motor.preview(state_abc_mm_to_task(state_abc + scale * action),
+                                                 control_period_s)
+                        applied_action = scale * action
+                        limited = scale < 1.0
                     else:
-                        safety_limited_streak = 0
-                    break
-                except ValueError as error:
-                    last_safety_error = str(error)
+                        selected = accumulator.preview(action, scale)
+                        applied_action = selected.accepted_delta_deg_deg_mm
+                        limited = scale < 1.0 or any(selected.diagnostics['lead_limited_axes'])
+                except ValueError as rejection_error:
+                    last_safety_error = str(rejection_error)
+                    continue
+                applied = True
+                break
+            if applied:
+                if accumulator is None:
+                    scene.apply_prepared_motor(selected)
+                    diagnostics = {'controller_variant': 'feedback', 'scale': scale,
+                                   'accepted_delta_deg_deg_mm': applied_action.tolist()}
+                else:
+                    accumulator.commit(selected)
+                    diagnostics = selected.diagnostics
+                trajectory['control_targets'].append(diagnostics)
+                if limited:
+                    safety_limited_steps += 1
+                    safety_limited_streak += 1
+                    self.invalidate_action_chunk()
+                else:
+                    safety_limited_streak = 0
             if not applied:
                 trajectory['actions'].pop()
+                early_stop_reason = 'MOTOR_REJECTED_ALL_ACTION_SCALES'
                 print(f"  安全停止: {last_safety_error}")
                 break
             trajectory['actions'][-1] = applied_action.tolist()
             self.record_applied_action(applied_action)
+            observer = getattr(self, 'step_observer', None)
+            if observer is not None:
+                observer({'step': step, 'error_before_mm': float(error),
+                          'raw_action_deg_deg_mm': trajectory['raw_actions'][-1],
+                          'accepted_action_deg_deg_mm': applied_action.tolist(),
+                          'motor_record': motor.last_record})
             if safety_limited_streak >= int(max_consecutive_safety_limited):
                 early_stop_reason = (
                     f"SAFETY_LIMITED_{int(max_consecutive_safety_limited)}_STEPS"
@@ -1069,10 +1163,12 @@ class PolicyEvaluator:
             'final_tip_world_mm': final_tip.tolist(),
             'target_world_mm': target_world_mm.tolist(),
             'motor_summary': motor.summary(),
+            'motor_records': motor.records,
             'ground_truth_used_for_control': False,
             'ground_truth_used_for_success': True,
             'execution_backend': 'MotorBackend',
-            'evaluation_contract_version': EVALUATION_CONTRACT_VERSION,
+            'evaluation_contract_version': (3 if accumulator is not None else EVALUATION_CONTRACT_VERSION),
+            'controller_variant': self.controller_variant,
             'state_action_units': 'A_deg,B_deg,C_mm',
             'oct_navigation_used': self.use_oct,
             'safety_limited_steps': safety_limited_steps,
@@ -1118,6 +1214,7 @@ class PolicyEvaluator:
         target_start=0,
         target_end=None,
         start_error_mm=None,
+        progress_every=0,
     ):
         """
         评估多个 episodes
@@ -1181,6 +1278,8 @@ class PolicyEvaluator:
                 if self.use_oct:
                     settings = visual_servo_settings(scene)
                     settings['perception_backend'] = 'strict_rgbd'
+                    if self.rgbd_render_quality is not None:
+                        settings['rgbd_render_quality'] = dict(self.rgbd_render_quality)
                     sensor = StrictRGBDSensor(scene, settings)
                 print(
                     "  目标世界坐标: "
@@ -1202,6 +1301,7 @@ class PolicyEvaluator:
                     seed=seed + ep_idx,
                     sensor=sensor,
                     start_error_mm=start_error_mm,
+                    progress_every=progress_every,
                 )
                 result['episode_index'] = ep_idx
                 result['target_id'] = (
@@ -1266,7 +1366,9 @@ class PolicyEvaluator:
                 r['final_error_mm'] for r in results
             ])),
             'evaluation_contract': {
-                'version': EVALUATION_CONTRACT_VERSION,
+                'version': (3 if self.controller_variant == 'continuous' else EVALUATION_CONTRACT_VERSION),
+                'controller_variant': self.controller_variant,
+                'rgbd_render_quality': self.rgbd_render_quality,
                 'execution_backend': 'MotorBackend',
                 'control_period_s': control_period_s,
                 'state_action_units': 'A_deg,B_deg,C_mm',
@@ -1348,6 +1450,7 @@ class PolicyEvaluator:
 
 def main():
     parser = argparse.ArgumentParser(description="评估训练好的策略")
+    parser.add_argument('--controller-variant', choices=('feedback', 'continuous'), default='feedback')
     parser.add_argument("--model", type=str, required=True, help="模型检查点路径")
     parser.add_argument("--episodes", type=int, default=10, help="评估 episode 数量")
     parser.add_argument("--output-dir", type=str, default="outputs/evaluation", help="输出目录")
@@ -1364,6 +1467,7 @@ def main():
         default=DEFAULT_ACTION_LIMIT_DEG_DEG_MM,
     )
     parser.add_argument("--num-action-samples", type=int, default=7)
+    parser.add_argument("--flow-integration-steps", type=int, default=None)
     parser.add_argument(
         "--n-action-execute-steps",
         type=int,
@@ -1433,6 +1537,8 @@ def main():
         fine_switch_error_mm=args.fine_switch_error_mm,
         terminal_refine_error_mm=args.terminal_refine_error_mm,
         terminal_confirm_frames=args.terminal_confirm_frames,
+        flow_integration_steps=args.flow_integration_steps,
+        controller_variant=args.controller_variant,
     )
 
     # 评估
@@ -1466,6 +1572,7 @@ def main():
         start_error_mm=(
             None if args.start_error_um is None else args.start_error_um / 1000.0
         ),
+        progress_every=int(os.environ.get("RCM_EVAL_PROGRESS_EVERY", "0")),
     )
 
 

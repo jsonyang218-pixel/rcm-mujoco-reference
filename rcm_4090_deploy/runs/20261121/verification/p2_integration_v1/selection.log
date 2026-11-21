@@ -1,0 +1,33 @@
+test_both_source_manifests_match (__main__.DriverSelectionTests.test_both_source_manifests_match) ... ok
+test_default_is_pinned_g15 (__main__.DriverSelectionTests.test_default_is_pinned_g15) ... ok
+test_g10_rollback_in_fresh_process (__main__.DriverSelectionTests.test_g10_rollback_in_fresh_process) ... ok
+test_preloaded_external_package_is_rejected (__main__.DriverSelectionTests.test_preloaded_external_package_is_rejected) ... ok
+test_process_cannot_silently_switch_cached_version (__main__.DriverSelectionTests.test_process_cannot_silently_switch_cached_version) ... ok
+test_scene_and_motor_share_driver_and_keep_four_mm_home (__main__.DriverSelectionTests.test_scene_and_motor_share_driver_and_keep_four_mm_home) ... ERROR
+test_single_handle_targets_and_duplicate_packets (__main__.DriverSelectionTests.test_single_handle_targets_and_duplicate_packets) ... ok
+test_unknown_variant_is_rejected (__main__.DriverSelectionTests.test_unknown_variant_is_rejected) ... ok
+
+======================================================================
+ERROR: test_scene_and_motor_share_driver_and_keep_four_mm_home (__main__.DriverSelectionTests.test_scene_and_motor_share_driver_and_keep_four_mm_home)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/him1/mujoco_bc/rcm_4090_deploy/scripts/verification/verify_driver_selection.py", line 106, in test_scene_and_motor_share_driver_and_keep_four_mm_home
+    scene.set_task([.001, .001, .00001], motor_dt=.05)
+  File "/home/him1/mujoco_bc/rcm_4090_deploy/rcm/scene_v9.py", line 536, in set_task
+    actual = motor.advance(q, motor_dt)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/him1/mujoco_bc/rcm_4090_deploy/rcm/motor_execution.py", line 56, in advance
+    return self.commit(self.preview(desired_task, duration_s))
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/him1/mujoco_bc/rcm_4090_deploy/rcm/motor_execution.py", line 62, in preview
+    return self.preview_robot(desired_robot, duration_s, requested_task=desired)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/him1/mujoco_bc/rcm_4090_deploy/rcm/motor_execution.py", line 126, in preview_robot
+    'tip_rcm_radius_before_mm': float(np.linalg.norm(self.reference.forward_kinematics(before_task))),
+                                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'RCMSceneV9' object has no attribute 'forward_kinematics'
+
+----------------------------------------------------------------------
+Ran 8 tests in 2.119s
+
+FAILED (errors=1)

@@ -1,0 +1,94 @@
+{
+  "timestamp": "2026-11-21T14:07:36.955121+08:00",
+  "driver": {
+    "variant": "g15",
+    "control_gear": 15,
+    "kinematics_path": "/home/him1/mujoco_bc/rcm_4090_deploy/mujoco_model/vendor/simulation_driver_g15/ros_msg/src/robot_control/kinematics.py",
+    "kinematics_sha256": "3465daf19fd3269466f90fd77c6626149ab4da8ddde612c8f3d9a12c77d06088"
+  },
+  "hypothesis": "A/B displacement scales with tip-to-RCM radius at fixed posture; C step remains axial",
+  "main_change": "initialize tip-to-RCM radius21mm instead of4mm; no control source changes",
+  "requested_tip_rcm_radius_mm": 21.0,
+  "actual_tip_rcm_radius_mm": 20.999997473000008,
+  "initial_robot_ABCE": [
+    0,
+    1466018,
+    1978504,
+    0
+  ],
+  "equivalent_C_insertion_from_default_home_mm": 16.99999760336112,
+  "initialization_scope": "explicit simulator reset at workpoint; no17mm approach trajectory tested",
+  "baseline": "runs/20261121/verification/g15_single_packet_v1/summary.json",
+  "baseline_sha256": "af6cf2688c94ebaef31d6067a522f9fe649bbb6f71fe7499d7776d49c6ee1104",
+  "helper_path": "runs/20261121/verification/g15_single_packet_v1/measure.py",
+  "helper_sha256": "d740ad79c4f1e6a1f0ef79591c24ae98aa5717a9726b3ba0ff097124f2d4174c",
+  "wrapper_sha256": "1c76d045cf21c2718bd04d6b0ef5de13d46e5fbf5cc51341271eca0040b6f82c",
+  "source_sha256": {
+    "config.json": "72e42acb575f174baefd36063a637c9d8814782ed13c7ad7e234a3ade53997db",
+    "mujoco_model/driver_loader.py": "9de0dbcf5e2f837b89d3a366016412d3b81cfe3f5a2e856979a9f8dbb7ebeafe",
+    "mujoco_model/motor_backend.py": "1bc2a5b79eceda9cc31bfaa49be20986e680784ad15e5ebc35fe629a453302e4",
+    "mujoco_model/model_sync.py": "3fdc6b0f74becb15ceeed1b5d1c2973cd74fbad174fb67dce2852dc0c67ba66d",
+    "mujoco_model/source_manifest_g15.json": "c129c432e403c3bf4159c83e9ae625e17a06091e655b811b54d9e5683483d058",
+    "runs/20261121/verification/g15_single_packet_v1/measure.py": "d740ad79c4f1e6a1f0ef79591c24ae98aa5717a9726b3ba0ff097124f2d4174c"
+  },
+  "cases": [
+    [
+      "hold",
+      0
+    ],
+    [
+      "A",
+      1
+    ],
+    [
+      "A",
+      -1
+    ],
+    [
+      "B",
+      1
+    ],
+    [
+      "B",
+      -1
+    ],
+    [
+      "C",
+      1
+    ],
+    [
+      "C",
+      -1
+    ]
+  ],
+  "needle_profile": "legacy",
+  "tau_s": 0.04,
+  "speed_limits_A_deg_B_deg_C_mm_s": [
+    10.0,
+    10.0,
+    2.0
+  ],
+  "timeout_s": 0.5,
+  "integration_step_s": 0.002,
+  "observation_period_s": 0.05,
+  "max_steps_per_case": 250,
+  "max_simulation_time_s_per_case": 0.5,
+  "accepted_packets_per_case": 1,
+  "worker_count": 1,
+  "wall_budget_s": 30,
+  "dataset": null,
+  "checkpoint": null,
+  "training_rounds": 0,
+  "seed": null,
+  "tier": "deterministic three-axis diagnostic, not navigation screen10/dev20",
+  "device": "CPU small scalar/MuJoCo FK; no rendering or heavy tensors",
+  "gates": [
+    "one accepted packet",
+    "no watchdog/fault before0.5s",
+    "encoder at target plus unchanged feedback for3consecutive50msframes",
+    "MuJoCo/driver FK agreement <1e-9m"
+  ],
+  "failure_policy": "record partial scope and stop; no retries or parameter changes",
+  "command": ".venv/bin/python -E -B runs/20261121/verification/g15_single_packet_rcm21mm_v1/measure.py --output-dir runs/20261121/verification/g15_single_packet_rcm21mm_v1",
+  "output_dir": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/verification/g15_single_packet_rcm21mm_v1"
+}

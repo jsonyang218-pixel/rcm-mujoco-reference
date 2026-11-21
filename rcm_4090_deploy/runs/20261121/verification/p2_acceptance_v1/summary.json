@@ -1,0 +1,92 @@
+{
+  "status": "PASS",
+  "checks": [
+    {
+      "name": "g15_p2",
+      "driver": "g15",
+      "command": [
+        "/home/him1/mujoco_bc/rcm_4090_deploy/.venv/bin/python",
+        "-E",
+        "-B",
+        "-m",
+        "scripts.verification.verify_control_target",
+        "--output-dir",
+        "runs/20261121/verification/p2_acceptance_v1/g15_p2"
+      ],
+      "exit_code": 0,
+      "log": "runs/20261121/verification/p2_acceptance_v1/g15_p2.log"
+    },
+    {
+      "name": "g10_p2",
+      "driver": "g10",
+      "command": [
+        "/home/him1/mujoco_bc/rcm_4090_deploy/.venv/bin/python",
+        "-E",
+        "-B",
+        "-m",
+        "scripts.verification.verify_control_target",
+        "--output-dir",
+        "runs/20261121/verification/p2_acceptance_v1/g10_p2"
+      ],
+      "exit_code": 0,
+      "log": "runs/20261121/verification/p2_acceptance_v1/g10_p2.log"
+    },
+    {
+      "name": "g15_motor",
+      "driver": "g15",
+      "command": [
+        "/home/him1/mujoco_bc/rcm_4090_deploy/.venv/bin/python",
+        "-E",
+        "-B",
+        "-m",
+        "scripts.verification.verify_motor_execution"
+      ],
+      "exit_code": 0,
+      "log": "runs/20261121/verification/p2_acceptance_v1/g15_motor.log"
+    },
+    {
+      "name": "g10_motor",
+      "driver": "g10",
+      "command": [
+        "/home/him1/mujoco_bc/rcm_4090_deploy/.venv/bin/python",
+        "-E",
+        "-B",
+        "-m",
+        "scripts.verification.verify_motor_execution"
+      ],
+      "exit_code": 0,
+      "log": "runs/20261121/verification/p2_acceptance_v1/g10_motor.log"
+    },
+    {
+      "name": "selection",
+      "driver": "g15",
+      "command": [
+        "/home/him1/mujoco_bc/rcm_4090_deploy/.venv/bin/python",
+        "-E",
+        "-B",
+        "-m",
+        "scripts.verification.verify_driver_selection"
+      ],
+      "exit_code": 0,
+      "log": "runs/20261121/verification/p2_acceptance_v1/selection.log"
+    }
+  ],
+  "source_sha256": {
+    "rcm/control_target.py": "80a782cbe4fc8cdcc785005a469ded8eae72f7af7de53c8295a8279a7a98174d",
+    "rcm/motor_execution.py": "497fbc163854aa99af0e951e36388e0a53db8e791b6b6ae4382c7f106ed4c9b7",
+    "rcm/reference.py": "ce7dae2061e6272d0ba7d1a709a29a270456194f114f2b88a1b28a37642dc520",
+    "rcm/scene_v9.py": "c6b04b4aa33b653e78262feac073d48c099ce08982293eab5866571707ab7058",
+    "lerobot_training/eval_policy.py": "63682f695b3e17ba1eda7dc0995f98da91220dc52bf94e21c547759903fb80ff",
+    "scripts/research/control_g15_diagnostics.py": "45e3ae53c2ad6be4f0ad8116f05f398baef02be5528efa5ff1feee57a8f0889c",
+    "scripts/verification/verify_control_target.py": "e185532ea27dbe58942a785aba7019d7afbd6036c9dc9d2472d4b8998b58f393"
+  },
+  "syntax_checked": [
+    "rcm/control_target.py",
+    "rcm/motor_execution.py",
+    "rcm/reference.py",
+    "rcm/scene_v9.py",
+    "lerobot_training/eval_policy.py",
+    "scripts/research/control_g15_diagnostics.py",
+    "scripts/verification/verify_control_target.py"
+  ]
+}

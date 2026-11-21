@@ -35,3 +35,5 @@ source .venv/bin/activate
 python -m scripts.verification.verify_current_model
 python -m scripts.datasets.collect_v9_dataset --help
 ```
+
+- [P2 连续目标累积与 G10/G15 配对诊断执行卡](CONTROL_P2_EXECUTION_PLAN_20261121.md)：当前执行计划；修正21 mm口径，保留严格成功统计，先做零训练诊断。

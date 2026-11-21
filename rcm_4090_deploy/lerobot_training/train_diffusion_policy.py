@@ -37,12 +37,14 @@ try:
         history_features,
         motion_samples,
         validate_dataset_contract,
+        valid_window_indices,
     )
 except ImportError:
     from dataset_contract import (
         history_features,
         motion_samples,
         validate_dataset_contract,
+        valid_window_indices,
     )
 
 
@@ -454,6 +456,25 @@ class RCMDataset(Dataset):
 
     def _build_valid_indices(self):
         """构建有效样本索引"""
+        if self.has_history_contract:
+            indices, diagnostics = valid_window_indices(
+                self.episode_indices,
+                self.source_frame_indices,
+                self.timestamps_s,
+                n_obs_steps=self.n_obs_steps,
+                n_action_steps=self.n_action_steps,
+                control_period_s=self.control_period_s,
+                oct_navigation=self.oct_navigation,
+                oct_navigation_valid=self.oct_navigation_valid,
+                return_diagnostics=True,
+            )
+            self.window_diagnostics = diagnostics
+            return indices.tolist()
+
+        self.window_diagnostics = {
+            "legacy_history": True,
+            "valid_windows": 0,
+        }
         valid_indices = []
 
         for i in range(len(self.actions)):
@@ -500,6 +521,7 @@ class RCMDataset(Dataset):
 
             valid_indices.append(i)
 
+        self.window_diagnostics["valid_windows"] = len(valid_indices)
         return valid_indices
 
     def __len__(self):

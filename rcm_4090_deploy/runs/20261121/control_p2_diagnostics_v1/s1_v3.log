@@ -1,0 +1,29 @@
+Warning: wandb not available, logging will be local only
+加载模型: outputs/overnight_c_fix_symlog_081234/task2_train/step_004000.pth
+模型加载完成 (type=dit_rectified_flow, epoch=3, train_loss=0.116777, val_loss=0.148003)
+
+评估 episodes:   0%|          | 0/1 [00:00<?, ?it/s]
+Episode 1/1
+  目标世界坐标: [348.825, -16.156, 373.943] mm
+  closed-loop step 1/120, error=19548.126 um
+
+评估 episodes:   0%|          | 0/1 [00:04<?, ?it/s]
+Stage failed: /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_diagnostics_v1/s1_v3/status.json
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/him1/mujoco_bc/rcm_4090_deploy/scripts/research/control_g15_diagnostics.py", line 404, in <module>
+    main()
+  File "/home/him1/mujoco_bc/rcm_4090_deploy/scripts/research/control_g15_diagnostics.py", line 380, in main
+    row = policy_episode(evaluator, targets, index, steps, folder)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/him1/mujoco_bc/rcm_4090_deploy/scripts/research/control_g15_diagnostics.py", line 111, in policy_episode
+    payload = evaluator.evaluate(num_episodes=1, output_dir=folder, seed=42,
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/him1/mujoco_bc/rcm_4090_deploy/lerobot_training/eval_policy.py", line 1291, in evaluate
+    result = self.evaluate_episode(
+             ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/him1/mujoco_bc/rcm_4090_deploy/lerobot_training/eval_policy.py", line 1132, in evaluate_episode
+    observer({'step': step, 'error_before_mm': float(error),
+                                                     ^^^^^
+UnboundLocalError: cannot access local variable 'error' where it is not associated with a value

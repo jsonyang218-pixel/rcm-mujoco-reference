@@ -1,0 +1,36 @@
+{
+  "status": "failed",
+  "mode": "smoke",
+  "episodes": [],
+  "identity": {
+    "code_sha256": "fab6ffa412d6030ab9f188fb9454a47e8d1429df84601550350c5853e1a8c8af",
+    "scene_sha256": "265c927ef7e7ac71536963b3000ffb161b7ff7ac03bb86cdb8480ed988c17028",
+    "module_sha256": "70a8cd88e3fbe71e4f72b606ca29530529ef00ea4863a2ab8e5f9060bfcba2d2",
+    "manifest_sha256": "fcc4872a9d5b58bb7158b36d3c0ab6d7452e4d8d747317dfb077b6e7bbc815c7",
+    "checkpoint_sha256": "185a6ef02caea4ea74ba752d67618d459c906450f5b315cd8010c3c5f1703f1b"
+  },
+  "protocol": {
+    "indices": [
+      0,
+      1,
+      2
+    ],
+    "seeds": [
+      42,
+      43,
+      44
+    ],
+    "max_steps": 120,
+    "control_period_s": 0.05,
+    "error_threshold_um": 0.35,
+    "settled_frames": 3,
+    "render_quality": {
+      "offsamples": 0,
+      "numslices": 112,
+      "numstacks": 64
+    },
+    "tier": "smoke"
+  },
+  "device": "NVIDIA GeForce RTX 4090",
+  "error": "UnboundLocalError(\"cannot access local variable 'error' where it is not associated with a value\")"
+}

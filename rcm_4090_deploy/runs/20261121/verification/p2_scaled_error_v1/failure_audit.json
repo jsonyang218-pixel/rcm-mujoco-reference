@@ -1,0 +1,46 @@
+{
+  "timestamp": "2026-11-21T14:39:43.851149+08:00",
+  "status": "failed_workflow_audited",
+  "workflow": "runs/20261121/control_p2_diagnostics_v1",
+  "workflow_stages_completed": 1,
+  "workflow_stages_failed": 1,
+  "workflow_stages_skipped": 10,
+  "completed_scope": {
+    "variant": "V0",
+    "driver": "g10",
+    "episode_indices": [
+      0,
+      1,
+      2
+    ],
+    "seeds": [
+      42,
+      43,
+      44
+    ],
+    "max_steps": 120,
+    "strict_success_count": 0,
+    "final_mean_um": 16006.23144398026,
+    "interpretation": "smoke only; not a precision or improvement result"
+  },
+  "partial_scope": {
+    "variant": "V3",
+    "episode_index": 0,
+    "seed": 42,
+    "persisted_motor_rows": 6,
+    "last_persisted_step": 5,
+    "trace": "runs/20261121/control_p2_diagnostics_v1/s1_v3/E00/motor_steps.jsonl",
+    "note": "failed observer call occurs after one additional commit; persisted rows are not a complete episode"
+  },
+  "failure": "UnboundLocalError(\"cannot access local variable 'error' where it is not associated with a value\")",
+  "cause": "except ValueError as error clears the local measurement-error variable on exiting the exception block; the post-commit observer then reads an unbound name",
+  "checkpoint": "outputs/overnight_c_fix_symlog_081234/task2_train/step_004000.pth",
+  "checkpoint_sha256": "185a6ef02caea4ea74ba752d67618d459c906450f5b315cd8010c3c5f1703f1b",
+  "target_manifest_sha256": "fcc4872a9d5b58bb7158b36d3c0ab6d7452e4d8d747317dfb077b6e7bbc815c7",
+  "command_reference": "runs/20261121/control_p2_diagnostics_v1/experiment_card.json",
+  "frozen_evidence_sha256": {
+    "runs/20261121/control_p2_diagnostics_v1/workflow_status.json": "c24ab24dfc1bbacccb2df2a33a80d2bb144ca3d7356de86e80828d8f2e51e83e",
+    "runs/20261121/control_p2_diagnostics_v1/s1_v3/status.json": "6b3ea459cf821ce29666694c40994fcaf8f8c0cd13744060093ca3a4b36e15fb",
+    "runs/20261121/control_p2_diagnostics_v1/s1_v3/E00/motor_steps.jsonl": "86d0f05a1d093a0fe48f1a114913a13a4255fc29b81e3d5dd962f3153697811f"
+  }
+}

@@ -545,6 +545,13 @@ class RCMSceneV9:
         self.motor_execution = MotorExecution(self, settings or self.config.get('motor_execution'))
         self._apply_task_pose(self.task_from_encoders(self.motor_execution.backend.robot[:3]))
 
+    def apply_prepared_motor(self, prepared):
+        previous = self.data.qpos.copy()
+        actual = self.motor_execution.commit(prepared)
+        self._apply_task_pose(actual)
+        self.data.qvel[:] = (self.data.qpos - previous) / self.motor_execution.last_record['duration_s']
+        mujoco.mj_forward(self.model, self.data)
+
     def motor_robot(self):
         if self.motor_execution is None:
             raise RuntimeError('Motor execution is not enabled')

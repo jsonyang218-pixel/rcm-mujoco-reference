@@ -1,0 +1,21 @@
+test_anti_windup_bounds_and_packet_caps (__main__.ControlTargetTests.test_anti_windup_bounds_and_packet_caps) ... ok
+test_duplicate_absolute_handles_do_not_accumulate_motor_targets (__main__.ControlTargetTests.test_duplicate_absolute_handles_do_not_accumulate_motor_targets) ... ok
+test_e_channel_and_noninteger_robot_targets_rejected (__main__.ControlTargetTests.test_e_channel_and_noninteger_robot_targets_rejected) ... ok
+test_intermediate_state_rejection_is_atomic (__main__.ControlTargetTests.test_intermediate_state_rejection_is_atomic) ... ok
+test_only_one_prepared_candidate_can_commit (__main__.ControlTargetTests.test_only_one_prepared_candidate_can_commit) ... ok
+test_pairing_rejects_seed_and_target_mismatches (__main__.ControlTargetTests.test_pairing_rejects_seed_and_target_mismatches) ... ok
+test_policy_evaluator_uses_accumulator_and_records_accepted_action (__main__.ControlTargetTests.test_policy_evaluator_uses_accumulator_and_records_accepted_action) ... ok
+test_policy_scaled_rejection_preserves_measured_error_and_commits_once (__main__.ControlTargetTests.test_policy_scaled_rejection_preserves_measured_error_and_commits_once) ... ok
+test_post_quantization_rejection_leaves_backend_and_clock_untouched (__main__.ControlTargetTests.test_post_quantization_rejection_leaves_backend_and_clock_untouched) ... ok
+test_preview_commit_preserves_original_backend_dynamics (__main__.ControlTargetTests.test_preview_commit_preserves_original_backend_dynamics) ... ok
+test_previews_and_rejected_scales_have_no_side_effects (__main__.ControlTargetTests.test_previews_and_rejected_scales_have_no_side_effects) ... ok
+test_reset_hold_and_watchdog_clear_pending_intent (__main__.ControlTargetTests.test_reset_hold_and_watchdog_clear_pending_intent) ... ok
+test_reverse_and_zero_scale_preserve_fractional_intent (__main__.ControlTargetTests.test_reverse_and_zero_scale_preserve_fractional_intent) ... ok
+test_small_a_actions_accumulate_where_feedback_actions_are_lost (__main__.ControlTargetTests.test_small_a_actions_accumulate_where_feedback_actions_are_lost) ... ok
+test_small_b_and_c_actions_cross_handle_thresholds (__main__.ControlTargetTests.test_small_b_and_c_actions_cross_handle_thresholds) ... ok
+test_v9_accumulator_updates_display_from_feedback (__main__.ControlTargetTests.test_v9_accumulator_updates_display_from_feedback) ... ok
+
+----------------------------------------------------------------------
+Ran 16 tests in 3.226s
+
+OK

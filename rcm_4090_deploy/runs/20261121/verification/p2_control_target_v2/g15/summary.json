@@ -1,0 +1,17 @@
+{
+  "timestamp": "2026-11-21T14:22:51.135168+08:00",
+  "status": "PASS",
+  "tests_run": 11,
+  "failures": 0,
+  "errors": 0,
+  "driver": {
+    "variant": "g15",
+    "control_gear": 15,
+    "kinematics_path": "/home/him1/mujoco_bc/rcm_4090_deploy/mujoco_model/vendor/simulation_driver_g15/ros_msg/src/robot_control/kinematics.py",
+    "kinematics_sha256": "3465daf19fd3269466f90fd77c6626149ab4da8ddde612c8f3d9a12c77d06088"
+  },
+  "device": "CPU: small scalar protocol/kinematics checks",
+  "checkpoint_dataset": "not applicable",
+  "output_dir": "runs/20261121/verification/p2_control_target_v2/g15",
+  "command": "python -B -m scripts.verification.verify_control_target --output-dir runs/20261121/verification/p2_control_target_v2/g15"
+}

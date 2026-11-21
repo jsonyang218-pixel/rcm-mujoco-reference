@@ -1,0 +1,25 @@
+{
+  "timestamp": "2026-11-21T14:23:49.498561+08:00",
+  "status": "PASS",
+  "tests_run": 12,
+  "failures": 0,
+  "errors": 0,
+  "driver": {
+    "variant": "g15",
+    "control_gear": 15,
+    "kinematics_path": "/home/him1/mujoco_bc/rcm_4090_deploy/mujoco_model/vendor/simulation_driver_g15/ros_msg/src/robot_control/kinematics.py",
+    "kinematics_sha256": "3465daf19fd3269466f90fd77c6626149ab4da8ddde612c8f3d9a12c77d06088"
+  },
+  "device": "CPU: small scalar protocol/kinematics checks",
+  "checkpoint_dataset": "not applicable",
+  "output_dir": "runs/20261121/verification/p2_control_target_v3/g15",
+  "source_sha256": {
+    "rcm/control_target.py": "80a782cbe4fc8cdcc785005a469ded8eae72f7af7de53c8295a8279a7a98174d",
+    "rcm/motor_execution.py": "44c3042917655f911e665d297867bc0df643856881353bddd2a3468401535b7f",
+    "rcm/reference.py": "ce7dae2061e6272d0ba7d1a709a29a270456194f114f2b88a1b28a37642dc520",
+    "rcm/scene_v9.py": "c6b04b4aa33b653e78262feac073d48c099ce08982293eab5866571707ab7058",
+    "lerobot_training/eval_policy.py": "ac4264d8990ab38fcbd9ba3de2150e629b7327793df53ecd823cb00ff0176999",
+    "/home/him1/mujoco_bc/rcm_4090_deploy/scripts/verification/verify_control_target.py": "59b3c58d7c498e198e8e4d24774ef2606fbd74c196c39aecd933ac598db03dcc"
+  },
+  "command": "python -B -m scripts.verification.verify_control_target --output-dir runs/20261121/verification/p2_control_target_v3/g15"
+}

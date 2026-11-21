@@ -1,0 +1,62 @@
+{
+  "status": "FAIL",
+  "checks": [
+    {
+      "name": "g15_motor",
+      "driver": "g15",
+      "command": [
+        "/home/him1/mujoco_bc/rcm_4090_deploy/.venv/bin/python",
+        "-E",
+        "-B",
+        "-m",
+        "scripts.verification.verify_motor_execution"
+      ],
+      "exit_code": 1,
+      "log": "runs/20261121/verification/p2_integration_v1/g15_motor.log"
+    },
+    {
+      "name": "g10_motor",
+      "driver": "g10",
+      "command": [
+        "/home/him1/mujoco_bc/rcm_4090_deploy/.venv/bin/python",
+        "-E",
+        "-B",
+        "-m",
+        "scripts.verification.verify_motor_execution"
+      ],
+      "exit_code": 1,
+      "log": "runs/20261121/verification/p2_integration_v1/g10_motor.log"
+    },
+    {
+      "name": "selection",
+      "driver": "g15",
+      "command": [
+        "/home/him1/mujoco_bc/rcm_4090_deploy/.venv/bin/python",
+        "-E",
+        "-B",
+        "-m",
+        "scripts.verification.verify_driver_selection"
+      ],
+      "exit_code": 1,
+      "log": "runs/20261121/verification/p2_integration_v1/selection.log"
+    }
+  ],
+  "source_sha256": {
+    "rcm/control_target.py": "80a782cbe4fc8cdcc785005a469ded8eae72f7af7de53c8295a8279a7a98174d",
+    "rcm/motor_execution.py": "44c3042917655f911e665d297867bc0df643856881353bddd2a3468401535b7f",
+    "rcm/reference.py": "ce7dae2061e6272d0ba7d1a709a29a270456194f114f2b88a1b28a37642dc520",
+    "rcm/scene_v9.py": "c6b04b4aa33b653e78262feac073d48c099ce08982293eab5866571707ab7058",
+    "lerobot_training/eval_policy.py": "63682f695b3e17ba1eda7dc0995f98da91220dc52bf94e21c547759903fb80ff",
+    "scripts/research/control_g15_diagnostics.py": "3c9270cd159190fc86c73b72f1bbe5cb87e3fb00b4d65832c0838549fd8e38d2",
+    "scripts/verification/verify_control_target.py": "59b3c58d7c498e198e8e4d24774ef2606fbd74c196c39aecd933ac598db03dcc"
+  },
+  "syntax_checked": [
+    "rcm/control_target.py",
+    "rcm/motor_execution.py",
+    "rcm/reference.py",
+    "rcm/scene_v9.py",
+    "lerobot_training/eval_policy.py",
+    "scripts/research/control_g15_diagnostics.py",
+    "scripts/verification/verify_control_target.py"
+  ]
+}

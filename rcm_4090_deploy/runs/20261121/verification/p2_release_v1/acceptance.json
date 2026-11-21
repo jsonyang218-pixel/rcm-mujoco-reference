@@ -1,0 +1,55 @@
+{
+  "status": "PASS",
+  "timestamp": "2026-11-21T14:35:10.721756+08:00",
+  "tests": 52,
+  "checks": [
+    {
+      "name": "g15_p2",
+      "tests": 15,
+      "status": "PASS",
+      "evidence": "runs/20261121/verification/p2_acceptance_v2/g15/summary.json"
+    },
+    {
+      "name": "g10_p2",
+      "tests": 15,
+      "status": "PASS",
+      "evidence": "runs/20261121/verification/p2_acceptance_v2/g10/summary.json"
+    },
+    {
+      "name": "g15_motor",
+      "tests": 7,
+      "status": "PASS",
+      "evidence": "runs/20261121/verification/p2_acceptance_v1/g15_motor.log"
+    },
+    {
+      "name": "g10_motor",
+      "tests": 7,
+      "status": "PASS",
+      "evidence": "runs/20261121/verification/p2_acceptance_v1/g10_motor.log"
+    },
+    {
+      "name": "selection",
+      "tests": 8,
+      "status": "PASS",
+      "evidence": "runs/20261121/verification/p2_acceptance_v1/selection.log"
+    }
+  ],
+  "source_sha256": {
+    "rcm/control_target.py": "80a782cbe4fc8cdcc785005a469ded8eae72f7af7de53c8295a8279a7a98174d",
+    "rcm/motor_execution.py": "497fbc163854aa99af0e951e36388e0a53db8e791b6b6ae4382c7f106ed4c9b7",
+    "rcm/reference.py": "ce7dae2061e6272d0ba7d1a709a29a270456194f114f2b88a1b28a37642dc520",
+    "rcm/scene_v9.py": "c6b04b4aa33b653e78262feac073d48c099ce08982293eab5866571707ab7058",
+    "lerobot_training/eval_policy.py": "f4c97e42b788b1bdb0807af5717f1f2b9ad3c0c47495c8db7de4e902fce4cd63",
+    "scripts/research/control_g15_diagnostics.py": "70a8cd88e3fbe71e4f72b606ca29530529ef00ea4863a2ab8e5f9060bfcba2d2",
+    "scripts/verification/verify_control_target.py": "f65f862a5e4b625d04958d90d571944bb8aa4fda788584d44ee8727d70df775b",
+    "configs/experiment_card_control_p2_diagnostics_20261121_v1.json": "08a8616943c97bf638180d10f40b18d3de0eed8e1d98f6d14d66a59046c4dc68",
+    "docs/CONTROL_P2_EXECUTION_PLAN_20261121.md": "7f7cd71fbb436e1c36efea918943e42fb8007d350e48ededa63d0c15549906a9"
+  },
+  "preflight": "runs/20261121/verification/p2_preflight_v1/summary.json",
+  "scope": "Deterministic software checks, not closed-loop improvement or hardware accuracy",
+  "cpu_reason": "Small scalar/kinematics checks; CUDA4090/EGL reserved for policy diagnostics",
+  "earlier_failures_preserved": [
+    "runs/20261121/verification/p2_control_target_v1",
+    "runs/20261121/verification/p2_integration_v1"
+  ]
+}

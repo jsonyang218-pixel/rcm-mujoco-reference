@@ -1,0 +1,346 @@
+{
+  "case": "C_minus1",
+  "axis": "C",
+  "handle_count": -1,
+  "status": "PASS",
+  "accepted_packets": 1,
+  "initial_robot_ABCE": [
+    0,
+    1466018,
+    1978504,
+    0
+  ],
+  "cumulative_handle_target_ABCE": [
+    0,
+    0,
+    -1,
+    0
+  ],
+  "quantized_target_ABCE": [
+    0,
+    1466018,
+    1978392,
+    0
+  ],
+  "final_robot_ABCE": [
+    0,
+    1466018,
+    1978392,
+    0
+  ],
+  "robot_count_delta_ABCE": [
+    0,
+    0,
+    -112,
+    0
+  ],
+  "actual_axis_delta_A_deg_B_deg_C_mm": [
+    0.0,
+    0.0,
+    -0.0017548611056525942
+  ],
+  "tip_rcm_radius_before_mm": 20.999997473000008,
+  "tip_displacement_driver_um": 1.754861105652415,
+  "tip_displacement_mujoco_um": 1.75486110563712,
+  "nominal_tip_displacement_um": 1.7626953070163636,
+  "endpoint_error_from_nominal_um": 0.007834201363948487,
+  "error_from_quantized_target_um": 0.0,
+  "displacement_after_50ms_um": 1.2534722183221074,
+  "first_encoder_arrival_s": 0.218,
+  "first_three_50ms_settled_frames_s": 0.4,
+  "max_fk_error_m": 3.095014719317806e-13,
+  "final_fault": null,
+  "trace_path": "runs/20261121/verification/g15_single_packet_rcm21mm_v1/C_minus1_trace.jsonl",
+  "frames_50ms": [
+    {
+      "time_s": 0.05,
+      "robot_ABCE": [
+        0,
+        1466018,
+        1978424,
+        0
+      ],
+      "target_ABCE": [
+        0,
+        1466018,
+        1978392,
+        0
+      ],
+      "status": "moving",
+      "tip_driver_mm": [
+        0.0,
+        4.996087105868981,
+        20.395743753070995
+      ],
+      "tip_world_mm": [
+        338.4652879076278,
+        69.99999999999999,
+        376.925223474554
+      ],
+      "encoder_settled": false,
+      "consecutive_settled_frames": 0,
+      "tip_displacement_um": 1.2534722183221074
+    },
+    {
+      "time_s": 0.1,
+      "robot_ABCE": [
+        0,
+        1466018,
+        1978401,
+        0
+      ],
+      "target_ABCE": [
+        0,
+        1466018,
+        1978392,
+        0
+      ],
+      "status": "moving",
+      "tip_driver_mm": [
+        0.0,
+        4.996001364730781,
+        20.395393728292248
+      ],
+      "tip_world_mm": [
+        338.465519551096,
+        69.99999999999999,
+        376.92494741261856
+      ],
+      "encoder_settled": false,
+      "consecutive_settled_frames": 0,
+      "tip_displacement_um": 1.6138454810883849
+    },
+    {
+      "time_s": 0.15,
+      "robot_ABCE": [
+        0,
+        1466018,
+        1978395,
+        0
+      ],
+      "target_ABCE": [
+        0,
+        1466018,
+        1978392,
+        0
+      ],
+      "status": "moving",
+      "tip_driver_mm": [
+        0.0,
+        4.995978997477337,
+        20.3953024174804
+      ],
+      "tip_world_mm": [
+        338.46557997982677,
+        69.99999999999999,
+        376.9248753964615
+      ],
+      "encoder_settled": false,
+      "consecutive_settled_frames": 0,
+      "tip_displacement_um": 1.7078558974620341
+    },
+    {
+      "time_s": 0.2,
+      "robot_ABCE": [
+        0,
+        1466018,
+        1978393,
+        0
+      ],
+      "target_ABCE": [
+        0,
+        1466018,
+        1978392,
+        0
+      ],
+      "status": "moving",
+      "tip_driver_mm": [
+        0.0,
+        4.995971541726189,
+        20.39527198054312
+      ],
+      "tip_world_mm": [
+        338.4656001227371,
+        69.99999999999999,
+        376.92485139107583
+      ],
+      "encoder_settled": false,
+      "consecutive_settled_frames": 0,
+      "tip_displacement_um": 1.7391927029176169
+    },
+    {
+      "time_s": 0.25,
+      "robot_ABCE": [
+        0,
+        1466018,
+        1978392,
+        0
+      ],
+      "target_ABCE": [
+        0,
+        1466018,
+        1978392,
+        0
+      ],
+      "status": "holding",
+      "tip_driver_mm": [
+        0.0,
+        4.995967813850615,
+        20.395256762074474
+      ],
+      "tip_world_mm": [
+        338.4656101941922,
+        69.99999999999999,
+        376.924839388383
+      ],
+      "encoder_settled": false,
+      "consecutive_settled_frames": 0,
+      "tip_displacement_um": 1.754861105652415
+    },
+    {
+      "time_s": 0.3,
+      "robot_ABCE": [
+        0,
+        1466018,
+        1978392,
+        0
+      ],
+      "target_ABCE": [
+        0,
+        1466018,
+        1978392,
+        0
+      ],
+      "status": "holding",
+      "tip_driver_mm": [
+        0.0,
+        4.995967813850615,
+        20.395256762074474
+      ],
+      "tip_world_mm": [
+        338.4656101941922,
+        69.99999999999999,
+        376.924839388383
+      ],
+      "encoder_settled": true,
+      "consecutive_settled_frames": 1,
+      "tip_displacement_um": 1.754861105652415
+    },
+    {
+      "time_s": 0.35000000000000003,
+      "robot_ABCE": [
+        0,
+        1466018,
+        1978392,
+        0
+      ],
+      "target_ABCE": [
+        0,
+        1466018,
+        1978392,
+        0
+      ],
+      "status": "holding",
+      "tip_driver_mm": [
+        0.0,
+        4.995967813850615,
+        20.395256762074474
+      ],
+      "tip_world_mm": [
+        338.4656101941922,
+        69.99999999999999,
+        376.924839388383
+      ],
+      "encoder_settled": true,
+      "consecutive_settled_frames": 2,
+      "tip_displacement_um": 1.754861105652415
+    },
+    {
+      "time_s": 0.4,
+      "robot_ABCE": [
+        0,
+        1466018,
+        1978392,
+        0
+      ],
+      "target_ABCE": [
+        0,
+        1466018,
+        1978392,
+        0
+      ],
+      "status": "holding",
+      "tip_driver_mm": [
+        0.0,
+        4.995967813850615,
+        20.395256762074474
+      ],
+      "tip_world_mm": [
+        338.4656101941922,
+        69.99999999999999,
+        376.924839388383
+      ],
+      "encoder_settled": true,
+      "consecutive_settled_frames": 3,
+      "tip_displacement_um": 1.754861105652415
+    },
+    {
+      "time_s": 0.45,
+      "robot_ABCE": [
+        0,
+        1466018,
+        1978392,
+        0
+      ],
+      "target_ABCE": [
+        0,
+        1466018,
+        1978392,
+        0
+      ],
+      "status": "holding",
+      "tip_driver_mm": [
+        0.0,
+        4.995967813850615,
+        20.395256762074474
+      ],
+      "tip_world_mm": [
+        338.4656101941922,
+        69.99999999999999,
+        376.924839388383
+      ],
+      "encoder_settled": true,
+      "consecutive_settled_frames": 4,
+      "tip_displacement_um": 1.754861105652415
+    },
+    {
+      "time_s": 0.5,
+      "robot_ABCE": [
+        0,
+        1466018,
+        1978392,
+        0
+      ],
+      "target_ABCE": [
+        0,
+        1466018,
+        1978392,
+        0
+      ],
+      "status": "holding",
+      "tip_driver_mm": [
+        0.0,
+        4.995967813850615,
+        20.395256762074474
+      ],
+      "tip_world_mm": [
+        338.4656101941922,
+        69.99999999999999,
+        376.924839388383
+      ],
+      "encoder_settled": true,
+      "consecutive_settled_frames": 5,
+      "tip_displacement_um": 1.754861105652415
+    }
+  ]
+}

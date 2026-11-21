@@ -205,6 +205,28 @@ def main(argv=None):
         include_previous_action=True,
     )
     stats = _dataset_statistics(train_dataset)
+    initial_checkpoint = None
+    if args.init_from is not None:
+        initial_checkpoint = torch.load(
+            args.init_from,
+            map_location="cpu",
+            weights_only=False,
+        )
+        initial_config = initial_checkpoint.get("config", {})
+        missing_stats = [
+            name for name in stats if name not in initial_config
+        ]
+        if missing_stats:
+            raise ValueError(
+                "initial checkpoint lacks normalization statistics: "
+                f"{missing_stats}"
+            )
+        # Keep the checkpoint's normalization contract when fine-tuning on a
+        # new data subset. Recomputing statistics changes the loss scale.
+        stats = {
+            name: np.asarray(initial_config[name], dtype=np.float32)
+            for name in stats
+        }
     generator = torch.Generator().manual_seed(args.seed)
     weights = _sampling_weights(
         train_dataset,
@@ -253,12 +275,7 @@ def main(argv=None):
         flow_integration_steps=args.flow_integration_steps,
         **stats,
     ).to(device)
-    if args.init_from is not None:
-        initial_checkpoint = torch.load(
-            args.init_from,
-            map_location="cpu",
-            weights_only=False,
-        )
+    if initial_checkpoint is not None:
         if (
             initial_checkpoint.get("policy_type")
             != DiTRectifiedFlowPolicy.policy_type
@@ -266,7 +283,6 @@ def main(argv=None):
             raise ValueError(
                 "initial checkpoint is not a DiTRectifiedFlowPolicy"
             )
-        initial_config = initial_checkpoint.get("config", {})
         for name in (
             "n_obs_steps",
             "n_action_steps",
