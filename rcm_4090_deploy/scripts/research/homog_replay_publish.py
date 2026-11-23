@@ -39,9 +39,11 @@ def publication_files(output):
     sources += [ROOT/'scripts/verification/verify_homog_replay.py', ROOT/'TEST_LOG.md',
                 ROOT/'scripts/research/gpu_episode_pool.py',
                 ROOT/'scripts/verification/verify_homog_teacher_intent.py',
+                ROOT/'scripts/verification/verify_homog_t3_hold.py',
                 ROOT/'scripts/verification/diagnose_homog_plateau.py',
                 ROOT/'scripts/tools/prepare_teacher_intent_repair.py',
                 ROOT/'scripts/tools/prepare_homog_mixed_budget.py',
+                ROOT/'scripts/tools/prepare_homog_hold_repair.py',
                 ROOT/'docs/HOMOG_REPLAY_PLAN_20261123.md']
     for path in sources:
         if not path.is_file():
@@ -62,7 +64,7 @@ def publication_files(output):
         for path in directory.rglob('*'):
             if path.is_file() and path.suffix in ('.json', '.jsonl', '.npz'):
                 files['rcm_4090_deploy/'+path.relative_to(ROOT).as_posix()] = path
-    for verification in (ROOT/'runs/20261123/verification').glob('homog_replay*'):
+    for verification in (ROOT/'runs/20261123/verification').glob('homog_*'):
         for path in verification.rglob('*'):
             if (path.is_file() and 'images' not in path.relative_to(verification).parts
                     and path.suffix in ('.json', '.log', '.png', '.csv', '.md')):

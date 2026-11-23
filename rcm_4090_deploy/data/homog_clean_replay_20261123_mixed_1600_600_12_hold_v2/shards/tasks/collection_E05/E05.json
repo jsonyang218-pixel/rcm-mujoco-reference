@@ -1,0 +1,125 @@
+{
+  "episode_index": 5,
+  "regime": "T1",
+  "frames": 933,
+  "valid_windows": 917,
+  "actions": 1600,
+  "dataset_path": "/home/him1/mujoco_bc/rcm_4090_deploy/data/homog_clean_replay_20261123_mixed_1600_600_12_hold_v2/shards/tasks/collection_E05/dataset.npz",
+  "dataset_sha256": "f6001fd6af46ff68984c90434dca1858d154d7a556288c70ca4368f48a083ad2",
+  "final_error_um": 167.33374270132032,
+  "hold_frames": 0,
+  "window_diagnostics": {
+    "candidate_windows": 917,
+    "trajectory_boundary_excluded": 0,
+    "source_frame_gap_excluded": 0,
+    "time_interval_excluded": 0,
+    "invalid_input_excluded": 0,
+    "valid_windows": 917
+  },
+  "task": {
+    "id": "E05",
+    "episode_index": 5,
+    "seed": 1005,
+    "regime": "T1",
+    "target_robot_mm": [
+      4.551443348063433,
+      3.472798003112472,
+      22.724974717533044
+    ],
+    "target_world_mm": [
+      346.22468504656723,
+      -6.709308627298771,
+      372.11237327358344
+    ],
+    "initial_state_si": [
+      0.19766838965893346,
+      0.09149087383870652,
+      -0.0005649741106699656
+    ],
+    "goal_state_si": [
+      0.19766838965893346,
+      0.09149087383870652,
+      0.019435025889330035
+    ],
+    "initial_error_um": 19999.997285542468,
+    "abc_offset_sign": [
+      0,
+      0,
+      -1
+    ],
+    "min_development_distance_um": 464.47961656887156
+  },
+  "egl": {
+    "vendor": "NVIDIA Corporation",
+    "renderer": "NVIDIA GeForce RTX 4090/PCIe/SSE2"
+  },
+  "stored_vs_policy_image_tensor_max_abs": 0.0,
+  "RGB_OCT_render_provenance_mismatch": false,
+  "quality": {
+    "offsamples": 0,
+    "numslices": 112,
+    "numstacks": 64
+  },
+  "label": "Same observe() zero-velocity geometry, pre-acceleration safe expectation; no truth enters labels",
+  "actual_history": "Accepted motor command stored separately as executed_action",
+  "expert_execution": "old_student_feedback",
+  "source_reuse": {
+    "source_receipt": "/home/him1/mujoco_bc/rcm_4090_deploy/data/homog_clean_replay_20261123_mixed_1600_600_12_v1/shards/tasks/collection_E05/receipt.json",
+    "source_receipt_sha256": "c5322ccb3939c3505009b6134cb9c7da9dc694cb17a774bbaac3978a5fcd254d",
+    "reachable_T1_T2_AST": {
+      "collection_tasks": true,
+      "expected_label": true,
+      "RecordingSensor": true,
+      "CollectionWorker": true,
+      "AuditWorker": true,
+      "axis_audit": true
+    },
+    "source_counts": {
+      "T1": 20,
+      "T2": 15
+    },
+    "changed_source_keys": [
+      "scripts/research/homog_replay_collect.py",
+      "scripts/research/homog_replay_common.py",
+      "scripts/research/homog_replay_hold.py",
+      "scripts/research/homog_replay_pipeline.py",
+      "scripts/research/homog_replay_publish.py",
+      "scripts/tools/prepare_homog_hold_repair.py",
+      "scripts/tools/prepare_homog_mixed_budget.py",
+      "scripts/verification/verify_homog_t3_hold.py",
+      "scripts/verification/verify_homog_teacher_intent.py"
+    ],
+    "source_identity": {
+      "code_sha256": "85461a582bb7a88332773b9832d93280d1beee9179caf88566a955b4de9c8188",
+      "scene_sha256": "265c927ef7e7ac71536963b3000ffb161b7ff7ac03bb86cdb8480ed988c17028",
+      "scripts/research/a_axis_flip_train.py": "8a05b7cdc21980ce68704726bab05d4012f735fd4e5ba3630e55e93cfae7aad5",
+      "scripts/research/a_axis_flip_replay.py": "dc5884144deb39daadc2e674abc343f6c4e18949ec30126f331d631d65dfde2e",
+      "scripts/research/a_axis_flip_audit.py": "e6c65c37656cde0b608c47a6ed4d799fc27dafe6d4abe3b1209c2abe4ca0929e",
+      "scripts/research/a_axis_flip_pipeline.py": "c813ef936b77b51014eca659c3a5ec0e5d6344d1c0308d02cb683628fb6870ee",
+      "scripts/research/a_axis_flip_publish.py": "be4a9fe1c3e6dc06f616381b26e7342d7448cf8feffabf82e96ee96d2503e081",
+      "scripts/research/a_axis_flip_common.py": "1a3ef56737f34e31e05a71566b54969dfafa3060a38ae6a8e44da83ecd29fab4",
+      "scripts/research/gpu_episode_pool.py": "323421d338664349811d6479cb03929e743509c900a8588f7dd3fa24f3153b19",
+      "scripts/research/clean_oct_workers.py": "1df09165778f9866b01fb6b8e020afbb839f284797c1ae497ab36216746a1650",
+      "lerobot_training/navigation_overlay.py": "3330474b01973ab121f55f341b7f6969a70bc6d546e5823b1160657e4cdf65a5",
+      "lerobot_training/eval_policy.py": "f7f3948ea6c81ebcf66063afd9d0eb99ae418c5b099052e48b1fd476f5de95f1",
+      "lerobot_training/dit_experience_replay.py": "8a3ef61fb52d7db77e402b13dcb9c7a5186c9dc5dfc2af85d1f0c3cef394c5c2",
+      "lerobot_training/dataset_contract.py": "942d43813b5083986eeca542f6b57c480e4db6a6e163dbb084ed86f3f0a4343a",
+      "configs/v12_reachable_development_targets_0p35um.json": "fcc4872a9d5b58bb7158b36d3c0ab6d7452e4d8d747317dfb077b6e7bbc815c7",
+      "scripts/research/homog_replay_common.py": "73968f265034dfba20aeb196634497fa20ab6c6303bb9fc3220a4de9a09625db",
+      "scripts/research/homog_replay_collect.py": "ea53275792e9500fafcfdd0b5bb0ad1f035521b41623980d9ec2bd58fc0a23e0",
+      "scripts/research/homog_replay_pipeline.py": "e70023150f2251171270c7af4ff1c12b915920b03f16015dca64545042041505",
+      "scripts/research/homog_replay_train.py": "1567ad380a365f3b65e2dfc8d3c03eb85ef3b6e342f2e81e3e5e93eb01ea0386",
+      "scripts/research/homog_replay_target.py": "d90735c7b5b654d10dc303759971778129e4e79ac82c4392135d07731cdf3624",
+      "scripts/research/homog_replay_evaluate.py": "800a3d944949eecd190195a7855c9cdd1b4dfa916e72f7d37402d789dea09e62",
+      "scripts/research/homog_replay_publish.py": "e4bf622eaf3b173602e7cb7de09a5d3ea545b08595a90ac623b79ae6c5d0783f",
+      "scripts/verification/verify_homog_replay.py": "3ed20e44d62dc6ae32862c63ba703ed9671992a76755b5f0bf7c6f33d43eac43",
+      "scripts/verification/verify_homog_teacher_intent.py": "9299c11aea213db9d94f7a21350fca9a8bb8a7063f1106e1a745ca96d720f815",
+      "scripts/tools/prepare_teacher_intent_repair.py": "8aee6669180605662797e4cf431d2fff22aef7e7f3c94605f0b8cfa58caf5715",
+      "scripts/tools/prepare_homog_mixed_budget.py": "dce20c7ef19d24b659611a1e6feeb2bff830d4171d0856f03282a8b237276a17",
+      "rcm/fundus.py": "1432e337aecde1e60d65c63250cd773a7c8b150c90cb67b5bf2c0f3ae1befed3",
+      "rcm/visual_servo.py": "b217af0f60eb0a1de462d37dfa22a507911420a7b3cc9c4d899e012e89cbb507",
+      "lerobot_training/train_diffusion_policy.py": "e809558031ea6d1b1bd28904d5d101778831a50761c5b0d9f893943e5254a50c"
+    },
+    "compatibility": "Only unreachable T3 branches changed; equal reachable T1/T2 AST, assets, budgets, targets, seeds, teacher, render and protocol; independent byte copy"
+  }
+}

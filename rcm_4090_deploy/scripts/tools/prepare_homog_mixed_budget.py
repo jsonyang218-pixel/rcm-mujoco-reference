@@ -33,6 +33,19 @@ class T1Budget(ast.NodeTransformer):
         return node
 
 
+class UnreachableT3(ast.NodeTransformer):
+    """Remove only exact regime guards, for comparison of T1/T2 execution.
+
+    Both historical and current trees are specialized. All reachable statements,
+    including the regime assignment itself, remain part of the comparison.
+    """
+
+    def visit_If(self, node):
+        if ast.unparse(node.test) in ("task['regime'] == 'T3'", "regime == 'T3'", 'hold'):
+            return [self.visit(n) for n in node.orelse]
+        return self.generic_visit(node)
+
+
 def equivalent_t1(original, current):
     old, new = ast.parse(original), ast.parse(current)
     checks = {}
@@ -40,8 +53,8 @@ def equivalent_t1(original, current):
                  'CollectionWorker', 'AuditWorker', 'axis_audit'):
         before = next(n for n in old.body if getattr(n, 'name', None) == name)
         after = next(n for n in new.body if getattr(n, 'name', None) == name)
-        checks[name] = (ast.dump(before, include_attributes=False)
-            == ast.dump(T1Budget().visit(copy.deepcopy(after)), include_attributes=False))
+        checks[name] = (ast.dump(UnreachableT3().visit(copy.deepcopy(before)), include_attributes=False)
+            == ast.dump(UnreachableT3().visit(T1Budget().visit(copy.deepcopy(after))), include_attributes=False))
     if not all(checks.values()):
         raise ValueError(f'T1 execution compatibility failed: {checks}')
     return checks

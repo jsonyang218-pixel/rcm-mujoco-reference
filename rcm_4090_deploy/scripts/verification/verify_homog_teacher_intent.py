@@ -109,12 +109,18 @@ class RecoverySmokeWorker:
             measured = np.asarray([r['measured_error_um'] for r in rows])
             motors = ep['motor_records']
             held = [r for r in rows if r['hold']]
+            held_motionless = all(
+                motors[r['source_frame_index']]['actual_before_robot_ABCE']
+                == motors[r['source_frame_index']]['actual_after_robot_ABCE']
+                == motors[r['source_frame_index']]['quantized_target_robot_ABCE']
+                and np.all(np.asarray(motors[r['source_frame_index']]['actual_velocity_rad_rad_m_per_s']) == 0)
+                for r in held)
             first_below = np.flatnonzero(true < 5)
             passed = (len(rows) == task['steps'] and ep['early_stop_reason'] is None
                 and ep['final_error_mm'] * 1000 < 5 and measured[-1] < 5
                 and ep['safety_limited_steps'] == 0
                 and any(m['tip_displacement_um'] > 0 for m in motors[:40])
-                and (task['regime'] != 'T3' or len(held) == 200)
+                and (task['regime'] != 'T3' or (len(held) == 200 and held_motionless))
                 and all(r['measured_error_um'] < 5 and np.all(np.asarray(r['action']) == 0)
                         and np.all(np.asarray(r['executed_action']) == 0) for r in held))
             result = {'status': 'passed' if passed else 'failed', 'episode_index': task['episode_index'],
@@ -122,6 +128,7 @@ class RecoverySmokeWorker:
                 'final_measured_error_um': float(measured[-1]), 'initial_error_um': float(true[0]),
                 'min_error_um': float(true.min()), 'first_below_5um_step': int(first_below[0]) if len(first_below) else None,
                 'hold_frames': len(held), 'hold_true_error_max_um': max((np.linalg.norm(r['truth_navigation_mm']) * 1000 for r in held), default=None),
+                'hold_all_motor_records_motionless': bool(held_motionless),
                 'safety_limited_steps': ep['safety_limited_steps'], 'egl': egl_identity(),
                 'stored_vs_policy_image_tensor_max_abs': recorder.image_parity,
                 'gate_passed': bool(passed), 'scope': 'Three training targets, short verification only; not final model accuracy',

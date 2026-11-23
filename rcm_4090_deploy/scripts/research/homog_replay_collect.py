@@ -15,6 +15,7 @@ from scripts.research.a_axis_flip_audit import pre_acceleration, static_scene
 from scripts.research.a_axis_flip_replay import windows
 from scripts.research.clean_oct_workers import egl_identity
 from scripts.research.homog_replay_target import TeacherIntent
+from scripts.research.homog_replay_hold import T3HoldError, T3HoldIntent
 from scripts.research.homog_replay_common import (
     CAPS, COLLECTION_STEPS, DATA, HOLD_START, OLD, QUALITY, REPORTS, STEPS, TARGETS, UNIT,
     atomic_npz, check_identity, gpu_check, make_teacher, pool, quality_gate,
@@ -105,6 +106,8 @@ class RecordingSensor:
         self.rows, self.index, self.pending = [], 0, None
         self.teacher_command = None
         self.teacher_intent = TeacherIntent(scene, CAPS) if task['regime'] != 'T1' else None
+        if task['regime'] == 'T3':
+            self.teacher_intent = T3HoldIntent(scene, CAPS, HOLD_START)
         self.execution_diagnostics = None
         self.invalid_reasons = Counter()
         (output/'images').mkdir()
@@ -141,12 +144,21 @@ class RecordingSensor:
                 raise ValueError(f'Invalid teacher execution: {execution}')
             hold = regime == 'T3' and self.index >= HOLD_START
             increment = np.asarray(execution['action_deg_deg_mm'])
-            if hold:
-                if label['measured_error_um'] >= 5:
-                    raise ValueError('T3 did not reach measured<5um before the200 explicit hold frames')
-                increment = np.zeros(3)
-            self.teacher_command, self.execution_diagnostics = self.teacher_intent.preview(
-                q, increment, hold=hold)
+            if regime == 'T3':
+                try:
+                    self.teacher_command, self.execution_diagnostics = self.teacher_intent.preview_observed(
+                        q, increment, frame=self.index, measured_error_um=label['measured_error_um'])
+                except T3HoldError as error:
+                    write_json(self.output/'hold_failure.json', {**error.details,
+                        'task': self.task, 'timestamp_s': float(self.observation_time_s),
+                        'oct_navigation_delta_xyz_m': np.asarray(delta).tolist(),
+                        'teacher_execution': execution,
+                        'observation_calls': 1})
+                    Image.fromarray(obs['rgb'].astype(np.uint8)).save(self.output/'hold_failure_rgb.png')
+                    raise
+            else:
+                self.teacher_command, self.execution_diagnostics = self.teacher_intent.preview(
+                    q, increment, hold=hold)
         if label is not None:
             image = Image.fromarray(obs['rgb'].astype(np.uint8)).resize(
                 (224, 224), Image.Resampling.BILINEAR)
@@ -262,6 +274,8 @@ class CollectionWorker:
                 'actual_history':'Accepted motor command stored separately as executed_action'}
             result['expert_execution'] = ('old_student_feedback' if task['regime'] == 'T1'
                 else 'bounded_teacher_intent_v1')
+            if task['regime'] == 'T3':
+                result['expert_execution'] = 'bounded_teacher_intent_t3_settlement_v1'
             write_json(output/f"E{task['episode_index']:02d}.json",result)
             record('collection_episode','completed',output,result)
             return result

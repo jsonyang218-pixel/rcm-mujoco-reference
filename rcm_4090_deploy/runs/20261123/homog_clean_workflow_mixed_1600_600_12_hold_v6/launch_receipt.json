@@ -1,0 +1,40 @@
+{
+  "accepted": true,
+  "returncode": 0,
+  "stdout": "",
+  "stderr": "",
+  "command": [
+    "env",
+    "-u",
+    "PYTHONHOME",
+    "-u",
+    "PYTHONPATH",
+    "CUDA_VISIBLE_DEVICES=0",
+    "RCM_DRIVER_VARIANT=g10",
+    "MUJOCO_GL=egl",
+    "MUJOCO_EGL_DEVICE_ID=0",
+    "MPLBACKEND=Agg",
+    "PYTHONDONTWRITEBYTECODE=1",
+    "OMP_NUM_THREADS=1",
+    "OPENBLAS_NUM_THREADS=1",
+    "MKL_NUM_THREADS=1",
+    "/home/him1/mujoco_bc/rcm_4090_deploy/.venv/bin/python",
+    "-E",
+    "-B",
+    "-u",
+    "-m",
+    "scripts.tools.prepare_homog_hold_repair",
+    "run",
+    "--output-dir",
+    "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261123/homog_clean_workflow_mixed_1600_600_12_hold_v6"
+  ],
+  "log": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261123/homog_clean_workflow_mixed_1600_600_12_hold_v6/terminal.log",
+  "timestamp": "2026-11-23T19:24:28.014862+08:00",
+  "stages": [
+    "real_E40_E41_E42_RGBD_smoke",
+    "verify_and_copy35",
+    "original_gated_workflow"
+  ],
+  "retry": false,
+  "no_wall_clock_limits": true
+}

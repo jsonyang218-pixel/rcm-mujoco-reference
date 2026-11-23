@@ -1,0 +1,34 @@
+Warning: wandb not available, logging will be local only
+加载模型: /home/him1/mujoco_bc/rcm_4090_deploy/outputs/homog_clean_replay_20261123_mixed_1600_600_12_hold_v2/step_002000.pth
+模型加载完成 (type=dit_rectified_flow, epoch=1, train_loss=0.121853, val_loss=0.147543)
+评估 episodes:   0%|          | 0/1 [00:00<?, ?it/s]
+Episode 9/1
+  目标世界坐标: [351.055, -13.612, 375.236] mm
+  closed-loop step 1/1600, error=19609.872 um
+  closed-loop step 100/1600, error=16697.788 um
+  closed-loop step 200/1600, error=13701.086 um
+  closed-loop step 300/1600, error=10695.593 um
+  closed-loop step 400/1600, error=7707.398 um
+  closed-loop step 500/1600, error=4703.824 um
+  closed-loop step 600/1600, error=1701.835 um
+  closed-loop step 700/1600, error=32.915 um
+  closed-loop step 800/1600, error=95.581 um
+  closed-loop step 900/1600, error=179.241 um
+  closed-loop step 1000/1600, error=200.114 um
+  closed-loop step 1100/1600, error=180.274 um
+  closed-loop step 1200/1600, error=204.116 um
+  closed-loop step 1300/1600, error=217.283 um
+  closed-loop step 1400/1600, error=239.005 um
+  closed-loop step 1500/1600, error=244.455 um
+  closed-loop step 1600/1600, error=227.957 um
+  ✗ 失败: 1600 步, 误差 0.228 mm
+评估 episodes: 100%|##########| 1/1 [13:47<00:00, 827.31s/it]评估 episodes: 100%|##########| 1/1 [13:47<00:00, 827.31s/it]
+
+============================================================
+评估结果汇总:
+  成功率: 0.0% (0/1)
+  平均步数: 1600.0
+  平均最终误差: 0.228 mm
+============================================================
+
+结果已保存到: /home/him1/mujoco_bc/rcm_4090_deploy/github_reports/homog_mixed_1600_600_12_hold_v2_20261123_s3_fast5_1600/V0_step2000/shards/tasks/eval_E08/raw/evaluation_results.json

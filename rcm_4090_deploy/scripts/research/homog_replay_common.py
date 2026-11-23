@@ -18,12 +18,12 @@ from scripts.research.gpu_episode_pool import run_pool, signature, write_json
 BASE = '71040dd33a48644da662dc92ad28053a2a326871'
 BRANCH = 'feature/clean-render-homog-replay-20261123'
 TASK = ROOT.parent / '规划5.txt'
-DATA = ROOT / 'data/homog_clean_replay_20261123_mixed_1600_600_12_v1'
-WEIGHTS = ROOT / 'outputs/homog_clean_replay_20261123_mixed_1600_600_12_v1'
-REPORTS = tuple(ROOT / f'github_reports/homog_mixed_1600_600_12_v1_20261123_s{i}_{s}' for i, s in (
+DATA = ROOT / 'data/homog_clean_replay_20261123_mixed_1600_600_12_hold_v2'
+WEIGHTS = ROOT / 'outputs/homog_clean_replay_20261123_mixed_1600_600_12_hold_v2'
+REPORTS = tuple(ROOT / f'github_reports/homog_mixed_1600_600_12_hold_v2_20261123_s{i}_{s}' for i, s in (
     (1, 'collection'), (2, 'train'), (3, 'fast5_1600'), (4, 'dev20')))
 PUB = ROOT / 'runs/20261123/homog_clean_git_v1'
-WORKFLOW = ROOT / 'runs/20261123/homog_clean_workflow_mixed_1600_600_12_v5'
+WORKFLOW = ROOT / 'runs/20261123/homog_clean_workflow_mixed_1600_600_12_hold_v6'
 CAPS = np.array([.2, .1, .03])
 STEPS = 1600
 COLLECTION_STEPS = {'T1': 1600, 'T2': 600, 'T3': 600}
@@ -68,6 +68,8 @@ def identity():
     files = list((ROOT / 'scripts/research').glob('homog_replay_*.py'))
     files += [ROOT / 'scripts/verification/verify_homog_replay.py',
               ROOT / 'scripts/verification/verify_homog_teacher_intent.py',
+              ROOT / 'scripts/verification/verify_homog_t3_hold.py',
+              ROOT / 'scripts/tools/prepare_homog_hold_repair.py',
               ROOT / 'scripts/tools/prepare_teacher_intent_repair.py',
               ROOT / 'scripts/tools/prepare_homog_mixed_budget.py',
               ROOT / 'scripts/research/a_axis_flip_audit.py',

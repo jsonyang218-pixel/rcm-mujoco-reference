@@ -1,0 +1,89 @@
+{
+  "status": "completed",
+  "training": {
+    "status": "completed",
+    "contract_sha256": "c8da00591913fa818a07aae0cffff063a0b8d8e800c85a0d16cd1f72f18cc910",
+    "checkpoint_hashes": {
+      "/home/him1/mujoco_bc/rcm_4090_deploy/outputs/homog_clean_replay_20261123_mixed_1600_600_12_hold_v2/step_001000.pth": "8ee35eac0ed877d3d0ee1d3d16218d19879c9bce8ab9e5b225152a31f299f35b",
+      "/home/him1/mujoco_bc/rcm_4090_deploy/outputs/homog_clean_replay_20261123_mixed_1600_600_12_hold_v2/step_002000.pth": "889a2a620b4c7aa1fb091e2c2d41c64b4dfc05c08c283c8cdb64c69b3e03c613",
+      "/home/him1/mujoco_bc/rcm_4090_deploy/outputs/homog_clean_replay_20261123_mixed_1600_600_12_hold_v2/step_003000.pth": "933975270a0d7bc9d56050b4c4fc6399b94ed361493449be3023f40bfad4d926",
+      "/home/him1/mujoco_bc/rcm_4090_deploy/outputs/homog_clean_replay_20261123_mixed_1600_600_12_hold_v2/step_004000.pth": "a2eb9087ffa2b4475dfdc30a7e314582758b49679b65877971308d3fac60d9a7"
+    },
+    "progress": {
+      "epoch": 4,
+      "batch_offset": 0,
+      "global_step": 4000,
+      "optimizer_updates": 3997,
+      "epoch_loss_sum": 0.0,
+      "history": [
+        {
+          "epoch": 0,
+          "batches_seen": 1000,
+          "train_loss": 0.12462413455173373,
+          "val_loss": 0.14809153153956364,
+          "optimizer_updates": 999,
+          "sampling_counts": [
+            14720,
+            1280
+          ]
+        },
+        {
+          "epoch": 1,
+          "batches_seen": 2000,
+          "train_loss": 0.12185304336622357,
+          "val_loss": 0.14754274693860425,
+          "optimizer_updates": 1999,
+          "sampling_counts": [
+            29440,
+            2560
+          ]
+        },
+        {
+          "epoch": 2,
+          "batches_seen": 3000,
+          "train_loss": 0.12157607642561197,
+          "val_loss": 0.14749005766545267,
+          "optimizer_updates": 2998,
+          "sampling_counts": [
+            44160,
+            3840
+          ]
+        },
+        {
+          "epoch": 3,
+          "batches_seen": 4000,
+          "train_loss": 0.11661943889036774,
+          "val_loss": 0.14729503027612356,
+          "optimizer_updates": 3997,
+          "sampling_counts": [
+            58880,
+            5120
+          ]
+        }
+      ],
+      "counts": [
+        58880,
+        5120
+      ],
+      "epoch_counts": [
+        0,
+        0
+      ]
+    },
+    "manifest": {
+      "original_windows": 220816,
+      "correction_windows": 41422,
+      "validation_windows": 26650,
+      "epoch_correction_samples": 1280,
+      "epoch_original_samples": 14720,
+      "total_batches": 4000,
+      "original_window_index_sha256": "b8a44b5a08f7d34440e3631ca78c9b0baccde047c1a74b0812d93412095f8fa8",
+      "original_pool": "Only original episodes0-838, full valid trajectories; all Plan-2 windows excluded",
+      "correction_window_index_sha256": "57f1ce7aaf661ef9d8bd295887fae5a7097a4e4e7f7755347a4df3b5b5c3d767",
+      "validation_window_index_sha256": "90493519cd737b822a9bdf6051c3f43edf367807ea98855f63e125c02c6af09e",
+      "validation_max_batches": null,
+      "baseline": "/home/him1/mujoco_bc/rcm_4090_deploy/outputs/overnight_c_fix_symlog_081234/task2_train/step_004000.pth"
+    }
+  },
+  "checkpoint_dir": "/home/him1/mujoco_bc/rcm_4090_deploy/outputs/homog_clean_replay_20261123_mixed_1600_600_12_hold_v2"
+}

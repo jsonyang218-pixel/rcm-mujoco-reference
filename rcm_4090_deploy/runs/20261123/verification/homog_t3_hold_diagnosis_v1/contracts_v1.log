@@ -1,0 +1,27 @@
+test_1600_metrics_use_actual_post_action_final_and_full_drift (__main__.HomogReplayTests.test_1600_metrics_use_actual_post_action_final_and_full_drift) ... ok
+test_absolute_not_signed_drift_controls_gates (__main__.HomogReplayTests.test_absolute_not_signed_drift_controls_gates) ... ok
+test_all_axes_audited_and_zero_holds_not_reverse (__main__.HomogReplayTests.test_all_axes_audited_and_zero_holds_not_reverse) ... ok
+test_authorized_mixed_step_card_and_hold (__main__.HomogReplayTests.test_authorized_mixed_step_card_and_hold) ... ok
+test_completed_collection_receipt_detects_changed_pixels (__main__.HomogReplayTests.test_completed_collection_receipt_detects_changed_pixels) ... ok
+test_completed_training_receipt_detects_changed_weights (__main__.HomogReplayTests.test_completed_training_receipt_detects_changed_weights) ... ok
+test_dataset_gate_failure_skips_all_dependent_stages (__main__.HomogReplayTests.test_dataset_gate_failure_skips_all_dependent_stages) ... STAGE stage1: gate_failed; results: /home/him1/mujoco_bc/rcm_4090_deploy/github_reports/homog_mixed_1600_600_12_v1_20261123_s1_collection
+STAGE stage2: skipped; results: /home/him1/mujoco_bc/rcm_4090_deploy/github_reports/homog_mixed_1600_600_12_v1_20261123_s2_train
+STAGE stage3: skipped; results: /home/him1/mujoco_bc/rcm_4090_deploy/github_reports/homog_mixed_1600_600_12_v1_20261123_s3_fast5_1600
+STAGE stage4: skipped; results: /home/him1/mujoco_bc/rcm_4090_deploy/github_reports/homog_mixed_1600_600_12_v1_20261123_s4_dev20
+FINAL SUMMARY: /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261123/verification/homog_t3_hold_contracts_v1/gate_failure_fixture/SUMMARY.md
+ok
+test_divergent_log_preserves_parent_prefix (__main__.HomogReplayTests.test_divergent_log_preserves_parent_prefix) ... ok
+test_evidence_tamper_rejected_before_reuse (__main__.HomogReplayTests.test_evidence_tamper_rejected_before_reuse) ... ok
+test_long_approach_600_step_regression_rejected_before_launch (__main__.HomogReplayTests.test_long_approach_600_step_regression_rejected_before_launch) ... ok
+test_original_pool_excludes_all_plan2 (__main__.HomogReplayTests.test_original_pool_excludes_all_plan2) ... ok
+test_pool_has_no_wall_clock_deadlines (__main__.HomogReplayTests.test_pool_has_no_wall_clock_deadlines) ... ok
+test_quality_gates_fail_closed_at_boundaries (__main__.HomogReplayTests.test_quality_gates_fail_closed_at_boundaries) ... ok
+test_reused_T1_execution_ast_matches_historical_code (__main__.HomogReplayTests.test_reused_T1_execution_ast_matches_historical_code) ... ok
+test_sampling_has_exact_eight_percent_each_epoch (__main__.HomogReplayTests.test_sampling_has_exact_eight_percent_each_epoch) ... ok
+test_scheduler_accepts_12_and_rejects_13 (__main__.HomogReplayTests.test_scheduler_accepts_12_and_rejects_13) ... ok
+
+----------------------------------------------------------------------
+Ran 16 tests in 1.373s
+
+OK
+Warning: wandb not available, logging will be local only
