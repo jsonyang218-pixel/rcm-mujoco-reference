@@ -1,0 +1,23 @@
+{
+  "timestamp": "2026-11-23T16:39:39.740627+08:00",
+  "authorization": "User requested 6 parallel workers, then explicitly allowed 8; choose 8",
+  "pid": 130354,
+  "process_start_ticks": "18029800",
+  "requested_workers": 8,
+  "previous_max_workers": 4,
+  "completed_before_interrupt": 29,
+  "total": 60,
+  "active_tasks": [
+    "collection_E29",
+    "collection_E30",
+    "collection_E32",
+    "collection_E31"
+  ],
+  "resources": {
+    "gpu_free_mib": 39622,
+    "gpu_utilization_percent": 39,
+    "ram_available_mib": 15280
+  },
+  "change_scope": "Scheduling only; all scientific code, data, labels, render quality, targets, training parameters and gates unchanged",
+  "workflow": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261123/homog_clean_workflow_v2"
+}
