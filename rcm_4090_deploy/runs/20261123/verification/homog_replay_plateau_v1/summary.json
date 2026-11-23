@@ -1,0 +1,1127 @@
+{
+  "timestamp": "2026-11-23T17:01:39.147494+08:00",
+  "purpose": "Offline causal diagnosis only; does not change or restart the running collection",
+  "CPU_reason": "Small JSON analysis and non-rendered kinematic/protocol replay; no training or GPU tensor work",
+  "script_sha256": "ff475571a51ece30e8becdfcab77b72a58c6c055870458cea446cb7231a4ce47",
+  "episodes": [
+    {
+      "episode_index": 20,
+      "frames": 1600,
+      "final_error_um": 13.967997326369666,
+      "frozen_state_suffix_start_step_0based": 38,
+      "identical_suffix_frames": 1562,
+      "identical_suffix_fraction": 0.97625,
+      "suffix_unique_raw_rgb_hashes": 1,
+      "suffix_unique_actions": 1,
+      "suffix_max_actual_tip_step_um": 0.0,
+      "suffix_all_targets_equal_actual": true,
+      "suffix_all_teacher_commands_nonzero": true,
+      "suffix_oct_truth_vector_discrepancy_um_max": 0.09921220616042961,
+      "teacher_action_deg_deg_mm": [
+        -0.004154583396672426,
+        0.0030072585004364896,
+        0.0005304059859587151
+      ],
+      "handle_step_deg_deg_mm": [
+        0.015,
+        0.0075,
+        0.0011751302046773726
+      ],
+      "teacher_action_divided_by_handle_step": [
+        -0.2769722264448284,
+        0.40096780005819865,
+        0.4513593334998448
+      ],
+      "requested_robot_ABCE": [
+        -1031,
+        826050,
+        2152322,
+        0
+      ],
+      "actual_robot_ABCE": [
+        -1029,
+        825818,
+        2152288,
+        0
+      ],
+      "requested_cumulative_handle_floats": [
+        -3.2399999999999998,
+        15.402230451380206,
+        108.45333333333333
+      ],
+      "encoded_handles_ABCE": [
+        -3,
+        15,
+        108,
+        0
+      ],
+      "reproduced_duplicate": true,
+      "single_handle_probes": [
+        {
+          "axis": "A",
+          "handle_delta": -1,
+          "endpoint_tip_step_um": 5.543552005713441,
+          "endpoint_error_um": 10.36438271646533,
+          "one_packet_tip_step_um": 4.157664009073211,
+          "one_packet_error_um": 11.11655822267695
+        },
+        {
+          "axis": "A",
+          "handle_delta": 1,
+          "endpoint_tip_step_um": 5.543552005715073,
+          "endpoint_error_um": 18.55448332611058,
+          "one_packet_tip_step_um": 4.157664009075656,
+          "one_packet_error_um": 17.355523165254926
+        },
+        {
+          "axis": "B",
+          "handle_delta": -1,
+          "endpoint_tip_step_um": 3.1062563650882353,
+          "endpoint_error_um": 16.013373429963167,
+          "one_packet_tip_step_um": 2.2141071308118643,
+          "one_packet_error_um": 15.389602703590318
+        },
+        {
+          "axis": "B",
+          "handle_delta": 1,
+          "endpoint_tip_step_um": 3.105855904806747,
+          "endpoint_error_um": 12.37280886457465,
+          "one_packet_tip_step_um": 2.2139036618084225,
+          "one_packet_error_um": 12.77413298051844
+        },
+        {
+          "axis": "C",
+          "handle_delta": -1,
+          "endpoint_tip_step_um": 1.1751302046814351,
+          "endpoint_error_um": 14.302827323521543,
+          "one_packet_tip_step_um": 0.8460937472891717,
+          "one_packet_error_um": 14.200070989911532
+        },
+        {
+          "axis": "C",
+          "handle_delta": 1,
+          "endpoint_tip_step_um": 1.1751302046814351,
+          "endpoint_error_um": 13.72592041243046,
+          "one_packet_tip_step_um": 0.8460937473694673,
+          "one_packet_error_um": 13.784035394560693
+        }
+      ],
+      "best_local_oracle_endpoint": {
+        "error_um": 1.4862964811971617,
+        "handle_delta": [
+          -2,
+          3,
+          3
+        ],
+        "robot_ABCE": [
+          -1046,
+          827551,
+          2152513,
+          0
+        ]
+      },
+      "safety_limited_steps": 0,
+      "motor_fault": null,
+      "files_sha256": {
+        "data/homog_clean_replay_20261123/shards/tasks/collection_E20/frames.jsonl": "cafa4e580f645bb58743d1fefd21bbe188ff6cc39fd6cb9ea34162a1d7e6cf2c",
+        "data/homog_clean_replay_20261123/shards/tasks/collection_E20/policy_trajectory.json": "dabe2f47e5c4a1cf7e09735fa21dc02038960ca249a8317f89e127303fd7e6a8"
+      }
+    },
+    {
+      "episode_index": 21,
+      "frames": 1600,
+      "final_error_um": 18.640307302960547,
+      "frozen_state_suffix_start_step_0based": 38,
+      "identical_suffix_frames": 1562,
+      "identical_suffix_fraction": 0.97625,
+      "suffix_unique_raw_rgb_hashes": 1,
+      "suffix_unique_actions": 1,
+      "suffix_max_actual_tip_step_um": 0.0,
+      "suffix_all_targets_equal_actual": true,
+      "suffix_all_teacher_commands_nonzero": true,
+      "suffix_oct_truth_vector_discrepancy_um_max": 0.06558139755082654,
+      "teacher_action_deg_deg_mm": [
+        0.006265881609124606,
+        -0.0030082206178141603,
+        -0.0005095655069044247
+      ],
+      "handle_step_deg_deg_mm": [
+        0.015,
+        0.0075,
+        0.0011751302046773726
+      ],
+      "teacher_action_divided_by_handle_step": [
+        0.4177254406083071,
+        -0.4010960823752214,
+        -0.433624720797917
+      ],
+      "requested_robot_ABCE": [
+        5186,
+        1086591,
+        2145557,
+        0
+      ],
+      "actual_robot_ABCE": [
+        5183,
+        1086835,
+        2145590,
+        0
+      ],
+      "requested_cumulative_handle_floats": [
+        2.4,
+        -15.40158914646194,
+        -108.44
+      ],
+      "encoded_handles_ABCE": [
+        2,
+        -15,
+        -108,
+        0
+      ],
+      "reproduced_duplicate": true,
+      "single_handle_probes": [
+        {
+          "axis": "A",
+          "handle_delta": -1,
+          "endpoint_tip_step_um": 5.635597207147625,
+          "endpoint_error_um": 23.734697723505747,
+          "one_packet_tip_step_um": 4.226697910234674,
+          "one_packet_error_um": 22.43688354218092
+        },
+        {
+          "axis": "A",
+          "handle_delta": 1,
+          "endpoint_tip_step_um": 5.635597207145852,
+          "endpoint_error_um": 13.967443435703652,
+          "one_packet_tip_step_um": 4.226697910226207,
+          "one_packet_error_um": 15.074114962096909
+        },
+        {
+          "axis": "B",
+          "handle_delta": -1,
+          "endpoint_tip_step_um": 3.0940120620224896,
+          "endpoint_error_um": 17.48613280158028,
+          "one_packet_tip_step_um": 2.209974883335303,
+          "one_packet_error_um": 17.768654581584006
+        },
+        {
+          "axis": "B",
+          "handle_delta": 1,
+          "endpoint_tip_step_um": 3.0936816033298835,
+          "endpoint_error_um": 20.206255702628415,
+          "one_packet_tip_step_um": 2.2098062819198567,
+          "one_packet_error_um": 19.722069762082914
+        },
+        {
+          "axis": "C",
+          "handle_delta": -1,
+          "endpoint_tip_step_um": 1.1751302047023096,
+          "endpoint_error_um": 18.45840494104713,
+          "one_packet_tip_step_um": 0.8460937473592518,
+          "one_packet_error_um": 18.50199593086282
+        },
+        {
+          "axis": "C",
+          "handle_delta": 1,
+          "endpoint_tip_step_um": 1.1751302046233467,
+          "endpoint_error_um": 18.893683116981858,
+          "one_packet_tip_step_um": 0.8460937474021512,
+          "one_packet_error_um": 18.815685173064704
+        }
+      ],
+      "best_local_oracle_endpoint": {
+        "error_um": 1.6116641812380872,
+        "handle_delta": [
+          3,
+          -3,
+          -3
+        ],
+        "robot_ABCE": [
+          5208,
+          1085010,
+          2145365,
+          0
+        ]
+      },
+      "safety_limited_steps": 0,
+      "motor_fault": null,
+      "files_sha256": {
+        "data/homog_clean_replay_20261123/shards/tasks/collection_E21/frames.jsonl": "a35d6635aedb9600ba2420529ac8aa3da038fb21e092a23a0569e6581c28a3fb",
+        "data/homog_clean_replay_20261123/shards/tasks/collection_E21/policy_trajectory.json": "b600f57a4aa69f4a30745ae82447c5a0bbb789718c1884aeabb886769247a982"
+      }
+    },
+    {
+      "episode_index": 22,
+      "frames": 1600,
+      "final_error_um": 17.280213941536992,
+      "frozen_state_suffix_start_step_0based": 32,
+      "identical_suffix_frames": 1568,
+      "identical_suffix_fraction": 0.98,
+      "suffix_unique_raw_rgb_hashes": 1,
+      "suffix_unique_actions": 1,
+      "suffix_max_actual_tip_step_um": 0.0,
+      "suffix_all_targets_equal_actual": true,
+      "suffix_all_teacher_commands_nonzero": true,
+      "suffix_oct_truth_vector_discrepancy_um_max": 0.08611834256948386,
+      "teacher_action_deg_deg_mm": [
+        0.005199451859103403,
+        -0.0034659468450820245,
+        -0.0005387976467138844
+      ],
+      "handle_step_deg_deg_mm": [
+        0.015,
+        0.0075,
+        0.0011751302046773726
+      ],
+      "teacher_action_divided_by_handle_step": [
+        0.34663012394022685,
+        -0.4621262460109366,
+        -0.45850038112313624
+      ],
+      "requested_robot_ABCE": [
+        6282,
+        2023345,
+        2130676,
+        0
+      ],
+      "actual_robot_ABCE": [
+        6279,
+        2023657,
+        2130710,
+        0
+      ],
+      "requested_cumulative_handle_floats": [
+        9.36,
+        -15.46193308185669,
+        -71.45333333333333
+      ],
+      "encoded_handles_ABCE": [
+        9,
+        -15,
+        -71,
+        0
+      ],
+      "reproduced_duplicate": true,
+      "single_handle_probes": [
+        {
+          "axis": "A",
+          "handle_delta": -1,
+          "endpoint_tip_step_um": 5.827746229259671,
+          "endpoint_error_um": 22.27198273402372,
+          "one_packet_tip_step_um": 4.370809676987864,
+          "one_packet_error_um": 20.983700875700038
+        },
+        {
+          "axis": "A",
+          "handle_delta": 1,
+          "endpoint_tip_step_um": 5.827746229284497,
+          "endpoint_error_um": 13.00312998882994,
+          "one_packet_tip_step_um": 4.370809677002496,
+          "one_packet_error_um": 13.967670967638323
+        },
+        {
+          "axis": "B",
+          "handle_delta": -1,
+          "endpoint_tip_step_um": 3.0606011049285264,
+          "endpoint_error_um": 15.824779408769112,
+          "one_packet_tip_step_um": 2.1822507188874645,
+          "one_packet_error_um": 16.19675206751893
+        },
+        {
+          "axis": "B",
+          "handle_delta": 1,
+          "endpoint_tip_step_um": 3.060481950627134,
+          "endpoint_error_um": 19.118488183118735,
+          "one_packet_tip_step_um": 2.1821901414983644,
+          "one_packet_error_um": 18.557972606409177
+        },
+        {
+          "axis": "C",
+          "handle_delta": -1,
+          "endpoint_tip_step_um": 1.175130204712461,
+          "endpoint_error_um": 17.069104534113908,
+          "one_packet_tip_step_um": 0.8460937473913003,
+          "one_packet_error_um": 17.12034882536701
+        },
+        {
+          "axis": "C",
+          "handle_delta": 1,
+          "endpoint_tip_step_um": 1.1751302046416394,
+          "endpoint_error_um": 17.567558741242635,
+          "one_packet_tip_step_um": 0.8460937473203062,
+          "one_packet_error_um": 17.479616502773624
+        }
+      ],
+      "best_local_oracle_endpoint": {
+        "error_um": 1.6653249912708237,
+        "handle_delta": [
+          2,
+          -3,
+          -3
+        ],
+        "robot_ABCE": [
+          6296,
+          2021629,
+          2130485,
+          0
+        ]
+      },
+      "safety_limited_steps": 0,
+      "motor_fault": null,
+      "files_sha256": {
+        "data/homog_clean_replay_20261123/shards/tasks/collection_E22/frames.jsonl": "76d3291814949ceb04dcd65e3ed72dfb5f32b21cc5ad3b1b0eb915ad03ef6513",
+        "data/homog_clean_replay_20261123/shards/tasks/collection_E22/policy_trajectory.json": "fffae625b0530823f3cf86eac817c2180135bd21cd4b4f35cb00f73e83f24c09"
+      }
+    },
+    {
+      "episode_index": 23,
+      "frames": 1600,
+      "final_error_um": 17.353207620442873,
+      "frozen_state_suffix_start_step_0based": 33,
+      "identical_suffix_frames": 1567,
+      "identical_suffix_fraction": 0.979375,
+      "suffix_unique_raw_rgb_hashes": 1,
+      "suffix_unique_actions": 1,
+      "suffix_max_actual_tip_step_um": 0.0,
+      "suffix_all_targets_equal_actual": true,
+      "suffix_all_teacher_commands_nonzero": true,
+      "suffix_oct_truth_vector_discrepancy_um_max": 0.1051580911941985,
+      "teacher_action_deg_deg_mm": [
+        -0.005259277859786289,
+        0.003350494451523236,
+        0.0005078529337794457
+      ],
+      "handle_step_deg_deg_mm": [
+        0.015,
+        0.0075,
+        0.0011751302046773726
+      ],
+      "teacher_action_divided_by_handle_step": [
+        -0.3506185239857526,
+        0.4467325935364315,
+        0.4321673732476945
+      ],
+      "requested_robot_ABCE": [
+        4890,
+        1969011,
+        2143632,
+        0
+      ],
+      "actual_robot_ABCE": [
+        4893,
+        1968710,
+        2143600,
+        0
+      ],
+      "requested_cumulative_handle_floats": [
+        -9.36,
+        15.446977763562586,
+        71.42666666666666
+      ],
+      "encoded_handles_ABCE": [
+        -9,
+        15,
+        71,
+        0
+      ],
+      "reproduced_duplicate": true,
+      "single_handle_probes": [
+        {
+          "axis": "A",
+          "handle_delta": -1,
+          "endpoint_tip_step_um": 5.869563849325623,
+          "endpoint_error_um": 12.950672494038248,
+          "one_packet_tip_step_um": 4.402172892068831,
+          "one_packet_error_um": 13.950355542966157
+        },
+        {
+          "axis": "A",
+          "handle_delta": 1,
+          "endpoint_tip_step_um": 5.869563849327381,
+          "endpoint_error_um": 22.438020078345044,
+          "one_packet_tip_step_um": 4.402172892069078,
+          "one_packet_error_um": 21.128678169175934
+        },
+        {
+          "axis": "B",
+          "handle_delta": -1,
+          "endpoint_tip_step_um": 3.0881639214072196,
+          "endpoint_error_um": 19.17964608202523,
+          "one_packet_tip_step_um": 2.2038542098101024,
+          "one_packet_error_um": 18.622638187260584
+        },
+        {
+          "axis": "B",
+          "handle_delta": 1,
+          "endpoint_tip_step_um": 3.0880317379376336,
+          "endpoint_error_um": 15.921263150450011,
+          "one_packet_tip_step_um": 2.2037868893389545,
+          "one_packet_error_um": 16.284386176155323
+        },
+        {
+          "axis": "C",
+          "handle_delta": -1,
+          "endpoint_tip_step_um": 1.175130204651675,
+          "endpoint_error_um": 17.61466962670786,
+          "one_packet_tip_step_um": 0.8460937473064423,
+          "one_packet_error_um": 17.533916116867683
+        },
+        {
+          "axis": "C",
+          "handle_delta": 1,
+          "endpoint_tip_step_um": 1.1751302047004988,
+          "endpoint_error_um": 17.168369327723592,
+          "one_packet_tip_step_um": 0.8460937474044941,
+          "one_packet_error_um": 17.212238793938322
+        }
+      ],
+      "best_local_oracle_endpoint": {
+        "error_um": 1.8378183353724358,
+        "handle_delta": [
+          -2,
+          3,
+          3
+        ],
+        "robot_ABCE": [
+          4876,
+          1970732,
+          2143825,
+          0
+        ]
+      },
+      "safety_limited_steps": 0,
+      "motor_fault": null,
+      "files_sha256": {
+        "data/homog_clean_replay_20261123/shards/tasks/collection_E23/frames.jsonl": "62f9b42e1ebc53f646724bb020c824aa21a72412a98b0e46a8ddd2c6e235e9be",
+        "data/homog_clean_replay_20261123/shards/tasks/collection_E23/policy_trajectory.json": "1abd71ea3620f002b4f91795d37b2c5d5845363fa9adbc0b44f353569dc64456"
+      }
+    },
+    {
+      "episode_index": 24,
+      "frames": 1600,
+      "final_error_um": 18.151320175022878,
+      "frozen_state_suffix_start_step_0based": 24,
+      "identical_suffix_frames": 1576,
+      "identical_suffix_fraction": 0.985,
+      "suffix_unique_raw_rgb_hashes": 1,
+      "suffix_unique_actions": 1,
+      "suffix_max_actual_tip_step_um": 0.0,
+      "suffix_all_targets_equal_actual": true,
+      "suffix_all_teacher_commands_nonzero": true,
+      "suffix_oct_truth_vector_discrepancy_um_max": 0.05411519996367548,
+      "teacher_action_deg_deg_mm": [
+        -0.006110810516624484,
+        0.0032681944633567643,
+        0.0005552063100135174
+      ],
+      "handle_step_deg_deg_mm": [
+        0.015,
+        0.0075,
+        0.0011751302046773726
+      ],
+      "teacher_action_divided_by_handle_step": [
+        -0.4073873677749656,
+        0.4357592617809019,
+        0.4724636536475948
+      ],
+      "requested_robot_ABCE": [
+        -317,
+        649118,
+        2141527,
+        0
+      ],
+      "actual_robot_ABCE": [
+        -314,
+        648877,
+        2141492,
+        0
+      ],
+      "requested_cumulative_handle_floats": [
+        -1.3199999999999998,
+        1.4361586264783455,
+        32.46666666666667
+      ],
+      "encoded_handles_ABCE": [
+        -1,
+        1,
+        32,
+        0
+      ],
+      "reproduced_duplicate": true,
+      "single_handle_probes": [
+        {
+          "axis": "A",
+          "handle_delta": -1,
+          "endpoint_tip_step_um": 5.410247804532057,
+          "endpoint_error_um": 13.879743734481229,
+          "one_packet_tip_step_um": 4.057685858070699,
+          "one_packet_error_um": 14.878273272933239
+        },
+        {
+          "axis": "A",
+          "handle_delta": 1,
+          "endpoint_tip_step_um": 5.410247804529911,
+          "endpoint_error_um": 22.909695402919528,
+          "one_packet_tip_step_um": 4.05768585807041,
+          "one_packet_error_um": 21.691430559607454
+        },
+        {
+          "axis": "B",
+          "handle_delta": -1,
+          "endpoint_tip_step_um": 3.085728402930665,
+          "endpoint_error_um": 19.85725196889752,
+          "one_packet_tip_step_um": 2.2000671071572895,
+          "one_packet_error_um": 19.332649735996096
+        },
+        {
+          "axis": "B",
+          "handle_delta": 1,
+          "endpoint_tip_step_um": 3.0852779639782364,
+          "endpoint_error_um": 16.842864821196716,
+          "one_packet_tip_step_um": 2.1998381201934754,
+          "one_packet_error_um": 17.171916005527184
+        },
+        {
+          "axis": "C",
+          "handle_delta": -1,
+          "endpoint_tip_step_um": 1.1751302046677934,
+          "endpoint_error_um": 18.42500628993045,
+          "one_packet_tip_step_um": 0.8460937473204965,
+          "one_packet_error_um": 18.34119788734077
+        },
+        {
+          "axis": "C",
+          "handle_delta": 1,
+          "endpoint_tip_step_um": 1.1751302047081134,
+          "endpoint_error_um": 17.95053908396003,
+          "one_packet_tip_step_um": 0.8460937474011204,
+          "one_packet_error_um": 17.99925158192276
+        }
+      ],
+      "best_local_oracle_endpoint": {
+        "error_um": 1.5948209248004965,
+        "handle_delta": [
+          -3,
+          3,
+          3
+        ],
+        "robot_ABCE": [
+          -339,
+          650538,
+          2141717,
+          0
+        ]
+      },
+      "safety_limited_steps": 0,
+      "motor_fault": null,
+      "files_sha256": {
+        "data/homog_clean_replay_20261123/shards/tasks/collection_E24/frames.jsonl": "98d9bde9a00d479da54f129599b8b09f6c87c20b9261267c7842417c0cadadc1",
+        "data/homog_clean_replay_20261123/shards/tasks/collection_E24/policy_trajectory.json": "36b911c4e2752922831ac10599d247877b1bbd35182e7ea32e67d6973d161685"
+      }
+    },
+    {
+      "episode_index": 25,
+      "frames": 1600,
+      "final_error_um": 23.978045493498247,
+      "frozen_state_suffix_start_step_0based": 28,
+      "identical_suffix_frames": 1572,
+      "identical_suffix_fraction": 0.9825,
+      "suffix_unique_raw_rgb_hashes": 1,
+      "suffix_unique_actions": 1,
+      "suffix_max_actual_tip_step_um": 0.0,
+      "suffix_all_targets_equal_actual": true,
+      "suffix_all_teacher_commands_nonzero": true,
+      "suffix_oct_truth_vector_discrepancy_um_max": 0.07533770166388756,
+      "teacher_action_deg_deg_mm": [
+        0.00808262928590847,
+        -0.0031969330825073116,
+        -0.0004288298290321124
+      ],
+      "handle_step_deg_deg_mm": [
+        0.015,
+        0.0075,
+        0.0011751302046773726
+      ],
+      "teacher_action_divided_by_handle_step": [
+        0.538841952393898,
+        -0.42625774433430824,
+        -0.3649211188047421
+      ],
+      "requested_robot_ABCE": [
+        -2134,
+        1799202,
+        2162973,
+        0
+      ],
+      "actual_robot_ABCE": [
+        -2138,
+        1799486,
+        2163000,
+        0
+      ],
+      "requested_cumulative_handle_floats": [
+        0.48,
+        -1.4272029157666566,
+        -32.36
+      ],
+      "encoded_handles_ABCE": [
+        0,
+        -1,
+        -32,
+        0
+      ],
+      "reproduced_duplicate": true,
+      "single_handle_probes": [
+        {
+          "axis": "A",
+          "handle_delta": -1,
+          "endpoint_tip_step_um": 5.914150652530055,
+          "endpoint_error_um": 29.515387780645348,
+          "one_packet_tip_step_um": 4.4356129945066085,
+          "one_packet_error_um": 28.116690078526243
+        },
+        {
+          "axis": "A",
+          "handle_delta": 1,
+          "endpoint_tip_step_um": 5.914150652533102,
+          "endpoint_error_um": 18.672880794942465,
+          "one_packet_tip_step_um": 4.4356129945050915,
+          "one_packet_error_um": 19.967148774218668
+        },
+        {
+          "axis": "B",
+          "handle_delta": -1,
+          "endpoint_tip_step_um": 3.129129445717397,
+          "endpoint_error_um": 23.005166819420072,
+          "one_packet_tip_step_um": 2.2317189697506414,
+          "one_packet_error_um": 23.245304036480224
+        },
+        {
+          "axis": "B",
+          "handle_delta": 1,
+          "endpoint_tip_step_um": 3.128958448183168,
+          "endpoint_error_um": 25.302806948753677,
+          "one_packet_tip_step_um": 2.231631987977826,
+          "one_packet_error_um": 24.889900837494615
+        },
+        {
+          "axis": "C",
+          "handle_delta": -1,
+          "endpoint_tip_step_um": 1.1751302046411687,
+          "endpoint_error_um": 23.863621958386258,
+          "one_packet_tip_step_um": 0.8460937473403775,
+          "one_packet_error_um": 23.889889845784285
+        },
+        {
+          "axis": "C",
+          "handle_delta": 1,
+          "endpoint_tip_step_um": 1.1751302046897991,
+          "endpoint_error_um": 24.14917680585261,
+          "one_packet_tip_step_um": 0.8460937474183939,
+          "one_packet_error_um": 24.095606317159145
+        }
+      ],
+      "best_local_oracle_endpoint": {
+        "error_um": 2.425478951397808,
+        "handle_delta": [
+          4,
+          -3,
+          -2
+        ],
+        "robot_ABCE": [
+          -2105,
+          1797490,
+          2162850,
+          0
+        ]
+      },
+      "safety_limited_steps": 0,
+      "motor_fault": null,
+      "files_sha256": {
+        "data/homog_clean_replay_20261123/shards/tasks/collection_E25/frames.jsonl": "1be2542a68be75d80d3dd30a9b6ca795b7a083605ef03fc316a47f2de16f2b3f",
+        "data/homog_clean_replay_20261123/shards/tasks/collection_E25/policy_trajectory.json": "6a63e603a97d30bfe2057d3ef90fd58a2a941bd4da24c76359662d7c2956d191"
+      }
+    },
+    {
+      "episode_index": 26,
+      "frames": 1600,
+      "final_error_um": 21.11061271350269,
+      "frozen_state_suffix_start_step_0based": 30,
+      "identical_suffix_frames": 1570,
+      "identical_suffix_fraction": 0.98125,
+      "suffix_unique_raw_rgb_hashes": 1,
+      "suffix_unique_actions": 1,
+      "suffix_max_actual_tip_step_um": 0.0,
+      "suffix_all_targets_equal_actual": true,
+      "suffix_all_teacher_commands_nonzero": true,
+      "suffix_oct_truth_vector_discrepancy_um_max": 0.10272177685000868,
+      "teacher_action_deg_deg_mm": [
+        -0.007171217436126757,
+        0.002680911201115722,
+        0.0005439258488719456
+      ],
+      "handle_step_deg_deg_mm": [
+        0.015,
+        0.0075,
+        0.0011751302046773726
+      ],
+      "teacher_action_divided_by_handle_step": [
+        -0.47808116240845044,
+        0.3574548268154296,
+        0.4628643249122154
+      ],
+      "requested_robot_ABCE": [
+        -5408,
+        2038739,
+        2136886,
+        0
+      ],
+      "actual_robot_ABCE": [
+        -5404,
+        2038497,
+        2136851,
+        0
+      ],
+      "requested_cumulative_handle_floats": [
+        -1.44,
+        7.357368881899144,
+        56.46666666666667
+      ],
+      "encoded_handles_ABCE": [
+        -1,
+        7,
+        56,
+        0
+      ],
+      "reproduced_duplicate": true,
+      "single_handle_probes": [
+        {
+          "axis": "A",
+          "handle_delta": -1,
+          "endpoint_tip_step_um": 5.853896093605113,
+          "endpoint_error_um": 15.874490580847889,
+          "one_packet_tip_step_um": 4.390422075260482,
+          "one_packet_error_um": 17.1460662221579
+        },
+        {
+          "axis": "A",
+          "handle_delta": 1,
+          "endpoint_tip_step_um": 5.853896093607134,
+          "endpoint_error_um": 26.605746489411093,
+          "one_packet_tip_step_um": 4.3904220752712835,
+          "one_packet_error_um": 25.216806097572096
+        },
+        {
+          "axis": "B",
+          "handle_delta": -1,
+          "endpoint_tip_step_um": 3.0751458941430503,
+          "endpoint_error_um": 22.368940012960064,
+          "one_packet_tip_step_um": 2.1939252484832656,
+          "one_packet_error_um": 21.97174555233303
+        },
+        {
+          "axis": "B",
+          "handle_delta": 1,
+          "endpoint_tip_step_um": 3.0750293104486364,
+          "endpoint_error_um": 20.245082151208493,
+          "one_packet_tip_step_um": 2.193865907434572,
+          "one_packet_error_um": 20.449621359357796
+        },
+        {
+          "axis": "C",
+          "handle_delta": -1,
+          "endpoint_tip_step_um": 1.1751302046387089,
+          "endpoint_error_um": 21.338861193572527,
+          "one_packet_tip_step_um": 0.8460937473609477,
+          "one_packet_error_um": 21.268654718561507
+        },
+        {
+          "axis": "C",
+          "handle_delta": 1,
+          "endpoint_tip_step_um": 1.1751302046879022,
+          "endpoint_error_um": 20.945901824363496,
+          "one_packet_tip_step_um": 0.8460937473832998,
+          "one_packet_error_um": 20.985519150100146
+        }
+      ],
+      "best_local_oracle_endpoint": {
+        "error_um": 1.6830005595757285,
+        "handle_delta": [
+          -3,
+          2,
+          3
+        ],
+        "robot_ABCE": [
+          -5429,
+          2039851,
+          2137076,
+          0
+        ]
+      },
+      "safety_limited_steps": 0,
+      "motor_fault": null,
+      "files_sha256": {
+        "data/homog_clean_replay_20261123/shards/tasks/collection_E26/frames.jsonl": "6637f4cfa28cf61f9be70f2d97d9e29437b787825fe53ae5d4fa546d3fadb692",
+        "data/homog_clean_replay_20261123/shards/tasks/collection_E26/policy_trajectory.json": "290fcfc671f6d02813417821793b825e48447837b2b4f9a84007c579921c0549"
+      }
+    },
+    {
+      "episode_index": 27,
+      "frames": 1600,
+      "final_error_um": 21.298819572384726,
+      "frozen_state_suffix_start_step_0based": 30,
+      "identical_suffix_frames": 1570,
+      "identical_suffix_fraction": 0.98125,
+      "suffix_unique_raw_rgb_hashes": 1,
+      "suffix_unique_actions": 1,
+      "suffix_max_actual_tip_step_um": 0.0,
+      "suffix_all_targets_equal_actual": true,
+      "suffix_all_teacher_commands_nonzero": true,
+      "suffix_oct_truth_vector_discrepancy_um_max": 0.09871819119118501,
+      "teacher_action_deg_deg_mm": [
+        0.007321672682807724,
+        -0.0027252449691297313,
+        -0.0005368155322482693
+      ],
+      "handle_step_deg_deg_mm": [
+        0.015,
+        0.0075,
+        0.0011751302046773726
+      ],
+      "teacher_action_divided_by_handle_step": [
+        0.48811151218718163,
+        -0.3633659958839642,
+        -0.4568136621044898
+      ],
+      "requested_robot_ABCE": [
+        -6640,
+        1897725,
+        2132055,
+        0
+      ],
+      "actual_robot_ABCE": [
+        -6644,
+        1897969,
+        2132089,
+        0
+      ],
+      "requested_cumulative_handle_floats": [
+        1.44,
+        -7.36313873970289,
+        -56.45333333333333
+      ],
+      "encoded_handles_ABCE": [
+        1,
+        -7,
+        -56,
+        0
+      ],
+      "reproduced_duplicate": true,
+      "single_handle_probes": [
+        {
+          "axis": "A",
+          "handle_delta": -1,
+          "endpoint_tip_step_um": 5.812779958795066,
+          "endpoint_error_um": 26.754928926420973,
+          "one_packet_tip_step_um": 4.3595849741193184,
+          "one_packet_error_um": 25.376082549713967
+        },
+        {
+          "axis": "A",
+          "handle_delta": 1,
+          "endpoint_tip_step_um": 5.812779958799083,
+          "endpoint_error_um": 16.09398023960574,
+          "one_packet_tip_step_um": 4.359584974127918,
+          "one_packet_error_um": 17.359091207920365
+        },
+        {
+          "axis": "B",
+          "handle_delta": -1,
+          "endpoint_tip_step_um": 3.0654856314913745,
+          "endpoint_error_um": 20.440860379758377,
+          "one_packet_tip_step_um": 2.1883123354072365,
+          "one_packet_error_um": 20.643562281265844
+        },
+        {
+          "axis": "B",
+          "handle_delta": 1,
+          "endpoint_tip_step_um": 3.0653392040530516,
+          "endpoint_error_um": 22.5441584256927,
+          "one_packet_tip_step_um": 2.188237716615971,
+          "one_packet_error_um": 22.151687761950832
+        },
+        {
+          "axis": "C",
+          "handle_delta": -1,
+          "endpoint_tip_step_um": 1.1751302046745076,
+          "endpoint_error_um": 21.12954346462375,
+          "one_packet_tip_step_um": 0.8460937473599156,
+          "one_packet_error_um": 21.17050310261168
+        },
+        {
+          "axis": "C",
+          "handle_delta": 1,
+          "endpoint_tip_step_um": 1.1751302046745076,
+          "endpoint_error_um": 21.53099359821673,
+          "one_packet_tip_step_um": 0.8460937473318693,
+          "one_packet_error_um": 21.45975251477966
+        }
+      ],
+      "best_local_oracle_endpoint": {
+        "error_um": 1.9394439817890894,
+        "handle_delta": [
+          3,
+          -2,
+          -3
+        ],
+        "robot_ABCE": [
+          -6619,
+          1896627,
+          2131864,
+          0
+        ]
+      },
+      "safety_limited_steps": 0,
+      "motor_fault": null,
+      "files_sha256": {
+        "data/homog_clean_replay_20261123/shards/tasks/collection_E27/frames.jsonl": "0501ed27dbed8abf0b26164a2c73177b2a43c9e6dc1911819708b45ae42599e3",
+        "data/homog_clean_replay_20261123/shards/tasks/collection_E27/policy_trajectory.json": "66a3901a0d42f24a91648160b6ea44d501bb3a8fc3e4ba8acd1bab20868f00b7"
+      }
+    },
+    {
+      "episode_index": 28,
+      "frames": 1600,
+      "final_error_um": 17.950439132049077,
+      "frozen_state_suffix_start_step_0based": 42,
+      "identical_suffix_frames": 1558,
+      "identical_suffix_fraction": 0.97375,
+      "suffix_unique_raw_rgb_hashes": 1,
+      "suffix_unique_actions": 1,
+      "suffix_max_actual_tip_step_um": 0.0,
+      "suffix_all_targets_equal_actual": true,
+      "suffix_all_teacher_commands_nonzero": true,
+      "suffix_oct_truth_vector_discrepancy_um_max": 0.059832845678124864,
+      "teacher_action_deg_deg_mm": [
+        -0.005716333396410944,
+        0.0032116111188277142,
+        -0.0004876694684116667
+      ],
+      "handle_step_deg_deg_mm": [
+        0.015,
+        0.0075,
+        0.0011751302046773726
+      ],
+      "teacher_action_divided_by_handle_step": [
+        -0.3810888930940629,
+        0.42821481584369525,
+        -0.4149918591749196
+      ],
+      "requested_robot_ABCE": [
+        -2394,
+        1176606,
+        2162849,
+        0
+      ],
+      "actual_robot_ABCE": [
+        -2391,
+        1176341,
+        2162880,
+        0
+      ],
+      "requested_cumulative_handle_floats": [
+        -6.359999999999999,
+        18.428548284491818,
+        -129.41333333333333
+      ],
+      "encoded_handles_ABCE": [
+        -6,
+        18,
+        -129,
+        0
+      ],
+      "reproduced_duplicate": true,
+      "single_handle_probes": [
+        {
+          "axis": "A",
+          "handle_delta": -1,
+          "endpoint_tip_step_um": 5.735218631233927,
+          "endpoint_error_um": 13.436713566988557,
+          "one_packet_tip_step_um": 4.301413978379646,
+          "one_packet_error_um": 14.484345637833698
+        },
+        {
+          "axis": "A",
+          "handle_delta": 1,
+          "endpoint_tip_step_um": 5.735218631231533,
+          "endpoint_error_um": 23.014675027558848,
+          "one_packet_tip_step_um": 4.301413978374023,
+          "one_packet_error_um": 21.717360938158873
+        },
+        {
+          "axis": "B",
+          "handle_delta": -1,
+          "endpoint_tip_step_um": 3.1282595766778893,
+          "endpoint_error_um": 19.69458783615991,
+          "one_packet_tip_step_um": 2.2322698473056133,
+          "one_packet_error_um": 19.15910212480645
+        },
+        {
+          "axis": "B",
+          "handle_delta": 1,
+          "endpoint_tip_step_um": 3.127947627562316,
+          "endpoint_error_um": 16.61724035230773,
+          "one_packet_tip_step_um": 2.2321109985221024,
+          "one_packet_error_um": 16.950874513249452
+        },
+        {
+          "axis": "C",
+          "handle_delta": -1,
+          "endpoint_tip_step_um": 1.175130204658188,
+          "endpoint_error_um": 17.77232344129683,
+          "one_packet_tip_step_um": 0.8460937473951702,
+          "one_packet_error_um": 17.814563269430167
+        },
+        {
+          "axis": "C",
+          "handle_delta": 1,
+          "endpoint_tip_step_um": 1.175130204693601,
+          "endpoint_error_um": 18.202827021142433,
+          "one_packet_tip_step_um": 0.8460937473156329,
+          "one_packet_error_um": 18.124834201834314
+        }
+      ],
+      "best_local_oracle_endpoint": {
+        "error_um": 2.750837895160152,
+        "handle_delta": [
+          -3,
+          3,
+          -3
+        ],
+        "robot_ABCE": [
+          -2416,
+          1178195,
+          2162655,
+          0
+        ]
+      },
+      "safety_limited_steps": 0,
+      "motor_fault": null,
+      "files_sha256": {
+        "data/homog_clean_replay_20261123/shards/tasks/collection_E28/frames.jsonl": "b5d53e079eddc6ade5b835e30b94af3d82d504e363a3f3181d0bda425b095954",
+        "data/homog_clean_replay_20261123/shards/tasks/collection_E28/policy_trajectory.json": "740068dcc52387aeb298d2ff4a7b789c8931ac3e6c10278e3dac4cbfcee5f379"
+      }
+    }
+  ],
+  "status": "completed",
+  "driver": {
+    "variant": "g10",
+    "control_gear": 10,
+    "kinematics_path": "/home/him1/mujoco_bc/rcm_4090_deploy/mujoco_model/vendor/simulation_driver/ros_msg/src/robot_control/kinematics.py",
+    "kinematics_sha256": "e48eb4a909208e8d1caa3ee2a7aff157de91c808730282dd17ccb17a46591530"
+  },
+  "geometry_gain_per_s": 3.0,
+  "dt_s": 0.05,
+  "unsaturated_proportional_fraction_per_tick": 0.15000000000000002,
+  "conclusion": "Sub-handle proportional actions are quantized to the same cumulative target; feedback mode discards sub-handle residuals every tick",
+  "counterfactual_scope": "One-packet probes and local endpoint enumeration use frozen software simulation and truth only for offline diagnosis; not new achieved closed-loop accuracy"
+}

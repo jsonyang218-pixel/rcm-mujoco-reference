@@ -724,3 +724,390 @@ GPU pool 29/60; workers=4; {'gpu_free_mib': 39622, 'gpu_utilization_percent': 39
   closed-loop step 200/1600, error=21.182 um
   closed-loop step 200/1600, error=21.920 um
   closed-loop step 200/1600, error=17.559 um
+Publication: {'status': 'pushed_verified', 'branch': 'feature/clean-render-homog-replay-20261123', 'base': '71040dd33a48644da662dc92ad28053a2a326871', 'parent': 'f8fedaf23852754fa35942ff831ca89679a99566', 'commit': 'a6476cfa806fce333ef5d7480f225ce3e51e92be', 'tree': '37ee34508323524fd412a369698db88a8954dd78', 'files': 237, 'timestamp': '2026-11-23T16:39:43.283040+08:00', 'protected_assets_unchanged': True, 'unintended_deletions': 0, 'weights_and_RGB_retained_locally': True, 'remote_commit': 'a6476cfa806fce333ef5d7480f225ce3e51e92be'}
+FINAL SUMMARY: /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261123/homog_clean_workflow_v2/SUMMARY.md
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/him1/mujoco_bc/rcm_4090_deploy/scripts/research/homog_replay_pipeline.py", line 414, in <module>
+    if __name__=='__main__': main()
+                             ^^^^^^
+  File "/home/him1/mujoco_bc/rcm_4090_deploy/scripts/research/homog_replay_pipeline.py", line 388, in main
+    if args.action=='run': return run(output)
+                                  ^^^^^^^^^^^
+  File "/home/him1/mujoco_bc/rcm_4090_deploy/scripts/research/homog_replay_pipeline.py", line 353, in run
+    stages[name]=completed_stage(output,name,fn)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/him1/mujoco_bc/rcm_4090_deploy/scripts/research/homog_replay_pipeline.py", line 159, in completed_stage
+    result=fn()
+           ^^^^
+  File "/home/him1/mujoco_bc/rcm_4090_deploy/scripts/research/homog_replay_pipeline.py", line 341, in <lambda>
+    for name,fn in [('stage1',lambda:collect(manifest)),
+                                     ^^^^^^^^^^^^^^^^^
+  File "/home/him1/mujoco_bc/rcm_4090_deploy/scripts/research/homog_replay_collect.py", line 323, in collect
+    results=pool({'collection':{'factory':__name__+':CollectionWorker',
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/him1/mujoco_bc/rcm_4090_deploy/scripts/research/homog_replay_common.py", line 52, in pool
+    return run_pool(groups, output, workers=3, max_workers=4,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/him1/mujoco_bc/rcm_4090_deploy/scripts/research/gpu_episode_pool.py", line 265, in run_pool
+    time.sleep(.05)
+  File "/home/him1/mujoco_bc/rcm_4090_deploy/scripts/research/gpu_episode_pool.py", line 195, in interrupt
+    raise KeyboardInterrupt(f"received {signal.Signals(signum).name}")
+KeyboardInterrupt: received SIGINT
+Warning: wandb not available, logging will be local only
+GPU pool 29/60; workers=1; {'gpu_free_mib': 47741, 'gpu_utilization_percent': 2, 'ram_available_mib': 25164}
+Warning: wandb not available, logging will be local only
+加载模型: /home/him1/mujoco_bc/rcm_4090_deploy/outputs/overnight_c_fix_symlog_081234/task2_train/step_004000.pth
+Warning: wandb not available, logging will be local only
+加载模型: /home/him1/mujoco_bc/rcm_4090_deploy/outputs/overnight_c_fix_symlog_081234/task2_train/step_004000.pth
+Warning: wandb not available, logging will be local only
+加载模型: /home/him1/mujoco_bc/rcm_4090_deploy/outputs/overnight_c_fix_symlog_081234/task2_train/step_004000.pth
+Warning: wandb not available, logging will be local only
+加载模型: /home/him1/mujoco_bc/rcm_4090_deploy/outputs/overnight_c_fix_symlog_081234/task2_train/step_004000.pth
+Warning: wandb not available, logging will be local only
+加载模型: /home/him1/mujoco_bc/rcm_4090_deploy/outputs/overnight_c_fix_symlog_081234/task2_train/step_004000.pth
+Warning: wandb not available, logging will be local only
+加载模型: /home/him1/mujoco_bc/rcm_4090_deploy/outputs/overnight_c_fix_symlog_081234/task2_train/step_004000.pth
+Warning: wandb not available, logging will be local only
+加载模型: /home/him1/mujoco_bc/rcm_4090_deploy/outputs/overnight_c_fix_symlog_081234/task2_train/step_004000.pth
+Warning: wandb not available, logging will be local only
+加载模型: /home/him1/mujoco_bc/rcm_4090_deploy/outputs/overnight_c_fix_symlog_081234/task2_train/step_004000.pth
+模型加载完成 (type=dit_rectified_flow, epoch=3, train_loss=0.116777, val_loss=0.148003)
+模型加载完成 (type=dit_rectified_flow, epoch=3, train_loss=0.116777, val_loss=0.148003)
+模型加载完成 (type=dit_rectified_flow, epoch=3, train_loss=0.116777, val_loss=0.148003)
+模型加载完成 (type=dit_rectified_flow, epoch=3, train_loss=0.116777, val_loss=0.148003)
+模型加载完成 (type=dit_rectified_flow, epoch=3, train_loss=0.116777, val_loss=0.148003)
+模型加载完成 (type=dit_rectified_flow, epoch=3, train_loss=0.116777, val_loss=0.148003)
+模型加载完成 (type=dit_rectified_flow, epoch=3, train_loss=0.116777, val_loss=0.148003)
+模型加载完成 (type=dit_rectified_flow, epoch=3, train_loss=0.116777, val_loss=0.148003)
+  closed-loop step 1/1600, error=81.537 um
+  closed-loop step 1/1600, error=175.465 um
+  closed-loop step 1/1600, error=81.574 um
+  closed-loop step 1/1600, error=146.702 um
+  closed-loop step 1/1600, error=189.297 um
+  closed-loop step 1/1600, error=146.787 um
+  closed-loop step 1/1600, error=189.467 um
+  closed-loop step 1/1600, error=113.563 um
+GPU pool 29/60; workers=8; {'gpu_free_mib': 32063, 'gpu_utilization_percent': 34, 'ram_available_mib': 12140}
+GPU pool 29/60; workers=8; {'gpu_free_mib': 32063, 'gpu_utilization_percent': 12, 'ram_available_mib': 12112}
+  closed-loop step 100/1600, error=17.582 um
+  closed-loop step 100/1600, error=21.920 um
+  closed-loop step 100/1600, error=17.937 um
+  closed-loop step 100/1600, error=21.182 um
+  closed-loop step 100/1600, error=20.663 um
+  closed-loop step 100/1600, error=17.559 um
+  closed-loop step 100/1600, error=19.036 um
+  closed-loop step 100/1600, error=19.706 um
+GPU pool 29/60; workers=8; {'gpu_free_mib': 32063, 'gpu_utilization_percent': 11, 'ram_available_mib': 12072}
+GPU pool 29/60; workers=8; {'gpu_free_mib': 32063, 'gpu_utilization_percent': 11, 'ram_available_mib': 12073}
+  closed-loop step 200/1600, error=17.582 um
+  closed-loop step 200/1600, error=17.937 um
+  closed-loop step 200/1600, error=21.920 um
+  closed-loop step 200/1600, error=21.182 um
+  closed-loop step 200/1600, error=17.559 um
+  closed-loop step 200/1600, error=20.663 um
+  closed-loop step 200/1600, error=19.036 um
+  closed-loop step 200/1600, error=19.706 um
+GPU pool 29/60; workers=8; {'gpu_free_mib': 32063, 'gpu_utilization_percent': 11, 'ram_available_mib': 12067}
+GPU pool 29/60; workers=8; {'gpu_free_mib': 32063, 'gpu_utilization_percent': 8, 'ram_available_mib': 12083}
+  closed-loop step 300/1600, error=17.582 um
+  closed-loop step 300/1600, error=17.937 um
+  closed-loop step 300/1600, error=21.920 um
+  closed-loop step 300/1600, error=17.559 um
+  closed-loop step 300/1600, error=21.182 um
+  closed-loop step 300/1600, error=20.663 um
+  closed-loop step 300/1600, error=19.036 um
+  closed-loop step 300/1600, error=19.706 um
+GPU pool 29/60; workers=8; {'gpu_free_mib': 32066, 'gpu_utilization_percent': 39, 'ram_available_mib': 12075}
+GPU pool 29/60; workers=8; {'gpu_free_mib': 32066, 'gpu_utilization_percent': 0, 'ram_available_mib': 12056}
+  closed-loop step 400/1600, error=17.582 um
+  closed-loop step 400/1600, error=17.937 um
+  closed-loop step 400/1600, error=21.920 um
+  closed-loop step 400/1600, error=17.559 um
+  closed-loop step 400/1600, error=21.182 um
+  closed-loop step 400/1600, error=20.663 um
+  closed-loop step 400/1600, error=19.036 um
+GPU pool 29/60; workers=8; {'gpu_free_mib': 32066, 'gpu_utilization_percent': 0, 'ram_available_mib': 12056}
+  closed-loop step 400/1600, error=19.706 um
+GPU pool 29/60; workers=8; {'gpu_free_mib': 32066, 'gpu_utilization_percent': 20, 'ram_available_mib': 12058}
+  closed-loop step 500/1600, error=17.582 um
+  closed-loop step 500/1600, error=17.937 um
+  closed-loop step 500/1600, error=21.920 um
+  closed-loop step 500/1600, error=17.559 um
+GPU pool 29/60; workers=8; {'gpu_free_mib': 32066, 'gpu_utilization_percent': 18, 'ram_available_mib': 12049}
+  closed-loop step 500/1600, error=21.182 um
+  closed-loop step 500/1600, error=20.663 um
+  closed-loop step 500/1600, error=19.036 um
+  closed-loop step 500/1600, error=19.706 um
+GPU pool 29/60; workers=8; {'gpu_free_mib': 32066, 'gpu_utilization_percent': 18, 'ram_available_mib': 12056}
+GPU pool 29/60; workers=8; {'gpu_free_mib': 32066, 'gpu_utilization_percent': 0, 'ram_available_mib': 12053}
+  closed-loop step 600/1600, error=17.582 um
+  closed-loop step 600/1600, error=17.937 um
+  closed-loop step 600/1600, error=21.920 um
+  closed-loop step 600/1600, error=17.559 um
+  closed-loop step 600/1600, error=20.663 um
+  closed-loop step 600/1600, error=21.182 um
+  closed-loop step 600/1600, error=19.036 um
+  closed-loop step 600/1600, error=19.706 um
+GPU pool 29/60; workers=8; {'gpu_free_mib': 32066, 'gpu_utilization_percent': 0, 'ram_available_mib': 12043}
+GPU pool 29/60; workers=8; {'gpu_free_mib': 32066, 'gpu_utilization_percent': 29, 'ram_available_mib': 12048}
+  closed-loop step 700/1600, error=17.582 um
+  closed-loop step 700/1600, error=17.937 um
+  closed-loop step 700/1600, error=21.920 um
+  closed-loop step 700/1600, error=17.559 um
+  closed-loop step 700/1600, error=20.663 um
+  closed-loop step 700/1600, error=21.182 um
+  closed-loop step 700/1600, error=19.036 um
+  closed-loop step 700/1600, error=19.706 um
+GPU pool 29/60; workers=8; {'gpu_free_mib': 32066, 'gpu_utilization_percent': 0, 'ram_available_mib': 12087}
+GPU pool 29/60; workers=8; {'gpu_free_mib': 32068, 'gpu_utilization_percent': 18, 'ram_available_mib': 12043}
+  closed-loop step 800/1600, error=17.582 um
+  closed-loop step 800/1600, error=17.937 um
+  closed-loop step 800/1600, error=21.920 um
+  closed-loop step 800/1600, error=17.559 um
+  closed-loop step 800/1600, error=20.663 um
+  closed-loop step 800/1600, error=21.182 um
+  closed-loop step 800/1600, error=19.036 um
+  closed-loop step 800/1600, error=19.706 um
+GPU pool 29/60; workers=8; {'gpu_free_mib': 32068, 'gpu_utilization_percent': 2, 'ram_available_mib': 12061}
+GPU pool 29/60; workers=8; {'gpu_free_mib': 32068, 'gpu_utilization_percent': 0, 'ram_available_mib': 12015}
+  closed-loop step 900/1600, error=17.582 um
+  closed-loop step 900/1600, error=17.937 um
+  closed-loop step 900/1600, error=21.920 um
+  closed-loop step 900/1600, error=17.559 um
+  closed-loop step 900/1600, error=20.663 um
+  closed-loop step 900/1600, error=21.182 um
+GPU pool 29/60; workers=8; {'gpu_free_mib': 32068, 'gpu_utilization_percent': 0, 'ram_available_mib': 12013}
+  closed-loop step 900/1600, error=19.036 um
+  closed-loop step 900/1600, error=19.706 um
+GPU pool 29/60; workers=8; {'gpu_free_mib': 32068, 'gpu_utilization_percent': 13, 'ram_available_mib': 12033}
+  closed-loop step 1000/1600, error=17.582 um
+  closed-loop step 1000/1600, error=17.937 um
+  closed-loop step 1000/1600, error=21.920 um
+  closed-loop step 1000/1600, error=20.663 um
+  closed-loop step 1000/1600, error=17.559 um
+  closed-loop step 1000/1600, error=21.182 um
+GPU pool 29/60; workers=8; {'gpu_free_mib': 32068, 'gpu_utilization_percent': 11, 'ram_available_mib': 12019}
+  closed-loop step 1000/1600, error=19.036 um
+  closed-loop step 1000/1600, error=19.706 um
+GPU pool 29/60; workers=8; {'gpu_free_mib': 32068, 'gpu_utilization_percent': 0, 'ram_available_mib': 12016}
+  closed-loop step 1100/1600, error=17.582 um
+  closed-loop step 1100/1600, error=17.937 um
+  closed-loop step 1100/1600, error=21.920 um
+  closed-loop step 1100/1600, error=20.663 um
+  closed-loop step 1100/1600, error=17.559 um
+GPU pool 29/60; workers=8; {'gpu_free_mib': 32068, 'gpu_utilization_percent': 11, 'ram_available_mib': 12017}
+  closed-loop step 1100/1600, error=21.182 um
+  closed-loop step 1100/1600, error=19.036 um
+  closed-loop step 1100/1600, error=19.706 um
+GPU pool 29/60; workers=8; {'gpu_free_mib': 32068, 'gpu_utilization_percent': 11, 'ram_available_mib': 12011}
+  closed-loop step 1200/1600, error=17.582 um
+  closed-loop step 1200/1600, error=17.937 um
+  closed-loop step 1200/1600, error=21.920 um
+GPU pool 29/60; workers=8; {'gpu_free_mib': 32068, 'gpu_utilization_percent': 16, 'ram_available_mib': 12008}
+  closed-loop step 1200/1600, error=20.663 um
+  closed-loop step 1200/1600, error=17.559 um
+  closed-loop step 1200/1600, error=21.182 um
+  closed-loop step 1200/1600, error=19.036 um
+  closed-loop step 1200/1600, error=19.706 um
+GPU pool 29/60; workers=8; {'gpu_free_mib': 32068, 'gpu_utilization_percent': 0, 'ram_available_mib': 12046}
+  closed-loop step 1300/1600, error=17.582 um
+  closed-loop step 1300/1600, error=17.937 um
+GPU pool 29/60; workers=8; {'gpu_free_mib': 32069, 'gpu_utilization_percent': 11, 'ram_available_mib': 12000}
+  closed-loop step 1300/1600, error=21.920 um
+  closed-loop step 1300/1600, error=20.663 um
+  closed-loop step 1300/1600, error=17.559 um
+  closed-loop step 1300/1600, error=21.182 um
+  closed-loop step 1300/1600, error=19.036 um
+  closed-loop step 1300/1600, error=19.706 um
+GPU pool 29/60; workers=8; {'gpu_free_mib': 32065, 'gpu_utilization_percent': 15, 'ram_available_mib': 11965}
+GPU pool 29/60; workers=8; {'gpu_free_mib': 32059, 'gpu_utilization_percent': 19, 'ram_available_mib': 11943}
+  closed-loop step 1400/1600, error=17.582 um
+  closed-loop step 1400/1600, error=17.937 um
+  closed-loop step 1400/1600, error=21.920 um
+  closed-loop step 1400/1600, error=20.663 um
+  closed-loop step 1400/1600, error=17.559 um
+  closed-loop step 1400/1600, error=21.182 um
+GPU pool 29/60; workers=8; {'gpu_free_mib': 32059, 'gpu_utilization_percent': 24, 'ram_available_mib': 11945}
+  closed-loop step 1400/1600, error=19.036 um
+  closed-loop step 1400/1600, error=19.706 um
+GPU pool 29/60; workers=8; {'gpu_free_mib': 32059, 'gpu_utilization_percent': 18, 'ram_available_mib': 11920}
+  closed-loop step 1500/1600, error=17.582 um
+  closed-loop step 1500/1600, error=17.937 um
+  closed-loop step 1500/1600, error=21.920 um
+  closed-loop step 1500/1600, error=20.663 um
+  closed-loop step 1500/1600, error=17.559 um
+  closed-loop step 1500/1600, error=21.182 um
+GPU pool 29/60; workers=8; {'gpu_free_mib': 32059, 'gpu_utilization_percent': 24, 'ram_available_mib': 11907}
+  closed-loop step 1500/1600, error=19.036 um
+  closed-loop step 1500/1600, error=19.706 um
+GPU pool 29/60; workers=8; {'gpu_free_mib': 32059, 'gpu_utilization_percent': 11, 'ram_available_mib': 11939}
+  closed-loop step 1600/1600, error=17.582 um
+  closed-loop step 1600/1600, error=17.937 um
+  closed-loop step 1/1600, error=113.639 um
+  closed-loop step 1/1600, error=146.414 um
+  closed-loop step 1600/1600, error=21.920 um
+  closed-loop step 1600/1600, error=20.663 um
+  closed-loop step 1/1600, error=146.480 um
+  closed-loop step 1600/1600, error=17.559 um
+  closed-loop step 1/1600, error=35.424 um
+  closed-loop step 1/1600, error=35.352 um
+GPU pool 34/60; workers=8; {'gpu_free_mib': 32058, 'gpu_utilization_percent': 18, 'ram_available_mib': 10858}
+  closed-loop step 1600/1600, error=21.182 um
+  closed-loop step 1/1600, error=31.592 um
+  closed-loop step 1600/1600, error=19.036 um
+  closed-loop step 1/1600, error=31.522 um
+  closed-loop step 1600/1600, error=19.706 um
+  closed-loop step 1/1600, error=17.266 um
+GPU pool 37/60; workers=8; {'gpu_free_mib': 32059, 'gpu_utilization_percent': 23, 'ram_available_mib': 10171}
+  closed-loop step 100/1600, error=14.125 um
+  closed-loop step 100/1600, error=18.672 um
+  closed-loop step 100/1600, error=18.804 um
+  closed-loop step 100/1600, error=13.341 um
+GPU pool 37/60; workers=8; {'gpu_free_mib': 32059, 'gpu_utilization_percent': 26, 'ram_available_mib': 10186}
+  closed-loop step 100/1600, error=10.751 um
+  closed-loop step 100/1600, error=19.153 um
+  closed-loop step 100/1600, error=19.058 um
+  closed-loop step 100/1600, error=9.650 um
+GPU pool 37/60; workers=8; {'gpu_free_mib': 32068, 'gpu_utilization_percent': 11, 'ram_available_mib': 10193}
+  closed-loop step 200/1600, error=14.125 um
+GPU pool 37/60; workers=8; {'gpu_free_mib': 31278, 'gpu_utilization_percent': 16, 'ram_available_mib': 9122}
+  closed-loop step 200/1600, error=18.672 um
+  closed-loop step 200/1600, error=13.341 um
+  closed-loop step 200/1600, error=10.751 um
+  closed-loop step 200/1600, error=18.804 um
+  closed-loop step 200/1600, error=19.153 um
+GPU pool 37/60; workers=8; {'gpu_free_mib': 32068, 'gpu_utilization_percent': 14, 'ram_available_mib': 10167}
+  closed-loop step 200/1600, error=19.058 um
+  closed-loop step 200/1600, error=9.650 um
+GPU pool 37/60; workers=8; {'gpu_free_mib': 32068, 'gpu_utilization_percent': 42, 'ram_available_mib': 10183}
+  closed-loop step 300/1600, error=14.125 um
+  closed-loop step 300/1600, error=18.672 um
+  closed-loop step 300/1600, error=13.341 um
+  closed-loop step 300/1600, error=10.751 um
+  closed-loop step 300/1600, error=18.804 um
+  closed-loop step 300/1600, error=19.153 um
+GPU pool 37/60; workers=8; {'gpu_free_mib': 32068, 'gpu_utilization_percent': 6, 'ram_available_mib': 10192}
+  closed-loop step 300/1600, error=19.058 um
+  closed-loop step 300/1600, error=9.650 um
+GPU pool 37/60; workers=8; {'gpu_free_mib': 32068, 'gpu_utilization_percent': 34, 'ram_available_mib': 10188}
+  closed-loop step 400/1600, error=14.125 um
+  closed-loop step 400/1600, error=18.672 um
+  closed-loop step 400/1600, error=13.341 um
+  closed-loop step 400/1600, error=10.751 um
+  closed-loop step 400/1600, error=18.804 um
+GPU pool 37/60; workers=8; {'gpu_free_mib': 32068, 'gpu_utilization_percent': 14, 'ram_available_mib': 10143}
+  closed-loop step 400/1600, error=19.153 um
+  closed-loop step 400/1600, error=19.058 um
+  closed-loop step 400/1600, error=9.650 um
+GPU pool 37/60; workers=8; {'gpu_free_mib': 32068, 'gpu_utilization_percent': 35, 'ram_available_mib': 10165}
+  closed-loop step 500/1600, error=18.672 um
+  closed-loop step 500/1600, error=14.125 um
+  closed-loop step 500/1600, error=13.341 um
+  closed-loop step 500/1600, error=10.751 um
+  closed-loop step 500/1600, error=18.804 um
+GPU pool 37/60; workers=8; {'gpu_free_mib': 32071, 'gpu_utilization_percent': 14, 'ram_available_mib': 10169}
+  closed-loop step 500/1600, error=19.153 um
+  closed-loop step 500/1600, error=19.058 um
+  closed-loop step 500/1600, error=9.650 um
+GPU pool 37/60; workers=8; {'gpu_free_mib': 32071, 'gpu_utilization_percent': 21, 'ram_available_mib': 10170}
+  closed-loop step 600/1600, error=18.672 um
+GPU pool 37/60; workers=8; {'gpu_free_mib': 32071, 'gpu_utilization_percent': 25, 'ram_available_mib': 10165}
+  closed-loop step 600/1600, error=14.125 um
+  closed-loop step 600/1600, error=13.341 um
+  closed-loop step 600/1600, error=18.804 um
+  closed-loop step 600/1600, error=10.751 um
+  closed-loop step 600/1600, error=19.153 um
+  closed-loop step 600/1600, error=19.058 um
+GPU pool 37/60; workers=8; {'gpu_free_mib': 32075, 'gpu_utilization_percent': 31, 'ram_available_mib': 10255}
+  closed-loop step 600/1600, error=9.650 um
+GPU pool 37/60; workers=8; {'gpu_free_mib': 32075, 'gpu_utilization_percent': 0, 'ram_available_mib': 10285}
+  closed-loop step 700/1600, error=18.672 um
+  closed-loop step 700/1600, error=14.125 um
+  closed-loop step 700/1600, error=13.341 um
+  closed-loop step 700/1600, error=18.804 um
+  closed-loop step 700/1600, error=10.751 um
+  closed-loop step 700/1600, error=19.153 um
+GPU pool 37/60; workers=8; {'gpu_free_mib': 32075, 'gpu_utilization_percent': 11, 'ram_available_mib': 10246}
+  closed-loop step 700/1600, error=19.058 um
+  closed-loop step 700/1600, error=9.650 um
+GPU pool 37/60; workers=8; {'gpu_free_mib': 32075, 'gpu_utilization_percent': 15, 'ram_available_mib': 10240}
+  closed-loop step 800/1600, error=18.672 um
+  closed-loop step 800/1600, error=14.125 um
+  closed-loop step 800/1600, error=13.341 um
+  closed-loop step 800/1600, error=18.804 um
+  closed-loop step 800/1600, error=10.751 um
+GPU pool 37/60; workers=8; {'gpu_free_mib': 32075, 'gpu_utilization_percent': 50, 'ram_available_mib': 10228}
+  closed-loop step 800/1600, error=19.153 um
+  closed-loop step 800/1600, error=19.058 um
+  closed-loop step 800/1600, error=9.650 um
+GPU pool 37/60; workers=8; {'gpu_free_mib': 32075, 'gpu_utilization_percent': 11, 'ram_available_mib': 10255}
+  closed-loop step 900/1600, error=18.672 um
+  closed-loop step 900/1600, error=14.125 um
+  closed-loop step 900/1600, error=13.341 um
+  closed-loop step 900/1600, error=18.804 um
+  closed-loop step 900/1600, error=10.751 um
+GPU pool 37/60; workers=8; {'gpu_free_mib': 32075, 'gpu_utilization_percent': 15, 'ram_available_mib': 10225}
+  closed-loop step 900/1600, error=19.058 um
+  closed-loop step 900/1600, error=19.153 um
+  closed-loop step 900/1600, error=9.650 um
+GPU pool 37/60; workers=8; {'gpu_free_mib': 32075, 'gpu_utilization_percent': 11, 'ram_available_mib': 10275}
+  closed-loop step 1000/1600, error=18.672 um
+  closed-loop step 1000/1600, error=13.341 um
+  closed-loop step 1000/1600, error=14.125 um
+  closed-loop step 1000/1600, error=18.804 um
+  closed-loop step 1000/1600, error=10.751 um
+GPU pool 37/60; workers=8; {'gpu_free_mib': 32075, 'gpu_utilization_percent': 0, 'ram_available_mib': 10223}
+  closed-loop step 1000/1600, error=19.058 um
+  closed-loop step 1000/1600, error=19.153 um
+  closed-loop step 1000/1600, error=9.650 um
+GPU pool 37/60; workers=8; {'gpu_free_mib': 32075, 'gpu_utilization_percent': 23, 'ram_available_mib': 10208}
+  closed-loop step 1100/1600, error=18.672 um
+GPU pool 37/60; workers=8; {'gpu_free_mib': 32075, 'gpu_utilization_percent': 61, 'ram_available_mib': 10267}
+  closed-loop step 1100/1600, error=13.341 um
+  closed-loop step 1100/1600, error=18.804 um
+  closed-loop step 1100/1600, error=14.125 um
+  closed-loop step 1100/1600, error=10.751 um
+  closed-loop step 1100/1600, error=19.058 um
+  closed-loop step 1100/1600, error=19.153 um
+  closed-loop step 1100/1600, error=9.650 um
+GPU pool 37/60; workers=8; {'gpu_free_mib': 32075, 'gpu_utilization_percent': 12, 'ram_available_mib': 10204}
+  closed-loop step 1200/1600, error=18.672 um
+GPU pool 37/60; workers=8; {'gpu_free_mib': 32075, 'gpu_utilization_percent': 11, 'ram_available_mib': 10177}
+  closed-loop step 1200/1600, error=13.341 um
+  closed-loop step 1200/1600, error=18.804 um
+  closed-loop step 1200/1600, error=10.751 um
+  closed-loop step 1200/1600, error=14.125 um
+  closed-loop step 1200/1600, error=19.058 um
+  closed-loop step 1200/1600, error=19.153 um
+GPU pool 37/60; workers=8; {'gpu_free_mib': 32075, 'gpu_utilization_percent': 25, 'ram_available_mib': 10243}
+  closed-loop step 1200/1600, error=9.650 um
+GPU pool 37/60; workers=8; {'gpu_free_mib': 32075, 'gpu_utilization_percent': 0, 'ram_available_mib': 10193}
+  closed-loop step 1300/1600, error=18.672 um
+  closed-loop step 1300/1600, error=18.804 um
+  closed-loop step 1300/1600, error=13.341 um
+  closed-loop step 1300/1600, error=10.751 um
+  closed-loop step 1300/1600, error=14.125 um
+  closed-loop step 1300/1600, error=19.058 um
+GPU pool 37/60; workers=8; {'gpu_free_mib': 32075, 'gpu_utilization_percent': 46, 'ram_available_mib': 10261}
+  closed-loop step 1300/1600, error=19.153 um
+  closed-loop step 1300/1600, error=9.650 um
+GPU pool 37/60; workers=8; {'gpu_free_mib': 32075, 'gpu_utilization_percent': 15, 'ram_available_mib': 10207}
+  closed-loop step 1400/1600, error=18.672 um
+  closed-loop step 1400/1600, error=18.804 um
+  closed-loop step 1400/1600, error=13.341 um
+  closed-loop step 1400/1600, error=10.751 um
+Traceback (most recent call last):
+  File "/home/him1/mujoco_bc/rcm_4090_deploy/scripts/research/gpu_episode_pool.py", line 86, in worker_main
+    result = handler.run(request["task"], Path(request["output_dir"]))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/him1/mujoco_bc/rcm_4090_deploy/scripts/research/homog_replay_collect.py", line 219, in run
+    ep = self.evaluator.evaluate_episode(scene, np.asarray(task['target_world_mm']),
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/him1/mujoco_bc/rcm_4090_deploy/lerobot_training/eval_policy.py", line 986, in evaluate_episode
+    observation = sensor.observe()
+                  ^^^^^^^^^^^^^^^^
+  File "/home/him1/mujoco_bc/rcm_4090_deploy/scripts/research/homog_replay_collect.py", line 142, in observe
+    raise ValueError('T3 did not reach measured<5um before the200 explicit hold frames')
+ValueError: T3 did not reach measured<5um before the200 explicit hold frames

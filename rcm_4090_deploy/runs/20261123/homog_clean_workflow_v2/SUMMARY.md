@@ -1,6 +1,6 @@
 # 同源新渲染近目标回放 — 2026-11-23
 
-流程状态：interrupted。
+流程状态：failed。
 
 基点 `71040dd33a48644da662dc92ad28053a2a326871`；独立分支 `feature/clean-render-homog-replay-20261123`。
 

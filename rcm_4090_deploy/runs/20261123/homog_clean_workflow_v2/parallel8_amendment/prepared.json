@@ -1,0 +1,62 @@
+{
+  "status": "prepared",
+  "workers": 8,
+  "max_workers": 8,
+  "completed_preserved": 29,
+  "reused_tasks": [
+    "collection_E00",
+    "collection_E01",
+    "collection_E02",
+    "collection_E03",
+    "collection_E04",
+    "collection_E05",
+    "collection_E06",
+    "collection_E07",
+    "collection_E08",
+    "collection_E09",
+    "collection_E10",
+    "collection_E11",
+    "collection_E12",
+    "collection_E13",
+    "collection_E14",
+    "collection_E15",
+    "collection_E16",
+    "collection_E17",
+    "collection_E18",
+    "collection_E19",
+    "collection_E20",
+    "collection_E21",
+    "collection_E22",
+    "collection_E23",
+    "collection_E24",
+    "collection_E25",
+    "collection_E26",
+    "collection_E27",
+    "collection_E28"
+  ],
+  "old_contract_sha256": "4559e66678f43832443a6d8fc76b84b445e97467c98c783c32c272a9535b8977",
+  "new_contract_sha256": "d35fde3f88f5881087d680aca5c105fa5305bf0d966566b49f305dc73d61aaa2",
+  "changed_contract_keys": [
+    "workers",
+    "max_workers"
+  ],
+  "artifact_bytes_changed": false,
+  "scientific_specification_changed": false,
+  "original_receipts": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261123/homog_clean_workflow_v2/parallel8_amendment/migration/original_receipts",
+  "timestamp": "2026-11-23T16:41:21.837492+08:00",
+  "wrapper_sha256": "1362f075747b541a82f2ad78c387fc2e12b9722c113ee4ed780653066ed31962",
+  "execution_manifest_sha256": "dab2a4528b406619f1eb8bd6f5a87369c442191062bb157047bbc633362d685c",
+  "actual_gpu_preflight": {
+    "device": "NVIDIA GeForce RTX 4090",
+    "total_memory_bytes": 50857050112,
+    "python": "3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]",
+    "executable": "/home/him1/mujoco_bc/rcm_4090_deploy/.venv/bin/python"
+  },
+  "resources": {
+    "gpu_free_mib": 48154,
+    "gpu_utilization_percent": 11,
+    "ram_available_mib": 26746
+  },
+  "training": "Original batch16, AMP, 8% replay and 4000 batches unchanged",
+  "scope": "Collection, audit and closed-loop worker pools use eight workers; training remains one CUDA trainer"
+}
