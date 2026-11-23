@@ -41,6 +41,7 @@ def publication_files(output):
                 ROOT/'scripts/verification/verify_homog_teacher_intent.py',
                 ROOT/'scripts/verification/diagnose_homog_plateau.py',
                 ROOT/'scripts/tools/prepare_teacher_intent_repair.py',
+                ROOT/'scripts/tools/prepare_homog_mixed_budget.py',
                 ROOT/'docs/HOMOG_REPLAY_PLAN_20261123.md']
     for path in sources:
         if not path.is_file():

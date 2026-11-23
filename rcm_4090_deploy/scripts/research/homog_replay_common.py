@@ -18,19 +18,42 @@ from scripts.research.gpu_episode_pool import run_pool, signature, write_json
 BASE = '71040dd33a48644da662dc92ad28053a2a326871'
 BRANCH = 'feature/clean-render-homog-replay-20261123'
 TASK = ROOT.parent / '规划5.txt'
-DATA = ROOT / 'data/homog_clean_replay_20261123_intent_600_12_v1'
-WEIGHTS = ROOT / 'outputs/homog_clean_replay_20261123_intent_600_12_v1'
-REPORTS = tuple(ROOT / f'github_reports/homog_intent_600_12_v1_20261123_s{i}_{s}' for i, s in (
-    (1, 'collection'), (2, 'train'), (3, 'fast5_600'), (4, 'dev20')))
+DATA = ROOT / 'data/homog_clean_replay_20261123_mixed_1600_600_12_v1'
+WEIGHTS = ROOT / 'outputs/homog_clean_replay_20261123_mixed_1600_600_12_v1'
+REPORTS = tuple(ROOT / f'github_reports/homog_mixed_1600_600_12_v1_20261123_s{i}_{s}' for i, s in (
+    (1, 'collection'), (2, 'train'), (3, 'fast5_1600'), (4, 'dev20')))
 PUB = ROOT / 'runs/20261123/homog_clean_git_v1'
-WORKFLOW = ROOT / 'runs/20261123/homog_clean_workflow_intent_600_12_v4'
+WORKFLOW = ROOT / 'runs/20261123/homog_clean_workflow_mixed_1600_600_12_v5'
 CAPS = np.array([.2, .1, .03])
-STEPS = 600
-HOLD_START = STEPS - 200
+STEPS = 1600
+COLLECTION_STEPS = {'T1': 1600, 'T2': 600, 'T3': 600}
+HOLD_START = COLLECTION_STEPS['T3'] - 200
 WORKERS = 12
-LATE_DRIFT_START = 400
+LATE_DRIFT_START = 1000
 ABSOLUTE_DRIFT_KEY = f'absolute_drift_{LATE_DRIFT_START}_to_{STEPS}_um'
 TEACHER_TOLERANCE_UM = .1
+
+
+def collection_steps(regime):
+    return COLLECTION_STEPS[regime]
+
+
+def validate_collection_budgets(tasks):
+    """Reject a long-approach budget that cannot even reach the recording shell."""
+    minimum = {}
+    for task in tasks:
+        steps = collection_steps(task['regime'])
+        if task['regime'] == 'T1':
+            gap_m = abs(task['goal_state_si'][2] - task['initial_state_si'][2])
+            approach = int(np.ceil(max(0., gap_m - .0002) / (CAPS[2] * .001)))
+            # One two-observation/sixteen-action contiguous training window.
+            required = approach + 17
+            if steps < required:
+                raise ValueError(f"{task['id']}: {steps}steps cannot cover20mm approach and near-target window; minimum{required}")
+            minimum[task['id']] = required
+        if task['regime'] == 'T3' and (HOLD_START < 1 or steps - HOLD_START != 200):
+            raise ValueError('T3 must retain exactly200 final explicit hold actions')
+    return minimum
 
 
 def record(purpose, status, output, details):
@@ -46,6 +69,7 @@ def identity():
     files += [ROOT / 'scripts/verification/verify_homog_replay.py',
               ROOT / 'scripts/verification/verify_homog_teacher_intent.py',
               ROOT / 'scripts/tools/prepare_teacher_intent_repair.py',
+              ROOT / 'scripts/tools/prepare_homog_mixed_budget.py',
               ROOT / 'scripts/research/a_axis_flip_audit.py',
               ROOT / 'scripts/research/a_axis_flip_pipeline.py',
               ROOT / 'rcm/fundus.py', ROOT / 'rcm/visual_servo.py',

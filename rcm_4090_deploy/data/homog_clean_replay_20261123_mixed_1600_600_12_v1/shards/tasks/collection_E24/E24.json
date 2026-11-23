@@ -1,0 +1,66 @@
+{
+  "episode_index": 24,
+  "regime": "T2",
+  "frames": 600,
+  "valid_windows": 584,
+  "actions": 600,
+  "dataset_path": "/home/him1/mujoco_bc/rcm_4090_deploy/data/homog_clean_replay_20261123_mixed_1600_600_12_v1/shards/tasks/collection_E24/dataset.npz",
+  "dataset_sha256": "8041da817ad83e59c6c7ac838924d6f239d69300e7d0fa05c0bf9373b9fd78ec",
+  "final_error_um": 0.36248370444158373,
+  "hold_frames": 0,
+  "window_diagnostics": {
+    "candidate_windows": 584,
+    "trajectory_boundary_excluded": 0,
+    "source_frame_gap_excluded": 0,
+    "time_interval_excluded": 0,
+    "invalid_input_excluded": 0,
+    "valid_windows": 584
+  },
+  "task": {
+    "id": "E24",
+    "episode_index": 24,
+    "seed": 1024,
+    "regime": "T2",
+    "target_robot_mm": [
+      -0.22776783840394554,
+      9.552644196460184,
+      21.532486466062522
+    ],
+    "target_world_mm": [
+      351.4597559817662,
+      -11.48851981376615,
+      375.4260706448132
+    ],
+    "initial_state_si": [
+      -0.009618016651495498,
+      -0.1778151019225851,
+      0.019516158321317124
+    ],
+    "goal_state_si": [
+      -0.010577475306955162,
+      -0.17730352296872007,
+      0.019557437524984362
+    ],
+    "initial_error_um": 47.743950057021166,
+    "abc_offset_sign": [
+      1,
+      -1,
+      -1
+    ],
+    "min_development_distance_um": 1207.8402544056532
+  },
+  "egl": {
+    "vendor": "NVIDIA Corporation",
+    "renderer": "NVIDIA GeForce RTX 4090/PCIe/SSE2"
+  },
+  "stored_vs_policy_image_tensor_max_abs": 0.0,
+  "RGB_OCT_render_provenance_mismatch": false,
+  "quality": {
+    "offsamples": 0,
+    "numslices": 112,
+    "numstacks": 64
+  },
+  "label": "Same observe() zero-velocity geometry, pre-acceleration safe expectation; no truth enters labels",
+  "actual_history": "Accepted motor command stored separately as executed_action",
+  "expert_execution": "bounded_teacher_intent_v1"
+}

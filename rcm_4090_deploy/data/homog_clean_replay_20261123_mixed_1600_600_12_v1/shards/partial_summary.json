@@ -1,0 +1,3082 @@
+{
+  "status": "failed",
+  "completed": 35,
+  "total": 60,
+  "results": {
+    "collection_E00": {
+      "episode_index": 0,
+      "regime": "T1",
+      "frames": 927,
+      "valid_windows": 911,
+      "actions": 1600,
+      "dataset_path": "/home/him1/mujoco_bc/rcm_4090_deploy/data/homog_clean_replay_20261123_mixed_1600_600_12_v1/shards/tasks/collection_E00/dataset.npz",
+      "dataset_sha256": "475cf85943f7a40f5acb9e5291d7682c58f1e093bfdedb319c5afe1bfc614c88",
+      "final_error_um": 95.78270295667406,
+      "hold_frames": 0,
+      "window_diagnostics": {
+        "candidate_windows": 911,
+        "trajectory_boundary_excluded": 0,
+        "source_frame_gap_excluded": 0,
+        "time_interval_excluded": 0,
+        "invalid_input_excluded": 0,
+        "valid_windows": 911
+      },
+      "task": {
+        "id": "E00",
+        "episode_index": 0,
+        "seed": 1000,
+        "regime": "T1",
+        "target_robot_mm": [
+          -2.9145715868642417,
+          3.500590933970508,
+          23.260747266601655
+        ],
+        "target_world_mm": [
+          346.44465311529717,
+          -14.175323562226446,
+          371.6230485142667
+        ],
+        "initial_state_si": [
+          -0.12465036631563507,
+          0.09199647290791164,
+          -0.00029744258898063355
+        ],
+        "goal_state_si": [
+          -0.12465036631563507,
+          0.09199647290791164,
+          0.019702557411019367
+        ],
+        "initial_error_um": 20000.006499202016,
+        "abc_offset_sign": [
+          0,
+          0,
+          -1
+        ],
+        "min_development_distance_um": 554.1603488509037
+      },
+      "egl": {
+        "vendor": "NVIDIA Corporation",
+        "renderer": "NVIDIA GeForce RTX 4090/PCIe/SSE2"
+      },
+      "stored_vs_policy_image_tensor_max_abs": 0.0,
+      "RGB_OCT_render_provenance_mismatch": false,
+      "quality": {
+        "offsamples": 0,
+        "numslices": 112,
+        "numstacks": 64
+      },
+      "label": "Same observe() zero-velocity geometry, pre-acceleration safe expectation; no truth enters labels",
+      "actual_history": "Accepted motor command stored separately as executed_action",
+      "expert_execution": "old_student_feedback",
+      "source_reuse": {
+        "source_receipt": "/home/him1/mujoco_bc/rcm_4090_deploy/data/homog_clean_replay_20261123_intent_v2/shards/tasks/collection_E00/receipt.json",
+        "source_receipt_sha256": "dead5c7e670e8fd239184f196a003d3bdf2a81d7c6e354969e4814109315db46",
+        "source_identity": {
+          "code_sha256": "85461a582bb7a88332773b9832d93280d1beee9179caf88566a955b4de9c8188",
+          "scene_sha256": "265c927ef7e7ac71536963b3000ffb161b7ff7ac03bb86cdb8480ed988c17028",
+          "scripts/research/a_axis_flip_train.py": "8a05b7cdc21980ce68704726bab05d4012f735fd4e5ba3630e55e93cfae7aad5",
+          "scripts/research/a_axis_flip_replay.py": "dc5884144deb39daadc2e674abc343f6c4e18949ec30126f331d631d65dfde2e",
+          "scripts/research/a_axis_flip_audit.py": "e6c65c37656cde0b608c47a6ed4d799fc27dafe6d4abe3b1209c2abe4ca0929e",
+          "scripts/research/a_axis_flip_pipeline.py": "c813ef936b77b51014eca659c3a5ec0e5d6344d1c0308d02cb683628fb6870ee",
+          "scripts/research/a_axis_flip_publish.py": "be4a9fe1c3e6dc06f616381b26e7342d7448cf8feffabf82e96ee96d2503e081",
+          "scripts/research/a_axis_flip_common.py": "1a3ef56737f34e31e05a71566b54969dfafa3060a38ae6a8e44da83ecd29fab4",
+          "scripts/research/gpu_episode_pool.py": "e9c4a44301eeb04226bfd2869f002ba12640d2b57afbbdd438b6afd214537a9d",
+          "scripts/research/clean_oct_workers.py": "1df09165778f9866b01fb6b8e020afbb839f284797c1ae497ab36216746a1650",
+          "lerobot_training/navigation_overlay.py": "3330474b01973ab121f55f341b7f6969a70bc6d546e5823b1160657e4cdf65a5",
+          "lerobot_training/eval_policy.py": "f7f3948ea6c81ebcf66063afd9d0eb99ae418c5b099052e48b1fd476f5de95f1",
+          "lerobot_training/dit_experience_replay.py": "8a3ef61fb52d7db77e402b13dcb9c7a5186c9dc5dfc2af85d1f0c3cef394c5c2",
+          "lerobot_training/dataset_contract.py": "942d43813b5083986eeca542f6b57c480e4db6a6e163dbb084ed86f3f0a4343a",
+          "configs/v12_reachable_development_targets_0p35um.json": "fcc4872a9d5b58bb7158b36d3c0ab6d7452e4d8d747317dfb077b6e7bbc815c7",
+          "scripts/research/homog_replay_common.py": "e36ede2fa2e7c7e5f7a5bff0b80c560c20091ead175e9c53d0e1daa94788028c",
+          "scripts/research/homog_replay_collect.py": "ac29b4eca6372e138ee516f55659fd6a06b3963ea413c626843a6cc0005a97a8",
+          "scripts/research/homog_replay_pipeline.py": "dc11730f90e0a5df7f6e3ea2790d2d19b1573e6c44a9d08c1dec7f242d38a3f0",
+          "scripts/research/homog_replay_train.py": "1567ad380a365f3b65e2dfc8d3c03eb85ef3b6e342f2e81e3e5e93eb01ea0386",
+          "scripts/research/homog_replay_target.py": "d90735c7b5b654d10dc303759971778129e4e79ac82c4392135d07731cdf3624",
+          "scripts/research/homog_replay_publish.py": "629cc1ce0efbe349feb561c7af0ed03b31705e02c002a9972caaff480cc96378",
+          "scripts/verification/verify_homog_replay.py": "8d131fc1aeea37ee5b02ac490cb2b78e7f67e538d1c0f842087362831e83e35b",
+          "scripts/verification/verify_homog_teacher_intent.py": "3209ee43674ac1fea9b35ce4a804b166c4f8e1fb63e1c146dd41057a4787ca97",
+          "scripts/tools/prepare_teacher_intent_repair.py": "8aee6669180605662797e4cf431d2fff22aef7e7f3c94605f0b8cfa58caf5715",
+          "rcm/fundus.py": "1432e337aecde1e60d65c63250cd773a7c8b150c90cb67b5bf2c0f3ae1befed3",
+          "rcm/visual_servo.py": "b217af0f60eb0a1de462d37dfa22a507911420a7b3cc9c4d899e012e89cbb507",
+          "lerobot_training/train_diffusion_policy.py": "e809558031ea6d1b1bd28904d5d101778831a50761c5b0d9f893943e5254a50c"
+        },
+        "compatibility": "Equivalent T1execution AST, same1600step budget, model/assets/targets/seeds/render/physics/labels;12workers scheduling only"
+      }
+    },
+    "collection_E01": {
+      "episode_index": 1,
+      "regime": "T1",
+      "frames": 921,
+      "valid_windows": 905,
+      "actions": 1600,
+      "dataset_path": "/home/him1/mujoco_bc/rcm_4090_deploy/data/homog_clean_replay_20261123_mixed_1600_600_12_v1/shards/tasks/collection_E01/dataset.npz",
+      "dataset_sha256": "8b81f291ee8c1110f4826517809f9bc968ff2d8c018f7267abe007b645a1ead4",
+      "final_error_um": 121.45410797814603,
+      "hold_frames": 0,
+      "window_diagnostics": {
+        "candidate_windows": 905,
+        "trajectory_boundary_excluded": 0,
+        "source_frame_gap_excluded": 0,
+        "time_interval_excluded": 0,
+        "invalid_input_excluded": 0,
+        "valid_windows": 905
+      },
+      "task": {
+        "id": "E01",
+        "episode_index": 1,
+        "seed": 1001,
+        "regime": "T1",
+        "target_robot_mm": [
+          3.291658684758515,
+          5.902785124192877,
+          22.784999120103294
+        ],
+        "target_world_mm": [
+          348.51140867952637,
+          -7.9690932906036895,
+          372.9365913054092
+        ],
+        "initial_state_si": [
+          0.1434734213189467,
+          -0.010768597445141555,
+          -0.00023376188744952953
+        ],
+        "goal_state_si": [
+          0.1434734213189467,
+          -0.010768597445141555,
+          0.01976623811255047
+        ],
+        "initial_error_um": 19999.9951435138,
+        "abc_offset_sign": [
+          0,
+          0,
+          -1
+        ],
+        "min_development_distance_um": 737.0784043782667
+      },
+      "egl": {
+        "vendor": "NVIDIA Corporation",
+        "renderer": "NVIDIA GeForce RTX 4090/PCIe/SSE2"
+      },
+      "stored_vs_policy_image_tensor_max_abs": 0.0,
+      "RGB_OCT_render_provenance_mismatch": false,
+      "quality": {
+        "offsamples": 0,
+        "numslices": 112,
+        "numstacks": 64
+      },
+      "label": "Same observe() zero-velocity geometry, pre-acceleration safe expectation; no truth enters labels",
+      "actual_history": "Accepted motor command stored separately as executed_action",
+      "expert_execution": "old_student_feedback",
+      "source_reuse": {
+        "source_receipt": "/home/him1/mujoco_bc/rcm_4090_deploy/data/homog_clean_replay_20261123_intent_v2/shards/tasks/collection_E01/receipt.json",
+        "source_receipt_sha256": "9690715e9f846c94b8908b527e53cc06253d8b83e9ad005d30c2f9bf236d20cd",
+        "source_identity": {
+          "code_sha256": "85461a582bb7a88332773b9832d93280d1beee9179caf88566a955b4de9c8188",
+          "scene_sha256": "265c927ef7e7ac71536963b3000ffb161b7ff7ac03bb86cdb8480ed988c17028",
+          "scripts/research/a_axis_flip_train.py": "8a05b7cdc21980ce68704726bab05d4012f735fd4e5ba3630e55e93cfae7aad5",
+          "scripts/research/a_axis_flip_replay.py": "dc5884144deb39daadc2e674abc343f6c4e18949ec30126f331d631d65dfde2e",
+          "scripts/research/a_axis_flip_audit.py": "e6c65c37656cde0b608c47a6ed4d799fc27dafe6d4abe3b1209c2abe4ca0929e",
+          "scripts/research/a_axis_flip_pipeline.py": "c813ef936b77b51014eca659c3a5ec0e5d6344d1c0308d02cb683628fb6870ee",
+          "scripts/research/a_axis_flip_publish.py": "be4a9fe1c3e6dc06f616381b26e7342d7448cf8feffabf82e96ee96d2503e081",
+          "scripts/research/a_axis_flip_common.py": "1a3ef56737f34e31e05a71566b54969dfafa3060a38ae6a8e44da83ecd29fab4",
+          "scripts/research/gpu_episode_pool.py": "e9c4a44301eeb04226bfd2869f002ba12640d2b57afbbdd438b6afd214537a9d",
+          "scripts/research/clean_oct_workers.py": "1df09165778f9866b01fb6b8e020afbb839f284797c1ae497ab36216746a1650",
+          "lerobot_training/navigation_overlay.py": "3330474b01973ab121f55f341b7f6969a70bc6d546e5823b1160657e4cdf65a5",
+          "lerobot_training/eval_policy.py": "f7f3948ea6c81ebcf66063afd9d0eb99ae418c5b099052e48b1fd476f5de95f1",
+          "lerobot_training/dit_experience_replay.py": "8a3ef61fb52d7db77e402b13dcb9c7a5186c9dc5dfc2af85d1f0c3cef394c5c2",
+          "lerobot_training/dataset_contract.py": "942d43813b5083986eeca542f6b57c480e4db6a6e163dbb084ed86f3f0a4343a",
+          "configs/v12_reachable_development_targets_0p35um.json": "fcc4872a9d5b58bb7158b36d3c0ab6d7452e4d8d747317dfb077b6e7bbc815c7",
+          "scripts/research/homog_replay_common.py": "e36ede2fa2e7c7e5f7a5bff0b80c560c20091ead175e9c53d0e1daa94788028c",
+          "scripts/research/homog_replay_collect.py": "ac29b4eca6372e138ee516f55659fd6a06b3963ea413c626843a6cc0005a97a8",
+          "scripts/research/homog_replay_pipeline.py": "dc11730f90e0a5df7f6e3ea2790d2d19b1573e6c44a9d08c1dec7f242d38a3f0",
+          "scripts/research/homog_replay_train.py": "1567ad380a365f3b65e2dfc8d3c03eb85ef3b6e342f2e81e3e5e93eb01ea0386",
+          "scripts/research/homog_replay_target.py": "d90735c7b5b654d10dc303759971778129e4e79ac82c4392135d07731cdf3624",
+          "scripts/research/homog_replay_publish.py": "629cc1ce0efbe349feb561c7af0ed03b31705e02c002a9972caaff480cc96378",
+          "scripts/verification/verify_homog_replay.py": "8d131fc1aeea37ee5b02ac490cb2b78e7f67e538d1c0f842087362831e83e35b",
+          "scripts/verification/verify_homog_teacher_intent.py": "3209ee43674ac1fea9b35ce4a804b166c4f8e1fb63e1c146dd41057a4787ca97",
+          "scripts/tools/prepare_teacher_intent_repair.py": "8aee6669180605662797e4cf431d2fff22aef7e7f3c94605f0b8cfa58caf5715",
+          "rcm/fundus.py": "1432e337aecde1e60d65c63250cd773a7c8b150c90cb67b5bf2c0f3ae1befed3",
+          "rcm/visual_servo.py": "b217af0f60eb0a1de462d37dfa22a507911420a7b3cc9c4d899e012e89cbb507",
+          "lerobot_training/train_diffusion_policy.py": "e809558031ea6d1b1bd28904d5d101778831a50761c5b0d9f893943e5254a50c"
+        },
+        "compatibility": "Equivalent T1execution AST, same1600step budget, model/assets/targets/seeds/render/physics/labels;12workers scheduling only"
+      }
+    },
+    "collection_E02": {
+      "episode_index": 2,
+      "regime": "T1",
+      "frames": 932,
+      "valid_windows": 916,
+      "actions": 1600,
+      "dataset_path": "/home/him1/mujoco_bc/rcm_4090_deploy/data/homog_clean_replay_20261123_mixed_1600_600_12_v1/shards/tasks/collection_E02/dataset.npz",
+      "dataset_sha256": "32ae00717e55933ce79d862b62db80b45fd620e356815a22f71347f3be1b2678",
+      "final_error_um": 76.52875625619352,
+      "hold_frames": 0,
+      "window_diagnostics": {
+        "candidate_windows": 916,
+        "trajectory_boundary_excluded": 0,
+        "source_frame_gap_excluded": 0,
+        "time_interval_excluded": 0,
+        "invalid_input_excluded": 0,
+        "valid_windows": 916
+      },
+      "task": {
+        "id": "E02",
+        "episode_index": 2,
+        "seed": 1002,
+        "regime": "T1",
+        "target_robot_mm": [
+          -2.5927684757554217,
+          8.557851290902008,
+          21.848269784619806
+        ],
+        "target_world_mm": [
+          350.6468931229377,
+          -13.853520451117625,
+          374.7714058435866
+        ],
+        "initial_state_si": [
+          -0.11811914871479384,
+          -0.1307307020003089,
+          -0.00039266724791648874
+        ],
+        "goal_state_si": [
+          -0.11811914871479384,
+          -0.1307307020003089,
+          0.01960733275208351
+        ],
+        "initial_error_um": 19999.998723578614,
+        "abc_offset_sign": [
+          0,
+          0,
+          -1
+        ],
+        "min_development_distance_um": 663.6561160858372
+      },
+      "egl": {
+        "vendor": "NVIDIA Corporation",
+        "renderer": "NVIDIA GeForce RTX 4090/PCIe/SSE2"
+      },
+      "stored_vs_policy_image_tensor_max_abs": 0.0,
+      "RGB_OCT_render_provenance_mismatch": false,
+      "quality": {
+        "offsamples": 0,
+        "numslices": 112,
+        "numstacks": 64
+      },
+      "label": "Same observe() zero-velocity geometry, pre-acceleration safe expectation; no truth enters labels",
+      "actual_history": "Accepted motor command stored separately as executed_action",
+      "expert_execution": "old_student_feedback",
+      "source_reuse": {
+        "source_receipt": "/home/him1/mujoco_bc/rcm_4090_deploy/data/homog_clean_replay_20261123_intent_v2/shards/tasks/collection_E02/receipt.json",
+        "source_receipt_sha256": "2bac51db236990c18716f5fba4c8578131ca228a30e409cd986ee774d31483a8",
+        "source_identity": {
+          "code_sha256": "85461a582bb7a88332773b9832d93280d1beee9179caf88566a955b4de9c8188",
+          "scene_sha256": "265c927ef7e7ac71536963b3000ffb161b7ff7ac03bb86cdb8480ed988c17028",
+          "scripts/research/a_axis_flip_train.py": "8a05b7cdc21980ce68704726bab05d4012f735fd4e5ba3630e55e93cfae7aad5",
+          "scripts/research/a_axis_flip_replay.py": "dc5884144deb39daadc2e674abc343f6c4e18949ec30126f331d631d65dfde2e",
+          "scripts/research/a_axis_flip_audit.py": "e6c65c37656cde0b608c47a6ed4d799fc27dafe6d4abe3b1209c2abe4ca0929e",
+          "scripts/research/a_axis_flip_pipeline.py": "c813ef936b77b51014eca659c3a5ec0e5d6344d1c0308d02cb683628fb6870ee",
+          "scripts/research/a_axis_flip_publish.py": "be4a9fe1c3e6dc06f616381b26e7342d7448cf8feffabf82e96ee96d2503e081",
+          "scripts/research/a_axis_flip_common.py": "1a3ef56737f34e31e05a71566b54969dfafa3060a38ae6a8e44da83ecd29fab4",
+          "scripts/research/gpu_episode_pool.py": "e9c4a44301eeb04226bfd2869f002ba12640d2b57afbbdd438b6afd214537a9d",
+          "scripts/research/clean_oct_workers.py": "1df09165778f9866b01fb6b8e020afbb839f284797c1ae497ab36216746a1650",
+          "lerobot_training/navigation_overlay.py": "3330474b01973ab121f55f341b7f6969a70bc6d546e5823b1160657e4cdf65a5",
+          "lerobot_training/eval_policy.py": "f7f3948ea6c81ebcf66063afd9d0eb99ae418c5b099052e48b1fd476f5de95f1",
+          "lerobot_training/dit_experience_replay.py": "8a3ef61fb52d7db77e402b13dcb9c7a5186c9dc5dfc2af85d1f0c3cef394c5c2",
+          "lerobot_training/dataset_contract.py": "942d43813b5083986eeca542f6b57c480e4db6a6e163dbb084ed86f3f0a4343a",
+          "configs/v12_reachable_development_targets_0p35um.json": "fcc4872a9d5b58bb7158b36d3c0ab6d7452e4d8d747317dfb077b6e7bbc815c7",
+          "scripts/research/homog_replay_common.py": "e36ede2fa2e7c7e5f7a5bff0b80c560c20091ead175e9c53d0e1daa94788028c",
+          "scripts/research/homog_replay_collect.py": "ac29b4eca6372e138ee516f55659fd6a06b3963ea413c626843a6cc0005a97a8",
+          "scripts/research/homog_replay_pipeline.py": "dc11730f90e0a5df7f6e3ea2790d2d19b1573e6c44a9d08c1dec7f242d38a3f0",
+          "scripts/research/homog_replay_train.py": "1567ad380a365f3b65e2dfc8d3c03eb85ef3b6e342f2e81e3e5e93eb01ea0386",
+          "scripts/research/homog_replay_target.py": "d90735c7b5b654d10dc303759971778129e4e79ac82c4392135d07731cdf3624",
+          "scripts/research/homog_replay_publish.py": "629cc1ce0efbe349feb561c7af0ed03b31705e02c002a9972caaff480cc96378",
+          "scripts/verification/verify_homog_replay.py": "8d131fc1aeea37ee5b02ac490cb2b78e7f67e538d1c0f842087362831e83e35b",
+          "scripts/verification/verify_homog_teacher_intent.py": "3209ee43674ac1fea9b35ce4a804b166c4f8e1fb63e1c146dd41057a4787ca97",
+          "scripts/tools/prepare_teacher_intent_repair.py": "8aee6669180605662797e4cf431d2fff22aef7e7f3c94605f0b8cfa58caf5715",
+          "rcm/fundus.py": "1432e337aecde1e60d65c63250cd773a7c8b150c90cb67b5bf2c0f3ae1befed3",
+          "rcm/visual_servo.py": "b217af0f60eb0a1de462d37dfa22a507911420a7b3cc9c4d899e012e89cbb507",
+          "lerobot_training/train_diffusion_policy.py": "e809558031ea6d1b1bd28904d5d101778831a50761c5b0d9f893943e5254a50c"
+        },
+        "compatibility": "Equivalent T1execution AST, same1600step budget, model/assets/targets/seeds/render/physics/labels;12workers scheduling only"
+      }
+    },
+    "collection_E03": {
+      "episode_index": 3,
+      "regime": "T1",
+      "frames": 934,
+      "valid_windows": 918,
+      "actions": 1600,
+      "dataset_path": "/home/him1/mujoco_bc/rcm_4090_deploy/data/homog_clean_replay_20261123_mixed_1600_600_12_v1/shards/tasks/collection_E03/dataset.npz",
+      "dataset_sha256": "4b63dfffca6fcf9311b696fb807478ba0f22a23213bf1c5cc79fd1e354afa602",
+      "final_error_um": 48.83540690461663,
+      "hold_frames": 0,
+      "window_diagnostics": {
+        "candidate_windows": 918,
+        "trajectory_boundary_excluded": 0,
+        "source_frame_gap_excluded": 0,
+        "time_interval_excluded": 0,
+        "invalid_input_excluded": 0,
+        "valid_windows": 918
+      },
+      "task": {
+        "id": "E03",
+        "episode_index": 3,
+        "seed": 1003,
+        "regime": "T1",
+        "target_robot_mm": [
+          -0.19954408864165005,
+          9.883938956872015,
+          21.28490881179359
+        ],
+        "target_world_mm": [
+          351.6788794285471,
+          -11.460296064003854,
+          375.77683527849297
+        ],
+        "initial_state_si": [
+          -0.009374634620670433,
+          -0.19449055520943187,
+          -0.0005313100009213916
+        ],
+        "goal_state_si": [
+          -0.009374634620670433,
+          -0.19449055520943187,
+          0.01946868999907861
+        ],
+        "initial_error_um": 20000.005666549107,
+        "abc_offset_sign": [
+          0,
+          0,
+          -1
+        ],
+        "min_development_distance_um": 1522.4832719141118
+      },
+      "egl": {
+        "vendor": "NVIDIA Corporation",
+        "renderer": "NVIDIA GeForce RTX 4090/PCIe/SSE2"
+      },
+      "stored_vs_policy_image_tensor_max_abs": 0.0,
+      "RGB_OCT_render_provenance_mismatch": false,
+      "quality": {
+        "offsamples": 0,
+        "numslices": 112,
+        "numstacks": 64
+      },
+      "label": "Same observe() zero-velocity geometry, pre-acceleration safe expectation; no truth enters labels",
+      "actual_history": "Accepted motor command stored separately as executed_action",
+      "expert_execution": "old_student_feedback",
+      "source_reuse": {
+        "source_receipt": "/home/him1/mujoco_bc/rcm_4090_deploy/data/homog_clean_replay_20261123_intent_v2/shards/tasks/collection_E03/receipt.json",
+        "source_receipt_sha256": "32791db3228ec8f85702b907805c62883e5aa89ec2aea3c22a6794cad636efd4",
+        "source_identity": {
+          "code_sha256": "85461a582bb7a88332773b9832d93280d1beee9179caf88566a955b4de9c8188",
+          "scene_sha256": "265c927ef7e7ac71536963b3000ffb161b7ff7ac03bb86cdb8480ed988c17028",
+          "scripts/research/a_axis_flip_train.py": "8a05b7cdc21980ce68704726bab05d4012f735fd4e5ba3630e55e93cfae7aad5",
+          "scripts/research/a_axis_flip_replay.py": "dc5884144deb39daadc2e674abc343f6c4e18949ec30126f331d631d65dfde2e",
+          "scripts/research/a_axis_flip_audit.py": "e6c65c37656cde0b608c47a6ed4d799fc27dafe6d4abe3b1209c2abe4ca0929e",
+          "scripts/research/a_axis_flip_pipeline.py": "c813ef936b77b51014eca659c3a5ec0e5d6344d1c0308d02cb683628fb6870ee",
+          "scripts/research/a_axis_flip_publish.py": "be4a9fe1c3e6dc06f616381b26e7342d7448cf8feffabf82e96ee96d2503e081",
+          "scripts/research/a_axis_flip_common.py": "1a3ef56737f34e31e05a71566b54969dfafa3060a38ae6a8e44da83ecd29fab4",
+          "scripts/research/gpu_episode_pool.py": "e9c4a44301eeb04226bfd2869f002ba12640d2b57afbbdd438b6afd214537a9d",
+          "scripts/research/clean_oct_workers.py": "1df09165778f9866b01fb6b8e020afbb839f284797c1ae497ab36216746a1650",
+          "lerobot_training/navigation_overlay.py": "3330474b01973ab121f55f341b7f6969a70bc6d546e5823b1160657e4cdf65a5",
+          "lerobot_training/eval_policy.py": "f7f3948ea6c81ebcf66063afd9d0eb99ae418c5b099052e48b1fd476f5de95f1",
+          "lerobot_training/dit_experience_replay.py": "8a3ef61fb52d7db77e402b13dcb9c7a5186c9dc5dfc2af85d1f0c3cef394c5c2",
+          "lerobot_training/dataset_contract.py": "942d43813b5083986eeca542f6b57c480e4db6a6e163dbb084ed86f3f0a4343a",
+          "configs/v12_reachable_development_targets_0p35um.json": "fcc4872a9d5b58bb7158b36d3c0ab6d7452e4d8d747317dfb077b6e7bbc815c7",
+          "scripts/research/homog_replay_common.py": "e36ede2fa2e7c7e5f7a5bff0b80c560c20091ead175e9c53d0e1daa94788028c",
+          "scripts/research/homog_replay_collect.py": "ac29b4eca6372e138ee516f55659fd6a06b3963ea413c626843a6cc0005a97a8",
+          "scripts/research/homog_replay_pipeline.py": "dc11730f90e0a5df7f6e3ea2790d2d19b1573e6c44a9d08c1dec7f242d38a3f0",
+          "scripts/research/homog_replay_train.py": "1567ad380a365f3b65e2dfc8d3c03eb85ef3b6e342f2e81e3e5e93eb01ea0386",
+          "scripts/research/homog_replay_target.py": "d90735c7b5b654d10dc303759971778129e4e79ac82c4392135d07731cdf3624",
+          "scripts/research/homog_replay_publish.py": "629cc1ce0efbe349feb561c7af0ed03b31705e02c002a9972caaff480cc96378",
+          "scripts/verification/verify_homog_replay.py": "8d131fc1aeea37ee5b02ac490cb2b78e7f67e538d1c0f842087362831e83e35b",
+          "scripts/verification/verify_homog_teacher_intent.py": "3209ee43674ac1fea9b35ce4a804b166c4f8e1fb63e1c146dd41057a4787ca97",
+          "scripts/tools/prepare_teacher_intent_repair.py": "8aee6669180605662797e4cf431d2fff22aef7e7f3c94605f0b8cfa58caf5715",
+          "rcm/fundus.py": "1432e337aecde1e60d65c63250cd773a7c8b150c90cb67b5bf2c0f3ae1befed3",
+          "rcm/visual_servo.py": "b217af0f60eb0a1de462d37dfa22a507911420a7b3cc9c4d899e012e89cbb507",
+          "lerobot_training/train_diffusion_policy.py": "e809558031ea6d1b1bd28904d5d101778831a50761c5b0d9f893943e5254a50c"
+        },
+        "compatibility": "Equivalent T1execution AST, same1600step budget, model/assets/targets/seeds/render/physics/labels;12workers scheduling only"
+      }
+    },
+    "collection_E04": {
+      "episode_index": 4,
+      "regime": "T1",
+      "frames": 932,
+      "valid_windows": 900,
+      "actions": 1600,
+      "dataset_path": "/home/him1/mujoco_bc/rcm_4090_deploy/data/homog_clean_replay_20261123_mixed_1600_600_12_v1/shards/tasks/collection_E04/dataset.npz",
+      "dataset_sha256": "96f8d4aa66f1ddd69b0bbef6c329acfc919394b8d68a053214b5735569ab407a",
+      "final_error_um": 176.66124998092027,
+      "hold_frames": 0,
+      "window_diagnostics": {
+        "candidate_windows": 916,
+        "trajectory_boundary_excluded": 0,
+        "source_frame_gap_excluded": 16,
+        "time_interval_excluded": 0,
+        "invalid_input_excluded": 0,
+        "valid_windows": 900
+      },
+      "task": {
+        "id": "E04",
+        "episode_index": 4,
+        "seed": 1004,
+        "regime": "T1",
+        "target_robot_mm": [
+          3.5755270627825526,
+          8.975777858876803,
+          21.27648721849817
+        ],
+        "target_world_mm": [
+          350.8293353785031,
+          -7.685224912579652,
+          375.4557396382541
+        ],
+        "initial_state_si": [
+          0.16649493254015535,
+          -0.15402153319533451,
+          -0.0006325463452367258
+        ],
+        "goal_state_si": [
+          0.16649493254015535,
+          -0.15402153319533451,
+          0.019367453654763275
+        ],
+        "initial_error_um": 20000.002872128403,
+        "abc_offset_sign": [
+          0,
+          0,
+          -1
+        ],
+        "min_development_distance_um": 599.2610966825985
+      },
+      "egl": {
+        "vendor": "NVIDIA Corporation",
+        "renderer": "NVIDIA GeForce RTX 4090/PCIe/SSE2"
+      },
+      "stored_vs_policy_image_tensor_max_abs": 0.0,
+      "RGB_OCT_render_provenance_mismatch": false,
+      "quality": {
+        "offsamples": 0,
+        "numslices": 112,
+        "numstacks": 64
+      },
+      "label": "Same observe() zero-velocity geometry, pre-acceleration safe expectation; no truth enters labels",
+      "actual_history": "Accepted motor command stored separately as executed_action",
+      "expert_execution": "old_student_feedback",
+      "source_reuse": {
+        "source_receipt": "/home/him1/mujoco_bc/rcm_4090_deploy/data/homog_clean_replay_20261123_intent_v2/shards/tasks/collection_E04/receipt.json",
+        "source_receipt_sha256": "b16fb442bdc4a01f36b5802fafb814647ed7c1ef9c27f537b62c5c794dfa1a9a",
+        "source_identity": {
+          "code_sha256": "85461a582bb7a88332773b9832d93280d1beee9179caf88566a955b4de9c8188",
+          "scene_sha256": "265c927ef7e7ac71536963b3000ffb161b7ff7ac03bb86cdb8480ed988c17028",
+          "scripts/research/a_axis_flip_train.py": "8a05b7cdc21980ce68704726bab05d4012f735fd4e5ba3630e55e93cfae7aad5",
+          "scripts/research/a_axis_flip_replay.py": "dc5884144deb39daadc2e674abc343f6c4e18949ec30126f331d631d65dfde2e",
+          "scripts/research/a_axis_flip_audit.py": "e6c65c37656cde0b608c47a6ed4d799fc27dafe6d4abe3b1209c2abe4ca0929e",
+          "scripts/research/a_axis_flip_pipeline.py": "c813ef936b77b51014eca659c3a5ec0e5d6344d1c0308d02cb683628fb6870ee",
+          "scripts/research/a_axis_flip_publish.py": "be4a9fe1c3e6dc06f616381b26e7342d7448cf8feffabf82e96ee96d2503e081",
+          "scripts/research/a_axis_flip_common.py": "1a3ef56737f34e31e05a71566b54969dfafa3060a38ae6a8e44da83ecd29fab4",
+          "scripts/research/gpu_episode_pool.py": "e9c4a44301eeb04226bfd2869f002ba12640d2b57afbbdd438b6afd214537a9d",
+          "scripts/research/clean_oct_workers.py": "1df09165778f9866b01fb6b8e020afbb839f284797c1ae497ab36216746a1650",
+          "lerobot_training/navigation_overlay.py": "3330474b01973ab121f55f341b7f6969a70bc6d546e5823b1160657e4cdf65a5",
+          "lerobot_training/eval_policy.py": "f7f3948ea6c81ebcf66063afd9d0eb99ae418c5b099052e48b1fd476f5de95f1",
+          "lerobot_training/dit_experience_replay.py": "8a3ef61fb52d7db77e402b13dcb9c7a5186c9dc5dfc2af85d1f0c3cef394c5c2",
+          "lerobot_training/dataset_contract.py": "942d43813b5083986eeca542f6b57c480e4db6a6e163dbb084ed86f3f0a4343a",
+          "configs/v12_reachable_development_targets_0p35um.json": "fcc4872a9d5b58bb7158b36d3c0ab6d7452e4d8d747317dfb077b6e7bbc815c7",
+          "scripts/research/homog_replay_common.py": "e36ede2fa2e7c7e5f7a5bff0b80c560c20091ead175e9c53d0e1daa94788028c",
+          "scripts/research/homog_replay_collect.py": "ac29b4eca6372e138ee516f55659fd6a06b3963ea413c626843a6cc0005a97a8",
+          "scripts/research/homog_replay_pipeline.py": "dc11730f90e0a5df7f6e3ea2790d2d19b1573e6c44a9d08c1dec7f242d38a3f0",
+          "scripts/research/homog_replay_train.py": "1567ad380a365f3b65e2dfc8d3c03eb85ef3b6e342f2e81e3e5e93eb01ea0386",
+          "scripts/research/homog_replay_target.py": "d90735c7b5b654d10dc303759971778129e4e79ac82c4392135d07731cdf3624",
+          "scripts/research/homog_replay_publish.py": "629cc1ce0efbe349feb561c7af0ed03b31705e02c002a9972caaff480cc96378",
+          "scripts/verification/verify_homog_replay.py": "8d131fc1aeea37ee5b02ac490cb2b78e7f67e538d1c0f842087362831e83e35b",
+          "scripts/verification/verify_homog_teacher_intent.py": "3209ee43674ac1fea9b35ce4a804b166c4f8e1fb63e1c146dd41057a4787ca97",
+          "scripts/tools/prepare_teacher_intent_repair.py": "8aee6669180605662797e4cf431d2fff22aef7e7f3c94605f0b8cfa58caf5715",
+          "rcm/fundus.py": "1432e337aecde1e60d65c63250cd773a7c8b150c90cb67b5bf2c0f3ae1befed3",
+          "rcm/visual_servo.py": "b217af0f60eb0a1de462d37dfa22a507911420a7b3cc9c4d899e012e89cbb507",
+          "lerobot_training/train_diffusion_policy.py": "e809558031ea6d1b1bd28904d5d101778831a50761c5b0d9f893943e5254a50c"
+        },
+        "compatibility": "Equivalent T1execution AST, same1600step budget, model/assets/targets/seeds/render/physics/labels;12workers scheduling only"
+      }
+    },
+    "collection_E05": {
+      "episode_index": 5,
+      "regime": "T1",
+      "frames": 933,
+      "valid_windows": 917,
+      "actions": 1600,
+      "dataset_path": "/home/him1/mujoco_bc/rcm_4090_deploy/data/homog_clean_replay_20261123_mixed_1600_600_12_v1/shards/tasks/collection_E05/dataset.npz",
+      "dataset_sha256": "f6001fd6af46ff68984c90434dca1858d154d7a556288c70ca4368f48a083ad2",
+      "final_error_um": 167.33374270132032,
+      "hold_frames": 0,
+      "window_diagnostics": {
+        "candidate_windows": 917,
+        "trajectory_boundary_excluded": 0,
+        "source_frame_gap_excluded": 0,
+        "time_interval_excluded": 0,
+        "invalid_input_excluded": 0,
+        "valid_windows": 917
+      },
+      "task": {
+        "id": "E05",
+        "episode_index": 5,
+        "seed": 1005,
+        "regime": "T1",
+        "target_robot_mm": [
+          4.551443348063433,
+          3.472798003112472,
+          22.724974717533044
+        ],
+        "target_world_mm": [
+          346.22468504656723,
+          -6.709308627298771,
+          372.11237327358344
+        ],
+        "initial_state_si": [
+          0.19766838965893346,
+          0.09149087383870652,
+          -0.0005649741106699656
+        ],
+        "goal_state_si": [
+          0.19766838965893346,
+          0.09149087383870652,
+          0.019435025889330035
+        ],
+        "initial_error_um": 19999.997285542468,
+        "abc_offset_sign": [
+          0,
+          0,
+          -1
+        ],
+        "min_development_distance_um": 464.47961656887156
+      },
+      "egl": {
+        "vendor": "NVIDIA Corporation",
+        "renderer": "NVIDIA GeForce RTX 4090/PCIe/SSE2"
+      },
+      "stored_vs_policy_image_tensor_max_abs": 0.0,
+      "RGB_OCT_render_provenance_mismatch": false,
+      "quality": {
+        "offsamples": 0,
+        "numslices": 112,
+        "numstacks": 64
+      },
+      "label": "Same observe() zero-velocity geometry, pre-acceleration safe expectation; no truth enters labels",
+      "actual_history": "Accepted motor command stored separately as executed_action",
+      "expert_execution": "old_student_feedback",
+      "source_reuse": {
+        "source_receipt": "/home/him1/mujoco_bc/rcm_4090_deploy/data/homog_clean_replay_20261123_intent_v2/shards/tasks/collection_E05/receipt.json",
+        "source_receipt_sha256": "6d833f83ce53253f91f569792c7715d53b7a3092bde87f5081c2d4c8ab21dc95",
+        "source_identity": {
+          "code_sha256": "85461a582bb7a88332773b9832d93280d1beee9179caf88566a955b4de9c8188",
+          "scene_sha256": "265c927ef7e7ac71536963b3000ffb161b7ff7ac03bb86cdb8480ed988c17028",
+          "scripts/research/a_axis_flip_train.py": "8a05b7cdc21980ce68704726bab05d4012f735fd4e5ba3630e55e93cfae7aad5",
+          "scripts/research/a_axis_flip_replay.py": "dc5884144deb39daadc2e674abc343f6c4e18949ec30126f331d631d65dfde2e",
+          "scripts/research/a_axis_flip_audit.py": "e6c65c37656cde0b608c47a6ed4d799fc27dafe6d4abe3b1209c2abe4ca0929e",
+          "scripts/research/a_axis_flip_pipeline.py": "c813ef936b77b51014eca659c3a5ec0e5d6344d1c0308d02cb683628fb6870ee",
+          "scripts/research/a_axis_flip_publish.py": "be4a9fe1c3e6dc06f616381b26e7342d7448cf8feffabf82e96ee96d2503e081",
+          "scripts/research/a_axis_flip_common.py": "1a3ef56737f34e31e05a71566b54969dfafa3060a38ae6a8e44da83ecd29fab4",
+          "scripts/research/gpu_episode_pool.py": "e9c4a44301eeb04226bfd2869f002ba12640d2b57afbbdd438b6afd214537a9d",
+          "scripts/research/clean_oct_workers.py": "1df09165778f9866b01fb6b8e020afbb839f284797c1ae497ab36216746a1650",
+          "lerobot_training/navigation_overlay.py": "3330474b01973ab121f55f341b7f6969a70bc6d546e5823b1160657e4cdf65a5",
+          "lerobot_training/eval_policy.py": "f7f3948ea6c81ebcf66063afd9d0eb99ae418c5b099052e48b1fd476f5de95f1",
+          "lerobot_training/dit_experience_replay.py": "8a3ef61fb52d7db77e402b13dcb9c7a5186c9dc5dfc2af85d1f0c3cef394c5c2",
+          "lerobot_training/dataset_contract.py": "942d43813b5083986eeca542f6b57c480e4db6a6e163dbb084ed86f3f0a4343a",
+          "configs/v12_reachable_development_targets_0p35um.json": "fcc4872a9d5b58bb7158b36d3c0ab6d7452e4d8d747317dfb077b6e7bbc815c7",
+          "scripts/research/homog_replay_common.py": "e36ede2fa2e7c7e5f7a5bff0b80c560c20091ead175e9c53d0e1daa94788028c",
+          "scripts/research/homog_replay_collect.py": "ac29b4eca6372e138ee516f55659fd6a06b3963ea413c626843a6cc0005a97a8",
+          "scripts/research/homog_replay_pipeline.py": "dc11730f90e0a5df7f6e3ea2790d2d19b1573e6c44a9d08c1dec7f242d38a3f0",
+          "scripts/research/homog_replay_train.py": "1567ad380a365f3b65e2dfc8d3c03eb85ef3b6e342f2e81e3e5e93eb01ea0386",
+          "scripts/research/homog_replay_target.py": "d90735c7b5b654d10dc303759971778129e4e79ac82c4392135d07731cdf3624",
+          "scripts/research/homog_replay_publish.py": "629cc1ce0efbe349feb561c7af0ed03b31705e02c002a9972caaff480cc96378",
+          "scripts/verification/verify_homog_replay.py": "8d131fc1aeea37ee5b02ac490cb2b78e7f67e538d1c0f842087362831e83e35b",
+          "scripts/verification/verify_homog_teacher_intent.py": "3209ee43674ac1fea9b35ce4a804b166c4f8e1fb63e1c146dd41057a4787ca97",
+          "scripts/tools/prepare_teacher_intent_repair.py": "8aee6669180605662797e4cf431d2fff22aef7e7f3c94605f0b8cfa58caf5715",
+          "rcm/fundus.py": "1432e337aecde1e60d65c63250cd773a7c8b150c90cb67b5bf2c0f3ae1befed3",
+          "rcm/visual_servo.py": "b217af0f60eb0a1de462d37dfa22a507911420a7b3cc9c4d899e012e89cbb507",
+          "lerobot_training/train_diffusion_policy.py": "e809558031ea6d1b1bd28904d5d101778831a50761c5b0d9f893943e5254a50c"
+        },
+        "compatibility": "Equivalent T1execution AST, same1600step budget, model/assets/targets/seeds/render/physics/labels;12workers scheduling only"
+      }
+    },
+    "collection_E06": {
+      "episode_index": 6,
+      "regime": "T1",
+      "frames": 918,
+      "valid_windows": 902,
+      "actions": 1600,
+      "dataset_path": "/home/him1/mujoco_bc/rcm_4090_deploy/data/homog_clean_replay_20261123_mixed_1600_600_12_v1/shards/tasks/collection_E06/dataset.npz",
+      "dataset_sha256": "8b31316cd9b7830a9e81910dcfc006fe05a067137256f51874266a5e8b420456",
+      "final_error_um": 66.46552942496164,
+      "hold_frames": 0,
+      "window_diagnostics": {
+        "candidate_windows": 902,
+        "trajectory_boundary_excluded": 0,
+        "source_frame_gap_excluded": 0,
+        "time_interval_excluded": 0,
+        "invalid_input_excluded": 0,
+        "valid_windows": 902
+      },
+      "task": {
+        "id": "E06",
+        "episode_index": 6,
+        "seed": 1006,
+        "regime": "T1",
+        "target_robot_mm": [
+          -3.4626330517235058,
+          3.1525271923585985,
+          23.118106443582676
+        ],
+        "target_world_mm": [
+          346.06855817893813,
+          -14.723385027085708,
+          371.629931207163
+        ],
+        "initial_state_si": [
+          -0.14867491156785947,
+          0.10617403664839323,
+          -0.00041239518547363935
+        ],
+        "goal_state_si": [
+          -0.14867491156785947,
+          0.10617403664839323,
+          0.01958760481452636
+        ],
+        "initial_error_um": 19999.997305441684,
+        "abc_offset_sign": [
+          0,
+          0,
+          -1
+        ],
+        "min_development_distance_um": 1014.2334521376064
+      },
+      "egl": {
+        "vendor": "NVIDIA Corporation",
+        "renderer": "NVIDIA GeForce RTX 4090/PCIe/SSE2"
+      },
+      "stored_vs_policy_image_tensor_max_abs": 0.0,
+      "RGB_OCT_render_provenance_mismatch": false,
+      "quality": {
+        "offsamples": 0,
+        "numslices": 112,
+        "numstacks": 64
+      },
+      "label": "Same observe() zero-velocity geometry, pre-acceleration safe expectation; no truth enters labels",
+      "actual_history": "Accepted motor command stored separately as executed_action",
+      "expert_execution": "old_student_feedback",
+      "source_reuse": {
+        "source_receipt": "/home/him1/mujoco_bc/rcm_4090_deploy/data/homog_clean_replay_20261123_intent_v2/shards/tasks/collection_E06/receipt.json",
+        "source_receipt_sha256": "8398c2c2ca23cb3c9a664b41cec920b0da648cff513c911b2cc8ca7b09aefd69",
+        "source_identity": {
+          "code_sha256": "85461a582bb7a88332773b9832d93280d1beee9179caf88566a955b4de9c8188",
+          "scene_sha256": "265c927ef7e7ac71536963b3000ffb161b7ff7ac03bb86cdb8480ed988c17028",
+          "scripts/research/a_axis_flip_train.py": "8a05b7cdc21980ce68704726bab05d4012f735fd4e5ba3630e55e93cfae7aad5",
+          "scripts/research/a_axis_flip_replay.py": "dc5884144deb39daadc2e674abc343f6c4e18949ec30126f331d631d65dfde2e",
+          "scripts/research/a_axis_flip_audit.py": "e6c65c37656cde0b608c47a6ed4d799fc27dafe6d4abe3b1209c2abe4ca0929e",
+          "scripts/research/a_axis_flip_pipeline.py": "c813ef936b77b51014eca659c3a5ec0e5d6344d1c0308d02cb683628fb6870ee",
+          "scripts/research/a_axis_flip_publish.py": "be4a9fe1c3e6dc06f616381b26e7342d7448cf8feffabf82e96ee96d2503e081",
+          "scripts/research/a_axis_flip_common.py": "1a3ef56737f34e31e05a71566b54969dfafa3060a38ae6a8e44da83ecd29fab4",
+          "scripts/research/gpu_episode_pool.py": "e9c4a44301eeb04226bfd2869f002ba12640d2b57afbbdd438b6afd214537a9d",
+          "scripts/research/clean_oct_workers.py": "1df09165778f9866b01fb6b8e020afbb839f284797c1ae497ab36216746a1650",
+          "lerobot_training/navigation_overlay.py": "3330474b01973ab121f55f341b7f6969a70bc6d546e5823b1160657e4cdf65a5",
+          "lerobot_training/eval_policy.py": "f7f3948ea6c81ebcf66063afd9d0eb99ae418c5b099052e48b1fd476f5de95f1",
+          "lerobot_training/dit_experience_replay.py": "8a3ef61fb52d7db77e402b13dcb9c7a5186c9dc5dfc2af85d1f0c3cef394c5c2",
+          "lerobot_training/dataset_contract.py": "942d43813b5083986eeca542f6b57c480e4db6a6e163dbb084ed86f3f0a4343a",
+          "configs/v12_reachable_development_targets_0p35um.json": "fcc4872a9d5b58bb7158b36d3c0ab6d7452e4d8d747317dfb077b6e7bbc815c7",
+          "scripts/research/homog_replay_common.py": "e36ede2fa2e7c7e5f7a5bff0b80c560c20091ead175e9c53d0e1daa94788028c",
+          "scripts/research/homog_replay_collect.py": "ac29b4eca6372e138ee516f55659fd6a06b3963ea413c626843a6cc0005a97a8",
+          "scripts/research/homog_replay_pipeline.py": "dc11730f90e0a5df7f6e3ea2790d2d19b1573e6c44a9d08c1dec7f242d38a3f0",
+          "scripts/research/homog_replay_train.py": "1567ad380a365f3b65e2dfc8d3c03eb85ef3b6e342f2e81e3e5e93eb01ea0386",
+          "scripts/research/homog_replay_target.py": "d90735c7b5b654d10dc303759971778129e4e79ac82c4392135d07731cdf3624",
+          "scripts/research/homog_replay_publish.py": "629cc1ce0efbe349feb561c7af0ed03b31705e02c002a9972caaff480cc96378",
+          "scripts/verification/verify_homog_replay.py": "8d131fc1aeea37ee5b02ac490cb2b78e7f67e538d1c0f842087362831e83e35b",
+          "scripts/verification/verify_homog_teacher_intent.py": "3209ee43674ac1fea9b35ce4a804b166c4f8e1fb63e1c146dd41057a4787ca97",
+          "scripts/tools/prepare_teacher_intent_repair.py": "8aee6669180605662797e4cf431d2fff22aef7e7f3c94605f0b8cfa58caf5715",
+          "rcm/fundus.py": "1432e337aecde1e60d65c63250cd773a7c8b150c90cb67b5bf2c0f3ae1befed3",
+          "rcm/visual_servo.py": "b217af0f60eb0a1de462d37dfa22a507911420a7b3cc9c4d899e012e89cbb507",
+          "lerobot_training/train_diffusion_policy.py": "e809558031ea6d1b1bd28904d5d101778831a50761c5b0d9f893943e5254a50c"
+        },
+        "compatibility": "Equivalent T1execution AST, same1600step budget, model/assets/targets/seeds/render/physics/labels;12workers scheduling only"
+      }
+    },
+    "collection_E07": {
+      "episode_index": 7,
+      "regime": "T1",
+      "frames": 933,
+      "valid_windows": 917,
+      "actions": 1600,
+      "dataset_path": "/home/him1/mujoco_bc/rcm_4090_deploy/data/homog_clean_replay_20261123_mixed_1600_600_12_v1/shards/tasks/collection_E07/dataset.npz",
+      "dataset_sha256": "76841a1809acbac161bee7395af3e4acdd54868dbbb240457d687600f4a9dd33",
+      "final_error_um": 51.531555151311665,
+      "hold_frames": 0,
+      "window_diagnostics": {
+        "candidate_windows": 917,
+        "trajectory_boundary_excluded": 0,
+        "source_frame_gap_excluded": 0,
+        "time_interval_excluded": 0,
+        "invalid_input_excluded": 0,
+        "valid_windows": 917
+      },
+      "task": {
+        "id": "E07",
+        "episode_index": 7,
+        "seed": 1007,
+        "regime": "T1",
+        "target_robot_mm": [
+          2.0342679863697524,
+          1.1422162412509254,
+          23.282284686732105
+        ],
+        "target_world_mm": [
+          344.25422170558517,
+          -9.226483988992452,
+          370.7487457686041
+        ],
+        "initial_state_si": [
+          0.08715273902279971,
+          0.19139262698048648,
+          -0.0006011178810570866
+        ],
+        "goal_state_si": [
+          0.08715273902279971,
+          0.19139262698048648,
+          0.019398882118942914
+        ],
+        "initial_error_um": 20000.000520295634,
+        "abc_offset_sign": [
+          0,
+          0,
+          -1
+        ],
+        "min_development_distance_um": 424.5531216017943
+      },
+      "egl": {
+        "vendor": "NVIDIA Corporation",
+        "renderer": "NVIDIA GeForce RTX 4090/PCIe/SSE2"
+      },
+      "stored_vs_policy_image_tensor_max_abs": 0.0,
+      "RGB_OCT_render_provenance_mismatch": false,
+      "quality": {
+        "offsamples": 0,
+        "numslices": 112,
+        "numstacks": 64
+      },
+      "label": "Same observe() zero-velocity geometry, pre-acceleration safe expectation; no truth enters labels",
+      "actual_history": "Accepted motor command stored separately as executed_action",
+      "expert_execution": "old_student_feedback",
+      "source_reuse": {
+        "source_receipt": "/home/him1/mujoco_bc/rcm_4090_deploy/data/homog_clean_replay_20261123_intent_v2/shards/tasks/collection_E07/receipt.json",
+        "source_receipt_sha256": "27ff3eab5efd84b2ecabe7103a21604337a40e87d79a53b09200339eb5eb75c7",
+        "source_identity": {
+          "code_sha256": "85461a582bb7a88332773b9832d93280d1beee9179caf88566a955b4de9c8188",
+          "scene_sha256": "265c927ef7e7ac71536963b3000ffb161b7ff7ac03bb86cdb8480ed988c17028",
+          "scripts/research/a_axis_flip_train.py": "8a05b7cdc21980ce68704726bab05d4012f735fd4e5ba3630e55e93cfae7aad5",
+          "scripts/research/a_axis_flip_replay.py": "dc5884144deb39daadc2e674abc343f6c4e18949ec30126f331d631d65dfde2e",
+          "scripts/research/a_axis_flip_audit.py": "e6c65c37656cde0b608c47a6ed4d799fc27dafe6d4abe3b1209c2abe4ca0929e",
+          "scripts/research/a_axis_flip_pipeline.py": "c813ef936b77b51014eca659c3a5ec0e5d6344d1c0308d02cb683628fb6870ee",
+          "scripts/research/a_axis_flip_publish.py": "be4a9fe1c3e6dc06f616381b26e7342d7448cf8feffabf82e96ee96d2503e081",
+          "scripts/research/a_axis_flip_common.py": "1a3ef56737f34e31e05a71566b54969dfafa3060a38ae6a8e44da83ecd29fab4",
+          "scripts/research/gpu_episode_pool.py": "e9c4a44301eeb04226bfd2869f002ba12640d2b57afbbdd438b6afd214537a9d",
+          "scripts/research/clean_oct_workers.py": "1df09165778f9866b01fb6b8e020afbb839f284797c1ae497ab36216746a1650",
+          "lerobot_training/navigation_overlay.py": "3330474b01973ab121f55f341b7f6969a70bc6d546e5823b1160657e4cdf65a5",
+          "lerobot_training/eval_policy.py": "f7f3948ea6c81ebcf66063afd9d0eb99ae418c5b099052e48b1fd476f5de95f1",
+          "lerobot_training/dit_experience_replay.py": "8a3ef61fb52d7db77e402b13dcb9c7a5186c9dc5dfc2af85d1f0c3cef394c5c2",
+          "lerobot_training/dataset_contract.py": "942d43813b5083986eeca542f6b57c480e4db6a6e163dbb084ed86f3f0a4343a",
+          "configs/v12_reachable_development_targets_0p35um.json": "fcc4872a9d5b58bb7158b36d3c0ab6d7452e4d8d747317dfb077b6e7bbc815c7",
+          "scripts/research/homog_replay_common.py": "e36ede2fa2e7c7e5f7a5bff0b80c560c20091ead175e9c53d0e1daa94788028c",
+          "scripts/research/homog_replay_collect.py": "ac29b4eca6372e138ee516f55659fd6a06b3963ea413c626843a6cc0005a97a8",
+          "scripts/research/homog_replay_pipeline.py": "dc11730f90e0a5df7f6e3ea2790d2d19b1573e6c44a9d08c1dec7f242d38a3f0",
+          "scripts/research/homog_replay_train.py": "1567ad380a365f3b65e2dfc8d3c03eb85ef3b6e342f2e81e3e5e93eb01ea0386",
+          "scripts/research/homog_replay_target.py": "d90735c7b5b654d10dc303759971778129e4e79ac82c4392135d07731cdf3624",
+          "scripts/research/homog_replay_publish.py": "629cc1ce0efbe349feb561c7af0ed03b31705e02c002a9972caaff480cc96378",
+          "scripts/verification/verify_homog_replay.py": "8d131fc1aeea37ee5b02ac490cb2b78e7f67e538d1c0f842087362831e83e35b",
+          "scripts/verification/verify_homog_teacher_intent.py": "3209ee43674ac1fea9b35ce4a804b166c4f8e1fb63e1c146dd41057a4787ca97",
+          "scripts/tools/prepare_teacher_intent_repair.py": "8aee6669180605662797e4cf431d2fff22aef7e7f3c94605f0b8cfa58caf5715",
+          "rcm/fundus.py": "1432e337aecde1e60d65c63250cd773a7c8b150c90cb67b5bf2c0f3ae1befed3",
+          "rcm/visual_servo.py": "b217af0f60eb0a1de462d37dfa22a507911420a7b3cc9c4d899e012e89cbb507",
+          "lerobot_training/train_diffusion_policy.py": "e809558031ea6d1b1bd28904d5d101778831a50761c5b0d9f893943e5254a50c"
+        },
+        "compatibility": "Equivalent T1execution AST, same1600step budget, model/assets/targets/seeds/render/physics/labels;12workers scheduling only"
+      }
+    },
+    "collection_E08": {
+      "episode_index": 8,
+      "regime": "T1",
+      "frames": 929,
+      "valid_windows": 913,
+      "actions": 1600,
+      "dataset_path": "/home/him1/mujoco_bc/rcm_4090_deploy/data/homog_clean_replay_20261123_mixed_1600_600_12_v1/shards/tasks/collection_E08/dataset.npz",
+      "dataset_sha256": "2b3bc2cf20109020a275b2ac9294a03d3fa4da91c3b0593a65b37db336dbb909",
+      "final_error_um": 40.67573470641379,
+      "hold_frames": 0,
+      "window_diagnostics": {
+        "candidate_windows": 913,
+        "trajectory_boundary_excluded": 0,
+        "source_frame_gap_excluded": 0,
+        "time_interval_excluded": 0,
+        "invalid_input_excluded": 0,
+        "valid_windows": 913
+      },
+      "task": {
+        "id": "E08",
+        "episode_index": 8,
+        "seed": 1008,
+        "regime": "T1",
+        "target_robot_mm": [
+          1.8499841142211673,
+          1.3554987624884989,
+          23.348679817072366
+        ],
+        "target_world_mm": [
+          344.4770705745308,
+          -9.410767861141036,
+          370.7641122518718
+        ],
+        "initial_state_si": [
+          0.07906773892741385,
+          0.1824182634566756,
+          -0.0005389542577884862
+        ],
+        "goal_state_si": [
+          0.07906773892741385,
+          0.1824182634566756,
+          0.019461045742211514
+        ],
+        "initial_error_um": 20000.007589968187,
+        "abc_offset_sign": [
+          0,
+          0,
+          -1
+        ],
+        "min_development_distance_um": 591.2910591670109
+      },
+      "egl": {
+        "vendor": "NVIDIA Corporation",
+        "renderer": "NVIDIA GeForce RTX 4090/PCIe/SSE2"
+      },
+      "stored_vs_policy_image_tensor_max_abs": 0.0,
+      "RGB_OCT_render_provenance_mismatch": false,
+      "quality": {
+        "offsamples": 0,
+        "numslices": 112,
+        "numstacks": 64
+      },
+      "label": "Same observe() zero-velocity geometry, pre-acceleration safe expectation; no truth enters labels",
+      "actual_history": "Accepted motor command stored separately as executed_action",
+      "expert_execution": "old_student_feedback",
+      "source_reuse": {
+        "source_receipt": "/home/him1/mujoco_bc/rcm_4090_deploy/data/homog_clean_replay_20261123_intent_v2/shards/tasks/collection_E08/receipt.json",
+        "source_receipt_sha256": "ae40b22da8f0416bae7fe48f043dd6e669c55f788d3e048b6b2a69b7c0c5dce8",
+        "source_identity": {
+          "code_sha256": "85461a582bb7a88332773b9832d93280d1beee9179caf88566a955b4de9c8188",
+          "scene_sha256": "265c927ef7e7ac71536963b3000ffb161b7ff7ac03bb86cdb8480ed988c17028",
+          "scripts/research/a_axis_flip_train.py": "8a05b7cdc21980ce68704726bab05d4012f735fd4e5ba3630e55e93cfae7aad5",
+          "scripts/research/a_axis_flip_replay.py": "dc5884144deb39daadc2e674abc343f6c4e18949ec30126f331d631d65dfde2e",
+          "scripts/research/a_axis_flip_audit.py": "e6c65c37656cde0b608c47a6ed4d799fc27dafe6d4abe3b1209c2abe4ca0929e",
+          "scripts/research/a_axis_flip_pipeline.py": "c813ef936b77b51014eca659c3a5ec0e5d6344d1c0308d02cb683628fb6870ee",
+          "scripts/research/a_axis_flip_publish.py": "be4a9fe1c3e6dc06f616381b26e7342d7448cf8feffabf82e96ee96d2503e081",
+          "scripts/research/a_axis_flip_common.py": "1a3ef56737f34e31e05a71566b54969dfafa3060a38ae6a8e44da83ecd29fab4",
+          "scripts/research/gpu_episode_pool.py": "e9c4a44301eeb04226bfd2869f002ba12640d2b57afbbdd438b6afd214537a9d",
+          "scripts/research/clean_oct_workers.py": "1df09165778f9866b01fb6b8e020afbb839f284797c1ae497ab36216746a1650",
+          "lerobot_training/navigation_overlay.py": "3330474b01973ab121f55f341b7f6969a70bc6d546e5823b1160657e4cdf65a5",
+          "lerobot_training/eval_policy.py": "f7f3948ea6c81ebcf66063afd9d0eb99ae418c5b099052e48b1fd476f5de95f1",
+          "lerobot_training/dit_experience_replay.py": "8a3ef61fb52d7db77e402b13dcb9c7a5186c9dc5dfc2af85d1f0c3cef394c5c2",
+          "lerobot_training/dataset_contract.py": "942d43813b5083986eeca542f6b57c480e4db6a6e163dbb084ed86f3f0a4343a",
+          "configs/v12_reachable_development_targets_0p35um.json": "fcc4872a9d5b58bb7158b36d3c0ab6d7452e4d8d747317dfb077b6e7bbc815c7",
+          "scripts/research/homog_replay_common.py": "e36ede2fa2e7c7e5f7a5bff0b80c560c20091ead175e9c53d0e1daa94788028c",
+          "scripts/research/homog_replay_collect.py": "ac29b4eca6372e138ee516f55659fd6a06b3963ea413c626843a6cc0005a97a8",
+          "scripts/research/homog_replay_pipeline.py": "dc11730f90e0a5df7f6e3ea2790d2d19b1573e6c44a9d08c1dec7f242d38a3f0",
+          "scripts/research/homog_replay_train.py": "1567ad380a365f3b65e2dfc8d3c03eb85ef3b6e342f2e81e3e5e93eb01ea0386",
+          "scripts/research/homog_replay_target.py": "d90735c7b5b654d10dc303759971778129e4e79ac82c4392135d07731cdf3624",
+          "scripts/research/homog_replay_publish.py": "629cc1ce0efbe349feb561c7af0ed03b31705e02c002a9972caaff480cc96378",
+          "scripts/verification/verify_homog_replay.py": "8d131fc1aeea37ee5b02ac490cb2b78e7f67e538d1c0f842087362831e83e35b",
+          "scripts/verification/verify_homog_teacher_intent.py": "3209ee43674ac1fea9b35ce4a804b166c4f8e1fb63e1c146dd41057a4787ca97",
+          "scripts/tools/prepare_teacher_intent_repair.py": "8aee6669180605662797e4cf431d2fff22aef7e7f3c94605f0b8cfa58caf5715",
+          "rcm/fundus.py": "1432e337aecde1e60d65c63250cd773a7c8b150c90cb67b5bf2c0f3ae1befed3",
+          "rcm/visual_servo.py": "b217af0f60eb0a1de462d37dfa22a507911420a7b3cc9c4d899e012e89cbb507",
+          "lerobot_training/train_diffusion_policy.py": "e809558031ea6d1b1bd28904d5d101778831a50761c5b0d9f893943e5254a50c"
+        },
+        "compatibility": "Equivalent T1execution AST, same1600step budget, model/assets/targets/seeds/render/physics/labels;12workers scheduling only"
+      }
+    },
+    "collection_E09": {
+      "episode_index": 9,
+      "regime": "T1",
+      "frames": 932,
+      "valid_windows": 916,
+      "actions": 1600,
+      "dataset_path": "/home/him1/mujoco_bc/rcm_4090_deploy/data/homog_clean_replay_20261123_mixed_1600_600_12_v1/shards/tasks/collection_E09/dataset.npz",
+      "dataset_sha256": "65e8eaf943e538a4f43ccd80aa27ee4c94bed3cbd0fb89969069d5acd739ea40",
+      "final_error_um": 48.46322158826471,
+      "hold_frames": 0,
+      "window_diagnostics": {
+        "candidate_windows": 916,
+        "trajectory_boundary_excluded": 0,
+        "source_frame_gap_excluded": 0,
+        "time_interval_excluded": 0,
+        "invalid_input_excluded": 0,
+        "valid_windows": 916
+      },
+      "task": {
+        "id": "E09",
+        "episode_index": 9,
+        "seed": 1009,
+        "regime": "T1",
+        "target_robot_mm": [
+          -2.364444118333535,
+          9.634641645315607,
+          21.18381099709724
+        ],
+        "target_world_mm": [
+          351.40989163182843,
+          -13.625196093695738,
+          375.7807701103925
+        ],
+        "initial_state_si": [
+          -0.1111555461469099,
+          -0.1842927621774238,
+          -0.0006083184874812846
+        ],
+        "goal_state_si": [
+          -0.1111555461469099,
+          -0.1842927621774238,
+          0.019391681512518716
+        ],
+        "initial_error_um": 20000.007379197526,
+        "abc_offset_sign": [
+          0,
+          0,
+          -1
+        ],
+        "min_development_distance_um": 650.615994620714
+      },
+      "egl": {
+        "vendor": "NVIDIA Corporation",
+        "renderer": "NVIDIA GeForce RTX 4090/PCIe/SSE2"
+      },
+      "stored_vs_policy_image_tensor_max_abs": 0.0,
+      "RGB_OCT_render_provenance_mismatch": false,
+      "quality": {
+        "offsamples": 0,
+        "numslices": 112,
+        "numstacks": 64
+      },
+      "label": "Same observe() zero-velocity geometry, pre-acceleration safe expectation; no truth enters labels",
+      "actual_history": "Accepted motor command stored separately as executed_action",
+      "expert_execution": "old_student_feedback",
+      "source_reuse": {
+        "source_receipt": "/home/him1/mujoco_bc/rcm_4090_deploy/data/homog_clean_replay_20261123_intent_v2/shards/tasks/collection_E09/receipt.json",
+        "source_receipt_sha256": "33f9f94aee9d48ef7a0299363e96134107ca6258cdc97ae486c7650b62f3dbc3",
+        "source_identity": {
+          "code_sha256": "85461a582bb7a88332773b9832d93280d1beee9179caf88566a955b4de9c8188",
+          "scene_sha256": "265c927ef7e7ac71536963b3000ffb161b7ff7ac03bb86cdb8480ed988c17028",
+          "scripts/research/a_axis_flip_train.py": "8a05b7cdc21980ce68704726bab05d4012f735fd4e5ba3630e55e93cfae7aad5",
+          "scripts/research/a_axis_flip_replay.py": "dc5884144deb39daadc2e674abc343f6c4e18949ec30126f331d631d65dfde2e",
+          "scripts/research/a_axis_flip_audit.py": "e6c65c37656cde0b608c47a6ed4d799fc27dafe6d4abe3b1209c2abe4ca0929e",
+          "scripts/research/a_axis_flip_pipeline.py": "c813ef936b77b51014eca659c3a5ec0e5d6344d1c0308d02cb683628fb6870ee",
+          "scripts/research/a_axis_flip_publish.py": "be4a9fe1c3e6dc06f616381b26e7342d7448cf8feffabf82e96ee96d2503e081",
+          "scripts/research/a_axis_flip_common.py": "1a3ef56737f34e31e05a71566b54969dfafa3060a38ae6a8e44da83ecd29fab4",
+          "scripts/research/gpu_episode_pool.py": "e9c4a44301eeb04226bfd2869f002ba12640d2b57afbbdd438b6afd214537a9d",
+          "scripts/research/clean_oct_workers.py": "1df09165778f9866b01fb6b8e020afbb839f284797c1ae497ab36216746a1650",
+          "lerobot_training/navigation_overlay.py": "3330474b01973ab121f55f341b7f6969a70bc6d546e5823b1160657e4cdf65a5",
+          "lerobot_training/eval_policy.py": "f7f3948ea6c81ebcf66063afd9d0eb99ae418c5b099052e48b1fd476f5de95f1",
+          "lerobot_training/dit_experience_replay.py": "8a3ef61fb52d7db77e402b13dcb9c7a5186c9dc5dfc2af85d1f0c3cef394c5c2",
+          "lerobot_training/dataset_contract.py": "942d43813b5083986eeca542f6b57c480e4db6a6e163dbb084ed86f3f0a4343a",
+          "configs/v12_reachable_development_targets_0p35um.json": "fcc4872a9d5b58bb7158b36d3c0ab6d7452e4d8d747317dfb077b6e7bbc815c7",
+          "scripts/research/homog_replay_common.py": "e36ede2fa2e7c7e5f7a5bff0b80c560c20091ead175e9c53d0e1daa94788028c",
+          "scripts/research/homog_replay_collect.py": "ac29b4eca6372e138ee516f55659fd6a06b3963ea413c626843a6cc0005a97a8",
+          "scripts/research/homog_replay_pipeline.py": "dc11730f90e0a5df7f6e3ea2790d2d19b1573e6c44a9d08c1dec7f242d38a3f0",
+          "scripts/research/homog_replay_train.py": "1567ad380a365f3b65e2dfc8d3c03eb85ef3b6e342f2e81e3e5e93eb01ea0386",
+          "scripts/research/homog_replay_target.py": "d90735c7b5b654d10dc303759971778129e4e79ac82c4392135d07731cdf3624",
+          "scripts/research/homog_replay_publish.py": "629cc1ce0efbe349feb561c7af0ed03b31705e02c002a9972caaff480cc96378",
+          "scripts/verification/verify_homog_replay.py": "8d131fc1aeea37ee5b02ac490cb2b78e7f67e538d1c0f842087362831e83e35b",
+          "scripts/verification/verify_homog_teacher_intent.py": "3209ee43674ac1fea9b35ce4a804b166c4f8e1fb63e1c146dd41057a4787ca97",
+          "scripts/tools/prepare_teacher_intent_repair.py": "8aee6669180605662797e4cf431d2fff22aef7e7f3c94605f0b8cfa58caf5715",
+          "rcm/fundus.py": "1432e337aecde1e60d65c63250cd773a7c8b150c90cb67b5bf2c0f3ae1befed3",
+          "rcm/visual_servo.py": "b217af0f60eb0a1de462d37dfa22a507911420a7b3cc9c4d899e012e89cbb507",
+          "lerobot_training/train_diffusion_policy.py": "e809558031ea6d1b1bd28904d5d101778831a50761c5b0d9f893943e5254a50c"
+        },
+        "compatibility": "Equivalent T1execution AST, same1600step budget, model/assets/targets/seeds/render/physics/labels;12workers scheduling only"
+      }
+    },
+    "collection_E10": {
+      "episode_index": 10,
+      "regime": "T1",
+      "frames": 886,
+      "valid_windows": 870,
+      "actions": 1600,
+      "dataset_path": "/home/him1/mujoco_bc/rcm_4090_deploy/data/homog_clean_replay_20261123_mixed_1600_600_12_v1/shards/tasks/collection_E10/dataset.npz",
+      "dataset_sha256": "f429ae7dc0ce78199e7ce050a2568150f616ee811017f529ecf91a13e7e37c5c",
+      "final_error_um": 91.20170882833546,
+      "hold_frames": 0,
+      "window_diagnostics": {
+        "candidate_windows": 870,
+        "trajectory_boundary_excluded": 0,
+        "source_frame_gap_excluded": 0,
+        "time_interval_excluded": 0,
+        "invalid_input_excluded": 0,
+        "valid_windows": 870
+      },
+      "task": {
+        "id": "E10",
+        "episode_index": 10,
+        "seed": 1010,
+        "regime": "T1",
+        "target_robot_mm": [
+          -4.862757426268245,
+          4.415928680299467,
+          22.509728833347992
+        ],
+        "target_world_mm": [
+          347.02580943228605,
+          -16.123509401630447,
+          372.65461490193417
+        ],
+        "initial_state_si": [
+          -0.21275962432123083,
+          0.05077156407001466,
+          -0.0005514450755046245
+        ],
+        "goal_state_si": [
+          -0.21275962432123083,
+          0.05077156407001466,
+          0.019448554924495376
+        ],
+        "initial_error_um": 20000.00448942367,
+        "abc_offset_sign": [
+          0,
+          0,
+          -1
+        ],
+        "min_development_distance_um": 1115.8140707485875
+      },
+      "egl": {
+        "vendor": "NVIDIA Corporation",
+        "renderer": "NVIDIA GeForce RTX 4090/PCIe/SSE2"
+      },
+      "stored_vs_policy_image_tensor_max_abs": 0.0,
+      "RGB_OCT_render_provenance_mismatch": false,
+      "quality": {
+        "offsamples": 0,
+        "numslices": 112,
+        "numstacks": 64
+      },
+      "label": "Same observe() zero-velocity geometry, pre-acceleration safe expectation; no truth enters labels",
+      "actual_history": "Accepted motor command stored separately as executed_action",
+      "expert_execution": "old_student_feedback",
+      "source_reuse": {
+        "source_receipt": "/home/him1/mujoco_bc/rcm_4090_deploy/data/homog_clean_replay_20261123_intent_v2/shards/tasks/collection_E10/receipt.json",
+        "source_receipt_sha256": "9be40c12cdb85834c1fefdfafdda5181b8bbabc974dd93bb053ce49e4d179633",
+        "source_identity": {
+          "code_sha256": "85461a582bb7a88332773b9832d93280d1beee9179caf88566a955b4de9c8188",
+          "scene_sha256": "265c927ef7e7ac71536963b3000ffb161b7ff7ac03bb86cdb8480ed988c17028",
+          "scripts/research/a_axis_flip_train.py": "8a05b7cdc21980ce68704726bab05d4012f735fd4e5ba3630e55e93cfae7aad5",
+          "scripts/research/a_axis_flip_replay.py": "dc5884144deb39daadc2e674abc343f6c4e18949ec30126f331d631d65dfde2e",
+          "scripts/research/a_axis_flip_audit.py": "e6c65c37656cde0b608c47a6ed4d799fc27dafe6d4abe3b1209c2abe4ca0929e",
+          "scripts/research/a_axis_flip_pipeline.py": "c813ef936b77b51014eca659c3a5ec0e5d6344d1c0308d02cb683628fb6870ee",
+          "scripts/research/a_axis_flip_publish.py": "be4a9fe1c3e6dc06f616381b26e7342d7448cf8feffabf82e96ee96d2503e081",
+          "scripts/research/a_axis_flip_common.py": "1a3ef56737f34e31e05a71566b54969dfafa3060a38ae6a8e44da83ecd29fab4",
+          "scripts/research/gpu_episode_pool.py": "e9c4a44301eeb04226bfd2869f002ba12640d2b57afbbdd438b6afd214537a9d",
+          "scripts/research/clean_oct_workers.py": "1df09165778f9866b01fb6b8e020afbb839f284797c1ae497ab36216746a1650",
+          "lerobot_training/navigation_overlay.py": "3330474b01973ab121f55f341b7f6969a70bc6d546e5823b1160657e4cdf65a5",
+          "lerobot_training/eval_policy.py": "f7f3948ea6c81ebcf66063afd9d0eb99ae418c5b099052e48b1fd476f5de95f1",
+          "lerobot_training/dit_experience_replay.py": "8a3ef61fb52d7db77e402b13dcb9c7a5186c9dc5dfc2af85d1f0c3cef394c5c2",
+          "lerobot_training/dataset_contract.py": "942d43813b5083986eeca542f6b57c480e4db6a6e163dbb084ed86f3f0a4343a",
+          "configs/v12_reachable_development_targets_0p35um.json": "fcc4872a9d5b58bb7158b36d3c0ab6d7452e4d8d747317dfb077b6e7bbc815c7",
+          "scripts/research/homog_replay_common.py": "e36ede2fa2e7c7e5f7a5bff0b80c560c20091ead175e9c53d0e1daa94788028c",
+          "scripts/research/homog_replay_collect.py": "ac29b4eca6372e138ee516f55659fd6a06b3963ea413c626843a6cc0005a97a8",
+          "scripts/research/homog_replay_pipeline.py": "dc11730f90e0a5df7f6e3ea2790d2d19b1573e6c44a9d08c1dec7f242d38a3f0",
+          "scripts/research/homog_replay_train.py": "1567ad380a365f3b65e2dfc8d3c03eb85ef3b6e342f2e81e3e5e93eb01ea0386",
+          "scripts/research/homog_replay_target.py": "d90735c7b5b654d10dc303759971778129e4e79ac82c4392135d07731cdf3624",
+          "scripts/research/homog_replay_publish.py": "629cc1ce0efbe349feb561c7af0ed03b31705e02c002a9972caaff480cc96378",
+          "scripts/verification/verify_homog_replay.py": "8d131fc1aeea37ee5b02ac490cb2b78e7f67e538d1c0f842087362831e83e35b",
+          "scripts/verification/verify_homog_teacher_intent.py": "3209ee43674ac1fea9b35ce4a804b166c4f8e1fb63e1c146dd41057a4787ca97",
+          "scripts/tools/prepare_teacher_intent_repair.py": "8aee6669180605662797e4cf431d2fff22aef7e7f3c94605f0b8cfa58caf5715",
+          "rcm/fundus.py": "1432e337aecde1e60d65c63250cd773a7c8b150c90cb67b5bf2c0f3ae1befed3",
+          "rcm/visual_servo.py": "b217af0f60eb0a1de462d37dfa22a507911420a7b3cc9c4d899e012e89cbb507",
+          "lerobot_training/train_diffusion_policy.py": "e809558031ea6d1b1bd28904d5d101778831a50761c5b0d9f893943e5254a50c"
+        },
+        "compatibility": "Equivalent T1execution AST, same1600step budget, model/assets/targets/seeds/render/physics/labels;12workers scheduling only"
+      }
+    },
+    "collection_E11": {
+      "episode_index": 11,
+      "regime": "T1",
+      "frames": 922,
+      "valid_windows": 906,
+      "actions": 1600,
+      "dataset_path": "/home/him1/mujoco_bc/rcm_4090_deploy/data/homog_clean_replay_20261123_mixed_1600_600_12_v1/shards/tasks/collection_E11/dataset.npz",
+      "dataset_sha256": "7bd6043e750acb022bf0f2ab433539e55a75ccdc8ecaad636016b5c6c7469e53",
+      "final_error_um": 92.5154278846378,
+      "hold_frames": 0,
+      "window_diagnostics": {
+        "candidate_windows": 906,
+        "trajectory_boundary_excluded": 0,
+        "source_frame_gap_excluded": 0,
+        "time_interval_excluded": 0,
+        "invalid_input_excluded": 0,
+        "valid_windows": 906
+      },
+      "task": {
+        "id": "E11",
+        "episode_index": 11,
+        "seed": 1011,
+        "regime": "T1",
+        "target_robot_mm": [
+          -4.1103381625929805,
+          3.8977592730881288,
+          22.870327346883617
+        ],
+        "target_world_mm": [
+          346.6734381342703,
+          -15.371090137955182,
+          372.13081599885345
+        ],
+        "initial_state_si": [
+          -0.17782522500345016,
+          0.07403311457572231,
+          -0.00043860615083595594
+        ],
+        "goal_state_si": [
+          -0.17782522500345016,
+          0.07403311457572231,
+          0.019561393849164044
+        ],
+        "initial_error_um": 19999.999577649454,
+        "abc_offset_sign": [
+          0,
+          0,
+          -1
+        ],
+        "min_development_distance_um": 522.9276278057522
+      },
+      "egl": {
+        "vendor": "NVIDIA Corporation",
+        "renderer": "NVIDIA GeForce RTX 4090/PCIe/SSE2"
+      },
+      "stored_vs_policy_image_tensor_max_abs": 0.0,
+      "RGB_OCT_render_provenance_mismatch": false,
+      "quality": {
+        "offsamples": 0,
+        "numslices": 112,
+        "numstacks": 64
+      },
+      "label": "Same observe() zero-velocity geometry, pre-acceleration safe expectation; no truth enters labels",
+      "actual_history": "Accepted motor command stored separately as executed_action",
+      "expert_execution": "old_student_feedback",
+      "source_reuse": {
+        "source_receipt": "/home/him1/mujoco_bc/rcm_4090_deploy/data/homog_clean_replay_20261123_intent_v2/shards/tasks/collection_E11/receipt.json",
+        "source_receipt_sha256": "29661cb0a69e46ebc6f9cf9325a5d39af82965673dede7166869a7080770ebd1",
+        "source_identity": {
+          "code_sha256": "85461a582bb7a88332773b9832d93280d1beee9179caf88566a955b4de9c8188",
+          "scene_sha256": "265c927ef7e7ac71536963b3000ffb161b7ff7ac03bb86cdb8480ed988c17028",
+          "scripts/research/a_axis_flip_train.py": "8a05b7cdc21980ce68704726bab05d4012f735fd4e5ba3630e55e93cfae7aad5",
+          "scripts/research/a_axis_flip_replay.py": "dc5884144deb39daadc2e674abc343f6c4e18949ec30126f331d631d65dfde2e",
+          "scripts/research/a_axis_flip_audit.py": "e6c65c37656cde0b608c47a6ed4d799fc27dafe6d4abe3b1209c2abe4ca0929e",
+          "scripts/research/a_axis_flip_pipeline.py": "c813ef936b77b51014eca659c3a5ec0e5d6344d1c0308d02cb683628fb6870ee",
+          "scripts/research/a_axis_flip_publish.py": "be4a9fe1c3e6dc06f616381b26e7342d7448cf8feffabf82e96ee96d2503e081",
+          "scripts/research/a_axis_flip_common.py": "1a3ef56737f34e31e05a71566b54969dfafa3060a38ae6a8e44da83ecd29fab4",
+          "scripts/research/gpu_episode_pool.py": "e9c4a44301eeb04226bfd2869f002ba12640d2b57afbbdd438b6afd214537a9d",
+          "scripts/research/clean_oct_workers.py": "1df09165778f9866b01fb6b8e020afbb839f284797c1ae497ab36216746a1650",
+          "lerobot_training/navigation_overlay.py": "3330474b01973ab121f55f341b7f6969a70bc6d546e5823b1160657e4cdf65a5",
+          "lerobot_training/eval_policy.py": "f7f3948ea6c81ebcf66063afd9d0eb99ae418c5b099052e48b1fd476f5de95f1",
+          "lerobot_training/dit_experience_replay.py": "8a3ef61fb52d7db77e402b13dcb9c7a5186c9dc5dfc2af85d1f0c3cef394c5c2",
+          "lerobot_training/dataset_contract.py": "942d43813b5083986eeca542f6b57c480e4db6a6e163dbb084ed86f3f0a4343a",
+          "configs/v12_reachable_development_targets_0p35um.json": "fcc4872a9d5b58bb7158b36d3c0ab6d7452e4d8d747317dfb077b6e7bbc815c7",
+          "scripts/research/homog_replay_common.py": "e36ede2fa2e7c7e5f7a5bff0b80c560c20091ead175e9c53d0e1daa94788028c",
+          "scripts/research/homog_replay_collect.py": "ac29b4eca6372e138ee516f55659fd6a06b3963ea413c626843a6cc0005a97a8",
+          "scripts/research/homog_replay_pipeline.py": "dc11730f90e0a5df7f6e3ea2790d2d19b1573e6c44a9d08c1dec7f242d38a3f0",
+          "scripts/research/homog_replay_train.py": "1567ad380a365f3b65e2dfc8d3c03eb85ef3b6e342f2e81e3e5e93eb01ea0386",
+          "scripts/research/homog_replay_target.py": "d90735c7b5b654d10dc303759971778129e4e79ac82c4392135d07731cdf3624",
+          "scripts/research/homog_replay_publish.py": "629cc1ce0efbe349feb561c7af0ed03b31705e02c002a9972caaff480cc96378",
+          "scripts/verification/verify_homog_replay.py": "8d131fc1aeea37ee5b02ac490cb2b78e7f67e538d1c0f842087362831e83e35b",
+          "scripts/verification/verify_homog_teacher_intent.py": "3209ee43674ac1fea9b35ce4a804b166c4f8e1fb63e1c146dd41057a4787ca97",
+          "scripts/tools/prepare_teacher_intent_repair.py": "8aee6669180605662797e4cf431d2fff22aef7e7f3c94605f0b8cfa58caf5715",
+          "rcm/fundus.py": "1432e337aecde1e60d65c63250cd773a7c8b150c90cb67b5bf2c0f3ae1befed3",
+          "rcm/visual_servo.py": "b217af0f60eb0a1de462d37dfa22a507911420a7b3cc9c4d899e012e89cbb507",
+          "lerobot_training/train_diffusion_policy.py": "e809558031ea6d1b1bd28904d5d101778831a50761c5b0d9f893943e5254a50c"
+        },
+        "compatibility": "Equivalent T1execution AST, same1600step budget, model/assets/targets/seeds/render/physics/labels;12workers scheduling only"
+      }
+    },
+    "collection_E12": {
+      "episode_index": 12,
+      "regime": "T1",
+      "frames": 931,
+      "valid_windows": 915,
+      "actions": 1600,
+      "dataset_path": "/home/him1/mujoco_bc/rcm_4090_deploy/data/homog_clean_replay_20261123_mixed_1600_600_12_v1/shards/tasks/collection_E12/dataset.npz",
+      "dataset_sha256": "24a0b2fc15806a7f5f0885c4af5fc5e3bee58998853290c40704c13a2df5b8dc",
+      "final_error_um": 42.91938329114452,
+      "hold_frames": 0,
+      "window_diagnostics": {
+        "candidate_windows": 915,
+        "trajectory_boundary_excluded": 0,
+        "source_frame_gap_excluded": 0,
+        "time_interval_excluded": 0,
+        "invalid_input_excluded": 0,
+        "valid_windows": 915
+      },
+      "task": {
+        "id": "E12",
+        "episode_index": 12,
+        "seed": 1012,
+        "regime": "T1",
+        "target_robot_mm": [
+          0.8404011082379136,
+          1.5000074547446207,
+          23.485096479249712
+        ],
+        "target_world_mm": [
+          344.66117813291174,
+          -10.42035086712429,
+          370.68930132483445
+        ],
+        "initial_state_si": [
+          0.03576918092443762,
+          0.17648374523894975,
+          -0.00045204779547308033
+        ],
+        "goal_state_si": [
+          0.03576918092443762,
+          0.17648374523894975,
+          0.01954795220452692
+        ],
+        "initial_error_um": 20000.001422656704,
+        "abc_offset_sign": [
+          0,
+          0,
+          -1
+        ],
+        "min_development_distance_um": 1331.037708523837
+      },
+      "egl": {
+        "vendor": "NVIDIA Corporation",
+        "renderer": "NVIDIA GeForce RTX 4090/PCIe/SSE2"
+      },
+      "stored_vs_policy_image_tensor_max_abs": 0.0,
+      "RGB_OCT_render_provenance_mismatch": false,
+      "quality": {
+        "offsamples": 0,
+        "numslices": 112,
+        "numstacks": 64
+      },
+      "label": "Same observe() zero-velocity geometry, pre-acceleration safe expectation; no truth enters labels",
+      "actual_history": "Accepted motor command stored separately as executed_action",
+      "expert_execution": "old_student_feedback",
+      "source_reuse": {
+        "source_receipt": "/home/him1/mujoco_bc/rcm_4090_deploy/data/homog_clean_replay_20261123_intent_v2/shards/tasks/collection_E12/receipt.json",
+        "source_receipt_sha256": "2b8bef8eb22a3ab90c34e107d8dddd12f6efb30afc0e9e7c4871f3a6558d82e5",
+        "source_identity": {
+          "code_sha256": "85461a582bb7a88332773b9832d93280d1beee9179caf88566a955b4de9c8188",
+          "scene_sha256": "265c927ef7e7ac71536963b3000ffb161b7ff7ac03bb86cdb8480ed988c17028",
+          "scripts/research/a_axis_flip_train.py": "8a05b7cdc21980ce68704726bab05d4012f735fd4e5ba3630e55e93cfae7aad5",
+          "scripts/research/a_axis_flip_replay.py": "dc5884144deb39daadc2e674abc343f6c4e18949ec30126f331d631d65dfde2e",
+          "scripts/research/a_axis_flip_audit.py": "e6c65c37656cde0b608c47a6ed4d799fc27dafe6d4abe3b1209c2abe4ca0929e",
+          "scripts/research/a_axis_flip_pipeline.py": "c813ef936b77b51014eca659c3a5ec0e5d6344d1c0308d02cb683628fb6870ee",
+          "scripts/research/a_axis_flip_publish.py": "be4a9fe1c3e6dc06f616381b26e7342d7448cf8feffabf82e96ee96d2503e081",
+          "scripts/research/a_axis_flip_common.py": "1a3ef56737f34e31e05a71566b54969dfafa3060a38ae6a8e44da83ecd29fab4",
+          "scripts/research/gpu_episode_pool.py": "e9c4a44301eeb04226bfd2869f002ba12640d2b57afbbdd438b6afd214537a9d",
+          "scripts/research/clean_oct_workers.py": "1df09165778f9866b01fb6b8e020afbb839f284797c1ae497ab36216746a1650",
+          "lerobot_training/navigation_overlay.py": "3330474b01973ab121f55f341b7f6969a70bc6d546e5823b1160657e4cdf65a5",
+          "lerobot_training/eval_policy.py": "f7f3948ea6c81ebcf66063afd9d0eb99ae418c5b099052e48b1fd476f5de95f1",
+          "lerobot_training/dit_experience_replay.py": "8a3ef61fb52d7db77e402b13dcb9c7a5186c9dc5dfc2af85d1f0c3cef394c5c2",
+          "lerobot_training/dataset_contract.py": "942d43813b5083986eeca542f6b57c480e4db6a6e163dbb084ed86f3f0a4343a",
+          "configs/v12_reachable_development_targets_0p35um.json": "fcc4872a9d5b58bb7158b36d3c0ab6d7452e4d8d747317dfb077b6e7bbc815c7",
+          "scripts/research/homog_replay_common.py": "e36ede2fa2e7c7e5f7a5bff0b80c560c20091ead175e9c53d0e1daa94788028c",
+          "scripts/research/homog_replay_collect.py": "ac29b4eca6372e138ee516f55659fd6a06b3963ea413c626843a6cc0005a97a8",
+          "scripts/research/homog_replay_pipeline.py": "dc11730f90e0a5df7f6e3ea2790d2d19b1573e6c44a9d08c1dec7f242d38a3f0",
+          "scripts/research/homog_replay_train.py": "1567ad380a365f3b65e2dfc8d3c03eb85ef3b6e342f2e81e3e5e93eb01ea0386",
+          "scripts/research/homog_replay_target.py": "d90735c7b5b654d10dc303759971778129e4e79ac82c4392135d07731cdf3624",
+          "scripts/research/homog_replay_publish.py": "629cc1ce0efbe349feb561c7af0ed03b31705e02c002a9972caaff480cc96378",
+          "scripts/verification/verify_homog_replay.py": "8d131fc1aeea37ee5b02ac490cb2b78e7f67e538d1c0f842087362831e83e35b",
+          "scripts/verification/verify_homog_teacher_intent.py": "3209ee43674ac1fea9b35ce4a804b166c4f8e1fb63e1c146dd41057a4787ca97",
+          "scripts/tools/prepare_teacher_intent_repair.py": "8aee6669180605662797e4cf431d2fff22aef7e7f3c94605f0b8cfa58caf5715",
+          "rcm/fundus.py": "1432e337aecde1e60d65c63250cd773a7c8b150c90cb67b5bf2c0f3ae1befed3",
+          "rcm/visual_servo.py": "b217af0f60eb0a1de462d37dfa22a507911420a7b3cc9c4d899e012e89cbb507",
+          "lerobot_training/train_diffusion_policy.py": "e809558031ea6d1b1bd28904d5d101778831a50761c5b0d9f893943e5254a50c"
+        },
+        "compatibility": "Equivalent T1execution AST, same1600step budget, model/assets/targets/seeds/render/physics/labels;12workers scheduling only"
+      }
+    },
+    "collection_E13": {
+      "episode_index": 13,
+      "regime": "T1",
+      "frames": 932,
+      "valid_windows": 916,
+      "actions": 1600,
+      "dataset_path": "/home/him1/mujoco_bc/rcm_4090_deploy/data/homog_clean_replay_20261123_mixed_1600_600_12_v1/shards/tasks/collection_E13/dataset.npz",
+      "dataset_sha256": "94c82780b907ebc9f26935147ae0542ac1c2af3ea33db2e746bc6d9ad5e7b5ff",
+      "final_error_um": 85.27329273916723,
+      "hold_frames": 0,
+      "window_diagnostics": {
+        "candidate_windows": 916,
+        "trajectory_boundary_excluded": 0,
+        "source_frame_gap_excluded": 0,
+        "time_interval_excluded": 0,
+        "invalid_input_excluded": 0,
+        "valid_windows": 916
+      },
+      "task": {
+        "id": "E13",
+        "episode_index": 13,
+        "seed": 1013,
+        "regime": "T1",
+        "target_robot_mm": [
+          2.1283463286694633,
+          6.724112735741121,
+          22.808539856118642
+        ],
+        "target_world_mm": [
+          349.2854918626173,
+          -9.13240564669274,
+          373.21214245746546
+        ],
+        "initial_state_si": [
+          0.09304413812443103,
+          -0.045284962364177235,
+          -0.0001258918376859687
+        ],
+        "goal_state_si": [
+          0.09304413812443103,
+          -0.045284962364177235,
+          0.01987410816231403
+        ],
+        "initial_error_um": 20000.003909085575,
+        "abc_offset_sign": [
+          0,
+          0,
+          -1
+        ],
+        "min_development_distance_um": 558.7609161255946
+      },
+      "egl": {
+        "vendor": "NVIDIA Corporation",
+        "renderer": "NVIDIA GeForce RTX 4090/PCIe/SSE2"
+      },
+      "stored_vs_policy_image_tensor_max_abs": 0.0,
+      "RGB_OCT_render_provenance_mismatch": false,
+      "quality": {
+        "offsamples": 0,
+        "numslices": 112,
+        "numstacks": 64
+      },
+      "label": "Same observe() zero-velocity geometry, pre-acceleration safe expectation; no truth enters labels",
+      "actual_history": "Accepted motor command stored separately as executed_action",
+      "expert_execution": "old_student_feedback",
+      "source_reuse": {
+        "source_receipt": "/home/him1/mujoco_bc/rcm_4090_deploy/data/homog_clean_replay_20261123_intent_v2/shards/tasks/collection_E13/receipt.json",
+        "source_receipt_sha256": "f36a4978819c75cc3d50ab9dc68714c5a053870900a7949d9017662412d1bc06",
+        "source_identity": {
+          "code_sha256": "85461a582bb7a88332773b9832d93280d1beee9179caf88566a955b4de9c8188",
+          "scene_sha256": "265c927ef7e7ac71536963b3000ffb161b7ff7ac03bb86cdb8480ed988c17028",
+          "scripts/research/a_axis_flip_train.py": "8a05b7cdc21980ce68704726bab05d4012f735fd4e5ba3630e55e93cfae7aad5",
+          "scripts/research/a_axis_flip_replay.py": "dc5884144deb39daadc2e674abc343f6c4e18949ec30126f331d631d65dfde2e",
+          "scripts/research/a_axis_flip_audit.py": "e6c65c37656cde0b608c47a6ed4d799fc27dafe6d4abe3b1209c2abe4ca0929e",
+          "scripts/research/a_axis_flip_pipeline.py": "c813ef936b77b51014eca659c3a5ec0e5d6344d1c0308d02cb683628fb6870ee",
+          "scripts/research/a_axis_flip_publish.py": "be4a9fe1c3e6dc06f616381b26e7342d7448cf8feffabf82e96ee96d2503e081",
+          "scripts/research/a_axis_flip_common.py": "1a3ef56737f34e31e05a71566b54969dfafa3060a38ae6a8e44da83ecd29fab4",
+          "scripts/research/gpu_episode_pool.py": "e9c4a44301eeb04226bfd2869f002ba12640d2b57afbbdd438b6afd214537a9d",
+          "scripts/research/clean_oct_workers.py": "1df09165778f9866b01fb6b8e020afbb839f284797c1ae497ab36216746a1650",
+          "lerobot_training/navigation_overlay.py": "3330474b01973ab121f55f341b7f6969a70bc6d546e5823b1160657e4cdf65a5",
+          "lerobot_training/eval_policy.py": "f7f3948ea6c81ebcf66063afd9d0eb99ae418c5b099052e48b1fd476f5de95f1",
+          "lerobot_training/dit_experience_replay.py": "8a3ef61fb52d7db77e402b13dcb9c7a5186c9dc5dfc2af85d1f0c3cef394c5c2",
+          "lerobot_training/dataset_contract.py": "942d43813b5083986eeca542f6b57c480e4db6a6e163dbb084ed86f3f0a4343a",
+          "configs/v12_reachable_development_targets_0p35um.json": "fcc4872a9d5b58bb7158b36d3c0ab6d7452e4d8d747317dfb077b6e7bbc815c7",
+          "scripts/research/homog_replay_common.py": "e36ede2fa2e7c7e5f7a5bff0b80c560c20091ead175e9c53d0e1daa94788028c",
+          "scripts/research/homog_replay_collect.py": "ac29b4eca6372e138ee516f55659fd6a06b3963ea413c626843a6cc0005a97a8",
+          "scripts/research/homog_replay_pipeline.py": "dc11730f90e0a5df7f6e3ea2790d2d19b1573e6c44a9d08c1dec7f242d38a3f0",
+          "scripts/research/homog_replay_train.py": "1567ad380a365f3b65e2dfc8d3c03eb85ef3b6e342f2e81e3e5e93eb01ea0386",
+          "scripts/research/homog_replay_target.py": "d90735c7b5b654d10dc303759971778129e4e79ac82c4392135d07731cdf3624",
+          "scripts/research/homog_replay_publish.py": "629cc1ce0efbe349feb561c7af0ed03b31705e02c002a9972caaff480cc96378",
+          "scripts/verification/verify_homog_replay.py": "8d131fc1aeea37ee5b02ac490cb2b78e7f67e538d1c0f842087362831e83e35b",
+          "scripts/verification/verify_homog_teacher_intent.py": "3209ee43674ac1fea9b35ce4a804b166c4f8e1fb63e1c146dd41057a4787ca97",
+          "scripts/tools/prepare_teacher_intent_repair.py": "8aee6669180605662797e4cf431d2fff22aef7e7f3c94605f0b8cfa58caf5715",
+          "rcm/fundus.py": "1432e337aecde1e60d65c63250cd773a7c8b150c90cb67b5bf2c0f3ae1befed3",
+          "rcm/visual_servo.py": "b217af0f60eb0a1de462d37dfa22a507911420a7b3cc9c4d899e012e89cbb507",
+          "lerobot_training/train_diffusion_policy.py": "e809558031ea6d1b1bd28904d5d101778831a50761c5b0d9f893943e5254a50c"
+        },
+        "compatibility": "Equivalent T1execution AST, same1600step budget, model/assets/targets/seeds/render/physics/labels;12workers scheduling only"
+      }
+    },
+    "collection_E14": {
+      "episode_index": 14,
+      "regime": "T1",
+      "frames": 835,
+      "valid_windows": 818,
+      "actions": 1600,
+      "dataset_path": "/home/him1/mujoco_bc/rcm_4090_deploy/data/homog_clean_replay_20261123_mixed_1600_600_12_v1/shards/tasks/collection_E14/dataset.npz",
+      "dataset_sha256": "fee63712de4ee3353bea6c5e4e62c609edc9858a5f92a6d23c194484bc6fa8bc",
+      "final_error_um": 47.66014296807585,
+      "hold_frames": 0,
+      "window_diagnostics": {
+        "candidate_windows": 819,
+        "trajectory_boundary_excluded": 0,
+        "source_frame_gap_excluded": 1,
+        "time_interval_excluded": 0,
+        "invalid_input_excluded": 0,
+        "valid_windows": 818
+      },
+      "task": {
+        "id": "E14",
+        "episode_index": 14,
+        "seed": 1014,
+        "regime": "T1",
+        "target_robot_mm": [
+          -3.4122122564195916,
+          3.6516655738688826,
+          23.117660138174198
+        ],
+        "target_world_mm": [
+          346.53364159531424,
+          -14.672964231781794,
+          371.81114030985145
+        ],
+        "initial_state_si": [
+          -0.14654386828406357,
+          0.08521375974706899,
+          -0.0003482756609509037
+        ],
+        "goal_state_si": [
+          -0.14654386828406357,
+          0.08521375974706899,
+          0.019651724339049097
+        ],
+        "initial_error_um": 20000.001725823597,
+        "abc_offset_sign": [
+          0,
+          0,
+          -1
+        ],
+        "min_development_distance_um": 615.6295132444549
+      },
+      "egl": {
+        "vendor": "NVIDIA Corporation",
+        "renderer": "NVIDIA GeForce RTX 4090/PCIe/SSE2"
+      },
+      "stored_vs_policy_image_tensor_max_abs": 0.0,
+      "RGB_OCT_render_provenance_mismatch": false,
+      "quality": {
+        "offsamples": 0,
+        "numslices": 112,
+        "numstacks": 64
+      },
+      "label": "Same observe() zero-velocity geometry, pre-acceleration safe expectation; no truth enters labels",
+      "actual_history": "Accepted motor command stored separately as executed_action",
+      "expert_execution": "old_student_feedback",
+      "source_reuse": {
+        "source_receipt": "/home/him1/mujoco_bc/rcm_4090_deploy/data/homog_clean_replay_20261123_intent_v2/shards/tasks/collection_E14/receipt.json",
+        "source_receipt_sha256": "455d04e51b145688af675cf4421a9b9bcf532add0e62a4c9ad229cee2d3ebbe3",
+        "source_identity": {
+          "code_sha256": "85461a582bb7a88332773b9832d93280d1beee9179caf88566a955b4de9c8188",
+          "scene_sha256": "265c927ef7e7ac71536963b3000ffb161b7ff7ac03bb86cdb8480ed988c17028",
+          "scripts/research/a_axis_flip_train.py": "8a05b7cdc21980ce68704726bab05d4012f735fd4e5ba3630e55e93cfae7aad5",
+          "scripts/research/a_axis_flip_replay.py": "dc5884144deb39daadc2e674abc343f6c4e18949ec30126f331d631d65dfde2e",
+          "scripts/research/a_axis_flip_audit.py": "e6c65c37656cde0b608c47a6ed4d799fc27dafe6d4abe3b1209c2abe4ca0929e",
+          "scripts/research/a_axis_flip_pipeline.py": "c813ef936b77b51014eca659c3a5ec0e5d6344d1c0308d02cb683628fb6870ee",
+          "scripts/research/a_axis_flip_publish.py": "be4a9fe1c3e6dc06f616381b26e7342d7448cf8feffabf82e96ee96d2503e081",
+          "scripts/research/a_axis_flip_common.py": "1a3ef56737f34e31e05a71566b54969dfafa3060a38ae6a8e44da83ecd29fab4",
+          "scripts/research/gpu_episode_pool.py": "e9c4a44301eeb04226bfd2869f002ba12640d2b57afbbdd438b6afd214537a9d",
+          "scripts/research/clean_oct_workers.py": "1df09165778f9866b01fb6b8e020afbb839f284797c1ae497ab36216746a1650",
+          "lerobot_training/navigation_overlay.py": "3330474b01973ab121f55f341b7f6969a70bc6d546e5823b1160657e4cdf65a5",
+          "lerobot_training/eval_policy.py": "f7f3948ea6c81ebcf66063afd9d0eb99ae418c5b099052e48b1fd476f5de95f1",
+          "lerobot_training/dit_experience_replay.py": "8a3ef61fb52d7db77e402b13dcb9c7a5186c9dc5dfc2af85d1f0c3cef394c5c2",
+          "lerobot_training/dataset_contract.py": "942d43813b5083986eeca542f6b57c480e4db6a6e163dbb084ed86f3f0a4343a",
+          "configs/v12_reachable_development_targets_0p35um.json": "fcc4872a9d5b58bb7158b36d3c0ab6d7452e4d8d747317dfb077b6e7bbc815c7",
+          "scripts/research/homog_replay_common.py": "e36ede2fa2e7c7e5f7a5bff0b80c560c20091ead175e9c53d0e1daa94788028c",
+          "scripts/research/homog_replay_collect.py": "ac29b4eca6372e138ee516f55659fd6a06b3963ea413c626843a6cc0005a97a8",
+          "scripts/research/homog_replay_pipeline.py": "dc11730f90e0a5df7f6e3ea2790d2d19b1573e6c44a9d08c1dec7f242d38a3f0",
+          "scripts/research/homog_replay_train.py": "1567ad380a365f3b65e2dfc8d3c03eb85ef3b6e342f2e81e3e5e93eb01ea0386",
+          "scripts/research/homog_replay_target.py": "d90735c7b5b654d10dc303759971778129e4e79ac82c4392135d07731cdf3624",
+          "scripts/research/homog_replay_publish.py": "629cc1ce0efbe349feb561c7af0ed03b31705e02c002a9972caaff480cc96378",
+          "scripts/verification/verify_homog_replay.py": "8d131fc1aeea37ee5b02ac490cb2b78e7f67e538d1c0f842087362831e83e35b",
+          "scripts/verification/verify_homog_teacher_intent.py": "3209ee43674ac1fea9b35ce4a804b166c4f8e1fb63e1c146dd41057a4787ca97",
+          "scripts/tools/prepare_teacher_intent_repair.py": "8aee6669180605662797e4cf431d2fff22aef7e7f3c94605f0b8cfa58caf5715",
+          "rcm/fundus.py": "1432e337aecde1e60d65c63250cd773a7c8b150c90cb67b5bf2c0f3ae1befed3",
+          "rcm/visual_servo.py": "b217af0f60eb0a1de462d37dfa22a507911420a7b3cc9c4d899e012e89cbb507",
+          "lerobot_training/train_diffusion_policy.py": "e809558031ea6d1b1bd28904d5d101778831a50761c5b0d9f893943e5254a50c"
+        },
+        "compatibility": "Equivalent T1execution AST, same1600step budget, model/assets/targets/seeds/render/physics/labels;12workers scheduling only"
+      }
+    },
+    "collection_E15": {
+      "episode_index": 15,
+      "regime": "T1",
+      "frames": 919,
+      "valid_windows": 903,
+      "actions": 1600,
+      "dataset_path": "/home/him1/mujoco_bc/rcm_4090_deploy/data/homog_clean_replay_20261123_mixed_1600_600_12_v1/shards/tasks/collection_E15/dataset.npz",
+      "dataset_sha256": "81d44cd9acd770f82b294986e0c24f797872483df377fb992bdd433d81ddbd0d",
+      "final_error_um": 62.120541073077334,
+      "hold_frames": 0,
+      "window_diagnostics": {
+        "candidate_windows": 903,
+        "trajectory_boundary_excluded": 0,
+        "source_frame_gap_excluded": 0,
+        "time_interval_excluded": 0,
+        "invalid_input_excluded": 0,
+        "valid_windows": 903
+      },
+      "task": {
+        "id": "E15",
+        "episode_index": 15,
+        "seed": 1015,
+        "regime": "T1",
+        "target_robot_mm": [
+          -3.303939585257808,
+          3.077261686173233,
+          23.16493642147894
+        ],
+        "target_world_mm": [
+          346.01536577805075,
+          -14.56469156062001,
+          371.5590192071987
+        ],
+        "initial_state_si": [
+          -0.1416712618810749,
+          0.1094669364621463,
+          -0.000399156038832324
+        ],
+        "goal_state_si": [
+          -0.1416712618810749,
+          0.1094669364621463,
+          0.019600843961167676
+        ],
+        "initial_error_um": 19999.99665176747,
+        "abc_offset_sign": [
+          0,
+          0,
+          -1
+        ],
+        "min_development_distance_um": 882.0179522045887
+      },
+      "egl": {
+        "vendor": "NVIDIA Corporation",
+        "renderer": "NVIDIA GeForce RTX 4090/PCIe/SSE2"
+      },
+      "stored_vs_policy_image_tensor_max_abs": 0.0,
+      "RGB_OCT_render_provenance_mismatch": false,
+      "quality": {
+        "offsamples": 0,
+        "numslices": 112,
+        "numstacks": 64
+      },
+      "label": "Same observe() zero-velocity geometry, pre-acceleration safe expectation; no truth enters labels",
+      "actual_history": "Accepted motor command stored separately as executed_action",
+      "expert_execution": "old_student_feedback",
+      "source_reuse": {
+        "source_receipt": "/home/him1/mujoco_bc/rcm_4090_deploy/data/homog_clean_replay_20261123_intent_v2/shards/tasks/collection_E15/receipt.json",
+        "source_receipt_sha256": "175503b5dc8598fe166a5ca335cb661cabe2f5d3bfe0c217cbb17ef604a19015",
+        "source_identity": {
+          "code_sha256": "85461a582bb7a88332773b9832d93280d1beee9179caf88566a955b4de9c8188",
+          "scene_sha256": "265c927ef7e7ac71536963b3000ffb161b7ff7ac03bb86cdb8480ed988c17028",
+          "scripts/research/a_axis_flip_train.py": "8a05b7cdc21980ce68704726bab05d4012f735fd4e5ba3630e55e93cfae7aad5",
+          "scripts/research/a_axis_flip_replay.py": "dc5884144deb39daadc2e674abc343f6c4e18949ec30126f331d631d65dfde2e",
+          "scripts/research/a_axis_flip_audit.py": "e6c65c37656cde0b608c47a6ed4d799fc27dafe6d4abe3b1209c2abe4ca0929e",
+          "scripts/research/a_axis_flip_pipeline.py": "c813ef936b77b51014eca659c3a5ec0e5d6344d1c0308d02cb683628fb6870ee",
+          "scripts/research/a_axis_flip_publish.py": "be4a9fe1c3e6dc06f616381b26e7342d7448cf8feffabf82e96ee96d2503e081",
+          "scripts/research/a_axis_flip_common.py": "1a3ef56737f34e31e05a71566b54969dfafa3060a38ae6a8e44da83ecd29fab4",
+          "scripts/research/gpu_episode_pool.py": "e9c4a44301eeb04226bfd2869f002ba12640d2b57afbbdd438b6afd214537a9d",
+          "scripts/research/clean_oct_workers.py": "1df09165778f9866b01fb6b8e020afbb839f284797c1ae497ab36216746a1650",
+          "lerobot_training/navigation_overlay.py": "3330474b01973ab121f55f341b7f6969a70bc6d546e5823b1160657e4cdf65a5",
+          "lerobot_training/eval_policy.py": "f7f3948ea6c81ebcf66063afd9d0eb99ae418c5b099052e48b1fd476f5de95f1",
+          "lerobot_training/dit_experience_replay.py": "8a3ef61fb52d7db77e402b13dcb9c7a5186c9dc5dfc2af85d1f0c3cef394c5c2",
+          "lerobot_training/dataset_contract.py": "942d43813b5083986eeca542f6b57c480e4db6a6e163dbb084ed86f3f0a4343a",
+          "configs/v12_reachable_development_targets_0p35um.json": "fcc4872a9d5b58bb7158b36d3c0ab6d7452e4d8d747317dfb077b6e7bbc815c7",
+          "scripts/research/homog_replay_common.py": "e36ede2fa2e7c7e5f7a5bff0b80c560c20091ead175e9c53d0e1daa94788028c",
+          "scripts/research/homog_replay_collect.py": "ac29b4eca6372e138ee516f55659fd6a06b3963ea413c626843a6cc0005a97a8",
+          "scripts/research/homog_replay_pipeline.py": "dc11730f90e0a5df7f6e3ea2790d2d19b1573e6c44a9d08c1dec7f242d38a3f0",
+          "scripts/research/homog_replay_train.py": "1567ad380a365f3b65e2dfc8d3c03eb85ef3b6e342f2e81e3e5e93eb01ea0386",
+          "scripts/research/homog_replay_target.py": "d90735c7b5b654d10dc303759971778129e4e79ac82c4392135d07731cdf3624",
+          "scripts/research/homog_replay_publish.py": "629cc1ce0efbe349feb561c7af0ed03b31705e02c002a9972caaff480cc96378",
+          "scripts/verification/verify_homog_replay.py": "8d131fc1aeea37ee5b02ac490cb2b78e7f67e538d1c0f842087362831e83e35b",
+          "scripts/verification/verify_homog_teacher_intent.py": "3209ee43674ac1fea9b35ce4a804b166c4f8e1fb63e1c146dd41057a4787ca97",
+          "scripts/tools/prepare_teacher_intent_repair.py": "8aee6669180605662797e4cf431d2fff22aef7e7f3c94605f0b8cfa58caf5715",
+          "rcm/fundus.py": "1432e337aecde1e60d65c63250cd773a7c8b150c90cb67b5bf2c0f3ae1befed3",
+          "rcm/visual_servo.py": "b217af0f60eb0a1de462d37dfa22a507911420a7b3cc9c4d899e012e89cbb507",
+          "lerobot_training/train_diffusion_policy.py": "e809558031ea6d1b1bd28904d5d101778831a50761c5b0d9f893943e5254a50c"
+        },
+        "compatibility": "Equivalent T1execution AST, same1600step budget, model/assets/targets/seeds/render/physics/labels;12workers scheduling only"
+      }
+    },
+    "collection_E16": {
+      "episode_index": 16,
+      "regime": "T1",
+      "frames": 933,
+      "valid_windows": 917,
+      "actions": 1600,
+      "dataset_path": "/home/him1/mujoco_bc/rcm_4090_deploy/data/homog_clean_replay_20261123_mixed_1600_600_12_v1/shards/tasks/collection_E16/dataset.npz",
+      "dataset_sha256": "352bc5a57d337c0e5ab9fefc8e0f8f0faa70b855e6886013760db3300aa56cb4",
+      "final_error_um": 57.67879617754144,
+      "hold_frames": 0,
+      "window_diagnostics": {
+        "candidate_windows": 917,
+        "trajectory_boundary_excluded": 0,
+        "source_frame_gap_excluded": 0,
+        "time_interval_excluded": 0,
+        "invalid_input_excluded": 0,
+        "valid_windows": 917
+      },
+      "task": {
+        "id": "E16",
+        "episode_index": 16,
+        "seed": 1016,
+        "regime": "T1",
+        "target_robot_mm": [
+          -4.326898296918741,
+          7.006012815391909,
+          22.039586444010855
+        ],
+        "target_world_mm": [
+          349.26972699525635,
+          -15.587650272280943,
+          374.0309882755878
+        ],
+        "initial_state_si": [
+          -0.1938583944322738,
+          -0.06213721355064798,
+          -0.00047236443957147586
+        ],
+        "goal_state_si": [
+          -0.1938583944322738,
+          -0.06213721355064798,
+          0.019527635560428525
+        ],
+        "initial_error_um": 20000.006696724566,
+        "abc_offset_sign": [
+          0,
+          0,
+          -1
+        ],
+        "min_development_distance_um": 727.401507253236
+      },
+      "egl": {
+        "vendor": "NVIDIA Corporation",
+        "renderer": "NVIDIA GeForce RTX 4090/PCIe/SSE2"
+      },
+      "stored_vs_policy_image_tensor_max_abs": 0.0,
+      "RGB_OCT_render_provenance_mismatch": false,
+      "quality": {
+        "offsamples": 0,
+        "numslices": 112,
+        "numstacks": 64
+      },
+      "label": "Same observe() zero-velocity geometry, pre-acceleration safe expectation; no truth enters labels",
+      "actual_history": "Accepted motor command stored separately as executed_action",
+      "expert_execution": "old_student_feedback",
+      "source_reuse": {
+        "source_receipt": "/home/him1/mujoco_bc/rcm_4090_deploy/data/homog_clean_replay_20261123_intent_v2/shards/tasks/collection_E16/receipt.json",
+        "source_receipt_sha256": "fc7e4bb3bdee373c7c49aacd917422e2b3b34e1eacbdc6f026cfb4474969295f",
+        "source_identity": {
+          "code_sha256": "85461a582bb7a88332773b9832d93280d1beee9179caf88566a955b4de9c8188",
+          "scene_sha256": "265c927ef7e7ac71536963b3000ffb161b7ff7ac03bb86cdb8480ed988c17028",
+          "scripts/research/a_axis_flip_train.py": "8a05b7cdc21980ce68704726bab05d4012f735fd4e5ba3630e55e93cfae7aad5",
+          "scripts/research/a_axis_flip_replay.py": "dc5884144deb39daadc2e674abc343f6c4e18949ec30126f331d631d65dfde2e",
+          "scripts/research/a_axis_flip_audit.py": "e6c65c37656cde0b608c47a6ed4d799fc27dafe6d4abe3b1209c2abe4ca0929e",
+          "scripts/research/a_axis_flip_pipeline.py": "c813ef936b77b51014eca659c3a5ec0e5d6344d1c0308d02cb683628fb6870ee",
+          "scripts/research/a_axis_flip_publish.py": "be4a9fe1c3e6dc06f616381b26e7342d7448cf8feffabf82e96ee96d2503e081",
+          "scripts/research/a_axis_flip_common.py": "1a3ef56737f34e31e05a71566b54969dfafa3060a38ae6a8e44da83ecd29fab4",
+          "scripts/research/gpu_episode_pool.py": "e9c4a44301eeb04226bfd2869f002ba12640d2b57afbbdd438b6afd214537a9d",
+          "scripts/research/clean_oct_workers.py": "1df09165778f9866b01fb6b8e020afbb839f284797c1ae497ab36216746a1650",
+          "lerobot_training/navigation_overlay.py": "3330474b01973ab121f55f341b7f6969a70bc6d546e5823b1160657e4cdf65a5",
+          "lerobot_training/eval_policy.py": "f7f3948ea6c81ebcf66063afd9d0eb99ae418c5b099052e48b1fd476f5de95f1",
+          "lerobot_training/dit_experience_replay.py": "8a3ef61fb52d7db77e402b13dcb9c7a5186c9dc5dfc2af85d1f0c3cef394c5c2",
+          "lerobot_training/dataset_contract.py": "942d43813b5083986eeca542f6b57c480e4db6a6e163dbb084ed86f3f0a4343a",
+          "configs/v12_reachable_development_targets_0p35um.json": "fcc4872a9d5b58bb7158b36d3c0ab6d7452e4d8d747317dfb077b6e7bbc815c7",
+          "scripts/research/homog_replay_common.py": "e36ede2fa2e7c7e5f7a5bff0b80c560c20091ead175e9c53d0e1daa94788028c",
+          "scripts/research/homog_replay_collect.py": "ac29b4eca6372e138ee516f55659fd6a06b3963ea413c626843a6cc0005a97a8",
+          "scripts/research/homog_replay_pipeline.py": "dc11730f90e0a5df7f6e3ea2790d2d19b1573e6c44a9d08c1dec7f242d38a3f0",
+          "scripts/research/homog_replay_train.py": "1567ad380a365f3b65e2dfc8d3c03eb85ef3b6e342f2e81e3e5e93eb01ea0386",
+          "scripts/research/homog_replay_target.py": "d90735c7b5b654d10dc303759971778129e4e79ac82c4392135d07731cdf3624",
+          "scripts/research/homog_replay_publish.py": "629cc1ce0efbe349feb561c7af0ed03b31705e02c002a9972caaff480cc96378",
+          "scripts/verification/verify_homog_replay.py": "8d131fc1aeea37ee5b02ac490cb2b78e7f67e538d1c0f842087362831e83e35b",
+          "scripts/verification/verify_homog_teacher_intent.py": "3209ee43674ac1fea9b35ce4a804b166c4f8e1fb63e1c146dd41057a4787ca97",
+          "scripts/tools/prepare_teacher_intent_repair.py": "8aee6669180605662797e4cf431d2fff22aef7e7f3c94605f0b8cfa58caf5715",
+          "rcm/fundus.py": "1432e337aecde1e60d65c63250cd773a7c8b150c90cb67b5bf2c0f3ae1befed3",
+          "rcm/visual_servo.py": "b217af0f60eb0a1de462d37dfa22a507911420a7b3cc9c4d899e012e89cbb507",
+          "lerobot_training/train_diffusion_policy.py": "e809558031ea6d1b1bd28904d5d101778831a50761c5b0d9f893943e5254a50c"
+        },
+        "compatibility": "Equivalent T1execution AST, same1600step budget, model/assets/targets/seeds/render/physics/labels;12workers scheduling only"
+      }
+    },
+    "collection_E17": {
+      "episode_index": 17,
+      "regime": "T1",
+      "frames": 928,
+      "valid_windows": 912,
+      "actions": 1600,
+      "dataset_path": "/home/him1/mujoco_bc/rcm_4090_deploy/data/homog_clean_replay_20261123_mixed_1600_600_12_v1/shards/tasks/collection_E17/dataset.npz",
+      "dataset_sha256": "9918847f0b79ffb64880a6987b55bbc47ea0cf979bbac881d05a089de1b0679a",
+      "final_error_um": 35.18396265809494,
+      "hold_frames": 0,
+      "window_diagnostics": {
+        "candidate_windows": 912,
+        "trajectory_boundary_excluded": 0,
+        "source_frame_gap_excluded": 0,
+        "time_interval_excluded": 0,
+        "invalid_input_excluded": 0,
+        "valid_windows": 912
+      },
+      "task": {
+        "id": "E17",
+        "episode_index": 17,
+        "seed": 1017,
+        "regime": "T1",
+        "target_robot_mm": [
+          0.6631417969668948,
+          4.403092683084277,
+          23.530115622057682
+        ],
+        "target_world_mm": [
+          347.3834397327859,
+          -10.597610178395309,
+          371.6988667501901
+        ],
+        "initial_state_si": [
+          0.02817522537635201,
+          0.055312310168614404,
+          -5.227936929868074e-05
+        ],
+        "goal_state_si": [
+          0.02817522537635201,
+          0.055312310168614404,
+          0.01994772063070132
+        ],
+        "initial_error_um": 20000.00622129326,
+        "abc_offset_sign": [
+          0,
+          0,
+          -1
+        ],
+        "min_development_distance_um": 476.60228350617786
+      },
+      "egl": {
+        "vendor": "NVIDIA Corporation",
+        "renderer": "NVIDIA GeForce RTX 4090/PCIe/SSE2"
+      },
+      "stored_vs_policy_image_tensor_max_abs": 0.0,
+      "RGB_OCT_render_provenance_mismatch": false,
+      "quality": {
+        "offsamples": 0,
+        "numslices": 112,
+        "numstacks": 64
+      },
+      "label": "Same observe() zero-velocity geometry, pre-acceleration safe expectation; no truth enters labels",
+      "actual_history": "Accepted motor command stored separately as executed_action",
+      "expert_execution": "old_student_feedback",
+      "source_reuse": {
+        "source_receipt": "/home/him1/mujoco_bc/rcm_4090_deploy/data/homog_clean_replay_20261123_intent_v2/shards/tasks/collection_E17/receipt.json",
+        "source_receipt_sha256": "5c69fa880e5cc43bbd37c2d50d540b779f32e769d07ac53856defae69efaeb1c",
+        "source_identity": {
+          "code_sha256": "85461a582bb7a88332773b9832d93280d1beee9179caf88566a955b4de9c8188",
+          "scene_sha256": "265c927ef7e7ac71536963b3000ffb161b7ff7ac03bb86cdb8480ed988c17028",
+          "scripts/research/a_axis_flip_train.py": "8a05b7cdc21980ce68704726bab05d4012f735fd4e5ba3630e55e93cfae7aad5",
+          "scripts/research/a_axis_flip_replay.py": "dc5884144deb39daadc2e674abc343f6c4e18949ec30126f331d631d65dfde2e",
+          "scripts/research/a_axis_flip_audit.py": "e6c65c37656cde0b608c47a6ed4d799fc27dafe6d4abe3b1209c2abe4ca0929e",
+          "scripts/research/a_axis_flip_pipeline.py": "c813ef936b77b51014eca659c3a5ec0e5d6344d1c0308d02cb683628fb6870ee",
+          "scripts/research/a_axis_flip_publish.py": "be4a9fe1c3e6dc06f616381b26e7342d7448cf8feffabf82e96ee96d2503e081",
+          "scripts/research/a_axis_flip_common.py": "1a3ef56737f34e31e05a71566b54969dfafa3060a38ae6a8e44da83ecd29fab4",
+          "scripts/research/gpu_episode_pool.py": "e9c4a44301eeb04226bfd2869f002ba12640d2b57afbbdd438b6afd214537a9d",
+          "scripts/research/clean_oct_workers.py": "1df09165778f9866b01fb6b8e020afbb839f284797c1ae497ab36216746a1650",
+          "lerobot_training/navigation_overlay.py": "3330474b01973ab121f55f341b7f6969a70bc6d546e5823b1160657e4cdf65a5",
+          "lerobot_training/eval_policy.py": "f7f3948ea6c81ebcf66063afd9d0eb99ae418c5b099052e48b1fd476f5de95f1",
+          "lerobot_training/dit_experience_replay.py": "8a3ef61fb52d7db77e402b13dcb9c7a5186c9dc5dfc2af85d1f0c3cef394c5c2",
+          "lerobot_training/dataset_contract.py": "942d43813b5083986eeca542f6b57c480e4db6a6e163dbb084ed86f3f0a4343a",
+          "configs/v12_reachable_development_targets_0p35um.json": "fcc4872a9d5b58bb7158b36d3c0ab6d7452e4d8d747317dfb077b6e7bbc815c7",
+          "scripts/research/homog_replay_common.py": "e36ede2fa2e7c7e5f7a5bff0b80c560c20091ead175e9c53d0e1daa94788028c",
+          "scripts/research/homog_replay_collect.py": "ac29b4eca6372e138ee516f55659fd6a06b3963ea413c626843a6cc0005a97a8",
+          "scripts/research/homog_replay_pipeline.py": "dc11730f90e0a5df7f6e3ea2790d2d19b1573e6c44a9d08c1dec7f242d38a3f0",
+          "scripts/research/homog_replay_train.py": "1567ad380a365f3b65e2dfc8d3c03eb85ef3b6e342f2e81e3e5e93eb01ea0386",
+          "scripts/research/homog_replay_target.py": "d90735c7b5b654d10dc303759971778129e4e79ac82c4392135d07731cdf3624",
+          "scripts/research/homog_replay_publish.py": "629cc1ce0efbe349feb561c7af0ed03b31705e02c002a9972caaff480cc96378",
+          "scripts/verification/verify_homog_replay.py": "8d131fc1aeea37ee5b02ac490cb2b78e7f67e538d1c0f842087362831e83e35b",
+          "scripts/verification/verify_homog_teacher_intent.py": "3209ee43674ac1fea9b35ce4a804b166c4f8e1fb63e1c146dd41057a4787ca97",
+          "scripts/tools/prepare_teacher_intent_repair.py": "8aee6669180605662797e4cf431d2fff22aef7e7f3c94605f0b8cfa58caf5715",
+          "rcm/fundus.py": "1432e337aecde1e60d65c63250cd773a7c8b150c90cb67b5bf2c0f3ae1befed3",
+          "rcm/visual_servo.py": "b217af0f60eb0a1de462d37dfa22a507911420a7b3cc9c4d899e012e89cbb507",
+          "lerobot_training/train_diffusion_policy.py": "e809558031ea6d1b1bd28904d5d101778831a50761c5b0d9f893943e5254a50c"
+        },
+        "compatibility": "Equivalent T1execution AST, same1600step budget, model/assets/targets/seeds/render/physics/labels;12workers scheduling only"
+      }
+    },
+    "collection_E18": {
+      "episode_index": 18,
+      "regime": "T1",
+      "frames": 889,
+      "valid_windows": 873,
+      "actions": 1600,
+      "dataset_path": "/home/him1/mujoco_bc/rcm_4090_deploy/data/homog_clean_replay_20261123_mixed_1600_600_12_v1/shards/tasks/collection_E18/dataset.npz",
+      "dataset_sha256": "48abbdb40051f5b3eb7dc5821f213c71abb055bf52162d3d9a9bf4291e0ddee5",
+      "final_error_um": 70.44345729216298,
+      "hold_frames": 0,
+      "window_diagnostics": {
+        "candidate_windows": 873,
+        "trajectory_boundary_excluded": 0,
+        "source_frame_gap_excluded": 0,
+        "time_interval_excluded": 0,
+        "invalid_input_excluded": 0,
+        "valid_windows": 873
+      },
+      "task": {
+        "id": "E18",
+        "episode_index": 18,
+        "seed": 1018,
+        "regime": "T1",
+        "target_robot_mm": [
+          -3.2500518301559405,
+          6.473975656058567,
+          22.62207785041954
+        ],
+        "target_world_mm": [
+          348.98480152498234,
+          -14.510803805518144,
+          373.29534076907356
+        ],
+        "initial_state_si": [
+          -0.142690874435279,
+          -0.03581235202984685,
+          -0.00024639808440873184
+        ],
+        "goal_state_si": [
+          -0.142690874435279,
+          -0.03581235202984685,
+          0.01975360191559127
+        ],
+        "initial_error_um": 20000.003347561633,
+        "abc_offset_sign": [
+          0,
+          0,
+          -1
+        ],
+        "min_development_distance_um": 746.89948808255
+      },
+      "egl": {
+        "vendor": "NVIDIA Corporation",
+        "renderer": "NVIDIA GeForce RTX 4090/PCIe/SSE2"
+      },
+      "stored_vs_policy_image_tensor_max_abs": 0.0,
+      "RGB_OCT_render_provenance_mismatch": false,
+      "quality": {
+        "offsamples": 0,
+        "numslices": 112,
+        "numstacks": 64
+      },
+      "label": "Same observe() zero-velocity geometry, pre-acceleration safe expectation; no truth enters labels",
+      "actual_history": "Accepted motor command stored separately as executed_action",
+      "expert_execution": "old_student_feedback",
+      "source_reuse": {
+        "source_receipt": "/home/him1/mujoco_bc/rcm_4090_deploy/data/homog_clean_replay_20261123_intent_v2/shards/tasks/collection_E18/receipt.json",
+        "source_receipt_sha256": "8f5c1a4cb7c5acfa0a1cdb754ba4d05f8893f5927764c61bd623831172e6d063",
+        "source_identity": {
+          "code_sha256": "85461a582bb7a88332773b9832d93280d1beee9179caf88566a955b4de9c8188",
+          "scene_sha256": "265c927ef7e7ac71536963b3000ffb161b7ff7ac03bb86cdb8480ed988c17028",
+          "scripts/research/a_axis_flip_train.py": "8a05b7cdc21980ce68704726bab05d4012f735fd4e5ba3630e55e93cfae7aad5",
+          "scripts/research/a_axis_flip_replay.py": "dc5884144deb39daadc2e674abc343f6c4e18949ec30126f331d631d65dfde2e",
+          "scripts/research/a_axis_flip_audit.py": "e6c65c37656cde0b608c47a6ed4d799fc27dafe6d4abe3b1209c2abe4ca0929e",
+          "scripts/research/a_axis_flip_pipeline.py": "c813ef936b77b51014eca659c3a5ec0e5d6344d1c0308d02cb683628fb6870ee",
+          "scripts/research/a_axis_flip_publish.py": "be4a9fe1c3e6dc06f616381b26e7342d7448cf8feffabf82e96ee96d2503e081",
+          "scripts/research/a_axis_flip_common.py": "1a3ef56737f34e31e05a71566b54969dfafa3060a38ae6a8e44da83ecd29fab4",
+          "scripts/research/gpu_episode_pool.py": "e9c4a44301eeb04226bfd2869f002ba12640d2b57afbbdd438b6afd214537a9d",
+          "scripts/research/clean_oct_workers.py": "1df09165778f9866b01fb6b8e020afbb839f284797c1ae497ab36216746a1650",
+          "lerobot_training/navigation_overlay.py": "3330474b01973ab121f55f341b7f6969a70bc6d546e5823b1160657e4cdf65a5",
+          "lerobot_training/eval_policy.py": "f7f3948ea6c81ebcf66063afd9d0eb99ae418c5b099052e48b1fd476f5de95f1",
+          "lerobot_training/dit_experience_replay.py": "8a3ef61fb52d7db77e402b13dcb9c7a5186c9dc5dfc2af85d1f0c3cef394c5c2",
+          "lerobot_training/dataset_contract.py": "942d43813b5083986eeca542f6b57c480e4db6a6e163dbb084ed86f3f0a4343a",
+          "configs/v12_reachable_development_targets_0p35um.json": "fcc4872a9d5b58bb7158b36d3c0ab6d7452e4d8d747317dfb077b6e7bbc815c7",
+          "scripts/research/homog_replay_common.py": "e36ede2fa2e7c7e5f7a5bff0b80c560c20091ead175e9c53d0e1daa94788028c",
+          "scripts/research/homog_replay_collect.py": "ac29b4eca6372e138ee516f55659fd6a06b3963ea413c626843a6cc0005a97a8",
+          "scripts/research/homog_replay_pipeline.py": "dc11730f90e0a5df7f6e3ea2790d2d19b1573e6c44a9d08c1dec7f242d38a3f0",
+          "scripts/research/homog_replay_train.py": "1567ad380a365f3b65e2dfc8d3c03eb85ef3b6e342f2e81e3e5e93eb01ea0386",
+          "scripts/research/homog_replay_target.py": "d90735c7b5b654d10dc303759971778129e4e79ac82c4392135d07731cdf3624",
+          "scripts/research/homog_replay_publish.py": "629cc1ce0efbe349feb561c7af0ed03b31705e02c002a9972caaff480cc96378",
+          "scripts/verification/verify_homog_replay.py": "8d131fc1aeea37ee5b02ac490cb2b78e7f67e538d1c0f842087362831e83e35b",
+          "scripts/verification/verify_homog_teacher_intent.py": "3209ee43674ac1fea9b35ce4a804b166c4f8e1fb63e1c146dd41057a4787ca97",
+          "scripts/tools/prepare_teacher_intent_repair.py": "8aee6669180605662797e4cf431d2fff22aef7e7f3c94605f0b8cfa58caf5715",
+          "rcm/fundus.py": "1432e337aecde1e60d65c63250cd773a7c8b150c90cb67b5bf2c0f3ae1befed3",
+          "rcm/visual_servo.py": "b217af0f60eb0a1de462d37dfa22a507911420a7b3cc9c4d899e012e89cbb507",
+          "lerobot_training/train_diffusion_policy.py": "e809558031ea6d1b1bd28904d5d101778831a50761c5b0d9f893943e5254a50c"
+        },
+        "compatibility": "Equivalent T1execution AST, same1600step budget, model/assets/targets/seeds/render/physics/labels;12workers scheduling only"
+      }
+    },
+    "collection_E19": {
+      "episode_index": 19,
+      "regime": "T1",
+      "frames": 933,
+      "valid_windows": 917,
+      "actions": 1600,
+      "dataset_path": "/home/him1/mujoco_bc/rcm_4090_deploy/data/homog_clean_replay_20261123_mixed_1600_600_12_v1/shards/tasks/collection_E19/dataset.npz",
+      "dataset_sha256": "013d9a9ecf6375a49840fcced903fff8c027dae4c53c3afb827cd9a939637d9c",
+      "final_error_um": 54.81362668420373,
+      "hold_frames": 0,
+      "window_diagnostics": {
+        "candidate_windows": 917,
+        "trajectory_boundary_excluded": 0,
+        "source_frame_gap_excluded": 0,
+        "time_interval_excluded": 0,
+        "invalid_input_excluded": 0,
+        "valid_windows": 917
+      },
+      "task": {
+        "id": "E19",
+        "episode_index": 19,
+        "seed": 1019,
+        "regime": "T1",
+        "target_robot_mm": [
+          -3.695977194007443,
+          8.120841892082128,
+          21.752830639976157
+        ],
+        "target_world_mm": [
+          350.2049892003733,
+          -14.956729169369646,
+          374.702074983146
+        ],
+        "initial_state_si": [
+          -0.1683006168391456,
+          -0.1124354799820246,
+          -0.0004884292037664016
+        ],
+        "goal_state_si": [
+          -0.1683006168391456,
+          -0.1124354799820246,
+          0.0195115707962336
+        ],
+        "initial_error_um": 20000.00204522252,
+        "abc_offset_sign": [
+          0,
+          0,
+          -1
+        ],
+        "min_development_distance_um": 705.769984487839
+      },
+      "egl": {
+        "vendor": "NVIDIA Corporation",
+        "renderer": "NVIDIA GeForce RTX 4090/PCIe/SSE2"
+      },
+      "stored_vs_policy_image_tensor_max_abs": 0.0,
+      "RGB_OCT_render_provenance_mismatch": false,
+      "quality": {
+        "offsamples": 0,
+        "numslices": 112,
+        "numstacks": 64
+      },
+      "label": "Same observe() zero-velocity geometry, pre-acceleration safe expectation; no truth enters labels",
+      "actual_history": "Accepted motor command stored separately as executed_action",
+      "expert_execution": "old_student_feedback",
+      "source_reuse": {
+        "source_receipt": "/home/him1/mujoco_bc/rcm_4090_deploy/data/homog_clean_replay_20261123_intent_v2/shards/tasks/collection_E19/receipt.json",
+        "source_receipt_sha256": "342c0af4459d84023e73aaa17cdcad495f20ab50ea63eefa1912d29b7fb08667",
+        "source_identity": {
+          "code_sha256": "85461a582bb7a88332773b9832d93280d1beee9179caf88566a955b4de9c8188",
+          "scene_sha256": "265c927ef7e7ac71536963b3000ffb161b7ff7ac03bb86cdb8480ed988c17028",
+          "scripts/research/a_axis_flip_train.py": "8a05b7cdc21980ce68704726bab05d4012f735fd4e5ba3630e55e93cfae7aad5",
+          "scripts/research/a_axis_flip_replay.py": "dc5884144deb39daadc2e674abc343f6c4e18949ec30126f331d631d65dfde2e",
+          "scripts/research/a_axis_flip_audit.py": "e6c65c37656cde0b608c47a6ed4d799fc27dafe6d4abe3b1209c2abe4ca0929e",
+          "scripts/research/a_axis_flip_pipeline.py": "c813ef936b77b51014eca659c3a5ec0e5d6344d1c0308d02cb683628fb6870ee",
+          "scripts/research/a_axis_flip_publish.py": "be4a9fe1c3e6dc06f616381b26e7342d7448cf8feffabf82e96ee96d2503e081",
+          "scripts/research/a_axis_flip_common.py": "1a3ef56737f34e31e05a71566b54969dfafa3060a38ae6a8e44da83ecd29fab4",
+          "scripts/research/gpu_episode_pool.py": "e9c4a44301eeb04226bfd2869f002ba12640d2b57afbbdd438b6afd214537a9d",
+          "scripts/research/clean_oct_workers.py": "1df09165778f9866b01fb6b8e020afbb839f284797c1ae497ab36216746a1650",
+          "lerobot_training/navigation_overlay.py": "3330474b01973ab121f55f341b7f6969a70bc6d546e5823b1160657e4cdf65a5",
+          "lerobot_training/eval_policy.py": "f7f3948ea6c81ebcf66063afd9d0eb99ae418c5b099052e48b1fd476f5de95f1",
+          "lerobot_training/dit_experience_replay.py": "8a3ef61fb52d7db77e402b13dcb9c7a5186c9dc5dfc2af85d1f0c3cef394c5c2",
+          "lerobot_training/dataset_contract.py": "942d43813b5083986eeca542f6b57c480e4db6a6e163dbb084ed86f3f0a4343a",
+          "configs/v12_reachable_development_targets_0p35um.json": "fcc4872a9d5b58bb7158b36d3c0ab6d7452e4d8d747317dfb077b6e7bbc815c7",
+          "scripts/research/homog_replay_common.py": "e36ede2fa2e7c7e5f7a5bff0b80c560c20091ead175e9c53d0e1daa94788028c",
+          "scripts/research/homog_replay_collect.py": "ac29b4eca6372e138ee516f55659fd6a06b3963ea413c626843a6cc0005a97a8",
+          "scripts/research/homog_replay_pipeline.py": "dc11730f90e0a5df7f6e3ea2790d2d19b1573e6c44a9d08c1dec7f242d38a3f0",
+          "scripts/research/homog_replay_train.py": "1567ad380a365f3b65e2dfc8d3c03eb85ef3b6e342f2e81e3e5e93eb01ea0386",
+          "scripts/research/homog_replay_target.py": "d90735c7b5b654d10dc303759971778129e4e79ac82c4392135d07731cdf3624",
+          "scripts/research/homog_replay_publish.py": "629cc1ce0efbe349feb561c7af0ed03b31705e02c002a9972caaff480cc96378",
+          "scripts/verification/verify_homog_replay.py": "8d131fc1aeea37ee5b02ac490cb2b78e7f67e538d1c0f842087362831e83e35b",
+          "scripts/verification/verify_homog_teacher_intent.py": "3209ee43674ac1fea9b35ce4a804b166c4f8e1fb63e1c146dd41057a4787ca97",
+          "scripts/tools/prepare_teacher_intent_repair.py": "8aee6669180605662797e4cf431d2fff22aef7e7f3c94605f0b8cfa58caf5715",
+          "rcm/fundus.py": "1432e337aecde1e60d65c63250cd773a7c8b150c90cb67b5bf2c0f3ae1befed3",
+          "rcm/visual_servo.py": "b217af0f60eb0a1de462d37dfa22a507911420a7b3cc9c4d899e012e89cbb507",
+          "lerobot_training/train_diffusion_policy.py": "e809558031ea6d1b1bd28904d5d101778831a50761c5b0d9f893943e5254a50c"
+        },
+        "compatibility": "Equivalent T1execution AST, same1600step budget, model/assets/targets/seeds/render/physics/labels;12workers scheduling only"
+      }
+    },
+    "collection_E23": {
+      "episode_index": 23,
+      "regime": "T2",
+      "frames": 600,
+      "valid_windows": 584,
+      "actions": 600,
+      "dataset_path": "/home/him1/mujoco_bc/rcm_4090_deploy/data/homog_clean_replay_20261123_mixed_1600_600_12_v1/shards/tasks/collection_E23/dataset.npz",
+      "dataset_sha256": "c3ed725d5aef286d64f2808d8b328c153f8e39ecb48af54300e8cbdef497b14c",
+      "final_error_um": 1.8250815512703513,
+      "hold_frames": 0,
+      "window_diagnostics": {
+        "candidate_windows": 584,
+        "trajectory_boundary_excluded": 0,
+        "source_frame_gap_excluded": 0,
+        "time_interval_excluded": 0,
+        "invalid_input_excluded": 0,
+        "valid_windows": 584
+      },
+      "task": {
+        "id": "E23",
+        "episode_index": 23,
+        "seed": 1023,
+        "regime": "T2",
+        "target_robot_mm": [
+          3.5624182585393163,
+          3.295150033288441,
+          23.08557620639611
+        ],
+        "target_world_mm": [
+          346.18971362146056,
+          -7.698333716822888,
+          371.71191199658045
+        ],
+        "initial_state_si": [
+          0.15605911342255369,
+          0.09772912641281145,
+          0.01950335982442569
+        ],
+        "goal_state_si": [
+          0.15310592961539737,
+          0.10008513505142738,
+          0.019590096785981555
+        ],
+        "initial_error_um": 124.0587431101496,
+        "abc_offset_sign": [
+          1,
+          -1,
+          -1
+        ],
+        "min_development_distance_um": 828.9948438724894
+      },
+      "egl": {
+        "vendor": "NVIDIA Corporation",
+        "renderer": "NVIDIA GeForce RTX 4090/PCIe/SSE2"
+      },
+      "stored_vs_policy_image_tensor_max_abs": 0.0,
+      "RGB_OCT_render_provenance_mismatch": false,
+      "quality": {
+        "offsamples": 0,
+        "numslices": 112,
+        "numstacks": 64
+      },
+      "label": "Same observe() zero-velocity geometry, pre-acceleration safe expectation; no truth enters labels",
+      "actual_history": "Accepted motor command stored separately as executed_action",
+      "expert_execution": "bounded_teacher_intent_v1"
+    },
+    "collection_E31": {
+      "episode_index": 31,
+      "regime": "T2",
+      "frames": 600,
+      "valid_windows": 584,
+      "actions": 600,
+      "dataset_path": "/home/him1/mujoco_bc/rcm_4090_deploy/data/homog_clean_replay_20261123_mixed_1600_600_12_v1/shards/tasks/collection_E31/dataset.npz",
+      "dataset_sha256": "682581426c1fa1406ba3ea58922cf8847b87309641485ced93d1893108012af8",
+      "final_error_um": 1.4115299080536163,
+      "hold_frames": 0,
+      "window_diagnostics": {
+        "candidate_windows": 584,
+        "trajectory_boundary_excluded": 0,
+        "source_frame_gap_excluded": 0,
+        "time_interval_excluded": 0,
+        "invalid_input_excluded": 0,
+        "valid_windows": 584
+      },
+      "task": {
+        "id": "E31",
+        "episode_index": 31,
+        "seed": 1031,
+        "regime": "T2",
+        "target_robot_mm": [
+          2.810906567332218,
+          4.781152002418816,
+          23.15855501392964
+        ],
+        "target_world_mm": [
+          347.60124434223707,
+          -8.449845408029987,
+          372.1821340536051
+        ],
+        "initial_state_si": [
+          0.11992000052261617,
+          0.03956420335395074,
+          0.019742764472734174
+        ],
+        "goal_state_si": [
+          0.1207857582831869,
+          0.038077576348346846,
+          0.01981342647612289
+        ],
+        "initial_error_um": 81.573605480011,
+        "abc_offset_sign": [
+          -1,
+          1,
+          -1
+        ],
+        "min_development_distance_um": 1028.9392987532779
+      },
+      "egl": {
+        "vendor": "NVIDIA Corporation",
+        "renderer": "NVIDIA GeForce RTX 4090/PCIe/SSE2"
+      },
+      "stored_vs_policy_image_tensor_max_abs": 0.0,
+      "RGB_OCT_render_provenance_mismatch": false,
+      "quality": {
+        "offsamples": 0,
+        "numslices": 112,
+        "numstacks": 64
+      },
+      "label": "Same observe() zero-velocity geometry, pre-acceleration safe expectation; no truth enters labels",
+      "actual_history": "Accepted motor command stored separately as executed_action",
+      "expert_execution": "bounded_teacher_intent_v1"
+    },
+    "collection_E26": {
+      "episode_index": 26,
+      "regime": "T2",
+      "frames": 600,
+      "valid_windows": 584,
+      "actions": 600,
+      "dataset_path": "/home/him1/mujoco_bc/rcm_4090_deploy/data/homog_clean_replay_20261123_mixed_1600_600_12_v1/shards/tasks/collection_E26/dataset.npz",
+      "dataset_sha256": "abb02bcb465f9fc82dd4bf4fa233dd0c2932644cf9ba0956a6c092affab16b1b",
+      "final_error_um": 1.3006088046724809,
+      "hold_frames": 0,
+      "window_diagnostics": {
+        "candidate_windows": 584,
+        "trajectory_boundary_excluded": 0,
+        "source_frame_gap_excluded": 0,
+        "time_interval_excluded": 0,
+        "invalid_input_excluded": 0,
+        "valid_windows": 584
+      },
+      "task": {
+        "id": "E26",
+        "episode_index": 26,
+        "seed": 1026,
+        "regime": "T2",
+        "target_robot_mm": [
+          -3.955277254538842,
+          2.9673960231884386,
+          22.958138711646406
+        ],
+        "target_world_mm": [
+          345.83805611540646,
+          -15.216029229901045,
+          371.7119801179832
+        ],
+        "initial_state_si": [
+          -0.16951504151085342,
+          0.11230365048719528,
+          0.019415228153510232
+        ],
+        "goal_state_si": [
+          -0.17060735560834964,
+          0.11353331736383386,
+          0.01948458623058759
+        ],
+        "initial_error_um": 79.24857871341526,
+        "abc_offset_sign": [
+          1,
+          -1,
+          -1
+        ],
+        "min_development_distance_um": 663.071084170529
+      },
+      "egl": {
+        "vendor": "NVIDIA Corporation",
+        "renderer": "NVIDIA GeForce RTX 4090/PCIe/SSE2"
+      },
+      "stored_vs_policy_image_tensor_max_abs": 0.0,
+      "RGB_OCT_render_provenance_mismatch": false,
+      "quality": {
+        "offsamples": 0,
+        "numslices": 112,
+        "numstacks": 64
+      },
+      "label": "Same observe() zero-velocity geometry, pre-acceleration safe expectation; no truth enters labels",
+      "actual_history": "Accepted motor command stored separately as executed_action",
+      "expert_execution": "bounded_teacher_intent_v1"
+    },
+    "collection_E21": {
+      "episode_index": 21,
+      "regime": "T2",
+      "frames": 600,
+      "valid_windows": 584,
+      "actions": 600,
+      "dataset_path": "/home/him1/mujoco_bc/rcm_4090_deploy/data/homog_clean_replay_20261123_mixed_1600_600_12_v1/shards/tasks/collection_E21/dataset.npz",
+      "dataset_sha256": "010ed09757c1702af68b0fb165c01f2925b6c3dae52184427987fab4a80e9b70",
+      "final_error_um": 1.3903654369308258,
+      "hold_frames": 0,
+      "window_diagnostics": {
+        "candidate_windows": 584,
+        "trajectory_boundary_excluded": 0,
+        "source_frame_gap_excluded": 0,
+        "time_interval_excluded": 0,
+        "invalid_input_excluded": 0,
+        "valid_windows": 584
+      },
+      "task": {
+        "id": "E21",
+        "episode_index": 21,
+        "seed": 1021,
+        "regime": "T2",
+        "target_robot_mm": [
+          3.6502154720172912,
+          7.423163296015405,
+          22.11827208488917
+        ],
+        "target_world_mm": [
+          349.687052199314,
+          -7.610536503344913,
+          374.10874190973493
+        ],
+        "initial_state_si": [
+          0.16228403203591787,
+          -0.07722774559695121,
+          0.019744875731034617
+        ],
+        "goal_state_si": [
+          0.16355745336394428,
+          -0.07954216584598423,
+          0.019614516432327218
+        ],
+        "initial_error_um": 144.23932909429422,
+        "abc_offset_sign": [
+          -1,
+          1,
+          1
+        ],
+        "min_development_distance_um": 176.09922625453035
+      },
+      "egl": {
+        "vendor": "NVIDIA Corporation",
+        "renderer": "NVIDIA GeForce RTX 4090/PCIe/SSE2"
+      },
+      "stored_vs_policy_image_tensor_max_abs": 0.0,
+      "RGB_OCT_render_provenance_mismatch": false,
+      "quality": {
+        "offsamples": 0,
+        "numslices": 112,
+        "numstacks": 64
+      },
+      "label": "Same observe() zero-velocity geometry, pre-acceleration safe expectation; no truth enters labels",
+      "actual_history": "Accepted motor command stored separately as executed_action",
+      "expert_execution": "bounded_teacher_intent_v1"
+    },
+    "collection_E24": {
+      "episode_index": 24,
+      "regime": "T2",
+      "frames": 600,
+      "valid_windows": 584,
+      "actions": 600,
+      "dataset_path": "/home/him1/mujoco_bc/rcm_4090_deploy/data/homog_clean_replay_20261123_mixed_1600_600_12_v1/shards/tasks/collection_E24/dataset.npz",
+      "dataset_sha256": "8041da817ad83e59c6c7ac838924d6f239d69300e7d0fa05c0bf9373b9fd78ec",
+      "final_error_um": 0.36248370444158373,
+      "hold_frames": 0,
+      "window_diagnostics": {
+        "candidate_windows": 584,
+        "trajectory_boundary_excluded": 0,
+        "source_frame_gap_excluded": 0,
+        "time_interval_excluded": 0,
+        "invalid_input_excluded": 0,
+        "valid_windows": 584
+      },
+      "task": {
+        "id": "E24",
+        "episode_index": 24,
+        "seed": 1024,
+        "regime": "T2",
+        "target_robot_mm": [
+          -0.22776783840394554,
+          9.552644196460184,
+          21.532486466062522
+        ],
+        "target_world_mm": [
+          351.4597559817662,
+          -11.48851981376615,
+          375.4260706448132
+        ],
+        "initial_state_si": [
+          -0.009618016651495498,
+          -0.1778151019225851,
+          0.019516158321317124
+        ],
+        "goal_state_si": [
+          -0.010577475306955162,
+          -0.17730352296872007,
+          0.019557437524984362
+        ],
+        "initial_error_um": 47.743950057021166,
+        "abc_offset_sign": [
+          1,
+          -1,
+          -1
+        ],
+        "min_development_distance_um": 1207.8402544056532
+      },
+      "egl": {
+        "vendor": "NVIDIA Corporation",
+        "renderer": "NVIDIA GeForce RTX 4090/PCIe/SSE2"
+      },
+      "stored_vs_policy_image_tensor_max_abs": 0.0,
+      "RGB_OCT_render_provenance_mismatch": false,
+      "quality": {
+        "offsamples": 0,
+        "numslices": 112,
+        "numstacks": 64
+      },
+      "label": "Same observe() zero-velocity geometry, pre-acceleration safe expectation; no truth enters labels",
+      "actual_history": "Accepted motor command stored separately as executed_action",
+      "expert_execution": "bounded_teacher_intent_v1"
+    },
+    "collection_E29": {
+      "episode_index": 29,
+      "regime": "T2",
+      "frames": 600,
+      "valid_windows": 584,
+      "actions": 600,
+      "dataset_path": "/home/him1/mujoco_bc/rcm_4090_deploy/data/homog_clean_replay_20261123_mixed_1600_600_12_v1/shards/tasks/collection_E29/dataset.npz",
+      "dataset_sha256": "ed083aca0f5df8cc9055beed6d80271bfbe0e894a90330636ba3f132530b81ae",
+      "final_error_um": 1.7497714315142416,
+      "hold_frames": 0,
+      "window_diagnostics": {
+        "candidate_windows": 584,
+        "trajectory_boundary_excluded": 0,
+        "source_frame_gap_excluded": 0,
+        "time_interval_excluded": 0,
+        "invalid_input_excluded": 0,
+        "valid_windows": 584
+      },
+      "task": {
+        "id": "E29",
+        "episode_index": 29,
+        "seed": 1029,
+        "regime": "T2",
+        "target_robot_mm": [
+          0.9552576153826502,
+          3.861057237310227,
+          23.56210778302767
+        ],
+        "target_world_mm": [
+          346.88979835492944,
+          -10.305494359979553,
+          371.4727161081239
+        ],
+        "initial_state_si": [
+          0.038286171720983815,
+          0.08065647458734775,
+          0.01974103368421003
+        ],
+        "goal_state_si": [
+          0.040519921473050086,
+          0.07793435067561681,
+          0.019895464073345498
+        ],
+        "initial_error_um": 175.46548059683371,
+        "abc_offset_sign": [
+          -1,
+          1,
+          -1
+        ],
+        "min_development_distance_um": 799.0880531850765
+      },
+      "egl": {
+        "vendor": "NVIDIA Corporation",
+        "renderer": "NVIDIA GeForce RTX 4090/PCIe/SSE2"
+      },
+      "stored_vs_policy_image_tensor_max_abs": 0.0,
+      "RGB_OCT_render_provenance_mismatch": false,
+      "quality": {
+        "offsamples": 0,
+        "numslices": 112,
+        "numstacks": 64
+      },
+      "label": "Same observe() zero-velocity geometry, pre-acceleration safe expectation; no truth enters labels",
+      "actual_history": "Accepted motor command stored separately as executed_action",
+      "expert_execution": "bounded_teacher_intent_v1"
+    },
+    "collection_E27": {
+      "episode_index": 27,
+      "regime": "T2",
+      "frames": 600,
+      "valid_windows": 584,
+      "actions": 600,
+      "dataset_path": "/home/him1/mujoco_bc/rcm_4090_deploy/data/homog_clean_replay_20261123_mixed_1600_600_12_v1/shards/tasks/collection_E27/dataset.npz",
+      "dataset_sha256": "68b50e2d8e7d5e3d2dc5651c5507499eefced25a9d9676cb6a45c100c47aec18",
+      "final_error_um": 1.8962913333586686,
+      "hold_frames": 0,
+      "window_diagnostics": {
+        "candidate_windows": 584,
+        "trajectory_boundary_excluded": 0,
+        "source_frame_gap_excluded": 0,
+        "time_interval_excluded": 0,
+        "invalid_input_excluded": 0,
+        "valid_windows": 584
+      },
+      "task": {
+        "id": "E27",
+        "episode_index": 27,
+        "seed": 1027,
+        "regime": "T2",
+        "target_robot_mm": [
+          -4.772335348797681,
+          3.604210083480859,
+          22.625766332947748
+        ],
+        "target_world_mm": [
+          346.3112394627477,
+          -16.033087324159883,
+          372.2524438682078
+        ],
+        "initial_state_si": [
+          -0.208971423323588,
+          0.08683512895784125,
+          0.019472238004220026
+        ],
+        "goal_state_si": [
+          -0.2078777728428298,
+          0.0856039576547419,
+          0.019402795071537946
+        ],
+        "initial_error_um": 79.40395488099574,
+        "abc_offset_sign": [
+          -1,
+          1,
+          1
+        ],
+        "min_development_distance_um": 456.87258550935627
+      },
+      "egl": {
+        "vendor": "NVIDIA Corporation",
+        "renderer": "NVIDIA GeForce RTX 4090/PCIe/SSE2"
+      },
+      "stored_vs_policy_image_tensor_max_abs": 0.0,
+      "RGB_OCT_render_provenance_mismatch": false,
+      "quality": {
+        "offsamples": 0,
+        "numslices": 112,
+        "numstacks": 64
+      },
+      "label": "Same observe() zero-velocity geometry, pre-acceleration safe expectation; no truth enters labels",
+      "actual_history": "Accepted motor command stored separately as executed_action",
+      "expert_execution": "bounded_teacher_intent_v1"
+    },
+    "collection_E22": {
+      "episode_index": 22,
+      "regime": "T2",
+      "frames": 600,
+      "valid_windows": 584,
+      "actions": 600,
+      "dataset_path": "/home/him1/mujoco_bc/rcm_4090_deploy/data/homog_clean_replay_20261123_mixed_1600_600_12_v1/shards/tasks/collection_E22/dataset.npz",
+      "dataset_sha256": "85d77811604221459db1248d16209216f513c6b53fe8ecad979497b843f5aaf7",
+      "final_error_um": 1.6653249912708237,
+      "hold_frames": 0,
+      "window_diagnostics": {
+        "candidate_windows": 584,
+        "trajectory_boundary_excluded": 0,
+        "source_frame_gap_excluded": 0,
+        "time_interval_excluded": 0,
+        "invalid_input_excluded": 0,
+        "valid_windows": 584
+      },
+      "task": {
+        "id": "E22",
+        "episode_index": 22,
+        "seed": 1022,
+        "regime": "T2",
+        "target_robot_mm": [
+          4.55724751873392,
+          3.037511092827353,
+          22.730672119477255
+        ],
+        "target_world_mm": [
+          345.8210193563227,
+          -6.703504456628284,
+          371.94939730856436
+        ],
+        "initial_state_si": [
+          0.1949002674294865,
+          0.11231171763180368,
+          0.019468249733591802
+        ],
+        "goal_state_si": [
+          0.1978656147035478,
+          0.10994600514981902,
+          0.019381155522968412
+        ],
+        "initial_error_um": 124.05280508506732,
+        "abc_offset_sign": [
+          -1,
+          1,
+          1
+        ],
+        "min_development_distance_um": 817.7805475155585
+      },
+      "egl": {
+        "vendor": "NVIDIA Corporation",
+        "renderer": "NVIDIA GeForce RTX 4090/PCIe/SSE2"
+      },
+      "stored_vs_policy_image_tensor_max_abs": 0.0,
+      "RGB_OCT_render_provenance_mismatch": false,
+      "quality": {
+        "offsamples": 0,
+        "numslices": 112,
+        "numstacks": 64
+      },
+      "label": "Same observe() zero-velocity geometry, pre-acceleration safe expectation; no truth enters labels",
+      "actual_history": "Accepted motor command stored separately as executed_action",
+      "expert_execution": "bounded_teacher_intent_v1"
+    },
+    "collection_E30": {
+      "episode_index": 30,
+      "regime": "T2",
+      "frames": 600,
+      "valid_windows": 584,
+      "actions": 600,
+      "dataset_path": "/home/him1/mujoco_bc/rcm_4090_deploy/data/homog_clean_replay_20261123_mixed_1600_600_12_v1/shards/tasks/collection_E30/dataset.npz",
+      "dataset_sha256": "01e5e14d890d7ccf779af078c3f68dee79ea367b5fe32beee2b2b643ebe794ee",
+      "final_error_um": 2.9139035513904576,
+      "hold_frames": 0,
+      "window_diagnostics": {
+        "candidate_windows": 584,
+        "trajectory_boundary_excluded": 0,
+        "source_frame_gap_excluded": 0,
+        "time_interval_excluded": 0,
+        "invalid_input_excluded": 0,
+        "valid_windows": 584
+      },
+      "task": {
+        "id": "E30",
+        "episode_index": 30,
+        "seed": 1030,
+        "regime": "T2",
+        "target_robot_mm": [
+          4.540335096895561,
+          6.166733475472822,
+          22.256136660351974
+        ],
+        "target_world_mm": [
+          348.5658745065242,
+          -6.720416878466644,
+          373.5251469163476
+        ],
+        "initial_state_si": [
+          0.2021113663442724,
+          -0.02636380518334198,
+          0.01960768533260682
+        ],
+        "goal_state_si": [
+          0.20124232818817206,
+          -0.024871545280401797,
+          0.019536755587673545
+        ],
+        "initial_error_um": 81.53669472414872,
+        "abc_offset_sign": [
+          1,
+          -1,
+          1
+        ],
+        "min_development_distance_um": 648.3194606936398
+      },
+      "egl": {
+        "vendor": "NVIDIA Corporation",
+        "renderer": "NVIDIA GeForce RTX 4090/PCIe/SSE2"
+      },
+      "stored_vs_policy_image_tensor_max_abs": 0.0,
+      "RGB_OCT_render_provenance_mismatch": false,
+      "quality": {
+        "offsamples": 0,
+        "numslices": 112,
+        "numstacks": 64
+      },
+      "label": "Same observe() zero-velocity geometry, pre-acceleration safe expectation; no truth enters labels",
+      "actual_history": "Accepted motor command stored separately as executed_action",
+      "expert_execution": "bounded_teacher_intent_v1"
+    },
+    "collection_E20": {
+      "episode_index": 20,
+      "regime": "T2",
+      "frames": 600,
+      "valid_windows": 584,
+      "actions": 600,
+      "dataset_path": "/home/him1/mujoco_bc/rcm_4090_deploy/data/homog_clean_replay_20261123_mixed_1600_600_12_v1/shards/tasks/collection_E20/dataset.npz",
+      "dataset_sha256": "99c299dfdfad4c2de54b0d522677ff13486cd041cddbf2868f2c6b9814f9effc",
+      "final_error_um": 0.5404486932207053,
+      "hold_frames": 0,
+      "window_diagnostics": {
+        "candidate_windows": 584,
+        "trajectory_boundary_excluded": 0,
+        "source_frame_gap_excluded": 0,
+        "time_interval_excluded": 0,
+        "invalid_input_excluded": 0,
+        "valid_windows": 584
+      },
+      "task": {
+        "id": "E20",
+        "episode_index": 20,
+        "seed": 1020,
+        "regime": "T2",
+        "target_robot_mm": [
+          -0.7237932115835087,
+          8.72630832142242,
+          22.05148025409102
+        ],
+        "target_world_mm": [
+          350.8775162507966,
+          -11.984545186945713,
+          374.6430109880392
+        ],
+        "initial_state_si": [
+          -0.03153777098544637,
+          -0.13871813947856296,
+          0.019596008615475145
+        ],
+        "goal_state_si": [
+          -0.032811105962204434,
+          -0.13640387617139954,
+          0.019726359074460343
+        ],
+        "initial_error_um": 144.12142443491652,
+        "abc_offset_sign": [
+          1,
+          -1,
+          -1
+        ],
+        "min_development_distance_um": 996.965105175287
+      },
+      "egl": {
+        "vendor": "NVIDIA Corporation",
+        "renderer": "NVIDIA GeForce RTX 4090/PCIe/SSE2"
+      },
+      "stored_vs_policy_image_tensor_max_abs": 0.0,
+      "RGB_OCT_render_provenance_mismatch": false,
+      "quality": {
+        "offsamples": 0,
+        "numslices": 112,
+        "numstacks": 64
+      },
+      "label": "Same observe() zero-velocity geometry, pre-acceleration safe expectation; no truth enters labels",
+      "actual_history": "Accepted motor command stored separately as executed_action",
+      "expert_execution": "bounded_teacher_intent_v1"
+    },
+    "collection_E25": {
+      "episode_index": 25,
+      "regime": "T2",
+      "frames": 600,
+      "valid_windows": 584,
+      "actions": 600,
+      "dataset_path": "/home/him1/mujoco_bc/rcm_4090_deploy/data/homog_clean_replay_20261123_mixed_1600_600_12_v1/shards/tasks/collection_E25/dataset.npz",
+      "dataset_sha256": "ee5a59f026666d72c80931acbff7c433ea112de95e45ac7895998de7b1477c70",
+      "final_error_um": 0.9628798333330251,
+      "hold_frames": 0,
+      "window_diagnostics": {
+        "candidate_windows": 584,
+        "trajectory_boundary_excluded": 0,
+        "source_frame_gap_excluded": 0,
+        "time_interval_excluded": 0,
+        "invalid_input_excluded": 0,
+        "valid_windows": 584
+      },
+      "task": {
+        "id": "E25",
+        "episode_index": 25,
+        "seed": 1025,
+        "regime": "T2",
+        "target_robot_mm": [
+          -1.5570366929537744,
+          4.134883369290514,
+          23.475684514382777
+        ],
+        "target_world_mm": [
+          347.1137272931613,
+          -12.817788668315977,
+          371.6524535904166
+        ],
+        "initial_state_si": [
+          -0.06717017782788182,
+          0.0667572022361461,
+          0.01992836412544556
+        ],
+        "goal_state_si": [
+          -0.06622850663893136,
+          0.06625510747782917,
+          0.01988785019962389
+        ],
+        "initial_error_um": 47.684093152007435,
+        "abc_offset_sign": [
+          -1,
+          1,
+          1
+        ],
+        "min_development_distance_um": 1423.767471236029
+      },
+      "egl": {
+        "vendor": "NVIDIA Corporation",
+        "renderer": "NVIDIA GeForce RTX 4090/PCIe/SSE2"
+      },
+      "stored_vs_policy_image_tensor_max_abs": 0.0,
+      "RGB_OCT_render_provenance_mismatch": false,
+      "quality": {
+        "offsamples": 0,
+        "numslices": 112,
+        "numstacks": 64
+      },
+      "label": "Same observe() zero-velocity geometry, pre-acceleration safe expectation; no truth enters labels",
+      "actual_history": "Accepted motor command stored separately as executed_action",
+      "expert_execution": "bounded_teacher_intent_v1"
+    },
+    "collection_E28": {
+      "episode_index": 28,
+      "regime": "T2",
+      "frames": 600,
+      "valid_windows": 584,
+      "actions": 600,
+      "dataset_path": "/home/him1/mujoco_bc/rcm_4090_deploy/data/homog_clean_replay_20261123_mixed_1600_600_12_v1/shards/tasks/collection_E28/dataset.npz",
+      "dataset_sha256": "50e90cab17884f9707849c015383e5ffadb131844cb24abca7196359da81e980",
+      "final_error_um": 2.0076891136370882,
+      "hold_frames": 0,
+      "window_diagnostics": {
+        "candidate_windows": 584,
+        "trajectory_boundary_excluded": 0,
+        "source_frame_gap_excluded": 0,
+        "time_interval_excluded": 0,
+        "invalid_input_excluded": 0,
+        "valid_windows": 584
+      },
+      "task": {
+        "id": "E28",
+        "episode_index": 28,
+        "seed": 1028,
+        "regime": "T2",
+        "target_robot_mm": [
+          -1.7276398268174606,
+          7.057260562151757,
+          22.753715745196324
+        ],
+        "target_world_mm": [
+          349.576159879745,
+          -12.988391802179663,
+          373.3839134131
+        ],
+        "initial_state_si": [
+          -0.07354211157975349,
+          -0.06244115278492394,
+          0.020040469350250615
+        ],
+        "goal_state_si": [
+          -0.07578240478660833,
+          -0.05971105479519754,
+          0.019885586579075326
+        ],
+        "initial_error_um": 175.75511212700906,
+        "abc_offset_sign": [
+          1,
+          -1,
+          1
+        ],
+        "min_development_distance_um": 667.4763750504644
+      },
+      "egl": {
+        "vendor": "NVIDIA Corporation",
+        "renderer": "NVIDIA GeForce RTX 4090/PCIe/SSE2"
+      },
+      "stored_vs_policy_image_tensor_max_abs": 0.0,
+      "RGB_OCT_render_provenance_mismatch": false,
+      "quality": {
+        "offsamples": 0,
+        "numslices": 112,
+        "numstacks": 64
+      },
+      "label": "Same observe() zero-velocity geometry, pre-acceleration safe expectation; no truth enters labels",
+      "actual_history": "Accepted motor command stored separately as executed_action",
+      "expert_execution": "bounded_teacher_intent_v1"
+    },
+    "collection_E32": {
+      "episode_index": 32,
+      "regime": "T2",
+      "frames": 600,
+      "valid_windows": 584,
+      "actions": 600,
+      "dataset_path": "/home/him1/mujoco_bc/rcm_4090_deploy/data/homog_clean_replay_20261123_mixed_1600_600_12_v1/shards/tasks/collection_E32/dataset.npz",
+      "dataset_sha256": "d129c6ba6fbc8c26d9668b85973a21ff8c64020a00a3400dcd2c12d1c864b625",
+      "final_error_um": 1.9346162946415444,
+      "hold_frames": 0,
+      "window_diagnostics": {
+        "candidate_windows": 584,
+        "trajectory_boundary_excluded": 0,
+        "source_frame_gap_excluded": 0,
+        "time_interval_excluded": 0,
+        "invalid_input_excluded": 0,
+        "valid_windows": 584
+      },
+      "task": {
+        "id": "E32",
+        "episode_index": 32,
+        "seed": 1032,
+        "regime": "T2",
+        "target_robot_mm": [
+          0.17967173801167707,
+          7.408483865987161,
+          22.74374807541801
+        ],
+        "target_world_mm": [
+          349.89992345235083,
+          -11.081080237350527,
+          373.5204209683904
+        ],
+        "initial_state_si": [
+          0.005660930396058011,
+          -0.07669982533492099,
+          0.01979190072019374
+        ],
+        "goal_state_si": [
+          0.007899665435348504,
+          -0.07466227358755041,
+          0.01992061854643631
+        ],
+        "initial_error_um": 146.7020891149965,
+        "abc_offset_sign": [
+          -1,
+          -1,
+          -1
+        ],
+        "min_development_distance_um": 499.36546342467705
+      },
+      "egl": {
+        "vendor": "NVIDIA Corporation",
+        "renderer": "NVIDIA GeForce RTX 4090/PCIe/SSE2"
+      },
+      "stored_vs_policy_image_tensor_max_abs": 0.0,
+      "RGB_OCT_render_provenance_mismatch": false,
+      "quality": {
+        "offsamples": 0,
+        "numslices": 112,
+        "numstacks": 64
+      },
+      "label": "Same observe() zero-velocity geometry, pre-acceleration safe expectation; no truth enters labels",
+      "actual_history": "Accepted motor command stored separately as executed_action",
+      "expert_execution": "bounded_teacher_intent_v1"
+    },
+    "collection_E36": {
+      "episode_index": 36,
+      "regime": "T2",
+      "frames": 600,
+      "valid_windows": 584,
+      "actions": 600,
+      "dataset_path": "/home/him1/mujoco_bc/rcm_4090_deploy/data/homog_clean_replay_20261123_mixed_1600_600_12_v1/shards/tasks/collection_E36/dataset.npz",
+      "dataset_sha256": "249c542cbc9ace689201cf25adb3961a271c3b7e8ab99a736905ee9a3cf2f1a2",
+      "final_error_um": 1.7030462489501665,
+      "hold_frames": 0,
+      "window_diagnostics": {
+        "candidate_windows": 584,
+        "trajectory_boundary_excluded": 0,
+        "source_frame_gap_excluded": 0,
+        "time_interval_excluded": 0,
+        "invalid_input_excluded": 0,
+        "valid_windows": 584
+      },
+      "task": {
+        "id": "E36",
+        "episode_index": 36,
+        "seed": 1036,
+        "regime": "T2",
+        "target_robot_mm": [
+          1.3929247252926984,
+          1.595501975579082,
+          23.446554546215133
+        ],
+        "target_world_mm": [
+          344.73622794077573,
+          -9.867827250069505,
+          370.75981522737163
+        ],
+        "initial_state_si": [
+          0.057314539242072554,
+          0.1708835518858513,
+          0.019445342056263398
+        ],
+        "goal_state_si": [
+          0.05933875991358392,
+          0.1724025247868184,
+          0.019542021704455417
+        ],
+        "initial_error_um": 113.56258871541658,
+        "abc_offset_sign": [
+          -1,
+          -1,
+          -1
+        ],
+        "min_development_distance_um": 1097.3271038150287
+      },
+      "egl": {
+        "vendor": "NVIDIA Corporation",
+        "renderer": "NVIDIA GeForce RTX 4090/PCIe/SSE2"
+      },
+      "stored_vs_policy_image_tensor_max_abs": 0.0,
+      "RGB_OCT_render_provenance_mismatch": false,
+      "quality": {
+        "offsamples": 0,
+        "numslices": 112,
+        "numstacks": 64
+      },
+      "label": "Same observe() zero-velocity geometry, pre-acceleration safe expectation; no truth enters labels",
+      "actual_history": "Accepted motor command stored separately as executed_action",
+      "expert_execution": "bounded_teacher_intent_v1"
+    },
+    "collection_E34": {
+      "episode_index": 34,
+      "regime": "T2",
+      "frames": 600,
+      "valid_windows": 584,
+      "actions": 600,
+      "dataset_path": "/home/him1/mujoco_bc/rcm_4090_deploy/data/homog_clean_replay_20261123_mixed_1600_600_12_v1/shards/tasks/collection_E34/dataset.npz",
+      "dataset_sha256": "b2aa6aca57ff72a7309695d49889dc1e51286955910c018e7425ab54530f43f5",
+      "final_error_um": 0.6605598756637742,
+      "hold_frames": 0,
+      "window_diagnostics": {
+        "candidate_windows": 584,
+        "trajectory_boundary_excluded": 0,
+        "source_frame_gap_excluded": 0,
+        "time_interval_excluded": 0,
+        "invalid_input_excluded": 0,
+        "valid_windows": 584
+      },
+      "task": {
+        "id": "E34",
+        "episode_index": 34,
+        "seed": 1034,
+        "regime": "T2",
+        "target_robot_mm": [
+          0.3993723872678808,
+          6.299377617060692,
+          23.14209464328567
+        ],
+        "target_world_mm": [
+          349.01041480722733,
+          -10.861379588094323,
+          372.7473937827169
+        ],
+        "initial_state_si": [
+          0.015680950951797664,
+          -0.028220979109959098,
+          0.019813440357076256
+        ],
+        "goal_state_si": [
+          0.017255687255758743,
+          -0.02550045933814487,
+          0.019987459247382346
+        ],
+        "initial_error_um": 189.29716699359847,
+        "abc_offset_sign": [
+          -1,
+          -1,
+          -1
+        ],
+        "min_development_distance_um": 1071.4128560127492
+      },
+      "egl": {
+        "vendor": "NVIDIA Corporation",
+        "renderer": "NVIDIA GeForce RTX 4090/PCIe/SSE2"
+      },
+      "stored_vs_policy_image_tensor_max_abs": 0.0,
+      "RGB_OCT_render_provenance_mismatch": false,
+      "quality": {
+        "offsamples": 0,
+        "numslices": 112,
+        "numstacks": 64
+      },
+      "label": "Same observe() zero-velocity geometry, pre-acceleration safe expectation; no truth enters labels",
+      "actual_history": "Accepted motor command stored separately as executed_action",
+      "expert_execution": "bounded_teacher_intent_v1"
+    }
+  },
+  "workers": [
+    {
+      "pid": 154207,
+      "group": "collection",
+      "log": "/home/him1/mujoco_bc/rcm_4090_deploy/data/homog_clean_replay_20261123_mixed_1600_600_12_v1/shards/worker_1795430060417124704.log"
+    },
+    {
+      "pid": 154212,
+      "group": "collection",
+      "log": "/home/him1/mujoco_bc/rcm_4090_deploy/data/homog_clean_replay_20261123_mixed_1600_600_12_v1/shards/worker_1795430060505872295.log"
+    },
+    {
+      "pid": 154215,
+      "group": "collection",
+      "log": "/home/him1/mujoco_bc/rcm_4090_deploy/data/homog_clean_replay_20261123_mixed_1600_600_12_v1/shards/worker_1795430060586055759.log"
+    },
+    {
+      "pid": 154218,
+      "group": "collection",
+      "log": "/home/him1/mujoco_bc/rcm_4090_deploy/data/homog_clean_replay_20261123_mixed_1600_600_12_v1/shards/worker_1795430060656235679.log"
+    },
+    {
+      "pid": 154222,
+      "group": "collection",
+      "log": "/home/him1/mujoco_bc/rcm_4090_deploy/data/homog_clean_replay_20261123_mixed_1600_600_12_v1/shards/worker_1795430060726527495.log"
+    },
+    {
+      "pid": 154225,
+      "group": "collection",
+      "log": "/home/him1/mujoco_bc/rcm_4090_deploy/data/homog_clean_replay_20261123_mixed_1600_600_12_v1/shards/worker_1795430060797670282.log"
+    },
+    {
+      "pid": 154229,
+      "group": "collection",
+      "log": "/home/him1/mujoco_bc/rcm_4090_deploy/data/homog_clean_replay_20261123_mixed_1600_600_12_v1/shards/worker_1795430060865138799.log"
+    },
+    {
+      "pid": 154237,
+      "group": "collection",
+      "log": "/home/him1/mujoco_bc/rcm_4090_deploy/data/homog_clean_replay_20261123_mixed_1600_600_12_v1/shards/worker_1795430060931678283.log"
+    },
+    {
+      "pid": 154251,
+      "group": "collection",
+      "log": "/home/him1/mujoco_bc/rcm_4090_deploy/data/homog_clean_replay_20261123_mixed_1600_600_12_v1/shards/worker_1795430061003705838.log"
+    },
+    {
+      "pid": 154255,
+      "group": "collection",
+      "log": "/home/him1/mujoco_bc/rcm_4090_deploy/data/homog_clean_replay_20261123_mixed_1600_600_12_v1/shards/worker_1795430061075898586.log"
+    },
+    {
+      "pid": 154260,
+      "group": "collection",
+      "log": "/home/him1/mujoco_bc/rcm_4090_deploy/data/homog_clean_replay_20261123_mixed_1600_600_12_v1/shards/worker_1795430061148067968.log"
+    },
+    {
+      "pid": 154264,
+      "group": "collection",
+      "log": "/home/him1/mujoco_bc/rcm_4090_deploy/data/homog_clean_replay_20261123_mixed_1600_600_12_v1/shards/worker_1795430061220743734.log"
+    }
+  ],
+  "contract_sha256": "5ec7606b2c969f9e86ddc1951e7105865b49cf7fbf07e7b7da8cbcfa7fe9db6e",
+  "resources": {
+    "gpu_free_mib": 24230,
+    "gpu_utilization_percent": 25,
+    "ram_available_mib": 4026
+  },
+  "active_tasks": [
+    "collection_E46",
+    "collection_E41",
+    "collection_E35",
+    "collection_E39",
+    "collection_E44",
+    "collection_E37",
+    "collection_E43",
+    "collection_E45",
+    "collection_E42",
+    "collection_E38",
+    "collection_E40",
+    "collection_E33"
+  ],
+  "elapsed_s": 1045.5155836850172,
+  "failure": "RuntimeError(\"worker 154251: ValueError('T3 did not reach measured<5um before the200 explicit hold frames')\")",
+  "pending": 13
+}

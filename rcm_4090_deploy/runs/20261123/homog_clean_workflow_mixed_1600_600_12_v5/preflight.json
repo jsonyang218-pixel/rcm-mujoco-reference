@@ -1,0 +1,103 @@
+{
+  "status": "passed",
+  "gpu": {
+    "device": "NVIDIA GeForce RTX 4090",
+    "total_memory_bytes": 50857050112,
+    "python": "3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]",
+    "executable": "/home/him1/mujoco_bc/rcm_4090_deploy/.venv/bin/python"
+  },
+  "architecture": {
+    "architecture": "state_conditioned_temporal_attention_v1",
+    "policy_type": "dit_rectified_flow",
+    "epoch": 3,
+    "n_obs_steps": 2,
+    "n_action_steps": 16
+  },
+  "steps_by_regime": {
+    "T1": 1600,
+    "T2": 600,
+    "T3": 600
+  },
+  "minimum_T1_steps_including_window": {
+    "E00": 677,
+    "E01": 677,
+    "E02": 677,
+    "E03": 677,
+    "E04": 677,
+    "E05": 677,
+    "E06": 677,
+    "E07": 677,
+    "E08": 677,
+    "E09": 677,
+    "E10": 677,
+    "E11": 677,
+    "E12": 677,
+    "E13": 677,
+    "E14": 677,
+    "E15": 677,
+    "E16": 677,
+    "E17": 677,
+    "E18": 677,
+    "E19": 677
+  },
+  "original_windows": 220816,
+  "collection_trajectories": 60,
+  "real_render_sensor_checks": [
+    {
+      "regime": "T1",
+      "label": [
+        8.724579252146176e-05,
+        -7.286537723854346e-06,
+        0.020131366565768652
+      ],
+      "measured_error_um": 150.10090966561668,
+      "egl": {
+        "vendor": "NVIDIA Corporation",
+        "renderer": "NVIDIA GeForce RTX 4090/PCIe/SSE2"
+      },
+      "quality": {
+        "offsamples": 0,
+        "numslices": 112,
+        "numstacks": 64
+      }
+    },
+    {
+      "regime": "T2",
+      "label": [
+        -0.01096946722227895,
+        0.01998773162286153,
+        0.018762767193477303
+      ],
+      "measured_error_um": 144.20397740350353,
+      "egl": {
+        "vendor": "NVIDIA Corporation",
+        "renderer": "NVIDIA GeForce RTX 4090/PCIe/SSE2"
+      },
+      "quality": {
+        "offsamples": 0,
+        "numslices": 112,
+        "numstacks": 64
+      }
+    },
+    {
+      "regime": "T3",
+      "label": [
+        -0.0027412865066463363,
+        0.0048646981071586255,
+        0.004789369172985023
+      ],
+      "measured_error_um": 35.47373656331113,
+      "egl": {
+        "vendor": "NVIDIA Corporation",
+        "renderer": "NVIDIA GeForce RTX 4090/PCIe/SSE2"
+      },
+      "quality": {
+        "offsamples": 0,
+        "numslices": 112,
+        "numstacks": 64
+      }
+    }
+  ],
+  "no_wall_clock_limits": true,
+  "manifest_sha256": "5d26a2dccce7c1a50506edccbd903b9c5738d05657459db5242690ecf138a3f9"
+}

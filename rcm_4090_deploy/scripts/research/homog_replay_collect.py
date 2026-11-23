@@ -16,9 +16,9 @@ from scripts.research.a_axis_flip_replay import windows
 from scripts.research.clean_oct_workers import egl_identity
 from scripts.research.homog_replay_target import TeacherIntent
 from scripts.research.homog_replay_common import (
-    CAPS, DATA, HOLD_START, OLD, QUALITY, REPORTS, STEPS, TARGETS, UNIT,
+    CAPS, COLLECTION_STEPS, DATA, HOLD_START, OLD, QUALITY, REPORTS, STEPS, TARGETS, UNIT,
     atomic_npz, check_identity, gpu_check, make_teacher, pool, quality_gate,
-    read, record, signature, write_json,
+    collection_steps, read, record, signature, write_json,
 )
 
 
@@ -215,6 +215,7 @@ class CollectionWorker:
             raise ValueError('Expected direct224 checkpoint preprocessing')
 
     def run(self, task, output):
+        steps = collection_steps(task['regime'])
         scene = static_scene()
         recorder = None
         try:
@@ -227,10 +228,10 @@ class CollectionWorker:
                 else lambda *_: recorder.teacher_command.copy())
             self.evaluator.step_observer = recorder.after_step
             ep = self.evaluator.evaluate_episode(scene, np.asarray(task['target_world_mm']),
-                max_steps=STEPS, control_period_s=.05, seed=task['seed'],
+                max_steps=steps, control_period_s=.05, seed=task['seed'],
                 sensor=recorder, progress_every=100, stop_on_success=False,
                 max_consecutive_safety_limited=None)
-            if len(ep['trajectory']['actions']) != STEPS or ep['early_stop_reason'] is not None:
+            if len(ep['trajectory']['actions']) != steps or ep['early_stop_reason'] is not None:
                 raise ValueError('Incomplete/illegal collection trajectory')
             rows = recorder.rows
             if not rows:
@@ -251,7 +252,7 @@ class CollectionWorker:
             write_json(output/'image_paths.json',[r['image_path'] for r in rows])
             write_json(output/'policy_trajectory.json',ep)
             result = {'episode_index':task['episode_index'], 'regime':task['regime'],
-                'frames':len(rows),'valid_windows':len(index),'actions':STEPS,
+                'frames':len(rows),'valid_windows':len(index),'actions':steps,
                 'dataset_path':str(output/'dataset.npz'), 'dataset_sha256':file_sha256(output/'dataset.npz'),
                 'final_error_um':ep['final_error_mm']*1000,
                 'hold_frames':int(a['hold'].sum()), 'window_diagnostics':diagnostics,
@@ -334,7 +335,7 @@ def collect(manifest):
     (DATA/'data').mkdir(exist_ok=True)
     results=pool({'collection':{'factory':__name__+':CollectionWorker',
         'spec':{'identity':manifest['identity'],'checkpoint_sha256':file_sha256(OLD),
-                'quality':QUALITY,'steps':STEPS},'tasks':manifest['collection_tasks']}},DATA/'shards')
+                'quality':QUALITY,'steps_by_regime':COLLECTION_STEPS},'tasks':manifest['collection_tasks']}},DATA/'shards')
     if len(results)!=60:
         raise ValueError('Requires60 completed trajectories')
     blocks,images,episodes,audit_entries=[],[],[],[]

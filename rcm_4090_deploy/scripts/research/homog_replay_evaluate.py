@@ -1,4 +1,4 @@
-"""Matched fixed-budget evaluation for the user-authorized 600-step workflow."""
+"""Matched1600-step full-approach evaluation, independent of near collection budgets."""
 from __future__ import annotations
 
 from pathlib import Path
@@ -98,7 +98,7 @@ def evaluate(checkpoint, samples, controller, indices, destination, manifest):
     if [r['episode_index'] for r in rows] != list(indices):
         raise ValueError('Evaluation target coverage mismatch')
     result = {'status': 'completed', 'protocol': spec, **aggregate(rows),
-              'metric_scope': 'Matched600-step development fast5/dev20; not comparable to1600-step endpoints'}
+              'metric_scope': 'Matched1600-step full-approach development fast5/dev20; near collection separately600steps'}
     for row in rows:
         write_json(destination / f"E{row['episode_index']:02d}.json", row)
     write_json(destination / 'summary.json', result)

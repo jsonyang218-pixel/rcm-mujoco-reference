@@ -121,3 +121,29 @@ batch16、8%新数据与92%原始完整轨迹、4×1000批次。32GB主存下保
 
 `prepare_teacher_intent_repair` 和 `scale_homog_replay` 是历史版本准备工具，本轮不运行。
 全部wall-clock上限继续为None，物理通信看门狗保留。正式运行只启动一次新GNOME终端。
+
+## 2026-11-23 用户修正：20mm保持1600步、12路并行
+
+用户明确要求“20mm就继续维持1600步骤,但是12路并行”。本节取代上一节全程600步预算：
+
+- T1远距离接近：起点仍为目标外20mm，每条1600动作。
+- T2近目标纠偏：每条600动作。
+- T3近目标保持：每条600动作，第400动作起保留200帧显式保持，测量误差仍须<5µm。
+- 所有采集、审计和评估池仍请求12路；资源门禁与单CUDA/AMP训练器不变。
+- 新旧模型的完整fast5及条件dev20评估恢复1600动作，末段漂移恢复1000→1600。
+
+原600全程版本在0/60完成、尚未训练时因终端SIGHUP中断，其片段不作完整数据复用。
+旧 `intent_v3` 的20条1600步T1可在全部文件哈希、任务/种子/初态/资产、物理及模型身份
+相同，并且将新版按阶段取步数专化为T1后执行AST与原版完全一致时独立复制复用。
+不截断旧轨迹，不复用旧T2/T3，不改写任何来源凭据；重新采集40条600步T2/T3。
+预检增加20mm接近与最短连续训练窗口的最低步数检查，防止再次把T1缩成600步。
+训练仍为4×1000批次、batch16、8%新回放与92%原始完整轨迹，门禁及可选分支不变。
+
+- 工作流：`runs/20261123/homog_clean_workflow_mixed_1600_600_12_v5/`。
+- 数据：`data/homog_clean_replay_20261123_mixed_1600_600_12_v1/`。
+- 权重：`outputs/homog_clean_replay_20261123_mixed_1600_600_12_v1/`。
+- 变更快照：`runs/20261123/homog_mixed_1600_600_12_amendment_v1/`。
+- 准备：`python -m scripts.tools.prepare_homog_mixed_budget --output-dir runs/20261123/homog_clean_workflow_mixed_1600_600_12_v5`。
+- 启动：`python -m scripts.research.homog_replay_pipeline launch --output-dir runs/20261123/homog_clean_workflow_mixed_1600_600_12_v5`。
+
+新目录、一次GNOME启动、无后台回退、启动后不轮询。全部wall-clock上限保持None。

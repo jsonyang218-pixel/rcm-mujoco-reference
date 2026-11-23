@@ -1,0 +1,20 @@
+{
+  "timestamp": "2026-11-23T18:30:15.124719+08:00",
+  "authorization": "20mm就继续维持1600步骤,但是12路并行",
+  "steps_by_regime": {
+    "T1": 1600,
+    "T2": 600,
+    "T3": 600
+  },
+  "evaluation_steps": 1600,
+  "late_drift_steps": [
+    1000,
+    1600
+  ],
+  "T3_hold_start": 400,
+  "T3_hold_frames": 200,
+  "workers": 12,
+  "training_batches": 4000,
+  "reuse": "Only complete byte-verified1600stepT1 with execution AST and physics/input compatibility",
+  "old_status": "intent_600_12_v4 interrupted bySIGHUP duringstage1;0/60complete;no training"
+}
