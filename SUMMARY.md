@@ -1,54 +1,15 @@
-# A-axis flip repair — 2026-11-23
+# 同源新渲染近目标回放 — 2026-11-23
 
-流程状态：completed_with_conditional_skips。
+流程状态：preflight_passed_not_started。
 
-基点 `dad76c522f7e74f3a86b56d41f6c89488ae878ff`；独立分支 `fix/a-axis-flip-20261123`。
+基点 `71040dd33a48644da662dc92ad28053a2a326871`；独立分支 `feature/clean-render-homog-replay-20261123`。
 
-所有阶段、训练、单集和初始化均无 wall-clock 超时。评估不以 0.35 µm 停机。
+全部阶段、训练、初始化及单episode均无wall-clock时长限制；0.35µm只用于诊断，不提前停止。
 
-## audit
+92%池仅使用原始episode0–838完整有效轨迹窗口，排除全部Plan-2窗口；8%为本轮同源新包。
 
-```json
-{
-  "status": "completed",
-  "selected_branch": "A"
-}
-```
+结构化报告见 `rcm_4090_deploy/github_reports/homog_20261123_s*/`。
 
-## phase2
+权重、优化器断点及原始纠偏RGB保留本机；发布路径/大小/SHA256清单。代码、配置、日志及结构化证据上传GitHub。
 
-```json
-{
-  "status": "completed"
-}
-```
-
-## phase3
-
-```json
-{
-  "status": "completed",
-  "direction_gate_passed": false,
-  "best_combination": "V0_step4000",
-  "dev20_gate_passed": false
-}
-```
-
-## phase4
-
-```json
-{
-  "status": "skipped",
-  "reason": "Phase3 finalmean<35um and late drift<15um gate failed"
-}
-```
-
-Phase3 最优终值均值 71.861782 µm；最小误差均值 52.931130 µm；末段带符号漂移 -23.270349 µm，绝对漂移均值 34.106923 µm。
-
-严格成功 0/5。流程完成、指标改善、严格成功分别报告。
-
-报告见 `rcm_4090_deploy/github_reports/` 对应 audit/phase2/phase3/phase4 目录。
-
-训练权重与原始纠偏 RGB 图像保留本机，发布清单登记路径、大小和 SHA256；GitHub 保留代码、配置、日志、结构化审计和逐集评估证据。
-
-软件/MuJoCo 仿真结果，不代表临床精度或硬件就绪。
+仅验证软件与MuJoCo仿真，不代表临床精度或硬件就绪。
