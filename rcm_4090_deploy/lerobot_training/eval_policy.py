@@ -897,6 +897,7 @@ class PolicyEvaluator:
         start_error_mm=None,
         stagnation_steps=0,
         progress_every=0,
+        stop_on_success=True,
     ):
         """
         评估单个 episode
@@ -934,7 +935,7 @@ class PolicyEvaluator:
             raise ValueError("action limits must be positive")
         if not np.isfinite(float(early_stop_error_mm)) or early_stop_error_mm <= 0:
             raise ValueError("early_stop_error_mm must be finite and positive")
-        if int(max_consecutive_safety_limited) < 1:
+        if max_consecutive_safety_limited is not None and int(max_consecutive_safety_limited) < 1:
             raise ValueError("max_consecutive_safety_limited must be positive")
         settled_velocity_limit = np.asarray(
             settled_velocity_deg_deg_mm_per_s,
@@ -1060,7 +1061,7 @@ class PolicyEvaluator:
                 final_terminal_frame_pass,
                 required_consecutive,
             )
-            if success:
+            if success and stop_on_success:
                 print(
                     f"  成功! 步数: {step}, 最终误差: {error:.3f} mm, "
                     "编码器真停稳"
@@ -1133,7 +1134,8 @@ class PolicyEvaluator:
                           'raw_action_deg_deg_mm': trajectory['raw_actions'][-1],
                           'accepted_action_deg_deg_mm': applied_action.tolist(),
                           'motor_record': motor.last_record})
-            if safety_limited_streak >= int(max_consecutive_safety_limited):
+            if (max_consecutive_safety_limited is not None
+                    and safety_limited_streak >= int(max_consecutive_safety_limited)):
                 early_stop_reason = (
                     f"SAFETY_LIMITED_{int(max_consecutive_safety_limited)}_STEPS"
                 )
@@ -1150,6 +1152,15 @@ class PolicyEvaluator:
             np.asarray(motor.actual_velocity, dtype=np.float64)
             * TASK_TO_DEG_DEG_MM
         )
+
+        if not stop_on_success:
+            # Fixed-horizon evaluation includes the final post-action state.
+            final_low_speed = bool(np.all(np.abs(final_velocity) <= settled_velocity_limit))
+            final_encoder_settled = bool(motor.settled())
+            final_terminal_frame_pass = terminal_success_frame(
+                final_error, error_threshold_mm, final_encoder_settled)
+            consecutive_success, success = advance_terminal_success_streak(
+                consecutive_success, final_terminal_frame_pass, required_consecutive)
 
         result = {
             'success': success,
@@ -1215,6 +1226,7 @@ class PolicyEvaluator:
         target_end=None,
         start_error_mm=None,
         progress_every=0,
+        stop_on_success=True,
     ):
         """
         评估多个 episodes
@@ -1302,6 +1314,7 @@ class PolicyEvaluator:
                     sensor=sensor,
                     start_error_mm=start_error_mm,
                     progress_every=progress_every,
+                    stop_on_success=stop_on_success,
                 )
                 result['episode_index'] = ep_idx
                 result['target_id'] = (
@@ -1386,6 +1399,7 @@ class PolicyEvaluator:
                     'MotorExecution.settled_frames'
                 ),
                 'success_error_threshold_mm': error_threshold_mm,
+                **({'stop_on_success': False} if not stop_on_success else {}),
                 'success_error_threshold_um': error_threshold_mm * 1000.0,
                 'required_consecutive_success_frames': (
                     TERMINAL_SETTLE_FRAMES

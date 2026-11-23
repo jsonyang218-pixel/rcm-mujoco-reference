@@ -1,0 +1,61 @@
+{
+  "status": "passed",
+  "syntax_files": 9,
+  "syntax_paths": [
+    "scripts/research/a_axis_flip_audit.py",
+    "scripts/research/a_axis_flip_common.py",
+    "scripts/research/a_axis_flip_pipeline.py",
+    "scripts/research/a_axis_flip_publish.py",
+    "scripts/research/a_axis_flip_replay.py",
+    "scripts/research/a_axis_flip_train.py",
+    "lerobot_training/eval_policy.py",
+    "scripts/research/gpu_episode_pool.py",
+    "scripts/verification/verify_a_axis_flip.py"
+  ],
+  "regression": {
+    "status": "passed",
+    "tests": 12,
+    "failures": 0,
+    "errors": 0,
+    "CPU_reason": "Small deterministic contract fixtures and real integer-handle backend regression; no model training/inference or rendering. Production uses CUDA/NVIDIA EGL."
+  },
+  "preflight": {
+    "status": "passed",
+    "gpu": {
+      "device": "NVIDIA GeForce RTX 4090",
+      "total_memory_bytes": 50857050112,
+      "python": "3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]",
+      "executable": "/home/him1/mujoco_bc/rcm_4090_deploy/.venv/bin/python"
+    },
+    "egl": {
+      "vendor": "NVIDIA Corporation",
+      "renderer": "NVIDIA GeForce RTX 4090/PCIe/SSE2"
+    },
+    "architectures": {
+      "/home/him1/mujoco_bc/rcm_4090_deploy/outputs/overnight_c_fix_symlog_081234/task2_train/step_004000.pth": {
+        "epoch": 3,
+        "n_obs_steps": 2,
+        "n_action_steps": 16,
+        "parallel32_sequential32_max_abs": 4.062894731760025e-08
+      },
+      "/home/him1/mujoco_bc/rcm_4090_deploy/outputs/clean_oct_cbias_20261121_resume_v2/step_002000.pth": {
+        "epoch": 1,
+        "n_obs_steps": 2,
+        "n_action_steps": 16,
+        "parallel32_sequential32_max_abs": 4.5925844460725784e-08
+      }
+    },
+    "all_near_source_frames": 107343,
+    "collection_trajectories": 50,
+    "no_wall_clock_limits": true,
+    "manifest_sha256": "39580fe0f633a91c639b0e3f3232bbe3fff0fd7665248be6b69ecf44189ad83a"
+  },
+  "prior_publication_guard": {
+    "status": "failed_precommit_guard",
+    "reason": "Pre-existing local TEST_LOG diverges from base published history; no commit or push created. Both byte histories preserved by explicit additive publication merge.",
+    "branch_head_unchanged": "dad76c522f7e74f3a86b56d41f6c89488ae878ff",
+    "prior_preflight_superseded": true,
+    "next_workflow": "runs/20261123/a_axis_flip_workflow_v4"
+  },
+  "scope": "Preflight/contract verification only; no audit, collection, training or rollout accuracy result yet."
+}

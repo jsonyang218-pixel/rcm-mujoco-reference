@@ -115,9 +115,11 @@ def resources():
 
 def run_pool(groups, output_dir, *, workers=4, max_workers=8, timeout_s=600,
              stage_timeout_s=2400, resume=False, initializer_timeout_s=120,
-             execution_timeout_s=None):
+             execution_timeout_s=None, snapshot_every=None):
     """Groups contain factory/spec/tasks; no task is retried within a run."""
-    if not groups or not 1 <= workers <= max_workers <= 8 or min(timeout_s, stage_timeout_s) <= 0:
+    if (not groups or not 1 <= workers <= max_workers <= 8
+            or any(value is not None and value <= 0
+                   for value in (timeout_s, stage_timeout_s, initializer_timeout_s, execution_timeout_s))):
         raise ValueError("invalid pool size or deadline")
     output = Path(output_dir).resolve()
     if output.exists() and not resume:
@@ -126,8 +128,14 @@ def run_pool(groups, output_dir, *, workers=4, max_workers=8, timeout_s=600,
     contract = {"groups": groups, "workers": workers, "max_workers": max_workers,
                 "timeout_s": timeout_s, "stage_timeout_s": stage_timeout_s,
                 "pool_sha256": file_sha256(__file__)}
+    if timeout_s is None or stage_timeout_s is None or snapshot_every is not None:
+        contract.update(initializer_timeout_s=initializer_timeout_s,
+                        execution_timeout_s=execution_timeout_s, snapshot_every=snapshot_every)
+    if snapshot_every is not None and (not isinstance(snapshot_every, int) or snapshot_every < 1):
+        raise ValueError("snapshot_every must be a positive integer")
     contract_sha = signature(contract)
-    effective_budget = min(stage_timeout_s, execution_timeout_s) if execution_timeout_s is not None else stage_timeout_s
+    budgets = [v for v in (stage_timeout_s, execution_timeout_s) if v is not None]
+    effective_budget = min(budgets) if budgets else None
     contract_path = output / "contract.json"
     if contract_path.exists():
         if json.loads(contract_path.read_text()) != contract:
@@ -191,7 +199,7 @@ def run_pool(groups, output_dir, *, workers=4, max_workers=8, timeout_s=600,
     try:
         while any(queue.values()) or any(w["active"] or not w["ready"] for w in running):
             now = time.monotonic()
-            if now - started >= effective_budget:
+            if effective_budget is not None and now - started >= effective_budget:
                 raise TimeoutError(f"stage budget {effective_budget}s exceeded")
             busy = len(running)
             desired = workers if last_scaled is None else last_scaled
@@ -222,10 +230,12 @@ def run_pool(groups, output_dir, *, workers=4, max_workers=8, timeout_s=600,
                         item["active"] = None
                         record(key, "completed", folder, f"result={event['result']}; signature={expected}")
                         save()
+                        if snapshot_every and len(results) % snapshot_every == 0:
+                            write_json(output / f"snapshot_{len(results):03d}.json", state)
                 if not item["process"].is_alive():
                     raise RuntimeError(f"worker {item['process'].pid} exited without a complete shutdown")
                 if not item["ready"]:
-                    if now - item["started"] > initializer_timeout_s:
+                    if initializer_timeout_s is not None and now - item["started"] > initializer_timeout_s:
                         raise TimeoutError("worker initialization timed out")
                     continue
                 if item["active"] is None and queue[item["group"]]:
@@ -234,7 +244,7 @@ def run_pool(groups, output_dir, *, workers=4, max_workers=8, timeout_s=600,
                     folder.mkdir()
                     item["task_started"] = time.monotonic()
                     item["connection"].send({"task": task, "output_dir": str(folder)})
-                elif item["active"] and now - item["task_started"] > timeout_s:
+                elif item["active"] and timeout_s is not None and now - item["task_started"] > timeout_s:
                     raise TimeoutError(f"task {item['active'][0]} exceeded {timeout_s}s")
             if now >= next_heartbeat:
                 available = resources()
