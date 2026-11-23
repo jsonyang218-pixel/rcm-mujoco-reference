@@ -18,15 +18,18 @@ from scripts.research.gpu_episode_pool import run_pool, signature, write_json
 BASE = '71040dd33a48644da662dc92ad28053a2a326871'
 BRANCH = 'feature/clean-render-homog-replay-20261123'
 TASK = ROOT.parent / '规划5.txt'
-DATA = ROOT / 'data/homog_clean_replay_20261123_intent_v2'
-WEIGHTS = ROOT / 'outputs/homog_clean_replay_20261123_intent_v2'
-REPORTS = tuple(ROOT / f'github_reports/homog_intent_v2_20261123_s{i}_{s}' for i, s in (
-    (1, 'collection'), (2, 'train'), (3, 'fast5_1600'), (4, 'dev20')))
+DATA = ROOT / 'data/homog_clean_replay_20261123_intent_600_12_v1'
+WEIGHTS = ROOT / 'outputs/homog_clean_replay_20261123_intent_600_12_v1'
+REPORTS = tuple(ROOT / f'github_reports/homog_intent_600_12_v1_20261123_s{i}_{s}' for i, s in (
+    (1, 'collection'), (2, 'train'), (3, 'fast5_600'), (4, 'dev20')))
 PUB = ROOT / 'runs/20261123/homog_clean_git_v1'
-WORKFLOW = ROOT / 'runs/20261123/homog_clean_workflow_intent_v3'
+WORKFLOW = ROOT / 'runs/20261123/homog_clean_workflow_intent_600_12_v4'
 CAPS = np.array([.2, .1, .03])
-STEPS = 1600
-HOLD_START = 1400
+STEPS = 600
+HOLD_START = STEPS - 200
+WORKERS = 12
+LATE_DRIFT_START = 400
+ABSOLUTE_DRIFT_KEY = f'absolute_drift_{LATE_DRIFT_START}_to_{STEPS}_um'
 TEACHER_TOLERANCE_UM = .1
 
 
@@ -51,9 +54,10 @@ def identity():
 
 
 def pool(groups, output, *, snapshot_every=5):
-    return run_pool(groups, output, workers=8, max_workers=8,
+    return run_pool(groups, output, workers=WORKERS, max_workers=WORKERS,
         timeout_s=None, stage_timeout_s=None, initializer_timeout_s=None,
         execution_timeout_s=None, snapshot_every=snapshot_every,
+        admission_min_ram_mib=4096,
         resume=(Path(output) / 'contract.json').exists())
 
 
@@ -76,11 +80,11 @@ def original_indices(dataset):
 def direction_gate(snapshot, fast):
     return (snapshot['axis_reverse_snapshot_counts']['A'] <= 2
         and snapshot['first_order_toward_fraction'] > .70
-        and fast['absolute_drift_1000_to_1600_um'] < 15)
+        and fast[ABSOLUTE_DRIFT_KEY] < 15)
 
 
 def dev20_gate(best):
-    return best['final_mean_um'] < 35 and best['absolute_drift_1000_to_1600_um'] < 15
+    return best['final_mean_um'] < 35 and best[ABSOLUTE_DRIFT_KEY] < 15
 
 
 def quality_gate(audit):

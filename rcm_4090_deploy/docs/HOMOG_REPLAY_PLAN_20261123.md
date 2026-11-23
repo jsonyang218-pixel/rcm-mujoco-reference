@@ -93,3 +93,31 @@ T1继续由旧学生feedback执行，不启用教师目标累积。导入已有2
 - 正式启动：`python -m scripts.research.homog_replay_pipeline launch --output-dir runs/20261123/homog_clean_workflow_intent_v3`。
 
 正式启动仍只新开一次GNOME Terminal，无后台回退；启动后不等待、不轮询。
+
+## 2026-11-23 用户追加：600步骤、12路并行
+
+用户明确要求“600步骤,12路并行”。本节取代上一版的1600步与8路预算。
+旧 `intent_v3` 在采集阶段受控中断，20条已完成T1及未完成专家片段保留，未开始训练。
+本轮在新目录重新采集全部60条600步轨迹，不截断或混入旧1600步轨迹。
+目标、种子、初态、旧模型初始化、渲染、教师修复、监督标签及数据质量门禁保持原样。
+T3前400步运动，最后200步显式保持，仍要求保持段测量误差<5µm。
+
+采集、审计和闭环池均请求12路CUDA/NVIDIA EGL工作进程；训练保持单CUDA/AMP训练器、
+batch16、8%新数据与92%原始完整轨迹、4×1000批次。32GB主存下保留4GiB可用主存
+准入余量和10GiB显存准入余量；资源不足记录失败，不静默缩并行、不自行重试。
+调度器新增12路上限，其他调用的默认并行数与10GiB主存余量不变。
+
+新旧模型均重新执行相同600步fast5；原快筛后条件dev20与可选分支保留。
+末段漂移改为最终第600动作后误差与第400动作前误差之差，绝对均值门禁仍<15µm。
+600步终值只与本轮同协议基线配对，不直接当作1600步误差或长时稳定性结果。
+冻结的9状态×32种子方向检查仍使用其原始状态快照，快照编号不代表本轮执行步数。
+
+- 工作流：`runs/20261123/homog_clean_workflow_intent_600_12_v4/`。
+- 数据：`data/homog_clean_replay_20261123_intent_600_12_v1/`。
+- 权重：`outputs/homog_clean_replay_20261123_intent_600_12_v1/`。
+- 报告：`github_reports/homog_intent_600_12_v1_20261123_s{1..4}_*/`。
+- 变更及旧代码快照：`runs/20261123/homog_600_12_amendment_v1/`。
+- 启动：`python -m scripts.research.homog_replay_pipeline launch --output-dir runs/20261123/homog_clean_workflow_intent_600_12_v4`。
+
+`prepare_teacher_intent_repair` 和 `scale_homog_replay` 是历史版本准备工具，本轮不运行。
+全部wall-clock上限继续为None，物理通信看门狗保留。正式运行只启动一次新GNOME终端。

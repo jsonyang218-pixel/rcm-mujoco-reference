@@ -17,9 +17,9 @@ import numpy as np
 
 from lerobot_training.navigation_overlay import file_sha256
 from scripts.research.homog_replay_common import (
-    BASE, BRANCH, CAPS, DATA, FAST5, HOLD_START, OLD, PUB, QUALITY, REPORTS,
+    ABSOLUTE_DRIFT_KEY, BASE, BRANCH, CAPS, DATA, FAST5, HOLD_START, LATE_DRIFT_START, OLD, PUB, QUALITY, REPORTS,
     ROOT, SOURCE_DATA, STEPS, TARGETS, TASK, TEACHER_TOLERANCE_UM, UNIT, VAL,
-    WEIGHTS, check_identity, dev20_gate, direction_gate, env_command, gpu_check,
+    WEIGHTS, WORKERS, check_identity, dev20_gate, direction_gate, env_command, gpu_check,
     identity, make_teacher, pool, read, record, signature, write_json,
 )
 
@@ -30,8 +30,9 @@ def card():
     return {'schema':1,'task_file':str(TASK),'task_sha256':file_sha256(TASK),
         'base':BASE,'branch':BRANCH,
         'hypothesis':'Same-observation RGB/OCT/zero-velocity ABC replay reduces direction bias and final error',
-        'main_change':'60 same-render trajectories at8%; T2/T3 bounded fractional teacher intent repair; frozen model architecture/statistics',
+        'main_change':'60 fresh same-render600-step trajectories at8%;12GPU workers; bounded fractional teacher intent; frozen model architecture/statistics',
         'repair_authorization':'2026-11-23 user: 修改这个问题; repair the diagnosed integer-handle deadzone',
+        'budget_authorization':'2026-11-23 user:600步骤,12路并行; applies to collection and matched closed-loop evaluation; training remains4000batches',
         'original_pool':'Original episodes0-838 of merged dataset, full valid trajectories; no Plan-2 windows or old overlays',
         'data_source':str(SOURCE_DATA),'validation':str(VAL),'initial_checkpoint':str(OLD),
         'training':{'epochs':4,'batches_per_epoch':1000,'batch_size':16,
@@ -43,13 +44,15 @@ def card():
             'label':'Zero-velocity geometry pre-acceleration expectation, capped at[.2deg,.1deg,.03mm] per50ms',
             'expert_execution':'StrictRGBD geometry teacher with actual previous velocity; T2/T3 bounded fractional intent committed only after accepted commands',
             'hold_execution':'Discard fractional intent on each explicit hold tick; command actual feedback pose without bypassing motor dynamics',
-            'reuse':'Only complete byte-verified T1 trajectories with effective AST and unchanged asset/physics/scene compatibility; recollect all40 T2/T3',
+            'reuse':'No1600-step trajectory reuse or truncation; recollect all60trajectories at600steps in a new destination',
             'T2_sign_balance':'10 antithetic ABC sign pairs over20 isolated targets'},
         'quality_gates':{'random_frames':200,'oct_truth_median_um_lt':.2,
             'all_axes_reverse_fraction_lt':.02,'RGB_OCT_render_provenance_mismatch':False,
             'valid_window_contract_pass_fraction':1.},
         'evaluation':{'tier':'user_authorized_fast5_then_conditional_dev20','fast5':list(FAST5),
-            'seeds':[42+i for i in FAST5],'steps':1600,'control_period_s':.05,
+            'seeds':[42+i for i in FAST5],'steps':STEPS,'control_period_s':.05,
+            'late_drift_start':LATE_DRIFT_START,
+            'late_drift_definition':'Final post600-action error minus pre-action trace[400]; absolute mean gate<15um',
             'driver':'g10','quality':QUALITY,'flow_steps':4,'stop_on_success':False,
             'strict_success':'Diagnostic only, <0.35um and3 encoder-settled frames',
             'baseline':'Fresh task2_step4000 fast5 with identical current code/scene/protocol',
@@ -60,7 +63,9 @@ def card():
             'teacher_context_um':1.70,'teacher_context':'Historical approximate reference, not a fresh matched baseline'},
         'budgets':dict.fromkeys(('collection_timeout_s','training_timeout_s','episode_timeout_s',
                                 'stage_timeout_s','initializer_timeout_s'),None),
-        'gpu_parallelism':{'workers':8,'max_workers':8,'training':'One CUDA/AMP trainer, original batch16'},
+        'gpu_parallelism':{'workers':WORKERS,'max_workers':WORKERS,
+            'admission_min_gpu_free_mib':10240,'admission_min_ram_available_mib':4096,
+            'training':'One CUDA/AMP trainer, original batch16'},
         'paths':{'dataset':str(DATA),'checkpoints':str(WEIGHTS),
             'reports':[str(p) for p in REPORTS]},
         'resume':'Only complete matching per-episode receipts reused; incomplete shards archived; training state every100 batches',
@@ -192,7 +197,7 @@ def plots(result,destination):
     for r in rows:
         ep=read(r['result_path'])['episodes'][0]
         errors=np.r_[np.asarray(ep['trajectory']['errors'])*1000,r['final_error_um']]
-        ax.plot(np.arange(1601),errors,label=f"E{r['episode_index']:02d}")
+        ax.plot(np.arange(len(errors)),errors,label=f"E{r['episode_index']:02d}")
     ax.set(xlabel='Control step (50 ms)',ylabel='Tip error (um)',yscale='log')
     ax.legend(ncol=5,fontsize=8); fig.tight_layout()
     fig.savefig(destination/'error_curves_all.png',dpi=150); plt.close(fig)
@@ -255,15 +260,15 @@ def plots(result,destination):
 
 
 def evaluate(checkpoint,samples,controller,indices,destination,manifest):
-    from scripts.research.a_axis_flip_pipeline import evaluate as fixed_evaluate
+    from scripts.research.homog_replay_evaluate import evaluate as fixed_evaluate
     result=fixed_evaluate(checkpoint,samples,controller,indices,destination,manifest)
     plots(result,destination)
     result['hit_rates']={f'le_{t}_um':result[f'final_hits_le_{t}_um']/len(indices) for t in (5,10,30)}
     write_json(destination/'summary.json',result)
-    record('paired_fixed1600_evaluation','completed',destination,
+    record(f'paired_fixed{STEPS}_evaluation','completed',destination,
         {'checkpoint':str(checkpoint),'target_split':str(TARGETS),'indices':list(indices),
-         'seeds':[42+i for i in indices],'steps':1600,
-         **{k:result[k] for k in ('final_mean_um','min_mean_um','absolute_drift_1000_to_1600_um','strict_success_count')}})
+         'seeds':[42+i for i in indices],'steps':STEPS,
+         **{k:result[k] for k in ('final_mean_um','min_mean_um',ABSOLUTE_DRIFT_KEY,'strict_success_count')}})
     return result
 
 
@@ -321,7 +326,7 @@ def summary(output,stages,status):
     if 'stage3' in stages and stages['stage3']['status']=='completed':
         s=stages['stage3'];b=s['best']
         lines += [f"配对原模型终值均值：{s['baseline']['final_mean_um']:.6f}µm；本轮最优：{b['final_mean_um']:.6f}µm。",'',
-            f"最小误差均值：{b['min_mean_um']:.6f}µm；1000→1600步绝对漂移均值：{b['absolute_drift_1000_to_1600_um']:.6f}µm。",'',
+            f"最小误差均值：{b['min_mean_um']:.6f}µm；{LATE_DRIFT_START}→{STEPS}步绝对漂移均值：{b[ABSOLUTE_DRIFT_KEY]:.6f}µm。",'',
             f"严格成功：{b['strict_success_count']}/{b['completed_targets']}。流程完成、指标改善、严格成功分别报告。",'']
     lines += ['结构化报告目录：'+', '.join(f'`{p.relative_to(ROOT)}`' for p in REPORTS)+'。','',
         '权重、优化器断点及原始纠偏RGB保留本机；发布路径/大小/SHA256清单。代码、配置、日志及结构化证据上传GitHub。','',
@@ -332,7 +337,7 @@ def summary(output,stages,status):
 
 
 def run(output):
-    # Scope the eight-worker setting to this authorized workflow without
+    # Scope the authorized worker setting to this workflow without
     # rewriting the older audit/evaluation modules or their frozen outputs.
     from scripts.research import a_axis_flip_audit, a_axis_flip_pipeline
     a_axis_flip_audit.pool = a_axis_flip_pipeline.pool = pool

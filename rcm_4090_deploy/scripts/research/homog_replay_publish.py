@@ -37,6 +37,7 @@ def publication_files(output):
     files = {}
     sources = list((ROOT/'scripts/research').glob('homog_replay_*.py'))
     sources += [ROOT/'scripts/verification/verify_homog_replay.py', ROOT/'TEST_LOG.md',
+                ROOT/'scripts/research/gpu_episode_pool.py',
                 ROOT/'scripts/verification/verify_homog_teacher_intent.py',
                 ROOT/'scripts/verification/diagnose_homog_plateau.py',
                 ROOT/'scripts/tools/prepare_teacher_intent_repair.py',

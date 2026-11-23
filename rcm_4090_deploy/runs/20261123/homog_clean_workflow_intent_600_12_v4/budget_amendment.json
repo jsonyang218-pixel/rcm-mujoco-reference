@@ -1,0 +1,20 @@
+{
+  "timestamp": "2026-11-23T18:09:39.540518+08:00",
+  "authorization": "600步骤,12路并行",
+  "collection_steps": 600,
+  "evaluation_steps": 600,
+  "workers": 12,
+  "T3_hold_start": 400,
+  "T3_hold_frames": 200,
+  "late_drift_steps": [
+    400,
+    600
+  ],
+  "late_drift_threshold_um": 15,
+  "training_batches": 4000,
+  "reuse_old_1600_step_trajectories": false,
+  "targets_seeds_checkpoint_render_labels_unchanged": true,
+  "all_wall_clock_limits": null,
+  "old_workflow": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261123/homog_clean_workflow_intent_v3",
+  "new_workflow": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261123/homog_clean_workflow_intent_600_12_v4"
+}

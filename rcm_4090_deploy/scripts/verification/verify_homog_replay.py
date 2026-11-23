@@ -11,6 +11,7 @@ from unittest.mock import patch
 import numpy as np
 
 from scripts.research.homog_replay_common import (
+    ABSOLUTE_DRIFT_KEY, HOLD_START, LATE_DRIFT_START, STEPS, WORKERS,
     direction_gate,dev20_gate,quality_gate,original_indices,pool,record,write_json,
 )
 from scripts.research.homog_replay_collect import axis_audit
@@ -37,14 +38,14 @@ class HomogReplayTests(unittest.TestCase):
 
     def test_absolute_not_signed_drift_controls_gates(self):
         snap={'axis_reverse_snapshot_counts':{'A':2},'first_order_toward_fraction':.701}
-        fast={'final_mean_um':34.99,'drift_1000_to_1600_um':-100,
-              'absolute_drift_1000_to_1600_um':100}
+        fast={'final_mean_um':34.99,'drift_400_to_600_um':-100,
+              ABSOLUTE_DRIFT_KEY:100}
         self.assertFalse(direction_gate(snap,fast));self.assertFalse(dev20_gate(fast))
-        fast['absolute_drift_1000_to_1600_um']=14.99
+        fast[ABSOLUTE_DRIFT_KEY]=14.99
         self.assertTrue(direction_gate(snap,fast));self.assertTrue(dev20_gate(fast))
         self.assertFalse(direction_gate({**snap,'first_order_toward_fraction':.70},fast))
         self.assertFalse(dev20_gate({**fast,'final_mean_um':35}))
-        self.assertFalse(dev20_gate({**fast,'absolute_drift_1000_to_1600_um':15}))
+        self.assertFalse(dev20_gate({**fast,ABSOLUTE_DRIFT_KEY:15}))
 
     def test_original_pool_excludes_all_plan2(self):
         d=SimpleNamespace(valid_indices=[1,3,5,7],episode_indices=np.array([0,0,838,838,839,839,1038,1038]))
@@ -76,6 +77,43 @@ class HomogReplayTests(unittest.TestCase):
             for key in ('timeout_s','stage_timeout_s','initializer_timeout_s','execution_timeout_s'):
                 self.assertIsNone(kw[key])
             self.assertEqual(kw['snapshot_every'],5)
+            self.assertEqual((kw['workers'],kw['max_workers']),(12,12))
+            self.assertEqual(kw['admission_min_ram_mib'],4096)
+
+    def test_authorized_600_step_card_and_hold(self):
+        from scripts.research.homog_replay_pipeline import card
+        c=card()
+        self.assertEqual((STEPS,HOLD_START,LATE_DRIFT_START,WORKERS),(600,400,400,12))
+        self.assertEqual(c['collection']['steps_per_trajectory'],600)
+        self.assertEqual(c['collection']['T3_hold_frames'],200)
+        self.assertEqual(c['evaluation']['steps'],600)
+        self.assertEqual(c['training']['epochs']*c['training']['batches_per_epoch'],4000)
+        self.assertEqual(c['gpu_parallelism']['workers'],12)
+
+    def test_600_metrics_use_actual_post_action_final_and_new_drift(self):
+        from scripts.research.homog_replay_evaluate import episode_metrics,aggregate
+        errors=np.full(600,.020);errors[400]=.010
+        ep={'trajectory':{'actions':np.zeros((600,3)),'states':np.zeros((600,3)),
+            'errors':errors,'simulation_time_s':np.arange(600)*.05},
+            'motor_records':[{}]*600,'final_error_mm':.004,
+            'early_stop_reason':None,'success':False,
+            'terminal_success':{'encoder_settled_at_exit':True,'consecutive_frames_at_exit':3}}
+        row=episode_metrics(ep,2)
+        self.assertEqual(row['final_error_um'],4)
+        self.assertEqual(row[ABSOLUTE_DRIFT_KEY],6)
+        self.assertEqual(row['drift_400_to_600_um'],-6)
+        self.assertNotIn('absolute_drift_1000_to_1600_um',row)
+        self.assertEqual(aggregate([row])[ABSOLUTE_DRIFT_KEY],6)
+        ep['trajectory']['actions']=np.zeros((1600,3))
+        with self.assertRaises(ValueError):episode_metrics(ep,2)
+
+    def test_scheduler_accepts_12_and_rejects_13(self):
+        from scripts.research.gpu_episode_pool import run_pool
+        groups={'x':{'factory':'unused:Fixture','spec':{},'tasks':[]}}
+        run_pool(groups,OUTPUT/'twelve_worker_fixture',workers=12,max_workers=12,
+                 timeout_s=None,stage_timeout_s=None,initializer_timeout_s=None)
+        with self.assertRaises(ValueError):
+            run_pool(groups,OUTPUT/'thirteen_worker_fixture',workers=13,max_workers=13)
 
     def test_evidence_tamper_rejected_before_reuse(self):
         p=OUTPUT/'receipt_fixture';p.mkdir()

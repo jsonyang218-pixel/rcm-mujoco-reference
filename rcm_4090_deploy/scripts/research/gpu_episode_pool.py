@@ -115,9 +115,10 @@ def resources():
 
 def run_pool(groups, output_dir, *, workers=4, max_workers=8, timeout_s=600,
              stage_timeout_s=2400, resume=False, initializer_timeout_s=120,
-             execution_timeout_s=None, snapshot_every=None):
+             execution_timeout_s=None, snapshot_every=None, admission_min_ram_mib=10240):
     """Groups contain factory/spec/tasks; no task is retried within a run."""
-    if (not groups or not 1 <= workers <= max_workers <= 8
+    if (not groups or not 1 <= workers <= max_workers <= 12
+            or not isinstance(admission_min_ram_mib, int) or admission_min_ram_mib < 4096
             or any(value is not None and value <= 0
                    for value in (timeout_s, stage_timeout_s, initializer_timeout_s, execution_timeout_s))):
         raise ValueError("invalid pool size or deadline")
@@ -128,6 +129,8 @@ def run_pool(groups, output_dir, *, workers=4, max_workers=8, timeout_s=600,
     contract = {"groups": groups, "workers": workers, "max_workers": max_workers,
                 "timeout_s": timeout_s, "stage_timeout_s": stage_timeout_s,
                 "pool_sha256": file_sha256(__file__)}
+    if admission_min_ram_mib != 10240:
+        contract['admission_min_ram_mib'] = admission_min_ram_mib
     if timeout_s is None or stage_timeout_s is None or snapshot_every is not None:
         contract.update(initializer_timeout_s=initializer_timeout_s,
                         execution_timeout_s=execution_timeout_s, snapshot_every=snapshot_every)
@@ -206,7 +209,7 @@ def run_pool(groups, output_dir, *, workers=4, max_workers=8, timeout_s=600,
             if busy < min(desired, sum(len(q) for q in queue.values())):
                 group_id = max(queue, key=lambda key: len(queue[key]) / (1 + sum(w['group'] == key for w in running)))
                 available = resources()
-                if available['gpu_free_mib'] < 10240 or available['ram_available_mib'] < 10240:
+                if available['gpu_free_mib'] < 10240 or available['ram_available_mib'] < admission_min_ram_mib:
                     raise MemoryError(f"insufficient worker admission reserve: {available}")
                 spawn(group_id)
             for item in list(running):

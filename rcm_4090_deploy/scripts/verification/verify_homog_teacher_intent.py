@@ -10,7 +10,7 @@ import unittest
 import numpy as np
 
 from scripts.research.homog_replay_common import (
-    CAPS, OLD, QUALITY, ROOT, WORKFLOW, identity, make_teacher, read, record, write_json,
+    CAPS, HOLD_START, OLD, QUALITY, ROOT, WORKFLOW, identity, make_teacher, read, record, write_json,
 )
 from scripts.research.homog_replay_target import TeacherIntent, UNIT
 
@@ -157,7 +157,8 @@ def smoke(output):
     output.mkdir(parents=True, exist_ok=False)
     write_json(output / 'card.json', {'tasks': tasks, 'quality': QUALITY,
         'workers': 3, 'all_timeouts': None, 'identity': identity(),
-        'changed_hold_start_for_smoke': 80, 'production_hold_start': 1400})
+        'changed_hold_start_for_smoke': 80,
+        'production_hold_start': HOLD_START})
     results = run_pool({'smoke': {'factory': 'scripts.verification.verify_homog_teacher_intent:RecoverySmokeWorker',
         'spec': {'identity': identity()}, 'tasks': tasks}}, output / 'shards',
         workers=3, max_workers=3, timeout_s=None, stage_timeout_s=None,

@@ -1,0 +1,2248 @@
+{
+  "card": {
+    "schema": 1,
+    "task_file": "/home/him1/mujoco_bc/规划5.txt",
+    "task_sha256": "9ad479d5db0b54ececb6de746cd30e4bcb30d3422fb86a4e5a492c7fa24e74e5",
+    "base": "71040dd33a48644da662dc92ad28053a2a326871",
+    "branch": "feature/clean-render-homog-replay-20261123",
+    "hypothesis": "Same-observation RGB/OCT/zero-velocity ABC replay reduces direction bias and final error",
+    "main_change": "60 fresh same-render600-step trajectories at8%;12GPU workers; bounded fractional teacher intent; frozen model architecture/statistics",
+    "repair_authorization": "2026-11-23 user: 修改这个问题; repair the diagnosed integer-handle deadzone",
+    "budget_authorization": "2026-11-23 user:600步骤,12路并行; applies to collection and matched closed-loop evaluation; training remains4000batches",
+    "original_pool": "Original episodes0-838 of merged dataset, full valid trajectories; no Plan-2 windows or old overlays",
+    "data_source": "/home/him1/mujoco_bc/rcm_4090_deploy/data/plan2_plus_original_train_224_20261119",
+    "validation": "/home/him1/mujoco_bc/rcm_4090_deploy/data/lerobot_rcm_val_acthist_20261117_224",
+    "initial_checkpoint": "/home/him1/mujoco_bc/rcm_4090_deploy/outputs/overnight_c_fix_symlog_081234/task2_train/step_004000.pth",
+    "training": {
+      "epochs": 4,
+      "batches_per_epoch": 1000,
+      "batch_size": 16,
+      "dagger_repeat": 1,
+      "new_replay_ratio": 0.08,
+      "amp": true,
+      "backbone_lr": 1e-06,
+      "attention_lr": 1e-05,
+      "save_steps": [
+        1000,
+        2000,
+        3000,
+        4000
+      ]
+    },
+    "collection": {
+      "T1": 20,
+      "T2": 20,
+      "T3": 20,
+      "seeds": [
+        1000,
+        1001,
+        1002,
+        1003,
+        1004,
+        1005,
+        1006,
+        1007,
+        1008,
+        1009,
+        1010,
+        1011,
+        1012,
+        1013,
+        1014,
+        1015,
+        1016,
+        1017,
+        1018,
+        1019,
+        1020,
+        1021,
+        1022,
+        1023,
+        1024,
+        1025,
+        1026,
+        1027,
+        1028,
+        1029,
+        1030,
+        1031,
+        1032,
+        1033,
+        1034,
+        1035,
+        1036,
+        1037,
+        1038,
+        1039,
+        1040,
+        1041,
+        1042,
+        1043,
+        1044,
+        1045,
+        1046,
+        1047,
+        1048,
+        1049,
+        1050,
+        1051,
+        1052,
+        1053,
+        1054,
+        1055,
+        1056,
+        1057,
+        1058,
+        1059
+      ],
+      "steps_per_trajectory": 600,
+      "teacher_tolerance_um": 0.1,
+      "T3_hold_start": 400,
+      "T3_hold_frames": 200,
+      "label": "Zero-velocity geometry pre-acceleration expectation, capped at[.2deg,.1deg,.03mm] per50ms",
+      "expert_execution": "StrictRGBD geometry teacher with actual previous velocity; T2/T3 bounded fractional intent committed only after accepted commands",
+      "hold_execution": "Discard fractional intent on each explicit hold tick; command actual feedback pose without bypassing motor dynamics",
+      "reuse": "No1600-step trajectory reuse or truncation; recollect all60trajectories at600steps in a new destination",
+      "T2_sign_balance": "10 antithetic ABC sign pairs over20 isolated targets"
+    },
+    "quality_gates": {
+      "random_frames": 200,
+      "oct_truth_median_um_lt": 0.2,
+      "all_axes_reverse_fraction_lt": 0.02,
+      "RGB_OCT_render_provenance_mismatch": false,
+      "valid_window_contract_pass_fraction": 1.0
+    },
+    "evaluation": {
+      "tier": "user_authorized_fast5_then_conditional_dev20",
+      "fast5": [
+        0,
+        2,
+        6,
+        8,
+        10
+      ],
+      "seeds": [
+        42,
+        44,
+        48,
+        50,
+        52
+      ],
+      "steps": 600,
+      "control_period_s": 0.05,
+      "late_drift_start": 400,
+      "late_drift_definition": "Final post600-action error minus pre-action trace[400]; absolute mean gate<15um",
+      "driver": "g10",
+      "quality": {
+        "offsamples": 0,
+        "numslices": 112,
+        "numstacks": 64
+      },
+      "flow_steps": 4,
+      "stop_on_success": false,
+      "strict_success": "Diagnostic only, <0.35um and3 encoder-settled frames",
+      "baseline": "Fresh task2_step4000 fast5 with identical current code/scene/protocol",
+      "snapshot": "9 frozen dad76c5 states,32 explicit parallel CUDA seeds each",
+      "direction_gate": "A_reverse<=2/9 AND toward>70% AND absolute_late_drift<15um",
+      "optional_arms": "Selected V0 finalmean<paired old baseline OR all3 direction thresholds pass",
+      "dev20_gate": "Best trained combination finalmean<35um AND absolute_late_drift<15um",
+      "teacher_context_um": 1.7,
+      "teacher_context": "Historical approximate reference, not a fresh matched baseline"
+    },
+    "budgets": {
+      "collection_timeout_s": null,
+      "training_timeout_s": null,
+      "episode_timeout_s": null,
+      "stage_timeout_s": null,
+      "initializer_timeout_s": null
+    },
+    "gpu_parallelism": {
+      "workers": 12,
+      "max_workers": 12,
+      "admission_min_gpu_free_mib": 10240,
+      "admission_min_ram_available_mib": 4096,
+      "training": "One CUDA/AMP trainer, original batch16"
+    },
+    "paths": {
+      "dataset": "/home/him1/mujoco_bc/rcm_4090_deploy/data/homog_clean_replay_20261123_intent_600_12_v1",
+      "checkpoints": "/home/him1/mujoco_bc/rcm_4090_deploy/outputs/homog_clean_replay_20261123_intent_600_12_v1",
+      "reports": [
+        "/home/him1/mujoco_bc/rcm_4090_deploy/github_reports/homog_intent_600_12_v1_20261123_s1_collection",
+        "/home/him1/mujoco_bc/rcm_4090_deploy/github_reports/homog_intent_600_12_v1_20261123_s2_train",
+        "/home/him1/mujoco_bc/rcm_4090_deploy/github_reports/homog_intent_600_12_v1_20261123_s3_fast5_600",
+        "/home/him1/mujoco_bc/rcm_4090_deploy/github_reports/homog_intent_600_12_v1_20261123_s4_dev20"
+      ]
+    },
+    "resume": "Only complete matching per-episode receipts reused; incomplete shards archived; training state every100 batches",
+    "failure": "No automatic retry, parameter changes or dependent stages after failed gates",
+    "simulation_scope": "Software/MuJoCo only; no clinical accuracy or hardware readiness claim"
+  },
+  "assets_sha256": {
+    "/home/him1/mujoco_bc/规划5.txt": "9ad479d5db0b54ececb6de746cd30e4bcb30d3422fb86a4e5a492c7fa24e74e5",
+    "/home/him1/mujoco_bc/rcm_4090_deploy/outputs/overnight_c_fix_symlog_081234/task2_train/step_004000.pth": "185a6ef02caea4ea74ba752d67618d459c906450f5b315cd8010c3c5f1703f1b",
+    "/home/him1/mujoco_bc/rcm_4090_deploy/configs/v12_reachable_development_targets_0p35um.json": "fcc4872a9d5b58bb7158b36d3c0ab6d7452e4d8d747317dfb077b6e7bbc815c7",
+    "/home/him1/mujoco_bc/rcm_4090_deploy/data/plan2_plus_original_train_224_20261119/data/dataset.npz": "9d80523f519faf4e00bbaef3d30e29dec1401181f3dcddd438c5087c05eb54db",
+    "/home/him1/mujoco_bc/rcm_4090_deploy/data/plan2_plus_original_train_224_20261119/metadata.json": "7f02f265acadf965a9dc0de29b2058cfccc240ea39d06dc88050179d0ae2698d",
+    "/home/him1/mujoco_bc/rcm_4090_deploy/data/plan2_plus_original_train_224_20261119/data/image_paths.json": "6db352eef0414f57af2ae3ff55b9fa0aa7f93316e7cd21cbbb21f3b2aff13e7c",
+    "/home/him1/mujoco_bc/rcm_4090_deploy/data/lerobot_rcm_val_acthist_20261117_224/data/dataset.npz": "2b0760827c6d2a53dcf9c02ae589ad043b8de3156782ee0befed8ea475c32ec7",
+    "/home/him1/mujoco_bc/rcm_4090_deploy/data/lerobot_rcm_val_acthist_20261117_224/metadata.json": "9848559cfe28f768630c5468954fe569869379a34451cc3981ee24624cdbb33f",
+    "/home/him1/mujoco_bc/rcm_4090_deploy/data/lerobot_rcm_val_acthist_20261117_224/data/image_paths.json": "ffa7181a75b8831dc9ba699524a37d1b3ddd4b0338c024b545b2dd1a32b5fde9"
+  },
+  "identity": {
+    "code_sha256": "85461a582bb7a88332773b9832d93280d1beee9179caf88566a955b4de9c8188",
+    "scene_sha256": "265c927ef7e7ac71536963b3000ffb161b7ff7ac03bb86cdb8480ed988c17028",
+    "scripts/research/a_axis_flip_train.py": "8a05b7cdc21980ce68704726bab05d4012f735fd4e5ba3630e55e93cfae7aad5",
+    "scripts/research/a_axis_flip_replay.py": "dc5884144deb39daadc2e674abc343f6c4e18949ec30126f331d631d65dfde2e",
+    "scripts/research/a_axis_flip_audit.py": "e6c65c37656cde0b608c47a6ed4d799fc27dafe6d4abe3b1209c2abe4ca0929e",
+    "scripts/research/a_axis_flip_pipeline.py": "c813ef936b77b51014eca659c3a5ec0e5d6344d1c0308d02cb683628fb6870ee",
+    "scripts/research/a_axis_flip_publish.py": "be4a9fe1c3e6dc06f616381b26e7342d7448cf8feffabf82e96ee96d2503e081",
+    "scripts/research/a_axis_flip_common.py": "1a3ef56737f34e31e05a71566b54969dfafa3060a38ae6a8e44da83ecd29fab4",
+    "scripts/research/gpu_episode_pool.py": "323421d338664349811d6479cb03929e743509c900a8588f7dd3fa24f3153b19",
+    "scripts/research/clean_oct_workers.py": "1df09165778f9866b01fb6b8e020afbb839f284797c1ae497ab36216746a1650",
+    "lerobot_training/navigation_overlay.py": "3330474b01973ab121f55f341b7f6969a70bc6d546e5823b1160657e4cdf65a5",
+    "lerobot_training/eval_policy.py": "f7f3948ea6c81ebcf66063afd9d0eb99ae418c5b099052e48b1fd476f5de95f1",
+    "lerobot_training/dit_experience_replay.py": "8a3ef61fb52d7db77e402b13dcb9c7a5186c9dc5dfc2af85d1f0c3cef394c5c2",
+    "lerobot_training/dataset_contract.py": "942d43813b5083986eeca542f6b57c480e4db6a6e163dbb084ed86f3f0a4343a",
+    "configs/v12_reachable_development_targets_0p35um.json": "fcc4872a9d5b58bb7158b36d3c0ab6d7452e4d8d747317dfb077b6e7bbc815c7",
+    "scripts/research/homog_replay_common.py": "0882e94b098c8991866e9d9585b37159f93fb9cd399a9c73a22f923ccb17196c",
+    "scripts/research/homog_replay_collect.py": "ac29b4eca6372e138ee516f55659fd6a06b3963ea413c626843a6cc0005a97a8",
+    "scripts/research/homog_replay_pipeline.py": "2d1473d2986cea6ddc64d389cc430328a72402d295720d4b1bc544903c07a7af",
+    "scripts/research/homog_replay_train.py": "1567ad380a365f3b65e2dfc8d3c03eb85ef3b6e342f2e81e3e5e93eb01ea0386",
+    "scripts/research/homog_replay_target.py": "d90735c7b5b654d10dc303759971778129e4e79ac82c4392135d07731cdf3624",
+    "scripts/research/homog_replay_evaluate.py": "77fcd1091e3b5eee8201d318e680b89c7cdf7df6d5151c59eaf2b407a666880b",
+    "scripts/research/homog_replay_publish.py": "902e81e3cfc7e9915d27a73c521ec83390abdfbcbc5b62d957f76a13759726ff",
+    "scripts/verification/verify_homog_replay.py": "ded9145c004181bfdc13725e3a17c26c3a123e5af3bad97c620c9e2edacd8cb6",
+    "scripts/verification/verify_homog_teacher_intent.py": "9299c11aea213db9d94f7a21350fca9a8bb8a7063f1106e1a745ca96d720f815",
+    "scripts/tools/prepare_teacher_intent_repair.py": "8aee6669180605662797e4cf431d2fff22aef7e7f3c94605f0b8cfa58caf5715",
+    "rcm/fundus.py": "1432e337aecde1e60d65c63250cd773a7c8b150c90cb67b5bf2c0f3ae1befed3",
+    "rcm/visual_servo.py": "b217af0f60eb0a1de462d37dfa22a507911420a7b3cc9c4d899e012e89cbb507",
+    "lerobot_training/train_diffusion_policy.py": "e809558031ea6d1b1bd28904d5d101778831a50761c5b0d9f893943e5254a50c"
+  },
+  "collection_tasks": [
+    {
+      "id": "E00",
+      "episode_index": 0,
+      "seed": 1000,
+      "regime": "T1",
+      "target_robot_mm": [
+        -2.9145715868642417,
+        3.500590933970508,
+        23.260747266601655
+      ],
+      "target_world_mm": [
+        346.44465311529717,
+        -14.175323562226446,
+        371.6230485142667
+      ],
+      "initial_state_si": [
+        -0.12465036631563507,
+        0.09199647290791164,
+        -0.00029744258898063355
+      ],
+      "goal_state_si": [
+        -0.12465036631563507,
+        0.09199647290791164,
+        0.019702557411019367
+      ],
+      "initial_error_um": 20000.006499202016,
+      "abc_offset_sign": [
+        0,
+        0,
+        -1
+      ],
+      "min_development_distance_um": 554.1603488509037
+    },
+    {
+      "id": "E01",
+      "episode_index": 1,
+      "seed": 1001,
+      "regime": "T1",
+      "target_robot_mm": [
+        3.291658684758515,
+        5.902785124192877,
+        22.784999120103294
+      ],
+      "target_world_mm": [
+        348.51140867952637,
+        -7.9690932906036895,
+        372.9365913054092
+      ],
+      "initial_state_si": [
+        0.1434734213189467,
+        -0.010768597445141555,
+        -0.00023376188744952953
+      ],
+      "goal_state_si": [
+        0.1434734213189467,
+        -0.010768597445141555,
+        0.01976623811255047
+      ],
+      "initial_error_um": 19999.9951435138,
+      "abc_offset_sign": [
+        0,
+        0,
+        -1
+      ],
+      "min_development_distance_um": 737.0784043782667
+    },
+    {
+      "id": "E02",
+      "episode_index": 2,
+      "seed": 1002,
+      "regime": "T1",
+      "target_robot_mm": [
+        -2.5927684757554217,
+        8.557851290902008,
+        21.848269784619806
+      ],
+      "target_world_mm": [
+        350.6468931229377,
+        -13.853520451117625,
+        374.7714058435866
+      ],
+      "initial_state_si": [
+        -0.11811914871479384,
+        -0.1307307020003089,
+        -0.00039266724791648874
+      ],
+      "goal_state_si": [
+        -0.11811914871479384,
+        -0.1307307020003089,
+        0.01960733275208351
+      ],
+      "initial_error_um": 19999.998723578614,
+      "abc_offset_sign": [
+        0,
+        0,
+        -1
+      ],
+      "min_development_distance_um": 663.6561160858372
+    },
+    {
+      "id": "E03",
+      "episode_index": 3,
+      "seed": 1003,
+      "regime": "T1",
+      "target_robot_mm": [
+        -0.19954408864165005,
+        9.883938956872015,
+        21.28490881179359
+      ],
+      "target_world_mm": [
+        351.6788794285471,
+        -11.460296064003854,
+        375.77683527849297
+      ],
+      "initial_state_si": [
+        -0.009374634620670433,
+        -0.19449055520943187,
+        -0.0005313100009213916
+      ],
+      "goal_state_si": [
+        -0.009374634620670433,
+        -0.19449055520943187,
+        0.01946868999907861
+      ],
+      "initial_error_um": 20000.005666549107,
+      "abc_offset_sign": [
+        0,
+        0,
+        -1
+      ],
+      "min_development_distance_um": 1522.4832719141118
+    },
+    {
+      "id": "E04",
+      "episode_index": 4,
+      "seed": 1004,
+      "regime": "T1",
+      "target_robot_mm": [
+        3.5755270627825526,
+        8.975777858876803,
+        21.27648721849817
+      ],
+      "target_world_mm": [
+        350.8293353785031,
+        -7.685224912579652,
+        375.4557396382541
+      ],
+      "initial_state_si": [
+        0.16649493254015535,
+        -0.15402153319533451,
+        -0.0006325463452367258
+      ],
+      "goal_state_si": [
+        0.16649493254015535,
+        -0.15402153319533451,
+        0.019367453654763275
+      ],
+      "initial_error_um": 20000.002872128403,
+      "abc_offset_sign": [
+        0,
+        0,
+        -1
+      ],
+      "min_development_distance_um": 599.2610966825985
+    },
+    {
+      "id": "E05",
+      "episode_index": 5,
+      "seed": 1005,
+      "regime": "T1",
+      "target_robot_mm": [
+        4.551443348063433,
+        3.472798003112472,
+        22.724974717533044
+      ],
+      "target_world_mm": [
+        346.22468504656723,
+        -6.709308627298771,
+        372.11237327358344
+      ],
+      "initial_state_si": [
+        0.19766838965893346,
+        0.09149087383870652,
+        -0.0005649741106699656
+      ],
+      "goal_state_si": [
+        0.19766838965893346,
+        0.09149087383870652,
+        0.019435025889330035
+      ],
+      "initial_error_um": 19999.997285542468,
+      "abc_offset_sign": [
+        0,
+        0,
+        -1
+      ],
+      "min_development_distance_um": 464.47961656887156
+    },
+    {
+      "id": "E06",
+      "episode_index": 6,
+      "seed": 1006,
+      "regime": "T1",
+      "target_robot_mm": [
+        -3.4626330517235058,
+        3.1525271923585985,
+        23.118106443582676
+      ],
+      "target_world_mm": [
+        346.06855817893813,
+        -14.723385027085708,
+        371.629931207163
+      ],
+      "initial_state_si": [
+        -0.14867491156785947,
+        0.10617403664839323,
+        -0.00041239518547363935
+      ],
+      "goal_state_si": [
+        -0.14867491156785947,
+        0.10617403664839323,
+        0.01958760481452636
+      ],
+      "initial_error_um": 19999.997305441684,
+      "abc_offset_sign": [
+        0,
+        0,
+        -1
+      ],
+      "min_development_distance_um": 1014.2334521376064
+    },
+    {
+      "id": "E07",
+      "episode_index": 7,
+      "seed": 1007,
+      "regime": "T1",
+      "target_robot_mm": [
+        2.0342679863697524,
+        1.1422162412509254,
+        23.282284686732105
+      ],
+      "target_world_mm": [
+        344.25422170558517,
+        -9.226483988992452,
+        370.7487457686041
+      ],
+      "initial_state_si": [
+        0.08715273902279971,
+        0.19139262698048648,
+        -0.0006011178810570866
+      ],
+      "goal_state_si": [
+        0.08715273902279971,
+        0.19139262698048648,
+        0.019398882118942914
+      ],
+      "initial_error_um": 20000.000520295634,
+      "abc_offset_sign": [
+        0,
+        0,
+        -1
+      ],
+      "min_development_distance_um": 424.5531216017943
+    },
+    {
+      "id": "E08",
+      "episode_index": 8,
+      "seed": 1008,
+      "regime": "T1",
+      "target_robot_mm": [
+        1.8499841142211673,
+        1.3554987624884989,
+        23.348679817072366
+      ],
+      "target_world_mm": [
+        344.4770705745308,
+        -9.410767861141036,
+        370.7641122518718
+      ],
+      "initial_state_si": [
+        0.07906773892741385,
+        0.1824182634566756,
+        -0.0005389542577884862
+      ],
+      "goal_state_si": [
+        0.07906773892741385,
+        0.1824182634566756,
+        0.019461045742211514
+      ],
+      "initial_error_um": 20000.007589968187,
+      "abc_offset_sign": [
+        0,
+        0,
+        -1
+      ],
+      "min_development_distance_um": 591.2910591670109
+    },
+    {
+      "id": "E09",
+      "episode_index": 9,
+      "seed": 1009,
+      "regime": "T1",
+      "target_robot_mm": [
+        -2.364444118333535,
+        9.634641645315607,
+        21.18381099709724
+      ],
+      "target_world_mm": [
+        351.40989163182843,
+        -13.625196093695738,
+        375.7807701103925
+      ],
+      "initial_state_si": [
+        -0.1111555461469099,
+        -0.1842927621774238,
+        -0.0006083184874812846
+      ],
+      "goal_state_si": [
+        -0.1111555461469099,
+        -0.1842927621774238,
+        0.019391681512518716
+      ],
+      "initial_error_um": 20000.007379197526,
+      "abc_offset_sign": [
+        0,
+        0,
+        -1
+      ],
+      "min_development_distance_um": 650.615994620714
+    },
+    {
+      "id": "E10",
+      "episode_index": 10,
+      "seed": 1010,
+      "regime": "T1",
+      "target_robot_mm": [
+        -4.862757426268245,
+        4.415928680299467,
+        22.509728833347992
+      ],
+      "target_world_mm": [
+        347.02580943228605,
+        -16.123509401630447,
+        372.65461490193417
+      ],
+      "initial_state_si": [
+        -0.21275962432123083,
+        0.05077156407001466,
+        -0.0005514450755046245
+      ],
+      "goal_state_si": [
+        -0.21275962432123083,
+        0.05077156407001466,
+        0.019448554924495376
+      ],
+      "initial_error_um": 20000.00448942367,
+      "abc_offset_sign": [
+        0,
+        0,
+        -1
+      ],
+      "min_development_distance_um": 1115.8140707485875
+    },
+    {
+      "id": "E11",
+      "episode_index": 11,
+      "seed": 1011,
+      "regime": "T1",
+      "target_robot_mm": [
+        -4.1103381625929805,
+        3.8977592730881288,
+        22.870327346883617
+      ],
+      "target_world_mm": [
+        346.6734381342703,
+        -15.371090137955182,
+        372.13081599885345
+      ],
+      "initial_state_si": [
+        -0.17782522500345016,
+        0.07403311457572231,
+        -0.00043860615083595594
+      ],
+      "goal_state_si": [
+        -0.17782522500345016,
+        0.07403311457572231,
+        0.019561393849164044
+      ],
+      "initial_error_um": 19999.999577649454,
+      "abc_offset_sign": [
+        0,
+        0,
+        -1
+      ],
+      "min_development_distance_um": 522.9276278057522
+    },
+    {
+      "id": "E12",
+      "episode_index": 12,
+      "seed": 1012,
+      "regime": "T1",
+      "target_robot_mm": [
+        0.8404011082379136,
+        1.5000074547446207,
+        23.485096479249712
+      ],
+      "target_world_mm": [
+        344.66117813291174,
+        -10.42035086712429,
+        370.68930132483445
+      ],
+      "initial_state_si": [
+        0.03576918092443762,
+        0.17648374523894975,
+        -0.00045204779547308033
+      ],
+      "goal_state_si": [
+        0.03576918092443762,
+        0.17648374523894975,
+        0.01954795220452692
+      ],
+      "initial_error_um": 20000.001422656704,
+      "abc_offset_sign": [
+        0,
+        0,
+        -1
+      ],
+      "min_development_distance_um": 1331.037708523837
+    },
+    {
+      "id": "E13",
+      "episode_index": 13,
+      "seed": 1013,
+      "regime": "T1",
+      "target_robot_mm": [
+        2.1283463286694633,
+        6.724112735741121,
+        22.808539856118642
+      ],
+      "target_world_mm": [
+        349.2854918626173,
+        -9.13240564669274,
+        373.21214245746546
+      ],
+      "initial_state_si": [
+        0.09304413812443103,
+        -0.045284962364177235,
+        -0.0001258918376859687
+      ],
+      "goal_state_si": [
+        0.09304413812443103,
+        -0.045284962364177235,
+        0.01987410816231403
+      ],
+      "initial_error_um": 20000.003909085575,
+      "abc_offset_sign": [
+        0,
+        0,
+        -1
+      ],
+      "min_development_distance_um": 558.7609161255946
+    },
+    {
+      "id": "E14",
+      "episode_index": 14,
+      "seed": 1014,
+      "regime": "T1",
+      "target_robot_mm": [
+        -3.4122122564195916,
+        3.6516655738688826,
+        23.117660138174198
+      ],
+      "target_world_mm": [
+        346.53364159531424,
+        -14.672964231781794,
+        371.81114030985145
+      ],
+      "initial_state_si": [
+        -0.14654386828406357,
+        0.08521375974706899,
+        -0.0003482756609509037
+      ],
+      "goal_state_si": [
+        -0.14654386828406357,
+        0.08521375974706899,
+        0.019651724339049097
+      ],
+      "initial_error_um": 20000.001725823597,
+      "abc_offset_sign": [
+        0,
+        0,
+        -1
+      ],
+      "min_development_distance_um": 615.6295132444549
+    },
+    {
+      "id": "E15",
+      "episode_index": 15,
+      "seed": 1015,
+      "regime": "T1",
+      "target_robot_mm": [
+        -3.303939585257808,
+        3.077261686173233,
+        23.16493642147894
+      ],
+      "target_world_mm": [
+        346.01536577805075,
+        -14.56469156062001,
+        371.5590192071987
+      ],
+      "initial_state_si": [
+        -0.1416712618810749,
+        0.1094669364621463,
+        -0.000399156038832324
+      ],
+      "goal_state_si": [
+        -0.1416712618810749,
+        0.1094669364621463,
+        0.019600843961167676
+      ],
+      "initial_error_um": 19999.99665176747,
+      "abc_offset_sign": [
+        0,
+        0,
+        -1
+      ],
+      "min_development_distance_um": 882.0179522045887
+    },
+    {
+      "id": "E16",
+      "episode_index": 16,
+      "seed": 1016,
+      "regime": "T1",
+      "target_robot_mm": [
+        -4.326898296918741,
+        7.006012815391909,
+        22.039586444010855
+      ],
+      "target_world_mm": [
+        349.26972699525635,
+        -15.587650272280943,
+        374.0309882755878
+      ],
+      "initial_state_si": [
+        -0.1938583944322738,
+        -0.06213721355064798,
+        -0.00047236443957147586
+      ],
+      "goal_state_si": [
+        -0.1938583944322738,
+        -0.06213721355064798,
+        0.019527635560428525
+      ],
+      "initial_error_um": 20000.006696724566,
+      "abc_offset_sign": [
+        0,
+        0,
+        -1
+      ],
+      "min_development_distance_um": 727.401507253236
+    },
+    {
+      "id": "E17",
+      "episode_index": 17,
+      "seed": 1017,
+      "regime": "T1",
+      "target_robot_mm": [
+        0.6631417969668948,
+        4.403092683084277,
+        23.530115622057682
+      ],
+      "target_world_mm": [
+        347.3834397327859,
+        -10.597610178395309,
+        371.6988667501901
+      ],
+      "initial_state_si": [
+        0.02817522537635201,
+        0.055312310168614404,
+        -5.227936929868074e-05
+      ],
+      "goal_state_si": [
+        0.02817522537635201,
+        0.055312310168614404,
+        0.01994772063070132
+      ],
+      "initial_error_um": 20000.00622129326,
+      "abc_offset_sign": [
+        0,
+        0,
+        -1
+      ],
+      "min_development_distance_um": 476.60228350617786
+    },
+    {
+      "id": "E18",
+      "episode_index": 18,
+      "seed": 1018,
+      "regime": "T1",
+      "target_robot_mm": [
+        -3.2500518301559405,
+        6.473975656058567,
+        22.62207785041954
+      ],
+      "target_world_mm": [
+        348.98480152498234,
+        -14.510803805518144,
+        373.29534076907356
+      ],
+      "initial_state_si": [
+        -0.142690874435279,
+        -0.03581235202984685,
+        -0.00024639808440873184
+      ],
+      "goal_state_si": [
+        -0.142690874435279,
+        -0.03581235202984685,
+        0.01975360191559127
+      ],
+      "initial_error_um": 20000.003347561633,
+      "abc_offset_sign": [
+        0,
+        0,
+        -1
+      ],
+      "min_development_distance_um": 746.89948808255
+    },
+    {
+      "id": "E19",
+      "episode_index": 19,
+      "seed": 1019,
+      "regime": "T1",
+      "target_robot_mm": [
+        -3.695977194007443,
+        8.120841892082128,
+        21.752830639976157
+      ],
+      "target_world_mm": [
+        350.2049892003733,
+        -14.956729169369646,
+        374.702074983146
+      ],
+      "initial_state_si": [
+        -0.1683006168391456,
+        -0.1124354799820246,
+        -0.0004884292037664016
+      ],
+      "goal_state_si": [
+        -0.1683006168391456,
+        -0.1124354799820246,
+        0.0195115707962336
+      ],
+      "initial_error_um": 20000.00204522252,
+      "abc_offset_sign": [
+        0,
+        0,
+        -1
+      ],
+      "min_development_distance_um": 705.769984487839
+    },
+    {
+      "id": "E20",
+      "episode_index": 20,
+      "seed": 1020,
+      "regime": "T2",
+      "target_robot_mm": [
+        -0.7237932115835087,
+        8.72630832142242,
+        22.05148025409102
+      ],
+      "target_world_mm": [
+        350.8775162507966,
+        -11.984545186945713,
+        374.6430109880392
+      ],
+      "initial_state_si": [
+        -0.03153777098544637,
+        -0.13871813947856296,
+        0.019596008615475145
+      ],
+      "goal_state_si": [
+        -0.032811105962204434,
+        -0.13640387617139954,
+        0.019726359074460343
+      ],
+      "initial_error_um": 144.12142443491652,
+      "abc_offset_sign": [
+        1,
+        -1,
+        -1
+      ],
+      "min_development_distance_um": 996.965105175287
+    },
+    {
+      "id": "E21",
+      "episode_index": 21,
+      "seed": 1021,
+      "regime": "T2",
+      "target_robot_mm": [
+        3.6502154720172912,
+        7.423163296015405,
+        22.11827208488917
+      ],
+      "target_world_mm": [
+        349.687052199314,
+        -7.610536503344913,
+        374.10874190973493
+      ],
+      "initial_state_si": [
+        0.16228403203591787,
+        -0.07722774559695121,
+        0.019744875731034617
+      ],
+      "goal_state_si": [
+        0.16355745336394428,
+        -0.07954216584598423,
+        0.019614516432327218
+      ],
+      "initial_error_um": 144.23932909429422,
+      "abc_offset_sign": [
+        -1,
+        1,
+        1
+      ],
+      "min_development_distance_um": 176.09922625453035
+    },
+    {
+      "id": "E22",
+      "episode_index": 22,
+      "seed": 1022,
+      "regime": "T2",
+      "target_robot_mm": [
+        4.55724751873392,
+        3.037511092827353,
+        22.730672119477255
+      ],
+      "target_world_mm": [
+        345.8210193563227,
+        -6.703504456628284,
+        371.94939730856436
+      ],
+      "initial_state_si": [
+        0.1949002674294865,
+        0.11231171763180368,
+        0.019468249733591802
+      ],
+      "goal_state_si": [
+        0.1978656147035478,
+        0.10994600514981902,
+        0.019381155522968412
+      ],
+      "initial_error_um": 124.05280508506732,
+      "abc_offset_sign": [
+        -1,
+        1,
+        1
+      ],
+      "min_development_distance_um": 817.7805475155585
+    },
+    {
+      "id": "E23",
+      "episode_index": 23,
+      "seed": 1023,
+      "regime": "T2",
+      "target_robot_mm": [
+        3.5624182585393163,
+        3.295150033288441,
+        23.08557620639611
+      ],
+      "target_world_mm": [
+        346.18971362146056,
+        -7.698333716822888,
+        371.71191199658045
+      ],
+      "initial_state_si": [
+        0.15605911342255369,
+        0.09772912641281145,
+        0.01950335982442569
+      ],
+      "goal_state_si": [
+        0.15310592961539737,
+        0.10008513505142738,
+        0.019590096785981555
+      ],
+      "initial_error_um": 124.0587431101496,
+      "abc_offset_sign": [
+        1,
+        -1,
+        -1
+      ],
+      "min_development_distance_um": 828.9948438724894
+    },
+    {
+      "id": "E24",
+      "episode_index": 24,
+      "seed": 1024,
+      "regime": "T2",
+      "target_robot_mm": [
+        -0.22776783840394554,
+        9.552644196460184,
+        21.532486466062522
+      ],
+      "target_world_mm": [
+        351.4597559817662,
+        -11.48851981376615,
+        375.4260706448132
+      ],
+      "initial_state_si": [
+        -0.009618016651495498,
+        -0.1778151019225851,
+        0.019516158321317124
+      ],
+      "goal_state_si": [
+        -0.010577475306955162,
+        -0.17730352296872007,
+        0.019557437524984362
+      ],
+      "initial_error_um": 47.743950057021166,
+      "abc_offset_sign": [
+        1,
+        -1,
+        -1
+      ],
+      "min_development_distance_um": 1207.8402544056532
+    },
+    {
+      "id": "E25",
+      "episode_index": 25,
+      "seed": 1025,
+      "regime": "T2",
+      "target_robot_mm": [
+        -1.5570366929537744,
+        4.134883369290514,
+        23.475684514382777
+      ],
+      "target_world_mm": [
+        347.1137272931613,
+        -12.817788668315977,
+        371.6524535904166
+      ],
+      "initial_state_si": [
+        -0.06717017782788182,
+        0.0667572022361461,
+        0.01992836412544556
+      ],
+      "goal_state_si": [
+        -0.06622850663893136,
+        0.06625510747782917,
+        0.01988785019962389
+      ],
+      "initial_error_um": 47.684093152007435,
+      "abc_offset_sign": [
+        -1,
+        1,
+        1
+      ],
+      "min_development_distance_um": 1423.767471236029
+    },
+    {
+      "id": "E26",
+      "episode_index": 26,
+      "seed": 1026,
+      "regime": "T2",
+      "target_robot_mm": [
+        -3.955277254538842,
+        2.9673960231884386,
+        22.958138711646406
+      ],
+      "target_world_mm": [
+        345.83805611540646,
+        -15.216029229901045,
+        371.7119801179832
+      ],
+      "initial_state_si": [
+        -0.16951504151085342,
+        0.11230365048719528,
+        0.019415228153510232
+      ],
+      "goal_state_si": [
+        -0.17060735560834964,
+        0.11353331736383386,
+        0.01948458623058759
+      ],
+      "initial_error_um": 79.24857871341526,
+      "abc_offset_sign": [
+        1,
+        -1,
+        -1
+      ],
+      "min_development_distance_um": 663.071084170529
+    },
+    {
+      "id": "E27",
+      "episode_index": 27,
+      "seed": 1027,
+      "regime": "T2",
+      "target_robot_mm": [
+        -4.772335348797681,
+        3.604210083480859,
+        22.625766332947748
+      ],
+      "target_world_mm": [
+        346.3112394627477,
+        -16.033087324159883,
+        372.2524438682078
+      ],
+      "initial_state_si": [
+        -0.208971423323588,
+        0.08683512895784125,
+        0.019472238004220026
+      ],
+      "goal_state_si": [
+        -0.2078777728428298,
+        0.0856039576547419,
+        0.019402795071537946
+      ],
+      "initial_error_um": 79.40395488099574,
+      "abc_offset_sign": [
+        -1,
+        1,
+        1
+      ],
+      "min_development_distance_um": 456.87258550935627
+    },
+    {
+      "id": "E28",
+      "episode_index": 28,
+      "seed": 1028,
+      "regime": "T2",
+      "target_robot_mm": [
+        -1.7276398268174606,
+        7.057260562151757,
+        22.753715745196324
+      ],
+      "target_world_mm": [
+        349.576159879745,
+        -12.988391802179663,
+        373.3839134131
+      ],
+      "initial_state_si": [
+        -0.07354211157975349,
+        -0.06244115278492394,
+        0.020040469350250615
+      ],
+      "goal_state_si": [
+        -0.07578240478660833,
+        -0.05971105479519754,
+        0.019885586579075326
+      ],
+      "initial_error_um": 175.75511212700906,
+      "abc_offset_sign": [
+        1,
+        -1,
+        1
+      ],
+      "min_development_distance_um": 667.4763750504644
+    },
+    {
+      "id": "E29",
+      "episode_index": 29,
+      "seed": 1029,
+      "regime": "T2",
+      "target_robot_mm": [
+        0.9552576153826502,
+        3.861057237310227,
+        23.56210778302767
+      ],
+      "target_world_mm": [
+        346.88979835492944,
+        -10.305494359979553,
+        371.4727161081239
+      ],
+      "initial_state_si": [
+        0.038286171720983815,
+        0.08065647458734775,
+        0.01974103368421003
+      ],
+      "goal_state_si": [
+        0.040519921473050086,
+        0.07793435067561681,
+        0.019895464073345498
+      ],
+      "initial_error_um": 175.46548059683371,
+      "abc_offset_sign": [
+        -1,
+        1,
+        -1
+      ],
+      "min_development_distance_um": 799.0880531850765
+    },
+    {
+      "id": "E30",
+      "episode_index": 30,
+      "seed": 1030,
+      "regime": "T2",
+      "target_robot_mm": [
+        4.540335096895561,
+        6.166733475472822,
+        22.256136660351974
+      ],
+      "target_world_mm": [
+        348.5658745065242,
+        -6.720416878466644,
+        373.5251469163476
+      ],
+      "initial_state_si": [
+        0.2021113663442724,
+        -0.02636380518334198,
+        0.01960768533260682
+      ],
+      "goal_state_si": [
+        0.20124232818817206,
+        -0.024871545280401797,
+        0.019536755587673545
+      ],
+      "initial_error_um": 81.53669472414872,
+      "abc_offset_sign": [
+        1,
+        -1,
+        1
+      ],
+      "min_development_distance_um": 648.3194606936398
+    },
+    {
+      "id": "E31",
+      "episode_index": 31,
+      "seed": 1031,
+      "regime": "T2",
+      "target_robot_mm": [
+        2.810906567332218,
+        4.781152002418816,
+        23.15855501392964
+      ],
+      "target_world_mm": [
+        347.60124434223707,
+        -8.449845408029987,
+        372.1821340536051
+      ],
+      "initial_state_si": [
+        0.11992000052261617,
+        0.03956420335395074,
+        0.019742764472734174
+      ],
+      "goal_state_si": [
+        0.1207857582831869,
+        0.038077576348346846,
+        0.01981342647612289
+      ],
+      "initial_error_um": 81.573605480011,
+      "abc_offset_sign": [
+        -1,
+        1,
+        -1
+      ],
+      "min_development_distance_um": 1028.9392987532779
+    },
+    {
+      "id": "E32",
+      "episode_index": 32,
+      "seed": 1032,
+      "regime": "T2",
+      "target_robot_mm": [
+        0.17967173801167707,
+        7.408483865987161,
+        22.74374807541801
+      ],
+      "target_world_mm": [
+        349.89992345235083,
+        -11.081080237350527,
+        373.5204209683904
+      ],
+      "initial_state_si": [
+        0.005660930396058011,
+        -0.07669982533492099,
+        0.01979190072019374
+      ],
+      "goal_state_si": [
+        0.007899665435348504,
+        -0.07466227358755041,
+        0.01992061854643631
+      ],
+      "initial_error_um": 146.7020891149965,
+      "abc_offset_sign": [
+        -1,
+        -1,
+        -1
+      ],
+      "min_development_distance_um": 499.36546342467705
+    },
+    {
+      "id": "E33",
+      "episode_index": 33,
+      "seed": 1033,
+      "regime": "T2",
+      "target_robot_mm": [
+        1.5465477618321417,
+        4.184850958193425,
+        23.472118582005777
+      ],
+      "target_world_mm": [
+        347.15901028360196,
+        -9.714204213530062,
+        371.6738761624199
+      ],
+      "initial_state_si": [
+        0.06802331379929688,
+        0.0661938489060636,
+        0.020020563923459904
+      ],
+      "goal_state_si": [
+        0.06579361581337044,
+        0.06416452209980925,
+        0.01989236568968551
+      ],
+      "initial_error_um": 146.78678928521927,
+      "abc_offset_sign": [
+        1,
+        1,
+        1
+      ],
+      "min_development_distance_um": 1337.2461032483154
+    },
+    {
+      "id": "E34",
+      "episode_index": 34,
+      "seed": 1034,
+      "regime": "T2",
+      "target_robot_mm": [
+        0.3993723872678808,
+        6.299377617060692,
+        23.14209464328567
+      ],
+      "target_world_mm": [
+        349.01041480722733,
+        -10.861379588094323,
+        372.7473937827169
+      ],
+      "initial_state_si": [
+        0.015680950951797664,
+        -0.028220979109959098,
+        0.019813440357076256
+      ],
+      "goal_state_si": [
+        0.017255687255758743,
+        -0.02550045933814487,
+        0.019987459247382346
+      ],
+      "initial_error_um": 189.29716699359847,
+      "abc_offset_sign": [
+        -1,
+        -1,
+        -1
+      ],
+      "min_development_distance_um": 1071.4128560127492
+    },
+    {
+      "id": "E35",
+      "episode_index": 35,
+      "seed": 1035,
+      "regime": "T2",
+      "target_robot_mm": [
+        -3.173396441530774,
+        8.285152076493143,
+        21.839790938965077
+      ],
+      "target_world_mm": [
+        350.38964004956085,
+        -14.434148416892977,
+        374.680534458646
+      ],
+      "initial_state_si": [
+        -0.1427129664178955,
+        -0.11617937071719868,
+        0.019747760912205477
+      ],
+      "goal_state_si": [
+        -0.1442935865057583,
+        -0.11891005533400789,
+        0.01957309182443915
+      ],
+      "initial_error_um": 189.46682773394954,
+      "abc_offset_sign": [
+        1,
+        1,
+        1
+      ],
+      "min_development_distance_um": 1145.311473175488
+    },
+    {
+      "id": "E36",
+      "episode_index": 36,
+      "seed": 1036,
+      "regime": "T2",
+      "target_robot_mm": [
+        1.3929247252926984,
+        1.595501975579082,
+        23.446554546215133
+      ],
+      "target_world_mm": [
+        344.73622794077573,
+        -9.867827250069505,
+        370.75981522737163
+      ],
+      "initial_state_si": [
+        0.057314539242072554,
+        0.1708835518858513,
+        0.019445342056263398
+      ],
+      "goal_state_si": [
+        0.05933875991358392,
+        0.1724025247868184,
+        0.019542021704455417
+      ],
+      "initial_error_um": 113.56258871541658,
+      "abc_offset_sign": [
+        -1,
+        -1,
+        -1
+      ],
+      "min_development_distance_um": 1097.3271038150287
+    },
+    {
+      "id": "E37",
+      "episode_index": 37,
+      "seed": 1037,
+      "regime": "T2",
+      "target_robot_mm": [
+        -1.5746029436596714,
+        9.283440593346493,
+        21.59827104805907
+      ],
+      "target_world_mm": [
+        351.2326601393628,
+        -12.835354919021874,
+        375.267244735337
+      ],
+      "initial_state_si": [
+        -0.0707241640685447,
+        -0.16322198673445582,
+        0.01965952515761073
+      ],
+      "goal_state_si": [
+        -0.07277536825314135,
+        -0.16476120803310318,
+        0.019561556738590124
+      ],
+      "initial_error_um": 113.6391453925715,
+      "abc_offset_sign": [
+        1,
+        1,
+        1
+      ],
+      "min_development_distance_um": 797.2286912703565
+    },
+    {
+      "id": "E38",
+      "episode_index": 38,
+      "seed": 1038,
+      "regime": "T2",
+      "target_robot_mm": [
+        3.525395920433901,
+        7.855803118343041,
+        21.95344590089693
+      ],
+      "target_world_mm": [
+        350.03061245180817,
+        -7.735356054928303,
+        374.41908243190255
+      ],
+      "initial_state_si": [
+        0.1609968471119625,
+        -0.09709241441110017,
+        0.019451523585389326
+      ],
+      "goal_state_si": [
+        0.1592256882826309,
+        -0.09939586714742583,
+        0.01958168454444229
+      ],
+      "initial_error_um": 146.41417635347477,
+      "abc_offset_sign": [
+        1,
+        1,
+        -1
+      ],
+      "min_development_distance_um": 648.708927845735
+    },
+    {
+      "id": "E39",
+      "episode_index": 39,
+      "seed": 1039,
+      "regime": "T2",
+      "target_robot_mm": [
+        -1.919310210509062,
+        5.891456428278149,
+        23.104955915260117
+      ],
+      "target_world_mm": [
+        348.616740915688,
+        -13.180062185871265,
+        372.63425736728226
+      ],
+      "initial_state_si": [
+        -0.08464101859642073,
+        -0.010909162128468127,
+        0.020050866682499714
+      ],
+      "goal_state_si": [
+        -0.08287891471964155,
+        -0.008617485668153816,
+        0.019921371164224214
+      ],
+      "initial_error_um": 146.47966984023566,
+      "abc_offset_sign": [
+        -1,
+        -1,
+        1
+      ],
+      "min_development_distance_um": 1404.0995430607827
+    },
+    {
+      "id": "E40",
+      "episode_index": 40,
+      "seed": 1040,
+      "regime": "T3",
+      "target_robot_mm": [
+        0.4367277917467681,
+        3.652696250194051,
+        23.605009145695448
+      ],
+      "target_world_mm": [
+        346.7111251543748,
+        -10.824024183615435,
+        371.35725739137047
+      ],
+      "initial_state_si": [
+        0.018810705738879198,
+        0.08616229754890467,
+        0.019858072541690124
+      ],
+      "goal_state_si": [
+        0.01849937731040504,
+        0.08672813134099054,
+        0.019889943026902168
+      ],
+      "initial_error_um": 35.423806823122376,
+      "abc_offset_sign": [
+        1,
+        -1,
+        -1
+      ],
+      "min_development_distance_um": 416.7194413864799
+    },
+    {
+      "id": "E41",
+      "episode_index": 41,
+      "seed": 1041,
+      "regime": "T3",
+      "target_robot_mm": [
+        -1.3695654807400628,
+        6.588496568516707,
+        22.973909828421377
+      ],
+      "target_world_mm": [
+        349.2189832461999,
+        -12.630317456102267,
+        373.0088801232904
+      ],
+      "initial_state_si": [
+        -0.05985504851460952,
+        -0.038023251711698174,
+        0.019971079068627717
+      ],
+      "goal_state_si": [
+        -0.05954347970880375,
+        -0.0385895223852399,
+        0.019939183976147298
+      ],
+      "initial_error_um": 35.352419097552506,
+      "abc_offset_sign": [
+        -1,
+        1,
+        1
+      ],
+      "min_development_distance_um": 507.69805534735826
+    },
+    {
+      "id": "E42",
+      "episode_index": 42,
+      "seed": 1042,
+      "regime": "T3",
+      "target_robot_mm": [
+        -2.9397154279549578,
+        8.360724108675214,
+        21.867631686235832
+      ],
+      "target_world_mm": [
+        350.47016467398396,
+        -14.20046740331716,
+        374.6819571737403
+      ],
+      "initial_state_si": [
+        -0.13439579508167637,
+        -0.12136996120087193,
+        0.01961773289038897
+      ],
+      "goal_state_si": [
+        -0.13363112045378228,
+        -0.12198000789850152,
+        0.0195952738908368
+      ],
+      "initial_error_um": 31.591609979501445,
+      "abc_offset_sign": [
+        -1,
+        1,
+        1
+      ],
+      "min_development_distance_um": 997.4996301375694
+    },
+    {
+      "id": "E43",
+      "episode_index": 43,
+      "seed": 1043,
+      "regime": "T3",
+      "target_robot_mm": [
+        3.8415682853310384,
+        8.14191455454727,
+        21.68638870349258
+      ],
+      "target_world_mm": [
+        350.2005649934454,
+        -7.419183690031167,
+        374.7716380079517
+      ],
+      "initial_state_si": [
+        0.17608901571675767,
+        -0.11448548589317724,
+        0.01945830459154138
+      ],
+      "goal_state_si": [
+        0.17532316970353543,
+        -0.1138745046807553,
+        0.019480797995455355
+      ],
+      "initial_error_um": 31.521940506073417,
+      "abc_offset_sign": [
+        1,
+        -1,
+        -1
+      ],
+      "min_development_distance_um": 985.7107012606207
+    },
+    {
+      "id": "E44",
+      "episode_index": 44,
+      "seed": 1044,
+      "regime": "T3",
+      "target_robot_mm": [
+        3.27582186431687,
+        1.669243940795253,
+        23.080472000561002
+      ],
+      "target_world_mm": [
+        344.6723636606478,
+        -7.984930111045334,
+        371.12774954405097
+      ],
+      "initial_state_si": [
+        0.14132810220237255,
+        0.1685629462137888,
+        0.019356870455912386
+      ],
+      "goal_state_si": [
+        0.14098878171455945,
+        0.16874387034136076,
+        0.019371469187650536
+      ],
+      "initial_error_um": 17.265948992712534,
+      "abc_offset_sign": [
+        1,
+        -1,
+        -1
+      ],
+      "min_development_distance_um": 926.4170117971261
+    },
+    {
+      "id": "E45",
+      "episode_index": 45,
+      "seed": 1045,
+      "regime": "T3",
+      "target_robot_mm": [
+        -0.6726398014743025,
+        7.500003634842126,
+        22.685174494816323
+      ],
+      "target_world_mm": [
+        349.96401273764343,
+        -11.933391776836507,
+        373.6081666004552
+      ],
+      "initial_state_si": [
+        -0.02998313196795012,
+        -0.07876022107227718,
+        0.019916953534678407
+      ],
+      "goal_state_si": [
+        -0.029642389584991186,
+        -0.07894190334781837,
+        0.019902293628131958
+      ],
+      "initial_error_um": 17.010246917184425,
+      "abc_offset_sign": [
+        -1,
+        1,
+        1
+      ],
+      "min_development_distance_um": 596.8639511238109
+    },
+    {
+      "id": "E46",
+      "episode_index": 46,
+      "seed": 1046,
+      "regime": "T3",
+      "target_robot_mm": [
+        1.9391271022522152,
+        1.1528599576288894,
+        23.300295478666555
+      ],
+      "target_world_mm": [
+        344.2706663707672,
+        -9.32162487310999,
+        370.73581323940476
+      ],
+      "initial_state_si": [
+        0.08335026362778857,
+        0.19060069847070651,
+        0.019389039385233314
+      ],
+      "goal_state_si": [
+        0.08303194028015176,
+        0.1909590493127829,
+        0.019409251790558416
+      ],
+      "initial_error_um": 23.085906601537474,
+      "abc_offset_sign": [
+        1,
+        -1,
+        -1
+      ],
+      "min_development_distance_um": 512.7645591210459
+    },
+    {
+      "id": "E47",
+      "episode_index": 47,
+      "seed": 1047,
+      "regime": "T3",
+      "target_robot_mm": [
+        -3.1601087843993225,
+        7.080523000646215,
+        22.42332407838194
+      ],
+      "target_world_mm": [
+        349.47817142287306,
+        -14.420860759761526,
+        373.700296182645
+      ],
+      "initial_state_si": [
+        -0.14032627325283273,
+        -0.062459496239777194,
+        0.01974629338434332
+      ],
+      "goal_state_si": [
+        -0.14000749773536963,
+        -0.06281835610966827,
+        0.019726052267835477
+      ],
+      "initial_error_um": 23.17957419618554,
+      "abc_offset_sign": [
+        -1,
+        1,
+        1
+      ],
+      "min_development_distance_um": 1044.0663703763153
+    },
+    {
+      "id": "E48",
+      "episode_index": 48,
+      "seed": 1048,
+      "regime": "T3",
+      "target_robot_mm": [
+        2.0438659523477756,
+        7.384798494883434,
+        22.564811190786944
+      ],
+      "target_world_mm": [
+        349.813033606907,
+        -9.216886023014428,
+        373.67862830148385
+      ],
+      "initial_state_si": [
+        0.09085881667591242,
+        -0.0754945667724065,
+        0.01986678795119118
+      ],
+      "goal_state_si": [
+        0.09033108208697352,
+        -0.0748514513373542,
+        0.01983030299675316
+      ],
+      "initial_error_um": 41.316786118448064,
+      "abc_offset_sign": [
+        1,
+        -1,
+        1
+      ],
+      "min_development_distance_um": 1211.6892649718375
+    },
+    {
+      "id": "E49",
+      "episode_index": 49,
+      "seed": 1049,
+      "regime": "T3",
+      "target_robot_mm": [
+        -4.339204385784142,
+        4.269315988220858,
+        22.747250547418584
+      ],
+      "target_world_mm": [
+        346.9751851048171,
+        -15.599956361146344,
+        372.3801171358196
+      ],
+      "initial_state_si": [
+        -0.18902037538387143,
+        0.0585565225306312,
+        0.01951120252469754
+      ],
+      "goal_state_si": [
+        -0.18849277115331928,
+        0.0579135659547713,
+        0.019547678466802658
+      ],
+      "initial_error_um": 41.39519531861365,
+      "abc_offset_sign": [
+        -1,
+        1,
+        -1
+      ],
+      "min_development_distance_um": 818.0623822457694
+    },
+    {
+      "id": "E50",
+      "episode_index": 50,
+      "seed": 1050,
+      "regime": "T3",
+      "target_robot_mm": [
+        -1.1114496337447617,
+        8.899733112440213,
+        21.911183845626823
+      ],
+      "target_world_mm": [
+        350.9883480532489,
+        -12.372201609106966,
+        374.83659702041933
+      ],
+      "initial_state_si": [
+        -0.05043077255676117,
+        -0.14557286948662804,
+        0.01969622453980787
+      ],
+      "goal_state_si": [
+        -0.05068178148062705,
+        -0.14514185210294256,
+        0.01967573752341992
+      ],
+      "initial_error_um": 23.592173439698332,
+      "abc_offset_sign": [
+        1,
+        -1,
+        1
+      ],
+      "min_development_distance_um": 712.5532219999942
+    },
+    {
+      "id": "E51",
+      "episode_index": 51,
+      "seed": 1051,
+      "regime": "T3",
+      "target_robot_mm": [
+        0.8074096994685482,
+        7.8991022504365285,
+        22.491795749139442
+      ],
+      "target_world_mm": [
+        350.2659673189144,
+        -10.453342275893656,
+        373.9329718884331
+      ],
+      "initial_state_si": [
+        0.03563225740372097,
+        -0.09688472337561196,
+        0.019831795159720098
+      ],
+      "goal_state_si": [
+        0.03588255690260191,
+        -0.09731452257750446,
+        0.019852224273779046
+      ],
+      "initial_error_um": 23.574585560529194,
+      "abc_offset_sign": [
+        -1,
+        1,
+        -1
+      ],
+      "min_development_distance_um": 392.21583069268985
+    },
+    {
+      "id": "E52",
+      "episode_index": 52,
+      "seed": 1052,
+      "regime": "T3",
+      "target_robot_mm": [
+        -4.436434101187239,
+        5.981838498121978,
+        22.356810159516353
+      ],
+      "target_world_mm": [
+        348.4299995559939,
+        -15.697186076549443,
+        373.3643386332837
+      ],
+      "initial_state_si": [
+        -0.19644089044361926,
+        -0.016928524139797983,
+        0.01953311268815257
+      ],
+      "goal_state_si": [
+        -0.19589290287604263,
+        -0.016429781320189036,
+        0.019564619662970267
+      ],
+      "initial_error_um": 35.893738435133464,
+      "abc_offset_sign": [
+        -1,
+        -1,
+        -1
+      ],
+      "min_development_distance_um": 504.453146679674
+    },
+    {
+      "id": "E53",
+      "episode_index": 53,
+      "seed": 1053,
+      "regime": "T3",
+      "target_robot_mm": [
+        -0.7268357903031595,
+        7.5024221783369285,
+        22.680664482919862
+      ],
+      "target_world_mm": [
+        349.9646334801276,
+        -11.987587765665364,
+        373.61324638772544
+      ],
+      "initial_state_si": [
+        -0.03148809448111738,
+        -0.07857698724655762,
+        0.019931834494742666
+      ],
+      "goal_state_si": [
+        -0.03203553093919077,
+        -0.07907522848196318,
+        0.019900359206397926
+      ],
+      "initial_error_um": 35.954588015567744,
+      "abc_offset_sign": [
+        1,
+        1,
+        1
+      ],
+      "min_development_distance_um": 545.4132634042867
+    },
+    {
+      "id": "E54",
+      "episode_index": 54,
+      "seed": 1054,
+      "regime": "T3",
+      "target_robot_mm": [
+        1.762993402496582,
+        0.9134148912263127,
+        23.282907977567426
+      ],
+      "target_world_mm": [
+        344.0411825605101,
+        -9.49775857286562,
+        370.665290577452
+      ],
+      "initial_state_si": [
+        0.07520994753577101,
+        0.20049494198381612,
+        0.019326937197419552
+      ],
+      "goal_state_si": [
+        0.07557627762297357,
+        0.20112781508310146,
+        0.019367419121345715
+      ],
+      "initial_error_um": 43.92838981816256,
+      "abc_offset_sign": [
+        -1,
+        -1,
+        -1
+      ],
+      "min_development_distance_um": 767.9393709891017
+    },
+    {
+      "id": "E55",
+      "episode_index": 55,
+      "seed": 1055,
+      "regime": "T3",
+      "target_robot_mm": [
+        2.0269434293593362,
+        6.851910521005317,
+        22.781113044130144
+      ],
+      "target_world_mm": [
+        349.394677438172,
+        -9.233808546002868,
+        373.2839965737364
+      ],
+      "initial_state_si": [
+        0.08910675273980541,
+        -0.0502199895196749,
+        0.01991584518685869
+      ],
+      "goal_state_si": [
+        0.08874105145364015,
+        -0.05085177630015865,
+        0.019875432749651326
+      ],
+      "initial_error_um": 43.89259698512615,
+      "abc_offset_sign": [
+        1,
+        1,
+        1
+      ],
+      "min_development_distance_um": 666.0403500962448
+    },
+    {
+      "id": "E56",
+      "episode_index": 56,
+      "seed": 1056,
+      "regime": "T3",
+      "target_robot_mm": [
+        1.0749505214914443,
+        6.658884144495202,
+        22.981781102171304
+      ],
+      "target_world_mm": [
+        349.28744230722225,
+        -10.18580145387076,
+        373.0270384482824
+      ],
+      "initial_state_si": [
+        0.046211460504834635,
+        -0.041900920485047094,
+        0.019925927403969042
+      ],
+      "goal_state_si": [
+        0.046739963932064046,
+        -0.04150433211139398,
+        0.019951169476699514
+      ],
+      "initial_error_um": 29.56399102079102,
+      "abc_offset_sign": [
+        -1,
+        -1,
+        -1
+      ],
+      "min_development_distance_um": 987.150569149168
+    },
+    {
+      "id": "E57",
+      "episode_index": 57,
+      "seed": 1057,
+      "regime": "T3",
+      "target_robot_mm": [
+        -4.088219783895897,
+        5.789975654976025,
+        22.548840760348746
+      ],
+      "target_world_mm": [
+        348.3207203736064,
+        -15.348971759258099,
+        373.11585289419025
+      ],
+      "initial_state_si": [
+        -0.1788272219752512,
+        -0.0068523091319394845,
+        0.01966186581764236
+      ],
+      "goal_state_si": [
+        -0.17935678984538753,
+        -0.007249696262345254,
+        0.019636572905610022
+      ],
+      "initial_error_um": 29.666676782077115,
+      "abc_offset_sign": [
+        1,
+        1,
+        1
+      ],
+      "min_development_distance_um": 386.19535818548445
+    },
+    {
+      "id": "E58",
+      "episode_index": 58,
+      "seed": 1058,
+      "regime": "T3",
+      "target_robot_mm": [
+        2.7924412224004587,
+        9.432715788047789,
+        21.217490491226272
+      ],
+      "target_world_mm": [
+        351.23387633592546,
+        -8.468310752961745,
+        375.6762379346459
+      ],
+      "initial_state_si": [
+        0.13129306373901173,
+        -0.17436068656326326,
+        0.019355131793906872
+      ],
+      "goal_state_si": [
+        0.130858258262047,
+        -0.1749261659822162,
+        0.019387085279357168
+      ],
+      "initial_error_um": 35.77591364270398,
+      "abc_offset_sign": [
+        1,
+        1,
+        -1
+      ],
+      "min_development_distance_um": 738.9428414342536
+    },
+    {
+      "id": "E59",
+      "episode_index": 59,
+      "seed": 1059,
+      "regime": "T3",
+      "target_robot_mm": [
+        -1.8030953167885087,
+        8.795673739152182,
+        21.876371189824077
+      ],
+      "target_world_mm": [
+        350.87874518398877,
+        -13.063847292150712,
+        374.8313543852913
+      ],
+      "initial_state_si": [
+        -0.08266954832852066,
+        -0.14144970906391924,
+        0.019679061316262944
+      ],
+      "goal_state_si": [
+        -0.08223616329473386,
+        -0.14088607697998268,
+        0.01964721221797616
+      ],
+      "initial_error_um": 35.73267819629513,
+      "abc_offset_sign": [
+        -1,
+        -1,
+        1
+      ],
+      "min_development_distance_um": 340.17926136816436
+    }
+  ],
+  "snapshot_tasks": [
+    {
+      "id": "E00",
+      "episode_index": 0,
+      "source_path": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/clean_oct_dev20_authorized_v1/dev20/episodes/tasks/best_V0_E00/E00/evaluation_results.json",
+      "source_sha256": "e8800ff4e3691aaebd3d24e6ce7cad1bbc90456f46c8e67b426d6b4c0cb575c6",
+      "snapshots_sha256": {
+        "800": "f4cbbd687fe3b22137535f1af71759ad7b7d5aff323a6af0410c52d0149998a0",
+        "1000": "3fe619819eb58593f2042775975dbef2dfaaaa7f8171bf9dffb96f3667ae236d",
+        "1200": "e5642220b09e5abe6ab0aa252582e4ad299b1bbc7cf8526e940d639e74aa22fd"
+      }
+    },
+    {
+      "id": "E08",
+      "episode_index": 8,
+      "source_path": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/clean_oct_dev20_authorized_v1/dev20/episodes/tasks/best_V0_E08/E08/evaluation_results.json",
+      "source_sha256": "c4e37e70a6861162fdc32d4973fde3cbea5924e8a102cfed99b61a0ce99d7a22",
+      "snapshots_sha256": {
+        "800": "0ca99cdc0eb0127f71622845d5bca3c7e5aa71b2e6646ae10301686807ef4579",
+        "1000": "0a0abd2d4e92400313726ace1b3d52e3c089e90f41aa9510af7d38323036540c",
+        "1200": "10cd4e92b5ce3316bec13ce7b514be9f3525450ac0baf928f8cb04d50d6c80fa"
+      }
+    },
+    {
+      "id": "E10",
+      "episode_index": 10,
+      "source_path": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/clean_oct_dev20_authorized_v1/dev20/episodes/tasks/best_V0_E10/E10/evaluation_results.json",
+      "source_sha256": "3a63daff3f7b136025a4425af299f6d83bd2bedbd8928b7e8b6df714df24f783",
+      "snapshots_sha256": {
+        "800": "88bf8a66c4bf9e789f1f442be88fcbdae3244f3ba94677241eff69046aaaf0d1",
+        "1000": "4dc85c44f49ae4e08b6e39f4fc16115ed8b58649dcffedad8d2300c05bd37ae4",
+        "1200": "345f8c135b132af4ccbf144e1f49c0f9af55edb6180bf4c6a4e49d5e5c0010a7"
+      }
+    }
+  ],
+  "original_windows": 220816,
+  "original_window_rows_sha256": "b8a44b5a08f7d34440e3631ca78c9b0baccde047c1a74b0812d93412095f8fa8",
+  "source_window_diagnostics": {
+    "candidate_windows": 319681,
+    "trajectory_boundary_excluded": 16599,
+    "source_frame_gap_excluded": 1420,
+    "time_interval_excluded": 0,
+    "invalid_input_excluded": 28,
+    "valid_windows": 301634
+  }
+}
