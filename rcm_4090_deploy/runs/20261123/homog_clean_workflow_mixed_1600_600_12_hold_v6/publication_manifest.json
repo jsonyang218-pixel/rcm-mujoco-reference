@@ -1,14 +1,14 @@
 {
   "base": "71040dd33a48644da662dc92ad28053a2a326871",
-  "parent": "d7c9153dfdfc795022c97c057323723f3d80bdfb",
+  "parent": "b9c1b9cf2c19c01afdb05d8a87fd4ec363020031",
   "branch": "feature/clean-render-homog-replay-20261123",
   "TEST_LOG_preservation": {
     "merged": true,
     "local_tail_offset": 4339836,
-    "local_complete_snapshot": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261123/homog_clean_workflow_mixed_1600_600_12_hold_v6/local_TEST_LOG_3792e823646319a1.md",
+    "local_complete_snapshot": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261123/homog_clean_workflow_mixed_1600_600_12_hold_v6/local_TEST_LOG_edd818eccd809d0c.md",
     "base_sha256": "169699cd56d80fa342a316dc14f76845dde990e4787bc69cdb7d7550f3a79168",
-    "local_sha256": "3792e823646319a1f7e0b49c1a03dede1a4d526ee9aca5cd793fef8382032ee5",
-    "published_sha256": "006082bb30c64470f7f70ff398d872e648e4f7d15aa66edfeb5972b564368107"
+    "local_sha256": "edd818eccd809d0c6fa81b3aeaa6a09f781733c8c98c7c2ecc87d63422f2ee81",
+    "published_sha256": "e90034d2cb1e497b892ba0a83f59acf2696ac2d8bf6e78d4be39170f9e0913f8"
   },
   "files": [
     {
@@ -18,8 +18,8 @@
     },
     {
       "path": "rcm_4090_deploy/TEST_LOG.md",
-      "bytes": 5514576,
-      "sha256": "006082bb30c64470f7f70ff398d872e648e4f7d15aa66edfeb5972b564368107"
+      "bytes": 5516037,
+      "sha256": "e90034d2cb1e497b892ba0a83f59acf2696ac2d8bf6e78d4be39170f9e0913f8"
     },
     {
       "path": "rcm_4090_deploy/data/homog_clean_replay_20261123_mixed_1600_600_12_hold_v2/data/dataset.npz",
@@ -3347,6 +3347,21 @@
       "sha256": "f696fd2c20ffa5daa5223c01941de116d4d98b504b42b30f7295c0e9dda62a08"
     },
     {
+      "path": "rcm_4090_deploy/runs/20261123/diagnosis/homog_hold_v2_fast5_regression_v1/README.md",
+      "bytes": 4507,
+      "sha256": "87bff354f454b06dc28d5bbfecf16f7ca96541bb195b55468e7bb17706b81bcc"
+    },
+    {
+      "path": "rcm_4090_deploy/runs/20261123/diagnosis/homog_hold_v2_fast5_regression_v1/publication.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "rcm_4090_deploy/runs/20261123/diagnosis/homog_hold_v2_fast5_regression_v1/summary.json",
+      "bytes": 1936,
+      "sha256": "1df6190233ae282918814af7f3b76fd6fcd8c967b97b0378a9f4eeeb2163350f"
+    },
+    {
       "path": "rcm_4090_deploy/runs/20261123/homog_clean_workflow_mixed_1600_600_12_hold_v6/SUMMARY.md",
       "bytes": 1657,
       "sha256": "87ccb0b78c5939e1aa6a43ef893c09b6f687958d66849ce8be4036ccdd23dc9d"
@@ -3482,9 +3497,19 @@
       "sha256": "3792e823646319a1f7e0b49c1a03dede1a4d526ee9aca5cd793fef8382032ee5"
     },
     {
+      "path": "rcm_4090_deploy/runs/20261123/homog_clean_workflow_mixed_1600_600_12_hold_v6/local_TEST_LOG_edd818eccd809d0c.md",
+      "bytes": 4928799,
+      "sha256": "edd818eccd809d0c6fa81b3aeaa6a09f781733c8c98c7c2ecc87d63422f2ee81"
+    },
+    {
       "path": "rcm_4090_deploy/runs/20261123/homog_clean_workflow_mixed_1600_600_12_hold_v6/preflight.json",
       "bytes": 2374,
       "sha256": "87e13e6c589b4657e5a6dc0065894f5fbf4fc5d90005110d4eb7be604ae5cf33"
+    },
+    {
+      "path": "rcm_4090_deploy/runs/20261123/homog_clean_workflow_mixed_1600_600_12_hold_v6/publication_status.json",
+      "bytes": 553,
+      "sha256": "dbf6c3aba147f098e853793959eaee2f9625163fa983c87cab43ae32752422ca"
     },
     {
       "path": "rcm_4090_deploy/runs/20261123/homog_clean_workflow_mixed_1600_600_12_hold_v6/retained_large_assets.json",
@@ -3518,8 +3543,8 @@
     },
     {
       "path": "rcm_4090_deploy/runs/20261123/homog_clean_workflow_mixed_1600_600_12_hold_v6/terminal.log",
-      "bytes": 65596,
-      "sha256": "d422bf241215bc8cdbfd27033e8f49a11bc87d75969825308238139ef8b8f588"
+      "bytes": 66260,
+      "sha256": "ab11e3d21a3134c0fbf30265cc7b42a110f8ad641d6191f8292e427931a5ee47"
     },
     {
       "path": "rcm_4090_deploy/runs/20261123/homog_clean_workflow_mixed_1600_600_12_hold_v6/workflow_status.json",
@@ -4338,8 +4363,8 @@
     },
     {
       "path": "rcm_4090_deploy/scripts/research/homog_replay_publish.py",
-      "bytes": 9943,
-      "sha256": "b655d82ab7df0c80f8c69f9cacd202fe5a9aeb3231c5b2e0401ba2d6a85e8af3"
+      "bytes": 10232,
+      "sha256": "b9ce066824ffe44c94b86122cafcf8233e033cf361fa61a14d1857e54e483b2f"
     },
     {
       "path": "rcm_4090_deploy/scripts/research/homog_replay_target.py",

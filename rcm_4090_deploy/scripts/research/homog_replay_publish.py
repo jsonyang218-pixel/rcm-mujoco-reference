@@ -69,6 +69,10 @@ def publication_files(output):
             if (path.is_file() and 'images' not in path.relative_to(verification).parts
                     and path.suffix in ('.json', '.log', '.png', '.csv', '.md')):
                 files['rcm_4090_deploy/'+path.relative_to(ROOT).as_posix()] = path
+    for diagnosis in (ROOT/'runs/20261123/diagnosis').glob('homog_*'):
+        for path in diagnosis.rglob('*'):
+            if (path.is_file() and path.suffix in ('.json', '.log', '.png', '.csv', '.md')):
+                files['rcm_4090_deploy/'+path.relative_to(ROOT).as_posix()] = path
     return files
 
 

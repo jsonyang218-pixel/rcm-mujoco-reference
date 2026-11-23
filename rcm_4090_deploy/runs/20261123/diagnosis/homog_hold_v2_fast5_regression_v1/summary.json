@@ -1,0 +1,49 @@
+{
+  "status": "diagnosed",
+  "scope": "Software/MuJoCo simulation only",
+  "workflow": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261123/homog_clean_workflow_mixed_1600_600_12_hold_v6",
+  "workflow_status": "completed_with_conditional_skips",
+  "hold_smoke_passed": true,
+  "collection_completed": 60,
+  "training_completed": true,
+  "dev20_status": "skipped_failed_gate",
+  "fast5": {
+    "baseline_step4000": {
+      "final_mean_um": 65.56928808053874,
+      "absolute_drift_1000_to_1600_um": 22.61316284114734,
+      "strict_success_count": 0
+    },
+    "new_step2000": {
+      "final_mean_um": 187.94430358818926,
+      "absolute_drift_1000_to_1600_um": 32.44406173584241,
+      "strict_success_count": 0
+    },
+    "new_step4000": {
+      "final_mean_um": 244.8280806949452,
+      "absolute_drift_1000_to_1600_um": 35.97791242804658,
+      "strict_success_count": 0
+    }
+  },
+  "direction_gate_passed": false,
+  "first_order_toward_fraction": 0.4895833333333333,
+  "axis_reverse_snapshot_counts": {
+    "A": 4,
+    "B": 4,
+    "C": 3
+  },
+  "late_C_action_rms_mm_per_step": {
+    "baseline_steps_800_1200": 0.001905194040265223,
+    "new_step2000_steps_800_1200": 0.0026522030785707897,
+    "new_step4000_steps_800_1200": 0.0030905386443373577
+  },
+  "T3_prehold_label_nonzero_executed_zero_frames": 7695,
+  "T3_prehold_frames": 8000,
+  "T3_prehold_mismatch_fraction": 0.961875,
+  "T2_label_mean_norm": 0.0009236571,
+  "T2_executed_mean_norm": 0.006242705,
+  "T2_label_to_executed_norm_ratio": 0.14795783,
+  "T2_median_direction_cosine": 0.93045944,
+  "root_cause": "T3 settlement causes exact-zero execution while zero-initial-velocity geometry labels remain nonzero; the model learns terminal micro-corrections from settled states",
+  "next_action": "New authorized experiment with explicit settlement provenance and labels/execution semantics aligned; rerun matched fast5 without changing existing gates",
+  "retry": false
+}
