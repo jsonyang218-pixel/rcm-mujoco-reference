@@ -144,7 +144,7 @@ def stage1(manifest):
         if (audit['identity'] != manifest['identity']
                 or file_sha256(FIX_DATA/'data/dataset.npz') != receipt['fixed_dataset_sha256']):
             raise ValueError('Fixed-label resume provenance changed')
-        return audit
+        return audit, receipt
     return build_fixed_dataset(destination)
 
 
@@ -324,8 +324,9 @@ def run(output):
                 signal.signal(sig, interrupted)
             write_json(output/'workflow_status.json',
                        {'status': 'running', 'stage': 'stage1'})
-            audit = stage1(manifest)
-            stages['stage1'] = {**audit, 'status': 'completed'}
+            audit, stage1_receipt = stage1(manifest)
+            stages['stage1'] = {**audit, 'status': 'completed',
+                                'receipt': stage1_receipt}
             write_json(output/'stage_results.json', stages)
             write_json(output/'workflow_status.json',
                        {'status': 'running', 'stage': 'stage2'})

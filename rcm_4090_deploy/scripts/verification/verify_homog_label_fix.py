@@ -136,6 +136,16 @@ class LabelFixTests(unittest.TestCase):
                          __import__('lerobot_training.navigation_overlay',
                                     fromlist=['file_sha256']).file_sha256(
                                         fixed/'data/dataset.npz'))
+        from lerobot_training.train_diffusion_policy import (
+            RCMDataset, image_transform_for_dataset,
+        )
+        dataset = RCMDataset(fixed, transform=image_transform_for_dataset(fixed),
+            n_obs_steps=2, n_action_steps=16,
+            include_velocity=True, include_previous_action=True)
+        sample = dataset[0]
+        self.assertEqual(tuple(sample['observation.image'].shape), (2, 3, 224, 224))
+        self.assertEqual(tuple(sample['action'].shape), (16, 3))
+        self.assertTrue(bool(np.isfinite(sample['action']).all()))
 
 
 def main():

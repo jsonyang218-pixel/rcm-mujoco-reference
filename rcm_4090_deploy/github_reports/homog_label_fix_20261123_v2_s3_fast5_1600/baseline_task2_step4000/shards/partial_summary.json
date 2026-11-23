@@ -1,0 +1,33 @@
+{
+  "status": "failed",
+  "completed": 0,
+  "total": 5,
+  "results": {},
+  "workers": [
+    {
+      "pid": 173579,
+      "group": "eval",
+      "log": "/home/him1/mujoco_bc/rcm_4090_deploy/github_reports/homog_label_fix_20261123_v2_s3_fast5_1600/baseline_task2_step4000/shards/worker_1795443743805929068.log"
+    },
+    {
+      "pid": 173584,
+      "group": "eval",
+      "log": "/home/him1/mujoco_bc/rcm_4090_deploy/github_reports/homog_label_fix_20261123_v2_s3_fast5_1600/baseline_task2_step4000/shards/worker_1795443743893762678.log"
+    },
+    {
+      "pid": 173587,
+      "group": "eval",
+      "log": "/home/him1/mujoco_bc/rcm_4090_deploy/github_reports/homog_label_fix_20261123_v2_s3_fast5_1600/baseline_task2_step4000/shards/worker_1795443743963193691.log"
+    }
+  ],
+  "contract_sha256": "f0568e8939eb40b5f8fdc4a635eaec0608288daaf94f2fa1660cc0865588a985",
+  "resources": {
+    "gpu_free_mib": 46791,
+    "gpu_utilization_percent": 0,
+    "ram_available_mib": 25026
+  },
+  "active_tasks": [],
+  "elapsed_s": 0.17376209900248796,
+  "failure": "RuntimeError(\"worker 173579: ValueError('Frozen source/scene identity changed; refusing mixed-provenance execution')\")",
+  "pending": 5
+}
