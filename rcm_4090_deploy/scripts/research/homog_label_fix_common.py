@@ -17,7 +17,7 @@ BRANCH = 'feature/homog-label-fix-20261123'
 SOURCE_DATA = ROOT / 'data/homog_clean_replay_20261123_mixed_1600_600_12_hold_v2'
 FIX_DATA = ROOT / 'data/homog_clean_replay_fixed_labels'
 WEIGHTS = ROOT / 'outputs/homog_label_fix_20261123'
-WORKFLOW = ROOT / 'runs/20261123/homog_label_fix_workflow_v1'
+WORKFLOW = ROOT / 'runs/20261123/homog_label_fix_workflow_v2'
 SOURCE_REPO = ROOT / 'runs/20261123/homog_clean_git_v1/repository'
 REPORTS = (
     ROOT / 'github_reports/homog_label_fix_20261123_s1_audit',

@@ -15,7 +15,9 @@ from scripts.research.homog_label_fix_common import (
 )
 from scripts.research.homog_label_fix_pipeline import card, ensure_branch
 from scripts.research.homog_label_fix_publish import publication_files
-from scripts.research.homog_label_fix_repair import axis_reverse_audit, repair_arrays
+from scripts.research.homog_label_fix_repair import (
+    axis_reverse_audit, build_fixed_dataset, repair_arrays,
+)
 
 OUTPUT = None
 
@@ -120,6 +122,20 @@ class LabelFixTests(unittest.TestCase):
         self.assertTrue(all(Path(ROOT/path).is_file() for path in source_files))
         self.assertEqual(BRANCH, 'feature/homog-label-fix-20261123')
         self.assertTrue(TASK.is_file())
+
+    def test_full_source_repair_build_completes_all_four_gates(self):
+        report = OUTPUT/'stage1_end_to_end'
+        fixed = OUTPUT/'stage1_end_to_end_fixed_data'
+        audit, receipt = build_fixed_dataset(report, fixed)
+        self.assertEqual(audit['status'], 'passed')
+        self.assertTrue(all(gate['passed'] for gate in audit['gates'].values()))
+        self.assertTrue((fixed/'data/dataset.npz').is_file())
+        self.assertTrue((fixed/'data/label_repair_overlay.npz').is_file())
+        self.assertTrue((fixed/'shards').is_symlink())
+        self.assertEqual(receipt['fixed_dataset_sha256'],
+                         __import__('lerobot_training.navigation_overlay',
+                                    fromlist=['file_sha256']).file_sha256(
+                                        fixed/'data/dataset.npz'))
 
 
 def main():

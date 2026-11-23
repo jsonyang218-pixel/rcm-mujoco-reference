@@ -95,7 +95,8 @@ def valid_window_audit(arrays):
     return indices, diagnostics, not failures, failures
 
 
-def build_fixed_dataset(output):
+def build_fixed_dataset(output, fixed_data=None):
+    fixed_data = FIX_DATA if fixed_data is None else Path(fixed_data)
     source_dataset = SOURCE_DATA / 'data/dataset.npz'
     source_sha = file_sha256(source_dataset)
     with np.load(source_dataset, allow_pickle=False) as archive:
@@ -106,6 +107,8 @@ def build_fixed_dataset(output):
     validate_dataset_contract(repaired, require_history=True)
     valid, diagnostics, continuity, failures = valid_window_audit(repaired)
     episode = np.asarray(repaired['episode_index'])
+    error_um = np.linalg.norm(
+        np.asarray(repaired['truth_navigation_mm'], dtype=np.float64), axis=1) * 1000.
     executed = np.asarray(repaired['executed_action'], dtype=np.float64)
     executed_norm = np.linalg.norm(executed, axis=1)
     label_norm = np.linalg.norm(actions.astype(np.float64), axis=1)
@@ -163,21 +166,21 @@ def build_fixed_dataset(output):
     if not passed:
         record('stage1_label_audit', 'failed', output, audit)
         raise ValueError(f'Fixed-label audit failed: {gates}')
-    if FIX_DATA.exists():
-        raise FileExistsError(f'Fixed-label destination occupied: {FIX_DATA}')
-    FIX_DATA.mkdir(parents=True)
-    (FIX_DATA / 'data').mkdir()
-    np.savez_compressed(FIX_DATA / 'data/dataset.npz', **repaired)
-    np.savez_compressed(FIX_DATA / 'data/valid_window_indices.npz',
+    if fixed_data.exists():
+        raise FileExistsError(f'Fixed-label destination occupied: {fixed_data}')
+    fixed_data.mkdir(parents=True)
+    (fixed_data / 'data').mkdir()
+    np.savez_compressed(fixed_data / 'data/dataset.npz', **repaired)
+    np.savez_compressed(fixed_data / 'data/valid_window_indices.npz',
                         rows=np.asarray(valid, dtype=np.int64))
-    np.savez_compressed(FIX_DATA / 'data/label_repair_overlay.npz',
+    np.savez_compressed(fixed_data / 'data/label_repair_overlay.npz',
         old_action=np.asarray(arrays['action'], dtype=np.float32),
         new_action=actions, t3_stationary=stationary_t3.astype(np.bool_),
         episode_index=episode.astype(np.int64),
         source_dataset_sha256=np.asarray(source_sha))
-    (FIX_DATA / 'data/image_paths.json').write_bytes(
+    (fixed_data / 'data/image_paths.json').write_bytes(
         (SOURCE_DATA / 'data/image_paths.json').read_bytes())
-    os.symlink(SOURCE_DATA / 'shards', FIX_DATA / 'shards', target_is_directory=True)
+    os.symlink(SOURCE_DATA / 'shards', fixed_data / 'shards', target_is_directory=True)
     metadata = read(SOURCE_DATA / 'metadata.json')
     metadata.update({
         'action_source': 'homog_label_fix_20261123',
@@ -197,18 +200,18 @@ def build_fixed_dataset(output):
             item['action_source'] = audit['T2_rule']
         else:
             item['action_source'] = audit['T3_rule']
-    write_json(FIX_DATA / 'metadata.json', metadata)
-    write_json(FIX_DATA / 'dataset_audit.json', audit)
+    write_json(fixed_data / 'metadata.json', metadata)
+    write_json(fixed_data / 'dataset_audit.json', audit)
     receipt = {
         'status': 'completed', 'source_data': str(SOURCE_DATA),
-        'fixed_data': str(FIX_DATA), 'source_dataset_sha256': source_sha,
-        'fixed_dataset_sha256': file_sha256(FIX_DATA / 'data/dataset.npz'),
-        'overlay_sha256': file_sha256(FIX_DATA / 'data/label_repair_overlay.npz'),
-        'image_paths_sha256': file_sha256(FIX_DATA / 'data/image_paths.json'),
+        'fixed_data': str(fixed_data), 'source_dataset_sha256': source_sha,
+        'fixed_dataset_sha256': file_sha256(fixed_data / 'data/dataset.npz'),
+        'overlay_sha256': file_sha256(fixed_data / 'data/label_repair_overlay.npz'),
+        'image_paths_sha256': file_sha256(fixed_data / 'data/image_paths.json'),
         'images_reused_by_symlink': True, 'original_files_unchanged': True,
         'audit': str(output / 'label_fix_audit.json'),
     }
-    write_json(FIX_DATA / 'dataset_receipt.json', receipt)
+    write_json(fixed_data / 'dataset_receipt.json', receipt)
     write_json(output / 'summary.json', {'status': 'completed', **receipt, 'gates': gates})
     record('stage1_label_repair', 'completed', output, {
         'source_dataset_sha256': source_sha,
