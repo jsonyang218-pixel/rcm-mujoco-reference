@@ -18,12 +18,12 @@ from scripts.research.gpu_episode_pool import run_pool, signature, write_json
 BASE = '71040dd33a48644da662dc92ad28053a2a326871'
 BRANCH = 'feature/clean-render-homog-replay-20261123'
 TASK = ROOT.parent / '规划5.txt'
-DATA = ROOT / 'data/homog_clean_replay_20261123'
-WEIGHTS = ROOT / 'outputs/homog_clean_replay_20261123_v1'
-REPORTS = tuple(ROOT / f'github_reports/homog_20261123_s{i}_{s}' for i, s in (
+DATA = ROOT / 'data/homog_clean_replay_20261123_intent_v2'
+WEIGHTS = ROOT / 'outputs/homog_clean_replay_20261123_intent_v2'
+REPORTS = tuple(ROOT / f'github_reports/homog_intent_v2_20261123_s{i}_{s}' for i, s in (
     (1, 'collection'), (2, 'train'), (3, 'fast5_1600'), (4, 'dev20')))
 PUB = ROOT / 'runs/20261123/homog_clean_git_v1'
-WORKFLOW = ROOT / 'runs/20261123/homog_clean_workflow_v2'
+WORKFLOW = ROOT / 'runs/20261123/homog_clean_workflow_intent_v3'
 CAPS = np.array([.2, .1, .03])
 STEPS = 1600
 HOLD_START = 1400
@@ -41,6 +41,8 @@ def record(purpose, status, output, details):
 def identity():
     files = list((ROOT / 'scripts/research').glob('homog_replay_*.py'))
     files += [ROOT / 'scripts/verification/verify_homog_replay.py',
+              ROOT / 'scripts/verification/verify_homog_teacher_intent.py',
+              ROOT / 'scripts/tools/prepare_teacher_intent_repair.py',
               ROOT / 'scripts/research/a_axis_flip_audit.py',
               ROOT / 'scripts/research/a_axis_flip_pipeline.py',
               ROOT / 'rcm/fundus.py', ROOT / 'rcm/visual_servo.py',
@@ -49,7 +51,7 @@ def identity():
 
 
 def pool(groups, output, *, snapshot_every=5):
-    return run_pool(groups, output, workers=3, max_workers=4,
+    return run_pool(groups, output, workers=8, max_workers=8,
         timeout_s=None, stage_timeout_s=None, initializer_timeout_s=None,
         execution_timeout_s=None, snapshot_every=snapshot_every,
         resume=(Path(output) / 'contract.json').exists())

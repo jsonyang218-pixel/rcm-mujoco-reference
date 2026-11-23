@@ -1,6 +1,6 @@
 # 同源新渲染近目标回放 — 2026-11-23
 
-流程状态：failed。
+流程状态：interrupted。
 
 基点 `71040dd33a48644da662dc92ad28053a2a326871`；独立分支 `feature/clean-render-homog-replay-20261123`。
 
@@ -8,7 +8,7 @@
 
 92%池仅使用原始episode0–838完整有效轨迹窗口，排除全部Plan-2窗口；8%为本轮同源新包。
 
-结构化报告见 `rcm_4090_deploy/github_reports/homog_20261123_s*/`。
+结构化报告目录：`github_reports/homog_intent_v2_20261123_s1_collection`, `github_reports/homog_intent_v2_20261123_s2_train`, `github_reports/homog_intent_v2_20261123_s3_fast5_1600`, `github_reports/homog_intent_v2_20261123_s4_dev20`。
 
 权重、优化器断点及原始纠偏RGB保留本机；发布路径/大小/SHA256清单。代码、配置、日志及结构化证据上传GitHub。
 

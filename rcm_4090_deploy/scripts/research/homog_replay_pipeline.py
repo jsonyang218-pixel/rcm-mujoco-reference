@@ -20,7 +20,7 @@ from scripts.research.homog_replay_common import (
     BASE, BRANCH, CAPS, DATA, FAST5, HOLD_START, OLD, PUB, QUALITY, REPORTS,
     ROOT, SOURCE_DATA, STEPS, TARGETS, TASK, TEACHER_TOLERANCE_UM, UNIT, VAL,
     WEIGHTS, check_identity, dev20_gate, direction_gate, env_command, gpu_check,
-    identity, make_teacher, read, record, signature, write_json,
+    identity, make_teacher, pool, read, record, signature, write_json,
 )
 
 MODULE='scripts.research.homog_replay_pipeline'
@@ -30,7 +30,8 @@ def card():
     return {'schema':1,'task_file':str(TASK),'task_sha256':file_sha256(TASK),
         'base':BASE,'branch':BRANCH,
         'hypothesis':'Same-observation RGB/OCT/zero-velocity ABC replay reduces direction bias and final error',
-        'main_change':'60 new-render trajectories mixed at8%; frozen model architecture/statistics',
+        'main_change':'60 same-render trajectories at8%; T2/T3 bounded fractional teacher intent repair; frozen model architecture/statistics',
+        'repair_authorization':'2026-11-23 user: 修改这个问题; repair the diagnosed integer-handle deadzone',
         'original_pool':'Original episodes0-838 of merged dataset, full valid trajectories; no Plan-2 windows or old overlays',
         'data_source':str(SOURCE_DATA),'validation':str(VAL),'initial_checkpoint':str(OLD),
         'training':{'epochs':4,'batches_per_epoch':1000,'batch_size':16,
@@ -40,7 +41,9 @@ def card():
             'steps_per_trajectory':STEPS,'teacher_tolerance_um':TEACHER_TOLERANCE_UM,
             'T3_hold_start':HOLD_START,'T3_hold_frames':200,
             'label':'Zero-velocity geometry pre-acceleration expectation, capped at[.2deg,.1deg,.03mm] per50ms',
-            'expert_execution':'StrictRGBD geometry teacher with actual previous velocity for smooth physical commands',
+            'expert_execution':'StrictRGBD geometry teacher with actual previous velocity; T2/T3 bounded fractional intent committed only after accepted commands',
+            'hold_execution':'Discard fractional intent on each explicit hold tick; command actual feedback pose without bypassing motor dynamics',
+            'reuse':'Only complete byte-verified T1 trajectories with effective AST and unchanged asset/physics/scene compatibility; recollect all40 T2/T3',
             'T2_sign_balance':'10 antithetic ABC sign pairs over20 isolated targets'},
         'quality_gates':{'random_frames':200,'oct_truth_median_um_lt':.2,
             'all_axes_reverse_fraction_lt':.02,'RGB_OCT_render_provenance_mismatch':False,
@@ -57,6 +60,7 @@ def card():
             'teacher_context_um':1.70,'teacher_context':'Historical approximate reference, not a fresh matched baseline'},
         'budgets':dict.fromkeys(('collection_timeout_s','training_timeout_s','episode_timeout_s',
                                 'stage_timeout_s','initializer_timeout_s'),None),
+        'gpu_parallelism':{'workers':8,'max_workers':8,'training':'One CUDA/AMP trainer, original batch16'},
         'paths':{'dataset':str(DATA),'checkpoints':str(WEIGHTS),
             'reports':[str(p) for p in REPORTS]},
         'resume':'Only complete matching per-episode receipts reused; incomplete shards archived; training state every100 batches',
@@ -319,7 +323,7 @@ def summary(output,stages,status):
         lines += [f"配对原模型终值均值：{s['baseline']['final_mean_um']:.6f}µm；本轮最优：{b['final_mean_um']:.6f}µm。",'',
             f"最小误差均值：{b['min_mean_um']:.6f}µm；1000→1600步绝对漂移均值：{b['absolute_drift_1000_to_1600_um']:.6f}µm。",'',
             f"严格成功：{b['strict_success_count']}/{b['completed_targets']}。流程完成、指标改善、严格成功分别报告。",'']
-    lines += ['结构化报告见 `rcm_4090_deploy/github_reports/homog_20261123_s*/`。','',
+    lines += ['结构化报告目录：'+', '.join(f'`{p.relative_to(ROOT)}`' for p in REPORTS)+'。','',
         '权重、优化器断点及原始纠偏RGB保留本机；发布路径/大小/SHA256清单。代码、配置、日志及结构化证据上传GitHub。','',
         '仅验证软件与MuJoCo仿真，不代表临床精度或硬件就绪。']
     text='\n'.join(lines)+'\n'
@@ -328,6 +332,10 @@ def summary(output,stages,status):
 
 
 def run(output):
+    # Scope the eight-worker setting to this authorized workflow without
+    # rewriting the older audit/evaluation modules or their frozen outputs.
+    from scripts.research import a_axis_flip_audit, a_axis_flip_pipeline
+    a_axis_flip_audit.pool = a_axis_flip_pipeline.pool = pool
     with (output/'workflow.lock').open('a') as lock:
         try: fcntl.flock(lock.fileno(),fcntl.LOCK_EX|fcntl.LOCK_NB)
         except BlockingIOError as error: raise RuntimeError('Workflow already running') from error

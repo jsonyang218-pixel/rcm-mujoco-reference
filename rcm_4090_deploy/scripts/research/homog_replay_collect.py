@@ -14,6 +14,7 @@ from lerobot_training.navigation_overlay import file_sha256
 from scripts.research.a_axis_flip_audit import pre_acceleration, static_scene
 from scripts.research.a_axis_flip_replay import windows
 from scripts.research.clean_oct_workers import egl_identity
+from scripts.research.homog_replay_target import TeacherIntent
 from scripts.research.homog_replay_common import (
     CAPS, DATA, HOLD_START, OLD, QUALITY, REPORTS, STEPS, TARGETS, UNIT,
     atomic_npz, check_identity, gpu_check, make_teacher, pool, quality_gate,
@@ -103,6 +104,8 @@ class RecordingSensor:
         self.sensor, self.task, self.output = teacher.sensor, task, output
         self.rows, self.index, self.pending = [], 0, None
         self.teacher_command = None
+        self.teacher_intent = TeacherIntent(scene, CAPS) if task['regime'] != 'T1' else None
+        self.execution_diagnostics = None
         self.invalid_reasons = Counter()
         (output/'images').mkdir()
         self.stream = (output/'frames.jsonl').open('w', buffering=1)
@@ -136,11 +139,14 @@ class RecordingSensor:
                 previous_velocity=self.scene.motor_execution.actual_velocity, command_q=q)
             if not execution['valid']:
                 raise ValueError(f'Invalid teacher execution: {execution}')
-            self.teacher_command = np.asarray(execution['action_deg_deg_mm'])
-            if regime == 'T3' and self.index >= HOLD_START:
+            hold = regime == 'T3' and self.index >= HOLD_START
+            increment = np.asarray(execution['action_deg_deg_mm'])
+            if hold:
                 if label['measured_error_um'] >= 5:
                     raise ValueError('T3 did not reach measured<5um before the200 explicit hold frames')
-                self.teacher_command = np.zeros(3)
+                increment = np.zeros(3)
+            self.teacher_command, self.execution_diagnostics = self.teacher_intent.preview(
+                q, increment, hold=hold)
         if label is not None:
             image = Image.fromarray(obs['rgb'].astype(np.uint8)).resize(
                 (224, 224), Image.Resampling.BILINEAR)
@@ -167,6 +173,8 @@ class RecordingSensor:
                 'raw_rgb_sha256': raw_rgb_sha, 'quality': QUALITY,
                 'hold': hold, 'measured_error_um': label['measured_error_um'],
                 'regime': regime, 'observation_calls': 1}
+            if self.teacher_intent is not None:
+                row['teacher_execution'] = self.execution_diagnostics
             row['observation_token'] = signature(row)
             self.pending = row
         elif near:
@@ -175,6 +183,8 @@ class RecordingSensor:
         return obs
 
     def after_step(self, event):
+        if self.teacher_intent is not None:
+            self.teacher_intent.commit(event['accepted_action_deg_deg_mm'])
         if self.pending is not None:
             if self.pending['source_frame_index'] != event['step']:
                 raise ValueError('Observation/accepted-action alignment mismatch')
@@ -249,6 +259,8 @@ class CollectionWorker:
                 'RGB_OCT_render_provenance_mismatch':False, 'quality':QUALITY,
                 'label':'Same observe() zero-velocity geometry, pre-acceleration safe expectation; no truth enters labels',
                 'actual_history':'Accepted motor command stored separately as executed_action'}
+            result['expert_execution'] = ('old_student_feedback' if task['regime'] == 'T1'
+                else 'bounded_teacher_intent_v1')
             write_json(output/f"E{task['episode_index']:02d}.json",result)
             record('collection_episode','completed',output,result)
             return result

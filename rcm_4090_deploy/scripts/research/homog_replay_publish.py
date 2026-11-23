@@ -37,6 +37,9 @@ def publication_files(output):
     files = {}
     sources = list((ROOT/'scripts/research').glob('homog_replay_*.py'))
     sources += [ROOT/'scripts/verification/verify_homog_replay.py', ROOT/'TEST_LOG.md',
+                ROOT/'scripts/verification/verify_homog_teacher_intent.py',
+                ROOT/'scripts/verification/diagnose_homog_plateau.py',
+                ROOT/'scripts/tools/prepare_teacher_intent_repair.py',
                 ROOT/'docs/HOMOG_REPLAY_PLAN_20261123.md']
     for path in sources:
         if not path.is_file():
@@ -53,15 +56,14 @@ def publication_files(output):
                     and path.suffix in ('.json', '.jsonl', '.npz', '.csv', '.png', '.md', '.log')
                     and path.name != 'publication_manifest.json'):
                 files['rcm_4090_deploy/'+path.relative_to(ROOT).as_posix()] = path
-    for pattern in ('outputs/homog_clean_replay_20261123_v1', 'data/homog_clean_replay_20261123'):
-        for directory in ROOT.glob(pattern):
-            for path in directory.rglob('*'):
-                if path.is_file() and path.suffix in ('.json', '.jsonl', '.npz'):
-                    files['rcm_4090_deploy/'+path.relative_to(ROOT).as_posix()] = path
+    for directory in (WEIGHTS, DATA):
+        for path in directory.rglob('*'):
+            if path.is_file() and path.suffix in ('.json', '.jsonl', '.npz'):
+                files['rcm_4090_deploy/'+path.relative_to(ROOT).as_posix()] = path
     for verification in (ROOT/'runs/20261123/verification').glob('homog_replay*'):
         for path in verification.rglob('*'):
             if (path.is_file() and 'images' not in path.relative_to(verification).parts
-                    and path.suffix in ('.json', '.log', '.png', '.csv')):
+                    and path.suffix in ('.json', '.log', '.png', '.csv', '.md')):
                 files['rcm_4090_deploy/'+path.relative_to(ROOT).as_posix()] = path
     return files
 
@@ -94,12 +96,11 @@ def publish(output, *, push=False):
         raise ValueError('current branch TEST_LOG prefix would be lost')
     files = publication_files(output)
     inventory = []
-    for pattern in ('outputs/homog_clean_replay_20261123_v1', 'data/homog_clean_replay_20261123'):
-        for directory in ROOT.glob(pattern):
-            for path in sorted(directory.rglob('*')):
-                if path.is_file() and path.suffix in ('.pth', '.png'):
-                    inventory.append({'path': str(path), 'bytes': path.stat().st_size,
-                                      'sha256': file_sha256(path), 'uploaded': False})
+    for directory in (WEIGHTS, DATA):
+        for path in sorted(directory.rglob('*')):
+            if path.is_file() and path.suffix in ('.pth', '.png'):
+                inventory.append({'path': str(path), 'bytes': path.stat().st_size,
+                                  'sha256': file_sha256(path), 'uploaded': False})
     write_json(output/'retained_large_assets.json', {'assets': inventory,
         'policy': 'Weights/resume state and raw correction RGB remain local; all paths/sizes/SHA256 retained. Original datasets and models untouched.'})
     files['rcm_4090_deploy/'+(output/'retained_large_assets.json').relative_to(ROOT).as_posix()] = output/'retained_large_assets.json'

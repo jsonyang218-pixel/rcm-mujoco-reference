@@ -59,3 +59,37 @@ python -E -B -m scripts.tools.scale_homog_replay launch \
 ```
 
 恢复仅启动一次；终端启动失败或资源门禁失败时记录原因，不后台回退、不自动重试。
+
+## 2026-11-23 用户授权的教师量化死区修复
+
+旧8路运行已在T3测量<5µm保持门禁处失败，完成37/60轨迹且未启动训练。
+用户随后明确要求“修改这个问题”，授权修复后继续原规划。旧数据、37条完整轨迹、
+失败凭据、原始代码和运行清单保留，旧T2/T3不导入新版训练包。
+
+修复位于 `homog_replay_target.TeacherIntent` 和采集器的T2/T3分支：
+保存未执行的小数目标，每帧把同次视觉观测算出的教师增量加到该目标上，
+仅在真实电机控制tick接受后提交。安全缩步时仅保留已接受的目标；
+目标领先量同时受原单步ABC上限和电机速度×周期约束，防止积累饱和。
+进入显式保持时丢弃待积累量，目标设为当前反馈位置，仍经过原电机协议和动力学。
+不增加教师增益、不修改G10、不改变零初速监督标签或视觉/真值角色。
+
+T1继续由旧学生feedback执行，不启用教师目标累积。导入已有20条T1前，
+逐字节验证全部图像、轨迹与凭据；比较忽略T2/T3专属分支后的T1有效AST，
+并校验任务、种子、模型、数据、场景、传感器和物理代码保持一致。
+新版保存完整来源凭据与兼容性说明，旧凭据不改写；T2/T3全部40条重新采集。
+
+修复验证使用3个隔离训练目标：E22从旧停滞状态恢复，E40/E41从原T3初态恢复，
+各自进行短闭环，T3附加完整200帧保持。短验证只验证修复，不代替正式1600动作采集。
+完整新运行仍为60条、每条1600动作、T3第1400动作后200帧保持、8路GPU池，
+所有质量门禁和4×1000训练批次保持原样。
+
+新版路径：
+
+- 工作流：`runs/20261123/homog_clean_workflow_intent_v3/`。
+- 数据：`data/homog_clean_replay_20261123_intent_v2/`。
+- 权重：`outputs/homog_clean_replay_20261123_intent_v2/`。
+- 报告：`github_reports/homog_intent_v2_20261123_s{1..4}_*/`。
+- 准备与来源导入：`python -m scripts.tools.prepare_teacher_intent_repair --output-dir runs/20261123/homog_clean_workflow_intent_v3`。
+- 正式启动：`python -m scripts.research.homog_replay_pipeline launch --output-dir runs/20261123/homog_clean_workflow_intent_v3`。
+
+正式启动仍只新开一次GNOME Terminal，无后台回退；启动后不等待、不轮询。

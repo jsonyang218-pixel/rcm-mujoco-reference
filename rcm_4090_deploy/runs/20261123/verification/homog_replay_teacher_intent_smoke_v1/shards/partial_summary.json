@@ -1,0 +1,101 @@
+{
+  "status": "completed",
+  "completed": 3,
+  "total": 3,
+  "results": {
+    "smoke_E22": {
+      "status": "passed",
+      "episode_index": 22,
+      "regime": "T2",
+      "actions": 120,
+      "final_error_um": 2.7378074552892038,
+      "final_measured_error_um": 1.6321290167733986,
+      "initial_error_um": 17.280213941536985,
+      "min_error_um": 0.23849869314423086,
+      "first_below_5um_step": 7,
+      "hold_frames": 0,
+      "hold_true_error_max_um": null,
+      "safety_limited_steps": 0,
+      "egl": {
+        "vendor": "NVIDIA Corporation",
+        "renderer": "NVIDIA GeForce RTX 4090/PCIe/SSE2"
+      },
+      "stored_vs_policy_image_tensor_max_abs": 0.0,
+      "gate_passed": true,
+      "scope": "Three training targets, short verification only; not final model accuracy",
+      "from_frozen_plateau": true
+    },
+    "smoke_E40": {
+      "status": "passed",
+      "episode_index": 40,
+      "regime": "T3",
+      "actions": 280,
+      "final_error_um": 2.654533813407869,
+      "final_measured_error_um": 2.6468943012088046,
+      "initial_error_um": 35.423806823122355,
+      "min_error_um": 0.39894177052205915,
+      "first_below_5um_step": 12,
+      "hold_frames": 200,
+      "hold_true_error_max_um": 2.654533813407868,
+      "safety_limited_steps": 0,
+      "egl": {
+        "vendor": "NVIDIA Corporation",
+        "renderer": "NVIDIA GeForce RTX 4090/PCIe/SSE2"
+      },
+      "stored_vs_policy_image_tensor_max_abs": 0.0,
+      "gate_passed": true,
+      "scope": "Three training targets, short verification only; not final model accuracy",
+      "from_frozen_plateau": false
+    },
+    "smoke_E41": {
+      "status": "passed",
+      "episode_index": 41,
+      "regime": "T3",
+      "actions": 280,
+      "final_error_um": 2.4368947175859987,
+      "final_measured_error_um": 2.4338666649355156,
+      "initial_error_um": 35.35241909755249,
+      "min_error_um": 0.4647258061063237,
+      "first_below_5um_step": 12,
+      "hold_frames": 200,
+      "hold_true_error_max_um": 2.4368947175859983,
+      "safety_limited_steps": 0,
+      "egl": {
+        "vendor": "NVIDIA Corporation",
+        "renderer": "NVIDIA GeForce RTX 4090/PCIe/SSE2"
+      },
+      "stored_vs_policy_image_tensor_max_abs": 0.0,
+      "gate_passed": true,
+      "scope": "Three training targets, short verification only; not final model accuracy",
+      "from_frozen_plateau": false
+    }
+  },
+  "workers": [
+    {
+      "pid": 143092,
+      "group": "smoke",
+      "log": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261123/verification/homog_replay_teacher_intent_smoke_v1/shards/worker_1795427485432876289.log"
+    },
+    {
+      "pid": 143097,
+      "group": "smoke",
+      "log": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261123/verification/homog_replay_teacher_intent_smoke_v1/shards/worker_1795427485526380758.log"
+    },
+    {
+      "pid": 143100,
+      "group": "smoke",
+      "log": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261123/verification/homog_replay_teacher_intent_smoke_v1/shards/worker_1795427485598964809.log"
+    }
+  ],
+  "contract_sha256": "ea3b2c7dbdc33818b99f6e44fde2b8575e67bbaafba7cf2a28c0d65b28166edd",
+  "resources": {
+    "gpu_free_mib": 43262,
+    "gpu_utilization_percent": 10,
+    "ram_available_mib": 22035
+  },
+  "active_tasks": [
+    "smoke_E40",
+    "smoke_E41"
+  ],
+  "elapsed_s": 111.95692747100838
+}

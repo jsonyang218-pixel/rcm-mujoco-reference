@@ -1,0 +1,190 @@
+{
+  "status": "prepared",
+  "reused_T1": 20,
+  "T2_T3_to_recollect": 40,
+  "workers": 8,
+  "T1_effective_AST_comparison": {
+    "collection_tasks": true,
+    "expected_label": true,
+    "RecordingSensor": true,
+    "CollectionWorker": true,
+    "AuditWorker": true,
+    "axis_audit": true,
+    "collect": true
+  },
+  "changed_frozen_source_keys": [
+    "scripts/research/homog_replay_collect.py",
+    "scripts/research/homog_replay_common.py",
+    "scripts/research/homog_replay_pipeline.py",
+    "scripts/research/homog_replay_publish.py"
+  ],
+  "source_workflow": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261123/homog_clean_workflow_v2",
+  "source_dataset_unchanged": "/home/him1/mujoco_bc/rcm_4090_deploy/data/homog_clean_replay_20261123",
+  "new_data": "/home/him1/mujoco_bc/rcm_4090_deploy/data/homog_clean_replay_20261123_intent_v2",
+  "new_weights": "/home/him1/mujoco_bc/rcm_4090_deploy/outputs/homog_clean_replay_20261123_intent_v2",
+  "new_workflow": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261123/homog_clean_workflow_intent_v3",
+  "smoke_evidence": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261123/verification/homog_replay_teacher_intent_smoke_v1/summary.json",
+  "contract_sha256": "bdb4f44fc1b370d5dd0ba74fcc9ceb3695c01959bec6d5a4bea313dec7873159",
+  "lineage": [
+    {
+      "task": "collection_E00",
+      "source_receipt": "/home/him1/mujoco_bc/rcm_4090_deploy/data/homog_clean_replay_20261123/shards/tasks/collection_E00/receipt.json",
+      "source_receipt_sha256": "d003e25a126a08381b762049e4737f760694508eedda64486ec7c055dd239047",
+      "destination": "/home/him1/mujoco_bc/rcm_4090_deploy/data/homog_clean_replay_20261123_intent_v2/shards/tasks/collection_E00",
+      "dataset_bytes_identical": true,
+      "frame_evidence_bytes_identical": true
+    },
+    {
+      "task": "collection_E01",
+      "source_receipt": "/home/him1/mujoco_bc/rcm_4090_deploy/data/homog_clean_replay_20261123/shards/tasks/collection_E01/receipt.json",
+      "source_receipt_sha256": "498fdd1f61aaa92a350a8d7ba70e1f4973301f811ac1d9d1d0e02f3bfe48072b",
+      "destination": "/home/him1/mujoco_bc/rcm_4090_deploy/data/homog_clean_replay_20261123_intent_v2/shards/tasks/collection_E01",
+      "dataset_bytes_identical": true,
+      "frame_evidence_bytes_identical": true
+    },
+    {
+      "task": "collection_E02",
+      "source_receipt": "/home/him1/mujoco_bc/rcm_4090_deploy/data/homog_clean_replay_20261123/shards/tasks/collection_E02/receipt.json",
+      "source_receipt_sha256": "075adb80e544180517ddf4a2e56a29143ec2facfba2fb02f93c04fcff9865888",
+      "destination": "/home/him1/mujoco_bc/rcm_4090_deploy/data/homog_clean_replay_20261123_intent_v2/shards/tasks/collection_E02",
+      "dataset_bytes_identical": true,
+      "frame_evidence_bytes_identical": true
+    },
+    {
+      "task": "collection_E03",
+      "source_receipt": "/home/him1/mujoco_bc/rcm_4090_deploy/data/homog_clean_replay_20261123/shards/tasks/collection_E03/receipt.json",
+      "source_receipt_sha256": "f10ef2a3671469525b522c45d433b95f79b4dcee67ce19bec26b96739d632071",
+      "destination": "/home/him1/mujoco_bc/rcm_4090_deploy/data/homog_clean_replay_20261123_intent_v2/shards/tasks/collection_E03",
+      "dataset_bytes_identical": true,
+      "frame_evidence_bytes_identical": true
+    },
+    {
+      "task": "collection_E04",
+      "source_receipt": "/home/him1/mujoco_bc/rcm_4090_deploy/data/homog_clean_replay_20261123/shards/tasks/collection_E04/receipt.json",
+      "source_receipt_sha256": "245bb5cc6e99feda2a023bbed054d71e3ee3ce9af0435c939324b7f68d29d9be",
+      "destination": "/home/him1/mujoco_bc/rcm_4090_deploy/data/homog_clean_replay_20261123_intent_v2/shards/tasks/collection_E04",
+      "dataset_bytes_identical": true,
+      "frame_evidence_bytes_identical": true
+    },
+    {
+      "task": "collection_E05",
+      "source_receipt": "/home/him1/mujoco_bc/rcm_4090_deploy/data/homog_clean_replay_20261123/shards/tasks/collection_E05/receipt.json",
+      "source_receipt_sha256": "a92a7c794417655a038e6dae5834a9f9ce7c777b0a8f57ad92c62f9cc50d4b3c",
+      "destination": "/home/him1/mujoco_bc/rcm_4090_deploy/data/homog_clean_replay_20261123_intent_v2/shards/tasks/collection_E05",
+      "dataset_bytes_identical": true,
+      "frame_evidence_bytes_identical": true
+    },
+    {
+      "task": "collection_E06",
+      "source_receipt": "/home/him1/mujoco_bc/rcm_4090_deploy/data/homog_clean_replay_20261123/shards/tasks/collection_E06/receipt.json",
+      "source_receipt_sha256": "5668b0a26316ada43619a06dae72f2361a9abeada1e13b4564d791485118b2f0",
+      "destination": "/home/him1/mujoco_bc/rcm_4090_deploy/data/homog_clean_replay_20261123_intent_v2/shards/tasks/collection_E06",
+      "dataset_bytes_identical": true,
+      "frame_evidence_bytes_identical": true
+    },
+    {
+      "task": "collection_E07",
+      "source_receipt": "/home/him1/mujoco_bc/rcm_4090_deploy/data/homog_clean_replay_20261123/shards/tasks/collection_E07/receipt.json",
+      "source_receipt_sha256": "d0d360102df57e9a803177d1a690365a72827c6026bb16ba21c4f18c5c693ffa",
+      "destination": "/home/him1/mujoco_bc/rcm_4090_deploy/data/homog_clean_replay_20261123_intent_v2/shards/tasks/collection_E07",
+      "dataset_bytes_identical": true,
+      "frame_evidence_bytes_identical": true
+    },
+    {
+      "task": "collection_E08",
+      "source_receipt": "/home/him1/mujoco_bc/rcm_4090_deploy/data/homog_clean_replay_20261123/shards/tasks/collection_E08/receipt.json",
+      "source_receipt_sha256": "b8337d37b85d1df7c6d66cc461bab85e291254a966daa64c190f2bcd68e8d256",
+      "destination": "/home/him1/mujoco_bc/rcm_4090_deploy/data/homog_clean_replay_20261123_intent_v2/shards/tasks/collection_E08",
+      "dataset_bytes_identical": true,
+      "frame_evidence_bytes_identical": true
+    },
+    {
+      "task": "collection_E09",
+      "source_receipt": "/home/him1/mujoco_bc/rcm_4090_deploy/data/homog_clean_replay_20261123/shards/tasks/collection_E09/receipt.json",
+      "source_receipt_sha256": "e7b6cd76b41d4c8446e982b102895740e514a7cb177319e409d9933a40bfb071",
+      "destination": "/home/him1/mujoco_bc/rcm_4090_deploy/data/homog_clean_replay_20261123_intent_v2/shards/tasks/collection_E09",
+      "dataset_bytes_identical": true,
+      "frame_evidence_bytes_identical": true
+    },
+    {
+      "task": "collection_E10",
+      "source_receipt": "/home/him1/mujoco_bc/rcm_4090_deploy/data/homog_clean_replay_20261123/shards/tasks/collection_E10/receipt.json",
+      "source_receipt_sha256": "fd222011d6c4261f4cd48b9c1f0dbd75a5b469db255a4dd3d4ed69e706baf8de",
+      "destination": "/home/him1/mujoco_bc/rcm_4090_deploy/data/homog_clean_replay_20261123_intent_v2/shards/tasks/collection_E10",
+      "dataset_bytes_identical": true,
+      "frame_evidence_bytes_identical": true
+    },
+    {
+      "task": "collection_E11",
+      "source_receipt": "/home/him1/mujoco_bc/rcm_4090_deploy/data/homog_clean_replay_20261123/shards/tasks/collection_E11/receipt.json",
+      "source_receipt_sha256": "11ecb77a0dcc911c47d3696ba74d061ea82557e4c9fc9ecec843c0b33da0be9b",
+      "destination": "/home/him1/mujoco_bc/rcm_4090_deploy/data/homog_clean_replay_20261123_intent_v2/shards/tasks/collection_E11",
+      "dataset_bytes_identical": true,
+      "frame_evidence_bytes_identical": true
+    },
+    {
+      "task": "collection_E12",
+      "source_receipt": "/home/him1/mujoco_bc/rcm_4090_deploy/data/homog_clean_replay_20261123/shards/tasks/collection_E12/receipt.json",
+      "source_receipt_sha256": "2c91b36fece585d22615ca719e36ef140ced6773a81bc8d458deb697d400f21f",
+      "destination": "/home/him1/mujoco_bc/rcm_4090_deploy/data/homog_clean_replay_20261123_intent_v2/shards/tasks/collection_E12",
+      "dataset_bytes_identical": true,
+      "frame_evidence_bytes_identical": true
+    },
+    {
+      "task": "collection_E13",
+      "source_receipt": "/home/him1/mujoco_bc/rcm_4090_deploy/data/homog_clean_replay_20261123/shards/tasks/collection_E13/receipt.json",
+      "source_receipt_sha256": "68a63aea3dae3fa3d34442cdf47fdb79adcf08f66b3874d2e029c7b17c9319de",
+      "destination": "/home/him1/mujoco_bc/rcm_4090_deploy/data/homog_clean_replay_20261123_intent_v2/shards/tasks/collection_E13",
+      "dataset_bytes_identical": true,
+      "frame_evidence_bytes_identical": true
+    },
+    {
+      "task": "collection_E14",
+      "source_receipt": "/home/him1/mujoco_bc/rcm_4090_deploy/data/homog_clean_replay_20261123/shards/tasks/collection_E14/receipt.json",
+      "source_receipt_sha256": "d55bd2d75f4a969a3e9cb67376af32066d9c5d799db6808c9c69205bd60cd96d",
+      "destination": "/home/him1/mujoco_bc/rcm_4090_deploy/data/homog_clean_replay_20261123_intent_v2/shards/tasks/collection_E14",
+      "dataset_bytes_identical": true,
+      "frame_evidence_bytes_identical": true
+    },
+    {
+      "task": "collection_E15",
+      "source_receipt": "/home/him1/mujoco_bc/rcm_4090_deploy/data/homog_clean_replay_20261123/shards/tasks/collection_E15/receipt.json",
+      "source_receipt_sha256": "528afd8593dfa8054575b6361d0688212659def4ced69bf1ed393ad830f53c0a",
+      "destination": "/home/him1/mujoco_bc/rcm_4090_deploy/data/homog_clean_replay_20261123_intent_v2/shards/tasks/collection_E15",
+      "dataset_bytes_identical": true,
+      "frame_evidence_bytes_identical": true
+    },
+    {
+      "task": "collection_E16",
+      "source_receipt": "/home/him1/mujoco_bc/rcm_4090_deploy/data/homog_clean_replay_20261123/shards/tasks/collection_E16/receipt.json",
+      "source_receipt_sha256": "e0999c3a028d25db3399836014b2f81294fe7f03155eab5c6c4705afd363d1b7",
+      "destination": "/home/him1/mujoco_bc/rcm_4090_deploy/data/homog_clean_replay_20261123_intent_v2/shards/tasks/collection_E16",
+      "dataset_bytes_identical": true,
+      "frame_evidence_bytes_identical": true
+    },
+    {
+      "task": "collection_E17",
+      "source_receipt": "/home/him1/mujoco_bc/rcm_4090_deploy/data/homog_clean_replay_20261123/shards/tasks/collection_E17/receipt.json",
+      "source_receipt_sha256": "5ce1ec62a2e3ca3ef93360830cf43f91ec266491bef6a0498918b92ad413a7e4",
+      "destination": "/home/him1/mujoco_bc/rcm_4090_deploy/data/homog_clean_replay_20261123_intent_v2/shards/tasks/collection_E17",
+      "dataset_bytes_identical": true,
+      "frame_evidence_bytes_identical": true
+    },
+    {
+      "task": "collection_E18",
+      "source_receipt": "/home/him1/mujoco_bc/rcm_4090_deploy/data/homog_clean_replay_20261123/shards/tasks/collection_E18/receipt.json",
+      "source_receipt_sha256": "fa2f455f26841b1d0b30e7b05712d4693633a44343b3a1840763ccb8741fec29",
+      "destination": "/home/him1/mujoco_bc/rcm_4090_deploy/data/homog_clean_replay_20261123_intent_v2/shards/tasks/collection_E18",
+      "dataset_bytes_identical": true,
+      "frame_evidence_bytes_identical": true
+    },
+    {
+      "task": "collection_E19",
+      "source_receipt": "/home/him1/mujoco_bc/rcm_4090_deploy/data/homog_clean_replay_20261123/shards/tasks/collection_E19/receipt.json",
+      "source_receipt_sha256": "b9274c92f2c652bb26508547b31d04a31c33a70e98af1ed6ca2542f579cfcbfd",
+      "destination": "/home/him1/mujoco_bc/rcm_4090_deploy/data/homog_clean_replay_20261123_intent_v2/shards/tasks/collection_E19",
+      "dataset_bytes_identical": true,
+      "frame_evidence_bytes_identical": true
+    }
+  ]
+}
