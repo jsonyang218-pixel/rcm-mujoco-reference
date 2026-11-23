@@ -1,0 +1,29 @@
+{
+  "status": "completed",
+  "card": "configs/experiment_card_clean_oct_median9_20261122_v1.json",
+  "source_identity_match": true,
+  "baseline_complete_targets": 3,
+  "indices": [
+    0,
+    8,
+    10
+  ],
+  "seeds": [
+    42,
+    50,
+    52
+  ],
+  "checkpoint": "/home/him1/mujoco_bc/rcm_4090_deploy/outputs/clean_oct_cbias_20261121_resume_v2/step_002000.pth",
+  "checkpoint_sha256": "705dc36de56d3efd659fd9d0c47f33bd91d8a9c3c6e5ea32e5dbcbcec0266523",
+  "architecture": "state_conditioned_temporal_attention_v1",
+  "device": "NVIDIA GeForce RTX 4090",
+  "gpu_snapshot": "index, name, memory.total [MiB], memory.used [MiB]\n0, NVIDIA GeForce RTX 4090, 49140 MiB, 1305 MiB\n",
+  "contract_tests": 6,
+  "syntax_checked": 2,
+  "new_output_paths": [
+    "runs/20261122/diagnosis/clean_oct_median9_workflow_v1",
+    "runs/20261122/diagnosis/clean_oct_terminal_ablation_v1"
+  ],
+  "baseline_final_mean_um": 127.64190290413778,
+  "scope": "Asset/model-load preflight only; no inference, rendering or rollout; existing frozen baseline reused"
+}

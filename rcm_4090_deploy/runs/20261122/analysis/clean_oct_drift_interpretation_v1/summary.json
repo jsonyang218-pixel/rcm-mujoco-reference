@@ -1,0 +1,97 @@
+{
+  "status": "completed",
+  "source_hashes": {
+    "runs/20261122/analysis/clean_oct_command_execution_v1/command_execution.json": "3652689e9a05c846567d923192179ab6bcadd9b8078e6c4745f2d6e64d73c5cb",
+    "runs/20261122/diagnosis/clean_oct_fixed_input_v1/summary.json": "7c83f0af8f999d63472f0b7c2dd6e47f32f2445570b9ec94a2b0d41ffe62aa0f"
+  },
+  "source_card": "configs/experiment_card_clean_oct_drift_diagnosis_20261122_v1.json",
+  "checkpoint": "/home/him1/mujoco_bc/rcm_4090_deploy/outputs/clean_oct_cbias_20261121_resume_v2/step_002000.pth",
+  "completed_targets_A": 20,
+  "fixed_snapshots": 9,
+  "fixed_samples": 288,
+  "action_reproduction_max_abs": 0.0,
+  "oct_reproduction_max_abs_mm": 1.861164111716107e-09,
+  "A_mean_opposes_teacher_snapshots": 7,
+  "toward_measured_target_samples": 109,
+  "requested_minus_accepted_max_abs_deg_deg_mm": [
+    8.881784197001252e-16,
+    8.881784197001252e-16,
+    0.0
+  ],
+  "records": [
+    {
+      "episode_index": 0,
+      "step": 800,
+      "A_mean_deg": 0.0010639459537742368,
+      "A_std_deg": 0.0049160146754200175,
+      "teacher_A_deg": -0.03183347860012536,
+      "first_order_toward_count": 16
+    },
+    {
+      "episode_index": 0,
+      "step": 1000,
+      "A_mean_deg": 0.0025429389606870245,
+      "A_std_deg": 0.006512939244971129,
+      "teacher_A_deg": -0.02454221063867165,
+      "first_order_toward_count": 14
+    },
+    {
+      "episode_index": 0,
+      "step": 1200,
+      "A_mean_deg": 0.0007586544625155511,
+      "A_std_deg": 0.006070510928789451,
+      "teacher_A_deg": -0.01997748796745319,
+      "first_order_toward_count": 11
+    },
+    {
+      "episode_index": 8,
+      "step": 800,
+      "A_mean_deg": -0.0002261290514979919,
+      "A_std_deg": 0.006003422292342074,
+      "teacher_A_deg": -0.001611324872726344,
+      "first_order_toward_count": 0
+    },
+    {
+      "episode_index": 8,
+      "step": 1000,
+      "A_mean_deg": 0.0024525027165509528,
+      "A_std_deg": 0.006209652995155048,
+      "teacher_A_deg": -0.01539434846645073,
+      "first_order_toward_count": 10
+    },
+    {
+      "episode_index": 8,
+      "step": 1200,
+      "A_mean_deg": -0.0034211483216495253,
+      "A_std_deg": 0.004086640850704328,
+      "teacher_A_deg": -0.014199999999999722,
+      "first_order_toward_count": 25
+    },
+    {
+      "episode_index": 10,
+      "step": 800,
+      "A_mean_deg": -0.002576803913598269,
+      "A_std_deg": 0.005271041801633474,
+      "teacher_A_deg": 0.004870043141326097,
+      "first_order_toward_count": 10
+    },
+    {
+      "episode_index": 10,
+      "step": 1000,
+      "A_mean_deg": 0.0014951805605960544,
+      "A_std_deg": 0.006565327084628947,
+      "teacher_A_deg": -0.011336793958372705,
+      "first_order_toward_count": 14
+    },
+    {
+      "episode_index": 10,
+      "step": 1200,
+      "A_mean_deg": 0.0024749432450335007,
+      "A_std_deg": 0.005576386324580318,
+      "teacher_A_deg": -0.02182464207066576,
+      "first_order_toward_count": 9
+    }
+  ],
+  "interpretation": "Large conditional action dispersion and mean-direction disagreement are diagnostic associations. Exact seeded-action reconstruction corroborates inputs but original RGB pixel equality is unverified. No motor bug or causal remedy established.",
+  "next_candidate": "Single sample -> median of 9 samples; existing aggregation, Flow4, G10 feedback; evaluate only E00/E08/E10 paired with frozen complete baseline. Reduces sampling variability hypothesis, may preserve or amplify direction bias. No training."
+}

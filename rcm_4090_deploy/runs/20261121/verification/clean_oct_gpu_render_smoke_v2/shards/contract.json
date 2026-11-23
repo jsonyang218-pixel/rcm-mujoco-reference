@@ -1,0 +1,152 @@
+{
+  "groups": {
+    "render": {
+      "factory": "scripts.research.clean_oct_workers:OverlayWorker",
+      "spec": {
+        "data_dir": "/home/him1/mujoco_bc/rcm_4090_deploy/data/plan2_plus_original_train_224_20261119",
+        "dataset_sha256": "9d80523f519faf4e00bbaef3d30e29dec1401181f3dcddd438c5087c05eb54db",
+        "base_c_overlay": "/home/him1/mujoco_bc/rcm_4090_deploy/data/overnight_c_fix_symlog_081234_overlay/label_override.npz",
+        "base_c_sha256": "cc49f7eedd06c1d38ee71928693e4a67a4a34e8af17785c9598b143236352583",
+        "identity": {
+          "code_sha256": "adf85b62614eb7d6c5ee65e8ab53f604cf55e3a821a1308320d09eac28adc9d8",
+          "scene_sha256": "265c927ef7e7ac71536963b3000ffb161b7ff7ac03bb86cdb8480ed988c17028",
+          "scripts/research/clean_oct_pipeline.py": "8bfe541eb2fedd05235fd42a9a9120910555464efb32e297b87a8e07f3fce914",
+          "scripts/research/clean_oct_workers.py": "e7214ed815573419ac4b2b89e19ec429bf6fd761970fbbce9da1bbd8e4dae87a",
+          "scripts/research/gpu_episode_pool.py": "d48ba3b40fb29352638f8dc1cfba5d66671258f4855f12fe6f75f5f7b9a4afdb",
+          "scripts/research/control_g15_diagnostics.py": "70a8cd88e3fbe71e4f72b606ca29530529ef00ea4863a2ab8e5f9060bfcba2d2",
+          "configs/v12_reachable_development_targets_0p35um.json": "fcc4872a9d5b58bb7158b36d3c0ab6d7452e4d8d747317dfb077b6e7bbc815c7"
+        }
+      },
+      "tasks": [
+        {
+          "id": "E0000",
+          "episode_index": 0,
+          "rows": [
+            651,
+            654,
+            658,
+            662,
+            665,
+            669,
+            673,
+            677
+          ],
+          "target": {
+            "kind": "scanned_world_m",
+            "value": [
+              0.34664824449435955,
+              -0.01508970242653458,
+              0.3720156301959276
+            ],
+            "terminal_encoders": [
+              -5258,
+              1852859,
+              2144368,
+              0
+            ],
+            "evidence": [
+              {
+                "path": "/home/him1/mujoco_bc/rcm_4090_deploy/data/plan2_plus_original_train_224_20261119/metadata.json",
+                "sha256": "7f02f265acadf965a9dc0de29b2058cfccc240ea39d06dc88050179d0ae2698d",
+                "episode_index": 0
+              },
+              {
+                "path": "/home/him1/mujoco_bc/rcm_4090_deploy/data/lerobot_v12_oct_dit_rf_dagger2_acthist_20261116_224/metadata.json",
+                "sha256": "8f05e8f88cc44a3261a372bd22e32c5e0804af626f392743b72fa2d4d47d8acc",
+                "episode_index": 0
+              },
+              {
+                "path": "/home/him1/mujoco_bc/rcm_4090_deploy/data/lerobot_v12_oct_dit_rf_dagger1_round1_verified_224/metadata.json",
+                "sha256": "0a0c6a4798fb28cbe187853e497561c99b24753cf0f0e5750ef13fef63d96262",
+                "episode_index": 0
+              },
+              {
+                "path": "/home/him1/mujoco_bc/rcm_4090_deploy/data/lerobot_v12_oct_dagger2_covshift_verified_224/metadata.json",
+                "sha256": "a1e0cd31139928a26c5524b5d4534a759b59d6400d0681a4f0d04f34805cd166",
+                "episode_index": 0
+              },
+              {
+                "path": "/home/him1/mujoco_bc/rcm_4090_deploy/data/lerobot_v12_oct_dagger1_fixed_224/metadata.json",
+                "sha256": "a50afcebe16bb22607417800a8d84d50a14b87f05ca4af56a5a86474e1b506ea",
+                "episode_index": 0
+              },
+              {
+                "path": "/home/him1/mujoco_bc/rcm_4090_deploy/data/lerobot_v12_zero_error_train_oct_224/metadata.json",
+                "sha256": "18a9bcd8cd78228fec80686810828d52ecf09b5b9edc5ec4cf4839fc2c763652",
+                "episode_index": 0
+              },
+              {
+                "path": "/home/him1/mujoco_bc/rcm_4090_deploy/data/lerobot_v12_zero_error_train_oct_224/data/terminal_audits.json",
+                "sha256": "292ecfbd1753304078d69e2661d69d94ab5e8e9fc0d83beccbe346b5dc756ce8",
+                "audit_index": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "E0760",
+          "episode_index": 760,
+          "rows": [
+            218447,
+            218482,
+            218515,
+            218532,
+            218561,
+            218592,
+            218609,
+            218627
+          ],
+          "target": {
+            "kind": "robot_mm",
+            "value": [
+              2.103716168319919,
+              1.8007438402717488,
+              23.367153059817163
+            ],
+            "evidence": [
+              {
+                "path": "/home/him1/mujoco_bc/rcm_4090_deploy/data/plan2_plus_original_train_224_20261119/metadata.json",
+                "sha256": "7f02f265acadf965a9dc0de29b2058cfccc240ea39d06dc88050179d0ae2698d",
+                "episode_index": 760
+              }
+            ]
+          }
+        },
+        {
+          "id": "E0839",
+          "episode_index": 839,
+          "rows": [
+            234348,
+            234351,
+            234354,
+            234357,
+            234361,
+            234364,
+            234367,
+            234371
+          ],
+          "target": {
+            "kind": "robot_mm",
+            "value": [
+              -3.2427407518684968,
+              8.027954866913301,
+              21.958206238690824
+            ],
+            "evidence": [
+              {
+                "path": "/home/him1/mujoco_bc/rcm_4090_deploy/data/plan2_plus_original_train_224_20261119/metadata.json",
+                "sha256": "7f02f265acadf965a9dc0de29b2058cfccc240ea39d06dc88050179d0ae2698d",
+                "episode_index": 839
+              }
+            ]
+          }
+        }
+      ]
+    }
+  },
+  "workers": 3,
+  "max_workers": 3,
+  "timeout_s": 180,
+  "stage_timeout_s": 180.0,
+  "pool_sha256": "d48ba3b40fb29352638f8dc1cfba5d66671258f4855f12fe6f75f5f7b9a4afdb"
+}

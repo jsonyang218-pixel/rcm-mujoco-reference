@@ -1,0 +1,158 @@
+Warning: wandb not available, logging will be local only
+加载模型: /home/him1/mujoco_bc/rcm_4090_deploy/outputs/clean_oct_cbias_20261121_resume_v2/step_002000.pth
+模型加载完成 (type=dit_rectified_flow, epoch=1, train_loss=0.156258, val_loss=0.147647)
+评估 episodes:   0%|          | 0/1 [00:00<?, ?it/s]
+Episode 4/1
+  目标世界坐标: [348.643, -15.242, 373.315] mm
+  closed-loop step 1/1600, error=19717.336 um
+  closed-loop step 100/1600, error=16867.372 um
+  closed-loop step 200/1600, error=13874.878 um
+  closed-loop step 300/1600, error=10873.990 um
+  closed-loop step 400/1600, error=7876.445 um
+  closed-loop step 500/1600, error=4887.807 um
+  closed-loop step 600/1600, error=1896.822 um
+  closed-loop step 700/1600, error=105.257 um
+  closed-loop step 800/1600, error=60.598 um
+  closed-loop step 900/1600, error=45.474 um
+  closed-loop step 1000/1600, error=47.268 um
+  closed-loop step 1100/1600, error=41.827 um
+  closed-loop step 1200/1600, error=59.003 um
+  closed-loop step 1300/1600, error=79.090 um
+  closed-loop step 1400/1600, error=81.434 um
+  closed-loop step 1500/1600, error=106.861 um
+  closed-loop step 1600/1600, error=94.965 um
+  ✗ 失败: 1600 步, 误差 0.090 mm
+评估 episodes: 100%|##########| 1/1 [12:14<00:00, 734.06s/it]评估 episodes: 100%|##########| 1/1 [12:14<00:00, 734.06s/it]
+
+============================================================
+评估结果汇总:
+  成功率: 0.0% (0/1)
+  平均步数: 1600.0
+  平均最终误差: 0.090 mm
+============================================================
+
+结果已保存到: /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/clean_oct_dev20_authorized_v1/dev20/episodes/tasks/best_V0_E03/E03/evaluation_results.json
+评估 episodes:   0%|          | 0/1 [00:00<?, ?it/s]
+Episode 6/1
+  目标世界坐标: [347.304, -14.590, 372.171] mm
+  closed-loop step 1/1600, error=19784.045 um
+  closed-loop step 100/1600, error=16940.408 um
+  closed-loop step 200/1600, error=13938.754 um
+  closed-loop step 300/1600, error=10956.307 um
+  closed-loop step 400/1600, error=7968.649 um
+  closed-loop step 500/1600, error=4978.346 um
+  closed-loop step 600/1600, error=1998.539 um
+  closed-loop step 700/1600, error=75.605 um
+  closed-loop step 800/1600, error=51.063 um
+  closed-loop step 900/1600, error=33.398 um
+  closed-loop step 1000/1600, error=49.565 um
+  closed-loop step 1100/1600, error=92.956 um
+  closed-loop step 1200/1600, error=104.910 um
+  closed-loop step 1300/1600, error=129.546 um
+  closed-loop step 1400/1600, error=111.017 um
+  closed-loop step 1500/1600, error=122.474 um
+  closed-loop step 1600/1600, error=145.335 um
+  ✗ 失败: 1600 步, 误差 0.146 mm
+评估 episodes: 100%|##########| 1/1 [12:12<00:00, 732.48s/it]评估 episodes: 100%|##########| 1/1 [12:12<00:00, 732.48s/it]
+
+============================================================
+评估结果汇总:
+  成功率: 0.0% (0/1)
+  平均步数: 1600.0
+  平均最终误差: 0.146 mm
+============================================================
+
+结果已保存到: /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/clean_oct_dev20_authorized_v1/dev20/episodes/tasks/best_V0_E05/E05/evaluation_results.json
+评估 episodes:   0%|          | 0/1 [00:00<?, ?it/s]
+Episode 9/1
+  目标世界坐标: [351.055, -13.612, 375.236] mm
+  closed-loop step 1/1600, error=19609.872 um
+  closed-loop step 100/1600, error=16793.543 um
+  closed-loop step 200/1600, error=13796.348 um
+  closed-loop step 300/1600, error=10792.000 um
+  closed-loop step 400/1600, error=7801.590 um
+  closed-loop step 500/1600, error=4800.305 um
+  closed-loop step 600/1600, error=1800.417 um
+  closed-loop step 700/1600, error=84.065 um
+  closed-loop step 800/1600, error=52.481 um
+  closed-loop step 900/1600, error=55.518 um
+  closed-loop step 1000/1600, error=48.476 um
+  closed-loop step 1100/1600, error=67.600 um
+  closed-loop step 1200/1600, error=65.474 um
+  closed-loop step 1300/1600, error=72.841 um
+  closed-loop step 1400/1600, error=75.152 um
+  closed-loop step 1500/1600, error=73.163 um
+  closed-loop step 1600/1600, error=106.822 um
+  ✗ 失败: 1600 步, 误差 0.107 mm
+评估 episodes: 100%|##########| 1/1 [12:07<00:00, 727.79s/it]评估 episodes: 100%|##########| 1/1 [12:07<00:00, 727.79s/it]
+
+============================================================
+评估结果汇总:
+  成功率: 0.0% (0/1)
+  平均步数: 1600.0
+  平均最终误差: 0.107 mm
+============================================================
+
+结果已保存到: /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/clean_oct_dev20_authorized_v1/dev20/episodes/tasks/best_V0_E08/E08/evaluation_results.json
+评估 episodes:   0%|          | 0/1 [00:00<?, ?it/s]
+Episode 15/1
+  目标世界坐标: [349.549, -12.334, 373.256] mm
+  closed-loop step 1/1600, error=19943.563 um
+  closed-loop step 100/1600, error=17123.514 um
+  closed-loop step 200/1600, error=14121.182 um
+  closed-loop step 300/1600, error=11116.507 um
+  closed-loop step 400/1600, error=8115.385 um
+  closed-loop step 500/1600, error=5116.661 um
+  closed-loop step 600/1600, error=2115.045 um
+  closed-loop step 700/1600, error=163.209 um
+  closed-loop step 800/1600, error=147.597 um
+  closed-loop step 900/1600, error=113.783 um
+  closed-loop step 1000/1600, error=64.247 um
+  closed-loop step 1100/1600, error=56.860 um
+  closed-loop step 1200/1600, error=38.100 um
+  closed-loop step 1300/1600, error=49.581 um
+  closed-loop step 1400/1600, error=51.308 um
+  closed-loop step 1500/1600, error=36.753 um
+  closed-loop step 1600/1600, error=59.362 um
+  ✗ 失败: 1600 步, 误差 0.056 mm
+评估 episodes: 100%|##########| 1/1 [12:06<00:00, 726.09s/it]评估 episodes: 100%|##########| 1/1 [12:06<00:00, 726.09s/it]
+
+============================================================
+评估结果汇总:
+  成功率: 0.0% (0/1)
+  平均步数: 1600.0
+  平均最终误差: 0.056 mm
+============================================================
+
+结果已保存到: /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/clean_oct_dev20_authorized_v1/dev20/episodes/tasks/best_V0_E14/E14/evaluation_results.json
+评估 episodes:   0%|          | 0/1 [00:00<?, ?it/s]
+Episode 19/1
+  目标世界坐标: [347.251, -11.047, 371.611] mm
+  closed-loop step 1/1600, error=19954.336 um
+  closed-loop step 100/1600, error=17171.030 um
+  closed-loop step 200/1600, error=14169.513 um
+  closed-loop step 300/1600, error=11165.428 um
+  closed-loop step 400/1600, error=8168.833 um
+  closed-loop step 500/1600, error=5172.865 um
+  closed-loop step 600/1600, error=2178.099 um
+  closed-loop step 700/1600, error=113.321 um
+  closed-loop step 800/1600, error=43.700 um
+  closed-loop step 900/1600, error=46.820 um
+  closed-loop step 1000/1600, error=43.482 um
+  closed-loop step 1100/1600, error=46.105 um
+  closed-loop step 1200/1600, error=75.481 um
+  closed-loop step 1300/1600, error=113.462 um
+  closed-loop step 1400/1600, error=91.946 um
+  closed-loop step 1500/1600, error=115.422 um
+  closed-loop step 1600/1600, error=121.392 um
+  ✗ 失败: 1600 步, 误差 0.121 mm
+评估 episodes: 100%|##########| 1/1 [12:24<00:00, 744.57s/it]评估 episodes: 100%|##########| 1/1 [12:24<00:00, 744.57s/it]
+
+============================================================
+评估结果汇总:
+  成功率: 0.0% (0/1)
+  平均步数: 1600.0
+  平均最终误差: 0.121 mm
+============================================================
+
+结果已保存到: /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/clean_oct_dev20_authorized_v1/dev20/episodes/tasks/best_V0_E18/E18/evaluation_results.json

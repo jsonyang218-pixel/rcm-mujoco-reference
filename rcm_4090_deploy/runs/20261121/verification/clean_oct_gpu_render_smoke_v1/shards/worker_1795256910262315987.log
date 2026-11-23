@@ -1,0 +1,11 @@
+NVIDIA EGL overlay worker: {'vendor': 'NVIDIA Corporation', 'renderer': 'NVIDIA GeForce RTX 4090/PCIe/SSE2'}
+Traceback (most recent call last):
+  File "/home/him1/mujoco_bc/rcm_4090_deploy/scripts/research/gpu_episode_pool.py", line 86, in worker_main
+    result = handler.run(request["task"], Path(request["output_dir"]))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/him1/mujoco_bc/rcm_4090_deploy/scripts/research/clean_oct_workers.py", line 110, in run
+    world = target_world(self.scene, task['target'], self.arrays['state'][rows[0]] * UNIT)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/him1/mujoco_bc/rcm_4090_deploy/scripts/research/clean_oct_workers.py", line 65, in target_world
+    raise ValueError('legacy target/encoder calibration no longer matches frozen audit')
+ValueError: legacy target/encoder calibration no longer matches frozen audit

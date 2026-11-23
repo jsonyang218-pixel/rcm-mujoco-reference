@@ -1,0 +1,88 @@
+{
+  "groups": {
+    "fixed": {
+      "factory": "scripts.research.clean_oct_drift_diagnosis:FixedInputWorker",
+      "spec": {
+        "checkpoint": "/home/him1/mujoco_bc/rcm_4090_deploy/outputs/clean_oct_cbias_20261121_resume_v2/step_002000.pth",
+        "checkpoint_sha256": "705dc36de56d3efd659fd9d0c47f33bd91d8a9c3c6e5ea32e5dbcbcec0266523",
+        "target_manifest": "/home/him1/mujoco_bc/rcm_4090_deploy/configs/v12_reachable_development_targets_0p35um.json",
+        "max_steps": 1600,
+        "variant": "V0",
+        "identity": {
+          "code_sha256": "adf85b62614eb7d6c5ee65e8ab53f604cf55e3a821a1308320d09eac28adc9d8",
+          "scene_sha256": "265c927ef7e7ac71536963b3000ffb161b7ff7ac03bb86cdb8480ed988c17028",
+          "scripts/research/clean_oct_pipeline.py": "33ddd329be058009f3492bdac900dffd6074ed2e455160df33b941023a79ba3d",
+          "scripts/research/clean_oct_workers.py": "1df09165778f9866b01fb6b8e020afbb839f284797c1ae497ab36216746a1650",
+          "scripts/research/gpu_episode_pool.py": "d48ba3b40fb29352638f8dc1cfba5d66671258f4855f12fe6f75f5f7b9a4afdb",
+          "scripts/research/control_g15_diagnostics.py": "70a8cd88e3fbe71e4f72b606ca29530529ef00ea4863a2ab8e5f9060bfcba2d2",
+          "configs/v12_reachable_development_targets_0p35um.json": "fcc4872a9d5b58bb7158b36d3c0ab6d7452e4d8d747317dfb077b6e7bbc815c7"
+        },
+        "diagnosis_source_sha256": "0c0d0070a1b15561f9d587968eab3471329077ee3b065074ff61d7f0adcf48c0",
+        "snapshots": [
+          800,
+          1000,
+          1200
+        ],
+        "sampling_seeds": [
+          2026112200,
+          2026112201,
+          2026112202,
+          2026112203,
+          2026112204,
+          2026112205,
+          2026112206,
+          2026112207,
+          2026112208,
+          2026112209,
+          2026112210,
+          2026112211,
+          2026112212,
+          2026112213,
+          2026112214,
+          2026112215,
+          2026112216,
+          2026112217,
+          2026112218,
+          2026112219,
+          2026112220,
+          2026112221,
+          2026112222,
+          2026112223,
+          2026112224,
+          2026112225,
+          2026112226,
+          2026112227,
+          2026112228,
+          2026112229,
+          2026112230,
+          2026112231
+        ]
+      },
+      "tasks": [
+        {
+          "id": "E00",
+          "episode_index": 0,
+          "result_path": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/clean_oct_dev20_authorized_v1/dev20/episodes/tasks/best_V0_E00/E00/evaluation_results.json",
+          "source_sha256": "e8800ff4e3691aaebd3d24e6ce7cad1bbc90456f46c8e67b426d6b4c0cb575c6"
+        },
+        {
+          "id": "E08",
+          "episode_index": 8,
+          "result_path": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/clean_oct_dev20_authorized_v1/dev20/episodes/tasks/best_V0_E08/E08/evaluation_results.json",
+          "source_sha256": "c4e37e70a6861162fdc32d4973fde3cbea5924e8a102cfed99b61a0ce99d7a22"
+        },
+        {
+          "id": "E10",
+          "episode_index": 10,
+          "result_path": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/clean_oct_dev20_authorized_v1/dev20/episodes/tasks/best_V0_E10/E10/evaluation_results.json",
+          "source_sha256": "3a63daff3f7b136025a4425af299f6d83bd2bedbd8928b7e8b6df714df24f783"
+        }
+      ]
+    }
+  },
+  "workers": 3,
+  "max_workers": 3,
+  "timeout_s": 600,
+  "stage_timeout_s": 1740,
+  "pool_sha256": "d48ba3b40fb29352638f8dc1cfba5d66671258f4855f12fe6f75f5f7b9a4afdb"
+}

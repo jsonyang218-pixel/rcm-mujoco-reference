@@ -1,0 +1,35 @@
+{
+  "status": "failed",
+  "completed": 0,
+  "total": 3,
+  "results": {},
+  "workers": [
+    {
+      "pid": 53000,
+      "group": "render",
+      "log": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/verification/clean_oct_gpu_render_smoke_v1/shards/worker_1795256910262315987.log"
+    },
+    {
+      "pid": 53005,
+      "group": "render",
+      "log": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/verification/clean_oct_gpu_render_smoke_v1/shards/worker_1795256910354765262.log"
+    },
+    {
+      "pid": 53008,
+      "group": "render",
+      "log": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/verification/clean_oct_gpu_render_smoke_v1/shards/worker_1795256910423695773.log"
+    }
+  ],
+  "contract_sha256": "8567c395a393f6281c5242f497eb6cf6deb6ae2b55e33674b59e175acc2b5cda",
+  "resources": {
+    "gpu_free_mib": 48160,
+    "gpu_utilization_percent": 11,
+    "ram_available_mib": 27168
+  },
+  "active_tasks": [
+    "render_E0000"
+  ],
+  "elapsed_s": 2.339431210002658,
+  "failure": "RuntimeError(\"worker 53000: ValueError('legacy target/encoder calibration no longer matches frozen audit')\")",
+  "pending": 2
+}

@@ -1,0 +1,55 @@
+{
+  "id": "clean_oct_cbias_gpu_20261121_resume_v2",
+  "status": "completed",
+  "pid": 62057,
+  "stages": {
+    "preflight": {
+      "status": "completed",
+      "type": "module",
+      "output_dir": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/clean_oct_cbias_gpu_resume_v2/preflight",
+      "started_at": "2026-11-21T19:37:18+08:00",
+      "finished_at": "2026-11-21T19:37:20+08:00"
+    },
+    "s1_overlay": {
+      "status": "completed",
+      "type": "module",
+      "output_dir": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/clean_oct_cbias_gpu_resume_v2/s1_overlay",
+      "started_at": "2026-11-21T19:37:20+08:00",
+      "gates": [
+        {
+          "passed": true,
+          "detail": "audit_median_error_um=0.07345309030663319 < 0.2 (/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/clean_oct_cbias_gpu_resume_v2/s1_overlay/summary.json)"
+        }
+      ],
+      "finished_at": "2026-11-21T21:19:15+08:00"
+    },
+    "s2_train": {
+      "status": "completed",
+      "type": "module",
+      "output_dir": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/clean_oct_cbias_gpu_resume_v2/s2_train",
+      "started_at": "2026-11-21T21:19:15+08:00",
+      "gates": [
+        {
+          "passed": true,
+          "detail": "batches=4000 == 4000 (/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/clean_oct_cbias_gpu_resume_v2/s2_train/summary.json)"
+        }
+      ],
+      "finished_at": "2026-11-21T21:21:52+08:00"
+    },
+    "s3_fast5": {
+      "status": "completed",
+      "type": "module",
+      "output_dir": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/clean_oct_cbias_gpu_resume_v2/s3_fast5",
+      "started_at": "2026-11-21T21:21:52+08:00",
+      "finished_at": "2026-11-21T22:05:39+08:00"
+    },
+    "s4_dev20": {
+      "status": "skipped",
+      "type": "module",
+      "output_dir": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/clean_oct_cbias_gpu_resume_v2/s4_dev20",
+      "reason": "branch not selected: best_final_mean_um=45.84530045175171 < 45 (/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/clean_oct_cbias_gpu_resume_v2/s3_fast5/summary.json)",
+      "finished_at": "2026-11-21T22:05:39+08:00"
+    }
+  },
+  "updated_at": "2026-11-21T22:05:39+08:00"
+}

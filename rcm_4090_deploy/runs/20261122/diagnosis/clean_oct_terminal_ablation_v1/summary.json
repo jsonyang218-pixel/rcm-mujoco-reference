@@ -1,0 +1,169 @@
+{
+  "status": "completed",
+  "completed_targets": 3,
+  "new_episodes": 3,
+  "baseline_reused_targets": 3,
+  "checkpoint": "/home/him1/mujoco_bc/rcm_4090_deploy/outputs/clean_oct_cbias_20261121_resume_v2/step_002000.pth",
+  "checkpoint_sha256": "705dc36de56d3efd659fd9d0c47f33bd91d8a9c3c6e5ea32e5dbcbcec0266523",
+  "baseline": [
+    {
+      "episode_index": 0,
+      "seed": 42,
+      "target_id": "target_d30721d6bc45",
+      "steps": 1600,
+      "final_error_um": 97.60115794043016,
+      "last200_mean_error_um": 87.44368333966305,
+      "drift_1000_to_exit_um": 26.992931227379586,
+      "absolute_drift_1000_to_exit_um": 26.992931227379586,
+      "drift_interval_reached": true,
+      "early_strict_success": false,
+      "strict_success": false,
+      "minimum_error_um": 41.9564436824024,
+      "safety_limited_steps": 0,
+      "metric_definition": "last200 recorded pre-action errors; drift from trace[1000] to final post-action error, zero if strict success stops before index1000; no padded frames"
+    },
+    {
+      "episode_index": 8,
+      "seed": 50,
+      "target_id": "target_29b219ad42c3",
+      "steps": 1600,
+      "final_error_um": 106.80720161324366,
+      "last200_mean_error_um": 83.10506919623067,
+      "drift_1000_to_exit_um": 58.64817638297701,
+      "absolute_drift_1000_to_exit_um": 58.64817638297701,
+      "drift_interval_reached": true,
+      "early_strict_success": false,
+      "strict_success": false,
+      "minimum_error_um": 38.274886669926424,
+      "safety_limited_steps": 0,
+      "metric_definition": "last200 recorded pre-action errors; drift from trace[1000] to final post-action error, zero if strict success stops before index1000; no padded frames"
+    },
+    {
+      "episode_index": 10,
+      "seed": 52,
+      "target_id": "target_087ecb1a48ae",
+      "steps": 1600,
+      "final_error_um": 178.51734915873953,
+      "last200_mean_error_um": 163.4689478943268,
+      "drift_1000_to_exit_um": 139.2523243673076,
+      "absolute_drift_1000_to_exit_um": 139.2523243673076,
+      "drift_interval_reached": true,
+      "early_strict_success": false,
+      "strict_success": false,
+      "minimum_error_um": 24.196448843496306,
+      "safety_limited_steps": 0,
+      "metric_definition": "last200 recorded pre-action errors; drift from trace[1000] to final post-action error, zero if strict success stops before index1000; no padded frames"
+    }
+  ],
+  "candidate": [
+    {
+      "episode_index": 0,
+      "seed": 42,
+      "target_id": "target_d30721d6bc45",
+      "steps": 1600,
+      "final_error_um": 64.19278622456237,
+      "last200_mean_error_um": 57.12529771088973,
+      "drift_1000_to_exit_um": 7.645141015759535,
+      "absolute_drift_1000_to_exit_um": 7.645141015759535,
+      "drift_interval_reached": true,
+      "early_strict_success": false,
+      "strict_success": false,
+      "minimum_error_um": 33.61491881026419,
+      "safety_limited_steps": 0,
+      "metric_definition": "last200 recorded pre-action errors; drift from trace[1000] to final post-action error, zero if strict success stops before index1000; no padded frames",
+      "result_path": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261122/diagnosis/clean_oct_terminal_ablation_v1/shards/tasks/median9_E00/E00/evaluation_results.json",
+      "result_sha256": "688382645ebeae765ff9ad781c32397ded5e9c177448ceec7e62d6cae6943d18"
+    },
+    {
+      "episode_index": 8,
+      "seed": 50,
+      "target_id": "target_29b219ad42c3",
+      "steps": 1600,
+      "final_error_um": 123.81777605667656,
+      "last200_mean_error_um": 123.34778532097101,
+      "drift_1000_to_exit_um": 16.821600805807606,
+      "absolute_drift_1000_to_exit_um": 16.821600805807606,
+      "drift_interval_reached": true,
+      "early_strict_success": false,
+      "strict_success": false,
+      "minimum_error_um": 79.2525139860502,
+      "safety_limited_steps": 0,
+      "metric_definition": "last200 recorded pre-action errors; drift from trace[1000] to final post-action error, zero if strict success stops before index1000; no padded frames",
+      "result_path": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261122/diagnosis/clean_oct_terminal_ablation_v1/shards/tasks/median9_E08/E08/evaluation_results.json",
+      "result_sha256": "19bd4be22958562c34e587eda0b6c2bfa5848952863796b216a109df2193eb23"
+    },
+    {
+      "episode_index": 10,
+      "seed": 52,
+      "target_id": "target_087ecb1a48ae",
+      "steps": 1600,
+      "final_error_um": 151.93237150746575,
+      "last200_mean_error_um": 141.57898938632704,
+      "drift_1000_to_exit_um": 58.86095802466144,
+      "absolute_drift_1000_to_exit_um": 58.86095802466144,
+      "drift_interval_reached": true,
+      "early_strict_success": false,
+      "strict_success": false,
+      "minimum_error_um": 44.31623579460935,
+      "safety_limited_steps": 0,
+      "metric_definition": "last200 recorded pre-action errors; drift from trace[1000] to final post-action error, zero if strict success stops before index1000; no padded frames",
+      "result_path": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261122/diagnosis/clean_oct_terminal_ablation_v1/shards/tasks/median9_E10/E10/evaluation_results.json",
+      "result_sha256": "05d3318281bf8c7938a3fec6f69308d38a35b990c2e413d75f97dc104c3cf3ad"
+    }
+  ],
+  "comparison": {
+    "means": {
+      "baseline": {
+        "final_error_um": 127.64190290413778,
+        "last200_mean_error_um": 111.33923347674018,
+        "absolute_drift_1000_to_exit_um": 74.96447732588807
+      },
+      "candidate": {
+        "final_error_um": 113.31431126290157,
+        "last200_mean_error_um": 107.35069080606259,
+        "absolute_drift_1000_to_exit_um": 27.77589994874286
+      }
+    },
+    "gates": {
+      "final_error_um": true,
+      "last200_mean_error_um": true,
+      "absolute_drift_1000_to_exit_um": true
+    },
+    "candidate_passed": 1,
+    "pairs": [
+      {
+        "episode_index": 0,
+        "seed": 42,
+        "delta_candidate_minus_baseline": {
+          "final_error_um": -33.40837171586779,
+          "last200_mean_error_um": -30.31838562877332,
+          "absolute_drift_1000_to_exit_um": -19.34779021162005
+        }
+      },
+      {
+        "episode_index": 8,
+        "seed": 50,
+        "delta_candidate_minus_baseline": {
+          "final_error_um": 17.0105744434329,
+          "last200_mean_error_um": 40.24271612474034,
+          "absolute_drift_1000_to_exit_um": -41.82657557716941
+        }
+      },
+      {
+        "episode_index": 10,
+        "seed": 52,
+        "delta_candidate_minus_baseline": {
+          "final_error_um": -26.58497765127379,
+          "last200_mean_error_um": -21.88995850799975,
+          "absolute_drift_1000_to_exit_um": -80.39136634264617
+        }
+      }
+    ]
+  },
+  "candidate_passed": 1,
+  "strict_success_count": 0,
+  "baseline_strict_success_count": 0,
+  "sampling_protocol_change": "single sample -> componentwise median of 9 parallel samples; same episode seeds, different RNG draw count/shape, no identical noise stream claim",
+  "scope": "3-target smoke ablation only. No training, teacher injection, screen10/dev20 or deployment.",
+  "elapsed_s": 684.4765638450044
+}

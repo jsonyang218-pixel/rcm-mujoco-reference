@@ -1,0 +1,32 @@
+{
+  "status": "completed",
+  "signature": "3adcb52348164511044df3b76a46a52ef67bff704d328a0dcff4ec7c6e466f4d",
+  "files": {
+    "E08/evaluation_results.json": "547ac80e22e2f5367d1d1c565b0872c3d9961b161539007ecb911f0884048516",
+    "E08/motor_steps.jsonl": "9ee81ad9e451f9f7cbc752f7008e2d441bb2d0e654bd5ecb56ecbb7a7eee5abc",
+    "episode.json": "c98654141d8f89f3e779009a86096ed8e7df7358b00f07ae1782997edccc0f07"
+  },
+  "result": {
+    "episode_index": 8,
+    "target_id": "target_29b219ad42c3",
+    "seed": 50,
+    "target_robot_mm": [
+      -2.3511386854165575,
+      9.106386260772627,
+      21.563377047492345
+    ],
+    "steps": 1000,
+    "final_error_um": 48.15902523026665,
+    "strict_success": false,
+    "a_nonzero_command_frames": 999,
+    "a_nonzero_command_no_motion_frames": 237,
+    "a_nonzero_command_no_motion_fraction": 0.23723723723723725,
+    "driver": {
+      "variant": "g10",
+      "control_gear": 10,
+      "kinematics_path": "/home/him1/mujoco_bc/rcm_4090_deploy/mujoco_model/vendor/simulation_driver/ros_msg/src/robot_control/kinematics.py",
+      "kinematics_sha256": "e48eb4a909208e8d1caa3ee2a7aff157de91c808730282dd17ccb17a46591530"
+    },
+    "result_path": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/clean_oct_cbias_gpu_resume_v2/s3_fast5/v0_selection/tasks/step2000_V0_E08/E08/evaluation_results.json"
+  }
+}

@@ -1,0 +1,90 @@
+{
+  "status": "completed",
+  "completed": 3,
+  "total": 3,
+  "results": {
+    "median9_E00": {
+      "episode_index": 0,
+      "seed": 42,
+      "target_id": "target_d30721d6bc45",
+      "steps": 1600,
+      "final_error_um": 64.19278622456237,
+      "last200_mean_error_um": 57.12529771088973,
+      "drift_1000_to_exit_um": 7.645141015759535,
+      "absolute_drift_1000_to_exit_um": 7.645141015759535,
+      "drift_interval_reached": true,
+      "early_strict_success": false,
+      "strict_success": false,
+      "minimum_error_um": 33.61491881026419,
+      "safety_limited_steps": 0,
+      "metric_definition": "last200 recorded pre-action errors; drift from trace[1000] to final post-action error, zero if strict success stops before index1000; no padded frames",
+      "result_path": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261122/diagnosis/clean_oct_terminal_ablation_v1/shards/tasks/median9_E00/E00/evaluation_results.json",
+      "result_sha256": "688382645ebeae765ff9ad781c32397ded5e9c177448ceec7e62d6cae6943d18"
+    },
+    "median9_E08": {
+      "episode_index": 8,
+      "seed": 50,
+      "target_id": "target_29b219ad42c3",
+      "steps": 1600,
+      "final_error_um": 123.81777605667656,
+      "last200_mean_error_um": 123.34778532097101,
+      "drift_1000_to_exit_um": 16.821600805807606,
+      "absolute_drift_1000_to_exit_um": 16.821600805807606,
+      "drift_interval_reached": true,
+      "early_strict_success": false,
+      "strict_success": false,
+      "minimum_error_um": 79.2525139860502,
+      "safety_limited_steps": 0,
+      "metric_definition": "last200 recorded pre-action errors; drift from trace[1000] to final post-action error, zero if strict success stops before index1000; no padded frames",
+      "result_path": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261122/diagnosis/clean_oct_terminal_ablation_v1/shards/tasks/median9_E08/E08/evaluation_results.json",
+      "result_sha256": "19bd4be22958562c34e587eda0b6c2bfa5848952863796b216a109df2193eb23"
+    },
+    "median9_E10": {
+      "episode_index": 10,
+      "seed": 52,
+      "target_id": "target_087ecb1a48ae",
+      "steps": 1600,
+      "final_error_um": 151.93237150746575,
+      "last200_mean_error_um": 141.57898938632704,
+      "drift_1000_to_exit_um": 58.86095802466144,
+      "absolute_drift_1000_to_exit_um": 58.86095802466144,
+      "drift_interval_reached": true,
+      "early_strict_success": false,
+      "strict_success": false,
+      "minimum_error_um": 44.31623579460935,
+      "safety_limited_steps": 0,
+      "metric_definition": "last200 recorded pre-action errors; drift from trace[1000] to final post-action error, zero if strict success stops before index1000; no padded frames",
+      "result_path": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261122/diagnosis/clean_oct_terminal_ablation_v1/shards/tasks/median9_E10/E10/evaluation_results.json",
+      "result_sha256": "05d3318281bf8c7938a3fec6f69308d38a35b990c2e413d75f97dc104c3cf3ad"
+    }
+  },
+  "workers": [
+    {
+      "pid": 87578,
+      "group": "median9",
+      "log": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261122/diagnosis/clean_oct_terminal_ablation_v1/shards/worker_1795354901604563487.log"
+    },
+    {
+      "pid": 87595,
+      "group": "median9",
+      "log": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261122/diagnosis/clean_oct_terminal_ablation_v1/shards/worker_1795354901693125468.log"
+    },
+    {
+      "pid": 87598,
+      "group": "median9",
+      "log": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261122/diagnosis/clean_oct_terminal_ablation_v1/shards/worker_1795354901761605792.log"
+    }
+  ],
+  "contract_sha256": "df3075975d3f60c62d59d7bdcc2abee6aea998c25101fbfc90cf1d00b9f2a43d",
+  "resources": {
+    "gpu_free_mib": 41538,
+    "gpu_utilization_percent": 23,
+    "ram_available_mib": 20192
+  },
+  "active_tasks": [
+    "median9_E00",
+    "median9_E08",
+    "median9_E10"
+  ],
+  "elapsed_s": 682.0190117989987
+}

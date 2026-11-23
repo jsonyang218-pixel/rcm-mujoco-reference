@@ -1,0 +1,56 @@
+{
+  "status": "completed",
+  "completed": 3,
+  "total": 3,
+  "results": {
+    "render_E0000": {
+      "episode_index": 0,
+      "frames": 8,
+      "valid_frames": 8,
+      "median_error_um": 0.055919818565118684,
+      "oct_path": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/verification/clean_oct_gpu_render_smoke_v3/shards/tasks/render_E0000/oct.npz",
+      "audit_path": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/verification/clean_oct_gpu_render_smoke_v3/shards/tasks/render_E0000/audit.json"
+    },
+    "render_E0760": {
+      "episode_index": 760,
+      "frames": 8,
+      "valid_frames": 8,
+      "median_error_um": 0.06497702028522323,
+      "oct_path": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/verification/clean_oct_gpu_render_smoke_v3/shards/tasks/render_E0760/oct.npz",
+      "audit_path": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/verification/clean_oct_gpu_render_smoke_v3/shards/tasks/render_E0760/audit.json"
+    },
+    "render_E0839": {
+      "episode_index": 839,
+      "frames": 8,
+      "valid_frames": 8,
+      "median_error_um": 0.054646559488247856,
+      "oct_path": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/verification/clean_oct_gpu_render_smoke_v3/shards/tasks/render_E0839/oct.npz",
+      "audit_path": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/verification/clean_oct_gpu_render_smoke_v3/shards/tasks/render_E0839/audit.json"
+    }
+  },
+  "workers": [
+    {
+      "pid": 54090,
+      "group": "render",
+      "log": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/verification/clean_oct_gpu_render_smoke_v3/shards/worker_1795257081795555370.log"
+    },
+    {
+      "pid": 54095,
+      "group": "render",
+      "log": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/verification/clean_oct_gpu_render_smoke_v3/shards/worker_1795257081885172995.log"
+    },
+    {
+      "pid": 54104,
+      "group": "render",
+      "log": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/verification/clean_oct_gpu_render_smoke_v3/shards/worker_1795257081956074134.log"
+    }
+  ],
+  "contract_sha256": "2868714df978341f89b015ae31890bcda5cdecef1ab86070da224978e2352017",
+  "resources": {
+    "gpu_free_mib": 48162,
+    "gpu_utilization_percent": 10,
+    "ram_available_mib": 27156
+  },
+  "active_tasks": [],
+  "elapsed_s": 6.410641369999212
+}

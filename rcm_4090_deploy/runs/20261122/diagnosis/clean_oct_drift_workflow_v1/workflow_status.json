@@ -1,0 +1,50 @@
+{
+  "id": "clean_oct_drift_diagnosis_20261122_v1",
+  "status": "completed",
+  "pid": 83957,
+  "stages": {
+    "command_execution": {
+      "status": "completed",
+      "type": "module",
+      "output_dir": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261122/diagnosis/clean_oct_drift_workflow_v1/command_execution",
+      "started_at": "2026-11-22T21:26:04+08:00",
+      "gates": [
+        {
+          "passed": true,
+          "detail": "analyzed_targets=20 == 20 (/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261122/diagnosis/clean_oct_drift_workflow_v1/command_execution/summary.json)"
+        },
+        {
+          "passed": true,
+          "detail": "segments=40 == 40 (/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261122/diagnosis/clean_oct_drift_workflow_v1/command_execution/summary.json)"
+        }
+      ],
+      "finished_at": "2026-11-22T21:26:05+08:00"
+    },
+    "fixed_input": {
+      "status": "completed",
+      "type": "module",
+      "output_dir": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261122/diagnosis/clean_oct_drift_workflow_v1/fixed_input",
+      "started_at": "2026-11-22T21:26:05+08:00",
+      "gates": [
+        {
+          "passed": true,
+          "detail": "reconstruction_passed=1 == 1 (/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261122/diagnosis/clean_oct_drift_workflow_v1/fixed_input/summary.json)"
+        },
+        {
+          "passed": true,
+          "detail": "targets=3 == 3 (/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261122/diagnosis/clean_oct_drift_workflow_v1/fixed_input/summary.json)"
+        },
+        {
+          "passed": true,
+          "detail": "snapshots=9 == 9 (/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261122/diagnosis/clean_oct_drift_workflow_v1/fixed_input/summary.json)"
+        },
+        {
+          "passed": true,
+          "detail": "samples=288 == 288 (/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261122/diagnosis/clean_oct_drift_workflow_v1/fixed_input/summary.json)"
+        }
+      ],
+      "finished_at": "2026-11-22T21:26:15+08:00"
+    }
+  },
+  "updated_at": "2026-11-22T21:26:15+08:00"
+}

@@ -1,0 +1,60 @@
+{
+  "status": "review_only_execution_not_launched",
+  "timestamp": "2026-11-21T03:14:14-07:00",
+  "command": "deployment .venv Python -E -B metadata preflight; explicit --output-dir",
+  "source_plan": {
+    "path": "/home/him1/mujoco_bc/next_stage_clean_oct_and_cbias_plan_20261121.md",
+    "sha256": "460228923b30ea09641c0ecbce92b2f19140f38dda0f6a6e64c40ac740b3bc17"
+  },
+  "checkpoint": {
+    "path": "outputs/overnight_c_fix_symlog_081234/task2_train/step_004000.pth",
+    "sha256": "185a6ef02caea4ea74ba752d67618d459c906450f5b315cd8010c3c5f1703f1b",
+    "policy_type": "dit_rectified_flow",
+    "architecture": "state_conditioned_temporal_attention_v1",
+    "training_module": "state_attention_experience_replay_flow_v1",
+    "epoch": 3,
+    "oct_symlog_enabled": false,
+    "symlog_weights_present": false,
+    "n_obs_steps": 2,
+    "n_action_steps": 16
+  },
+  "dataset": {
+    "path": "data/plan2_plus_original_train_224_20261119",
+    "sha256": "9d80523f519faf4e00bbaef3d30e29dec1401181f3dcddd438c5087c05eb54db",
+    "frames": 319697,
+    "valid_oct_frames": 312139,
+    "near_200um_frames": 107343,
+    "near_200um_episodes": 1039,
+    "valid_windows": 301634,
+    "window_diagnostics": {
+      "candidate_windows": 319681,
+      "trajectory_boundary_excluded": 16599,
+      "source_frame_gap_excluded": 1420,
+      "time_interval_excluded": 0,
+      "invalid_input_excluded": 28,
+      "valid_windows": 301634
+    }
+  },
+  "existing_label_overlay": {
+    "rows": 11029,
+    "replacement_dC_median_mm": 0.0037499999161809683,
+    "replacement_dC_min_mm": 0.00011536476813489571,
+    "replacement_dC_max_mm": 0.0037499999161809683
+  },
+  "cuda": {
+    "available": true,
+    "device_name": "NVIDIA GeForce RTX 4090"
+  },
+  "gpu_snapshot_csv": "index, name, memory.total [MiB], memory.used [MiB], utilization.gpu [%]\n0, NVIDIA GeForce RTX 4090, 49140 MiB, 355 MiB, 7 %\n",
+  "previous_parallel_1000step_mean_seconds_per_episode": {
+    "s3_v0": 392.1166165542003,
+    "s3_v3": 393.1169702457999,
+    "s3_v2": 392.51660709699973
+  },
+  "limitations": [
+    "No training, rendering, rollout or throughput benchmark launched.",
+    "Metadata and array validation use CPU because these operations are small or I/O bound.",
+    "Existing scheduler lacks episode resume and checkpoint parameterization.",
+    "Near-frame count is based on existing OCT; new-render validity is not yet evaluated."
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "status": "completed",
+  "signature": "81261675071758bc3c0620301cdee08b67d58465f65fb0784b55c184fdbf6a1e",
+  "files": {
+    "E08/evaluation_results.json": "19bd4be22958562c34e587eda0b6c2bfa5848952863796b216a109df2193eb23",
+    "E08/motor_steps.jsonl": "b782ef0b2b086af37f18a1eec5ea19b71af141b999e6426568e9c6a9d788cf1a",
+    "episode_metrics.json": "ae7552d6a5370849b6ffb67671ceb543974b9b0e40e548e07978adc979194a83"
+  },
+  "result": {
+    "episode_index": 8,
+    "seed": 50,
+    "target_id": "target_29b219ad42c3",
+    "steps": 1600,
+    "final_error_um": 123.81777605667656,
+    "last200_mean_error_um": 123.34778532097101,
+    "drift_1000_to_exit_um": 16.821600805807606,
+    "absolute_drift_1000_to_exit_um": 16.821600805807606,
+    "drift_interval_reached": true,
+    "early_strict_success": false,
+    "strict_success": false,
+    "minimum_error_um": 79.2525139860502,
+    "safety_limited_steps": 0,
+    "metric_definition": "last200 recorded pre-action errors; drift from trace[1000] to final post-action error, zero if strict success stops before index1000; no padded frames",
+    "result_path": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261122/diagnosis/clean_oct_terminal_ablation_v1/shards/tasks/median9_E08/E08/evaluation_results.json",
+    "result_sha256": "19bd4be22958562c34e587eda0b6c2bfa5848952863796b216a109df2193eb23"
+  }
+}

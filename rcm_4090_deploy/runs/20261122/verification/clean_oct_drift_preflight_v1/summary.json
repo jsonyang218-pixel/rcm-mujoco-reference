@@ -1,0 +1,40 @@
+{
+  "status": "completed",
+  "checked_targets": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19
+  ],
+  "source_identity_match": true,
+  "checkpoint_sha256": "705dc36de56d3efd659fd9d0c47f33bd91d8a9c3c6e5ea32e5dbcbcec0266523",
+  "model_architecture": "state_conditioned_temporal_attention_v1",
+  "device": "NVIDIA GeForce RTX 4090",
+  "cuda_available": true,
+  "gpu_memory_bytes": 50857050112,
+  "outputs_new": [
+    "runs/20261122/diagnosis/clean_oct_drift_workflow_v1",
+    "runs/20261122/analysis/clean_oct_command_execution_v1",
+    "runs/20261122/diagnosis/clean_oct_fixed_input_v1"
+  ],
+  "syntax_checked": 2,
+  "contract_tests": "runs/20261122/verification/clean_oct_drift_contracts_v2/summary.json",
+  "workflow_plan": "runs/20261122/verification/clean_oct_drift_preflight_v1/workflow_preflight.json",
+  "scope": "Asset/configuration/model-load checks only; no inference/rendering/rollout"
+}

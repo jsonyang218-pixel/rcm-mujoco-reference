@@ -1,0 +1,78 @@
+Warning: wandb not available, logging will be local only
+加载模型: /home/him1/mujoco_bc/rcm_4090_deploy/outputs/clean_oct_cbias_20261121_resume_v2/step_004000.pth
+模型加载完成 (type=dit_rectified_flow, epoch=3, train_loss=0.135160, val_loss=0.147662)
+评估 episodes:   0%|          | 0/1 [00:00<?, ?it/s]
+Episode 3/1
+  目标世界坐标: [349.875, -15.579, 374.656] mm
+  closed-loop step 1/1000, error=19545.438 um
+  closed-loop step 100/1000, error=16878.216 um
+  closed-loop step 200/1000, error=13868.792 um
+  closed-loop step 300/1000, error=10867.500 um
+  closed-loop step 400/1000, error=7872.970 um
+  closed-loop step 500/1000, error=4874.437 um
+  closed-loop step 600/1000, error=1879.192 um
+  closed-loop step 700/1000, error=47.532 um
+  closed-loop step 800/1000, error=56.677 um
+  closed-loop step 900/1000, error=48.872 um
+  closed-loop step 1000/1000, error=35.676 um
+  ✗ 失败: 1000 步, 误差 0.040 mm
+评估 episodes: 100%|##########| 1/1 [07:48<00:00, 468.08s/it]评估 episodes: 100%|##########| 1/1 [07:48<00:00, 468.08s/it]
+
+============================================================
+评估结果汇总:
+  成功率: 0.0% (0/1)
+  平均步数: 1000.0
+  平均最终误差: 0.040 mm
+============================================================
+
+结果已保存到: /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/clean_oct_cbias_gpu_resume_v2/s3_fast5/v0_selection/tasks/step4000_V0_E02/E02/evaluation_results.json
+评估 episodes:   0%|          | 0/1 [00:00<?, ?it/s]
+Episode 7/1
+  目标世界坐标: [346.941, -14.215, 371.865] mm
+  closed-loop step 1/1000, error=19798.171 um
+  closed-loop step 100/1000, error=16984.695 um
+  closed-loop step 200/1000, error=13998.934 um
+  closed-loop step 300/1000, error=11005.716 um
+  closed-loop step 400/1000, error=8007.651 um
+  closed-loop step 500/1000, error=5011.938 um
+  closed-loop step 600/1000, error=2049.211 um
+  closed-loop step 700/1000, error=243.026 um
+  closed-loop step 800/1000, error=194.433 um
+  closed-loop step 900/1000, error=151.654 um
+  closed-loop step 1000/1000, error=78.383 um
+  ✗ 失败: 1000 步, 误差 0.077 mm
+评估 episodes: 100%|##########| 1/1 [07:50<00:00, 470.26s/it]评估 episodes: 100%|##########| 1/1 [07:50<00:00, 470.26s/it]
+
+============================================================
+评估结果汇总:
+  成功率: 0.0% (0/1)
+  平均步数: 1000.0
+  平均最终误差: 0.077 mm
+============================================================
+
+结果已保存到: /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/clean_oct_cbias_gpu_resume_v2/s3_fast5/v0_selection/tasks/step4000_V0_E06/E06/evaluation_results.json
+评估 episodes:   0%|          | 0/1 [00:00<?, ?it/s]
+Episode 11/1
+  目标世界坐标: [345.728, -13.461, 371.177] mm
+  closed-loop step 1/1000, error=19730.540 um
+  closed-loop step 100/1000, error=16923.487 um
+  closed-loop step 200/1000, error=13924.514 um
+  closed-loop step 300/1000, error=10925.286 um
+  closed-loop step 400/1000, error=7934.246 um
+  closed-loop step 500/1000, error=4932.430 um
+  closed-loop step 600/1000, error=1939.782 um
+  closed-loop step 700/1000, error=115.522 um
+  closed-loop step 800/1000, error=81.359 um
+  closed-loop step 900/1000, error=49.264 um
+  closed-loop step 1000/1000, error=43.145 um
+  ✗ 失败: 1000 步, 误差 0.041 mm
+评估 episodes: 100%|##########| 1/1 [06:12<00:00, 372.41s/it]评估 episodes: 100%|##########| 1/1 [06:12<00:00, 372.41s/it]
+
+============================================================
+评估结果汇总:
+  成功率: 0.0% (0/1)
+  平均步数: 1000.0
+  平均最终误差: 0.041 mm
+============================================================
+
+结果已保存到: /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/clean_oct_cbias_gpu_resume_v2/s3_fast5/v0_selection/tasks/step4000_V0_E10/E10/evaluation_results.json

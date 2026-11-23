@@ -1,0 +1,101 @@
+{
+  "groups": {
+    "step2000_V0": {
+      "factory": "scripts.research.clean_oct_workers:EvaluationWorker",
+      "spec": {
+        "checkpoint": "/home/him1/mujoco_bc/rcm_4090_deploy/outputs/clean_oct_cbias_20261121_resume_v2/step_002000.pth",
+        "checkpoint_sha256": "705dc36de56d3efd659fd9d0c47f33bd91d8a9c3c6e5ea32e5dbcbcec0266523",
+        "target_manifest": "/home/him1/mujoco_bc/rcm_4090_deploy/configs/v12_reachable_development_targets_0p35um.json",
+        "max_steps": 1000,
+        "variant": "V0",
+        "identity": {
+          "code_sha256": "adf85b62614eb7d6c5ee65e8ab53f604cf55e3a821a1308320d09eac28adc9d8",
+          "scene_sha256": "265c927ef7e7ac71536963b3000ffb161b7ff7ac03bb86cdb8480ed988c17028",
+          "scripts/research/clean_oct_pipeline.py": "13708910a2866b9c96ae6606366bcc5f537c29bb6af13b08b6cd82d6f65129ee",
+          "scripts/research/clean_oct_workers.py": "1df09165778f9866b01fb6b8e020afbb839f284797c1ae497ab36216746a1650",
+          "scripts/research/gpu_episode_pool.py": "d48ba3b40fb29352638f8dc1cfba5d66671258f4855f12fe6f75f5f7b9a4afdb",
+          "scripts/research/control_g15_diagnostics.py": "70a8cd88e3fbe71e4f72b606ca29530529ef00ea4863a2ab8e5f9060bfcba2d2",
+          "configs/v12_reachable_development_targets_0p35um.json": "fcc4872a9d5b58bb7158b36d3c0ab6d7452e4d8d747317dfb077b6e7bbc815c7"
+        }
+      },
+      "tasks": [
+        {
+          "id": "E00",
+          "episode_index": 0,
+          "seed": 42
+        },
+        {
+          "id": "E02",
+          "episode_index": 2,
+          "seed": 44
+        },
+        {
+          "id": "E06",
+          "episode_index": 6,
+          "seed": 48
+        },
+        {
+          "id": "E08",
+          "episode_index": 8,
+          "seed": 50
+        },
+        {
+          "id": "E10",
+          "episode_index": 10,
+          "seed": 52
+        }
+      ]
+    },
+    "step4000_V0": {
+      "factory": "scripts.research.clean_oct_workers:EvaluationWorker",
+      "spec": {
+        "checkpoint": "/home/him1/mujoco_bc/rcm_4090_deploy/outputs/clean_oct_cbias_20261121_resume_v2/step_004000.pth",
+        "checkpoint_sha256": "42746ac42d83a4a8d591dca3d2b8f5a78e2e9648fb037fafe07df9af9c688e9e",
+        "target_manifest": "/home/him1/mujoco_bc/rcm_4090_deploy/configs/v12_reachable_development_targets_0p35um.json",
+        "max_steps": 1000,
+        "variant": "V0",
+        "identity": {
+          "code_sha256": "adf85b62614eb7d6c5ee65e8ab53f604cf55e3a821a1308320d09eac28adc9d8",
+          "scene_sha256": "265c927ef7e7ac71536963b3000ffb161b7ff7ac03bb86cdb8480ed988c17028",
+          "scripts/research/clean_oct_pipeline.py": "13708910a2866b9c96ae6606366bcc5f537c29bb6af13b08b6cd82d6f65129ee",
+          "scripts/research/clean_oct_workers.py": "1df09165778f9866b01fb6b8e020afbb839f284797c1ae497ab36216746a1650",
+          "scripts/research/gpu_episode_pool.py": "d48ba3b40fb29352638f8dc1cfba5d66671258f4855f12fe6f75f5f7b9a4afdb",
+          "scripts/research/control_g15_diagnostics.py": "70a8cd88e3fbe71e4f72b606ca29530529ef00ea4863a2ab8e5f9060bfcba2d2",
+          "configs/v12_reachable_development_targets_0p35um.json": "fcc4872a9d5b58bb7158b36d3c0ab6d7452e4d8d747317dfb077b6e7bbc815c7"
+        }
+      },
+      "tasks": [
+        {
+          "id": "E00",
+          "episode_index": 0,
+          "seed": 42
+        },
+        {
+          "id": "E02",
+          "episode_index": 2,
+          "seed": 44
+        },
+        {
+          "id": "E06",
+          "episode_index": 6,
+          "seed": 48
+        },
+        {
+          "id": "E08",
+          "episode_index": 8,
+          "seed": 50
+        },
+        {
+          "id": "E10",
+          "episode_index": 10,
+          "seed": 52
+        }
+      ]
+    }
+  },
+  "workers": 4,
+  "max_workers": 8,
+  "timeout_s": 600.0,
+  "stage_timeout_s": 3900.0,
+  "pool_sha256": "d48ba3b40fb29352638f8dc1cfba5d66671258f4855f12fe6f75f5f7b9a4afdb"
+}

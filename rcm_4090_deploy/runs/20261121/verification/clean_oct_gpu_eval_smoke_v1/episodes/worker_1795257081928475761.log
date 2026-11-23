@@ -1,0 +1,18 @@
+Warning: wandb not available, logging will be local only
+加载模型: /home/him1/mujoco_bc/rcm_4090_deploy/outputs/overnight_c_fix_symlog_081234/task2_train/step_004000.pth
+模型加载完成 (type=dit_rectified_flow, epoch=3, train_loss=0.116777, val_loss=0.148003)
+评估 episodes:   0%|          | 0/1 [00:00<?, ?it/s]
+Episode 3/1
+  目标世界坐标: [349.875, -15.579, 374.656] mm
+  closed-loop step 1/8, error=19545.438 um
+  ✗ 失败: 8 步, 误差 19.462 mm
+评估 episodes: 100%|##########| 1/1 [00:06<00:00,  6.37s/it]评估 episodes: 100%|##########| 1/1 [00:06<00:00,  6.37s/it]
+
+============================================================
+评估结果汇总:
+  成功率: 0.0% (0/1)
+  平均步数: 8.0
+  平均最终误差: 19.462 mm
+============================================================
+
+结果已保存到: /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/verification/clean_oct_gpu_eval_smoke_v1/episodes/tasks/initial_V0_E02/E02/evaluation_results.json

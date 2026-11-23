@@ -1,0 +1,37 @@
+{
+  "status": "failed",
+  "completed": 0,
+  "total": 3,
+  "results": {},
+  "workers": [
+    {
+      "pid": 53609,
+      "group": "render",
+      "log": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/verification/clean_oct_gpu_render_smoke_v2/shards/worker_1795257005683665903.log"
+    },
+    {
+      "pid": 53614,
+      "group": "render",
+      "log": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/verification/clean_oct_gpu_render_smoke_v2/shards/worker_1795257005774635531.log"
+    },
+    {
+      "pid": 53618,
+      "group": "render",
+      "log": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/verification/clean_oct_gpu_render_smoke_v2/shards/worker_1795257005846808029.log"
+    }
+  ],
+  "contract_sha256": "b891f87ca01ecba3a6aa2c1da4b8c9f7ccc718e73ed88d2d6b236ce9fc4c8076",
+  "resources": {
+    "gpu_free_mib": 48162,
+    "gpu_utilization_percent": 8,
+    "ram_available_mib": 27142
+  },
+  "active_tasks": [
+    "render_E0000",
+    "render_E0760",
+    "render_E0839"
+  ],
+  "elapsed_s": 5.308988323002268,
+  "failure": "TypeError('Object of type int64 is not JSON serializable')",
+  "pending": 0
+}

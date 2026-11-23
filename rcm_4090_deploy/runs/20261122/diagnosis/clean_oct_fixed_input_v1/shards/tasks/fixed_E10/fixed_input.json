@@ -1,0 +1,230 @@
+{
+  "episode_index": 10,
+  "snapshots": 3,
+  "samples": 96,
+  "records": [
+    {
+      "step": 800,
+      "reconstruction": {
+        "oct_max_abs_difference_mm": 1.861164111716107e-09,
+        "original_action_max_abs_difference_deg_deg_mm": 0.0,
+        "tolerance": 1e-06,
+        "passed": true,
+        "rgb_limitation": "Original RGB was not saved. Re-rendered image checked indirectly by OCT and original seeded action; pixel equality is not claimed."
+      },
+      "sampling_seeds": [
+        2026112200,
+        2026112201,
+        2026112202,
+        2026112203,
+        2026112204,
+        2026112205,
+        2026112206,
+        2026112207,
+        2026112208,
+        2026112209,
+        2026112210,
+        2026112211,
+        2026112212,
+        2026112213,
+        2026112214,
+        2026112215,
+        2026112216,
+        2026112217,
+        2026112218,
+        2026112219,
+        2026112220,
+        2026112221,
+        2026112222,
+        2026112223,
+        2026112224,
+        2026112225,
+        2026112226,
+        2026112227,
+        2026112228,
+        2026112229,
+        2026112230,
+        2026112231
+      ],
+      "mean_action_deg_deg_mm": [
+        -0.002576803913598269,
+        -0.002987382148148754,
+        -0.001088063872884959
+      ],
+      "std_action_deg_deg_mm": [
+        0.005271041801633474,
+        0.003058392900776393,
+        0.002416147187263201
+      ],
+      "positive_axis_fraction": [
+        0.375,
+        0.125,
+        0.3125
+      ],
+      "teacher_action_deg_deg_mm": [
+        0.004870043141326097,
+        -0.0003322807662657349,
+        0.004188715276413207
+      ],
+      "teacher_scope": "diagnostic only, uses reproduced sensor geometry; not policy control",
+      "same_sign_as_teacher_fraction": [
+        0.375,
+        0.875,
+        0.3125
+      ],
+      "first_order_toward_measured_target_fraction": 0.3125,
+      "measured_error_um": 46.55646584818509,
+      "original_error_um": 46.49413997165341
+    },
+    {
+      "step": 1000,
+      "reconstruction": {
+        "oct_max_abs_difference_mm": 1.1146697176389608e-09,
+        "original_action_max_abs_difference_deg_deg_mm": 0.0,
+        "tolerance": 1e-06,
+        "passed": true,
+        "rgb_limitation": "Original RGB was not saved. Re-rendered image checked indirectly by OCT and original seeded action; pixel equality is not claimed."
+      },
+      "sampling_seeds": [
+        2026112200,
+        2026112201,
+        2026112202,
+        2026112203,
+        2026112204,
+        2026112205,
+        2026112206,
+        2026112207,
+        2026112208,
+        2026112209,
+        2026112210,
+        2026112211,
+        2026112212,
+        2026112213,
+        2026112214,
+        2026112215,
+        2026112216,
+        2026112217,
+        2026112218,
+        2026112219,
+        2026112220,
+        2026112221,
+        2026112222,
+        2026112223,
+        2026112224,
+        2026112225,
+        2026112226,
+        2026112227,
+        2026112228,
+        2026112229,
+        2026112230,
+        2026112231
+      ],
+      "mean_action_deg_deg_mm": [
+        0.0014951805605960544,
+        0.0014992531414463883,
+        0.00039181928150355816
+      ],
+      "std_action_deg_deg_mm": [
+        0.006565327084628947,
+        0.003591980567624395,
+        0.0013405446469540033
+      ],
+      "positive_axis_fraction": [
+        0.65625,
+        0.71875,
+        0.53125
+      ],
+      "teacher_action_deg_deg_mm": [
+        -0.011336793958372705,
+        0.007121603989487843,
+        0.0021007624006162684
+      ],
+      "teacher_scope": "diagnostic only, uses reproduced sensor geometry; not policy control",
+      "same_sign_as_teacher_fraction": [
+        0.34375,
+        0.71875,
+        0.53125
+      ],
+      "first_order_toward_measured_target_fraction": 0.4375,
+      "measured_error_um": 39.26448923500046,
+      "original_error_um": 39.26502479143191
+    },
+    {
+      "step": 1200,
+      "reconstruction": {
+        "oct_max_abs_difference_mm": 1.6356005577700117e-09,
+        "original_action_max_abs_difference_deg_deg_mm": 0.0,
+        "tolerance": 1e-06,
+        "passed": true,
+        "rgb_limitation": "Original RGB was not saved. Re-rendered image checked indirectly by OCT and original seeded action; pixel equality is not claimed."
+      },
+      "sampling_seeds": [
+        2026112200,
+        2026112201,
+        2026112202,
+        2026112203,
+        2026112204,
+        2026112205,
+        2026112206,
+        2026112207,
+        2026112208,
+        2026112209,
+        2026112210,
+        2026112211,
+        2026112212,
+        2026112213,
+        2026112214,
+        2026112215,
+        2026112216,
+        2026112217,
+        2026112218,
+        2026112219,
+        2026112220,
+        2026112221,
+        2026112222,
+        2026112223,
+        2026112224,
+        2026112225,
+        2026112226,
+        2026112227,
+        2026112228,
+        2026112229,
+        2026112230,
+        2026112231
+      ],
+      "mean_action_deg_deg_mm": [
+        0.0024749432450335007,
+        -0.0018787488738780667,
+        0.0006486462661996484
+      ],
+      "std_action_deg_deg_mm": [
+        0.005576386324580318,
+        0.0030909303990502494,
+        0.001912959050310261
+      ],
+      "positive_axis_fraction": [
+        0.6875,
+        0.28125,
+        0.5625
+      ],
+      "teacher_action_deg_deg_mm": [
+        -0.02182464207066576,
+        0.007422558549108883,
+        -0.002590538198052328
+      ],
+      "teacher_scope": "diagnostic only, uses reproduced sensor geometry; not policy control",
+      "same_sign_as_teacher_fraction": [
+        0.3125,
+        0.28125,
+        0.4375
+      ],
+      "first_order_toward_measured_target_fraction": 0.28125,
+      "measured_error_um": 65.86854955050946,
+      "original_error_um": 65.97023336649843
+    }
+  ],
+  "egl": {
+    "vendor": "NVIDIA Corporation",
+    "renderer": "NVIDIA GeForce RTX 4090/PCIe/SSE2"
+  }
+}

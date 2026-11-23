@@ -1,0 +1,42 @@
+{
+  "id": "clean_oct_cbias_gpu_20261121_v1",
+  "status": "interrupted",
+  "pid": 58382,
+  "stages": {
+    "preflight": {
+      "status": "completed",
+      "type": "module",
+      "output_dir": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/clean_oct_cbias_gpu_v1/preflight",
+      "started_at": "2026-11-21T18:42:41+08:00",
+      "finished_at": "2026-11-21T18:42:43+08:00"
+    },
+    "s1_overlay": {
+      "status": "interrupted",
+      "type": "module",
+      "output_dir": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/clean_oct_cbias_gpu_v1/s1_overlay",
+      "started_at": "2026-11-21T18:42:43+08:00",
+      "reason": "Command '['/home/him1/mujoco_bc/rcm_4090_deploy/.venv/bin/python', '-B', '-u', '-m', 'scripts.research.clean_oct_pipeline', '--mode', 'render', '--overlay-dir', 'data/clean_oct_cbias_20261121_v1', '--workers', '4', '--max-workers', '8', '--stage-timeout-s', '2400', '--output-dir', '/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/clean_oct_cbias_gpu_v1/s1_overlay']' timed out after 2400 seconds",
+      "finished_at": "2026-11-21T19:22:43+08:00"
+    },
+    "s2_train": {
+      "status": "skipped",
+      "type": "module",
+      "output_dir": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/clean_oct_cbias_gpu_v1/s2_train",
+      "reason": "workflow interrupted"
+    },
+    "s3_fast5": {
+      "status": "skipped",
+      "type": "module",
+      "output_dir": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/clean_oct_cbias_gpu_v1/s3_fast5",
+      "reason": "workflow interrupted"
+    },
+    "s4_dev20": {
+      "status": "skipped",
+      "type": "module",
+      "output_dir": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/clean_oct_cbias_gpu_v1/s4_dev20",
+      "reason": "workflow interrupted"
+    }
+  },
+  "updated_at": "2026-11-21T19:22:43+08:00",
+  "reason": "Command '['/home/him1/mujoco_bc/rcm_4090_deploy/.venv/bin/python', '-B', '-u', '-m', 'scripts.research.clean_oct_pipeline', '--mode', 'render', '--overlay-dir', 'data/clean_oct_cbias_20261121_v1', '--workers', '4', '--max-workers', '8', '--stage-timeout-s', '2400', '--output-dir', '/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/clean_oct_cbias_gpu_v1/s1_overlay']' timed out after 2400 seconds"
+}

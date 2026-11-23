@@ -1,0 +1,43 @@
+{
+  "training_module": "state_attention_experience_replay_flow_v1",
+  "mode": "ratio",
+  "overlay_receipt": {
+    "dataset_sha256": "9d80523f519faf4e00bbaef3d30e29dec1401181f3dcddd438c5087c05eb54db",
+    "windows_before": 301634,
+    "oct_overlay_sha256": "007df55ec9466170e3de91b26e8b148860df0abef62a81f27123e613833f86c4",
+    "c_overlay_sha256": "0d8c1cfc04808f3bc5a9c69c51976e74e7969b5baa479df2533c0fc3c0c3e93c",
+    "windows_after": 301551,
+    "excluded_windows": 83,
+    "added_windows": 0
+  },
+  "initial_checkpoint": "/home/him1/mujoco_bc/rcm_4090_deploy/outputs/overnight_c_fix_symlog_081234/task2_train/step_004000.pth",
+  "initial_checkpoint_epoch": 3,
+  "original_windows": 220733,
+  "correction_windows": 80818,
+  "natural_correction_ratio": 0.268007733351904,
+  "correction_ratio": 0.08,
+  "valid_window_index_sha256": "a53a3449d68655b6d21cd98cc368749e1acae76f65caaf2d4f75312c6524d0ba",
+  "original_index_sha256": "3820491ee45c0554ae0246574f4dbaf1378a5e647b41b3a8847e53077239852f",
+  "correction_index_sha256": "df2a65b301e6fdb9714134530b5f93910d6e790e888777225d0e3edb6b47a6ef",
+  "window_diagnostics": {
+    "candidate_windows": 319681,
+    "trajectory_boundary_excluded": 16599,
+    "source_frame_gap_excluded": 1420,
+    "time_interval_excluded": 0,
+    "invalid_input_excluded": 111,
+    "valid_windows": 301551
+  },
+  "validation_windows": 26650,
+  "validation_index_sha256": "a7a2cdd47de89d673b3d56903312d71814d9ca28c73b74285f39b735b92511eb",
+  "batch_size": 16,
+  "batch_mix": {
+    "correction_probability": 0.08
+  },
+  "sampling": "uniform_with_replacement",
+  "steps_per_epoch": 1000,
+  "epochs": 4,
+  "flow_loss_weights": {
+    "original": null,
+    "correction": null
+  }
+}

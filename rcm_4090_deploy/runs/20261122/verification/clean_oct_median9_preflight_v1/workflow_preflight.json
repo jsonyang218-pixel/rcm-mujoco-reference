@@ -1,0 +1,71 @@
+{
+  "status": "preflight_passed",
+  "card": "/home/him1/mujoco_bc/rcm_4090_deploy/configs/experiment_card_clean_oct_median9_20261122_v1.json",
+  "card_sha256": "8b20d75f5bfd521d4a151527d150507b228f56fdaf7e066af8414f20846a1474",
+  "id": "clean_oct_median9_20261122_v1",
+  "hypothesis": "Lower conditional sampling dispersion may reduce late drift, while directional bias may persist; no promised improvement.",
+  "main_change": "Only existing evaluator num_action_samples 1 -> 9, componentwise torch.median; keep frozen step2000, G10 feedback, Flow4, execute1 and strict criteria.",
+  "output_dir": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261122/diagnosis/clean_oct_median9_workflow_v1",
+  "stages": [
+    {
+      "id": "median9",
+      "type": "module",
+      "tier": "smoke",
+      "timeout_s": 2400,
+      "requires": [],
+      "gates": [
+        {
+          "file": "summary.json",
+          "key": "completed_targets",
+          "op": "==",
+          "value": 3
+        },
+        {
+          "file": "summary.json",
+          "key": "candidate_passed",
+          "op": "==",
+          "value": 1
+        }
+      ],
+      "output_dir": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261122/diagnosis/clean_oct_median9_workflow_v1/median9",
+      "assets": {
+        "/home/him1/mujoco_bc/rcm_4090_deploy/docs/CLEAN_OCT_MEDIAN9_SMOKE_20261122.md": "816e5fbc4376ec69cecf5ed73c29224ccf83f704f84cb2b7dfd3728dc0721a32",
+        "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261122/analysis/clean_oct_drift_interpretation_v1/summary.json": "079e099ceb955f79978fe2671974139531b4ba1a275567d0a5d7a8ee038df5c1",
+        "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261122/diagnosis/clean_oct_fixed_input_v1/summary.json": "7c83f0af8f999d63472f0b7c2dd6e47f32f2445570b9ec94a2b0d41ffe62aa0f",
+        "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261122/analysis/clean_oct_command_execution_v1/summary.json": "c2dae42f3f269b40b6fe89b4b09797f16a78ea10b85b434b3bca506a3119eca1",
+        "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261122/analysis/clean_oct_command_execution_v1/source_hashes.json": "c789e80ca9758340e2ca0482f0dc5bc3748f5fc7a4f5b4b52f331e1867f819da",
+        "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/clean_oct_dev20_authorized_v1/dev20/summary.json": "fed1d67eee364befed96c4a788e8f172cd368494b0782918471a936b89337c9f",
+        "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/clean_oct_dev20_authorized_v1/dev20/episodes/contract.json": "235aa8faec36f393288733bb915975776075a826bf72650c9c0e845a06dc9753",
+        "/home/him1/mujoco_bc/rcm_4090_deploy/configs/v12_reachable_development_targets_0p35um.json": "fcc4872a9d5b58bb7158b36d3c0ab6d7452e4d8d747317dfb077b6e7bbc815c7",
+        "/home/him1/mujoco_bc/rcm_4090_deploy/outputs/clean_oct_cbias_20261121_resume_v2/step_002000.pth": "705dc36de56d3efd659fd9d0c47f33bd91d8a9c3c6e5ea32e5dbcbcec0266523",
+        "/home/him1/mujoco_bc/rcm_4090_deploy/scripts/research/clean_oct_drift_diagnosis.py": "0c0d0070a1b15561f9d587968eab3471329077ee3b065074ff61d7f0adcf48c0",
+        "/home/him1/mujoco_bc/rcm_4090_deploy/scripts/research/clean_oct_pipeline.py": "33ddd329be058009f3492bdac900dffd6074ed2e455160df33b941023a79ba3d",
+        "/home/him1/mujoco_bc/rcm_4090_deploy/scripts/research/clean_oct_workers.py": "1df09165778f9866b01fb6b8e020afbb839f284797c1ae497ab36216746a1650",
+        "/home/him1/mujoco_bc/rcm_4090_deploy/scripts/research/gpu_episode_pool.py": "d48ba3b40fb29352638f8dc1cfba5d66671258f4855f12fe6f75f5f7b9a4afdb",
+        "/home/him1/mujoco_bc/rcm_4090_deploy/scripts/research/control_g15_diagnostics.py": "70a8cd88e3fbe71e4f72b606ca29530529ef00ea4863a2ab8e5f9060bfcba2d2",
+        "/home/him1/mujoco_bc/rcm_4090_deploy/scripts/research/overnight_cfix_eval.py": "0a967958159c178e51da3c666f109904f4aadb673942f42f4eee617d9701f81f",
+        "/home/him1/mujoco_bc/rcm_4090_deploy/lerobot_training/eval_policy.py": "c871d65afac6950ef0b0767b8dd96490ec6549b10bc8fcd0a3bea5adc39a9fd5",
+        "/home/him1/mujoco_bc/rcm_4090_deploy/lerobot_training/dit_rectified_flow.py": "9b73bf96d7a04107f5f8365f74703f7d00388e62b0466b16da66377675829b38",
+        "/home/him1/mujoco_bc/rcm_4090_deploy/lerobot_training/dit_state_attention.py": "d805254300d66218d9e862863276440389c4b07b3e5689d50c04abf059b1e131",
+        "/home/him1/mujoco_bc/rcm_4090_deploy/rcm/strict_rgbd.py": "240ef03a903b61f7b6be3f99a873f493bd368f1de1c9578a4175178b8e6a33a2",
+        "/home/him1/mujoco_bc/rcm_4090_deploy/scripts/verification/verify_clean_oct_sampling_ablation.py": "bd132f7a80b18acd535ec3cc55e98ed7e29da1656547f94c192608d4558eef71",
+        "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/clean_oct_dev20_authorized_v1/dev20/episodes/tasks/best_V0_E00/E00/evaluation_results.json": "e8800ff4e3691aaebd3d24e6ce7cad1bbc90456f46c8e67b426d6b4c0cb575c6",
+        "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/clean_oct_dev20_authorized_v1/dev20/episodes/tasks/best_V0_E08/E08/evaluation_results.json": "c4e37e70a6861162fdc32d4973fde3cbea5924e8a102cfed99b61a0ce99d7a22",
+        "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/clean_oct_dev20_authorized_v1/dev20/episodes/tasks/best_V0_E10/E10/evaluation_results.json": "3a63daff3f7b136025a4425af299f6d83bd2bedbd8928b7e8b6df714df24f783",
+        "/home/him1/mujoco_bc/rcm_4090_deploy/scripts/research/clean_oct_sampling_ablation.py": "b2a72ff4a8b23f6db13e490f8c1ff56edb1e31aa9f5122bc4a95c1faa474d0fa"
+      },
+      "trains": false,
+      "argv": [
+        "/home/him1/mujoco_bc/rcm_4090_deploy/.venv/bin/python",
+        "-B",
+        "-u",
+        "-m",
+        "scripts.research.clean_oct_sampling_ablation",
+        "--artifact-dir",
+        "runs/20261122/diagnosis/clean_oct_terminal_ablation_v1",
+        "--output-dir",
+        "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261122/diagnosis/clean_oct_median9_workflow_v1/median9"
+      ]
+    }
+  ]
+}
