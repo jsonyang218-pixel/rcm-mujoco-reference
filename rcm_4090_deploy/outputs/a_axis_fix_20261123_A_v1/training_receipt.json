@@ -1,0 +1,82 @@
+{
+  "status": "completed",
+  "contract_sha256": "0a2be4b11bb3ef89adc204689928c3e36587001c757f41cb57a645192a1adfa4",
+  "checkpoint_hashes": {
+    "/home/him1/mujoco_bc/rcm_4090_deploy/outputs/a_axis_fix_20261123_A_v1/step_002000.pth": "7f7cd679d4f332fc890701997ead44da9df0e8523480f61286cba7e731336113",
+    "/home/him1/mujoco_bc/rcm_4090_deploy/outputs/a_axis_fix_20261123_A_v1/step_004000.pth": "bf33d17f558569a0586ea4cbb489c8ae9c19ec559c185f4d1139d322292b0966"
+  },
+  "progress": {
+    "epoch": 4,
+    "batch_offset": 0,
+    "global_step": 4000,
+    "optimizer_updates": 3998,
+    "epoch_loss_sum": 0.0,
+    "history": [
+      {
+        "epoch": 0,
+        "batches_seen": 1000,
+        "train_loss": 0.1180575495250523,
+        "val_loss": 0.147924808593248,
+        "optimizer_updates": 999,
+        "sampling_counts": [
+          14720,
+          1280
+        ]
+      },
+      {
+        "epoch": 1,
+        "batches_seen": 2000,
+        "train_loss": 0.11685444053262473,
+        "val_loss": 0.14827706855085257,
+        "optimizer_updates": 1999,
+        "sampling_counts": [
+          29440,
+          2560
+        ]
+      },
+      {
+        "epoch": 2,
+        "batches_seen": 3000,
+        "train_loss": 0.11884685086645186,
+        "val_loss": 0.14802507359346898,
+        "optimizer_updates": 2999,
+        "sampling_counts": [
+          44160,
+          3840
+        ]
+      },
+      {
+        "epoch": 3,
+        "batches_seen": 4000,
+        "train_loss": 0.11498168647661805,
+        "val_loss": 0.14747127288465592,
+        "optimizer_updates": 3998,
+        "sampling_counts": [
+          58880,
+          5120
+        ]
+      }
+    ],
+    "counts": [
+      58880,
+      5120
+    ],
+    "epoch_counts": [
+      0,
+      0
+    ]
+  },
+  "manifest": {
+    "original_windows": 301634,
+    "correction_windows": 64493,
+    "validation_windows": 26650,
+    "epoch_correction_samples": 1280,
+    "epoch_original_samples": 14720,
+    "total_batches": 4000,
+    "original_window_index_sha256": "c6de3a86d7afbea5d8736399d87381341c7a383f4fa15defbb5900c8265a4e56",
+    "correction_window_index_sha256": "1b6a33312c50b20f39fb763b9dce9de9aaeb8c9dcc0d7bd02d9652584a9f3370",
+    "validation_window_index_sha256": "90493519cd737b822a9bdf6051c3f43edf367807ea98855f63e125c02c6af09e",
+    "validation_max_batches": null,
+    "baseline": "/home/him1/mujoco_bc/rcm_4090_deploy/outputs/overnight_c_fix_symlog_081234/task2_train/step_004000.pth"
+  }
+}

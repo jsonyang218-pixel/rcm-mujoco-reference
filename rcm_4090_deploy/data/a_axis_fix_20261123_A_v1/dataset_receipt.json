@@ -1,0 +1,27 @@
+{
+  "status": "completed",
+  "branch": "A",
+  "overlay": "/home/him1/mujoco_bc/rcm_4090_deploy/data/a_axis_fix_20261123_A_v1/abc_override.npz",
+  "overlay_sha256": "fb3207c789af6a3ae7171c56414249c44276996b935d8a660c376d809afafe76",
+  "source_dataset": "/home/him1/mujoco_bc/rcm_4090_deploy/data/plan2_plus_original_train_224_20261119",
+  "source_dataset_sha256": "9d80523f519faf4e00bbaef3d30e29dec1401181f3dcddd438c5087c05eb54db",
+  "corrected_frames": 13192,
+  "corrected_axes": [
+    0,
+    77,
+    13134
+  ],
+  "rejected_nonforward_composed_frames": 680,
+  "correction_windows": 64493,
+  "window_diagnostics": {
+    "candidate_windows": 319681,
+    "trajectory_boundary_excluded": 16599,
+    "source_frame_gap_excluded": 1420,
+    "time_interval_excluded": 0,
+    "invalid_input_excluded": 28,
+    "valid_windows": 301634
+  },
+  "label_rule": "Only zero-velocity/pre-acceleration-reversed axes whose finite-difference history replay reproduces reversal. Other axes and executed-action history unchanged.",
+  "correction_window_path": "/home/him1/mujoco_bc/rcm_4090_deploy/data/a_axis_fix_20261123_A_v1/correction_windows.npz",
+  "original_pool": "All unmodified valid windows of merged base dataset, 92%; independent repaired replay 8%."
+}

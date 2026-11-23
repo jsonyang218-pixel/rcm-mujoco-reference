@@ -1,0 +1,96 @@
+{
+  "status": "completed",
+  "source_dataset": "/home/him1/mujoco_bc/rcm_4090_deploy/data/plan2_plus_original_train_224_20261119",
+  "source_dataset_sha256": "9d80523f519faf4e00bbaef3d30e29dec1401181f3dcddd438c5087c05eb54db",
+  "covered_frames": 107343,
+  "source_split_episode": 839,
+  "buckets": {
+    "all": {
+      "all_valid_near_source_frames": 107343,
+      "rerender_teacher_valid_frames": 107232,
+      "axes": {
+        "A": {
+          "eligible_nonzero_geometry_frames": 104850,
+          "reverse_frames": 32517,
+          "reverse_fraction": 0.3101287553648069,
+          "reverse_fraction_all_near_frames": 0.30292613398172213,
+          "history_replay_inertia_compatible_frames": 0
+        },
+        "B": {
+          "eligible_nonzero_geometry_frames": 104850,
+          "reverse_frames": 35192,
+          "reverse_fraction": 0.3356413924654268,
+          "reverse_fraction_all_near_frames": 0.32784624987190597,
+          "history_replay_inertia_compatible_frames": 77
+        },
+        "C": {
+          "eligible_nonzero_geometry_frames": 104850,
+          "reverse_frames": 15966,
+          "reverse_fraction": 0.15227467811158799,
+          "reverse_fraction_all_near_frames": 0.1487381571224952,
+          "history_replay_inertia_compatible_frames": 13814
+        }
+      }
+    },
+    "original": {
+      "all_valid_near_source_frames": 33842,
+      "rerender_teacher_valid_frames": 33731,
+      "axes": {
+        "A": {
+          "eligible_nonzero_geometry_frames": 32924,
+          "reverse_frames": 9583,
+          "reverse_fraction": 0.29106426922609646,
+          "reverse_fraction_all_near_frames": 0.28316884344896875,
+          "history_replay_inertia_compatible_frames": 0
+        },
+        "B": {
+          "eligible_nonzero_geometry_frames": 32924,
+          "reverse_frames": 9866,
+          "reverse_fraction": 0.29965982262179564,
+          "reverse_fraction_all_near_frames": 0.29153123337864195,
+          "history_replay_inertia_compatible_frames": 77
+        },
+        "C": {
+          "eligible_nonzero_geometry_frames": 32924,
+          "reverse_frames": 6064,
+          "reverse_fraction": 0.18418175191349775,
+          "reverse_fraction_all_near_frames": 0.17918562732699014,
+          "history_replay_inertia_compatible_frames": 4532
+        }
+      }
+    },
+    "plan2": {
+      "all_valid_near_source_frames": 73501,
+      "rerender_teacher_valid_frames": 73501,
+      "axes": {
+        "A": {
+          "eligible_nonzero_geometry_frames": 71926,
+          "reverse_frames": 22934,
+          "reverse_fraction": 0.31885549036509747,
+          "reverse_fraction_all_near_frames": 0.3120229656739364,
+          "history_replay_inertia_compatible_frames": 0
+        },
+        "B": {
+          "eligible_nonzero_geometry_frames": 71926,
+          "reverse_frames": 25326,
+          "reverse_fraction": 0.3521118927786892,
+          "reverse_fraction_all_near_frames": 0.3445667405885634,
+          "history_replay_inertia_compatible_frames": 0
+        },
+        "C": {
+          "eligible_nonzero_geometry_frames": 71926,
+          "reverse_frames": 9902,
+          "reverse_fraction": 0.13766927119539527,
+          "reverse_fraction_all_near_frames": 0.13471925552033306,
+          "history_replay_inertia_compatible_frames": 9282
+        }
+      }
+    }
+  },
+  "branch_A_hit": true,
+  "denominator": "All near frames whose rerendered zero-velocity and pre-acceleration axis expectations are both nonzero; zero/invalid cases counted separately.",
+  "interpretation": "Direction conflicts against a new-render same-state teacher are associations. Historical finite-difference velocity replay compatibility is separately recorded, not asserted causal proof.",
+  "teacher_inputs": "Actual new-render RGB-D observations at every near source state; no fabricated visibility or fit quality.",
+  "arrays_path": "/home/him1/mujoco_bc/rcm_4090_deploy/github_reports/audit_20261123_a_axis_flip/all_near_teacher_labels.npz",
+  "arrays_sha256": "466734f39e6e803b2495c4f7daa44ba764e8dd27d397f3e4db10ea45e6221785"
+}

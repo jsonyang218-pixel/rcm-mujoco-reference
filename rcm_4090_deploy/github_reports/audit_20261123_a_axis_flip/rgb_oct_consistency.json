@@ -1,0 +1,129 @@
+{
+  "status": "completed",
+  "actual_training_config": "/home/him1/mujoco_bc/rcm_4090_deploy/outputs/clean_oct_cbias_20261121_resume_v2/training_config.json",
+  "training_config_sha256": "25b54f6aac27c099959000f60704bebae99708d330d45422ec3ba4807bb15e6e",
+  "actual_training_keeps_original_RGB": true,
+  "RGB_paths_unchanged": true,
+  "RGB_OCT_render_provenance_mismatch": true,
+  "provenance_scope": "OCT overlay was freshly rendered with the new quality; training uses original stored RGB paths. Different render provenance is established; exact pixel disagreement for all frames is not claimed.",
+  "replaced_rows_only_original_valid_under_200um": true,
+  "boundary_adjacent_pairs": 1250,
+  "old_boundary_jump_median_um": 23.936599731445312,
+  "composed_boundary_jump_median_um": 25.630680084228516,
+  "boundary_jump_increased": true,
+  "loader_receipt": {
+    "dataset_sha256": "9d80523f519faf4e00bbaef3d30e29dec1401181f3dcddd438c5087c05eb54db",
+    "windows_before": 301634,
+    "oct_overlay_sha256": "007df55ec9466170e3de91b26e8b148860df0abef62a81f27123e613833f86c4",
+    "c_overlay_sha256": "0d8c1cfc04808f3bc5a9c69c51976e74e7969b5baa479df2533c0fc3c0c3e93c",
+    "windows_after": 301551,
+    "excluded_windows": 83,
+    "added_windows": 0
+  },
+  "real_loader_samples": [
+    {
+      "source_row": 1,
+      "images": [
+        {
+          "path": "/home/him1/mujoco_bc/rcm_4090_deploy/data/plan2_plus_original_train_224_20261119/../lerobot_v12_zero_error_train_oct_224/images/ep000000_frame000000.png",
+          "sha256": "c0c82d29f5509e7e620ba243a16c4103b2f97c661a9ca83a9d98bd78adb9f116"
+        },
+        {
+          "path": "/home/him1/mujoco_bc/rcm_4090_deploy/data/plan2_plus_original_train_224_20261119/../lerobot_v12_zero_error_train_oct_224/images/ep000000_frame000001.png",
+          "sha256": "2576292a0e9fd894270771cd41ffd1da5bd4c70d4632b7e1dc305dfe66001ca0"
+        }
+      ]
+    },
+    {
+      "source_row": 44095,
+      "images": [
+        {
+          "path": "/home/him1/mujoco_bc/rcm_4090_deploy/data/plan2_plus_original_train_224_20261119/../lerobot_v12_zero_error_train_oct_224/images/ep000063_frame000646.png",
+          "sha256": "2ac3e66061f24a5bf3edfb09c271c0957e104ab00e8c002ed76dcbf967636fda"
+        },
+        {
+          "path": "/home/him1/mujoco_bc/rcm_4090_deploy/data/plan2_plus_original_train_224_20261119/../lerobot_v12_zero_error_train_oct_224/images/ep000063_frame000647.png",
+          "sha256": "3ad6b4b223fe0c8e7c6cdc47264d2b2021bbbc4a2a006b19cd2b98c6188b875f"
+        }
+      ]
+    },
+    {
+      "source_row": 88219,
+      "images": [
+        {
+          "path": "/home/him1/mujoco_bc/rcm_4090_deploy/data/plan2_plus_original_train_224_20261119/../lerobot_v12_zero_error_train_oct_224/images/ep000128_frame000007.png",
+          "sha256": "90e8065a7162c9a9ce59630f6e36ff58dad4ce1ed6b4ba85a74a151a680c9055"
+        },
+        {
+          "path": "/home/him1/mujoco_bc/rcm_4090_deploy/data/plan2_plus_original_train_224_20261119/../lerobot_v12_zero_error_train_oct_224/images/ep000128_frame000008.png",
+          "sha256": "f29b03d98b98dff5d684ee40e182d9caff4c54af9c663500e1d8fff4f92d93bc"
+        }
+      ]
+    },
+    {
+      "source_row": 132305,
+      "images": [
+        {
+          "path": "/home/him1/mujoco_bc/rcm_4090_deploy/data/plan2_plus_original_train_224_20261119/../lerobot_v12_zero_error_train_oct_224/images/ep000191_frame000623.png",
+          "sha256": "ccfade21fe4bb58a77a3cba7c254fbcfbe9d47d3d4bfa0f6830aaff730490aeb"
+        },
+        {
+          "path": "/home/him1/mujoco_bc/rcm_4090_deploy/data/plan2_plus_original_train_224_20261119/../lerobot_v12_zero_error_train_oct_224/images/ep000191_frame000624.png",
+          "sha256": "6a2bfbb23c10e2671fa734966bef898ff5fb128e9ee34c07195f094b0e4708cc"
+        }
+      ]
+    },
+    {
+      "source_row": 181882,
+      "images": [
+        {
+          "path": "/home/him1/mujoco_bc/rcm_4090_deploy/data/plan2_plus_original_train_224_20261119/../lerobot_v12_zero_error_train_oct_224/images/ep000591_frame000014.png",
+          "sha256": "2473940a7d9256eb40008e1b2508a8a251a007c1b70ee10dbdda6d8a4403d1e1"
+        },
+        {
+          "path": "/home/him1/mujoco_bc/rcm_4090_deploy/data/plan2_plus_original_train_224_20261119/../lerobot_v12_zero_error_train_oct_224/images/ep000591_frame000015.png",
+          "sha256": "048e1fd2ce944099796045715e47cd717020840c098a9e1783a0d465e7852533"
+        }
+      ]
+    },
+    {
+      "source_row": 228496,
+      "images": [
+        {
+          "path": "/home/him1/mujoco_bc/rcm_4090_deploy/data/plan2_plus_original_train_224_20261119/../online_dagger_dit_rf_round2_acthist_20261116_g05_224/images/ep000002_frame000119.png",
+          "sha256": "946a1ee4442947de6797eb90f4c63bc49da5e08e272c310e211e308feadb007c"
+        },
+        {
+          "path": "/home/him1/mujoco_bc/rcm_4090_deploy/data/plan2_plus_original_train_224_20261119/../online_dagger_dit_rf_round2_acthist_20261116_g05_224/images/ep000002_frame000120.png",
+          "sha256": "5a246f33b104dee9677270e10ac7b44231b551de8419e5650cf4f64bb8957078"
+        }
+      ]
+    },
+    {
+      "source_row": 274993,
+      "images": [
+        {
+          "path": "/home/him1/mujoco_bc/rcm_4090_deploy/data/plan2_plus_original_train_224_20261119/../plan2_new_train_runs_224_20261119/d2_oscillation/images/ep000018_frame000266.png",
+          "sha256": "253e510fee8ab228f0f8f2be98cb0b6694dc40eaa9719ad04fdc89dacf4981c2"
+        },
+        {
+          "path": "/home/him1/mujoco_bc/rcm_4090_deploy/data/plan2_plus_original_train_224_20261119/../plan2_new_train_runs_224_20261119/d2_oscillation/images/ep000018_frame000267.png",
+          "sha256": "d345f2da457a4ca697a50fc56b0708d133589c2e65db830b70d22e3bb543bfec"
+        }
+      ]
+    },
+    {
+      "source_row": 319681,
+      "images": [
+        {
+          "path": "/home/him1/mujoco_bc/rcm_4090_deploy/data/plan2_plus_original_train_224_20261119/../plan2_new_train_runs_224_20261119/d4_full_shard_a_unique/images/ep000003_frame001583.png",
+          "sha256": "af5a8ddef5b04790bdce26af4fef114ec65a855c009ab2998376cc8ac3cc5c64"
+        },
+        {
+          "path": "/home/him1/mujoco_bc/rcm_4090_deploy/data/plan2_plus_original_train_224_20261119/../plan2_new_train_runs_224_20261119/d4_full_shard_a_unique/images/ep000003_frame001584.png",
+          "sha256": "d2d6e78e4be7f3feedcf0557f6fae433ef11d397055726a42ac2d162a8cdb0a4"
+        }
+      ]
+    }
+  ]
+}

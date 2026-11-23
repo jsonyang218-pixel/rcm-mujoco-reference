@@ -1,0 +1,35 @@
+{
+  "status": "completed",
+  "signature": "66acbfb6854305f483e94f4e39ac6847ecb9c2903852d5bd4f5d7efcb7f0b8a7",
+  "files": {
+    "E0900.json": "f104f24daa4ac236a5dbe369248d295db720aea7f5dc5cdc9a47d21ef4569a1f",
+    "labels.npz": "6a64ceb1744b1a93c6f3aa430b94c42b0edd9228c8574f451b8f582eff542dfc"
+  },
+  "result": {
+    "episode_index": 900,
+    "frames": 400,
+    "teacher_valid": 400,
+    "path": "/home/him1/mujoco_bc/rcm_4090_deploy/github_reports/audit_20261123_a_axis_flip/label_shards/tasks/labels_E0900/labels.npz",
+    "sha256": "6a64ceb1744b1a93c6f3aa430b94c42b0edd9228c8574f451b8f582eff542dfc",
+    "invalid_reasons": {},
+    "egl": {
+      "vendor": "NVIDIA Corporation",
+      "renderer": "NVIDIA GeForce RTX 4090/PCIe/SSE2"
+    },
+    "target_provenance": {
+      "kind": "robot_mm",
+      "value": [
+        -0.6612323027121351,
+        2.424787891168407,
+        23.589874566078777
+      ],
+      "evidence": [
+        {
+          "path": "/home/him1/mujoco_bc/rcm_4090_deploy/data/plan2_plus_original_train_224_20261119/metadata.json",
+          "sha256": "7f02f265acadf965a9dc0de29b2058cfccc240ea39d06dc88050179d0ae2698d",
+          "episode_index": 900
+        }
+      ]
+    }
+  }
+}

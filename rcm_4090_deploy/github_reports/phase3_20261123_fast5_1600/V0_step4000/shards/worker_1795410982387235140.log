@@ -1,0 +1,65 @@
+Warning: wandb not available, logging will be local only
+加载模型: /home/him1/mujoco_bc/rcm_4090_deploy/outputs/a_axis_fix_20261123_A_v1/step_004000.pth
+模型加载完成 (type=dit_rectified_flow, epoch=3, train_loss=0.114982, val_loss=0.147471)
+评估 episodes:   0%|          | 0/1 [00:00<?, ?it/s]
+Episode 1/1
+  目标世界坐标: [348.825, -16.156, 373.943] mm
+  closed-loop step 1/1600, error=19548.126 um
+  closed-loop step 100/1600, error=16619.972 um
+  closed-loop step 200/1600, error=13632.660 um
+  closed-loop step 300/1600, error=10635.265 um
+  closed-loop step 400/1600, error=7654.093 um
+  closed-loop step 500/1600, error=4689.728 um
+  closed-loop step 600/1600, error=1711.332 um
+  closed-loop step 700/1600, error=187.225 um
+  closed-loop step 800/1600, error=108.176 um
+  closed-loop step 900/1600, error=111.610 um
+  closed-loop step 1000/1600, error=101.518 um
+  closed-loop step 1100/1600, error=110.368 um
+  closed-loop step 1200/1600, error=127.428 um
+  closed-loop step 1300/1600, error=105.512 um
+  closed-loop step 1400/1600, error=96.918 um
+  closed-loop step 1500/1600, error=81.339 um
+  closed-loop step 1600/1600, error=73.642 um
+  ✗ 失败: 1600 步, 误差 0.074 mm
+评估 episodes: 100%|##########| 1/1 [11:22<00:00, 682.21s/it]评估 episodes: 100%|##########| 1/1 [11:22<00:00, 682.21s/it]
+
+============================================================
+评估结果汇总:
+  成功率: 0.0% (0/1)
+  平均步数: 1600.0
+  平均最终误差: 0.074 mm
+============================================================
+
+结果已保存到: /home/him1/mujoco_bc/rcm_4090_deploy/github_reports/phase3_20261123_fast5_1600/V0_step4000/shards/tasks/eval_E00/raw/evaluation_results.json
+评估 episodes:   0%|          | 0/1 [00:00<?, ?it/s]
+Episode 11/1
+  目标世界坐标: [345.728, -13.461, 371.177] mm
+  closed-loop step 1/1600, error=19730.540 um
+  closed-loop step 100/1600, error=16861.159 um
+  closed-loop step 200/1600, error=13862.050 um
+  closed-loop step 300/1600, error=10863.821 um
+  closed-loop step 400/1600, error=7866.696 um
+  closed-loop step 500/1600, error=4864.699 um
+  closed-loop step 600/1600, error=1874.049 um
+  closed-loop step 700/1600, error=121.670 um
+  closed-loop step 800/1600, error=80.568 um
+  closed-loop step 900/1600, error=60.579 um
+  closed-loop step 1000/1600, error=62.035 um
+  closed-loop step 1100/1600, error=48.674 um
+  closed-loop step 1200/1600, error=55.188 um
+  closed-loop step 1300/1600, error=55.024 um
+  closed-loop step 1400/1600, error=66.637 um
+  closed-loop step 1500/1600, error=69.598 um
+  closed-loop step 1600/1600, error=82.626 um
+  ✗ 失败: 1600 步, 误差 0.083 mm
+评估 episodes: 100%|##########| 1/1 [09:39<00:00, 579.53s/it]评估 episodes: 100%|##########| 1/1 [09:39<00:00, 579.53s/it]
+
+============================================================
+评估结果汇总:
+  成功率: 0.0% (0/1)
+  平均步数: 1600.0
+  平均最终误差: 0.083 mm
+============================================================
+
+结果已保存到: /home/him1/mujoco_bc/rcm_4090_deploy/github_reports/phase3_20261123_fast5_1600/V0_step4000/shards/tasks/eval_E10/raw/evaluation_results.json

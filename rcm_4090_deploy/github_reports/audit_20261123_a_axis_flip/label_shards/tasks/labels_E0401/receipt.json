@@ -1,0 +1,71 @@
+{
+  "status": "completed",
+  "signature": "054dfcbdaa743eb230d7d159f442cc0dd7ae2e947fb21c8fdbfa73eb15528bab",
+  "files": {
+    "E0401.json": "3f68e0747cd3ef90371d50a42fb62b3bb830ecd69643192a546248d60c9aab09",
+    "labels.npz": "5b22de7e820d39cb85ea585a11f74dcc17ccb0cd620399d0331c949f8a51552b"
+  },
+  "result": {
+    "episode_index": 401,
+    "frames": 19,
+    "teacher_valid": 19,
+    "path": "/home/him1/mujoco_bc/rcm_4090_deploy/github_reports/audit_20261123_a_axis_flip/label_shards/tasks/labels_E0401/labels.npz",
+    "sha256": "5b22de7e820d39cb85ea585a11f74dcc17ccb0cd620399d0331c949f8a51552b",
+    "invalid_reasons": {},
+    "egl": {
+      "vendor": "NVIDIA Corporation",
+      "renderer": "NVIDIA GeForce RTX 4090/PCIe/SSE2"
+    },
+    "target_provenance": {
+      "kind": "scanned_world_m",
+      "value": [
+        0.3465851312198206,
+        -0.012207004376847817,
+        0.3713415725439269
+      ],
+      "terminal_encoders": [
+        -1277,
+        1927750,
+        2160752,
+        0
+      ],
+      "evidence": [
+        {
+          "path": "/home/him1/mujoco_bc/rcm_4090_deploy/data/plan2_plus_original_train_224_20261119/metadata.json",
+          "sha256": "7f02f265acadf965a9dc0de29b2058cfccc240ea39d06dc88050179d0ae2698d",
+          "episode_index": 401
+        },
+        {
+          "path": "/home/him1/mujoco_bc/rcm_4090_deploy/data/lerobot_v12_oct_dit_rf_dagger2_acthist_20261116_224/metadata.json",
+          "sha256": "8f05e8f88cc44a3261a372bd22e32c5e0804af626f392743b72fa2d4d47d8acc",
+          "episode_index": 401
+        },
+        {
+          "path": "/home/him1/mujoco_bc/rcm_4090_deploy/data/lerobot_v12_oct_dit_rf_dagger1_round1_verified_224/metadata.json",
+          "sha256": "0a0c6a4798fb28cbe187853e497561c99b24753cf0f0e5750ef13fef63d96262",
+          "episode_index": 401
+        },
+        {
+          "path": "/home/him1/mujoco_bc/rcm_4090_deploy/data/lerobot_v12_oct_dagger2_covshift_verified_224/metadata.json",
+          "sha256": "a1e0cd31139928a26c5524b5d4534a759b59d6400d0681a4f0d04f34805cd166",
+          "episode_index": 401
+        },
+        {
+          "path": "/home/him1/mujoco_bc/rcm_4090_deploy/data/lerobot_v12_oct_dagger1_fixed_224/metadata.json",
+          "sha256": "a50afcebe16bb22607417800a8d84d50a14b87f05ca4af56a5a86474e1b506ea",
+          "episode_index": 401
+        },
+        {
+          "path": "/home/him1/mujoco_bc/rcm_4090_deploy/data/lerobot_v12_zero_error_train_oct_224/metadata.json",
+          "sha256": "18a9bcd8cd78228fec80686810828d52ecf09b5b9edc5ec4cf4839fc2c763652",
+          "episode_index": 401
+        },
+        {
+          "path": "/home/him1/mujoco_bc/rcm_4090_deploy/data/lerobot_v12_zero_error_train_oct_224/data/terminal_audits.json",
+          "sha256": "292ecfbd1753304078d69e2661d69d94ab5e8e9fc0d83beccbe346b5dc756ce8",
+          "audit_index": 401
+        }
+      ]
+    }
+  }
+}
