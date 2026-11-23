@@ -1,0 +1,1538 @@
+{
+  "stage1": {
+    "status": "completed",
+    "source_dataset": "/home/him1/mujoco_bc/rcm_4090_deploy/data/homog_clean_replay_20261123_mixed_1600_600_12_hold_v2/data/dataset.npz",
+    "source_dataset_sha256": "4629b57238be07a0640accb810a56a23f47a20883308af858265df074cb65d6d",
+    "framing": "Independent corrected action array; RGB, OCT, state, history and continuity untouched",
+    "counts": {
+      "t1_frames": 18399,
+      "t2_frames": 12000,
+      "t3_frames": 12000,
+      "t3_stationary_frames": 11694,
+      "t3_stationary_zero_before": 4000,
+      "t3_stationary_zero_after": 11694
+    },
+    "gates": {
+      "T3_stationary_action_zero_fraction": {
+        "value": 1.0,
+        "required": "==1.0",
+        "passed": true
+      },
+      "T2_label_to_executed_norm_ratio_median": {
+        "value": 0.9999999996953679,
+        "required": "0.95<=x<=1.05",
+        "passed": true
+      },
+      "axis_reverse_fractions": {
+        "value": {
+          "A": 0.0019340078775442818,
+          "B": 0.0015802259487252058,
+          "C": 0.00191042241562301
+        },
+        "required": "<0.02 each",
+        "passed": true
+      },
+      "valid_window_contract_pass_fraction": {
+        "value": 1.0,
+        "required": "==1.0",
+        "passed": true
+      }
+    },
+    "axes": {
+      "A": {
+        "eligible_nonzero_geometry_frames": 42399,
+        "reverse_frames": 82,
+        "reverse_fraction": 0.0019340078775442818
+      },
+      "B": {
+        "eligible_nonzero_geometry_frames": 42399,
+        "reverse_frames": 67,
+        "reverse_fraction": 0.0015802259487252058
+      },
+      "C": {
+        "eligible_nonzero_geometry_frames": 42399,
+        "reverse_frames": 81,
+        "reverse_fraction": 0.00191042241562301
+      }
+    },
+    "window_diagnostics": {
+      "candidate_windows": 42383,
+      "trajectory_boundary_excluded": 944,
+      "source_frame_gap_excluded": 17,
+      "time_interval_excluded": 0,
+      "invalid_input_excluded": 0,
+      "valid_windows": 41422
+    },
+    "valid_windows": 41422,
+    "continuity_failures": [],
+    "T3_stationary_definition": "regime=T3 AND executed_action==[0,0,0] AND truth error<5um",
+    "T2_rule": "executed_action norm with zero-initial-velocity teacher pre-acceleration direction",
+    "T1_rule": "zero-initial-velocity teacher direction scaled to accepted student-action norm",
+    "T3_rule": "stationary under5um frames zero; all other T3 frames use executed_action",
+    "sampled_frames": 200,
+    "oct_truth_median_error_um": 0.07863791815657967,
+    "axis_reverse_fractions": {
+      "A": 0.0019340078775442818,
+      "B": 0.0015802259487252058,
+      "C": 0.00191042241562301
+    },
+    "RGB_OCT_render_provenance_mismatch": false,
+    "valid_window_contract_pass_fraction": 1.0,
+    "all_regimes_complete": {
+      "episodes": 60,
+      "T1": 20,
+      "T2": 20,
+      "T3": 20
+    },
+    "T3_hold_frames_below_5um": 4000,
+    "render_reuse": "No image or OCT file is copied or rewritten; FIX_DATA/shards is a read-only symlink to SOURCE_DATA/shards",
+    "quality": {
+      "offsamples": 0,
+      "numslices": 112,
+      "numstacks": 64
+    },
+    "identity": {
+      "code_sha256": "85461a582bb7a88332773b9832d93280d1beee9179caf88566a955b4de9c8188",
+      "scene_sha256": "265c927ef7e7ac71536963b3000ffb161b7ff7ac03bb86cdb8480ed988c17028",
+      "scripts/research/a_axis_flip_train.py": "8a05b7cdc21980ce68704726bab05d4012f735fd4e5ba3630e55e93cfae7aad5",
+      "scripts/research/a_axis_flip_replay.py": "dc5884144deb39daadc2e674abc343f6c4e18949ec30126f331d631d65dfde2e",
+      "scripts/research/a_axis_flip_audit.py": "e6c65c37656cde0b608c47a6ed4d799fc27dafe6d4abe3b1209c2abe4ca0929e",
+      "scripts/research/a_axis_flip_pipeline.py": "c813ef936b77b51014eca659c3a5ec0e5d6344d1c0308d02cb683628fb6870ee",
+      "scripts/research/a_axis_flip_publish.py": "be4a9fe1c3e6dc06f616381b26e7342d7448cf8feffabf82e96ee96d2503e081",
+      "scripts/research/a_axis_flip_common.py": "1a3ef56737f34e31e05a71566b54969dfafa3060a38ae6a8e44da83ecd29fab4",
+      "scripts/research/gpu_episode_pool.py": "323421d338664349811d6479cb03929e743509c900a8588f7dd3fa24f3153b19",
+      "scripts/research/clean_oct_workers.py": "1df09165778f9866b01fb6b8e020afbb839f284797c1ae497ab36216746a1650",
+      "lerobot_training/navigation_overlay.py": "3330474b01973ab121f55f341b7f6969a70bc6d546e5823b1160657e4cdf65a5",
+      "lerobot_training/eval_policy.py": "f7f3948ea6c81ebcf66063afd9d0eb99ae418c5b099052e48b1fd476f5de95f1",
+      "lerobot_training/dit_experience_replay.py": "8a3ef61fb52d7db77e402b13dcb9c7a5186c9dc5dfc2af85d1f0c3cef394c5c2",
+      "lerobot_training/dataset_contract.py": "942d43813b5083986eeca542f6b57c480e4db6a6e163dbb084ed86f3f0a4343a",
+      "configs/v12_reachable_development_targets_0p35um.json": "fcc4872a9d5b58bb7158b36d3c0ab6d7452e4d8d747317dfb077b6e7bbc815c7",
+      "scripts/research/homog_replay_common.py": "63891d8ed092e4ed18541589e03b17fd028aa8d39a43cd9a972f343b31abb4f4",
+      "scripts/research/homog_replay_collect.py": "a0ca895c0ba892503df4353a430e28dfac7711b961af03c0b82a8e6ab5e9af1c",
+      "scripts/research/homog_replay_pipeline.py": "7e31430b74debc8c30c804cf8d806cc72f50ab40b1fbf71e3d93ff66a9b74d81",
+      "scripts/research/homog_replay_train.py": "1567ad380a365f3b65e2dfc8d3c03eb85ef3b6e342f2e81e3e5e93eb01ea0386",
+      "scripts/research/homog_replay_target.py": "d90735c7b5b654d10dc303759971778129e4e79ac82c4392135d07731cdf3624",
+      "scripts/research/homog_replay_evaluate.py": "800a3d944949eecd190195a7855c9cdd1b4dfa916e72f7d37402d789dea09e62",
+      "scripts/research/homog_replay_hold.py": "8e5698cbfd99165f84ec243dc88383862f410ba720bf9a56d47f1fab868b4a3b",
+      "scripts/research/homog_replay_publish.py": "b9ce066824ffe44c94b86122cafcf8233e033cf361fa61a14d1857e54e483b2f",
+      "scripts/verification/verify_homog_replay.py": "3ed20e44d62dc6ae32862c63ba703ed9671992a76755b5f0bf7c6f33d43eac43",
+      "scripts/verification/verify_homog_teacher_intent.py": "f1e436e8832c2498dfef0cb046f26a272d73d5e8f0cfa633e525d23c08c0161a",
+      "scripts/verification/verify_homog_t3_hold.py": "487cce1214570c677274ffbcf4d7ecd04c760c3fa9e5be722e47ae569d2435db",
+      "scripts/tools/prepare_homog_hold_repair.py": "3bcdaed52f7cf3c8cd48781518d1a0063746c1ad8745b4d90cfe9747b0311e51",
+      "scripts/tools/prepare_teacher_intent_repair.py": "8aee6669180605662797e4cf431d2fff22aef7e7f3c94605f0b8cfa58caf5715",
+      "scripts/tools/prepare_homog_mixed_budget.py": "058a4335952d044c82570cea706aac74955930d7747986b0da4bc2752d1ad7d7",
+      "rcm/fundus.py": "1432e337aecde1e60d65c63250cd773a7c8b150c90cb67b5bf2c0f3ae1befed3",
+      "rcm/visual_servo.py": "b217af0f60eb0a1de462d37dfa22a507911420a7b3cc9c4d899e012e89cbb507",
+      "lerobot_training/train_diffusion_policy.py": "e809558031ea6d1b1bd28904d5d101778831a50761c5b0d9f893943e5254a50c",
+      "scripts/research/homog_label_fix_publish.py": "960c69a01db92c0de6eec40b4e10b44235491d47c9ae82651bbb535a77e47069",
+      "scripts/research/homog_label_fix_repair.py": "d33c79ea65ec218b2725a67c10da073632a440dd02da328a2116239ce4dd9d9c",
+      "scripts/research/homog_label_fix_pipeline.py": "7557044a553a3ba3e661424e331faba3fb2c28c8e8e70de5fc949b363f050ff9",
+      "scripts/research/homog_label_fix_common.py": "e5defc1059b706c8b3fd83928a7d8e7fea99408af7446d700002f1bc62205490",
+      "scripts/verification/verify_homog_label_fix.py": "80602195d5789c6648d02f6afeaf0db3ae39af8ea6e9e0efe7f70067ee365030",
+      "scripts/tools/prepare_homog_label_fix.py": "10537588b8753fada706c564fbc03a7560880cc9e252bfe3f0b961a647ea0e40",
+      "plan6": "/home/him1/mujoco_bc/规划6.txt",
+      "plan6_sha256": "f311cb130bb55871b638ddcb4e5bc6bb093c6369462142950ae84885b6071c8d",
+      "publication_base": "cd22e10471f76807e2b1ce307db5d38903b40d30",
+      "publication_branch": "feature/homog-label-fix-20261123"
+    },
+    "receipt": {
+      "status": "completed",
+      "source_data": "/home/him1/mujoco_bc/rcm_4090_deploy/data/homog_clean_replay_20261123_mixed_1600_600_12_hold_v2",
+      "fixed_data": "/home/him1/mujoco_bc/rcm_4090_deploy/data/homog_clean_replay_fixed_labels_v3",
+      "source_dataset_sha256": "4629b57238be07a0640accb810a56a23f47a20883308af858265df074cb65d6d",
+      "fixed_dataset_sha256": "ae50beaff759df6446878572f7b2e7c599abbf54d92d23355303dc61cf502cca",
+      "overlay_sha256": "c131e5245a868e65615e896fa1dc970fa19e166a9b19daba74c9113a0f2ead9d",
+      "image_paths_sha256": "200d0a49ddea9b94bef45f1aa55bed20a6c559080581e856b84eee6e382d5f4f",
+      "images_reused_by_symlink": true,
+      "original_files_unchanged": true,
+      "audit": "/home/him1/mujoco_bc/rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s1_audit/label_fix_audit.json"
+    }
+  },
+  "stage2": {
+    "status": "completed",
+    "training": {
+      "status": "completed",
+      "contract_sha256": "6f37be9b1d72b66aa0e6f89d0683ea2bb48e6ba29f8c7fb8bec19dc277e72e44",
+      "checkpoint_hashes": {
+        "/home/him1/mujoco_bc/rcm_4090_deploy/outputs/homog_label_fix_20261123_v3/step_001000.pth": "fe140384018e870a5ebe2ae932c21b6c67fc2e09e8e0663d6cb0d032e021e5ff",
+        "/home/him1/mujoco_bc/rcm_4090_deploy/outputs/homog_label_fix_20261123_v3/step_002000.pth": "4b12be6ac9106cadf0419641307c154c5ca596fd0757bca18c4c9715ffb3c3c2",
+        "/home/him1/mujoco_bc/rcm_4090_deploy/outputs/homog_label_fix_20261123_v3/step_003000.pth": "c4d81a5579ab838ab4f09334694baea533911b5c87ea36dd19ce1919d085e7d5",
+        "/home/him1/mujoco_bc/rcm_4090_deploy/outputs/homog_label_fix_20261123_v3/step_004000.pth": "1351e047c99db581c93f8221d061e864c6fe8a59f651a60baba4745dcdbc8850"
+      },
+      "progress": {
+        "epoch": 4,
+        "batch_offset": 0,
+        "global_step": 4000,
+        "optimizer_updates": 3997,
+        "epoch_loss_sum": 0.0,
+        "history": [
+          {
+            "epoch": 0,
+            "batches_seen": 1000,
+            "train_loss": 0.12070698579400778,
+            "val_loss": 0.1477772523816541,
+            "optimizer_updates": 999,
+            "sampling_counts": [
+              14720,
+              1280
+            ]
+          },
+          {
+            "epoch": 1,
+            "batches_seen": 2000,
+            "train_loss": 0.11910257409512996,
+            "val_loss": 0.14719594387913779,
+            "optimizer_updates": 1999,
+            "sampling_counts": [
+              29440,
+              2560
+            ]
+          },
+          {
+            "epoch": 2,
+            "batches_seen": 3000,
+            "train_loss": 0.11866608315333724,
+            "val_loss": 0.14718957997554782,
+            "optimizer_updates": 2998,
+            "sampling_counts": [
+              44160,
+              3840
+            ]
+          },
+          {
+            "epoch": 3,
+            "batches_seen": 4000,
+            "train_loss": 0.11631393674761056,
+            "val_loss": 0.14706286961297624,
+            "optimizer_updates": 3997,
+            "sampling_counts": [
+              58880,
+              5120
+            ]
+          }
+        ],
+        "counts": [
+          58880,
+          5120
+        ],
+        "epoch_counts": [
+          0,
+          0
+        ]
+      },
+      "manifest": {
+        "original_windows": 220816,
+        "correction_windows": 41422,
+        "validation_windows": 26650,
+        "epoch_correction_samples": 1280,
+        "epoch_original_samples": 14720,
+        "total_batches": 4000,
+        "original_window_index_sha256": "b8a44b5a08f7d34440e3631ca78c9b0baccde047c1a74b0812d93412095f8fa8",
+        "original_pool": "Only original episodes0-838, full valid trajectories; all Plan-2 windows excluded",
+        "correction_window_index_sha256": "57f1ce7aaf661ef9d8bd295887fae5a7097a4e4e7f7755347a4df3b5b5c3d767",
+        "validation_window_index_sha256": "90493519cd737b822a9bdf6051c3f43edf367807ea98855f63e125c02c6af09e",
+        "validation_max_batches": null,
+        "baseline": "/home/him1/mujoco_bc/rcm_4090_deploy/outputs/overnight_c_fix_symlog_081234/task2_train/step_004000.pth"
+      }
+    },
+    "checkpoint_dir": "/home/him1/mujoco_bc/rcm_4090_deploy/outputs/homog_label_fix_20261123_v3",
+    "fixed_dataset_sha256": "ae50beaff759df6446878572f7b2e7c599abbf54d92d23355303dc61cf502cca",
+    "checkpoints": {
+      "step_001000.pth": "fe140384018e870a5ebe2ae932c21b6c67fc2e09e8e0663d6cb0d032e021e5ff",
+      "step_002000.pth": "4b12be6ac9106cadf0419641307c154c5ca596fd0757bca18c4c9715ffb3c3c2",
+      "step_003000.pth": "c4d81a5579ab838ab4f09334694baea533911b5c87ea36dd19ce1919d085e7d5",
+      "step_004000.pth": "1351e047c99db581c93f8221d061e864c6fe8a59f651a60baba4745dcdbc8850"
+    }
+  },
+  "stage3": {
+    "status": "completed",
+    "baseline": {
+      "status": "completed",
+      "protocol": {
+        "checkpoint": "/home/him1/mujoco_bc/rcm_4090_deploy/outputs/overnight_c_fix_symlog_081234/task2_train/step_004000.pth",
+        "checkpoint_sha256": "185a6ef02caea4ea74ba752d67618d459c906450f5b315cd8010c3c5f1703f1b",
+        "samples": 1,
+        "controller": "feedback",
+        "quality": {
+          "offsamples": 0,
+          "numslices": 112,
+          "numstacks": 64
+        },
+        "identity": {
+          "code_sha256": "85461a582bb7a88332773b9832d93280d1beee9179caf88566a955b4de9c8188",
+          "scene_sha256": "265c927ef7e7ac71536963b3000ffb161b7ff7ac03bb86cdb8480ed988c17028",
+          "scripts/research/a_axis_flip_train.py": "8a05b7cdc21980ce68704726bab05d4012f735fd4e5ba3630e55e93cfae7aad5",
+          "scripts/research/a_axis_flip_replay.py": "dc5884144deb39daadc2e674abc343f6c4e18949ec30126f331d631d65dfde2e",
+          "scripts/research/a_axis_flip_audit.py": "e6c65c37656cde0b608c47a6ed4d799fc27dafe6d4abe3b1209c2abe4ca0929e",
+          "scripts/research/a_axis_flip_pipeline.py": "c813ef936b77b51014eca659c3a5ec0e5d6344d1c0308d02cb683628fb6870ee",
+          "scripts/research/a_axis_flip_publish.py": "be4a9fe1c3e6dc06f616381b26e7342d7448cf8feffabf82e96ee96d2503e081",
+          "scripts/research/a_axis_flip_common.py": "1a3ef56737f34e31e05a71566b54969dfafa3060a38ae6a8e44da83ecd29fab4",
+          "scripts/research/gpu_episode_pool.py": "323421d338664349811d6479cb03929e743509c900a8588f7dd3fa24f3153b19",
+          "scripts/research/clean_oct_workers.py": "1df09165778f9866b01fb6b8e020afbb839f284797c1ae497ab36216746a1650",
+          "lerobot_training/navigation_overlay.py": "3330474b01973ab121f55f341b7f6969a70bc6d546e5823b1160657e4cdf65a5",
+          "lerobot_training/eval_policy.py": "f7f3948ea6c81ebcf66063afd9d0eb99ae418c5b099052e48b1fd476f5de95f1",
+          "lerobot_training/dit_experience_replay.py": "8a3ef61fb52d7db77e402b13dcb9c7a5186c9dc5dfc2af85d1f0c3cef394c5c2",
+          "lerobot_training/dataset_contract.py": "942d43813b5083986eeca542f6b57c480e4db6a6e163dbb084ed86f3f0a4343a",
+          "configs/v12_reachable_development_targets_0p35um.json": "fcc4872a9d5b58bb7158b36d3c0ab6d7452e4d8d747317dfb077b6e7bbc815c7",
+          "scripts/research/homog_replay_common.py": "63891d8ed092e4ed18541589e03b17fd028aa8d39a43cd9a972f343b31abb4f4",
+          "scripts/research/homog_replay_collect.py": "a0ca895c0ba892503df4353a430e28dfac7711b961af03c0b82a8e6ab5e9af1c",
+          "scripts/research/homog_replay_pipeline.py": "7e31430b74debc8c30c804cf8d806cc72f50ab40b1fbf71e3d93ff66a9b74d81",
+          "scripts/research/homog_replay_train.py": "1567ad380a365f3b65e2dfc8d3c03eb85ef3b6e342f2e81e3e5e93eb01ea0386",
+          "scripts/research/homog_replay_target.py": "d90735c7b5b654d10dc303759971778129e4e79ac82c4392135d07731cdf3624",
+          "scripts/research/homog_replay_evaluate.py": "800a3d944949eecd190195a7855c9cdd1b4dfa916e72f7d37402d789dea09e62",
+          "scripts/research/homog_replay_hold.py": "8e5698cbfd99165f84ec243dc88383862f410ba720bf9a56d47f1fab868b4a3b",
+          "scripts/research/homog_replay_publish.py": "b9ce066824ffe44c94b86122cafcf8233e033cf361fa61a14d1857e54e483b2f",
+          "scripts/verification/verify_homog_replay.py": "3ed20e44d62dc6ae32862c63ba703ed9671992a76755b5f0bf7c6f33d43eac43",
+          "scripts/verification/verify_homog_teacher_intent.py": "f1e436e8832c2498dfef0cb046f26a272d73d5e8f0cfa633e525d23c08c0161a",
+          "scripts/verification/verify_homog_t3_hold.py": "487cce1214570c677274ffbcf4d7ecd04c760c3fa9e5be722e47ae569d2435db",
+          "scripts/tools/prepare_homog_hold_repair.py": "3bcdaed52f7cf3c8cd48781518d1a0063746c1ad8745b4d90cfe9747b0311e51",
+          "scripts/tools/prepare_teacher_intent_repair.py": "8aee6669180605662797e4cf431d2fff22aef7e7f3c94605f0b8cfa58caf5715",
+          "scripts/tools/prepare_homog_mixed_budget.py": "058a4335952d044c82570cea706aac74955930d7747986b0da4bc2752d1ad7d7",
+          "rcm/fundus.py": "1432e337aecde1e60d65c63250cd773a7c8b150c90cb67b5bf2c0f3ae1befed3",
+          "rcm/visual_servo.py": "b217af0f60eb0a1de462d37dfa22a507911420a7b3cc9c4d899e012e89cbb507",
+          "lerobot_training/train_diffusion_policy.py": "e809558031ea6d1b1bd28904d5d101778831a50761c5b0d9f893943e5254a50c"
+        },
+        "steps": 1600,
+        "late_drift_start": 1000,
+        "stop_on_success": false
+      },
+      "completed_targets": 5,
+      "drift_1000_to_1600_um": 2.431683348122074,
+      "absolute_drift_1000_to_1600_um": 22.61316284114734,
+      "final_mean_um": 65.56928808053874,
+      "min_mean_um": 32.56482497246049,
+      "strict_success_count": 0,
+      "final_hits_le_5_um": 0,
+      "final_hits_le_10_um": 0,
+      "final_hits_le_30_um": 0,
+      "episodes": [
+        {
+          "episode_index": 0,
+          "seed": 42,
+          "actions": 1600,
+          "final_error_um": 50.90558715953609,
+          "min_error_um": 41.95423511717145,
+          "error_1000_um": 63.7819498552562,
+          "drift_1000_to_1600_um": -12.876362695720111,
+          "absolute_drift_1000_to_1600_um": 12.876362695720111,
+          "strict_success": false,
+          "final_hit_le_5_um": false,
+          "final_hit_le_10_um": false,
+          "final_hit_le_30_um": false,
+          "result_path": "/home/him1/mujoco_bc/rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s3_fast5_1600/baseline_task2_step4000/shards/tasks/eval_E00/raw/evaluation_results.json",
+          "result_sha256": "eca8b15f2bb3fa4c523608a47f78b547f8a36413c17e5b393f6f61707faf6813",
+          "checkpoint": "/home/him1/mujoco_bc/rcm_4090_deploy/outputs/overnight_c_fix_symlog_081234/task2_train/step_004000.pth",
+          "samples": 1,
+          "controller": "feedback"
+        },
+        {
+          "episode_index": 2,
+          "seed": 44,
+          "actions": 1600,
+          "final_error_um": 58.89450626945718,
+          "min_error_um": 35.24362875568662,
+          "error_1000_um": 59.85688511692576,
+          "drift_1000_to_1600_um": -0.9623788474685782,
+          "absolute_drift_1000_to_1600_um": 0.9623788474685782,
+          "strict_success": false,
+          "final_hit_le_5_um": false,
+          "final_hit_le_10_um": false,
+          "final_hit_le_30_um": false,
+          "result_path": "/home/him1/mujoco_bc/rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s3_fast5_1600/baseline_task2_step4000/shards/tasks/eval_E02/raw/evaluation_results.json",
+          "result_sha256": "962cd9bd6b8aa1c60a10a14bc707f93a0817755da407bb1d7174da1c0d6a52b3",
+          "checkpoint": "/home/him1/mujoco_bc/rcm_4090_deploy/outputs/overnight_c_fix_symlog_081234/task2_train/step_004000.pth",
+          "samples": 1,
+          "controller": "feedback"
+        },
+        {
+          "episode_index": 6,
+          "seed": 48,
+          "actions": 1600,
+          "final_error_um": 43.13566854474498,
+          "min_error_um": 27.311038456880812,
+          "error_1000_um": 72.40819854931978,
+          "drift_1000_to_1600_um": -29.272530004574797,
+          "absolute_drift_1000_to_1600_um": 29.272530004574797,
+          "strict_success": false,
+          "final_hit_le_5_um": false,
+          "final_hit_le_10_um": false,
+          "final_hit_le_30_um": false,
+          "result_path": "/home/him1/mujoco_bc/rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s3_fast5_1600/baseline_task2_step4000/shards/tasks/eval_E06/raw/evaluation_results.json",
+          "result_sha256": "a85d3e397912437307be9531245616dff09d7cbf270bddc004580463c7c133ca",
+          "checkpoint": "/home/him1/mujoco_bc/rcm_4090_deploy/outputs/overnight_c_fix_symlog_081234/task2_train/step_004000.pth",
+          "samples": 1,
+          "controller": "feedback"
+        },
+        {
+          "episode_index": 8,
+          "seed": 50,
+          "actions": 1600,
+          "final_error_um": 63.55687479946394,
+          "min_error_um": 35.1135925222468,
+          "error_1000_um": 70.89930198426362,
+          "drift_1000_to_1600_um": -7.342427184799675,
+          "absolute_drift_1000_to_1600_um": 7.342427184799675,
+          "strict_success": false,
+          "final_hit_le_5_um": false,
+          "final_hit_le_10_um": false,
+          "final_hit_le_30_um": false,
+          "result_path": "/home/him1/mujoco_bc/rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s3_fast5_1600/baseline_task2_step4000/shards/tasks/eval_E08/raw/evaluation_results.json",
+          "result_sha256": "98237726d1e709c3eee7f6e9fd228bb7f60acf551f7235465c20793c5713ce42",
+          "checkpoint": "/home/him1/mujoco_bc/rcm_4090_deploy/outputs/overnight_c_fix_symlog_081234/task2_train/step_004000.pth",
+          "samples": 1,
+          "controller": "feedback"
+        },
+        {
+          "episode_index": 10,
+          "seed": 52,
+          "actions": 1600,
+          "final_error_um": 111.35380362949151,
+          "min_error_um": 23.20163001031677,
+          "error_1000_um": 48.74168815631798,
+          "drift_1000_to_1600_um": 62.61211547317353,
+          "absolute_drift_1000_to_1600_um": 62.61211547317353,
+          "strict_success": false,
+          "final_hit_le_5_um": false,
+          "final_hit_le_10_um": false,
+          "final_hit_le_30_um": false,
+          "result_path": "/home/him1/mujoco_bc/rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s3_fast5_1600/baseline_task2_step4000/shards/tasks/eval_E10/raw/evaluation_results.json",
+          "result_sha256": "9dffa0c86b78aef4c4810206cc77675dab6866a2176178c904833fb67ea83e08",
+          "checkpoint": "/home/him1/mujoco_bc/rcm_4090_deploy/outputs/overnight_c_fix_symlog_081234/task2_train/step_004000.pth",
+          "samples": 1,
+          "controller": "feedback"
+        }
+      ],
+      "metric_scope": "Matched1600-step full-approach development fast5/dev20; near collection separately600steps",
+      "hit_rates": {
+        "le_5_um": 0.0,
+        "le_10_um": 0.0,
+        "le_30_um": 0.0
+      },
+      "late_C_rms_1200_to_1600_mm_per_step": 0.0018946301302156664
+    },
+    "comparisons": {
+      "V0_step2000": {
+        "status": "completed",
+        "protocol": {
+          "checkpoint": "/home/him1/mujoco_bc/rcm_4090_deploy/outputs/homog_label_fix_20261123_v3/step_002000.pth",
+          "checkpoint_sha256": "4b12be6ac9106cadf0419641307c154c5ca596fd0757bca18c4c9715ffb3c3c2",
+          "samples": 1,
+          "controller": "feedback",
+          "quality": {
+            "offsamples": 0,
+            "numslices": 112,
+            "numstacks": 64
+          },
+          "identity": {
+            "code_sha256": "85461a582bb7a88332773b9832d93280d1beee9179caf88566a955b4de9c8188",
+            "scene_sha256": "265c927ef7e7ac71536963b3000ffb161b7ff7ac03bb86cdb8480ed988c17028",
+            "scripts/research/a_axis_flip_train.py": "8a05b7cdc21980ce68704726bab05d4012f735fd4e5ba3630e55e93cfae7aad5",
+            "scripts/research/a_axis_flip_replay.py": "dc5884144deb39daadc2e674abc343f6c4e18949ec30126f331d631d65dfde2e",
+            "scripts/research/a_axis_flip_audit.py": "e6c65c37656cde0b608c47a6ed4d799fc27dafe6d4abe3b1209c2abe4ca0929e",
+            "scripts/research/a_axis_flip_pipeline.py": "c813ef936b77b51014eca659c3a5ec0e5d6344d1c0308d02cb683628fb6870ee",
+            "scripts/research/a_axis_flip_publish.py": "be4a9fe1c3e6dc06f616381b26e7342d7448cf8feffabf82e96ee96d2503e081",
+            "scripts/research/a_axis_flip_common.py": "1a3ef56737f34e31e05a71566b54969dfafa3060a38ae6a8e44da83ecd29fab4",
+            "scripts/research/gpu_episode_pool.py": "323421d338664349811d6479cb03929e743509c900a8588f7dd3fa24f3153b19",
+            "scripts/research/clean_oct_workers.py": "1df09165778f9866b01fb6b8e020afbb839f284797c1ae497ab36216746a1650",
+            "lerobot_training/navigation_overlay.py": "3330474b01973ab121f55f341b7f6969a70bc6d546e5823b1160657e4cdf65a5",
+            "lerobot_training/eval_policy.py": "f7f3948ea6c81ebcf66063afd9d0eb99ae418c5b099052e48b1fd476f5de95f1",
+            "lerobot_training/dit_experience_replay.py": "8a3ef61fb52d7db77e402b13dcb9c7a5186c9dc5dfc2af85d1f0c3cef394c5c2",
+            "lerobot_training/dataset_contract.py": "942d43813b5083986eeca542f6b57c480e4db6a6e163dbb084ed86f3f0a4343a",
+            "configs/v12_reachable_development_targets_0p35um.json": "fcc4872a9d5b58bb7158b36d3c0ab6d7452e4d8d747317dfb077b6e7bbc815c7",
+            "scripts/research/homog_replay_common.py": "63891d8ed092e4ed18541589e03b17fd028aa8d39a43cd9a972f343b31abb4f4",
+            "scripts/research/homog_replay_collect.py": "a0ca895c0ba892503df4353a430e28dfac7711b961af03c0b82a8e6ab5e9af1c",
+            "scripts/research/homog_replay_pipeline.py": "7e31430b74debc8c30c804cf8d806cc72f50ab40b1fbf71e3d93ff66a9b74d81",
+            "scripts/research/homog_replay_train.py": "1567ad380a365f3b65e2dfc8d3c03eb85ef3b6e342f2e81e3e5e93eb01ea0386",
+            "scripts/research/homog_replay_target.py": "d90735c7b5b654d10dc303759971778129e4e79ac82c4392135d07731cdf3624",
+            "scripts/research/homog_replay_evaluate.py": "800a3d944949eecd190195a7855c9cdd1b4dfa916e72f7d37402d789dea09e62",
+            "scripts/research/homog_replay_hold.py": "8e5698cbfd99165f84ec243dc88383862f410ba720bf9a56d47f1fab868b4a3b",
+            "scripts/research/homog_replay_publish.py": "b9ce066824ffe44c94b86122cafcf8233e033cf361fa61a14d1857e54e483b2f",
+            "scripts/verification/verify_homog_replay.py": "3ed20e44d62dc6ae32862c63ba703ed9671992a76755b5f0bf7c6f33d43eac43",
+            "scripts/verification/verify_homog_teacher_intent.py": "f1e436e8832c2498dfef0cb046f26a272d73d5e8f0cfa633e525d23c08c0161a",
+            "scripts/verification/verify_homog_t3_hold.py": "487cce1214570c677274ffbcf4d7ecd04c760c3fa9e5be722e47ae569d2435db",
+            "scripts/tools/prepare_homog_hold_repair.py": "3bcdaed52f7cf3c8cd48781518d1a0063746c1ad8745b4d90cfe9747b0311e51",
+            "scripts/tools/prepare_teacher_intent_repair.py": "8aee6669180605662797e4cf431d2fff22aef7e7f3c94605f0b8cfa58caf5715",
+            "scripts/tools/prepare_homog_mixed_budget.py": "058a4335952d044c82570cea706aac74955930d7747986b0da4bc2752d1ad7d7",
+            "rcm/fundus.py": "1432e337aecde1e60d65c63250cd773a7c8b150c90cb67b5bf2c0f3ae1befed3",
+            "rcm/visual_servo.py": "b217af0f60eb0a1de462d37dfa22a507911420a7b3cc9c4d899e012e89cbb507",
+            "lerobot_training/train_diffusion_policy.py": "e809558031ea6d1b1bd28904d5d101778831a50761c5b0d9f893943e5254a50c"
+          },
+          "steps": 1600,
+          "late_drift_start": 1000,
+          "stop_on_success": false
+        },
+        "completed_targets": 5,
+        "drift_1000_to_1600_um": -3.698951384142899,
+        "absolute_drift_1000_to_1600_um": 36.61842852521737,
+        "final_mean_um": 143.75133908754577,
+        "min_mean_um": 87.08332449709101,
+        "strict_success_count": 0,
+        "final_hits_le_5_um": 0,
+        "final_hits_le_10_um": 0,
+        "final_hits_le_30_um": 0,
+        "episodes": [
+          {
+            "episode_index": 0,
+            "seed": 42,
+            "actions": 1600,
+            "final_error_um": 154.69233740522316,
+            "min_error_um": 138.74399103963307,
+            "error_1000_um": 158.2071720159614,
+            "drift_1000_to_1600_um": -3.5148346107382338,
+            "absolute_drift_1000_to_1600_um": 3.5148346107382338,
+            "strict_success": false,
+            "final_hit_le_5_um": false,
+            "final_hit_le_10_um": false,
+            "final_hit_le_30_um": false,
+            "result_path": "/home/him1/mujoco_bc/rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s3_fast5_1600/V0_step2000/shards/tasks/eval_E00/raw/evaluation_results.json",
+            "result_sha256": "29b37f447d73fe6b6a12c90ebd7794defd60c6de37eea3327007e2e986b1e980",
+            "checkpoint": "/home/him1/mujoco_bc/rcm_4090_deploy/outputs/homog_label_fix_20261123_v3/step_002000.pth",
+            "samples": 1,
+            "controller": "feedback"
+          },
+          {
+            "episode_index": 2,
+            "seed": 44,
+            "actions": 1600,
+            "final_error_um": 163.182035359915,
+            "min_error_um": 44.745933660355576,
+            "error_1000_um": 103.54008301331912,
+            "drift_1000_to_1600_um": 59.641952346595886,
+            "absolute_drift_1000_to_1600_um": 59.641952346595886,
+            "strict_success": false,
+            "final_hit_le_5_um": false,
+            "final_hit_le_10_um": false,
+            "final_hit_le_30_um": false,
+            "result_path": "/home/him1/mujoco_bc/rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s3_fast5_1600/V0_step2000/shards/tasks/eval_E02/raw/evaluation_results.json",
+            "result_sha256": "ed63d7826118781199fc6724259221a6abbd1200b359e2ddf2f096c07af9d28f",
+            "checkpoint": "/home/him1/mujoco_bc/rcm_4090_deploy/outputs/homog_label_fix_20261123_v3/step_002000.pth",
+            "samples": 1,
+            "controller": "feedback"
+          },
+          {
+            "episode_index": 6,
+            "seed": 48,
+            "actions": 1600,
+            "final_error_um": 151.6233638380554,
+            "min_error_um": 142.9222773437153,
+            "error_1000_um": 197.5550875197045,
+            "drift_1000_to_1600_um": -45.93172368164909,
+            "absolute_drift_1000_to_1600_um": 45.93172368164909,
+            "strict_success": false,
+            "final_hit_le_5_um": false,
+            "final_hit_le_10_um": false,
+            "final_hit_le_30_um": false,
+            "result_path": "/home/him1/mujoco_bc/rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s3_fast5_1600/V0_step2000/shards/tasks/eval_E06/raw/evaluation_results.json",
+            "result_sha256": "55338a1a0af3c7642a9321b452fc2efc9c58fb3220196f63802ff75158fee927",
+            "checkpoint": "/home/him1/mujoco_bc/rcm_4090_deploy/outputs/homog_label_fix_20261123_v3/step_002000.pth",
+            "samples": 1,
+            "controller": "feedback"
+          },
+          {
+            "episode_index": 8,
+            "seed": 50,
+            "actions": 1600,
+            "final_error_um": 167.61359521276904,
+            "min_error_um": 54.39140580950699,
+            "error_1000_um": 144.95685470667877,
+            "drift_1000_to_1600_um": 22.656740506090273,
+            "absolute_drift_1000_to_1600_um": 22.656740506090273,
+            "strict_success": false,
+            "final_hit_le_5_um": false,
+            "final_hit_le_10_um": false,
+            "final_hit_le_30_um": false,
+            "result_path": "/home/him1/mujoco_bc/rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s3_fast5_1600/V0_step2000/shards/tasks/eval_E08/raw/evaluation_results.json",
+            "result_sha256": "29691d07aaf843159cf4a6bbd5d7bd94d40eea46ddbd0f17e18a22a2f18df673",
+            "checkpoint": "/home/him1/mujoco_bc/rcm_4090_deploy/outputs/homog_label_fix_20261123_v3/step_002000.pth",
+            "samples": 1,
+            "controller": "feedback"
+          },
+          {
+            "episode_index": 10,
+            "seed": 52,
+            "actions": 1600,
+            "final_error_um": 81.64536362176622,
+            "min_error_um": 54.61301463224421,
+            "error_1000_um": 132.99225510277955,
+            "drift_1000_to_1600_um": -51.34689148101333,
+            "absolute_drift_1000_to_1600_um": 51.34689148101333,
+            "strict_success": false,
+            "final_hit_le_5_um": false,
+            "final_hit_le_10_um": false,
+            "final_hit_le_30_um": false,
+            "result_path": "/home/him1/mujoco_bc/rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s3_fast5_1600/V0_step2000/shards/tasks/eval_E10/raw/evaluation_results.json",
+            "result_sha256": "76eff07ddcc719121daa0f85db82e4235d630e66e18b36f67fa88e5fd96205bb",
+            "checkpoint": "/home/him1/mujoco_bc/rcm_4090_deploy/outputs/homog_label_fix_20261123_v3/step_002000.pth",
+            "samples": 1,
+            "controller": "feedback"
+          }
+        ],
+        "metric_scope": "Matched1600-step full-approach development fast5/dev20; near collection separately600steps",
+        "hit_rates": {
+          "le_5_um": 0.0,
+          "le_10_um": 0.0,
+          "le_30_um": 0.0
+        },
+        "late_C_rms_1200_to_1600_mm_per_step": 0.002643209963830717
+      },
+      "V0_step4000": {
+        "status": "completed",
+        "protocol": {
+          "checkpoint": "/home/him1/mujoco_bc/rcm_4090_deploy/outputs/homog_label_fix_20261123_v3/step_004000.pth",
+          "checkpoint_sha256": "1351e047c99db581c93f8221d061e864c6fe8a59f651a60baba4745dcdbc8850",
+          "samples": 1,
+          "controller": "feedback",
+          "quality": {
+            "offsamples": 0,
+            "numslices": 112,
+            "numstacks": 64
+          },
+          "identity": {
+            "code_sha256": "85461a582bb7a88332773b9832d93280d1beee9179caf88566a955b4de9c8188",
+            "scene_sha256": "265c927ef7e7ac71536963b3000ffb161b7ff7ac03bb86cdb8480ed988c17028",
+            "scripts/research/a_axis_flip_train.py": "8a05b7cdc21980ce68704726bab05d4012f735fd4e5ba3630e55e93cfae7aad5",
+            "scripts/research/a_axis_flip_replay.py": "dc5884144deb39daadc2e674abc343f6c4e18949ec30126f331d631d65dfde2e",
+            "scripts/research/a_axis_flip_audit.py": "e6c65c37656cde0b608c47a6ed4d799fc27dafe6d4abe3b1209c2abe4ca0929e",
+            "scripts/research/a_axis_flip_pipeline.py": "c813ef936b77b51014eca659c3a5ec0e5d6344d1c0308d02cb683628fb6870ee",
+            "scripts/research/a_axis_flip_publish.py": "be4a9fe1c3e6dc06f616381b26e7342d7448cf8feffabf82e96ee96d2503e081",
+            "scripts/research/a_axis_flip_common.py": "1a3ef56737f34e31e05a71566b54969dfafa3060a38ae6a8e44da83ecd29fab4",
+            "scripts/research/gpu_episode_pool.py": "323421d338664349811d6479cb03929e743509c900a8588f7dd3fa24f3153b19",
+            "scripts/research/clean_oct_workers.py": "1df09165778f9866b01fb6b8e020afbb839f284797c1ae497ab36216746a1650",
+            "lerobot_training/navigation_overlay.py": "3330474b01973ab121f55f341b7f6969a70bc6d546e5823b1160657e4cdf65a5",
+            "lerobot_training/eval_policy.py": "f7f3948ea6c81ebcf66063afd9d0eb99ae418c5b099052e48b1fd476f5de95f1",
+            "lerobot_training/dit_experience_replay.py": "8a3ef61fb52d7db77e402b13dcb9c7a5186c9dc5dfc2af85d1f0c3cef394c5c2",
+            "lerobot_training/dataset_contract.py": "942d43813b5083986eeca542f6b57c480e4db6a6e163dbb084ed86f3f0a4343a",
+            "configs/v12_reachable_development_targets_0p35um.json": "fcc4872a9d5b58bb7158b36d3c0ab6d7452e4d8d747317dfb077b6e7bbc815c7",
+            "scripts/research/homog_replay_common.py": "63891d8ed092e4ed18541589e03b17fd028aa8d39a43cd9a972f343b31abb4f4",
+            "scripts/research/homog_replay_collect.py": "a0ca895c0ba892503df4353a430e28dfac7711b961af03c0b82a8e6ab5e9af1c",
+            "scripts/research/homog_replay_pipeline.py": "7e31430b74debc8c30c804cf8d806cc72f50ab40b1fbf71e3d93ff66a9b74d81",
+            "scripts/research/homog_replay_train.py": "1567ad380a365f3b65e2dfc8d3c03eb85ef3b6e342f2e81e3e5e93eb01ea0386",
+            "scripts/research/homog_replay_target.py": "d90735c7b5b654d10dc303759971778129e4e79ac82c4392135d07731cdf3624",
+            "scripts/research/homog_replay_evaluate.py": "800a3d944949eecd190195a7855c9cdd1b4dfa916e72f7d37402d789dea09e62",
+            "scripts/research/homog_replay_hold.py": "8e5698cbfd99165f84ec243dc88383862f410ba720bf9a56d47f1fab868b4a3b",
+            "scripts/research/homog_replay_publish.py": "b9ce066824ffe44c94b86122cafcf8233e033cf361fa61a14d1857e54e483b2f",
+            "scripts/verification/verify_homog_replay.py": "3ed20e44d62dc6ae32862c63ba703ed9671992a76755b5f0bf7c6f33d43eac43",
+            "scripts/verification/verify_homog_teacher_intent.py": "f1e436e8832c2498dfef0cb046f26a272d73d5e8f0cfa633e525d23c08c0161a",
+            "scripts/verification/verify_homog_t3_hold.py": "487cce1214570c677274ffbcf4d7ecd04c760c3fa9e5be722e47ae569d2435db",
+            "scripts/tools/prepare_homog_hold_repair.py": "3bcdaed52f7cf3c8cd48781518d1a0063746c1ad8745b4d90cfe9747b0311e51",
+            "scripts/tools/prepare_teacher_intent_repair.py": "8aee6669180605662797e4cf431d2fff22aef7e7f3c94605f0b8cfa58caf5715",
+            "scripts/tools/prepare_homog_mixed_budget.py": "058a4335952d044c82570cea706aac74955930d7747986b0da4bc2752d1ad7d7",
+            "rcm/fundus.py": "1432e337aecde1e60d65c63250cd773a7c8b150c90cb67b5bf2c0f3ae1befed3",
+            "rcm/visual_servo.py": "b217af0f60eb0a1de462d37dfa22a507911420a7b3cc9c4d899e012e89cbb507",
+            "lerobot_training/train_diffusion_policy.py": "e809558031ea6d1b1bd28904d5d101778831a50761c5b0d9f893943e5254a50c"
+          },
+          "steps": 1600,
+          "late_drift_start": 1000,
+          "stop_on_success": false
+        },
+        "completed_targets": 5,
+        "drift_1000_to_1600_um": 19.53342931368909,
+        "absolute_drift_1000_to_1600_um": 45.6780537546929,
+        "final_mean_um": 141.55079171717605,
+        "min_mean_um": 74.09943729240172,
+        "strict_success_count": 0,
+        "final_hits_le_5_um": 0,
+        "final_hits_le_10_um": 0,
+        "final_hits_le_30_um": 0,
+        "episodes": [
+          {
+            "episode_index": 0,
+            "seed": 42,
+            "actions": 1600,
+            "final_error_um": 161.1013181624408,
+            "min_error_um": 59.26893581622616,
+            "error_1000_um": 99.71983260698023,
+            "drift_1000_to_1600_um": 61.38148555546057,
+            "absolute_drift_1000_to_1600_um": 61.38148555546057,
+            "strict_success": false,
+            "final_hit_le_5_um": false,
+            "final_hit_le_10_um": false,
+            "final_hit_le_30_um": false,
+            "result_path": "/home/him1/mujoco_bc/rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s3_fast5_1600/V0_step4000/shards/tasks/eval_E00/raw/evaluation_results.json",
+            "result_sha256": "594350c1bb37b4af611037f90cd2dfca40ff87eace4b81f8f7bde7b57b1efbe5",
+            "checkpoint": "/home/him1/mujoco_bc/rcm_4090_deploy/outputs/homog_label_fix_20261123_v3/step_004000.pth",
+            "samples": 1,
+            "controller": "feedback"
+          },
+          {
+            "episode_index": 2,
+            "seed": 44,
+            "actions": 1600,
+            "final_error_um": 161.37301023325165,
+            "min_error_um": 46.80561537111915,
+            "error_1000_um": 89.93259623029789,
+            "drift_1000_to_1600_um": 71.44041400295376,
+            "absolute_drift_1000_to_1600_um": 71.44041400295376,
+            "strict_success": false,
+            "final_hit_le_5_um": false,
+            "final_hit_le_10_um": false,
+            "final_hit_le_30_um": false,
+            "result_path": "/home/him1/mujoco_bc/rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s3_fast5_1600/V0_step4000/shards/tasks/eval_E02/raw/evaluation_results.json",
+            "result_sha256": "39e753f1dccd2763157cc7a65453a88b6b8eaec90741e49a26b097b7e29dc792",
+            "checkpoint": "/home/him1/mujoco_bc/rcm_4090_deploy/outputs/homog_label_fix_20261123_v3/step_004000.pth",
+            "samples": 1,
+            "controller": "feedback"
+          },
+          {
+            "episode_index": 6,
+            "seed": 48,
+            "actions": 1600,
+            "final_error_um": 181.84348279012835,
+            "min_error_um": 140.0234847572469,
+            "error_1000_um": 151.6366746775877,
+            "drift_1000_to_1600_um": 30.206808112540642,
+            "absolute_drift_1000_to_1600_um": 30.206808112540642,
+            "strict_success": false,
+            "final_hit_le_5_um": false,
+            "final_hit_le_10_um": false,
+            "final_hit_le_30_um": false,
+            "result_path": "/home/him1/mujoco_bc/rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s3_fast5_1600/V0_step4000/shards/tasks/eval_E06/raw/evaluation_results.json",
+            "result_sha256": "09f77ec9818943d21b99ce7da547eced5fc5242dd5cb3992486704a6bbf94d92",
+            "checkpoint": "/home/him1/mujoco_bc/rcm_4090_deploy/outputs/homog_label_fix_20261123_v3/step_004000.pth",
+            "samples": 1,
+            "controller": "feedback"
+          },
+          {
+            "episode_index": 8,
+            "seed": 50,
+            "actions": 1600,
+            "final_error_um": 117.84914717919982,
+            "min_error_um": 63.58411825523826,
+            "error_1000_um": 147.06699387977795,
+            "drift_1000_to_1600_um": -29.217846700578136,
+            "absolute_drift_1000_to_1600_um": 29.217846700578136,
+            "strict_success": false,
+            "final_hit_le_5_um": false,
+            "final_hit_le_10_um": false,
+            "final_hit_le_30_um": false,
+            "result_path": "/home/him1/mujoco_bc/rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s3_fast5_1600/V0_step4000/shards/tasks/eval_E08/raw/evaluation_results.json",
+            "result_sha256": "5053ed377aaec2cab7f30d9c7f85ce249770f07cb0bd1751839741bed05dc7f9",
+            "checkpoint": "/home/him1/mujoco_bc/rcm_4090_deploy/outputs/homog_label_fix_20261123_v3/step_004000.pth",
+            "samples": 1,
+            "controller": "feedback"
+          },
+          {
+            "episode_index": 10,
+            "seed": 52,
+            "actions": 1600,
+            "final_error_um": 85.58700022085968,
+            "min_error_um": 60.81503226217811,
+            "error_1000_um": 121.73071462279107,
+            "drift_1000_to_1600_um": -36.14371440193139,
+            "absolute_drift_1000_to_1600_um": 36.14371440193139,
+            "strict_success": false,
+            "final_hit_le_5_um": false,
+            "final_hit_le_10_um": false,
+            "final_hit_le_30_um": false,
+            "result_path": "/home/him1/mujoco_bc/rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s3_fast5_1600/V0_step4000/shards/tasks/eval_E10/raw/evaluation_results.json",
+            "result_sha256": "12d5b9f14fc2e1a3d3442cb67f1a6d5562d797cffc9129b2abfa5b0058248f64",
+            "checkpoint": "/home/him1/mujoco_bc/rcm_4090_deploy/outputs/homog_label_fix_20261123_v3/step_004000.pth",
+            "samples": 1,
+            "controller": "feedback"
+          }
+        ],
+        "metric_scope": "Matched1600-step full-approach development fast5/dev20; near collection separately600steps",
+        "hit_rates": {
+          "le_5_um": 0.0,
+          "le_10_um": 0.0,
+          "le_30_um": 0.0
+        },
+        "late_C_rms_1200_to_1600_mm_per_step": 0.005358223470089667
+      }
+    },
+    "selected_V0": "V0_step4000",
+    "selected_checkpoint": "/home/him1/mujoco_bc/rcm_4090_deploy/outputs/homog_label_fix_20261123_v3/step_004000.pth",
+    "snapshot_recheck": {
+      "snapshots": 9,
+      "samples": 288,
+      "axis_reverse_snapshot_counts": {
+        "A": 5,
+        "B": 4,
+        "C": 5
+      },
+      "first_order_toward_fraction": 0.4097222222222222,
+      "records": [
+        {
+          "episode_index": 0,
+          "step": 800,
+          "mean_action_deg_deg_mm": [
+            -0.0009248085561921471,
+            0.0007504817399421881,
+            -0.0016595972701907158
+          ],
+          "std_action_deg_deg_mm": [
+            0.0044009307422367425,
+            0.002494174608438534,
+            0.0013518720945364486
+          ],
+          "teacher_action_deg_deg_mm": [
+            -0.03183347860012536,
+            0.0056310668975559286,
+            -0.0031232638908439136
+          ],
+          "mean_opposes_teacher": [
+            false,
+            false,
+            false
+          ],
+          "same_sign_as_teacher_fraction": [
+            0.53125,
+            0.65625,
+            0.8125
+          ],
+          "first_order_toward_measured_target_fraction": 0.625,
+          "sampling_seeds": [
+            2026112200,
+            2026112201,
+            2026112202,
+            2026112203,
+            2026112204,
+            2026112205,
+            2026112206,
+            2026112207,
+            2026112208,
+            2026112209,
+            2026112210,
+            2026112211,
+            2026112212,
+            2026112213,
+            2026112214,
+            2026112215,
+            2026112216,
+            2026112217,
+            2026112218,
+            2026112219,
+            2026112220,
+            2026112221,
+            2026112222,
+            2026112223,
+            2026112224,
+            2026112225,
+            2026112226,
+            2026112227,
+            2026112228,
+            2026112229,
+            2026112230,
+            2026112231
+          ],
+          "source_snapshot_sha256": "f4cbbd687fe3b22137535f1af71759ad7b7d5aff323a6af0410c52d0149998a0"
+        },
+        {
+          "episode_index": 0,
+          "step": 1000,
+          "mean_action_deg_deg_mm": [
+            0.0015946488583722385,
+            0.001299822017472252,
+            -0.003485842142254114
+          ],
+          "std_action_deg_deg_mm": [
+            0.005053563005781417,
+            0.002388559903825638,
+            0.0013721576864466197
+          ],
+          "teacher_action_deg_deg_mm": [
+            -0.02454221063867165,
+            0.0011513932993086117,
+            -0.004094704860038018
+          ],
+          "mean_opposes_teacher": [
+            true,
+            false,
+            false
+          ],
+          "same_sign_as_teacher_fraction": [
+            0.34375,
+            0.71875,
+            1.0
+          ],
+          "first_order_toward_measured_target_fraction": 0.65625,
+          "sampling_seeds": [
+            2026112200,
+            2026112201,
+            2026112202,
+            2026112203,
+            2026112204,
+            2026112205,
+            2026112206,
+            2026112207,
+            2026112208,
+            2026112209,
+            2026112210,
+            2026112211,
+            2026112212,
+            2026112213,
+            2026112214,
+            2026112215,
+            2026112216,
+            2026112217,
+            2026112218,
+            2026112219,
+            2026112220,
+            2026112221,
+            2026112222,
+            2026112223,
+            2026112224,
+            2026112225,
+            2026112226,
+            2026112227,
+            2026112228,
+            2026112229,
+            2026112230,
+            2026112231
+          ],
+          "source_snapshot_sha256": "3fe619819eb58593f2042775975dbef2dfaaaa7f8171bf9dffb96f3667ae236d"
+        },
+        {
+          "episode_index": 0,
+          "step": 1200,
+          "mean_action_deg_deg_mm": [
+            -5.318277908372693e-05,
+            -0.0015367005289590452,
+            -0.0009296039934270084
+          ],
+          "std_action_deg_deg_mm": [
+            0.005075874248203855,
+            0.00298717167739202,
+            0.0012863357681884762
+          ],
+          "teacher_action_deg_deg_mm": [
+            -0.01997748796745319,
+            0.0022992469183705324,
+            0.001863073979421065
+          ],
+          "mean_opposes_teacher": [
+            false,
+            true,
+            true
+          ],
+          "same_sign_as_teacher_fraction": [
+            0.5,
+            0.3125,
+            0.21875
+          ],
+          "first_order_toward_measured_target_fraction": 0.4375,
+          "sampling_seeds": [
+            2026112200,
+            2026112201,
+            2026112202,
+            2026112203,
+            2026112204,
+            2026112205,
+            2026112206,
+            2026112207,
+            2026112208,
+            2026112209,
+            2026112210,
+            2026112211,
+            2026112212,
+            2026112213,
+            2026112214,
+            2026112215,
+            2026112216,
+            2026112217,
+            2026112218,
+            2026112219,
+            2026112220,
+            2026112221,
+            2026112222,
+            2026112223,
+            2026112224,
+            2026112225,
+            2026112226,
+            2026112227,
+            2026112228,
+            2026112229,
+            2026112230,
+            2026112231
+          ],
+          "source_snapshot_sha256": "e5642220b09e5abe6ab0aa252582e4ad299b1bbc7cf8526e940d639e74aa22fd"
+        },
+        {
+          "episode_index": 8,
+          "step": 800,
+          "mean_action_deg_deg_mm": [
+            -0.0006350269495669636,
+            -0.001407927369200479,
+            -0.0034844352630898356
+          ],
+          "std_action_deg_deg_mm": [
+            0.005104001112869185,
+            0.0027065941392814133,
+            0.0012480248777234947
+          ],
+          "teacher_action_deg_deg_mm": [
+            -0.001611324872726344,
+            -0.0011274094557043432,
+            0.0014310763961009054
+          ],
+          "mean_opposes_teacher": [
+            false,
+            false,
+            true
+          ],
+          "same_sign_as_teacher_fraction": [
+            0.5,
+            0.71875,
+            0.0
+          ],
+          "first_order_toward_measured_target_fraction": 0.0,
+          "sampling_seeds": [
+            2026112200,
+            2026112201,
+            2026112202,
+            2026112203,
+            2026112204,
+            2026112205,
+            2026112206,
+            2026112207,
+            2026112208,
+            2026112209,
+            2026112210,
+            2026112211,
+            2026112212,
+            2026112213,
+            2026112214,
+            2026112215,
+            2026112216,
+            2026112217,
+            2026112218,
+            2026112219,
+            2026112220,
+            2026112221,
+            2026112222,
+            2026112223,
+            2026112224,
+            2026112225,
+            2026112226,
+            2026112227,
+            2026112228,
+            2026112229,
+            2026112230,
+            2026112231
+          ],
+          "source_snapshot_sha256": "0ca99cdc0eb0127f71622845d5bca3c7e5aa71b2e6646ae10301686807ef4579"
+        },
+        {
+          "episode_index": 8,
+          "step": 1000,
+          "mean_action_deg_deg_mm": [
+            0.0016905542424865416,
+            -0.0010051090005163132,
+            -0.0014298205496743321
+          ],
+          "std_action_deg_deg_mm": [
+            0.005309820035199772,
+            0.002949307972706653,
+            0.0011744496383619461
+          ],
+          "teacher_action_deg_deg_mm": [
+            -0.01539434846645073,
+            0.0007596182361476556,
+            0.0033582899317749493
+          ],
+          "mean_opposes_teacher": [
+            true,
+            true,
+            true
+          ],
+          "same_sign_as_teacher_fraction": [
+            0.34375,
+            0.375,
+            0.1875
+          ],
+          "first_order_toward_measured_target_fraction": 0.15625,
+          "sampling_seeds": [
+            2026112200,
+            2026112201,
+            2026112202,
+            2026112203,
+            2026112204,
+            2026112205,
+            2026112206,
+            2026112207,
+            2026112208,
+            2026112209,
+            2026112210,
+            2026112211,
+            2026112212,
+            2026112213,
+            2026112214,
+            2026112215,
+            2026112216,
+            2026112217,
+            2026112218,
+            2026112219,
+            2026112220,
+            2026112221,
+            2026112222,
+            2026112223,
+            2026112224,
+            2026112225,
+            2026112226,
+            2026112227,
+            2026112228,
+            2026112229,
+            2026112230,
+            2026112231
+          ],
+          "source_snapshot_sha256": "0a0abd2d4e92400313726ace1b3d52e3c089e90f41aa9510af7d38323036540c"
+        },
+        {
+          "episode_index": 8,
+          "step": 1200,
+          "mean_action_deg_deg_mm": [
+            -0.003496375883514702,
+            -0.0009496996631241927,
+            -0.0016388101503252983
+          ],
+          "std_action_deg_deg_mm": [
+            0.0033675264691610503,
+            0.002355133708138011,
+            0.0017567997720589485
+          ],
+          "teacher_action_deg_deg_mm": [
+            -0.014199999999999722,
+            0.00417676381730741,
+            -0.0021361545189113595
+          ],
+          "mean_opposes_teacher": [
+            false,
+            true,
+            false
+          ],
+          "same_sign_as_teacher_fraction": [
+            0.84375,
+            0.375,
+            0.78125
+          ],
+          "first_order_toward_measured_target_fraction": 0.84375,
+          "sampling_seeds": [
+            2026112200,
+            2026112201,
+            2026112202,
+            2026112203,
+            2026112204,
+            2026112205,
+            2026112206,
+            2026112207,
+            2026112208,
+            2026112209,
+            2026112210,
+            2026112211,
+            2026112212,
+            2026112213,
+            2026112214,
+            2026112215,
+            2026112216,
+            2026112217,
+            2026112218,
+            2026112219,
+            2026112220,
+            2026112221,
+            2026112222,
+            2026112223,
+            2026112224,
+            2026112225,
+            2026112226,
+            2026112227,
+            2026112228,
+            2026112229,
+            2026112230,
+            2026112231
+          ],
+          "source_snapshot_sha256": "10cd4e92b5ce3316bec13ce7b514be9f3525450ac0baf928f8cb04d50d6c80fa"
+        },
+        {
+          "episode_index": 10,
+          "step": 800,
+          "mean_action_deg_deg_mm": [
+            -0.0022301497538137482,
+            -0.00216454437622815,
+            -0.0029008248820900917
+          ],
+          "std_action_deg_deg_mm": [
+            0.0042124612561335656,
+            0.0027119564197788377,
+            0.002462428221412642
+          ],
+          "teacher_action_deg_deg_mm": [
+            0.004870043141326097,
+            -0.0003322807662657349,
+            0.004188715276413207
+          ],
+          "mean_opposes_teacher": [
+            true,
+            false,
+            true
+          ],
+          "same_sign_as_teacher_fraction": [
+            0.25,
+            0.8125,
+            0.1875
+          ],
+          "first_order_toward_measured_target_fraction": 0.1875,
+          "sampling_seeds": [
+            2026112200,
+            2026112201,
+            2026112202,
+            2026112203,
+            2026112204,
+            2026112205,
+            2026112206,
+            2026112207,
+            2026112208,
+            2026112209,
+            2026112210,
+            2026112211,
+            2026112212,
+            2026112213,
+            2026112214,
+            2026112215,
+            2026112216,
+            2026112217,
+            2026112218,
+            2026112219,
+            2026112220,
+            2026112221,
+            2026112222,
+            2026112223,
+            2026112224,
+            2026112225,
+            2026112226,
+            2026112227,
+            2026112228,
+            2026112229,
+            2026112230,
+            2026112231
+          ],
+          "source_snapshot_sha256": "88bf8a66c4bf9e789f1f442be88fcbdae3244f3ba94677241eff69046aaaf0d1"
+        },
+        {
+          "episode_index": 10,
+          "step": 1000,
+          "mean_action_deg_deg_mm": [
+            0.0006848894922768523,
+            0.0015369303582701832,
+            -0.0008780868956819177
+          ],
+          "std_action_deg_deg_mm": [
+            0.005823542936277985,
+            0.0033918918682931277,
+            0.0013432530531608715
+          ],
+          "teacher_action_deg_deg_mm": [
+            -0.011336793958372705,
+            0.007121603989487843,
+            0.0021007624006162684
+          ],
+          "mean_opposes_teacher": [
+            true,
+            false,
+            true
+          ],
+          "same_sign_as_teacher_fraction": [
+            0.4375,
+            0.71875,
+            0.21875
+          ],
+          "first_order_toward_measured_target_fraction": 0.4375,
+          "sampling_seeds": [
+            2026112200,
+            2026112201,
+            2026112202,
+            2026112203,
+            2026112204,
+            2026112205,
+            2026112206,
+            2026112207,
+            2026112208,
+            2026112209,
+            2026112210,
+            2026112211,
+            2026112212,
+            2026112213,
+            2026112214,
+            2026112215,
+            2026112216,
+            2026112217,
+            2026112218,
+            2026112219,
+            2026112220,
+            2026112221,
+            2026112222,
+            2026112223,
+            2026112224,
+            2026112225,
+            2026112226,
+            2026112227,
+            2026112228,
+            2026112229,
+            2026112230,
+            2026112231
+          ],
+          "source_snapshot_sha256": "4dc85c44f49ae4e08b6e39f4fc16115ed8b58649dcffedad8d2300c05bd37ae4"
+        },
+        {
+          "episode_index": 10,
+          "step": 1200,
+          "mean_action_deg_deg_mm": [
+            0.002451289399914458,
+            -0.0013200162841258134,
+            -0.0011845456319861114
+          ],
+          "std_action_deg_deg_mm": [
+            0.004185633615324425,
+            0.002578965486798245,
+            0.0020305205760416138
+          ],
+          "teacher_action_deg_deg_mm": [
+            -0.02182464207066576,
+            0.007422558549108883,
+            -0.002590538198052328
+          ],
+          "mean_opposes_teacher": [
+            true,
+            true,
+            false
+          ],
+          "same_sign_as_teacher_fraction": [
+            0.3125,
+            0.25,
+            0.71875
+          ],
+          "first_order_toward_measured_target_fraction": 0.34375,
+          "sampling_seeds": [
+            2026112200,
+            2026112201,
+            2026112202,
+            2026112203,
+            2026112204,
+            2026112205,
+            2026112206,
+            2026112207,
+            2026112208,
+            2026112209,
+            2026112210,
+            2026112211,
+            2026112212,
+            2026112213,
+            2026112214,
+            2026112215,
+            2026112216,
+            2026112217,
+            2026112218,
+            2026112219,
+            2026112220,
+            2026112221,
+            2026112222,
+            2026112223,
+            2026112224,
+            2026112225,
+            2026112226,
+            2026112227,
+            2026112228,
+            2026112229,
+            2026112230,
+            2026112231
+          ],
+          "source_snapshot_sha256": "345f8c135b132af4ccbf144e1f49c0f9af55edb6180bf4c6a4e49d5e5c0010a7"
+        }
+      ],
+      "checkpoint": "/home/him1/mujoco_bc/rcm_4090_deploy/outputs/homog_label_fix_20261123_v3/step_004000.pth",
+      "checkpoint_sha256": "1351e047c99db581c93f8221d061e864c6fe8a59f651a60baba4745dcdbc8850"
+    },
+    "diagnostics": {
+      "late_C_rms_le_0p0019": {
+        "value": 0.005358223470089667,
+        "passed": false
+      },
+      "A_snapshot_reverse_le_2_of_9": {
+        "value": 5,
+        "passed": false
+      },
+      "first_order_toward_gt_0p65": {
+        "value": 0.4097222222222222,
+        "passed": false
+      },
+      "paired_final_mean_improved": {
+        "value": 75.98150363663731,
+        "passed": false
+      }
+    },
+    "stage3_checks_passed": false,
+    "paired_final_error_improved": false,
+    "optional_arms_status": "skipped_trigger_failed",
+    "best_combination": "V0_step4000",
+    "best": {
+      "status": "completed",
+      "protocol": {
+        "checkpoint": "/home/him1/mujoco_bc/rcm_4090_deploy/outputs/homog_label_fix_20261123_v3/step_004000.pth",
+        "checkpoint_sha256": "1351e047c99db581c93f8221d061e864c6fe8a59f651a60baba4745dcdbc8850",
+        "samples": 1,
+        "controller": "feedback",
+        "quality": {
+          "offsamples": 0,
+          "numslices": 112,
+          "numstacks": 64
+        },
+        "identity": {
+          "code_sha256": "85461a582bb7a88332773b9832d93280d1beee9179caf88566a955b4de9c8188",
+          "scene_sha256": "265c927ef7e7ac71536963b3000ffb161b7ff7ac03bb86cdb8480ed988c17028",
+          "scripts/research/a_axis_flip_train.py": "8a05b7cdc21980ce68704726bab05d4012f735fd4e5ba3630e55e93cfae7aad5",
+          "scripts/research/a_axis_flip_replay.py": "dc5884144deb39daadc2e674abc343f6c4e18949ec30126f331d631d65dfde2e",
+          "scripts/research/a_axis_flip_audit.py": "e6c65c37656cde0b608c47a6ed4d799fc27dafe6d4abe3b1209c2abe4ca0929e",
+          "scripts/research/a_axis_flip_pipeline.py": "c813ef936b77b51014eca659c3a5ec0e5d6344d1c0308d02cb683628fb6870ee",
+          "scripts/research/a_axis_flip_publish.py": "be4a9fe1c3e6dc06f616381b26e7342d7448cf8feffabf82e96ee96d2503e081",
+          "scripts/research/a_axis_flip_common.py": "1a3ef56737f34e31e05a71566b54969dfafa3060a38ae6a8e44da83ecd29fab4",
+          "scripts/research/gpu_episode_pool.py": "323421d338664349811d6479cb03929e743509c900a8588f7dd3fa24f3153b19",
+          "scripts/research/clean_oct_workers.py": "1df09165778f9866b01fb6b8e020afbb839f284797c1ae497ab36216746a1650",
+          "lerobot_training/navigation_overlay.py": "3330474b01973ab121f55f341b7f6969a70bc6d546e5823b1160657e4cdf65a5",
+          "lerobot_training/eval_policy.py": "f7f3948ea6c81ebcf66063afd9d0eb99ae418c5b099052e48b1fd476f5de95f1",
+          "lerobot_training/dit_experience_replay.py": "8a3ef61fb52d7db77e402b13dcb9c7a5186c9dc5dfc2af85d1f0c3cef394c5c2",
+          "lerobot_training/dataset_contract.py": "942d43813b5083986eeca542f6b57c480e4db6a6e163dbb084ed86f3f0a4343a",
+          "configs/v12_reachable_development_targets_0p35um.json": "fcc4872a9d5b58bb7158b36d3c0ab6d7452e4d8d747317dfb077b6e7bbc815c7",
+          "scripts/research/homog_replay_common.py": "63891d8ed092e4ed18541589e03b17fd028aa8d39a43cd9a972f343b31abb4f4",
+          "scripts/research/homog_replay_collect.py": "a0ca895c0ba892503df4353a430e28dfac7711b961af03c0b82a8e6ab5e9af1c",
+          "scripts/research/homog_replay_pipeline.py": "7e31430b74debc8c30c804cf8d806cc72f50ab40b1fbf71e3d93ff66a9b74d81",
+          "scripts/research/homog_replay_train.py": "1567ad380a365f3b65e2dfc8d3c03eb85ef3b6e342f2e81e3e5e93eb01ea0386",
+          "scripts/research/homog_replay_target.py": "d90735c7b5b654d10dc303759971778129e4e79ac82c4392135d07731cdf3624",
+          "scripts/research/homog_replay_evaluate.py": "800a3d944949eecd190195a7855c9cdd1b4dfa916e72f7d37402d789dea09e62",
+          "scripts/research/homog_replay_hold.py": "8e5698cbfd99165f84ec243dc88383862f410ba720bf9a56d47f1fab868b4a3b",
+          "scripts/research/homog_replay_publish.py": "b9ce066824ffe44c94b86122cafcf8233e033cf361fa61a14d1857e54e483b2f",
+          "scripts/verification/verify_homog_replay.py": "3ed20e44d62dc6ae32862c63ba703ed9671992a76755b5f0bf7c6f33d43eac43",
+          "scripts/verification/verify_homog_teacher_intent.py": "f1e436e8832c2498dfef0cb046f26a272d73d5e8f0cfa633e525d23c08c0161a",
+          "scripts/verification/verify_homog_t3_hold.py": "487cce1214570c677274ffbcf4d7ecd04c760c3fa9e5be722e47ae569d2435db",
+          "scripts/tools/prepare_homog_hold_repair.py": "3bcdaed52f7cf3c8cd48781518d1a0063746c1ad8745b4d90cfe9747b0311e51",
+          "scripts/tools/prepare_teacher_intent_repair.py": "8aee6669180605662797e4cf431d2fff22aef7e7f3c94605f0b8cfa58caf5715",
+          "scripts/tools/prepare_homog_mixed_budget.py": "058a4335952d044c82570cea706aac74955930d7747986b0da4bc2752d1ad7d7",
+          "rcm/fundus.py": "1432e337aecde1e60d65c63250cd773a7c8b150c90cb67b5bf2c0f3ae1befed3",
+          "rcm/visual_servo.py": "b217af0f60eb0a1de462d37dfa22a507911420a7b3cc9c4d899e012e89cbb507",
+          "lerobot_training/train_diffusion_policy.py": "e809558031ea6d1b1bd28904d5d101778831a50761c5b0d9f893943e5254a50c"
+        },
+        "steps": 1600,
+        "late_drift_start": 1000,
+        "stop_on_success": false
+      },
+      "completed_targets": 5,
+      "drift_1000_to_1600_um": 19.53342931368909,
+      "absolute_drift_1000_to_1600_um": 45.6780537546929,
+      "final_mean_um": 141.55079171717605,
+      "min_mean_um": 74.09943729240172,
+      "strict_success_count": 0,
+      "final_hits_le_5_um": 0,
+      "final_hits_le_10_um": 0,
+      "final_hits_le_30_um": 0,
+      "episodes": [
+        {
+          "episode_index": 0,
+          "seed": 42,
+          "actions": 1600,
+          "final_error_um": 161.1013181624408,
+          "min_error_um": 59.26893581622616,
+          "error_1000_um": 99.71983260698023,
+          "drift_1000_to_1600_um": 61.38148555546057,
+          "absolute_drift_1000_to_1600_um": 61.38148555546057,
+          "strict_success": false,
+          "final_hit_le_5_um": false,
+          "final_hit_le_10_um": false,
+          "final_hit_le_30_um": false,
+          "result_path": "/home/him1/mujoco_bc/rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s3_fast5_1600/V0_step4000/shards/tasks/eval_E00/raw/evaluation_results.json",
+          "result_sha256": "594350c1bb37b4af611037f90cd2dfca40ff87eace4b81f8f7bde7b57b1efbe5",
+          "checkpoint": "/home/him1/mujoco_bc/rcm_4090_deploy/outputs/homog_label_fix_20261123_v3/step_004000.pth",
+          "samples": 1,
+          "controller": "feedback"
+        },
+        {
+          "episode_index": 2,
+          "seed": 44,
+          "actions": 1600,
+          "final_error_um": 161.37301023325165,
+          "min_error_um": 46.80561537111915,
+          "error_1000_um": 89.93259623029789,
+          "drift_1000_to_1600_um": 71.44041400295376,
+          "absolute_drift_1000_to_1600_um": 71.44041400295376,
+          "strict_success": false,
+          "final_hit_le_5_um": false,
+          "final_hit_le_10_um": false,
+          "final_hit_le_30_um": false,
+          "result_path": "/home/him1/mujoco_bc/rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s3_fast5_1600/V0_step4000/shards/tasks/eval_E02/raw/evaluation_results.json",
+          "result_sha256": "39e753f1dccd2763157cc7a65453a88b6b8eaec90741e49a26b097b7e29dc792",
+          "checkpoint": "/home/him1/mujoco_bc/rcm_4090_deploy/outputs/homog_label_fix_20261123_v3/step_004000.pth",
+          "samples": 1,
+          "controller": "feedback"
+        },
+        {
+          "episode_index": 6,
+          "seed": 48,
+          "actions": 1600,
+          "final_error_um": 181.84348279012835,
+          "min_error_um": 140.0234847572469,
+          "error_1000_um": 151.6366746775877,
+          "drift_1000_to_1600_um": 30.206808112540642,
+          "absolute_drift_1000_to_1600_um": 30.206808112540642,
+          "strict_success": false,
+          "final_hit_le_5_um": false,
+          "final_hit_le_10_um": false,
+          "final_hit_le_30_um": false,
+          "result_path": "/home/him1/mujoco_bc/rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s3_fast5_1600/V0_step4000/shards/tasks/eval_E06/raw/evaluation_results.json",
+          "result_sha256": "09f77ec9818943d21b99ce7da547eced5fc5242dd5cb3992486704a6bbf94d92",
+          "checkpoint": "/home/him1/mujoco_bc/rcm_4090_deploy/outputs/homog_label_fix_20261123_v3/step_004000.pth",
+          "samples": 1,
+          "controller": "feedback"
+        },
+        {
+          "episode_index": 8,
+          "seed": 50,
+          "actions": 1600,
+          "final_error_um": 117.84914717919982,
+          "min_error_um": 63.58411825523826,
+          "error_1000_um": 147.06699387977795,
+          "drift_1000_to_1600_um": -29.217846700578136,
+          "absolute_drift_1000_to_1600_um": 29.217846700578136,
+          "strict_success": false,
+          "final_hit_le_5_um": false,
+          "final_hit_le_10_um": false,
+          "final_hit_le_30_um": false,
+          "result_path": "/home/him1/mujoco_bc/rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s3_fast5_1600/V0_step4000/shards/tasks/eval_E08/raw/evaluation_results.json",
+          "result_sha256": "5053ed377aaec2cab7f30d9c7f85ce249770f07cb0bd1751839741bed05dc7f9",
+          "checkpoint": "/home/him1/mujoco_bc/rcm_4090_deploy/outputs/homog_label_fix_20261123_v3/step_004000.pth",
+          "samples": 1,
+          "controller": "feedback"
+        },
+        {
+          "episode_index": 10,
+          "seed": 52,
+          "actions": 1600,
+          "final_error_um": 85.58700022085968,
+          "min_error_um": 60.81503226217811,
+          "error_1000_um": 121.73071462279107,
+          "drift_1000_to_1600_um": -36.14371440193139,
+          "absolute_drift_1000_to_1600_um": 36.14371440193139,
+          "strict_success": false,
+          "final_hit_le_5_um": false,
+          "final_hit_le_10_um": false,
+          "final_hit_le_30_um": false,
+          "result_path": "/home/him1/mujoco_bc/rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s3_fast5_1600/V0_step4000/shards/tasks/eval_E10/raw/evaluation_results.json",
+          "result_sha256": "12d5b9f14fc2e1a3d3442cb67f1a6d5562d797cffc9129b2abfa5b0058248f64",
+          "checkpoint": "/home/him1/mujoco_bc/rcm_4090_deploy/outputs/homog_label_fix_20261123_v3/step_004000.pth",
+          "samples": 1,
+          "controller": "feedback"
+        }
+      ],
+      "metric_scope": "Matched1600-step full-approach development fast5/dev20; near collection separately600steps",
+      "hit_rates": {
+        "le_5_um": 0.0,
+        "le_10_um": 0.0,
+        "le_30_um": 0.0
+      },
+      "late_C_rms_1200_to_1600_mm_per_step": 0.005358223470089667
+    },
+    "final_under_40um": false,
+    "late_rebound_gate_abs_drift_lt_15um": false,
+    "dev20_gate_passed": false
+  },
+  "stage4": {
+    "status": "skipped",
+    "reason": "Stage3 late-C/direction/improvement or final<40um/late-drift gate failed"
+  }
+}

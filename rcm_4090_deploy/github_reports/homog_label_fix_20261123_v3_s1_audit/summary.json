@@ -1,0 +1,38 @@
+{
+  "status": "completed",
+  "source_data": "/home/him1/mujoco_bc/rcm_4090_deploy/data/homog_clean_replay_20261123_mixed_1600_600_12_hold_v2",
+  "fixed_data": "/home/him1/mujoco_bc/rcm_4090_deploy/data/homog_clean_replay_fixed_labels_v3",
+  "source_dataset_sha256": "4629b57238be07a0640accb810a56a23f47a20883308af858265df074cb65d6d",
+  "fixed_dataset_sha256": "ae50beaff759df6446878572f7b2e7c599abbf54d92d23355303dc61cf502cca",
+  "overlay_sha256": "c131e5245a868e65615e896fa1dc970fa19e166a9b19daba74c9113a0f2ead9d",
+  "image_paths_sha256": "200d0a49ddea9b94bef45f1aa55bed20a6c559080581e856b84eee6e382d5f4f",
+  "images_reused_by_symlink": true,
+  "original_files_unchanged": true,
+  "audit": "/home/him1/mujoco_bc/rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s1_audit/label_fix_audit.json",
+  "gates": {
+    "T3_stationary_action_zero_fraction": {
+      "value": 1.0,
+      "required": "==1.0",
+      "passed": true
+    },
+    "T2_label_to_executed_norm_ratio_median": {
+      "value": 0.9999999996953679,
+      "required": "0.95<=x<=1.05",
+      "passed": true
+    },
+    "axis_reverse_fractions": {
+      "value": {
+        "A": 0.0019340078775442818,
+        "B": 0.0015802259487252058,
+        "C": 0.00191042241562301
+      },
+      "required": "<0.02 each",
+      "passed": true
+    },
+    "valid_window_contract_pass_fraction": {
+      "value": 1.0,
+      "required": "==1.0",
+      "passed": true
+    }
+  }
+}

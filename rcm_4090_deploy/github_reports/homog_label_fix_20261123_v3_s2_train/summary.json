@@ -1,0 +1,96 @@
+{
+  "status": "completed",
+  "training": {
+    "status": "completed",
+    "contract_sha256": "6f37be9b1d72b66aa0e6f89d0683ea2bb48e6ba29f8c7fb8bec19dc277e72e44",
+    "checkpoint_hashes": {
+      "/home/him1/mujoco_bc/rcm_4090_deploy/outputs/homog_label_fix_20261123_v3/step_001000.pth": "fe140384018e870a5ebe2ae932c21b6c67fc2e09e8e0663d6cb0d032e021e5ff",
+      "/home/him1/mujoco_bc/rcm_4090_deploy/outputs/homog_label_fix_20261123_v3/step_002000.pth": "4b12be6ac9106cadf0419641307c154c5ca596fd0757bca18c4c9715ffb3c3c2",
+      "/home/him1/mujoco_bc/rcm_4090_deploy/outputs/homog_label_fix_20261123_v3/step_003000.pth": "c4d81a5579ab838ab4f09334694baea533911b5c87ea36dd19ce1919d085e7d5",
+      "/home/him1/mujoco_bc/rcm_4090_deploy/outputs/homog_label_fix_20261123_v3/step_004000.pth": "1351e047c99db581c93f8221d061e864c6fe8a59f651a60baba4745dcdbc8850"
+    },
+    "progress": {
+      "epoch": 4,
+      "batch_offset": 0,
+      "global_step": 4000,
+      "optimizer_updates": 3997,
+      "epoch_loss_sum": 0.0,
+      "history": [
+        {
+          "epoch": 0,
+          "batches_seen": 1000,
+          "train_loss": 0.12070698579400778,
+          "val_loss": 0.1477772523816541,
+          "optimizer_updates": 999,
+          "sampling_counts": [
+            14720,
+            1280
+          ]
+        },
+        {
+          "epoch": 1,
+          "batches_seen": 2000,
+          "train_loss": 0.11910257409512996,
+          "val_loss": 0.14719594387913779,
+          "optimizer_updates": 1999,
+          "sampling_counts": [
+            29440,
+            2560
+          ]
+        },
+        {
+          "epoch": 2,
+          "batches_seen": 3000,
+          "train_loss": 0.11866608315333724,
+          "val_loss": 0.14718957997554782,
+          "optimizer_updates": 2998,
+          "sampling_counts": [
+            44160,
+            3840
+          ]
+        },
+        {
+          "epoch": 3,
+          "batches_seen": 4000,
+          "train_loss": 0.11631393674761056,
+          "val_loss": 0.14706286961297624,
+          "optimizer_updates": 3997,
+          "sampling_counts": [
+            58880,
+            5120
+          ]
+        }
+      ],
+      "counts": [
+        58880,
+        5120
+      ],
+      "epoch_counts": [
+        0,
+        0
+      ]
+    },
+    "manifest": {
+      "original_windows": 220816,
+      "correction_windows": 41422,
+      "validation_windows": 26650,
+      "epoch_correction_samples": 1280,
+      "epoch_original_samples": 14720,
+      "total_batches": 4000,
+      "original_window_index_sha256": "b8a44b5a08f7d34440e3631ca78c9b0baccde047c1a74b0812d93412095f8fa8",
+      "original_pool": "Only original episodes0-838, full valid trajectories; all Plan-2 windows excluded",
+      "correction_window_index_sha256": "57f1ce7aaf661ef9d8bd295887fae5a7097a4e4e7f7755347a4df3b5b5c3d767",
+      "validation_window_index_sha256": "90493519cd737b822a9bdf6051c3f43edf367807ea98855f63e125c02c6af09e",
+      "validation_max_batches": null,
+      "baseline": "/home/him1/mujoco_bc/rcm_4090_deploy/outputs/overnight_c_fix_symlog_081234/task2_train/step_004000.pth"
+    }
+  },
+  "checkpoint_dir": "/home/him1/mujoco_bc/rcm_4090_deploy/outputs/homog_label_fix_20261123_v3",
+  "fixed_dataset_sha256": "ae50beaff759df6446878572f7b2e7c599abbf54d92d23355303dc61cf502cca",
+  "checkpoints": {
+    "step_001000.pth": "fe140384018e870a5ebe2ae932c21b6c67fc2e09e8e0663d6cb0d032e021e5ff",
+    "step_002000.pth": "4b12be6ac9106cadf0419641307c154c5ca596fd0757bca18c4c9715ffb3c3c2",
+    "step_003000.pth": "c4d81a5579ab838ab4f09334694baea533911b5c87ea36dd19ce1919d085e7d5",
+    "step_004000.pth": "1351e047c99db581c93f8221d061e864c6fe8a59f651a60baba4745dcdbc8850"
+  }
+}

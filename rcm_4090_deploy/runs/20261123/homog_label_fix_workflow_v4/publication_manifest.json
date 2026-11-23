@@ -1,0 +1,860 @@
+{
+  "base": "cd22e10471f76807e2b1ce307db5d38903b40d30",
+  "parent": "227f6c4991c258104afaf0d2279761974cd92dd8",
+  "branch": "feature/homog-label-fix-20261123",
+  "TEST_LOG_preservation": {
+    "merged": true,
+    "local_tail_offset": 4339836,
+    "local_complete_snapshot": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261123/homog_label_fix_workflow_v4/local_TEST_LOG_2c1ce6dff2975349.md",
+    "base_sha256": "e90034d2cb1e497b892ba0a83f59acf2696ac2d8bf6e78d4be39170f9e0913f8",
+    "local_sha256": "2c1ce6dff2975349a7b6df333a58777ced3e2f66a5048e5da1611e310b65bacb",
+    "published_sha256": "d4b300ceffd8a4dd830e8b0b56e9c0057d406820d0d6335db416cf970b274a1e"
+  },
+  "files": [
+    {
+      "path": "rcm_4090_deploy/TEST_LOG.md",
+      "bytes": 6242759,
+      "sha256": "d4b300ceffd8a4dd830e8b0b56e9c0057d406820d0d6335db416cf970b274a1e"
+    },
+    {
+      "path": "rcm_4090_deploy/data/homog_clean_replay_fixed_labels_v3/data/dataset.npz",
+      "bytes": 2920601,
+      "sha256": "ae50beaff759df6446878572f7b2e7c599abbf54d92d23355303dc61cf502cca"
+    },
+    {
+      "path": "rcm_4090_deploy/data/homog_clean_replay_fixed_labels_v3/data/image_paths.json",
+      "bytes": 2416746,
+      "sha256": "200d0a49ddea9b94bef45f1aa55bed20a6c559080581e856b84eee6e382d5f4f"
+    },
+    {
+      "path": "rcm_4090_deploy/data/homog_clean_replay_fixed_labels_v3/data/label_repair_overlay.npz",
+      "bytes": 650056,
+      "sha256": "c131e5245a868e65615e896fa1dc970fa19e166a9b19daba74c9113a0f2ead9d"
+    },
+    {
+      "path": "rcm_4090_deploy/data/homog_clean_replay_fixed_labels_v3/data/valid_window_indices.npz",
+      "bytes": 62956,
+      "sha256": "862fc65db4dbcd0f43cb85a213bf5fa6d7ec20b90319317e0ff4ea272caf2ba6"
+    },
+    {
+      "path": "rcm_4090_deploy/data/homog_clean_replay_fixed_labels_v3/dataset_audit.json",
+      "bytes": 7545,
+      "sha256": "5e03b7c941692fb385699633ed2d79f1b7e43a894c3be836e8e4dec463acbdfb"
+    },
+    {
+      "path": "rcm_4090_deploy/data/homog_clean_replay_fixed_labels_v3/dataset_receipt.json",
+      "bytes": 805,
+      "sha256": "e7f41dc94f3400f2b80bc0b5aa14978003807f808ff7a9803a71504aa5e03ba3"
+    },
+    {
+      "path": "rcm_4090_deploy/data/homog_clean_replay_fixed_labels_v3/metadata.json",
+      "bytes": 20725,
+      "sha256": "d237a66350229e1ca2387c8d9caa54986caeb78d7913274ab6f5cb37fe22c2d5"
+    },
+    {
+      "path": "rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s1_audit/label_fix_audit.json",
+      "bytes": 7545,
+      "sha256": "5e03b7c941692fb385699633ed2d79f1b7e43a894c3be836e8e4dec463acbdfb"
+    },
+    {
+      "path": "rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s1_audit/summary.json",
+      "bytes": 1430,
+      "sha256": "0ab77968298d63743afa8ab119d0ea4f7ec026efa069eb0d14d14bbd5ea8b0bc"
+    },
+    {
+      "path": "rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s2_train/summary.json",
+      "bytes": 3674,
+      "sha256": "322e038bfad380f0f697a29f978f0628e6f0a8fb40353c2af680ea814fb5f8b8"
+    },
+    {
+      "path": "rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s3_fast5_1600/V0_step2000/E00.json",
+      "bytes": 812,
+      "sha256": "55878b4adecc93ba4d8f057ac518dbdaa1102c9bf4ae358a06c809aa67d6848f"
+    },
+    {
+      "path": "rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s3_fast5_1600/V0_step2000/E02.json",
+      "bytes": 810,
+      "sha256": "6c19c08d270e37c0fd41f52018f0fffd923d4fac9270411767659f32348ed13f"
+    },
+    {
+      "path": "rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s3_fast5_1600/V0_step2000/E06.json",
+      "bytes": 808,
+      "sha256": "aeaa6dc3895e9aabee15aa03a11dca16e4d3e84a1511b1628a1e3348f4e2a7dd"
+    },
+    {
+      "path": "rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s3_fast5_1600/V0_step2000/E08.json",
+      "bytes": 811,
+      "sha256": "901c4d35ec816f4d03097992dd36c225c6652bdbee0bad79c267e3f584fa5bef"
+    },
+    {
+      "path": "rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s3_fast5_1600/V0_step2000/E10.json",
+      "bytes": 810,
+      "sha256": "0d58a02ad2e6d8cf7112297dcdfdc5a326249bcf2cff977f3aa3f621252b7e82"
+    },
+    {
+      "path": "rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s3_fast5_1600/V0_step2000/axis_floor_summary.json",
+      "bytes": 14104,
+      "sha256": "77d99407924fde27b8a90c44c3ea5d0e817b5c99ffbe331eed307962a473e53f"
+    },
+    {
+      "path": "rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s3_fast5_1600/V0_step2000/best_and_final_error.png",
+      "bytes": 26981,
+      "sha256": "68528ebbc8c1037e97033496422d4d82d1e9528dd3f766033832312173b16803"
+    },
+    {
+      "path": "rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s3_fast5_1600/V0_step2000/episodes.csv",
+      "bytes": 2496,
+      "sha256": "61f043b19433e1f1d7acdb0da6473cbb07092e94cc80a594397c952399dbe8ca"
+    },
+    {
+      "path": "rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s3_fast5_1600/V0_step2000/error_curves_all.png",
+      "bytes": 130619,
+      "sha256": "4ec9917b2b4126bdd1e69535bd7c686dfb5af170d5c308cc697af8bc4c359af0"
+    },
+    {
+      "path": "rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s3_fast5_1600/V0_step2000/shards/contract.json",
+      "bytes": 5242,
+      "sha256": "794ecce36e60b07f807aeb73268921136536169d837ddac6205481d7b4dfaac0"
+    },
+    {
+      "path": "rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s3_fast5_1600/V0_step2000/shards/partial_summary.json",
+      "bytes": 6015,
+      "sha256": "91972a97ace8ecba46a59b2331d8c61b6b616121328b7b63bbc502478bd8cfc0"
+    },
+    {
+      "path": "rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s3_fast5_1600/V0_step2000/shards/reuse_receipt.json",
+      "bytes": 693,
+      "sha256": "fdd445cca5051e4c48c28f6a29c6434893e429a2f071f913cf35caccc9c67d38"
+    },
+    {
+      "path": "rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s3_fast5_1600/V0_step2000/shards/snapshot_005.json",
+      "bytes": 6013,
+      "sha256": "eaf6b841155d97e8ad35d54f4c8bd53c139ecc445f1f48c8ac89c4576ec738b0"
+    },
+    {
+      "path": "rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s3_fast5_1600/V0_step2000/shards/summary.json",
+      "bytes": 6015,
+      "sha256": "91972a97ace8ecba46a59b2331d8c61b6b616121328b7b63bbc502478bd8cfc0"
+    },
+    {
+      "path": "rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s3_fast5_1600/V0_step2000/shards/tasks/eval_E00/E00.json",
+      "bytes": 812,
+      "sha256": "55878b4adecc93ba4d8f057ac518dbdaa1102c9bf4ae358a06c809aa67d6848f"
+    },
+    {
+      "path": "rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s3_fast5_1600/V0_step2000/shards/tasks/eval_E00/raw/evaluation_results.json",
+      "bytes": 5177227,
+      "sha256": "29b37f447d73fe6b6a12c90ebd7794defd60c6de37eea3327007e2e986b1e980"
+    },
+    {
+      "path": "rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s3_fast5_1600/V0_step2000/shards/tasks/eval_E00/receipt.json",
+      "bytes": 1176,
+      "sha256": "01c75d3a4400e36ca5a5502dfde8af81e22d5f7b51ba890ba959e45cf7a37198"
+    },
+    {
+      "path": "rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s3_fast5_1600/V0_step2000/shards/tasks/eval_E02/E02.json",
+      "bytes": 810,
+      "sha256": "6c19c08d270e37c0fd41f52018f0fffd923d4fac9270411767659f32348ed13f"
+    },
+    {
+      "path": "rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s3_fast5_1600/V0_step2000/shards/tasks/eval_E02/raw/evaluation_results.json",
+      "bytes": 5166871,
+      "sha256": "ed63d7826118781199fc6724259221a6abbd1200b359e2ddf2f096c07af9d28f"
+    },
+    {
+      "path": "rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s3_fast5_1600/V0_step2000/shards/tasks/eval_E02/receipt.json",
+      "bytes": 1174,
+      "sha256": "736a94ff6a50b9a6a28466aebe876e7fff0a7646732124827f997e1004600a96"
+    },
+    {
+      "path": "rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s3_fast5_1600/V0_step2000/shards/tasks/eval_E06/E06.json",
+      "bytes": 808,
+      "sha256": "aeaa6dc3895e9aabee15aa03a11dca16e4d3e84a1511b1628a1e3348f4e2a7dd"
+    },
+    {
+      "path": "rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s3_fast5_1600/V0_step2000/shards/tasks/eval_E06/raw/evaluation_results.json",
+      "bytes": 5163716,
+      "sha256": "55338a1a0af3c7642a9321b452fc2efc9c58fb3220196f63802ff75158fee927"
+    },
+    {
+      "path": "rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s3_fast5_1600/V0_step2000/shards/tasks/eval_E06/receipt.json",
+      "bytes": 1172,
+      "sha256": "82b598113a4017514549dd890a00bd98d97c3cfc8f42d15484cbdcef97bc32ee"
+    },
+    {
+      "path": "rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s3_fast5_1600/V0_step2000/shards/tasks/eval_E08/E08.json",
+      "bytes": 811,
+      "sha256": "901c4d35ec816f4d03097992dd36c225c6652bdbee0bad79c267e3f584fa5bef"
+    },
+    {
+      "path": "rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s3_fast5_1600/V0_step2000/shards/tasks/eval_E08/raw/evaluation_results.json",
+      "bytes": 5169736,
+      "sha256": "29691d07aaf843159cf4a6bbd5d7bd94d40eea46ddbd0f17e18a22a2f18df673"
+    },
+    {
+      "path": "rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s3_fast5_1600/V0_step2000/shards/tasks/eval_E08/receipt.json",
+      "bytes": 1175,
+      "sha256": "e4b3cb17fb5e471b57f9a379f6abf013c2a4b1ad830133ae7461e401497451cf"
+    },
+    {
+      "path": "rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s3_fast5_1600/V0_step2000/shards/tasks/eval_E10/E10.json",
+      "bytes": 810,
+      "sha256": "0d58a02ad2e6d8cf7112297dcdfdc5a326249bcf2cff977f3aa3f621252b7e82"
+    },
+    {
+      "path": "rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s3_fast5_1600/V0_step2000/shards/tasks/eval_E10/raw/evaluation_results.json",
+      "bytes": 5162508,
+      "sha256": "76eff07ddcc719121daa0f85db82e4235d630e66e18b36f67fa88e5fd96205bb"
+    },
+    {
+      "path": "rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s3_fast5_1600/V0_step2000/shards/tasks/eval_E10/receipt.json",
+      "bytes": 1174,
+      "sha256": "fe9d57f5f36f43688919c0833849b543deb31798bfb1b5033633756bbde5c408"
+    },
+    {
+      "path": "rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s3_fast5_1600/V0_step2000/shards/worker_1795444819206309852.log",
+      "bytes": 1740,
+      "sha256": "0eabd1172976d29a9eb7ab7a77b1948d9e346f7fa439678f314d36768302e436"
+    },
+    {
+      "path": "rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s3_fast5_1600/V0_step2000/shards/worker_1795444819291565299.log",
+      "bytes": 1739,
+      "sha256": "7884647713d3722235182543b43f517eba0141efac0773c38c95e0636d2e846f"
+    },
+    {
+      "path": "rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s3_fast5_1600/V0_step2000/shards/worker_1795444819359065095.log",
+      "bytes": 1740,
+      "sha256": "a593c0a901d18a0aefe7eb902038fd8223934118c934cd008130d0f3e57c9821"
+    },
+    {
+      "path": "rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s3_fast5_1600/V0_step2000/shards/worker_1795444819430246173.log",
+      "bytes": 1737,
+      "sha256": "b64d6970c3213fe43de9e74385afc5951d86914cd4897c869980e81c983aad0a"
+    },
+    {
+      "path": "rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s3_fast5_1600/V0_step2000/shards/worker_1795444819501892013.log",
+      "bytes": 1739,
+      "sha256": "db1444e90f91ba363a7971c8b891d6c8da55e0f93fccc7fc69328f32d81a745d"
+    },
+    {
+      "path": "rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s3_fast5_1600/V0_step2000/summary.json",
+      "bytes": 9202,
+      "sha256": "ae265c9ffba019bcb34b5951ea4c1cec7ea76ea5546118ee463310927566c83a"
+    },
+    {
+      "path": "rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s3_fast5_1600/V0_step4000/E00.json",
+      "bytes": 807,
+      "sha256": "5a31574c75daddcaab27626d825a0bfd678c83b251dc6997f04e1bd205985bd0"
+    },
+    {
+      "path": "rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s3_fast5_1600/V0_step4000/E02.json",
+      "bytes": 808,
+      "sha256": "247f931da656c9afcf08d8aabd6348830759c85989d7c55c0df70a309db67cdb"
+    },
+    {
+      "path": "rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s3_fast5_1600/V0_step4000/E06.json",
+      "bytes": 810,
+      "sha256": "a72ad679677eeb1981e3a5e4b9fe738a9ff4e6bc389be2307738f7083780f452"
+    },
+    {
+      "path": "rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s3_fast5_1600/V0_step4000/E08.json",
+      "bytes": 812,
+      "sha256": "fe8e8be105b07c7c208b19c3aeb28465a5cbcb0336f5e63dfd663a16d8f23155"
+    },
+    {
+      "path": "rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s3_fast5_1600/V0_step4000/E10.json",
+      "bytes": 810,
+      "sha256": "bd9cbdc51ac88bbc8881aaee790e2f8e9c7bbb83d53f05d57e0402968741469b"
+    },
+    {
+      "path": "rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s3_fast5_1600/V0_step4000/axis_floor_summary.json",
+      "bytes": 14098,
+      "sha256": "a1ede7eb05b78096ce23f9fa15ad755ac48fc5af8af17aa68db337efdfa1cbf1"
+    },
+    {
+      "path": "rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s3_fast5_1600/V0_step4000/best_and_final_error.png",
+      "bytes": 25141,
+      "sha256": "685fa061fefb11a7a543b3b166e9158d6be88e29ffa701ea270c64d56bcd65f5"
+    },
+    {
+      "path": "rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s3_fast5_1600/V0_step4000/episodes.csv",
+      "bytes": 2492,
+      "sha256": "ed84d8b0144eab472a6f93cd1cd63edffc9856f00d9d5c1c66d48b5c7a54961b"
+    },
+    {
+      "path": "rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s3_fast5_1600/V0_step4000/error_curves_all.png",
+      "bytes": 141244,
+      "sha256": "2ae8cce62517f5792fcb43abfaa81ed3fada4971d0fe27a64ad6f9e05140425c"
+    },
+    {
+      "path": "rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s3_fast5_1600/V0_step4000/shards/contract.json",
+      "bytes": 5242,
+      "sha256": "275644679292428e7836e35a4b3782e71b228363e10aba8c2616b1b3efe4e5f4"
+    },
+    {
+      "path": "rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s3_fast5_1600/V0_step4000/shards/partial_summary.json",
+      "bytes": 6012,
+      "sha256": "e5f7dac2546075ea7aad2295e121d2a807033f26970e26369713bf7316e94125"
+    },
+    {
+      "path": "rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s3_fast5_1600/V0_step4000/shards/reuse_receipt.json",
+      "bytes": 693,
+      "sha256": "9f139fa5b6cabb811e7de44abde19411f0242b6243ba545e6d2d9a42b9f23621"
+    },
+    {
+      "path": "rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s3_fast5_1600/V0_step4000/shards/snapshot_005.json",
+      "bytes": 6010,
+      "sha256": "23510013370137da0521fb0a5367a9d4ee208d85d021e76ae5a7b912612b2441"
+    },
+    {
+      "path": "rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s3_fast5_1600/V0_step4000/shards/summary.json",
+      "bytes": 6012,
+      "sha256": "e5f7dac2546075ea7aad2295e121d2a807033f26970e26369713bf7316e94125"
+    },
+    {
+      "path": "rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s3_fast5_1600/V0_step4000/shards/tasks/eval_E00/E00.json",
+      "bytes": 807,
+      "sha256": "5a31574c75daddcaab27626d825a0bfd678c83b251dc6997f04e1bd205985bd0"
+    },
+    {
+      "path": "rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s3_fast5_1600/V0_step4000/shards/tasks/eval_E00/raw/evaluation_results.json",
+      "bytes": 5176025,
+      "sha256": "594350c1bb37b4af611037f90cd2dfca40ff87eace4b81f8f7bde7b57b1efbe5"
+    },
+    {
+      "path": "rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s3_fast5_1600/V0_step4000/shards/tasks/eval_E00/receipt.json",
+      "bytes": 1171,
+      "sha256": "06981b824925c5b1ffabac238b5f63f7d67b3cb3b5ce2f027ddc88212ad855e2"
+    },
+    {
+      "path": "rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s3_fast5_1600/V0_step4000/shards/tasks/eval_E02/E02.json",
+      "bytes": 808,
+      "sha256": "247f931da656c9afcf08d8aabd6348830759c85989d7c55c0df70a309db67cdb"
+    },
+    {
+      "path": "rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s3_fast5_1600/V0_step4000/shards/tasks/eval_E02/raw/evaluation_results.json",
+      "bytes": 5168383,
+      "sha256": "39e753f1dccd2763157cc7a65453a88b6b8eaec90741e49a26b097b7e29dc792"
+    },
+    {
+      "path": "rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s3_fast5_1600/V0_step4000/shards/tasks/eval_E02/receipt.json",
+      "bytes": 1172,
+      "sha256": "0f373a4cf4468c03d25c6ea595014ed35d91c4593a1393b01b375f78be8731e4"
+    },
+    {
+      "path": "rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s3_fast5_1600/V0_step4000/shards/tasks/eval_E06/E06.json",
+      "bytes": 810,
+      "sha256": "a72ad679677eeb1981e3a5e4b9fe738a9ff4e6bc389be2307738f7083780f452"
+    },
+    {
+      "path": "rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s3_fast5_1600/V0_step4000/shards/tasks/eval_E06/raw/evaluation_results.json",
+      "bytes": 5166067,
+      "sha256": "09f77ec9818943d21b99ce7da547eced5fc5242dd5cb3992486704a6bbf94d92"
+    },
+    {
+      "path": "rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s3_fast5_1600/V0_step4000/shards/tasks/eval_E06/receipt.json",
+      "bytes": 1174,
+      "sha256": "e1e788894e73ec9952a0fa7945a0d13655a6572a12fab330336b0a6c954221c5"
+    },
+    {
+      "path": "rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s3_fast5_1600/V0_step4000/shards/tasks/eval_E08/E08.json",
+      "bytes": 812,
+      "sha256": "fe8e8be105b07c7c208b19c3aeb28465a5cbcb0336f5e63dfd663a16d8f23155"
+    },
+    {
+      "path": "rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s3_fast5_1600/V0_step4000/shards/tasks/eval_E08/raw/evaluation_results.json",
+      "bytes": 5168324,
+      "sha256": "5053ed377aaec2cab7f30d9c7f85ce249770f07cb0bd1751839741bed05dc7f9"
+    },
+    {
+      "path": "rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s3_fast5_1600/V0_step4000/shards/tasks/eval_E08/receipt.json",
+      "bytes": 1176,
+      "sha256": "1d64958d3e2413d3295cae63c624471c3ed8d25d1c8302bb72039ca8aacb8993"
+    },
+    {
+      "path": "rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s3_fast5_1600/V0_step4000/shards/tasks/eval_E10/E10.json",
+      "bytes": 810,
+      "sha256": "bd9cbdc51ac88bbc8881aaee790e2f8e9c7bbb83d53f05d57e0402968741469b"
+    },
+    {
+      "path": "rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s3_fast5_1600/V0_step4000/shards/tasks/eval_E10/raw/evaluation_results.json",
+      "bytes": 5162081,
+      "sha256": "12d5b9f14fc2e1a3d3442cb67f1a6d5562d797cffc9129b2abfa5b0058248f64"
+    },
+    {
+      "path": "rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s3_fast5_1600/V0_step4000/shards/tasks/eval_E10/receipt.json",
+      "bytes": 1174,
+      "sha256": "528da4d7cc96a85f2438bead8bc69d43077c30c2cc5aabd2cb9f3f1fe8a7233d"
+    },
+    {
+      "path": "rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s3_fast5_1600/V0_step4000/shards/worker_1795445656245609265.log",
+      "bytes": 1737,
+      "sha256": "135d0e43dbef65071f1664327c275c345e4915f0495d914c6c0a47bbf7545997"
+    },
+    {
+      "path": "rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s3_fast5_1600/V0_step4000/shards/worker_1795445656328008745.log",
+      "bytes": 1738,
+      "sha256": "0894a6cd17b75048789f47516ea1873e62b40ea01d1dbac8ddde2c07863cb95a"
+    },
+    {
+      "path": "rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s3_fast5_1600/V0_step4000/shards/worker_1795445656397364033.log",
+      "bytes": 1740,
+      "sha256": "a123a833d87f2af771d542adaa6c13a42942524104f2423637bfe8eef7b0f677"
+    },
+    {
+      "path": "rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s3_fast5_1600/V0_step4000/shards/worker_1795445656467132493.log",
+      "bytes": 1738,
+      "sha256": "36c23a27bf003d5f6157161caa033aa178511fd2438d3a37d43add94f1e1e74e"
+    },
+    {
+      "path": "rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s3_fast5_1600/V0_step4000/shards/worker_1795445656535399785.log",
+      "bytes": 1740,
+      "sha256": "59b017a477117b340756169a6047272810dea77147e7caeaf57e357e1e519832"
+    },
+    {
+      "path": "rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s3_fast5_1600/V0_step4000/summary.json",
+      "bytes": 9196,
+      "sha256": "168eda48a4d9fa653028f091c95d08a8e6711bf702d16ef6c12216e7c3ae3e94"
+    },
+    {
+      "path": "rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s3_fast5_1600/axis_floor_summary.json",
+      "bytes": 14098,
+      "sha256": "a1ede7eb05b78096ce23f9fa15ad755ac48fc5af8af17aa68db337efdfa1cbf1"
+    },
+    {
+      "path": "rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s3_fast5_1600/baseline_task2_step4000/E00.json",
+      "bytes": 835,
+      "sha256": "f1634ebf3d735d3adf2a47e11f36b8efd09a10f28af30cabedb640e86338c448"
+    },
+    {
+      "path": "rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s3_fast5_1600/baseline_task2_step4000/E02.json",
+      "bytes": 836,
+      "sha256": "7182c62fb1b38f3403b13c063067c952bc5ffcbf2a6afc068e5578363434f029"
+    },
+    {
+      "path": "rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s3_fast5_1600/baseline_task2_step4000/E06.json",
+      "bytes": 837,
+      "sha256": "51554c8ee58e9e650d37a0042f8fee355d7b4098369bcad429e93e0976a52c62"
+    },
+    {
+      "path": "rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s3_fast5_1600/baseline_task2_step4000/E08.json",
+      "bytes": 833,
+      "sha256": "53c2fb6c1f979b4ed2e17dab247b02d4ea260e4d43bec5bbade5eea505123d63"
+    },
+    {
+      "path": "rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s3_fast5_1600/baseline_task2_step4000/E10.json",
+      "bytes": 835,
+      "sha256": "0b750f51e6e75cf0ccad0b45ffb740a6ef833a49e887e4854b7a8e1d12e60532"
+    },
+    {
+      "path": "rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s3_fast5_1600/baseline_task2_step4000/axis_floor_summary.json",
+      "bytes": 14094,
+      "sha256": "75329cb9d17528cd8a5e927b3da95d6ab7c23238cae897684e127bac9b6bacaf"
+    },
+    {
+      "path": "rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s3_fast5_1600/baseline_task2_step4000/best_and_final_error.png",
+      "bytes": 23773,
+      "sha256": "90b54990adf760ac7766c569bb138b3984c859774575057571a720d32a43099a"
+    },
+    {
+      "path": "rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s3_fast5_1600/baseline_task2_step4000/episodes.csv",
+      "bytes": 2621,
+      "sha256": "5a3effaefc9b42e4da47281f8b6c9dc3f6bf74d713b54ba772b1323a66acf906"
+    },
+    {
+      "path": "rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s3_fast5_1600/baseline_task2_step4000/error_curves_all.png",
+      "bytes": 150174,
+      "sha256": "34ada43bfbbe2aa3132471b42befd229fe527f608b6da59ff7e181352eec3398"
+    },
+    {
+      "path": "rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s3_fast5_1600/baseline_task2_step4000/shards/contract.json",
+      "bytes": 5256,
+      "sha256": "2845cef1caaae880ef941b75a3846be5cf9d0666890faa8fdeebb4eeb5ee4b5b"
+    },
+    {
+      "path": "rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s3_fast5_1600/baseline_task2_step4000/shards/partial_summary.json",
+      "bytes": 6184,
+      "sha256": "ade822669e55c2d561a012fb421568c1e83b6a5ba282c54c7d3a5efe3dc4a420"
+    },
+    {
+      "path": "rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s3_fast5_1600/baseline_task2_step4000/shards/reuse_receipt.json",
+      "bytes": 693,
+      "sha256": "6de900cddba5fc8c065b3910ad7743562331102d02646b16f03503762e076269"
+    },
+    {
+      "path": "rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s3_fast5_1600/baseline_task2_step4000/shards/snapshot_005.json",
+      "bytes": 6182,
+      "sha256": "fee84182297a384a9928f1864397df1ac82e9c996cf269010283143a56d13e6a"
+    },
+    {
+      "path": "rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s3_fast5_1600/baseline_task2_step4000/shards/summary.json",
+      "bytes": 6184,
+      "sha256": "ade822669e55c2d561a012fb421568c1e83b6a5ba282c54c7d3a5efe3dc4a420"
+    },
+    {
+      "path": "rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s3_fast5_1600/baseline_task2_step4000/shards/tasks/eval_E00/E00.json",
+      "bytes": 835,
+      "sha256": "f1634ebf3d735d3adf2a47e11f36b8efd09a10f28af30cabedb640e86338c448"
+    },
+    {
+      "path": "rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s3_fast5_1600/baseline_task2_step4000/shards/tasks/eval_E00/raw/evaluation_results.json",
+      "bytes": 5176287,
+      "sha256": "eca8b15f2bb3fa4c523608a47f78b547f8a36413c17e5b393f6f61707faf6813"
+    },
+    {
+      "path": "rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s3_fast5_1600/baseline_task2_step4000/shards/tasks/eval_E00/receipt.json",
+      "bytes": 1199,
+      "sha256": "06b86332372cbf2aef132b52b3898c7acb7ecfd5b5259b8c364d20c6f35e5542"
+    },
+    {
+      "path": "rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s3_fast5_1600/baseline_task2_step4000/shards/tasks/eval_E02/E02.json",
+      "bytes": 836,
+      "sha256": "7182c62fb1b38f3403b13c063067c952bc5ffcbf2a6afc068e5578363434f029"
+    },
+    {
+      "path": "rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s3_fast5_1600/baseline_task2_step4000/shards/tasks/eval_E02/raw/evaluation_results.json",
+      "bytes": 5170589,
+      "sha256": "962cd9bd6b8aa1c60a10a14bc707f93a0817755da407bb1d7174da1c0d6a52b3"
+    },
+    {
+      "path": "rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s3_fast5_1600/baseline_task2_step4000/shards/tasks/eval_E02/receipt.json",
+      "bytes": 1200,
+      "sha256": "2c797e8d6e4a42d54796107194d43f209a8971937cd1df908149667688d127fa"
+    },
+    {
+      "path": "rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s3_fast5_1600/baseline_task2_step4000/shards/tasks/eval_E06/E06.json",
+      "bytes": 837,
+      "sha256": "51554c8ee58e9e650d37a0042f8fee355d7b4098369bcad429e93e0976a52c62"
+    },
+    {
+      "path": "rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s3_fast5_1600/baseline_task2_step4000/shards/tasks/eval_E06/raw/evaluation_results.json",
+      "bytes": 5167679,
+      "sha256": "a85d3e397912437307be9531245616dff09d7cbf270bddc004580463c7c133ca"
+    },
+    {
+      "path": "rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s3_fast5_1600/baseline_task2_step4000/shards/tasks/eval_E06/receipt.json",
+      "bytes": 1201,
+      "sha256": "1a45f4faf8f0ce78f5babc2db9544b1c7a4cccf16a83277d0a58d459595c83ce"
+    },
+    {
+      "path": "rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s3_fast5_1600/baseline_task2_step4000/shards/tasks/eval_E08/E08.json",
+      "bytes": 833,
+      "sha256": "53c2fb6c1f979b4ed2e17dab247b02d4ea260e4d43bec5bbade5eea505123d63"
+    },
+    {
+      "path": "rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s3_fast5_1600/baseline_task2_step4000/shards/tasks/eval_E08/raw/evaluation_results.json",
+      "bytes": 5171010,
+      "sha256": "98237726d1e709c3eee7f6e9fd228bb7f60acf551f7235465c20793c5713ce42"
+    },
+    {
+      "path": "rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s3_fast5_1600/baseline_task2_step4000/shards/tasks/eval_E08/receipt.json",
+      "bytes": 1197,
+      "sha256": "071b475daff4c0fb8c7e98fd44022271c14c42c1b001ea653d52e8bf07a39dde"
+    },
+    {
+      "path": "rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s3_fast5_1600/baseline_task2_step4000/shards/tasks/eval_E10/E10.json",
+      "bytes": 835,
+      "sha256": "0b750f51e6e75cf0ccad0b45ffb740a6ef833a49e887e4854b7a8e1d12e60532"
+    },
+    {
+      "path": "rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s3_fast5_1600/baseline_task2_step4000/shards/tasks/eval_E10/raw/evaluation_results.json",
+      "bytes": 5167222,
+      "sha256": "9dffa0c86b78aef4c4810206cc77675dab6866a2176178c904833fb67ea83e08"
+    },
+    {
+      "path": "rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s3_fast5_1600/baseline_task2_step4000/shards/tasks/eval_E10/receipt.json",
+      "bytes": 1199,
+      "sha256": "62b7cb2028ff9185389b3ee38ff1d06ba807c6ad466477774f669af64ccb174a"
+    },
+    {
+      "path": "rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s3_fast5_1600/baseline_task2_step4000/shards/worker_1795443990894754173.log",
+      "bytes": 1757,
+      "sha256": "2a4aa68accb897002deae2b7a63968bc5b80f1db670ef8c36985122978a79032"
+    },
+    {
+      "path": "rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s3_fast5_1600/baseline_task2_step4000/shards/worker_1795443990983243142.log",
+      "bytes": 1756,
+      "sha256": "618423c7fedd40b3c9a245f4055abb1a44a422b2fc4115a71e7d724a89e594d4"
+    },
+    {
+      "path": "rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s3_fast5_1600/baseline_task2_step4000/shards/worker_1795443991050231209.log",
+      "bytes": 1759,
+      "sha256": "393d4eddc19955a9a69bb6eb0bee118eb85e11f67276cbce5a74743f790c8916"
+    },
+    {
+      "path": "rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s3_fast5_1600/baseline_task2_step4000/shards/worker_1795443991118714383.log",
+      "bytes": 1756,
+      "sha256": "7faead765b04a0f17ce3e81915693cadcd9667245b012bae2c301be9ec66d4e2"
+    },
+    {
+      "path": "rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s3_fast5_1600/baseline_task2_step4000/shards/worker_1795443991186511415.log",
+      "bytes": 1761,
+      "sha256": "5c8408967a912f3bc53847b27e1f192a2b24db186981b934fc20e9fc9ca1a946"
+    },
+    {
+      "path": "rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s3_fast5_1600/baseline_task2_step4000/summary.json",
+      "bytes": 9340,
+      "sha256": "1ebcc5dd008a99156baf63d1e1d7b25b5747470d5a87a07d5d1ef0b8c27db5bd"
+    },
+    {
+      "path": "rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s3_fast5_1600/best_and_final_error.png",
+      "bytes": 25141,
+      "sha256": "685fa061fefb11a7a543b3b166e9158d6be88e29ffa701ea270c64d56bcd65f5"
+    },
+    {
+      "path": "rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s3_fast5_1600/error_curves_all.png",
+      "bytes": 141244,
+      "sha256": "2ae8cce62517f5792fcb43abfaa81ed3fada4971d0fe27a64ad6f9e05140425c"
+    },
+    {
+      "path": "rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s3_fast5_1600/selected_snapshot_recheck/shards/contract.json",
+      "bytes": 6409,
+      "sha256": "bac917b838acabd99f754fbc4d169f9798050e333f171edda39efb694a4ec951"
+    },
+    {
+      "path": "rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s3_fast5_1600/selected_snapshot_recheck/shards/partial_summary.json",
+      "bytes": 17796,
+      "sha256": "ad8bdabfbfd63ac11b781d2b044912dc841ca4235c31b18ce4da697145e52862"
+    },
+    {
+      "path": "rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s3_fast5_1600/selected_snapshot_recheck/shards/reuse_receipt.json",
+      "bytes": 432,
+      "sha256": "cf322b26f6d6ac9435239c53522275c124516c3d43391aa317e377593ddc3526"
+    },
+    {
+      "path": "rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s3_fast5_1600/selected_snapshot_recheck/shards/summary.json",
+      "bytes": 17796,
+      "sha256": "ad8bdabfbfd63ac11b781d2b044912dc841ca4235c31b18ce4da697145e52862"
+    },
+    {
+      "path": "rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s3_fast5_1600/selected_snapshot_recheck/shards/tasks/BEST_CKPT_E00/E00.json",
+      "bytes": 4747,
+      "sha256": "1ec13285c72c98c57c2780ecf95824f9aefa02735f1dcc28043928579bad97c6"
+    },
+    {
+      "path": "rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s3_fast5_1600/selected_snapshot_recheck/shards/tasks/BEST_CKPT_E00/partial_snapshot.json",
+      "bytes": 4458,
+      "sha256": "305c4d410bb01ea424d4fd475cede63487319cd67ad6bae85f089af6b147a294"
+    },
+    {
+      "path": "rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s3_fast5_1600/selected_snapshot_recheck/shards/tasks/BEST_CKPT_E00/receipt.json",
+      "bytes": 5748,
+      "sha256": "eb4a31584eede1a046028c85a3342f7e5c4c782d4f611dd7758dc139f894c18d"
+    },
+    {
+      "path": "rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s3_fast5_1600/selected_snapshot_recheck/shards/tasks/BEST_CKPT_E00/samples_1000.npz",
+      "bytes": 1185,
+      "sha256": "7dd70ba710b2f49495f4bd499c272538781a842e38016d226d7e5c720e8676cc"
+    },
+    {
+      "path": "rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s3_fast5_1600/selected_snapshot_recheck/shards/tasks/BEST_CKPT_E00/samples_1200.npz",
+      "bytes": 1180,
+      "sha256": "fc98f1c7101931eb87282a2333025b0bb419844ddf03a1fdcab5616a302cff8c"
+    },
+    {
+      "path": "rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s3_fast5_1600/selected_snapshot_recheck/shards/tasks/BEST_CKPT_E00/samples_800.npz",
+      "bytes": 1176,
+      "sha256": "1a0b319e45ef1de128ec080b203f716c6ebbf088aa8d201221c28dc9eff39047"
+    },
+    {
+      "path": "rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s3_fast5_1600/selected_snapshot_recheck/shards/tasks/BEST_CKPT_E08/E08.json",
+      "bytes": 4747,
+      "sha256": "ab14bac81b371128164eafa76742fcc0119655a8ec54c363e02a8d6f300a086d"
+    },
+    {
+      "path": "rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s3_fast5_1600/selected_snapshot_recheck/shards/tasks/BEST_CKPT_E08/partial_snapshot.json",
+      "bytes": 4458,
+      "sha256": "859e15965d2bc9b442c6736c1af10be7984b85fe9c93678bc26accea81699ede"
+    },
+    {
+      "path": "rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s3_fast5_1600/selected_snapshot_recheck/shards/tasks/BEST_CKPT_E08/receipt.json",
+      "bytes": 5748,
+      "sha256": "77e5479a456467fd9599df7fffd8dabefe78cf94a63c6b8988b560f18c9bdfbb"
+    },
+    {
+      "path": "rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s3_fast5_1600/selected_snapshot_recheck/shards/tasks/BEST_CKPT_E08/samples_1000.npz",
+      "bytes": 1186,
+      "sha256": "67f2e39d41380153193e9b5f217ee851a316e078f303806ff699fb74392cb168"
+    },
+    {
+      "path": "rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s3_fast5_1600/selected_snapshot_recheck/shards/tasks/BEST_CKPT_E08/samples_1200.npz",
+      "bytes": 1178,
+      "sha256": "b76f5a27a210a3132fc037b07d2ffb7d223a653a6f87181a6b548b494a55b0d2"
+    },
+    {
+      "path": "rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s3_fast5_1600/selected_snapshot_recheck/shards/tasks/BEST_CKPT_E08/samples_800.npz",
+      "bytes": 1186,
+      "sha256": "68e2b44b4b4637b53c351d27d98cfb800d353d9b73f55f135b8530a19ada10b6"
+    },
+    {
+      "path": "rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s3_fast5_1600/selected_snapshot_recheck/shards/tasks/BEST_CKPT_E10/E10.json",
+      "bytes": 4749,
+      "sha256": "e636918c79c676c9e5c3ab7cea7120d2da48ea668febdf7f05784552c018e7d4"
+    },
+    {
+      "path": "rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s3_fast5_1600/selected_snapshot_recheck/shards/tasks/BEST_CKPT_E10/partial_snapshot.json",
+      "bytes": 4459,
+      "sha256": "a10d5755bee1e09a58998f3b5525586aa7debd55f8bda5fb8a7365806fc17db5"
+    },
+    {
+      "path": "rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s3_fast5_1600/selected_snapshot_recheck/shards/tasks/BEST_CKPT_E10/receipt.json",
+      "bytes": 5750,
+      "sha256": "bd42079ed246a50edd49e2ae24c365be461478cd0278cd657a594d1800297585"
+    },
+    {
+      "path": "rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s3_fast5_1600/selected_snapshot_recheck/shards/tasks/BEST_CKPT_E10/samples_1000.npz",
+      "bytes": 1185,
+      "sha256": "7a1c7d611115b08a765b93f0c0fab1b1099ce3a6bf04f7065a1a1f5d47c93bc6"
+    },
+    {
+      "path": "rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s3_fast5_1600/selected_snapshot_recheck/shards/tasks/BEST_CKPT_E10/samples_1200.npz",
+      "bytes": 1185,
+      "sha256": "e30ee0331d90e556f727651cadbf1e2668a3db02010911740a9e7ea0146c0eb9"
+    },
+    {
+      "path": "rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s3_fast5_1600/selected_snapshot_recheck/shards/tasks/BEST_CKPT_E10/samples_800.npz",
+      "bytes": 1179,
+      "sha256": "da9db8c470f7e747bba496b675fc45e9d111ac7a260c592ae667bd9bded24c3c"
+    },
+    {
+      "path": "rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s3_fast5_1600/selected_snapshot_recheck/shards/worker_1795446495177060611.log",
+      "bytes": 57,
+      "sha256": "231a0852fed5284be40c791b62276112726ba69ca3c0315142f71074f93abf08"
+    },
+    {
+      "path": "rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s3_fast5_1600/selected_snapshot_recheck/shards/worker_1795446495261622165.log",
+      "bytes": 57,
+      "sha256": "231a0852fed5284be40c791b62276112726ba69ca3c0315142f71074f93abf08"
+    },
+    {
+      "path": "rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s3_fast5_1600/selected_snapshot_recheck/shards/worker_1795446495331268442.log",
+      "bytes": 57,
+      "sha256": "231a0852fed5284be40c791b62276112726ba69ca3c0315142f71074f93abf08"
+    },
+    {
+      "path": "rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s3_fast5_1600/selected_snapshot_recheck/snapshot_task2_vs_cleanoct.json",
+      "bytes": 14910,
+      "sha256": "ecdd8def9304055888079203490089ec57fdb3e6132e706508c50fedb8902603"
+    },
+    {
+      "path": "rcm_4090_deploy/github_reports/homog_label_fix_20261123_v3_s3_fast5_1600/summary.json",
+      "bytes": 54742,
+      "sha256": "93c9efaf191f06184ded52b3d683662769136ebc2ff48f3c9ddd0c1fa72577e7"
+    },
+    {
+      "path": "rcm_4090_deploy/outputs/homog_label_fix_20261123_v3/partial_summary.json",
+      "bytes": 1149,
+      "sha256": "9efb99c403bbb2bacac137b8e13b30584b357b0e826f871a015d017deb876509"
+    },
+    {
+      "path": "rcm_4090_deploy/outputs/homog_label_fix_20261123_v3/training_config.json",
+      "bytes": 2876,
+      "sha256": "c073325695d0a485314f5ae501f6440f1f345721fc4762883b534428432595a3"
+    },
+    {
+      "path": "rcm_4090_deploy/outputs/homog_label_fix_20261123_v3/training_contract.json",
+      "bytes": 14347,
+      "sha256": "f8fef66053a4142298ffd6d871957f936a6f46e7b5cdc520c32f6d12a32ae281"
+    },
+    {
+      "path": "rcm_4090_deploy/outputs/homog_label_fix_20261123_v3/training_history.json",
+      "bytes": 853,
+      "sha256": "2eec0772e7ecbda0c0b1587d7b1cf1776574776a824a23054f2a5f5d9a791940"
+    },
+    {
+      "path": "rcm_4090_deploy/outputs/homog_label_fix_20261123_v3/training_manifest.json",
+      "bytes": 759,
+      "sha256": "bc3588d32ef2ec8af863829a0b513a99ef6e1a1f4710f577e2c179789c347b4d"
+    },
+    {
+      "path": "rcm_4090_deploy/outputs/homog_label_fix_20261123_v3/training_metrics.jsonl",
+      "bytes": 779520,
+      "sha256": "86486219bf680b104a13ef473fb16b448230bac1f0c1de957a1d75807fb96d4a"
+    },
+    {
+      "path": "rcm_4090_deploy/outputs/homog_label_fix_20261123_v3/training_receipt.json",
+      "bytes": 2886,
+      "sha256": "4192d414177f961252c3763c5162e51753a07d52ab0cfeb4f9f135535f2ed27c"
+    },
+    {
+      "path": "rcm_4090_deploy/runs/20261123/homog_label_fix_workflow_v4/SUMMARY.md",
+      "bytes": 1173,
+      "sha256": "6287e65830273ae2120bbc42376ebad0680ffe17fb9f512123c3fd60a2dba6a3"
+    },
+    {
+      "path": "rcm_4090_deploy/runs/20261123/homog_label_fix_workflow_v4/execution_manifest.json",
+      "bytes": 13818,
+      "sha256": "e4e830681d012ecdbd15ee6731ad4ea31690faf1342c7556ea313c47db042887"
+    },
+    {
+      "path": "rcm_4090_deploy/runs/20261123/homog_label_fix_workflow_v4/launch_receipt.json",
+      "bytes": 986,
+      "sha256": "a110a1070f3583543933eccab65c286b4ea3e9faff75a84e9f4b55e298ad14ee"
+    },
+    {
+      "path": "rcm_4090_deploy/runs/20261123/homog_label_fix_workflow_v4/local_TEST_LOG_2c1ce6dff2975349.md",
+      "bytes": 5066260,
+      "sha256": "2c1ce6dff2975349a7b6df333a58777ced3e2f66a5048e5da1611e310b65bacb"
+    },
+    {
+      "path": "rcm_4090_deploy/runs/20261123/homog_label_fix_workflow_v4/preflight.json",
+      "bytes": 13840,
+      "sha256": "453142af4be7d17be4e6945c7d34035dc68c019e3c2c41b99c4a1184f538b6f0"
+    },
+    {
+      "path": "rcm_4090_deploy/runs/20261123/homog_label_fix_workflow_v4/retained_large_assets.json",
+      "bytes": 1392,
+      "sha256": "f0d95c0d5d2399fa2c3d16a106cfad56fa9bfacf36179e2dfe1063790b5632b9"
+    },
+    {
+      "path": "rcm_4090_deploy/runs/20261123/homog_label_fix_workflow_v4/stage_results.json",
+      "bytes": 70038,
+      "sha256": "405076431fcea2fcb36c719649afdce588401ab05e6b6b09f99b724a60083e35"
+    },
+    {
+      "path": "rcm_4090_deploy/runs/20261123/homog_label_fix_workflow_v4/terminal.log",
+      "bytes": 44850,
+      "sha256": "fd5ac2392e43aba937a645a2fc22731d723e9465d05cc46184f0f63b0ab572a1"
+    },
+    {
+      "path": "rcm_4090_deploy/runs/20261123/homog_label_fix_workflow_v4/workflow_status.json",
+      "bytes": 152,
+      "sha256": "bcb2e088a4750fdcde61f67ce18173e05cc2964aa66f19fdb8ed5265d694d519"
+    },
+    {
+      "path": "rcm_4090_deploy/scripts/research/homog_label_fix_common.py",
+      "bytes": 3601,
+      "sha256": "e5defc1059b706c8b3fd83928a7d8e7fea99408af7446d700002f1bc62205490"
+    },
+    {
+      "path": "rcm_4090_deploy/scripts/research/homog_label_fix_pipeline.py",
+      "bytes": 21222,
+      "sha256": "7557044a553a3ba3e661424e331faba3fb2c28c8e8e70de5fc949b363f050ff9"
+    },
+    {
+      "path": "rcm_4090_deploy/scripts/research/homog_label_fix_publish.py",
+      "bytes": 8060,
+      "sha256": "960c69a01db92c0de6eec40b4e10b44235491d47c9ae82651bbb535a77e47069"
+    },
+    {
+      "path": "rcm_4090_deploy/scripts/research/homog_label_fix_repair.py",
+      "bytes": 11624,
+      "sha256": "d33c79ea65ec218b2725a67c10da073632a440dd02da328a2116239ce4dd9d9c"
+    },
+    {
+      "path": "rcm_4090_deploy/scripts/tools/prepare_homog_label_fix.py",
+      "bytes": 394,
+      "sha256": "10537588b8753fada706c564fbc03a7560880cc9e252bfe3f0b961a647ea0e40"
+    },
+    {
+      "path": "rcm_4090_deploy/scripts/verification/verify_homog_label_fix.py",
+      "bytes": 8356,
+      "sha256": "80602195d5789c6648d02f6afeaf0db3ae39af8ea6e9e0efe7f70067ee365030"
+    },
+    {
+      "path": "规划6.txt",
+      "bytes": 5071,
+      "sha256": "f311cb130bb55871b638ddcb4e5bc6bb093c6369462142950ae84885b6071c8d"
+    }
+  ]
+}

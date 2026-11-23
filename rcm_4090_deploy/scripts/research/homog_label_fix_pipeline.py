@@ -21,6 +21,7 @@ from scripts.research.homog_label_fix_common import (
     asset_fingerprints, env_command, identity, read, record, write_json,
 )
 from scripts.research.homog_label_fix_repair import build_fixed_dataset
+from scripts.research.homog_replay_common import identity as evaluation_identity
 
 MODULE = 'scripts.research.homog_label_fix_pipeline'
 
@@ -120,6 +121,7 @@ def preflight(output):
         source_shape = {key: list(archive[key].shape) for key in archive.files}
     output.mkdir(parents=True)
     manifest = {'card': card(), 'identity': identity(), 'assets_sha256': asset_fingerprints(),
+        'evaluation_identity': evaluation_identity(),
         'source_dataset_sha256': source_hash, 'source_dataset_git_blob': blob,
         'branch_parent': branch_parent, 'source_shape': source_shape,
         'gpu': gpu, 'fixed_data': str(FIX_DATA), 'weights': str(WEIGHTS),
@@ -178,7 +180,9 @@ def late_c_rms(result):
 def evaluate_arm(checkpoint, samples, controller, destination, manifest):
     from scripts.research.homog_replay_evaluate import evaluate
     from scripts.research.homog_replay_pipeline import plots
-    result = evaluate(checkpoint, samples, controller, FAST5, destination, manifest)
+    evaluation_manifest = {**manifest, 'identity': manifest['evaluation_identity']}
+    result = evaluate(checkpoint, samples, controller, FAST5, destination,
+                      evaluation_manifest)
     plots(result, destination)
     result['hit_rates'] = {
         f'le_{threshold}_um': result[f'final_hits_le_{threshold}_um']/len(FAST5)
@@ -204,7 +208,7 @@ def stage3(trained, manifest):
     snapshot_dir = destination/'selected_snapshot_recheck'
     snapshot_dir.mkdir(exist_ok=True)
     snapshot = snapshots({'BEST_CKPT': selected_checkpoint}, snapshot_dir,
-                         manifest['identity'])['BEST_CKPT']
+                         manifest['evaluation_identity'])['BEST_CKPT']
     reverse_a = int(snapshot['axis_reverse_snapshot_counts']['A'])
     toward = float(snapshot['first_order_toward_fraction'])
     late_c = float(selected['late_C_rms_1200_to_1600_mm_per_step'])

@@ -15,15 +15,15 @@ from scripts.research.homog_replay_common import (
 BASE = 'cd22e10471f76807e2b1ce307db5d38903b40d30'
 BRANCH = 'feature/homog-label-fix-20261123'
 SOURCE_DATA = ROOT / 'data/homog_clean_replay_20261123_mixed_1600_600_12_hold_v2'
-FIX_DATA = ROOT / 'data/homog_clean_replay_fixed_labels_v2'
-WEIGHTS = ROOT / 'outputs/homog_label_fix_20261123_v2'
-WORKFLOW = ROOT / 'runs/20261123/homog_label_fix_workflow_v3'
+FIX_DATA = ROOT / 'data/homog_clean_replay_fixed_labels_v3'
+WEIGHTS = ROOT / 'outputs/homog_label_fix_20261123_v3'
+WORKFLOW = ROOT / 'runs/20261123/homog_label_fix_workflow_v4'
 SOURCE_REPO = ROOT / 'runs/20261123/homog_clean_git_v1/repository'
 REPORTS = (
-    ROOT / 'github_reports/homog_label_fix_20261123_v2_s1_audit',
-    ROOT / 'github_reports/homog_label_fix_20261123_v2_s2_train',
-    ROOT / 'github_reports/homog_label_fix_20261123_v2_s3_fast5_1600',
-    ROOT / 'github_reports/homog_label_fix_20261123_v2_s4_dev20',
+    ROOT / 'github_reports/homog_label_fix_20261123_v3_s1_audit',
+    ROOT / 'github_reports/homog_label_fix_20261123_v3_s2_train',
+    ROOT / 'github_reports/homog_label_fix_20261123_v3_s3_fast5_1600',
+    ROOT / 'github_reports/homog_label_fix_20261123_v3_s4_dev20',
 )
 TASK = ROOT.parent / '规划6.txt'
 FAST5 = (0, 2, 6, 8, 10)
