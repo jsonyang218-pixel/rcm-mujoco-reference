@@ -151,6 +151,19 @@ class StateConditionedDiTRectifiedFlowPolicy(_OriginalPolicy):
         nn.init.zeros_(self.oct_symlog_global[-1].weight)
         nn.init.zeros_(self.oct_symlog_global[-1].bias)
 
+    def normalize_oct_symlog(self, oct_feature):
+        """Canonical deployable OCT transform shared by train and eval."""
+        oct_float = oct_feature.float()
+        valid = (oct_float[..., 3:4] > 0.5).to(torch.float32)
+        oct_mm = torch.where(valid.bool(), oct_float[..., :3], 0.0)
+        oct_symlog = torch.sign(oct_mm) * torch.log1p(
+            torch.abs(oct_mm) / 0.001
+        )
+        scale = torch.log1p(
+            self.oct_std[:3].float() / 0.001
+        ).clamp_min(1.0)
+        return (oct_symlog / scale) * valid, valid
+
     def _condition(self, image, state, oct_feature, velocity, previous_action):
         condition_tokens, global_condition = super()._condition(
             image, state, oct_feature, velocity, previous_action
@@ -160,14 +173,7 @@ class StateConditionedDiTRectifiedFlowPolicy(_OriginalPolicy):
 
         device_type = oct_feature.device.type
         with torch.autocast(device_type=device_type, enabled=False):
-            oct_float = oct_feature.float()
-            valid = (oct_float[..., 3:4] > 0.5).to(torch.float32)
-            oct_mm = torch.where(valid.bool(), oct_float[..., :3], 0.0)
-            oct_symlog = torch.sign(oct_mm) * torch.log1p(
-                torch.abs(oct_mm) / 0.001
-            )
-            scale = torch.log1p(self.oct_std[:3].float() / 0.001).clamp_min(1.0)
-            oct_symlog = oct_symlog / scale
+            oct_symlog, valid = self.normalize_oct_symlog(oct_feature)
             geometry_residual = self.oct_symlog_geometry(oct_symlog)
             geometry_residual = geometry_residual * valid
             global_residual = self.oct_symlog_global(

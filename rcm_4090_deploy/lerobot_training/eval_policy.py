@@ -110,6 +110,7 @@ class PolicyEvaluator:
         terminal_refine_error_mm=None,
         terminal_confirm_frames=8,
         flow_integration_steps=None,
+        action_aggregation="median",
         measure_inference=False,
         controller_variant="feedback",
         rgbd_render_quality=None,
@@ -122,6 +123,11 @@ class PolicyEvaluator:
         if self.n_action_execute_steps < 1:
             raise ValueError("n_action_execute_steps must be at least 1")
         self.parallel_action_samples = bool(parallel_action_samples)
+        if action_aggregation not in ("median", "mean"):
+            raise ValueError(
+                "action aggregation must be 'median' or 'mean'"
+            )
+        self.action_aggregation = action_aggregation
         self.fine_model_path = (
             None
             if fine_model_path is None
@@ -769,7 +775,14 @@ class PolicyEvaluator:
                             )[0]
                         )
                 chunks = torch.stack(sampled_chunks, dim=0)
-            aggregated = chunks.median(dim=0).values if sample_count > 1 else chunks[0]
+            if sample_count > 1:
+                aggregated = (
+                    chunks.mean(dim=0)
+                    if self.action_aggregation == "mean"
+                    else chunks.median(dim=0).values
+                )
+            else:
+                aggregated = chunks[0]
             if timing_cuda:
                 timing_end.record(torch.cuda.current_stream(self.device))
                 timing_end.synchronize()
@@ -871,7 +884,11 @@ class PolicyEvaluator:
                     sampled_chunks.append(actions[0])
             chunks = torch.stack(sampled_chunks, dim=0)
         if sample_count > 1:
-            action_chunk = chunks.median(dim=0).values.cpu().numpy()
+            action_chunk = (
+                chunks.mean(dim=0)
+                if self.action_aggregation == "mean"
+                else chunks.median(dim=0).values
+            ).cpu().numpy()
         else:
             action_chunk = chunks[0].cpu().numpy()
 
@@ -1409,7 +1426,11 @@ class PolicyEvaluator:
                 'oct_navigation_used': self.use_oct,
                 'action_limit_deg_deg_mm': list(action_limit_deg_deg_mm),
                 'num_action_samples': self.num_action_samples,
-                'action_aggregation': 'median' if self.num_action_samples > 1 else 'single_sample',
+                'action_aggregation': (
+                    self.action_aggregation
+                    if self.num_action_samples > 1
+                    else 'single_sample'
+                ),
                 'flow_integration_steps': (
                     self.flow_integration_steps
                     if (
@@ -1495,6 +1516,11 @@ def main():
         help="Batch all diffusion samples in one GPU forward pass.",
     )
     parser.add_argument(
+        "--action-aggregation",
+        choices=("median", "mean"),
+        default="median",
+    )
+    parser.add_argument(
         "--settled-velocity-deg-deg-mm-per-s",
         type=float,
         nargs=3,
@@ -1552,6 +1578,7 @@ def main():
         terminal_refine_error_mm=args.terminal_refine_error_mm,
         terminal_confirm_frames=args.terminal_confirm_frames,
         flow_integration_steps=args.flow_integration_steps,
+        action_aggregation=args.action_aggregation,
         controller_variant=args.controller_variant,
     )
 

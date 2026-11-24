@@ -139,7 +139,7 @@ def choose_probe_rows(dataset, arrays):
     return selections, errors, derivative
 
 
-def normalized_scale_probe(checkpoint, config):
+def normalized_scale_probe(checkpoint, config, checkpoint_path=CHECKPOINT):
     cfg = checkpoint["config"]
     oct_std = np.asarray(cfg["oct_std"][:3], dtype=np.float64)
     offsets = {}
@@ -181,7 +181,7 @@ def normalized_scale_probe(checkpoint, config):
         normalization_channels[name] = cfg[name]
     raw_contract = read(FAST5_RAW)["evaluation_contract"]
     return {
-        "checkpoint": str(CHECKPOINT),
+        "checkpoint": str(checkpoint_path),
         "checkpoint_epoch": int(checkpoint["epoch"]),
         "policy_type": checkpoint["policy_type"],
         "architecture": checkpoint["architecture"],
@@ -604,6 +604,7 @@ def main(argv=None):
     started = time.monotonic()
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--output-dir", type=Path, default=DEFAULT_OUTPUT)
+    parser.add_argument("--checkpoint", type=Path, default=CHECKPOINT)
     parser.add_argument("--device", default="cuda")
     args = parser.parse_args(argv)
     output = args.output_dir.resolve()
@@ -615,9 +616,14 @@ def main(argv=None):
         image_transform_for_dataset,
     )
 
-    checkpoint = torch.load(CHECKPOINT, map_location="cpu", weights_only=False)
+    checkpoint_path = args.checkpoint.resolve()
+    checkpoint = torch.load(
+        checkpoint_path, map_location="cpu", weights_only=False
+    )
     config = read(CONFIG_PATH)
-    probe1 = normalized_scale_probe(checkpoint, config)
+    probe1 = normalized_scale_probe(
+        checkpoint, config, checkpoint_path=checkpoint_path,
+    )
     arrays = load_arrays()
     dataset = RCMDataset(
         REPLAY_DATA,
@@ -638,7 +644,7 @@ def main(argv=None):
         dataset_index_by_row[row] for row in selected_rows
     ]
     model, _, _ = _load_policy(
-        CHECKPOINT,
+        checkpoint_path,
         torch.device(args.device),
         oct_symlog_enabled=bool(
             checkpoint["config"].get("oct_symlog_enabled", False)

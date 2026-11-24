@@ -95,11 +95,13 @@ def evaluate(
     *,
     workers=12,
     max_workers=None,
+    action_aggregation="median",
 ):
     destination = Path(destination)
     destination.mkdir(parents=True, exist_ok=True)
     spec = {'checkpoint': str(checkpoint), 'checkpoint_sha256': file_sha256(checkpoint),
             'samples': samples, 'controller': controller, 'quality': QUALITY,
+            'action_aggregation': action_aggregation,
             'identity': manifest['identity'], 'steps': STEPS,
             'late_drift_start': LATE_DRIFT_START, 'stop_on_success': False}
     groups = {'eval': {'factory': __name__ + ':EvaluationWorker', 'spec': spec,

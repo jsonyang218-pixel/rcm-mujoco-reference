@@ -160,6 +160,7 @@ class EvaluationWorker:
         self.evaluator = PolicyEvaluator(spec['checkpoint'], device='cuda',
             num_action_samples=spec['samples'], n_action_execute_steps=1,
             flow_integration_steps=4, measure_inference=True,
+            action_aggregation=spec.get('action_aggregation', 'median'),
             controller_variant=spec['controller'], rgbd_render_quality=QUALITY.copy())
         self.targets = read(TARGETS)['targets']
 
