@@ -1,0 +1,501 @@
+{
+  "protocol": "G10 50ms physical backend",
+  "scope": "Final-pose +/-one-handle endpoint and50ms displacements; local protocol floor, no global/hardware precision claim",
+  "episodes": [
+    {
+      "episode_index": 0,
+      "state_si": [
+        -0.2175552912610932,
+        -0.043458672121358316,
+        0.019404987743448374
+      ],
+      "driver": {
+        "variant": "g10",
+        "control_gear": 10,
+        "kinematics_path": "/home/him1/mujoco_bc/rcm_4090_deploy/mujoco_model/vendor/simulation_driver/ros_msg/src/robot_control/kinematics.py",
+        "kinematics_sha256": "e48eb4a909208e8d1caa3ee2a7aff157de91c808730282dd17ccb17a46591530"
+      },
+      "one_handle_steps": {
+        "A": {
+          "-1": {
+            "endpoint_tip_displacement_um": 5.6472008817950226,
+            "after_one_50ms_packet_tip_displacement_um": 4.2354006662190296,
+            "target_robot_ABCE": [
+              -6933,
+              1255299,
+              2131997,
+              0
+            ]
+          },
+          "1": {
+            "endpoint_tip_displacement_um": 5.647200881807212,
+            "after_one_50ms_packet_tip_displacement_um": 4.235400666232644,
+            "target_robot_ABCE": [
+              -6917,
+              1255299,
+              2131997,
+              0
+            ]
+          }
+        },
+        "B": {
+          "-1": {
+            "endpoint_tip_displacement_um": 3.061775893458121,
+            "after_one_50ms_packet_tip_displacement_um": 2.184853986174815,
+            "target_robot_ABCE": [
+              -6925,
+              1254674,
+              2131997,
+              0
+            ]
+          },
+          "1": {
+            "endpoint_tip_displacement_um": 3.0614893550953513,
+            "after_one_50ms_packet_tip_displacement_um": 2.1847080736505533,
+            "target_robot_ABCE": [
+              -6925,
+              1255924,
+              2131997,
+              0
+            ]
+          }
+        },
+        "C": {
+          "-1": {
+            "endpoint_tip_displacement_um": 1.175130204629393,
+            "after_one_50ms_packet_tip_displacement_um": 0.8460937473537632,
+            "target_robot_ABCE": [
+              -6925,
+              1255299,
+              2131922,
+              0
+            ]
+          },
+          "1": {
+            "endpoint_tip_displacement_um": 1.1751302047081633,
+            "after_one_50ms_packet_tip_displacement_um": 0.8460937473537632,
+            "target_robot_ABCE": [
+              -6925,
+              1255299,
+              2132072,
+              0
+            ]
+          }
+        }
+      },
+      "local_jacobian_mm_per_task_si": [
+        [
+          1.7566798533152903,
+          -18.626844209279625,
+          600.426185400238
+        ],
+        [
+          21.939848445740036,
+          -1.4139802390289444,
+          -207.21601145545776
+        ],
+        [
+          -4.52056318636096,
+          -14.100878905765056,
+          -772.366441850636
+        ]
+      ]
+    },
+    {
+      "episode_index": 2,
+      "state_si": [
+        -0.1943389215510646,
+        -0.09867113437748687,
+        0.019405786831987553
+      ],
+      "driver": {
+        "variant": "g10",
+        "control_gear": 10,
+        "kinematics_path": "/home/him1/mujoco_bc/rcm_4090_deploy/mujoco_model/vendor/simulation_driver/ros_msg/src/robot_control/kinematics.py",
+        "kinematics_sha256": "e48eb4a909208e8d1caa3ee2a7aff157de91c808730282dd17ccb17a46591530"
+      },
+      "one_handle_steps": {
+        "A": {
+          "-1": {
+            "endpoint_tip_displacement_um": 5.547927363134522,
+            "after_one_50ms_packet_tip_displacement_um": 4.160945527144893,
+            "target_robot_ABCE": [
+              -6194,
+              997005,
+              2132048,
+              0
+            ]
+          },
+          "1": {
+            "endpoint_tip_displacement_um": 5.547927363140797,
+            "after_one_50ms_packet_tip_displacement_um": 4.160945527142942,
+            "target_robot_ABCE": [
+              -6178,
+              997005,
+              2132048,
+              0
+            ]
+          }
+        },
+        "B": {
+          "-1": {
+            "endpoint_tip_displacement_um": 3.0658272448995203,
+            "after_one_50ms_packet_tip_displacement_um": 2.1854537183595646,
+            "target_robot_ABCE": [
+              -6186,
+              996406,
+              2132048,
+              0
+            ]
+          },
+          "1": {
+            "endpoint_tip_displacement_um": 3.065477380923507,
+            "after_one_50ms_packet_tip_displacement_um": 2.1852759308624408,
+            "target_robot_ABCE": [
+              -6186,
+              997604,
+              2132048,
+              0
+            ]
+          }
+        },
+        "C": {
+          "-1": {
+            "endpoint_tip_displacement_um": 1.1751302046677732,
+            "after_one_50ms_packet_tip_displacement_um": 0.8460937474097551,
+            "target_robot_ABCE": [
+              -6186,
+              997005,
+              2131973,
+              0
+            ]
+          },
+          "1": {
+            "endpoint_tip_displacement_um": 1.175130204626559,
+            "after_one_50ms_packet_tip_displacement_um": 0.8460937473257097,
+            "target_robot_ABCE": [
+              -6186,
+              997005,
+              2132123,
+              0
+            ]
+          }
+        }
+      },
+      "local_jacobian_mm_per_task_si": [
+        [
+          1.5440964688195888,
+          -17.8101834080735,
+          645.0515131461998
+        ],
+        [
+          21.658961420811806,
+          -1.5026912651094901,
+          -182.13369242836563
+        ],
+        [
+          -3.973510396804158,
+          -15.111920563981583,
+          -742.1158019269569
+        ]
+      ]
+    },
+    {
+      "episode_index": 6,
+      "state_si": [
+        -0.12566370614359174,
+        0.06855705593889921,
+        0.0197342748952017
+      ],
+      "driver": {
+        "variant": "g10",
+        "control_gear": 10,
+        "kinematics_path": "/home/him1/mujoco_bc/rcm_4090_deploy/mujoco_model/vendor/simulation_driver/ros_msg/src/robot_control/kinematics.py",
+        "kinematics_sha256": "e48eb4a909208e8d1caa3ee2a7aff157de91c808730282dd17ccb17a46591530"
+      },
+      "one_handle_steps": {
+        "A": {
+          "-1": {
+            "endpoint_tip_displacement_um": 5.877392406895248,
+            "after_one_50ms_packet_tip_displacement_um": 4.4080443102473925,
+            "target_robot_ABCE": [
+              -4008,
+              1809308,
+              2153013,
+              0
+            ]
+          },
+          "1": {
+            "endpoint_tip_displacement_um": 5.877392406896476,
+            "after_one_50ms_packet_tip_displacement_um": 4.40804431024324,
+            "target_robot_ABCE": [
+              -3992,
+              1809308,
+              2153013,
+              0
+            ]
+          }
+        },
+        "B": {
+          "-1": {
+            "endpoint_tip_displacement_um": 3.10614538865218,
+            "after_one_50ms_packet_tip_displacement_um": 2.215326796757084,
+            "target_robot_ABCE": [
+              -4000,
+              1808642,
+              2153013,
+              0
+            ]
+          },
+          "1": {
+            "endpoint_tip_displacement_um": 3.105977911513196,
+            "after_one_50ms_packet_tip_displacement_um": 2.215241605622655,
+            "target_robot_ABCE": [
+              -4000,
+              1809974,
+              2153013,
+              0
+            ]
+          }
+        },
+        "C": {
+          "-1": {
+            "endpoint_tip_displacement_um": 1.1751302046509844,
+            "after_one_50ms_packet_tip_displacement_um": 0.8460937473637598,
+            "target_robot_ABCE": [
+              -4000,
+              1809308,
+              2152938,
+              0
+            ]
+          },
+          "1": {
+            "endpoint_tip_displacement_um": 1.1751302046799428,
+            "after_one_50ms_packet_tip_displacement_um": 0.8460937473635404,
+            "target_robot_ABCE": [
+              -4000,
+              1809308,
+              2153088,
+              0
+            ]
+          }
+        }
+      },
+      "local_jacobian_mm_per_task_si": [
+        [
+          1.0616270316177179,
+          -20.340453636435996,
+          513.300213981438
+        ],
+        [
+          23.201000664840873,
+          -0.5081609572243906,
+          -123.49094321617571
+        ],
+        [
+          -2.7319446246565344,
+          -12.219800450452565,
+          -849.2778563322645
+        ]
+      ]
+    },
+    {
+      "episode_index": 8,
+      "state_si": [
+        -0.10681415022205297,
+        -0.15643241462208918,
+        0.01948046243939412
+      ],
+      "driver": {
+        "variant": "g10",
+        "control_gear": 10,
+        "kinematics_path": "/home/him1/mujoco_bc/rcm_4090_deploy/mujoco_model/vendor/simulation_driver/ros_msg/src/robot_control/kinematics.py",
+        "kinematics_sha256": "e48eb4a909208e8d1caa3ee2a7aff157de91c808730282dd17ccb17a46591530"
+      },
+      "one_handle_steps": {
+        "A": {
+          "-1": {
+            "endpoint_tip_displacement_um": 5.4430888269158855,
+            "after_one_50ms_packet_tip_displacement_um": 4.082316624889375,
+            "target_robot_ABCE": [
+              -3408,
+              739802,
+              2136814,
+              0
+            ]
+          },
+          "1": {
+            "endpoint_tip_displacement_um": 5.4430888269202855,
+            "after_one_50ms_packet_tip_displacement_um": 4.08231662488324,
+            "target_robot_ABCE": [
+              -3392,
+              739802,
+              2136814,
+              0
+            ]
+          }
+        },
+        "B": {
+          "-1": {
+            "endpoint_tip_displacement_um": 3.0714368437554764,
+            "after_one_50ms_packet_tip_displacement_um": 2.192290078327755,
+            "target_robot_ABCE": [
+              -3400,
+              739236,
+              2136814,
+              0
+            ]
+          },
+          "1": {
+            "endpoint_tip_displacement_um": 3.0710166905063625,
+            "after_one_50ms_packet_tip_displacement_um": 2.1920760173353733,
+            "target_robot_ABCE": [
+              -3400,
+              740368,
+              2136814,
+              0
+            ]
+          }
+        },
+        "C": {
+          "-1": {
+            "endpoint_tip_displacement_um": 1.175130204660504,
+            "after_one_50ms_packet_tip_displacement_um": 0.8460937473644541,
+            "target_robot_ABCE": [
+              -3400,
+              739802,
+              2136739,
+              0
+            ]
+          },
+          "1": {
+            "endpoint_tip_displacement_um": 1.1751302047002055,
+            "after_one_50ms_packet_tip_displacement_um": 0.8460937473633442,
+            "target_robot_ABCE": [
+              -3400,
+              739802,
+              2136889,
+              0
+            ]
+          }
+        }
+      },
+      "local_jacobian_mm_per_task_si": [
+        [
+          0.8363134924138648,
+          -16.919710594720527,
+          692.2886224174363
+        ],
+        [
+          21.533932640860343,
+          -0.9671151773638086,
+          -98.33351534460633
+        ],
+        [
+          -2.1521326033280275,
+          -16.251775227260623,
+          -714.8894900694813
+        ]
+      ]
+    },
+    {
+      "episode_index": 10,
+      "state_si": [
+        -0.09028937286417066,
+        0.12706593534251845,
+        0.0197017316227335
+      ],
+      "driver": {
+        "variant": "g10",
+        "control_gear": 10,
+        "kinematics_path": "/home/him1/mujoco_bc/rcm_4090_deploy/mujoco_model/vendor/simulation_driver/ros_msg/src/robot_control/kinematics.py",
+        "kinematics_sha256": "e48eb4a909208e8d1caa3ee2a7aff157de91c808730282dd17ccb17a46591530"
+      },
+      "one_handle_steps": {
+        "A": {
+          "-1": {
+            "endpoint_tip_displacement_um": 5.918795202374513,
+            "after_one_50ms_packet_tip_displacement_um": 4.439096406895559,
+            "target_robot_ABCE": [
+              -2882,
+              2110211,
+              2150936,
+              0
+            ]
+          },
+          "1": {
+            "endpoint_tip_displacement_um": 5.918795202388564,
+            "after_one_50ms_packet_tip_displacement_um": 4.4390964069014975,
+            "target_robot_ABCE": [
+              -2866,
+              2110211,
+              2150936,
+              0
+            ]
+          }
+        },
+        "B": {
+          "-1": {
+            "endpoint_tip_displacement_um": 3.1015859225887312,
+            "after_one_50ms_packet_tip_displacement_um": 2.2108402166440566,
+            "target_robot_ABCE": [
+              -2874,
+              2109532,
+              2150936,
+              0
+            ]
+          },
+          "1": {
+            "endpoint_tip_displacement_um": 3.1014841408310785,
+            "after_one_50ms_packet_tip_displacement_um": 2.210788501151138,
+            "target_robot_ABCE": [
+              -2874,
+              2110890,
+              2150936,
+              0
+            ]
+          }
+        },
+        "C": {
+          "-1": {
+            "endpoint_tip_displacement_um": 1.1751302047042282,
+            "after_one_50ms_packet_tip_displacement_um": 0.8460937473712768,
+            "target_robot_ABCE": [
+              -2874,
+              2110211,
+              2150861,
+              0
+            ]
+          },
+          "1": {
+            "endpoint_tip_displacement_um": 1.175130204728295,
+            "after_one_50ms_packet_tip_displacement_um": 0.8460937473951841,
+            "target_robot_ABCE": [
+              -2874,
+              2110211,
+              2151011,
+              0
+            ]
+          }
+        }
+      },
+      "local_jacobian_mm_per_task_si": [
+        [
+          0.7691317705393884,
+          -20.985529479844445,
+          463.6798356898453
+        ],
+        [
+          23.45421085134802,
+          -0.2413216695806852,
+          -89.59005082331828
+        ],
+        [
+          -1.9792501007032113,
+          -11.014599320446903,
+          -881.4616456618296
+        ]
+      ]
+    }
+  ]
+}

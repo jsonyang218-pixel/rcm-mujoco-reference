@@ -1,4 +1,4 @@
-"""Build v4 label-repair datasets without changing observations or images."""
+"""Build label-repair datasets without changing observations or images."""
 from __future__ import annotations
 
 import argparse
@@ -103,20 +103,39 @@ def repair_arrays(arrays, mode='compat_v3'):
     }, stationary_t3
 
 
-def repair_sample_weights(arrays, mode, stationary_t3):
-    """Return per-frame and per-window correction weights for a v4 arm."""
+def repair_sample_weights(
+    arrays,
+    mode,
+    stationary_t3,
+    t3_stationary_weight=None,
+):
+    """Return per-frame sample weights for an independent correction arm."""
     sample_count = len(np.asarray(
         arrays['state'] if 'state' in arrays else arrays['state_si']
     ))
     if mode == 'compat_v3':
+        if t3_stationary_weight is not None:
+            raise ValueError(
+                'compatibility mode does not accept a T3 stationary weight'
+            )
         return np.ones(sample_count, dtype=np.float32)
+    if t3_stationary_weight is None:
+        t3_stationary_weight = OUTER_WEIGHT[mode]['T3_stationary']
+    t3_stationary_weight = float(t3_stationary_weight)
+    if (
+        not np.isfinite(t3_stationary_weight)
+        or t3_stationary_weight < 0
+    ):
+        raise ValueError(
+            'T3 stationary sample weight must be finite and nonnegative'
+        )
     t1, t2, _ = _regime_masks(arrays)
     policy = OUTER_WEIGHT[mode]
     weights = np.full(sample_count, policy.get('default', 1.),
                       dtype=np.float32)
     if mode == 't3_only':
         weights[t1 | t2] = policy['T1_T2']
-    weights[np.asarray(stationary_t3, dtype=np.bool_)] = policy['T3_stationary']
+    weights[np.asarray(stationary_t3, dtype=np.bool_)] = t3_stationary_weight
     return weights
 
 
@@ -165,7 +184,12 @@ def _arrays_equal(left, right):
             and np.array_equal(np.asarray(left), np.asarray(right), equal_nan=True))
 
 
-def build_fixed_dataset(output, fixed_data=None, mode='compat_v3'):
+def build_fixed_dataset(
+    output,
+    fixed_data=None,
+    mode='compat_v3',
+    t3_stationary_weight=None,
+):
     fixed_data = FIX_DATA if fixed_data is None else Path(fixed_data)
     source_dataset = SOURCE_DATA / 'data/dataset.npz'
     source_sha = file_sha256(source_dataset)
@@ -173,7 +197,23 @@ def build_fixed_dataset(output, fixed_data=None, mode='compat_v3'):
         arrays = {key: archive[key].copy() for key in archive.files}
     validate_dataset_contract(arrays, require_history=True)
     actions, counts, stationary_t3 = repair_arrays(arrays, mode)
-    sample_weights = repair_sample_weights(arrays, mode, stationary_t3)
+    configured_t3_weight = (
+        float(t3_stationary_weight)
+        if t3_stationary_weight is not None
+        else (
+            float(OUTER_WEIGHT[mode]['T3_stationary'])
+            if mode != 'compat_v3'
+            else 1.
+        )
+    )
+    sample_weights = repair_sample_weights(
+        arrays,
+        mode,
+        stationary_t3,
+        t3_stationary_weight=(
+            t3_stationary_weight if mode != 'compat_v3' else None
+        ),
+    )
     repaired = {**arrays, 'action': actions, 'correction_sample_weight': sample_weights}
     validate_dataset_contract(repaired, require_history=True)
     valid, diagnostics, continuity, failures = valid_window_audit(repaired)
@@ -197,8 +237,26 @@ def build_fixed_dataset(output, fixed_data=None, mode='compat_v3'):
         (counts['t1_fallback_frames'] + counts['t2_fallback_frames'])
         / max(1, counts['t1_frames'] + counts['t2_frames'])
     )
-    kept_fraction = float(np.mean(sample_weights[stationary] > 0)
-                          if stationary.any() else 0.)
+    nonzero_weight_fraction = float(np.mean(sample_weights[stationary] > 0)
+                                    if stationary.any() else 0.)
+    empirical_stationary_fraction = float(
+        stationary_t3.sum() / max(1, int(t3.sum()))
+    )
+    window_stationary = np.asarray([
+        np.count_nonzero(stationary_t3[index:index + 16])
+        for index in valid
+    ], dtype=np.int64)
+    weighted_window_mass = float(np.sum(
+        valid_weights.astype(np.float64)
+        * window_stationary.astype(np.float64)
+    ))
+    weighted_action_frame_mass = float(np.sum(
+        valid_weights.astype(np.float64) * 16.
+    ))
+    theoretical_weighted_stationary_fraction = (
+        weighted_window_mass / weighted_action_frame_mass
+        if weighted_action_frame_mass > 0. else 0.
+    )
     directed_t2 = _direction_with_executed_norm(
         np.asarray(arrays['action'][t2], dtype=np.float64),
         np.asarray(arrays['executed_action'][t2], dtype=np.float64),
@@ -231,10 +289,10 @@ def build_fixed_dataset(output, fixed_data=None, mode='compat_v3'):
     if mode == 't3_only':
         expected_weights = np.ones(len(actions), dtype=np.float32)
         expected_weights[t1_t2] = 0.
-        expected_weights[stationary] = .30
+        expected_weights[stationary] = configured_t3_weight
     elif mode in ('executed_only', 'dir_consistent'):
         expected_weights = np.ones(len(actions), dtype=np.float32)
-        expected_weights[stationary] = .25
+        expected_weights[stationary] = configured_t3_weight
     else:
         expected_weights = np.ones(len(actions), dtype=np.float32)
     preserved_keys = sorted(set(arrays) - {'action'})
@@ -291,16 +349,33 @@ def build_fixed_dataset(output, fixed_data=None, mode='compat_v3'):
         'status': 'passed' if passed else 'failed',
         'source_dataset': str(source_dataset), 'source_dataset_sha256': source_sha,
         'mode': mode,
+        't3_stationary_weight': configured_t3_weight,
         't1_t2_fallback_fraction': fallback_fraction,
-        't3_stationary_kept_fraction': kept_fraction,
+        # kept_fraction is retained for v4 readers. It only proves a nonzero
+        # weight and must not be presented as evidence that downsampling worked.
+        't3_stationary_kept_fraction': nonzero_weight_fraction,
+        'nonzero_weight_fraction': nonzero_weight_fraction,
+        'empirical_t3_stationary_action_fraction': (
+            empirical_stationary_fraction
+        ),
+        't3_stationary_action_frames': int(stationary_t3.sum()),
+        't3_action_frames': int(t3.sum()),
+        'theoretical_weighted_t3_stationary_action_fraction': (
+            theoretical_weighted_stationary_fraction
+        ),
         'correction_sample_weight': {
             'kind': 'per_frame_then_mean_over_16_action_steps',
+            't3_stationary_weight': configured_t3_weight,
             'values': (sorted(float(value) for value in np.unique(sample_weights))),
             'window_min': float(valid_weights.min()) if len(valid_weights) else None,
             'window_max': float(valid_weights.max()) if len(valid_weights) else None,
             'window_mean': float(valid_weights.mean()) if len(valid_weights) else None,
             'nonzero_windows': int(np.sum(valid_weights > 0)),
             'zero_windows': int(np.sum(valid_weights == 0)),
+            'stationary_windows': int(np.sum(window_stationary > 0)),
+            'stationary_action_frames_in_valid_windows': int(
+                window_stationary.sum()
+            ),
         },
         'framing': 'Independent corrected action array; RGB, OCT, state, history and continuity untouched',
         'counts': counts, 'gates': gates, 'axes': axes,
@@ -356,6 +431,7 @@ def build_fixed_dataset(output, fixed_data=None, mode='compat_v3'):
         correction_sample_weight=sample_weights,
         correction_window_indices=valid.astype(np.int64),
         correction_window_weight=valid_weights,
+        t3_stationary_weight=np.asarray(configured_t3_weight),
         t1_t2_fallback=fallback_mask,
         mode=np.asarray(mode),
         source_dataset_sha256=np.asarray(source_sha))
@@ -364,19 +440,35 @@ def build_fixed_dataset(output, fixed_data=None, mode='compat_v3'):
     os.symlink(SOURCE_DATA / 'shards', fixed_data / 'shards', target_is_directory=True)
     metadata = read(SOURCE_DATA / 'metadata.json')
     metadata.update({
-        'action_source': 'homog_label_fix_20261124_v4',
+        'action_source': 'homog_label_fix_20261124_v5',
         'history_action_source': 'executed_action',
         'mode': mode,
+        't3_stationary_weight': configured_t3_weight,
         't1_t2_fallback_fraction': fallback_fraction,
-        't3_stationary_kept_fraction': kept_fraction,
+        't3_stationary_kept_fraction': nonzero_weight_fraction,
+        'nonzero_weight_fraction': nonzero_weight_fraction,
+        'empirical_t3_stationary_action_fraction': (
+            empirical_stationary_fraction
+        ),
+        'theoretical_weighted_t3_stationary_action_fraction': (
+            theoretical_weighted_stationary_fraction
+        ),
         'correction_sample_weight': audit['correction_sample_weight'],
         'label_repair': {
             'source_dataset_sha256': source_sha,
             'source_labels_sha256': file_sha256(SOURCE_DATA / 'data/dataset.npz'),
             'T1': audit['T1_rule'], 'T2': audit['T2_rule'], 'T3': audit['T3_rule'],
             'mode': mode,
+            't3_stationary_weight': configured_t3_weight,
             't1_t2_fallback_fraction': fallback_fraction,
-            't3_stationary_kept_fraction': kept_fraction,
+            't3_stationary_kept_fraction': nonzero_weight_fraction,
+            'nonzero_weight_fraction': nonzero_weight_fraction,
+            'empirical_t3_stationary_action_fraction': (
+                empirical_stationary_fraction
+            ),
+            'theoretical_weighted_t3_stationary_action_fraction': (
+                theoretical_weighted_stationary_fraction
+            ),
             'correction_sample_weight': audit['correction_sample_weight'],
             'images': 'Read-only symlink; no image or OCT rewritten',
         },
@@ -395,6 +487,7 @@ def build_fixed_dataset(output, fixed_data=None, mode='compat_v3'):
     write_json(fixed_data / 'dataset_audit.json', audit)
     receipt = {
         'status': 'completed', 'mode': mode, 'source_data': str(SOURCE_DATA),
+        't3_stationary_weight': configured_t3_weight,
         'fixed_data': str(fixed_data), 'source_dataset_sha256': source_sha,
         'fixed_dataset_sha256': file_sha256(fixed_data / 'data/dataset.npz'),
         'overlay_sha256': file_sha256(fixed_data / 'data/label_repair_overlay.npz'),
@@ -403,6 +496,13 @@ def build_fixed_dataset(output, fixed_data=None, mode='compat_v3'):
         'valid_window_index_sha256': file_sha256(
             fixed_data / 'data/valid_window_indices.npz'),
         'correction_sample_weight': audit['correction_sample_weight'],
+        'nonzero_weight_fraction': nonzero_weight_fraction,
+        'empirical_t3_stationary_action_fraction': (
+            empirical_stationary_fraction
+        ),
+        'theoretical_weighted_t3_stationary_action_fraction': (
+            theoretical_weighted_stationary_fraction
+        ),
         'audit': str(output / 'label_fix_audit.json'),
     }
     write_json(fixed_data / 'dataset_receipt.json', receipt)
@@ -414,7 +514,14 @@ def build_fixed_dataset(output, fixed_data=None, mode='compat_v3'):
         'T3_stationary_frames': counts['t3_stationary_frames'],
         'T2_norm_ratio_median': t2_ratio,
         't1_t2_fallback_fraction': fallback_fraction,
-        't3_stationary_kept_fraction': kept_fraction,
+        't3_stationary_kept_fraction': nonzero_weight_fraction,
+        'nonzero_weight_fraction': nonzero_weight_fraction,
+        'empirical_t3_stationary_action_fraction': (
+            empirical_stationary_fraction
+        ),
+        'theoretical_weighted_t3_stationary_action_fraction': (
+            theoretical_weighted_stationary_fraction
+        ),
         'axis_reverse_fractions': audit['axis_reverse_fractions'],
         'valid_windows': len(valid),
     })
@@ -426,9 +533,11 @@ def main(argv=None):
     parser.add_argument('--mode', choices=MODES, default='compat_v3')
     parser.add_argument('--output-dir', type=Path, required=True)
     parser.add_argument('--fixed-data', type=Path, required=True)
+    parser.add_argument('--t3-stationary-weight', type=float)
     args = parser.parse_args(argv)
     audit, receipt = build_fixed_dataset(
         args.output_dir.resolve(), args.fixed_data.resolve(), args.mode,
+        t3_stationary_weight=args.t3_stationary_weight,
     )
     print(json.dumps({'audit': audit, 'receipt': receipt}, ensure_ascii=False))
 

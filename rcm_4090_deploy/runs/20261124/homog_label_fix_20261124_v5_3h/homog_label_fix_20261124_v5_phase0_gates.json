@@ -1,0 +1,149 @@
+{
+  "status": "completed",
+  "datasets": {
+    "A": {
+      "status": "passed",
+      "dataset": "/home/him1/mujoco_bc/rcm_4090_deploy/data/homog_label_fix_20261124_v5_A_t3_w025",
+      "dataset_sha256": "67cd04157444fab90ff526f0d62871664139a7fd254ceb131288e894ac9a1ea6",
+      "mode": "t3_only",
+      "t3_stationary_weight": 0.25,
+      "valid_windows": 41422,
+      "nonzero_weight_fraction": 1.0,
+      "empirical_t3_stationary_action_fraction": 0.9745,
+      "theoretical_weighted_t3_stationary_action_fraction": 0.966111535444449,
+      "correction_sample_weight": {
+        "kind": "per_frame_then_mean_over_16_action_steps",
+        "t3_stationary_weight": 0.25,
+        "values": [
+          0.0,
+          0.25,
+          1.0
+        ],
+        "window_min": 0.0,
+        "window_max": 0.953125,
+        "window_mean": 0.07309219986200333,
+        "nonzero_windows": 11680,
+        "zero_windows": 29742,
+        "stationary_windows": 11680,
+        "stationary_action_frames_in_valid_windows": 184584
+      }
+    },
+    "B": {
+      "status": "passed",
+      "dataset": "/home/him1/mujoco_bc/rcm_4090_deploy/data/homog_label_fix_20261124_v5_B_executed_w025",
+      "dataset_sha256": "bb7ff1116f0fc0dc08ef42ebe865535872d6bda7d247690767efc7485d1f5208",
+      "mode": "executed_only",
+      "t3_stationary_weight": 0.25,
+      "valid_windows": 41422,
+      "nonzero_weight_fraction": 1.0,
+      "empirical_t3_stationary_action_fraction": 0.9745,
+      "theoretical_weighted_t3_stationary_action_fraction": 0.08926020476279481,
+      "correction_sample_weight": {
+        "kind": "per_frame_then_mean_over_16_action_steps",
+        "t3_stationary_weight": 0.25,
+        "values": [
+          0.25,
+          1.0
+        ],
+        "window_min": 0.25,
+        "window_max": 1.0,
+        "window_mean": 0.7911164164543152,
+        "nonzero_windows": 41422,
+        "zero_windows": 0,
+        "stationary_windows": 11680,
+        "stationary_action_frames_in_valid_windows": 184584
+      }
+    },
+    "C": {
+      "status": "passed",
+      "dataset": "/home/him1/mujoco_bc/rcm_4090_deploy/data/homog_label_fix_20261124_v5_C_t3_w010",
+      "dataset_sha256": "d07e29356db48acf717687d8ff3458e3284a73b28589e63ed3719dde9bfb4d76",
+      "mode": "t3_only",
+      "t3_stationary_weight": 0.1,
+      "valid_windows": 41422,
+      "nonzero_weight_fraction": 1.0,
+      "empirical_t3_stationary_action_fraction": 0.9745,
+      "theoretical_weighted_t3_stationary_action_fraction": 0.9272082071001239,
+      "correction_sample_weight": {
+        "kind": "per_frame_then_mean_over_16_action_steps",
+        "t3_stationary_weight": 0.1,
+        "values": [
+          0.0,
+          0.10000000149011612,
+          1.0
+        ],
+        "window_min": 0.0,
+        "window_max": 0.9437500238418579,
+        "window_mean": 0.03131548687815666,
+        "nonzero_windows": 11680,
+        "zero_windows": 29742,
+        "stationary_windows": 11680,
+        "stationary_action_frames_in_valid_windows": 184584
+      }
+    }
+  },
+  "baseline_snapshot": {
+    "toward_fraction": 0.3993055555555556,
+    "axis_reverse_snapshot_counts": {
+      "A": 7,
+      "B": 4,
+      "C": 6
+    },
+    "snapshots": 9
+  },
+  "baseline_dev20": {
+    "checkpoint": "/home/him1/mujoco_bc/rcm_4090_deploy/outputs/overnight_c_fix_symlog_081234/task2_train/step_004000.pth",
+    "completed_targets": 20,
+    "final_mean_um": 58.886698653446196,
+    "min_mean_um": 30.869513962139727,
+    "strict_success_count": 0,
+    "final_hits_le_5_um": 0,
+    "final_hits_le_10_um": 0,
+    "final_hits_le_30_um": 1,
+    "absolute_drift_1000_to_1600_um": 19.519372556086164
+  },
+  "fallback_F_dev20": {
+    "checkpoint": "/home/him1/mujoco_bc/rcm_4090_deploy/outputs/homog_label_fix_20261124_v4/homog_label_fix_20261124_v4_fallback_F/step_004000.pth",
+    "completed_targets": 20,
+    "final_mean_um": 51.58126605659585,
+    "min_mean_um": 31.38982328326647,
+    "strict_success_count": 0,
+    "final_hits_le_5_um": 0,
+    "final_hits_le_10_um": 0,
+    "final_hits_le_30_um": 0,
+    "absolute_drift_1000_to_1600_um": 15.984977947703053
+  },
+  "evaluator_identity_match": true,
+  "late_diagnostic": {
+    "classification": "oscillation",
+    "baseline": {
+      "episodes": 20,
+      "mean_action_norm_deg_deg_mm": 0.006657125128379773,
+      "mean_late_error_um": 60.062345419028446,
+      "axis_sign_flip_rates": {
+        "A": 0.42954924874791317,
+        "B": 0.4213689482470785,
+        "C": 0.2604340567612688
+      },
+      "start_step": 1000,
+      "end_step_exclusive": 1600
+    },
+    "candidate": {
+      "episodes": 20,
+      "mean_action_norm_deg_deg_mm": 0.006448979108278604,
+      "mean_late_error_um": 58.471654899170254,
+      "axis_sign_flip_rates": {
+        "A": 0.4307178631051753,
+        "B": 0.4187813021702838,
+        "C": 0.2638564273789649
+      },
+      "start_step": 1000,
+      "end_step_exclusive": 1600
+    },
+    "candidate_to_baseline": {
+      "action_norm_ratio": 0.9687333471900913,
+      "late_error_ratio": 0.9735160105926493
+    },
+    "rules": "stalling if action_norm_ratio<=0.5 and late_error_ratio>=1; else oscillation if any axis flip rate>=0.2; else mixed"
+  }
+}

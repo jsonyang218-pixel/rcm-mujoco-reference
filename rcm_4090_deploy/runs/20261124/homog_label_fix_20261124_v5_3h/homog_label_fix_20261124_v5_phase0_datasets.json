@@ -1,0 +1,82 @@
+{
+  "A": {
+    "status": "passed",
+    "dataset": "/home/him1/mujoco_bc/rcm_4090_deploy/data/homog_label_fix_20261124_v5_A_t3_w025",
+    "dataset_sha256": "67cd04157444fab90ff526f0d62871664139a7fd254ceb131288e894ac9a1ea6",
+    "mode": "t3_only",
+    "t3_stationary_weight": 0.25,
+    "valid_windows": 41422,
+    "nonzero_weight_fraction": 1.0,
+    "empirical_t3_stationary_action_fraction": 0.9745,
+    "theoretical_weighted_t3_stationary_action_fraction": 0.966111535444449,
+    "correction_sample_weight": {
+      "kind": "per_frame_then_mean_over_16_action_steps",
+      "t3_stationary_weight": 0.25,
+      "values": [
+        0.0,
+        0.25,
+        1.0
+      ],
+      "window_min": 0.0,
+      "window_max": 0.953125,
+      "window_mean": 0.07309219986200333,
+      "nonzero_windows": 11680,
+      "zero_windows": 29742,
+      "stationary_windows": 11680,
+      "stationary_action_frames_in_valid_windows": 184584
+    }
+  },
+  "B": {
+    "status": "passed",
+    "dataset": "/home/him1/mujoco_bc/rcm_4090_deploy/data/homog_label_fix_20261124_v5_B_executed_w025",
+    "dataset_sha256": "bb7ff1116f0fc0dc08ef42ebe865535872d6bda7d247690767efc7485d1f5208",
+    "mode": "executed_only",
+    "t3_stationary_weight": 0.25,
+    "valid_windows": 41422,
+    "nonzero_weight_fraction": 1.0,
+    "empirical_t3_stationary_action_fraction": 0.9745,
+    "theoretical_weighted_t3_stationary_action_fraction": 0.08926020476279481,
+    "correction_sample_weight": {
+      "kind": "per_frame_then_mean_over_16_action_steps",
+      "t3_stationary_weight": 0.25,
+      "values": [
+        0.25,
+        1.0
+      ],
+      "window_min": 0.25,
+      "window_max": 1.0,
+      "window_mean": 0.7911164164543152,
+      "nonzero_windows": 41422,
+      "zero_windows": 0,
+      "stationary_windows": 11680,
+      "stationary_action_frames_in_valid_windows": 184584
+    }
+  },
+  "C": {
+    "status": "passed",
+    "dataset": "/home/him1/mujoco_bc/rcm_4090_deploy/data/homog_label_fix_20261124_v5_C_t3_w010",
+    "dataset_sha256": "d07e29356db48acf717687d8ff3458e3284a73b28589e63ed3719dde9bfb4d76",
+    "mode": "t3_only",
+    "t3_stationary_weight": 0.1,
+    "valid_windows": 41422,
+    "nonzero_weight_fraction": 1.0,
+    "empirical_t3_stationary_action_fraction": 0.9745,
+    "theoretical_weighted_t3_stationary_action_fraction": 0.9272082071001239,
+    "correction_sample_weight": {
+      "kind": "per_frame_then_mean_over_16_action_steps",
+      "t3_stationary_weight": 0.1,
+      "values": [
+        0.0,
+        0.10000000149011612,
+        1.0
+      ],
+      "window_min": 0.0,
+      "window_max": 0.9437500238418579,
+      "window_mean": 0.03131548687815666,
+      "nonzero_windows": 11680,
+      "zero_windows": 29742,
+      "stationary_windows": 11680,
+      "stationary_action_frames_in_valid_windows": 184584
+    }
+  }
+}

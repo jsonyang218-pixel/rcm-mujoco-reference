@@ -1,0 +1,34 @@
+{
+  "status": "completed",
+  "mode": "t3_only",
+  "source_data": "/home/him1/mujoco_bc/rcm_4090_deploy/data/homog_clean_replay_20261123_mixed_1600_600_12_hold_v2",
+  "t3_stationary_weight": 0.1,
+  "fixed_data": "/home/him1/mujoco_bc/rcm_4090_deploy/data/homog_label_fix_20261124_v5_C_t3_w010",
+  "source_dataset_sha256": "4629b57238be07a0640accb810a56a23f47a20883308af858265df074cb65d6d",
+  "fixed_dataset_sha256": "d07e29356db48acf717687d8ff3458e3284a73b28589e63ed3719dde9bfb4d76",
+  "overlay_sha256": "9e3f59df3093179c63c96de433371d64446674f85ff81e7cf8216cb8a8349534",
+  "image_paths_sha256": "200d0a49ddea9b94bef45f1aa55bed20a6c559080581e856b84eee6e382d5f4f",
+  "images_reused_by_symlink": true,
+  "original_files_unchanged": true,
+  "valid_window_index_sha256": "862fc65db4dbcd0f43cb85a213bf5fa6d7ec20b90319317e0ff4ea272caf2ba6",
+  "correction_sample_weight": {
+    "kind": "per_frame_then_mean_over_16_action_steps",
+    "t3_stationary_weight": 0.1,
+    "values": [
+      0.0,
+      0.10000000149011612,
+      1.0
+    ],
+    "window_min": 0.0,
+    "window_max": 0.9437500238418579,
+    "window_mean": 0.03131548687815666,
+    "nonzero_windows": 11680,
+    "zero_windows": 29742,
+    "stationary_windows": 11680,
+    "stationary_action_frames_in_valid_windows": 184584
+  },
+  "nonzero_weight_fraction": 1.0,
+  "empirical_t3_stationary_action_fraction": 0.9745,
+  "theoretical_weighted_t3_stationary_action_fraction": 0.9272082071001239,
+  "audit": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261124/homog_label_fix_20261124_v5_3h/homog_label_fix_20261124_v5_phase0_C_audit/label_fix_audit.json"
+}

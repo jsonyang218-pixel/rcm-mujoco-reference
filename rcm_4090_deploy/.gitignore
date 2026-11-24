@@ -1,13 +1,28 @@
+# Python local environment and caches.
 .venv/
-data/
-outputs/
-runs/
+venv/
 __pycache__/
 *.py[cod]
-.pytest_cache/
-.mypy_cache/
-.ruff_cache/
+
+# Generated experiment artifacts stay local by default.
+runs/
+acceptance/
+preview/
+backups/
 *.pth
 *.npz
 *.npy
-*.log
+
+# Local environment and editor files.
+.env
+.env.*
+.vscode/
+.idea/
+
+# Lightweight v5 report exception. Checkpoints, raw data and shards remain
+# excluded by the suffixes and paths above.
+!runs/
+!runs/20261124/
+!runs/20261124/homog_label_fix_20261124_v5_3h/
+!runs/20261124/homog_label_fix_20261124_v5_3h/**/
+!runs/20261124/homog_label_fix_20261124_v5_3h/**

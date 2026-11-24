@@ -76,7 +76,14 @@ INTEGER_POLICY_NAMES = (
 class IndexSubset(Dataset):
     """Expose selected dataset sample indices without copying observations."""
 
-    def __init__(self, dataset, indices, source=0):
+    def __init__(
+        self,
+        dataset,
+        indices,
+        source=0,
+        stationary_frame_counts=None,
+        correction_weights=None,
+    ):
         self.dataset = dataset
         self.indices = np.asarray(indices, dtype=np.int64)
         self.source = int(source)
@@ -86,6 +93,24 @@ class IndexSubset(Dataset):
             self.indices.min() < 0 or self.indices.max() >= len(dataset)
         ):
             raise IndexError("subset index outside source dataset")
+        self.stationary_frame_counts = (
+            np.asarray(stationary_frame_counts, dtype=np.int64)
+            if stationary_frame_counts is not None
+            else np.zeros(len(self.indices), dtype=np.int64)
+        )
+        self.correction_weights = (
+            np.asarray(correction_weights, dtype=np.float64)
+            if correction_weights is not None
+            else np.ones(len(self.indices), dtype=np.float64)
+        )
+        if self.stationary_frame_counts.shape != (len(self.indices),):
+            raise ValueError(
+                "stationary frame counts must match subset length"
+            )
+        if self.correction_weights.shape != (len(self.indices),):
+            raise ValueError(
+                "subset correction weights must match subset length"
+            )
 
     def __len__(self):
         return len(self.indices)
@@ -94,6 +119,14 @@ class IndexSubset(Dataset):
         sample = dict(self.dataset[int(self.indices[int(index)])])
         sample["sample.source"] = torch.tensor(self.source, dtype=torch.long)
         sample["sample.index"] = torch.tensor(int(index), dtype=torch.long)
+        sample["sample.stationary_frame_count"] = torch.tensor(
+            int(self.stationary_frame_counts[int(index)]),
+            dtype=torch.long,
+        )
+        sample["sample.correction_weight"] = torch.tensor(
+            float(self.correction_weights[int(index)]),
+            dtype=torch.float32,
+        )
         return sample
 
 
@@ -442,14 +475,49 @@ def _optimizer(model, args):
     )
 
 
+def assert_temporal_bias_only(model, args, *, freeze=False):
+    """Enforce the frozen-backbone experiment contract when requested."""
+    if not bool(getattr(args, "require_temporal_bias_only", False)):
+        return
+    if float(args.backbone_lr) != 0.0:
+        raise ValueError(
+            "strict frozen-backbone training requires backbone_lr=0"
+        )
+    if freeze:
+        for name, parameter in model.named_parameters():
+            if "temporal_bias" not in name:
+                parameter.requires_grad_(False)
+    offenders = [
+        name
+        for name, parameter in model.named_parameters()
+        if parameter.requires_grad and "temporal_bias" not in name
+    ]
+    if offenders:
+        raise ValueError(
+            "strict frozen-backbone training permits only temporal_bias "
+            f"parameters; trainable: {offenders}"
+        )
+    temporal = [
+        name
+        for name, parameter in model.named_parameters()
+        if parameter.requires_grad and "temporal_bias" in name
+    ]
+    if not temporal:
+        raise ValueError("strict frozen-backbone training has no temporal_bias")
+
+
 def _scheduler(optimizer, args, total_batches):
     if args.lr_schedule == "constant":
         return None
     if args.lr_schedule != "cosine":
         raise ValueError(f"unsupported learning-rate schedule: {args.lr_schedule}")
+    lr_min = float(getattr(args, "lr_min", 0.0))
+    if not math.isfinite(lr_min) or lr_min < 0:
+        raise ValueError("cosine minimum learning rate must be finite and nonnegative")
     return torch.optim.lr_scheduler.CosineAnnealingLR(
         optimizer,
         T_max=max(1, int(total_batches)),
+        eta_min=lr_min,
     )
 
 
@@ -514,6 +582,115 @@ def load_correction_window_weights(
     }
 
 
+def load_stationary_window_counts(
+    data_dir,
+    valid_indices,
+    *,
+    action_steps=16,
+):
+    """Count configured T3-stationary frames in every correction window."""
+    data_dir = Path(data_dir)
+    valid_indices = np.asarray(valid_indices, dtype=np.int64)
+    overlay_path = data_dir / "data" / "label_repair_overlay.npz"
+    if not overlay_path.is_file():
+        return (
+            np.zeros(len(valid_indices), dtype=np.int64),
+            {
+                "available": False,
+                "window_count": len(valid_indices),
+                "stationary_window_count": 0,
+                "stationary_action_frames": 0,
+                "action_frames": int(len(valid_indices) * action_steps),
+                "t3_stationary_weight": None,
+            },
+        )
+    with np.load(overlay_path, allow_pickle=False) as overlay:
+        stationary = np.asarray(
+            overlay["t3_stationary"], dtype=np.bool_
+        )
+        weight = (
+            float(np.asarray(overlay["t3_stationary_weight"]).reshape(-1)[0])
+            if "t3_stationary_weight" in overlay
+            else None
+        )
+    counts = np.zeros(len(valid_indices), dtype=np.int64)
+    for row, index in enumerate(valid_indices):
+        start = int(index)
+        stop = start + int(action_steps)
+        if stop > len(stationary):
+            raise ValueError(
+                "correction window extends beyond stationary frame metadata"
+            )
+        counts[row] = int(np.count_nonzero(stationary[start:stop]))
+    return counts, {
+        "available": True,
+        "overlay": str(overlay_path),
+        "window_count": len(valid_indices),
+        "stationary_window_count": int(np.count_nonzero(counts)),
+        "stationary_action_frames": int(counts.sum()),
+        "action_frames": int(len(valid_indices) * action_steps),
+        "t3_stationary_weight": weight,
+    }
+
+
+def stationary_sampling_summary(
+    epoch_counts,
+    *,
+    weights,
+    stationary_counts,
+    correction_ratio,
+    action_steps=16,
+):
+    """Combine sampled and theoretical stationary-frame proportions."""
+    stationary_counts = np.asarray(stationary_counts, dtype=np.float64)
+    weights = (
+        np.ones(len(stationary_counts), dtype=np.float64)
+        if weights is None
+        else np.asarray(weights, dtype=np.float64)
+    )
+    if weights.shape != stationary_counts.shape:
+        raise ValueError(
+            "stationary counts and correction weights must align"
+        )
+    total_weight = float(weights.sum())
+    weighted_stationary_fraction = (
+        float(np.sum(weights * stationary_counts))
+        / max(1e-12, total_weight * float(action_steps))
+        if total_weight > 0
+        else 0.0
+    )
+    correction_samples = int(epoch_counts.get("correction_samples", 0))
+    correction_action_frames = int(
+        epoch_counts.get("correction_action_frames", 0)
+    )
+    stationary_frames = int(
+        epoch_counts.get("t3_stationary_action_frames", 0)
+    )
+    total_samples = int(epoch_counts.get("total_samples", 0))
+    return {
+        "correction_samples": correction_samples,
+        "correction_action_frames": correction_action_frames,
+        "t3_stationary_action_frames": stationary_frames,
+        "stationary_windows": int(epoch_counts.get("stationary_windows", 0)),
+        "actual_t3_stationary_action_fraction": (
+            stationary_frames / correction_action_frames
+            if correction_action_frames
+            else 0.0
+        ),
+        "theoretical_weighted_t3_stationary_action_fraction": (
+            weighted_stationary_fraction
+        ),
+        "all_batch_theoretical_t3_stationary_action_fraction": (
+            float(correction_ratio) * weighted_stationary_fraction
+        ),
+        "all_batch_actual_t3_stationary_action_fraction": (
+            stationary_frames / (total_samples * int(action_steps))
+            if total_samples
+            else 0.0
+        ),
+    }
+
+
 def _validate(model, loader, device, args):
     model.eval()
     total, count = 0.0, 0
@@ -546,7 +723,7 @@ def _select_batch(batch, mask):
     return {
         name: value[mask]
         for name, value in batch.items()
-        if name != "sample.source" and name != "sample.index"
+        if not name.startswith("sample.")
     }
 
 
@@ -562,6 +739,8 @@ def _log_metrics(
     original_seen,
     correction_seen,
     sampling_counts,
+    stationary_telemetry=None,
+    stationary_telemetry_cumulative=None,
 ):
     source = batch["sample.source"]
     index = batch["sample.index"]
@@ -632,6 +811,10 @@ def _log_metrics(
         "correction_unique_seen": len(correction_seen),
         "original_loss": group_loss["original"],
         "correction_loss": group_loss["correction"],
+        "t3_stationary_telemetry": stationary_telemetry,
+        "t3_stationary_telemetry_cumulative": (
+            stationary_telemetry_cumulative
+        ),
         "distance_bucket_first_action_abs_error": bucket_action_error,
         "first_action_mean_abs_error_deg_deg_mm": (
             action_error.mean(dim=0).tolist()
@@ -701,6 +884,12 @@ def train(argv):
         default="constant",
     )
     parser.add_argument(
+        "--lr-min",
+        type=float,
+        default=0.0,
+        help="Cosine annealing floor; ignored for constant schedules",
+    )
+    parser.add_argument(
         "--near-target-um",
         type=float,
         default=None,
@@ -714,6 +903,14 @@ def train(argv):
     parser.add_argument("--log-every-steps", type=int, default=100)
     parser.add_argument("--checkpoint-every-steps", type=int, default=1000)
     parser.add_argument("--resume", action="store_true")
+    parser.add_argument(
+        "--require-temporal-bias-only",
+        action="store_true",
+        help=(
+            "Fail unless backbone_lr=0 and every trainable parameter belongs "
+            "to temporal_bias"
+        ),
+    )
     parser.add_argument("--device", default="cuda")
     parser.add_argument("--oct-symlog", action="store_true")
     parser.add_argument("--label-overlay", type=Path)
@@ -757,6 +954,8 @@ def train(argv):
         args.weight_decay,
     ) < 0:
         parser.error("learning rates and weight decay must be nonnegative")
+    if not math.isfinite(args.lr_min) or args.lr_min < 0:
+        parser.error("lr-min must be finite and nonnegative")
     if args.near_target_weight < 0 or not math.isfinite(args.near_target_weight):
         parser.error("near-target weight must be finite and nonnegative")
     device = torch.device(args.device)
@@ -798,6 +997,15 @@ def train(argv):
     }
     correction_weights = near_target_mask = None
     correction_owner = combined
+    stationary_window_counts = np.zeros(0, dtype=np.int64)
+    stationary_pool_receipt = {
+        "available": False,
+        "window_count": 0,
+        "stationary_window_count": 0,
+        "stationary_action_frames": 0,
+        "action_frames": 0,
+        "t3_stationary_weight": None,
+    }
     if args.correction_data_dir is not None:
         correction_owner = RCMDataset(
             args.correction_data_dir,
@@ -822,6 +1030,13 @@ def train(argv):
                 near_target_um=args.near_target_um,
             )
         )
+        stationary_window_counts, stationary_pool_receipt = (
+            load_stationary_window_counts(
+                args.correction_data_dir,
+                np.asarray(correction_owner.valid_indices, dtype=np.int64),
+                action_steps=combined.n_action_steps,
+            )
+        )
     else:
         original_indices, correction_indices = split_experience_indices(
             combined, args.correction_source
@@ -839,7 +1054,25 @@ def train(argv):
             "static/balanced modes require expert correction windows"
         )
     original = IndexSubset(combined, original_indices, source=0)
-    correction = IndexSubset(correction_owner, correction_indices, source=1)
+    correction = IndexSubset(
+        correction_owner,
+        correction_indices,
+        source=1,
+        stationary_frame_counts=(
+            stationary_window_counts[
+                np.asarray(correction_indices, dtype=np.int64)
+            ]
+            if len(stationary_window_counts)
+            else np.zeros(len(correction_indices), dtype=np.int64)
+        ),
+        correction_weights=(
+            correction_weights[
+                np.asarray(correction_indices, dtype=np.int64)
+            ]
+            if correction_weights is not None
+            else np.ones(len(correction_indices), dtype=np.float64)
+        ),
+    )
     natural_correction_ratio = len(correction_indices) / (
         len(original_indices) + len(correction_indices)
     )
@@ -871,7 +1104,27 @@ def train(argv):
         device,
         oct_symlog_enabled=args.oct_symlog,
     )
+    assert_temporal_bias_only(model, args, freeze=True)
     optimizer = _optimizer(model, args)
+    assert_temporal_bias_only(model, args)
+    if bool(getattr(args, "require_temporal_bias_only", False)):
+        non_temporal = [
+            name
+            for name, _ in model.named_parameters()
+            if "temporal_bias" not in name
+        ]
+        if any(
+            any(
+                parameter is model.get_parameter(name)
+                for group in optimizer.param_groups
+                for parameter in group["params"]
+            )
+            for name in non_temporal
+        ):
+            raise ValueError(
+                "strict frozen-backbone optimizer contains non-temporal_bias "
+                "parameters"
+            )
     scheduler = _scheduler(optimizer, args, args.total_batches)
     scaler = torch.amp.GradScaler(
         "cuda",
@@ -910,6 +1163,10 @@ def train(argv):
             ],
         },
         "lr_schedule": args.lr_schedule,
+        "lr_min": args.lr_min,
+        "require_temporal_bias_only": bool(
+            getattr(args, "require_temporal_bias_only", False)
+        ),
         "total_batches": args.total_batches,
         "near_target_um": args.near_target_um,
         "near_target_weight": args.near_target_weight,
@@ -925,6 +1182,7 @@ def train(argv):
         "natural_correction_ratio": natural_correction_ratio,
         "correction_ratio": correction_ratio,
         "correction_weight_receipt": correction_weight_receipt,
+        "t3_stationary_sampling_pool": stationary_pool_receipt,
         "correction_sample_weight": (
             {
                 "path": str(
@@ -936,8 +1194,13 @@ def train(argv):
             if correction_weights is not None
             else None
         ),
+        "batch_telemetry_fields": [
+            "sample.stationary_frame_count",
+            "sample.correction_weight",
+        ],
         "freeze_config": run_config["freeze_config"],
         "lr_schedule": args.lr_schedule,
+        "lr_min": args.lr_min,
         "total_batches": args.total_batches,
         "valid_window_index_sha256": _index_sha256(
             combined.valid_indices
@@ -975,6 +1238,8 @@ def train(argv):
             else "uniform_with_replacement"
         ),
         "steps_per_epoch": args.steps_per_epoch,
+        "t3_stationary_sampling_pool": stationary_pool_receipt,
+        "t3_stationary_telemetry": [],
         "epochs": args.epochs,
         "total_batches": args.total_batches,
         "flow_loss_weights": {
@@ -997,6 +1262,15 @@ def train(argv):
     )
     original_seen, correction_seen = set(), set()
     sampling_counts = {"original": 0, "correction": 0}
+    empty_stationary_counts = {
+        "correction_samples": 0,
+        "correction_action_frames": 0,
+        "t3_stationary_action_frames": 0,
+        "stationary_windows": 0,
+        "total_samples": 0,
+    }
+    epoch_stationary_counts = dict(empty_stationary_counts)
+    cumulative_stationary_counts = dict(empty_stationary_counts)
     global_step = optimizer_updates = 0
     resumed_rng = None
     if resume_path.is_file():
@@ -1032,6 +1306,18 @@ def train(argv):
         sampling_counts = {
             "original": int(progress["sampling_counts"][0]),
             "correction": int(progress["sampling_counts"][1]),
+        }
+        epoch_stationary_counts = {
+            key: int(value)
+            for key, value in progress.get(
+                "epoch_stationary_counts", empty_stationary_counts
+            ).items()
+        }
+        cumulative_stationary_counts = {
+            key: int(value)
+            for key, value in progress.get(
+                "cumulative_stationary_counts", empty_stationary_counts
+            ).items()
         }
         original_seen = set(progress.get("original_seen", []))
         correction_seen = set(progress.get("correction_seen", []))
@@ -1094,6 +1380,10 @@ def train(argv):
                     sampling_counts["original"],
                     sampling_counts["correction"],
                 ],
+                "epoch_stationary_counts": dict(epoch_stationary_counts),
+                "cumulative_stationary_counts": dict(
+                    cumulative_stationary_counts
+                ),
                 "original_seen": sorted(original_seen),
                 "correction_seen": sorted(correction_seen),
                 "elapsed_s": time.monotonic() - started,
@@ -1111,6 +1401,8 @@ def train(argv):
     while global_step < args.total_batches:
         epoch = global_step // args.steps_per_epoch
         batch_offset = global_step % args.steps_per_epoch
+        if batch_offset == 0:
+            epoch_stationary_counts = dict(empty_stationary_counts)
         loader = _train_loader(
             args,
             training,
@@ -1188,7 +1480,68 @@ def train(argv):
             )
             sampling_counts["original"] += int((source == 0).sum())
             sampling_counts["correction"] += int((source == 1).sum())
+            epoch_stationary_counts["total_samples"] += int(len(source))
+            cumulative_stationary_counts["total_samples"] += int(len(source))
+            correction_positions = index[source == 1].cpu().numpy()
+            if len(correction_positions):
+                if len(stationary_window_counts):
+                    selected_stationary = (
+                        batch["sample.stationary_frame_count"][source == 1]
+                        .detach()
+                        .cpu()
+                        .numpy()
+                    )
+                    expected_stationary = stationary_window_counts[
+                        np.asarray(
+                            correction_indices[correction_positions],
+                            dtype=np.int64,
+                        )
+                    ]
+                    if not np.array_equal(
+                        selected_stationary, expected_stationary
+                    ):
+                        raise ValueError(
+                            "training batch stationary-count telemetry mismatch"
+                        )
+                    epoch_stationary_counts["correction_samples"] += int(
+                        len(correction_positions)
+                    )
+                    epoch_stationary_counts["correction_action_frames"] += int(
+                        len(correction_positions) * combined.n_action_steps
+                    )
+                    epoch_stationary_counts["t3_stationary_action_frames"] += int(
+                        selected_stationary.sum()
+                    )
+                    epoch_stationary_counts["stationary_windows"] += int(
+                        np.count_nonzero(selected_stationary)
+                    )
+                    cumulative_stationary_counts["correction_samples"] += int(
+                        len(correction_positions)
+                    )
+                    cumulative_stationary_counts["correction_action_frames"] += int(
+                        len(correction_positions) * combined.n_action_steps
+                    )
+                    cumulative_stationary_counts[
+                        "t3_stationary_action_frames"
+                    ] += int(selected_stationary.sum())
+                    cumulative_stationary_counts["stationary_windows"] += int(
+                        np.count_nonzero(selected_stationary)
+                    )
             if global_step % args.log_every_steps == 0:
+                stationary_telemetry = stationary_sampling_summary(
+                    epoch_stationary_counts,
+                    weights=correction_weights,
+                    stationary_counts=stationary_window_counts,
+                    correction_ratio=correction_ratio,
+                    action_steps=combined.n_action_steps,
+                )
+                cumulative_stationary_telemetry = stationary_sampling_summary(
+                    cumulative_stationary_counts,
+                    weights=correction_weights,
+                    stationary_counts=stationary_window_counts,
+                    correction_ratio=correction_ratio,
+                    action_steps=combined.n_action_steps,
+                )
                 metrics_stream.write(
                     json.dumps(
                         _log_metrics(
@@ -1203,6 +1556,8 @@ def train(argv):
                             original_seen,
                             correction_seen,
                             sampling_counts,
+                            stationary_telemetry,
+                            cumulative_stationary_telemetry,
                         ),
                         ensure_ascii=False,
                     )
@@ -1247,6 +1602,22 @@ def train(argv):
                 "amp_skipped_batches": global_step - optimizer_updates,
                 "elapsed_s": time.monotonic() - started,
                 "sampling_counts": dict(sampling_counts),
+                "t3_stationary_telemetry": stationary_sampling_summary(
+                    epoch_stationary_counts,
+                    weights=correction_weights,
+                    stationary_counts=stationary_window_counts,
+                    correction_ratio=correction_ratio,
+                    action_steps=combined.n_action_steps,
+                ),
+                "t3_stationary_telemetry_cumulative": (
+                    stationary_sampling_summary(
+                        cumulative_stationary_counts,
+                        weights=correction_weights,
+                        stationary_counts=stationary_window_counts,
+                        correction_ratio=correction_ratio,
+                        action_steps=combined.n_action_steps,
+                    )
+                ),
             }
             history.append(row)
             _write_json(args.output_dir / "training_history.json", history)
@@ -1271,12 +1642,38 @@ def train(argv):
             "optimizer_updates": optimizer_updates,
             "sampling_counts": sampling_counts,
             "sampling_contract": sampling_contract(),
+            "t3_stationary_sampling_pool": stationary_pool_receipt,
+            "t3_stationary_telemetry": [
+                row["t3_stationary_telemetry"] for row in history
+            ],
+            "t3_stationary_telemetry_cumulative": (
+                stationary_sampling_summary(
+                    cumulative_stationary_counts,
+                    weights=correction_weights,
+                    stationary_counts=stationary_window_counts,
+                    correction_ratio=correction_ratio,
+                    action_steps=combined.n_action_steps,
+                )
+            ),
             "freeze_config": run_config["freeze_config"],
             "scheduler": (
                 scheduler.state_dict() if scheduler is not None else None
             ),
         },
     )
+    manifest["t3_stationary_telemetry"] = [
+        row["t3_stationary_telemetry"] for row in history
+    ]
+    manifest["t3_stationary_telemetry_cumulative"] = (
+        stationary_sampling_summary(
+            cumulative_stationary_counts,
+            weights=correction_weights,
+            stationary_counts=stationary_window_counts,
+            correction_ratio=correction_ratio,
+            action_steps=combined.n_action_steps,
+        )
+    )
+    _write_json(args.output_dir / "training_manifest.json", manifest)
     metrics_stream.close()
     return 0
 

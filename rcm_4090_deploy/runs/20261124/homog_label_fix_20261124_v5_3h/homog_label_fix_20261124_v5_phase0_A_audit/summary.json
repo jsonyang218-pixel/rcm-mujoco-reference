@@ -1,0 +1,71 @@
+{
+  "status": "completed",
+  "mode": "t3_only",
+  "source_data": "/home/him1/mujoco_bc/rcm_4090_deploy/data/homog_clean_replay_20261123_mixed_1600_600_12_hold_v2",
+  "t3_stationary_weight": 0.25,
+  "fixed_data": "/home/him1/mujoco_bc/rcm_4090_deploy/data/homog_label_fix_20261124_v5_A_t3_w025",
+  "source_dataset_sha256": "4629b57238be07a0640accb810a56a23f47a20883308af858265df074cb65d6d",
+  "fixed_dataset_sha256": "67cd04157444fab90ff526f0d62871664139a7fd254ceb131288e894ac9a1ea6",
+  "overlay_sha256": "a845eb6b6fc71b8146c7fba4adc55993df983439ee53c5430ce9d8e700a26a3c",
+  "image_paths_sha256": "200d0a49ddea9b94bef45f1aa55bed20a6c559080581e856b84eee6e382d5f4f",
+  "images_reused_by_symlink": true,
+  "original_files_unchanged": true,
+  "valid_window_index_sha256": "862fc65db4dbcd0f43cb85a213bf5fa6d7ec20b90319317e0ff4ea272caf2ba6",
+  "correction_sample_weight": {
+    "kind": "per_frame_then_mean_over_16_action_steps",
+    "t3_stationary_weight": 0.25,
+    "values": [
+      0.0,
+      0.25,
+      1.0
+    ],
+    "window_min": 0.0,
+    "window_max": 0.953125,
+    "window_mean": 0.07309219986200333,
+    "nonzero_windows": 11680,
+    "zero_windows": 29742,
+    "stationary_windows": 11680,
+    "stationary_action_frames_in_valid_windows": 184584
+  },
+  "nonzero_weight_fraction": 1.0,
+  "empirical_t3_stationary_action_fraction": 0.9745,
+  "theoretical_weighted_t3_stationary_action_fraction": 0.966111535444449,
+  "audit": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261124/homog_label_fix_20261124_v5_3h/homog_label_fix_20261124_v5_phase0_A_audit/label_fix_audit.json",
+  "gates": {
+    "T3_stationary_action_zero_fraction": {
+      "value": 1.0,
+      "required": "==1.0",
+      "passed": true
+    },
+    "executed_action_unchanged": {
+      "value": true,
+      "required": "==True",
+      "passed": true
+    },
+    "observation_OCT_state_history_unchanged": {
+      "value": true,
+      "required": "==True",
+      "passed": true
+    },
+    "mode_label_rule": {
+      "value": true,
+      "required": "==True",
+      "passed": true
+    },
+    "correction_sample_weight_contract": {
+      "value": true,
+      "required": "exact frame policy",
+      "passed": true
+    },
+    "valid_window_indices_unchanged": {
+      "value": true,
+      "required": "==True",
+      "passed": true
+    },
+    "valid_window_contract_pass_fraction": {
+      "value": 1.0,
+      "required": "==1.0",
+      "passed": true
+    }
+  }
+}
