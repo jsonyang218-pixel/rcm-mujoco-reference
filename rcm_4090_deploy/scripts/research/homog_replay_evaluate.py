@@ -85,7 +85,17 @@ class EvaluationWorker(BaseEvaluationWorker):
         return row
 
 
-def evaluate(checkpoint, samples, controller, indices, destination, manifest):
+def evaluate(
+    checkpoint,
+    samples,
+    controller,
+    indices,
+    destination,
+    manifest,
+    *,
+    workers=12,
+    max_workers=None,
+):
     destination = Path(destination)
     destination.mkdir(parents=True, exist_ok=True)
     spec = {'checkpoint': str(checkpoint), 'checkpoint_sha256': file_sha256(checkpoint),
@@ -94,7 +104,15 @@ def evaluate(checkpoint, samples, controller, indices, destination, manifest):
             'late_drift_start': LATE_DRIFT_START, 'stop_on_success': False}
     groups = {'eval': {'factory': __name__ + ':EvaluationWorker', 'spec': spec,
         'tasks': [{'id': f'E{i:02d}', 'episode_index': i, 'seed': 42 + i} for i in indices]}}
-    rows = sorted(pool(groups, destination / 'shards').values(), key=lambda r: r['episode_index'])
+    rows = sorted(
+        pool(
+            groups,
+            destination / 'shards',
+            workers=workers,
+            max_workers=max_workers,
+        ).values(),
+        key=lambda r: r['episode_index'],
+    )
     if [r['episode_index'] for r in rows] != list(indices):
         raise ValueError('Evaluation target coverage mismatch')
     result = {'status': 'completed', 'protocol': spec, **aggregate(rows),

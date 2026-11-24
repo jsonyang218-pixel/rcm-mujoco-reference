@@ -1,0 +1,144 @@
+{
+  "arms": {
+    "D1": {
+      "status": "training_completed",
+      "checkpoints": {
+        "2000": {
+          "arm": "D1",
+          "checkpoint": "/home/him1/mujoco_bc/rcm_4090_deploy/outputs/homog_label_fix_20261124_v4/homog_label_fix_20261124_v4_phase1_D1/step_002000.pth",
+          "final_mean_um": 137.8460370173725,
+          "min_mean_um": 75.49173497683543,
+          "absolute_drift_um": 43.388762642921094,
+          "toward_fraction": 0.3784722222222222,
+          "axis_reverse_counts": {
+            "A": 7,
+            "B": 4,
+            "C": 5
+          },
+          "max_axis_reverse": 7,
+          "strict": false,
+          "step": 2000,
+          "mode": "executed_only",
+          "fast5_destination": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261124/homog_label_fix_20261124_v4_6h/reports/homog_label_fix_20261124_v4_phase1/D1_step2000_fast5",
+          "snapshot_destination": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261124/homog_label_fix_20261124_v4_6h/reports/homog_label_fix_20261124_v4_phase1/D1_step2000_snapshot9"
+        }
+      },
+      "early_stop": true,
+      "reason": "step2000 failed toward>=0.55 and final_mean<=110um"
+    },
+    "D2": {
+      "status": "training_completed",
+      "checkpoints": {
+        "2000": {
+          "arm": "D2",
+          "checkpoint": "/home/him1/mujoco_bc/rcm_4090_deploy/outputs/homog_label_fix_20261124_v4/homog_label_fix_20261124_v4_phase1_D2/step_002000.pth",
+          "final_mean_um": 142.78498943680017,
+          "min_mean_um": 73.25151998895902,
+          "absolute_drift_um": 26.019883365199824,
+          "toward_fraction": 0.3819444444444444,
+          "axis_reverse_counts": {
+            "A": 7,
+            "B": 4,
+            "C": 5
+          },
+          "max_axis_reverse": 7,
+          "strict": false,
+          "step": 2000,
+          "mode": "dir_consistent",
+          "fast5_destination": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261124/homog_label_fix_20261124_v4_6h/reports/homog_label_fix_20261124_v4_phase1/D2_step2000_fast5",
+          "snapshot_destination": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261124/homog_label_fix_20261124_v4_6h/reports/homog_label_fix_20261124_v4_phase1/D2_step2000_snapshot9"
+        }
+      },
+      "early_stop": true,
+      "reason": "step2000 failed toward>=0.55 and final_mean<=110um"
+    },
+    "D3": {
+      "status": "training_completed",
+      "checkpoints": {
+        "2000": {
+          "arm": "D3",
+          "checkpoint": "/home/him1/mujoco_bc/rcm_4090_deploy/outputs/homog_label_fix_20261124_v4/homog_label_fix_20261124_v4_phase1_D3/step_002000.pth",
+          "final_mean_um": 102.55438290811591,
+          "min_mean_um": 55.70823823955975,
+          "absolute_drift_um": 26.45442421015209,
+          "toward_fraction": 0.3958333333333333,
+          "axis_reverse_counts": {
+            "A": 6,
+            "B": 4,
+            "C": 5
+          },
+          "max_axis_reverse": 6,
+          "strict": false,
+          "step": 2000,
+          "mode": "t3_only",
+          "fast5_destination": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261124/homog_label_fix_20261124_v4_6h/reports/homog_label_fix_20261124_v4_phase1/D3_step2000_fast5",
+          "snapshot_destination": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261124/homog_label_fix_20261124_v4_6h/reports/homog_label_fix_20261124_v4_phase1/D3_step2000_snapshot9"
+        }
+      },
+      "early_stop": true,
+      "reason": "step2000 failed toward>=0.55 and final_mean<=110um"
+    }
+  },
+  "candidates": [
+    {
+      "arm": "D1",
+      "checkpoint": "/home/him1/mujoco_bc/rcm_4090_deploy/outputs/homog_label_fix_20261124_v4/homog_label_fix_20261124_v4_phase1_D1/step_002000.pth",
+      "final_mean_um": 137.8460370173725,
+      "min_mean_um": 75.49173497683543,
+      "absolute_drift_um": 43.388762642921094,
+      "toward_fraction": 0.3784722222222222,
+      "axis_reverse_counts": {
+        "A": 7,
+        "B": 4,
+        "C": 5
+      },
+      "max_axis_reverse": 7,
+      "strict": false,
+      "step": 2000,
+      "mode": "executed_only",
+      "fast5_destination": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261124/homog_label_fix_20261124_v4_6h/reports/homog_label_fix_20261124_v4_phase1/D1_step2000_fast5",
+      "snapshot_destination": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261124/homog_label_fix_20261124_v4_6h/reports/homog_label_fix_20261124_v4_phase1/D1_step2000_snapshot9"
+    },
+    {
+      "arm": "D2",
+      "checkpoint": "/home/him1/mujoco_bc/rcm_4090_deploy/outputs/homog_label_fix_20261124_v4/homog_label_fix_20261124_v4_phase1_D2/step_002000.pth",
+      "final_mean_um": 142.78498943680017,
+      "min_mean_um": 73.25151998895902,
+      "absolute_drift_um": 26.019883365199824,
+      "toward_fraction": 0.3819444444444444,
+      "axis_reverse_counts": {
+        "A": 7,
+        "B": 4,
+        "C": 5
+      },
+      "max_axis_reverse": 7,
+      "strict": false,
+      "step": 2000,
+      "mode": "dir_consistent",
+      "fast5_destination": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261124/homog_label_fix_20261124_v4_6h/reports/homog_label_fix_20261124_v4_phase1/D2_step2000_fast5",
+      "snapshot_destination": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261124/homog_label_fix_20261124_v4_6h/reports/homog_label_fix_20261124_v4_phase1/D2_step2000_snapshot9"
+    },
+    {
+      "arm": "D3",
+      "checkpoint": "/home/him1/mujoco_bc/rcm_4090_deploy/outputs/homog_label_fix_20261124_v4/homog_label_fix_20261124_v4_phase1_D3/step_002000.pth",
+      "final_mean_um": 102.55438290811591,
+      "min_mean_um": 55.70823823955975,
+      "absolute_drift_um": 26.45442421015209,
+      "toward_fraction": 0.3958333333333333,
+      "axis_reverse_counts": {
+        "A": 6,
+        "B": 4,
+        "C": 5
+      },
+      "max_axis_reverse": 6,
+      "strict": false,
+      "step": 2000,
+      "mode": "t3_only",
+      "fast5_destination": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261124/homog_label_fix_20261124_v4_6h/reports/homog_label_fix_20261124_v4_phase1/D3_step2000_fast5",
+      "snapshot_destination": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261124/homog_label_fix_20261124_v4_6h/reports/homog_label_fix_20261124_v4_phase1/D3_step2000_snapshot9"
+    }
+  ],
+  "selected": null,
+  "selection": "none",
+  "D1_used_for_fallback": true
+}

@@ -79,8 +79,10 @@ def identity():
     return {**previous_identity(), **{str(p.relative_to(ROOT)): file_sha256(p) for p in files}}
 
 
-def pool(groups, output, *, snapshot_every=5):
-    return run_pool(groups, output, workers=WORKERS, max_workers=WORKERS,
+def pool(groups, output, *, snapshot_every=5, workers=WORKERS, max_workers=None):
+    max_workers = WORKERS if max_workers is None else min(int(max_workers), WORKERS)
+    workers = int(workers)
+    return run_pool(groups, output, workers=workers, max_workers=max_workers,
         timeout_s=None, stage_timeout_s=None, initializer_timeout_s=None,
         execution_timeout_s=None, snapshot_every=snapshot_every,
         admission_min_ram_mib=4096,

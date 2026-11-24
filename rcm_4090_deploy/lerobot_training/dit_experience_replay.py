@@ -35,6 +35,7 @@ try:
         seed_worker,
     )
     from .train_dit_rectified_flow import _atomic_torch_save, _loss, _move_batch
+    from .navigation_overlay import file_sha256
 except ImportError:
     import dit_state_attention as attention
     from experience_replay import ACTION_LIMIT
@@ -46,6 +47,7 @@ except ImportError:
         seed_worker,
     )
     from train_dit_rectified_flow import _atomic_torch_save, _loss, _move_batch
+    from navigation_overlay import file_sha256
 
 
 TRAINING_MODULE = "state_attention_experience_replay_flow_v1"
@@ -175,6 +177,9 @@ class RatioReplacementBatchSampler:
         batches,
         batch_size,
         seed,
+        correction_weights=None,
+        near_target_mask=None,
+        near_target_weight=1.0,
     ):
         self.original_count = int(original_count)
         self.correction_count = int(correction_count)
@@ -183,6 +188,7 @@ class RatioReplacementBatchSampler:
         self.batch_size = int(batch_size)
         self.seed = int(seed)
         self.epoch = 0
+        self.near_target_weight = float(near_target_weight)
         if min(
             self.original_count,
             self.correction_count,
@@ -192,6 +198,28 @@ class RatioReplacementBatchSampler:
             raise ValueError("sampler counts must be positive")
         if not 0.0 < self.correction_ratio < 1.0:
             raise ValueError("correction ratio must be in (0, 1)")
+        if not math.isfinite(self.near_target_weight) or self.near_target_weight < 0:
+            raise ValueError("near-target weight must be finite and nonnegative")
+        if correction_weights is None:
+            correction_weights = np.ones(self.correction_count, dtype=np.float64)
+        correction_weights = np.asarray(correction_weights, dtype=np.float64)
+        if correction_weights.shape != (self.correction_count,):
+            raise ValueError("correction weights must match the correction pool")
+        if not np.isfinite(correction_weights).all() or np.any(correction_weights < 0):
+            raise ValueError("correction weights must be finite and nonnegative")
+        if near_target_mask is None:
+            near_target_mask = np.zeros(self.correction_count, dtype=np.bool_)
+        near_target_mask = np.asarray(near_target_mask, dtype=np.bool_)
+        if near_target_mask.shape != (self.correction_count,):
+            raise ValueError("near-target mask must match the correction pool")
+        correction_weights = correction_weights.copy()
+        correction_weights[near_target_mask] *= self.near_target_weight
+        if correction_weights.sum() <= 0:
+            raise ValueError("correction weight pool is empty or all zero")
+        self.correction_weights = correction_weights
+        self.correction_probabilities = (
+            correction_weights / correction_weights.sum()
+        )
 
     def __iter__(self):
         rng = np.random.default_rng(self.seed + self.epoch)
@@ -216,8 +244,11 @@ class RatioReplacementBatchSampler:
             if len(correction_rows):
                 indices[correction_rows] = (
                     self.original_count
-                    + rng.integers(
-                        self.correction_count, size=len(correction_rows)
+                    + rng.choice(
+                        self.correction_count,
+                        size=len(correction_rows),
+                        replace=True,
+                        p=self.correction_probabilities,
                     )
                 )
             yield indices.tolist()
@@ -299,6 +330,8 @@ def _train_loader(
     correction_count,
     correction_ratio,
     epoch,
+    correction_weights=None,
+    near_target_mask=None,
 ):
     if mode == "balanced":
         sampler = BalancedReplacementBatchSampler(
@@ -316,6 +349,9 @@ def _train_loader(
             args.steps_per_epoch,
             args.batch_size,
             args.seed + epoch,
+            correction_weights=correction_weights,
+            near_target_mask=near_target_mask,
+            near_target_weight=getattr(args, "near_target_weight", 1.0),
         )
     else:
         sampler = ReplacementBatchSampler(
@@ -383,16 +419,99 @@ def _optimizer(model, args):
     for name, parameter in model.named_parameters():
         (
             attention_parameters
-            if ".temporal_bias." in name
+            if "temporal_bias" in name
             else backbone
         ).append(parameter)
+    if args.backbone_lr == 0:
+        for parameter in backbone:
+            parameter.requires_grad_(False)
+    active_backbone = [parameter for parameter in backbone if parameter.requires_grad]
+    active_attention = [
+        parameter for parameter in attention_parameters if parameter.requires_grad
+    ]
+    groups = []
+    if active_backbone:
+        groups.append({"params": active_backbone, "lr": args.backbone_lr})
+    if active_attention:
+        groups.append({"params": active_attention, "lr": args.attention_lr})
+    if not groups:
+        raise ValueError("optimizer has no trainable parameters")
     return torch.optim.AdamW(
-        [
-            {"params": backbone, "lr": args.backbone_lr},
-            {"params": attention_parameters, "lr": args.attention_lr},
-        ],
+        groups,
         weight_decay=args.weight_decay,
     )
+
+
+def _scheduler(optimizer, args, total_batches):
+    if args.lr_schedule == "constant":
+        return None
+    if args.lr_schedule != "cosine":
+        raise ValueError(f"unsupported learning-rate schedule: {args.lr_schedule}")
+    return torch.optim.lr_scheduler.CosineAnnealingLR(
+        optimizer,
+        T_max=max(1, int(total_batches)),
+    )
+
+
+def _rng_state():
+    return {
+        "python": random.getstate(),
+        "numpy": np.random.get_state(),
+        "torch": torch.get_rng_state(),
+        "cuda": torch.cuda.get_rng_state_all() if torch.cuda.is_available() else None,
+    }
+
+
+def _restore_rng_state(state):
+    random.setstate(state["python"])
+    np.random.set_state(state["numpy"])
+    torch.set_rng_state(state["torch"])
+    if state.get("cuda") is not None:
+        torch.cuda.set_rng_state_all(state["cuda"])
+
+
+def load_correction_window_weights(
+    data_dir,
+    valid_indices,
+    *,
+    near_target_um=None,
+):
+    """Resolve per-window correction weights and the optional near-target mask."""
+    data_dir = Path(data_dir)
+    valid_indices = np.asarray(valid_indices, dtype=np.int64)
+    overlay_path = data_dir / "data" / "label_repair_overlay.npz"
+    if overlay_path.is_file():
+        with np.load(overlay_path, allow_pickle=False) as overlay:
+            overlay_rows = overlay["correction_window_indices"].astype(np.int64)
+            overlay_weights = overlay["correction_window_weight"].astype(np.float64)
+        if not np.array_equal(overlay_rows, valid_indices):
+            raise ValueError(
+                "correction window weights do not match unchanged valid indices"
+            )
+        weights = overlay_weights
+        source = str(overlay_path)
+    else:
+        weights = np.ones(len(valid_indices), dtype=np.float64)
+        source = "implicit_uniform"
+    near = np.zeros(len(valid_indices), dtype=np.bool_)
+    if near_target_um is not None:
+        with np.load(data_dir / "data" / "dataset.npz", allow_pickle=False) as data:
+            if "truth_navigation_mm" not in data:
+                raise ValueError(
+                    "near-target sampling requires truth_navigation_mm"
+                )
+            truth = data["truth_navigation_mm"][valid_indices].astype(np.float64)
+        distance_um = np.linalg.norm(truth, axis=1) * 1000.0
+        near = distance_um <= float(near_target_um)
+    return weights, near, {
+        "source": source,
+        "window_count": len(valid_indices),
+        "weight_min": float(weights.min()) if len(weights) else None,
+        "weight_max": float(weights.max()) if len(weights) else None,
+        "weight_mean": float(weights.mean()) if len(weights) else None,
+        "near_target_um": near_target_um,
+        "near_target_windows": int(near.sum()),
+    }
 
 
 def _validate(model, loader, device, args):
@@ -542,6 +661,12 @@ def _write_json(path, value):
 def train(argv):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--data-dir", type=Path, required=True)
+    parser.add_argument(
+        "--correction-data-dir",
+        type=Path,
+        help="Optional independent correction dataset; all valid windows enter its pool",
+    )
+    parser.add_argument("--original-max-episode", type=int, default=None)
     parser.add_argument("--val-data-dir", type=Path, required=True)
     parser.add_argument("--init-from", type=Path, required=True)
     parser.add_argument("--output-dir", type=Path, required=True)
@@ -558,28 +683,51 @@ def train(argv):
     )
     parser.add_argument("--epochs", type=int, default=4)
     parser.add_argument("--steps-per-epoch", type=int, default=1000)
+    parser.add_argument(
+        "--total-batches",
+        type=int,
+        default=None,
+        help="Optimizer batches across the run; defaults to epochs * steps-per-epoch",
+    )
     parser.add_argument("--batch-size", type=int, default=16)
     parser.add_argument("--val-batch-size", type=int, default=64)
     parser.add_argument("--validation-max-batches", type=int, default=None)
     parser.add_argument("--num-workers", type=int, default=8)
     parser.add_argument("--backbone-lr", type=float, default=1e-6)
     parser.add_argument("--attention-lr", type=float, default=1e-5)
+    parser.add_argument(
+        "--lr-schedule",
+        choices=("constant", "cosine"),
+        default="constant",
+    )
+    parser.add_argument(
+        "--near-target-um",
+        type=float,
+        default=None,
+        help="Apply near-target correction weighting at or below this truth error",
+    )
+    parser.add_argument("--near-target-weight", type=float, default=1.0)
     parser.add_argument("--weight-decay", type=float, default=1e-4)
     parser.add_argument("--correction-source", default="teacher")
     parser.add_argument("--seed", type=int, default=20261118)
     parser.add_argument("--validation-seed", type=int, default=20261119)
     parser.add_argument("--log-every-steps", type=int, default=100)
     parser.add_argument("--checkpoint-every-steps", type=int, default=1000)
+    parser.add_argument("--resume", action="store_true")
     parser.add_argument("--device", default="cuda")
     parser.add_argument("--oct-symlog", action="store_true")
     parser.add_argument("--label-overlay", type=Path)
+    parser.add_argument("--oct-overlay", type=Path)
+    parser.add_argument("--c-label-overlay", type=Path)
     parser.add_argument(
         "--amp",
         action=argparse.BooleanOptionalAction,
         default=True,
     )
     args = parser.parse_args(argv)
-    if args.output_dir.exists():
+    if args.label_overlay is not None and args.c_label_overlay is not None:
+        parser.error("use either legacy label-overlay or composed c-label-overlay")
+    if args.output_dir.exists() and not args.resume:
         parser.error("output directory already exists")
     if min(
         args.epochs,
@@ -595,20 +743,22 @@ def train(argv):
         parser.error("validation max batches must be positive")
     if args.batch_size % 2:
         parser.error("batch size must be even")
+    if args.total_batches is None:
+        args.total_batches = args.epochs * args.steps_per_epoch
+    if args.total_batches < 1:
+        parser.error("total batches must be positive")
     if args.correction_ratio > 1.0:
         parser.error("correction ratio must be at most 1 or negative for natural")
     if min(args.log_every_steps, args.checkpoint_every_steps) < 1:
         parser.error("logging and checkpoint intervals must be positive")
-    if args.steps_per_epoch % args.checkpoint_every_steps:
-        parser.error(
-            "steps per epoch must be divisible by checkpoint interval"
-        )
     if min(
         args.backbone_lr,
         args.attention_lr,
         args.weight_decay,
     ) < 0:
         parser.error("learning rates and weight decay must be nonnegative")
+    if args.near_target_weight < 0 or not math.isfinite(args.near_target_weight):
+        parser.error("near-target weight must be finite and nonnegative")
     device = torch.device(args.device)
     if device.type == "cuda" and not torch.cuda.is_available():
         parser.error("CUDA unavailable; use --device cpu only for a smoke run")
@@ -636,9 +786,46 @@ def train(argv):
         include_velocity=True,
         include_previous_action=True,
     )
-    original_indices, correction_indices = split_experience_indices(
-        combined, args.correction_source
+    from lerobot_training.navigation_overlay import apply_dataset_overlays
+
+    overlay_receipt = apply_dataset_overlays(
+        combined, oct_overlay=args.oct_overlay, c_overlay=args.c_label_overlay,
     )
+    correction_weight_receipt = {
+        "source": "not_applicable",
+        "window_count": 0,
+        "near_target_windows": 0,
+    }
+    correction_weights = near_target_mask = None
+    correction_owner = combined
+    if args.correction_data_dir is not None:
+        correction_owner = RCMDataset(
+            args.correction_data_dir,
+            transform=transform,
+            n_obs_steps=combined.n_obs_steps,
+            n_action_steps=combined.n_action_steps,
+            include_velocity=True,
+            include_previous_action=True,
+        )
+        all_original = np.arange(len(combined), dtype=np.int64)
+        if args.original_max_episode is not None:
+            rows = np.asarray(combined.valid_indices, dtype=np.int64)
+            all_original = np.flatnonzero(
+                combined.episode_indices[rows] <= args.original_max_episode
+            )
+        original_indices = all_original
+        correction_indices = np.arange(len(correction_owner), dtype=np.int64)
+        correction_weights, near_target_mask, correction_weight_receipt = (
+            load_correction_window_weights(
+                args.correction_data_dir,
+                np.asarray(correction_owner.valid_indices, dtype=np.int64),
+                near_target_um=args.near_target_um,
+            )
+        )
+    else:
+        original_indices, correction_indices = split_experience_indices(
+            combined, args.correction_source
+        )
     if args.label_overlay is not None:
         from scripts.research.overnight_cfix_data import apply_overlay
 
@@ -652,7 +839,7 @@ def train(argv):
             "static/balanced modes require expert correction windows"
         )
     original = IndexSubset(combined, original_indices, source=0)
-    correction = IndexSubset(combined, correction_indices, source=1)
+    correction = IndexSubset(correction_owner, correction_indices, source=1)
     natural_correction_ratio = len(correction_indices) / (
         len(original_indices) + len(correction_indices)
     )
@@ -670,7 +857,14 @@ def train(argv):
             "ratio mode requires a correction probability in (0, 1)"
         )
 
-    args.output_dir.mkdir(parents=True)
+    resume_path = args.output_dir / "resume_state.pth"
+    if args.output_dir.exists():
+        if not args.resume or not resume_path.is_file():
+            raise FileExistsError(
+                f"non-resumable training output directory: {args.output_dir}"
+            )
+    else:
+        args.output_dir.mkdir(parents=True)
     configure_stream_logging(args.output_dir)
     model, initial_config, initial_epoch = _load_policy(
         args.init_from,
@@ -678,6 +872,7 @@ def train(argv):
         oct_symlog_enabled=args.oct_symlog,
     )
     optimizer = _optimizer(model, args)
+    scheduler = _scheduler(optimizer, args, args.total_batches)
     scaler = torch.amp.GradScaler(
         "cuda",
         enabled=args.amp and device.type == "cuda",
@@ -698,16 +893,52 @@ def train(argv):
         "supervision_action_source": args.correction_source,
         "initial_checkpoint_epoch": initial_epoch,
         "oct_symlog_enabled": bool(args.oct_symlog),
+        "dagger_repeat": 1,
+        "overlay_receipt": overlay_receipt,
+        "correction_weight_receipt": correction_weight_receipt,
+        "freeze_config": {
+            "backbone_frozen": args.backbone_lr == 0,
+            "backbone_lr": args.backbone_lr,
+            "attention_lr": args.attention_lr,
+            "trainable_parameters": [
+                name for name, parameter in model.named_parameters()
+                if parameter.requires_grad
+            ],
+            "frozen_parameters": [
+                name for name, parameter in model.named_parameters()
+                if not parameter.requires_grad
+            ],
+        },
+        "lr_schedule": args.lr_schedule,
+        "total_batches": args.total_batches,
+        "near_target_um": args.near_target_um,
+        "near_target_weight": args.near_target_weight,
     }
     manifest = {
         "training_module": TRAINING_MODULE,
         "mode": args.mode,
+        "overlay_receipt": overlay_receipt,
         "initial_checkpoint": str(args.init_from),
         "initial_checkpoint_epoch": initial_epoch,
         "original_windows": len(original),
         "correction_windows": len(correction),
         "natural_correction_ratio": natural_correction_ratio,
         "correction_ratio": correction_ratio,
+        "correction_weight_receipt": correction_weight_receipt,
+        "correction_sample_weight": (
+            {
+                "path": str(
+                    args.correction_data_dir / "data" / "label_repair_overlay.npz"
+                ),
+                "near_target_um": args.near_target_um,
+                "near_target_weight": args.near_target_weight,
+            }
+            if correction_weights is not None
+            else None
+        ),
+        "freeze_config": run_config["freeze_config"],
+        "lr_schedule": args.lr_schedule,
+        "total_batches": args.total_batches,
         "valid_window_index_sha256": _index_sha256(
             combined.valid_indices
         ),
@@ -737,9 +968,15 @@ def train(argv):
                 )
             }
         ),
-        "sampling": "uniform_with_replacement",
+        "sampling": (
+            "fixed_original_correction_ratio_without_replacement_quota;"
+            "correction_pool_weighted_with_replacement"
+            if args.mode == "ratio"
+            else "uniform_with_replacement"
+        ),
         "steps_per_epoch": args.steps_per_epoch,
         "epochs": args.epochs,
+        "total_batches": args.total_batches,
         "flow_loss_weights": {
             "original": (
                 0.5 if args.mode == "balanced" else None
@@ -755,12 +992,125 @@ def train(argv):
 
     history, best, started = [], float("inf"), time.monotonic()
     metrics_path = args.output_dir / "training_metrics.jsonl"
-    metrics_stream = metrics_path.open("w", encoding="utf-8")
+    metrics_stream = metrics_path.open(
+        "a" if resume_path.is_file() else "w", encoding="utf-8"
+    )
     original_seen, correction_seen = set(), set()
     sampling_counts = {"original": 0, "correction": 0}
     global_step = optimizer_updates = 0
-    for epoch in range(args.epochs):
-        model.train()
+    resumed_rng = None
+    if resume_path.is_file():
+        saved = torch.load(resume_path, map_location="cpu", weights_only=False)
+        if saved.get("training_module") != TRAINING_MODULE:
+            raise ValueError("resume state belongs to another training module")
+        if saved.get("dataset_sha256") != file_sha256(
+            args.data_dir / "data" / "dataset.npz"
+        ):
+            raise ValueError("resume source dataset changed")
+        if args.correction_data_dir is not None and saved.get(
+            "correction_dataset_sha256"
+        ) != file_sha256(
+            args.correction_data_dir / "data" / "dataset.npz"
+        ):
+            raise ValueError("resume correction dataset changed")
+        if saved.get("sampling_contract", {}).get(
+            "correction_ratio"
+        ) != correction_ratio:
+            raise ValueError("resume correction ratio differs")
+        model.load_state_dict(saved["model_state_dict"])
+        optimizer.load_state_dict(saved["optimizer_state_dict"])
+        scaler.load_state_dict(saved["scaler_state_dict"])
+        if scheduler is not None:
+            if saved.get("scheduler_state_dict") is None:
+                raise ValueError("resume checkpoint lacks scheduler state")
+            scheduler.load_state_dict(saved["scheduler_state_dict"])
+        progress = saved["progress"]
+        global_step = int(progress["global_step"])
+        optimizer_updates = int(progress["optimizer_updates"])
+        history = list(progress.get("history", []))
+        best = float(progress.get("best", float("inf")))
+        sampling_counts = {
+            "original": int(progress["sampling_counts"][0]),
+            "correction": int(progress["sampling_counts"][1]),
+        }
+        original_seen = set(progress.get("original_seen", []))
+        correction_seen = set(progress.get("correction_seen", []))
+        resumed_rng = saved["rng_state"]
+        started -= float(progress.get("elapsed_s", 0.0))
+        print(
+            f"Resume exactly after batch {global_step}/{args.total_batches}",
+            flush=True,
+        )
+        del saved
+
+    def sampling_contract():
+        return {
+            "mode": args.mode,
+            "correction_ratio": correction_ratio,
+            "near_target_um": args.near_target_um,
+            "near_target_weight": args.near_target_weight,
+            "correction_weight_receipt": correction_weight_receipt,
+        }
+
+    def save_checkpoint(step, epoch, train_loss, val_loss):
+        nonlocal best
+        improved = val_loss is not None and val_loss < best
+        if improved:
+            best = float(val_loss)
+        payload = {
+            "schema_version": 2,
+            "policy_type": model.policy_type,
+            "architecture": attention.ARCHITECTURE,
+            "training_module": TRAINING_MODULE,
+            "model_state_dict": model.state_dict(),
+            "optimizer_state_dict": optimizer.state_dict(),
+            "scheduler_state_dict": (
+                scheduler.state_dict() if scheduler is not None else None
+            ),
+            "scaler_state_dict": scaler.state_dict(),
+            "rng_state": _rng_state(),
+            "epoch": epoch,
+            "train_loss": train_loss,
+            "val_loss": val_loss,
+            "config": run_config,
+            "dataset_sha256": file_sha256(
+                args.data_dir / "data" / "dataset.npz"
+            ),
+            "correction_dataset_sha256": (
+                file_sha256(
+                    args.correction_data_dir / "data" / "dataset.npz"
+                )
+                if args.correction_data_dir is not None
+                else None
+            ),
+            "sampling_contract": sampling_contract(),
+            "freeze_config": run_config["freeze_config"],
+            "progress": {
+                "global_step": step,
+                "optimizer_updates": optimizer_updates,
+                "history": history,
+                "best": best,
+                "sampling_counts": [
+                    sampling_counts["original"],
+                    sampling_counts["correction"],
+                ],
+                "original_seen": sorted(original_seen),
+                "correction_seen": sorted(correction_seen),
+                "elapsed_s": time.monotonic() - started,
+            },
+        }
+        _atomic_torch_save(payload, args.output_dir / "resume_state.pth")
+        _atomic_torch_save(payload, args.output_dir / "last_model.pth")
+        _atomic_torch_save(
+            payload, args.output_dir / f"step_{step:06d}.pth"
+        )
+        if improved:
+            _atomic_torch_save(payload, args.output_dir / "best_model.pth")
+
+    last_train_loss = float("inf")
+    while global_step < args.total_batches:
+        epoch = global_step // args.steps_per_epoch
+        batch_offset = global_step % args.steps_per_epoch
         loader = _train_loader(
             args,
             training,
@@ -769,13 +1119,24 @@ def train(argv):
             len(correction),
             correction_ratio,
             epoch,
+            correction_weights=correction_weights,
+            near_target_mask=near_target_mask,
         )
-        total, count = 0.0, 0
-        for batch in tqdm(
+        model.train()
+        epoch_loss = 0.0
+        epoch_count = 0
+        for batch_index, batch in enumerate(tqdm(
             loader,
             total=args.steps_per_epoch,
             desc=f"Experience replay epoch {epoch}",
-        ):
+        )):
+            if batch_index < batch_offset:
+                continue
+            if global_step >= args.total_batches:
+                break
+            if resumed_rng is not None:
+                _restore_rng_state(resumed_rng)
+                resumed_rng = None
             batch = _move_batch(batch, device)
             optimizer.zero_grad(set_to_none=True)
             with torch.autocast(
@@ -786,11 +1147,15 @@ def train(argv):
                 loss = _loss(model, batch)
             loss_value = float(loss.detach())
             if not math.isfinite(loss_value):
-                raise FloatingPointError(f"nonfinite loss at batch {global_step + 1}")
+                raise FloatingPointError(
+                    f"nonfinite loss at batch {global_step + 1}"
+                )
             scaler.scale(loss).backward()
             scaler.unscale_(optimizer)
             gradient_norm = torch.nn.utils.clip_grad_norm_(
-                model.parameters(), 1.0
+                [parameter for parameter in model.parameters()
+                 if parameter.requires_grad],
+                1.0,
             )
             scale_before_step = scaler.get_scale()
             scaler.step(optimizer)
@@ -801,10 +1166,15 @@ def train(argv):
                 or scale_after_step >= scale_before_step
             )
             if not math.isfinite(float(gradient_norm)) and optimizer_updated:
-                raise FloatingPointError(f"nonfinite gradient at batch {global_step + 1}")
+                raise FloatingPointError(
+                    f"nonfinite gradient at batch {global_step + 1}"
+                )
+            if optimizer_updated and scheduler is not None:
+                scheduler.step()
             optimizer_updates += int(optimizer_updated)
-            total += loss_value
-            count += 1
+            epoch_loss += loss_value
+            last_train_loss = loss_value
+            epoch_count += 1
             global_step += 1
             source = batch["sample.source"]
             index = batch["sample.index"]
@@ -839,42 +1209,74 @@ def train(argv):
                     + "\n"
                 )
                 metrics_stream.flush()
-        train_loss = total / max(count, 1)
-        val_loss = _validate(model, val_loader, device, args)
-        if not math.isfinite(val_loss):
-            raise FloatingPointError(f"nonfinite validation loss at epoch {epoch}")
-        row = {
-            "epoch": epoch,
-            "train_loss": train_loss,
-            "val_loss": val_loss,
-            "steps": count,
-            "batches_seen": global_step,
+            if global_step % args.checkpoint_every_steps == 0:
+                save_checkpoint(
+                    global_step, epoch,
+                    epoch_loss / max(epoch_count, 1), None,
+                )
+                print(
+                    json.dumps({
+                        "step": global_step,
+                        "epoch": epoch,
+                        "lr_groups": [
+                            group["lr"] for group in optimizer.param_groups
+                        ],
+                        "checkpoint": str(
+                            args.output_dir / f"step_{global_step:06d}.pth"
+                        ),
+                    }),
+                    flush=True,
+                )
+        completed_epoch = (
+            batch_offset + epoch_count == args.steps_per_epoch
+        )
+        if completed_epoch:
+            train_loss = epoch_loss / max(epoch_count, 1)
+            val_loss = _validate(model, val_loader, device, args)
+            if not math.isfinite(val_loss):
+                raise FloatingPointError(
+                    f"nonfinite validation loss at epoch {epoch}"
+                )
+            row = {
+                "epoch": epoch,
+                "train_loss": train_loss,
+                "val_loss": val_loss,
+                "steps": epoch_count,
+                "batches_seen": global_step,
+                "optimizer_updates": optimizer_updates,
+                "amp_skipped_batches": global_step - optimizer_updates,
+                "elapsed_s": time.monotonic() - started,
+                "sampling_counts": dict(sampling_counts),
+            }
+            history.append(row)
+            _write_json(args.output_dir / "training_history.json", history)
+            save_checkpoint(global_step, epoch, train_loss, val_loss)
+            print(json.dumps(row), flush=True)
+        elif global_step < args.total_batches:
+            raise RuntimeError(
+                "training data loader ended before the configured batch count"
+            )
+    if global_step % args.checkpoint_every_steps:
+        save_checkpoint(
+            global_step,
+            global_step // args.steps_per_epoch,
+            last_train_loss,
+            None,
+        )
+    _write_json(
+        args.output_dir / "training_receipt.json",
+        {
+            "status": "completed",
+            "total_batches": global_step,
             "optimizer_updates": optimizer_updates,
-            "amp_skipped_batches": global_step - optimizer_updates,
-            "elapsed_s": time.monotonic() - started,
-            "sampling_counts": dict(sampling_counts),
-        }
-        history.append(row)
-        _write_json(args.output_dir / "training_history.json", history)
-        payload = {
-            "schema_version": 1,
-            "policy_type": model.policy_type,
-            "architecture": attention.ARCHITECTURE,
-            "training_module": TRAINING_MODULE,
-            "model_state_dict": model.state_dict(),
-            "optimizer_state_dict": optimizer.state_dict(),
-            "epoch": epoch,
-            "train_loss": train_loss,
-            "val_loss": val_loss,
-            "config": run_config,
-        }
-        _atomic_torch_save(payload, args.output_dir / "last_model.pth")
-        step_checkpoint = args.output_dir / f"step_{global_step:06d}.pth"
-        _atomic_torch_save(payload, step_checkpoint)
-        if val_loss < best:
-            best = val_loss
-            _atomic_torch_save(payload, args.output_dir / "best_model.pth")
-        print(json.dumps(row), flush=True)
+            "sampling_counts": sampling_counts,
+            "sampling_contract": sampling_contract(),
+            "freeze_config": run_config["freeze_config"],
+            "scheduler": (
+                scheduler.state_dict() if scheduler is not None else None
+            ),
+        },
+    )
     metrics_stream.close()
     return 0
 

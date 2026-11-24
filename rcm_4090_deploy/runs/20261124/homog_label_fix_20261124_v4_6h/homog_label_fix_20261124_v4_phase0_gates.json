@@ -1,0 +1,69 @@
+{
+  "executed_only": {
+    "status": "passed",
+    "dataset": "/home/him1/mujoco_bc/rcm_4090_deploy/data/homog_label_fix_20261124_v4_executed_only",
+    "dataset_sha256": "bb7ff1116f0fc0dc08ef42ebe865535872d6bda7d247690767efc7485d1f5208",
+    "audit": "/home/him1/mujoco_bc/rcm_4090_deploy/data/homog_label_fix_20261124_v4_executed_only/dataset_audit.json",
+    "mode": "executed_only",
+    "t1_t2_fallback_fraction": 1.0,
+    "t3_stationary_kept_fraction": 1.0,
+    "correction_sample_weight": {
+      "kind": "per_frame_then_mean_over_16_action_steps",
+      "values": [
+        0.25,
+        1.0
+      ],
+      "window_min": 0.25,
+      "window_max": 1.0,
+      "window_mean": 0.7911164164543152,
+      "nonzero_windows": 41422,
+      "zero_windows": 0
+    },
+    "valid_windows": 41422
+  },
+  "dir_consistent": {
+    "status": "passed",
+    "dataset": "/home/him1/mujoco_bc/rcm_4090_deploy/data/homog_label_fix_20261124_v4_dir_consistent",
+    "dataset_sha256": "bb92b887486579b51efc5343fb8c7d546ae6bdd9eac3ebb195e2e1499eded614",
+    "audit": "/home/him1/mujoco_bc/rcm_4090_deploy/data/homog_label_fix_20261124_v4_dir_consistent/dataset_audit.json",
+    "mode": "dir_consistent",
+    "t1_t2_fallback_fraction": 0.6116977532155663,
+    "t3_stationary_kept_fraction": 1.0,
+    "correction_sample_weight": {
+      "kind": "per_frame_then_mean_over_16_action_steps",
+      "values": [
+        0.25,
+        1.0
+      ],
+      "window_min": 0.25,
+      "window_max": 1.0,
+      "window_mean": 0.7911164164543152,
+      "nonzero_windows": 41422,
+      "zero_windows": 0
+    },
+    "valid_windows": 41422
+  },
+  "t3_only": {
+    "status": "passed",
+    "dataset": "/home/him1/mujoco_bc/rcm_4090_deploy/data/homog_label_fix_20261124_v4_t3_only",
+    "dataset_sha256": "1aed45c3064be09ab77cd950812dc110ad67796a51191298ad7913bfff703b05",
+    "audit": "/home/him1/mujoco_bc/rcm_4090_deploy/data/homog_label_fix_20261124_v4_t3_only/dataset_audit.json",
+    "mode": "t3_only",
+    "t1_t2_fallback_fraction": 1.0,
+    "t3_stationary_kept_fraction": 1.0,
+    "correction_sample_weight": {
+      "kind": "per_frame_then_mean_over_16_action_steps",
+      "values": [
+        0.0,
+        0.30000001192092896,
+        1.0
+      ],
+      "window_min": 0.0,
+      "window_max": 0.956250011920929,
+      "window_mean": 0.08701775968074799,
+      "nonzero_windows": 11680,
+      "zero_windows": 29742
+    },
+    "valid_windows": 41422
+  }
+}

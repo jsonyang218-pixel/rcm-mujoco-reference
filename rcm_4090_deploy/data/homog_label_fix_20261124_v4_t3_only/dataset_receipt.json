@@ -1,0 +1,27 @@
+{
+  "status": "completed",
+  "mode": "t3_only",
+  "source_data": "/home/him1/mujoco_bc/rcm_4090_deploy/data/homog_clean_replay_20261123_mixed_1600_600_12_hold_v2",
+  "fixed_data": "/home/him1/mujoco_bc/rcm_4090_deploy/data/homog_label_fix_20261124_v4_t3_only",
+  "source_dataset_sha256": "4629b57238be07a0640accb810a56a23f47a20883308af858265df074cb65d6d",
+  "fixed_dataset_sha256": "1aed45c3064be09ab77cd950812dc110ad67796a51191298ad7913bfff703b05",
+  "overlay_sha256": "c9ff38baf81bee7a2d621569572303184c53033bc4fed9eb2fc56cecfa3971c8",
+  "image_paths_sha256": "200d0a49ddea9b94bef45f1aa55bed20a6c559080581e856b84eee6e382d5f4f",
+  "images_reused_by_symlink": true,
+  "original_files_unchanged": true,
+  "valid_window_index_sha256": "862fc65db4dbcd0f43cb85a213bf5fa6d7ec20b90319317e0ff4ea272caf2ba6",
+  "correction_sample_weight": {
+    "kind": "per_frame_then_mean_over_16_action_steps",
+    "values": [
+      0.0,
+      0.30000001192092896,
+      1.0
+    ],
+    "window_min": 0.0,
+    "window_max": 0.956250011920929,
+    "window_mean": 0.08701775968074799,
+    "nonzero_windows": 11680,
+    "zero_windows": 29742
+  },
+  "audit": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261124/homog_label_fix_20261124_v4_6h/homog_label_fix_20261124_v4_phase0_t3_only/label_fix_audit.json"
+}
