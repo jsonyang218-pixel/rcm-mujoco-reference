@@ -1,0 +1,48 @@
+{
+  "status": "passed",
+  "gpu": {
+    "device": "NVIDIA GeForce RTX 4090",
+    "total_memory_bytes": 50857050112,
+    "python": "3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]",
+    "executable": "/home/him1/mujoco_bc/rcm_4090_deploy/.venv/bin/python"
+  },
+  "identity": {
+    "code_sha256": "b7698c7b72d6e3bee3f79238ca43d0eda4b17e4b9afb84e1f940144b11105e77",
+    "scene_sha256": "265c927ef7e7ac71536963b3000ffb161b7ff7ac03bb86cdb8480ed988c17028",
+    "scripts/research/a_axis_flip_train.py": "8a05b7cdc21980ce68704726bab05d4012f735fd4e5ba3630e55e93cfae7aad5",
+    "scripts/research/a_axis_flip_replay.py": "dc5884144deb39daadc2e674abc343f6c4e18949ec30126f331d631d65dfde2e",
+    "scripts/research/a_axis_flip_audit.py": "e6c65c37656cde0b608c47a6ed4d799fc27dafe6d4abe3b1209c2abe4ca0929e",
+    "scripts/research/a_axis_flip_pipeline.py": "c813ef936b77b51014eca659c3a5ec0e5d6344d1c0308d02cb683628fb6870ee",
+    "scripts/research/a_axis_flip_publish.py": "be4a9fe1c3e6dc06f616381b26e7342d7448cf8feffabf82e96ee96d2503e081",
+    "scripts/research/a_axis_flip_common.py": "061895c8e320063f36db89a0edbc8085ac8b268c8ecb1eac9da4273474006d67",
+    "scripts/research/gpu_episode_pool.py": "323421d338664349811d6479cb03929e743509c900a8588f7dd3fa24f3153b19",
+    "scripts/research/clean_oct_workers.py": "1df09165778f9866b01fb6b8e020afbb839f284797c1ae497ab36216746a1650",
+    "lerobot_training/navigation_overlay.py": "3330474b01973ab121f55f341b7f6969a70bc6d546e5823b1160657e4cdf65a5",
+    "lerobot_training/eval_policy.py": "416448b00b77a71ae57decf3fa2896c87e241697e3d5b3f9bc00cf8e0489846a",
+    "lerobot_training/dit_experience_replay.py": "33404a58a250c0a8aca034459008de4981163dd0cc5ae79fd8c07b27a9753ae9",
+    "lerobot_training/dataset_contract.py": "942d43813b5083986eeca542f6b57c480e4db6a6e163dbb084ed86f3f0a4343a",
+    "configs/v12_reachable_development_targets_0p35um.json": "fcc4872a9d5b58bb7158b36d3c0ab6d7452e4d8d747317dfb077b6e7bbc815c7",
+    "scripts/research/homog_replay_common.py": "738bbb378e43e433460a6f59fdc31d013fb696a6d3337f4cd743d4a77ef66506",
+    "scripts/research/homog_replay_collect.py": "a0ca895c0ba892503df4353a430e28dfac7711b961af03c0b82a8e6ab5e9af1c",
+    "scripts/research/homog_replay_pipeline.py": "7e31430b74debc8c30c804cf8d806cc72f50ab40b1fbf71e3d93ff66a9b74d81",
+    "scripts/research/homog_replay_train.py": "1567ad380a365f3b65e2dfc8d3c03eb85ef3b6e342f2e81e3e5e93eb01ea0386",
+    "scripts/research/homog_replay_target.py": "d90735c7b5b654d10dc303759971778129e4e79ac82c4392135d07731cdf3624",
+    "scripts/research/homog_replay_evaluate.py": "66f077fb04872bece0683d771f4409b146e9f1aa5adc9c4a4ba5302840d4b95c",
+    "scripts/research/homog_replay_hold.py": "8e5698cbfd99165f84ec243dc88383862f410ba720bf9a56d47f1fab868b4a3b",
+    "scripts/research/homog_replay_publish.py": "b9ce066824ffe44c94b86122cafcf8233e033cf361fa61a14d1857e54e483b2f",
+    "scripts/verification/verify_homog_replay.py": "3ed20e44d62dc6ae32862c63ba703ed9671992a76755b5f0bf7c6f33d43eac43",
+    "scripts/verification/verify_homog_teacher_intent.py": "f1e436e8832c2498dfef0cb046f26a272d73d5e8f0cfa633e525d23c08c0161a",
+    "scripts/verification/verify_homog_t3_hold.py": "487cce1214570c677274ffbcf4d7ecd04c760c3fa9e5be722e47ae569d2435db",
+    "scripts/tools/prepare_homog_hold_repair.py": "3bcdaed52f7cf3c8cd48781518d1a0063746c1ad8745b4d90cfe9747b0311e51",
+    "scripts/tools/prepare_teacher_intent_repair.py": "8aee6669180605662797e4cf431d2fff22aef7e7f3c94605f0b8cfa58caf5715",
+    "scripts/tools/prepare_homog_mixed_budget.py": "058a4335952d044c82570cea706aac74955930d7747986b0da4bc2752d1ad7d7",
+    "rcm/fundus.py": "1432e337aecde1e60d65c63250cd773a7c8b150c90cb67b5bf2c0f3ae1befed3",
+    "rcm/visual_servo.py": "b217af0f60eb0a1de462d37dfa22a507911420a7b3cc9c4d899e012e89cbb507",
+    "lerobot_training/train_diffusion_policy.py": "e809558031ea6d1b1bd28904d5d101778831a50761c5b0d9f893943e5254a50c"
+  },
+  "checkpoint_sha256": {
+    "baseline": "185a6ef02caea4ea74ba752d67618d459c906450f5b315cd8010c3c5f1703f1b",
+    "v5_A4000": "6cc389df3786f1f34c43cf65d6dc17fe910ab342fae8d84c8e37cea6a7db6c11"
+  },
+  "script_sha256": "0f96f7c9845fdface2c0593a2f3e35050be0eb165acd0f304688ff6395557f0d"
+}

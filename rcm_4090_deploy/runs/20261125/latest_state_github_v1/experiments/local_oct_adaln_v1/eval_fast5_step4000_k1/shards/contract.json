@@ -1,0 +1,95 @@
+{
+  "groups": {
+    "eval": {
+      "factory": "scripts.research.homog_replay_evaluate:EvaluationWorker",
+      "spec": {
+        "checkpoint": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261125/local_oct_adaln_v1/checkpoints/arm_B_local_oct/step_004000.pth",
+        "checkpoint_sha256": "284bd88e9f7b70ed11d0c12b0d53a6104e8ced39a9f35542c0a5d89c7423c9b4",
+        "samples": 1,
+        "controller": "feedback",
+        "quality": {
+          "offsamples": 0,
+          "numslices": 112,
+          "numstacks": 64
+        },
+        "action_aggregation": "median",
+        "identity": {
+          "targets_sha256": "fcc4872a9d5b58bb7158b36d3c0ab6d7452e4d8d747317dfb077b6e7bbc815c7",
+          "code_sha256": "fc7262821c0a33f437aec6ea386f2effef5943426fe145314c0a00d6e558996f",
+          "scene_sha256": "265c927ef7e7ac71536963b3000ffb161b7ff7ac03bb86cdb8480ed988c17028",
+          "scripts/research/a_axis_flip_train.py": "8a05b7cdc21980ce68704726bab05d4012f735fd4e5ba3630e55e93cfae7aad5",
+          "scripts/research/a_axis_flip_replay.py": "dc5884144deb39daadc2e674abc343f6c4e18949ec30126f331d631d65dfde2e",
+          "scripts/research/a_axis_flip_audit.py": "e6c65c37656cde0b608c47a6ed4d799fc27dafe6d4abe3b1209c2abe4ca0929e",
+          "scripts/research/a_axis_flip_pipeline.py": "c813ef936b77b51014eca659c3a5ec0e5d6344d1c0308d02cb683628fb6870ee",
+          "scripts/research/a_axis_flip_publish.py": "be4a9fe1c3e6dc06f616381b26e7342d7448cf8feffabf82e96ee96d2503e081",
+          "scripts/research/a_axis_flip_common.py": "5d5b5626ceaed192db6ecf4b71c6970e104083c1284402e2fd676f8e9990744b",
+          "scripts/research/gpu_episode_pool.py": "ce33209bb209221fbfd14d80f5255dfa653fc3697e4b5ef9ff5e3e2f3c3a01cd",
+          "scripts/research/clean_oct_workers.py": "1df09165778f9866b01fb6b8e020afbb839f284797c1ae497ab36216746a1650",
+          "lerobot_training/navigation_overlay.py": "3330474b01973ab121f55f341b7f6969a70bc6d546e5823b1160657e4cdf65a5",
+          "lerobot_training/eval_policy.py": "358eda66277c02488c28cb9a22a8e214cf6a362ea94d83e942636347ea8f90cb",
+          "lerobot_training/dit_experience_replay.py": "ca4751cd8c349a9bf6a5aabe5cc0c0b2a62dd263726df20c659f55c299c5ab70",
+          "lerobot_training/dataset_contract.py": "942d43813b5083986eeca542f6b57c480e4db6a6e163dbb084ed86f3f0a4343a",
+          "scripts/research/homog_replay_common.py": "0b89c7b048ab8964e9c505d6fd641cb2b5efb746414ee30e8416bc31c6316d1d",
+          "scripts/research/homog_replay_collect.py": "a0ca895c0ba892503df4353a430e28dfac7711b961af03c0b82a8e6ab5e9af1c",
+          "scripts/research/homog_replay_pipeline.py": "7e31430b74debc8c30c804cf8d806cc72f50ab40b1fbf71e3d93ff66a9b74d81",
+          "scripts/research/homog_replay_train.py": "1567ad380a365f3b65e2dfc8d3c03eb85ef3b6e342f2e81e3e5e93eb01ea0386",
+          "scripts/research/homog_replay_target.py": "d90735c7b5b654d10dc303759971778129e4e79ac82c4392135d07731cdf3624",
+          "scripts/research/homog_replay_evaluate.py": "66f077fb04872bece0683d771f4409b146e9f1aa5adc9c4a4ba5302840d4b95c",
+          "scripts/research/homog_replay_hold.py": "8e5698cbfd99165f84ec243dc88383862f410ba720bf9a56d47f1fab868b4a3b",
+          "scripts/research/homog_replay_publish.py": "b9ce066824ffe44c94b86122cafcf8233e033cf361fa61a14d1857e54e483b2f",
+          "scripts/verification/verify_homog_replay.py": "3ed20e44d62dc6ae32862c63ba703ed9671992a76755b5f0bf7c6f33d43eac43",
+          "scripts/verification/verify_homog_teacher_intent.py": "f1e436e8832c2498dfef0cb046f26a272d73d5e8f0cfa633e525d23c08c0161a",
+          "scripts/verification/verify_homog_t3_hold.py": "487cce1214570c677274ffbcf4d7ecd04c760c3fa9e5be722e47ae569d2435db",
+          "scripts/tools/prepare_homog_hold_repair.py": "3bcdaed52f7cf3c8cd48781518d1a0063746c1ad8745b4d90cfe9747b0311e51",
+          "scripts/tools/prepare_teacher_intent_repair.py": "8aee6669180605662797e4cf431d2fff22aef7e7f3c94605f0b8cfa58caf5715",
+          "scripts/tools/prepare_homog_mixed_budget.py": "058a4335952d044c82570cea706aac74955930d7747986b0da4bc2752d1ad7d7",
+          "rcm/fundus.py": "1432e337aecde1e60d65c63250cd773a7c8b150c90cb67b5bf2c0f3ae1befed3",
+          "rcm/visual_servo.py": "b217af0f60eb0a1de462d37dfa22a507911420a7b3cc9c4d899e012e89cbb507",
+          "lerobot_training/train_diffusion_policy.py": "e809558031ea6d1b1bd28904d5d101778831a50761c5b0d9f893943e5254a50c",
+          "scripts/research/local_oct_adaln_v1.py": "1676f3e6efb28b612654a8f52d985978e99bedab50173046dd236b7dc9b856ef",
+          "scripts/research/probe_near_target_blindness.py": "e8f92a811e367266d24fab7e5b2129ea9df63c05c7fbc4698c11750de4689056",
+          "scripts/research/eval_20um_hold_metrics.py": "45ad8cebd0d703b084008c93c59c893f03e2d8a6e4565857c8c3ecf475278656"
+        },
+        "steps": 1600,
+        "late_drift_start": 1000,
+        "stop_on_success": false
+      },
+      "tasks": [
+        {
+          "id": "E00",
+          "episode_index": 0,
+          "seed": 42
+        },
+        {
+          "id": "E02",
+          "episode_index": 2,
+          "seed": 44
+        },
+        {
+          "id": "E06",
+          "episode_index": 6,
+          "seed": 48
+        },
+        {
+          "id": "E08",
+          "episode_index": 8,
+          "seed": 50
+        },
+        {
+          "id": "E10",
+          "episode_index": 10,
+          "seed": 52
+        }
+      ]
+    }
+  },
+  "workers": 5,
+  "max_workers": 6,
+  "timeout_s": null,
+  "stage_timeout_s": null,
+  "pool_sha256": "ce33209bb209221fbfd14d80f5255dfa653fc3697e4b5ef9ff5e3e2f3c3a01cd",
+  "admission_min_ram_mib": 4096,
+  "initializer_timeout_s": null,
+  "execution_timeout_s": null,
+  "snapshot_every": 5
+}

@@ -1,0 +1,424 @@
+{
+  "status": "completed",
+  "elapsed_s": 4.348439741996117,
+  "read_only_and_zero_training": true,
+  "feature_dimensions": {
+    "F_vis": 37632,
+    "F_cond": 38784,
+    "F_geom_cond": 384,
+    "F_oct": 3
+  },
+  "probe1": {
+    "checkpoint": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261125/local_oct_adaln_v1/checkpoints/arm_B_local_oct/step_004000.pth",
+    "checkpoint_epoch": 3,
+    "policy_type": "dit_rectified_flow",
+    "architecture": "state_conditioned_temporal_attention_v1",
+    "image": {
+      "stored_resolution": [
+        224,
+        224
+      ],
+      "native_render_resolution": [
+        1920,
+        1440
+      ],
+      "training_resize": [
+        224,
+        224
+      ],
+      "fast5_preprocessing": "1920x1440 -> 224x224 bilinear",
+      "normalization_mean_rgb": [
+        0.485,
+        0.456,
+        0.406
+      ],
+      "normalization_std_rgb": [
+        0.229,
+        0.224,
+        0.225
+      ],
+      "crop": "none",
+      "fovy_deg": 45.0,
+      "camera_to_target_distance_mm": 40.44695909459697,
+      "retinal_plane_height_mm": 33.50735802746373,
+      "original_um_per_pixel": 23.268998630183145,
+      "policy_224_um_per_pixel": 149.58641976546306,
+      "offset_pixels": {
+        "20um": {
+          "original_1920x1440_px": 0.8595127069222998,
+          "policy_224x224_px": 0.13370197663235775,
+          "below_one_policy_pixel": true
+        },
+        "30um": {
+          "original_1920x1440_px": 1.2892690603834496,
+          "policy_224x224_px": 0.20055296494853664,
+          "below_one_policy_pixel": true
+        }
+      },
+      "oct_image_input": false,
+      "oct_3d_vector_input": true
+    },
+    "normalization": {
+      "channels": {
+        "state_mean": [
+          0.06349938362836838,
+          0.363604873418808,
+          12.981619834899902
+        ],
+        "state_std": [
+          6.787475109100342,
+          5.752523899078369,
+          6.081380844116211
+        ],
+        "oct_mean": [
+          0.7278906106948853,
+          -0.026162389665842056,
+          6.579880237579346,
+          0.970044732093811
+        ],
+        "oct_std": [
+          1.216712474822998,
+          0.9585331082344055,
+          5.981095314025879,
+          0.17052701115608215
+        ],
+        "action_mean": [
+          0.00018426710448693484,
+          -7.851731788832694e-05,
+          0.03335476294159889
+        ],
+        "action_std": [
+          0.04544081911444664,
+          0.02966109849512577,
+          0.016713595017790794
+        ],
+        "velocity_mean": [
+          0.004034513141959906,
+          -0.003496601479128003,
+          0.4751315414905548
+        ],
+        "velocity_std": [
+          0.6506950259208679,
+          0.4250059723854065,
+          0.24601227045059204
+        ],
+        "previous_action_mean": [
+          0.00024240043421741575,
+          -0.0001381530601065606,
+          0.033337727189064026
+        ],
+        "previous_action_std": [
+          0.045525968074798584,
+          0.029723668470978737,
+          0.01701800711452961
+        ]
+      },
+      "channel_noise_metadata_available": false,
+      "scale_reference": "No explicit input-noise field is logged; channel std is the available scale reference.",
+      "oct_symlog_enabled": false,
+      "oct_symlog_formula_if_enabled": "sign(x)*log1p(abs(x)/0.001) / log1p(oct_std/0.001).clamp_min(1)",
+      "oct_distance_offsets": {
+        "20um": {
+          "xyz_mm": [
+            0.02,
+            0.02,
+            0.02
+          ],
+          "oct_normalized_delta_xyz": [
+            0.016437737274707823,
+            0.020865215638549522,
+            0.0033438691326485464
+          ],
+          "oct_normalized_delta_norm": 0.026771960913085358,
+          "fraction_of_oct_channel_std_xyz": [
+            0.016437737274707823,
+            0.020865215638549522,
+            0.0033438691326485464
+          ]
+        },
+        "30um": {
+          "xyz_mm": [
+            0.03,
+            0.03,
+            0.03
+          ],
+          "oct_normalized_delta_xyz": [
+            0.024656605912061737,
+            0.03129782345782428,
+            0.005015803698972819
+          ],
+          "oct_normalized_delta_norm": 0.04015794136962804,
+          "fraction_of_oct_channel_std_xyz": [
+            0.024656605912061737,
+            0.03129782345782428,
+            0.005015803698972819
+          ]
+        }
+      },
+      "velocity_units": "A_deg/s,B_deg/s,C_mm/s",
+      "previous_action_and_action_units": "A_deg,B_deg,C_mm"
+    },
+    "fast5_contract": {
+      "n_obs_steps": 2,
+      "n_action_steps": 16,
+      "n_action_execute_steps": 1,
+      "open_loop_chunk_steps": 1,
+      "num_action_samples": 1,
+      "action_aggregation": "single_sample",
+      "flow_integration_steps": 4,
+      "replans_every_control_step": true,
+      "control_period_s": 0.05
+    }
+  },
+  "probe2": {
+    "under_60": {
+      "frames": 317,
+      "episode_groups": 42,
+      "features": {
+        "F_vis": {
+          "feature_dim": 37632,
+          "sign_accuracy_xyz": {
+            "X": 0.48264984227129337,
+            "Y": 0.5899053627760252,
+            "Z": 0.5678233438485805
+          },
+          "mean_cosine": 0.08882625237751048,
+          "cosine_median": 0.13598132571426164,
+          "cosine_p10": -0.7185469615825079,
+          "positive_target_fraction_xyz": {
+            "X": 0.6151419558359621,
+            "Y": 0.47003154574132494,
+            "Z": 0.5899053627760252
+          }
+        },
+        "F_cond": {
+          "feature_dim": 38784,
+          "sign_accuracy_xyz": {
+            "X": 0.5299684542586751,
+            "Y": 0.6088328075709779,
+            "Z": 0.555205047318612
+          },
+          "mean_cosine": 0.16384247479375716,
+          "cosine_median": 0.2755843511387034,
+          "cosine_p10": -0.6298960589381215,
+          "positive_target_fraction_xyz": {
+            "X": 0.6151419558359621,
+            "Y": 0.47003154574132494,
+            "Z": 0.5899053627760252
+          }
+        },
+        "F_geom_cond": {
+          "feature_dim": 384,
+          "sign_accuracy_xyz": {
+            "X": 0.9211356466876972,
+            "Y": 0.8391167192429022,
+            "Z": 0.7066246056782335
+          },
+          "mean_cosine": 0.7452860552270306,
+          "cosine_median": 0.8723227523229033,
+          "cosine_p10": 0.30528464277368,
+          "positive_target_fraction_xyz": {
+            "X": 0.6151419558359621,
+            "Y": 0.47003154574132494,
+            "Z": 0.5899053627760252
+          }
+        },
+        "F_oct": {
+          "feature_dim": 3,
+          "sign_accuracy_xyz": {
+            "X": 1.0,
+            "Y": 0.9968454258675079,
+            "Z": 0.9652996845425867
+          },
+          "mean_cosine": 0.9992698010359574,
+          "cosine_median": 0.999903954090649,
+          "cosine_p10": 0.9987526075840992,
+          "positive_target_fraction_xyz": {
+            "X": 0.6151419558359621,
+            "Y": 0.47003154574132494,
+            "Z": 0.5899053627760252
+          }
+        }
+      }
+    },
+    "under_40": {
+      "frames": 250,
+      "episode_groups": 38,
+      "features": {
+        "F_vis": {
+          "feature_dim": 37632,
+          "sign_accuracy_xyz": {
+            "X": 0.504,
+            "Y": 0.544,
+            "Z": 0.48
+          },
+          "mean_cosine": 0.0463396155599799,
+          "cosine_median": -0.010416813256738051,
+          "cosine_p10": -0.7704828307436876,
+          "positive_target_fraction_xyz": {
+            "X": 0.52,
+            "Y": 0.464,
+            "Z": 0.5
+          }
+        },
+        "F_cond": {
+          "feature_dim": 38784,
+          "sign_accuracy_xyz": {
+            "X": 0.556,
+            "Y": 0.516,
+            "Z": 0.508
+          },
+          "mean_cosine": 0.13168345955816976,
+          "cosine_median": 0.2044670608902313,
+          "cosine_p10": -0.7340296095921377,
+          "positive_target_fraction_xyz": {
+            "X": 0.52,
+            "Y": 0.464,
+            "Z": 0.5
+          }
+        },
+        "F_geom_cond": {
+          "feature_dim": 384,
+          "sign_accuracy_xyz": {
+            "X": 0.896,
+            "Y": 0.828,
+            "Z": 0.628
+          },
+          "mean_cosine": 0.6645249619754627,
+          "cosine_median": 0.785165832746979,
+          "cosine_p10": 0.10475511250162643,
+          "positive_target_fraction_xyz": {
+            "X": 0.52,
+            "Y": 0.464,
+            "Z": 0.5
+          }
+        },
+        "F_oct": {
+          "feature_dim": 3,
+          "sign_accuracy_xyz": {
+            "X": 1.0,
+            "Y": 0.996,
+            "Z": 0.984
+          },
+          "mean_cosine": 0.9993711096433244,
+          "cosine_median": 0.9998744525607144,
+          "cosine_p10": 0.9992384891293938,
+          "positive_target_fraction_xyz": {
+            "X": 0.52,
+            "Y": 0.464,
+            "Z": 0.5
+          }
+        }
+      }
+    }
+  },
+  "probe2_selection": {
+    "under_60": {
+      "rows": 200,
+      "approaching_rows": 100,
+      "receding_rows": 100,
+      "candidate_approaching": 7701,
+      "candidate_receding": 8771
+    },
+    "under_40": {
+      "rows": 120,
+      "approaching_rows": 60,
+      "receding_rows": 60,
+      "candidate_approaching": 4833,
+      "candidate_receding": 5896
+    }
+  },
+  "probe3": {
+    "observations": 30,
+    "samples_per_observation": 8,
+    "action0_and_exec_steps_prefix_identical": true,
+    "exec_steps": 1,
+    "first16_reported_as_chunk_variance_only": true,
+    "per_axis": {
+      "A": {
+        "mean_sign_agreement_action0": 0.6666666666666666,
+        "mean_first16_majority_agreement": 0.659375,
+        "fraction_observations_with_sign_flip_action0": 0.9666666666666667,
+        "std_over_abs_mean_action0": {
+          "count": 30,
+          "median": 2.667089343070984,
+          "p90": 9.622337150573731,
+          "mean": 4.4223720073699955
+        }
+      },
+      "B": {
+        "mean_sign_agreement_action0": 0.6875,
+        "mean_first16_majority_agreement": 0.66640625,
+        "fraction_observations_with_sign_flip_action0": 0.9666666666666667,
+        "std_over_abs_mean_action0": {
+          "count": 30,
+          "median": 2.534727454185486,
+          "p90": 9.546367931365968,
+          "mean": 4.738502417008082
+        }
+      },
+      "C": {
+        "mean_sign_agreement_action0": 0.8125,
+        "mean_first16_majority_agreement": 0.74609375,
+        "fraction_observations_with_sign_flip_action0": 0.6,
+        "std_over_abs_mean_action0": {
+          "count": 30,
+          "median": 1.2058624029159546,
+          "p90": 6.11069674491884,
+          "mean": 3.235722216963768
+        }
+      }
+    },
+    "selected_source_rows": [
+      145,
+      147,
+      2123,
+      2165,
+      2319,
+      2420,
+      2551,
+      2672,
+      2850,
+      2944,
+      3044,
+      3199,
+      3233,
+      3445,
+      3479,
+      4721,
+      4801,
+      5164,
+      5683,
+      5774,
+      5854,
+      5989,
+      6049,
+      6268,
+      6296,
+      6642,
+      6669,
+      6850,
+      6909,
+      7143
+    ]
+  },
+  "receding_horizon": {
+    "status": "skipped_runtime_guard",
+    "reason": "fast5 evaluator already uses exec_steps=1, so the requested reference (a) and replan-every-step (b) are identical. Condition (c), 2 targets x 1600 steps x K=4, cannot fit the remaining <=10 minute sub-budget based on the completed 1600-step fast5 runs.",
+    "reference_exec_steps": 1,
+    "replan_exec_steps": 1,
+    "a_equals_b": true,
+    "k4_mean_run": false,
+    "training_started": false,
+    "weights_modified": false
+  },
+  "verdict": {
+    "decision": "A: Input Representation / Scaling",
+    "reason": "F_cond fails the near-target direction criterion while raw OCT direction remains strong.",
+    "f_cond_ab_sign_accuracy": 0.5299684542586751,
+    "f_cond_mean_cosine": 0.16384247479375716,
+    "f_oct_ab_sign_accuracy": 0.9968454258675079,
+    "max_ab_sample_flip_fraction": 0.9666666666666667,
+    "visual_20um_below_one_policy_pixel": true
+  }
+}

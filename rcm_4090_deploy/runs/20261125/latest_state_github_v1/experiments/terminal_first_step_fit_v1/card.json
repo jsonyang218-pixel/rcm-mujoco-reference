@@ -1,0 +1,113 @@
+{
+  "status": "prepared",
+  "source": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261125/terminal_tinyfit_v1",
+  "reference": "/home/him1/mujoco_bc/rcm_4090_deploy/outputs/homog_label_fix_20261124_v5/homog_label_fix_20261124_v5_phase1_A/step_004000.pth",
+  "reference_sha256": "6cc389df3786f1f34c43cf65d6dc17fe910ab342fae8d84c8e37cea6a7db6c11",
+  "batch_sha256": "ccc43cb39231f9b692665d6a029ce7018d317a8ebcfc3760472e7d21eb42eb51",
+  "windows": 8,
+  "training_episode_ids": [
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    40,
+    41
+  ],
+  "updates_per_arm": 128,
+  "lr": 3e-05,
+  "seed_schedule": "73000+step, identical both arms",
+  "arms": [
+    "full16",
+    "first1"
+  ],
+  "trainable": "temporal_bias + output.weight/output.bias in BOTH arms",
+  "only_changed_factor": "Flow MSE over16 actions vs action index0 only",
+  "probe_seeds": [
+    91001,
+    91002,
+    91003,
+    91004
+  ],
+  "sampler_seeds": [
+    92001,
+    92002,
+    92003,
+    92004
+  ],
+  "sampler_steps": 4,
+  "budget_s": 180,
+  "loss_parity": "passed",
+  "initial_action_metrics_reproduction": "passed",
+  "before": {
+    "full_flow_loss": 0.06778501253575087,
+    "first_flow_loss": 0.12287804810330272,
+    "moving_mae_ABC_deg_deg_um": [
+      0.007668036501854658,
+      0.004045635927468538,
+      3.5670374631881714
+    ],
+    "all_mae_ABC_deg_deg_um": [
+      0.0070495834806934,
+      0.0037555305752903223,
+      3.3541138768196106
+    ],
+    "per_seed": [
+      {
+        "seed": 92001,
+        "all_mae_ABC_deg_deg_um": [
+          0.006242681294679642,
+          0.003963533788919449,
+          4.817944526672363
+        ],
+        "moving_mae_ABC_deg_deg_um": [
+          0.006568975746631622,
+          0.0041624391451478004,
+          4.915035724639893
+        ]
+      },
+      {
+        "seed": 92002,
+        "all_mae_ABC_deg_deg_um": [
+          0.005020686890929937,
+          0.00348860677331686,
+          2.9383492469787598
+        ],
+        "moving_mae_ABC_deg_deg_um": [
+          0.004345019347965717,
+          0.003516079857945442,
+          2.9971251487731934
+        ]
+      },
+      {
+        "seed": 92003,
+        "all_mae_ABC_deg_deg_um": [
+          0.0087043521925807,
+          0.003649565391242504,
+          2.0661652088165283
+        ],
+        "moving_mae_ABC_deg_deg_um": [
+          0.009785921312868595,
+          0.004549394361674786,
+          2.3188371658325195
+        ]
+      },
+      {
+        "seed": 92004,
+        "all_mae_ABC_deg_deg_um": [
+          0.00823061354458332,
+          0.003920416347682476,
+          3.593996524810791
+        ],
+        "moving_mae_ABC_deg_deg_um": [
+          0.009972229599952698,
+          0.003954630345106125,
+          4.03715181350708
+        ]
+      }
+    ]
+  },
+  "gate": "moving C MAE below initial and below full16; A/B each <=1.05*full16; C improves vs full16 on at least3/4 sampler seeds",
+  "scope": "No held-out states, no closed-loop, no automatic long training."
+}

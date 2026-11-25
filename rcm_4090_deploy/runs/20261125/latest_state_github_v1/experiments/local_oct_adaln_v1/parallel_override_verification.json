@@ -1,0 +1,11 @@
+{
+  "timestamp": "2026-11-25T18:11:21+08:00",
+  "status": "passed",
+  "tests_run": 7,
+  "failures": 0,
+  "errors": 0,
+  "command": "env -u PYTHONHOME -u PYTHONPATH -u LD_LIBRARY_PATH TORCH_DISABLE_NATIVE_JIT=1 OMP_NUM_THREADS=1 .venv/bin/python -E -B -m unittest -v scripts.verification.test_local_oct_adaln",
+  "device": "CPU; small mocked contract tests, no model training",
+  "acceptance": "20 targets with an existing --workers 6 request resolves to workers=12, max_workers=12; K4 sample propagation preserved",
+  "runtime_override": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261125/local_oct_adaln_v1/parallel_override.json"
+}

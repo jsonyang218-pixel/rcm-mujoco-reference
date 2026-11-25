@@ -1,0 +1,34 @@
+Warning: wandb not available, logging will be local only
+加载模型: /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261125/local_oct_adaln_v1/checkpoints/arm_B_local_oct/step_004000.pth
+模型加载完成 (type=dit_rectified_flow, epoch=3, train_loss=0.118770, val_loss=0.147771)
+评估 episodes:   0%|          | 0/1 [00:00<?, ?it/s]
+Episode 11/1
+  目标世界坐标: [345.728, -13.461, 371.177] mm
+  closed-loop step 1/1600, error=19730.540 um
+  closed-loop step 100/1600, error=16868.417 um
+  closed-loop step 200/1600, error=13869.514 um
+  closed-loop step 300/1600, error=10870.213 um
+  closed-loop step 400/1600, error=7878.724 um
+  closed-loop step 500/1600, error=4877.927 um
+  closed-loop step 600/1600, error=1884.288 um
+  closed-loop step 700/1600, error=58.000 um
+  closed-loop step 800/1600, error=31.414 um
+  closed-loop step 900/1600, error=47.761 um
+  closed-loop step 1000/1600, error=71.709 um
+  closed-loop step 1100/1600, error=63.040 um
+  closed-loop step 1200/1600, error=75.855 um
+  closed-loop step 1300/1600, error=91.488 um
+  closed-loop step 1400/1600, error=129.705 um
+  closed-loop step 1500/1600, error=145.430 um
+  closed-loop step 1600/1600, error=132.050 um
+  ✗ 失败: 1600 步, 误差 0.131 mm
+评估 episodes: 100%|##########| 1/1 [13:20<00:00, 800.33s/it]评估 episodes: 100%|##########| 1/1 [13:20<00:00, 800.33s/it]
+
+============================================================
+评估结果汇总:
+  成功率: 0.0% (0/1)
+  平均步数: 1600.0
+  平均最终误差: 0.131 mm
+============================================================
+
+结果已保存到: /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261125/local_oct_adaln_v1/eval_fast5_step4000_k1/shards/tasks/eval_E10/raw/evaluation_results.json

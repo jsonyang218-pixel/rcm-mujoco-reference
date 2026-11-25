@@ -1,0 +1,129 @@
+{
+  "status": "prepared",
+  "hypothesis": "Original correction sampling is dominated by stationary frames; increasing executed teacher approach windows improves terminal convergence.",
+  "only_changed_factor": "Correction window sampling distribution",
+  "arms": {
+    "A_original": "/home/him1/mujoco_bc/rcm_4090_deploy/data/homog_label_fix_20261124_v5_A_t3_w025",
+    "B_balanced": "/home/him1/mujoco_bc/rcm_4090_deploy/data/terminal_sampling_ab_v1_balanced"
+  },
+  "reference_checkpoint": "/home/him1/mujoco_bc/rcm_4090_deploy/outputs/homog_label_fix_20261124_v5/homog_label_fix_20261124_v5_phase1_A/step_004000.pth",
+  "reference_config": {
+    "data_dir": "/home/him1/mujoco_bc/rcm_4090_deploy/data/plan2_plus_original_train_224_20261119",
+    "val_data_dir": "/home/him1/mujoco_bc/rcm_4090_deploy/data/lerobot_rcm_val_acthist_20261117_224",
+    "init_from": "/home/him1/mujoco_bc/rcm_4090_deploy/outputs/overnight_c_fix_symlog_081234/task2_train/step_004000.pth"
+  },
+  "same_initialization_sha256": "185a6ef02caea4ea74ba752d67618d459c906450f5b315cd8010c3c5f1703f1b",
+  "source_label_sha256": "67cd04157444fab90ff526f0d62871664139a7fd254ceb131288e894ac9a1ea6",
+  "bins_B": {
+    "approach20to100": {
+      "windows": 230,
+      "episodes": [
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59
+      ],
+      "sampling_probability": 0.5
+    },
+    "stationary16": {
+      "windows": 11375,
+      "episodes": [
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59
+      ],
+      "sampling_probability": 0.5
+    }
+  },
+  "budget": {
+    "arm_train_batches": 4000,
+    "epochs": 4,
+    "batch_size": 16,
+    "total_full_train_batches": 8000,
+    "smoke_batches_per_arm": 2,
+    "wall_limit_minutes": 90
+  },
+  "frozen": {
+    "backbone_lr": 0,
+    "attention_lr": 3e-05,
+    "trainable": "temporal_bias only",
+    "seed": 20261118,
+    "correction_ratio": 0.15
+  },
+  "evaluation": {
+    "indices": [
+      0,
+      2,
+      6,
+      8,
+      10
+    ],
+    "seed": "42+index",
+    "steps": 1600,
+    "period_s": 0.05,
+    "samples": 1,
+    "exec_steps": 1,
+    "flow_steps": 4,
+    "controller": "feedback",
+    "geometric_takeover": false,
+    "hold_um": 20,
+    "hold_cycles": 200
+  },
+  "dev20_rule": "B final_mean < A final_mean AND B sustained200>=2/5 AND B max_final<=A max_final AND at least60min remaining in90min budget; otherwise skipped",
+  "data_limits": [
+    "Only existing approach/hold teacher fragments; no receding or transverse recovery coverage.",
+    "Repeated 230 overlapping approach windows; increased exposure is not new independent data."
+  ],
+  "failure_policy": "Stop dependent stages on execution/finite/sampling failure; no retries; failed improvement gate skips dev20."
+}

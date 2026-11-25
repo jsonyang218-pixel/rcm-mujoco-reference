@@ -1,0 +1,76 @@
+# Unified 20 um sustained-hold metrics
+
+Read-only metrics from completed raw trajectories. No extrapolation.
+
+| Model | Target | status | min um | final um | entries <=20 | max <=20 cycles | max <=20 s | sustained 200 | last-200 max um | speed overall um/s | speed last-200 um/s |
+|---|---|---|---:|---:|---:|---:|---:|---|---:|---:|---:|
+| baseline_task2_step4000_fast5 | E00 | completed | 41.954 | 50.906 | 0 | 0 | 0.00 | False | 61.522 | 273.159 | 43.185 |
+| baseline_task2_step4000_fast5 | E02 | completed | 35.244 | 58.895 | 0 | 0 | 0.00 | False | 72.580 | 274.256 | 42.420 |
+| baseline_task2_step4000_fast5 | E06 | completed | 27.311 | 43.136 | 0 | 0 | 0.00 | False | 71.295 | 276.696 | 47.617 |
+| baseline_task2_step4000_fast5 | E08 | completed | 35.114 | 63.557 | 0 | 0 | 0.00 | False | 80.183 | 274.719 | 47.783 |
+| baseline_task2_step4000_fast5 | E10 | completed | 23.202 | 111.354 | 0 | 0 | 0.00 | False | 129.468 | 278.227 | 51.653 |
+| baseline_task2_step4000_dev20 | E00 | completed | 41.954 | 50.906 | 0 | 0 | 0.00 | False | 61.522 | 273.159 | 43.185 |
+| baseline_task2_step4000_dev20 | E01 | completed | 34.963 | 63.556 | 0 | 0 | 0.00 | False | 88.844 | 275.694 | 49.078 |
+| baseline_task2_step4000_dev20 | E02 | completed | 35.244 | 58.895 | 0 | 0 | 0.00 | False | 72.580 | 274.256 | 42.420 |
+| baseline_task2_step4000_dev20 | E03 | completed | 32.249 | 43.470 | 0 | 0 | 0.00 | False | 86.334 | 274.964 | 45.691 |
+| baseline_task2_step4000_dev20 | E04 | completed | 32.684 | 66.078 | 0 | 0 | 0.00 | False | 84.677 | 276.660 | 48.731 |
+| baseline_task2_step4000_dev20 | E05 | completed | 29.668 | 87.923 | 0 | 0 | 0.00 | False | 83.690 | 278.604 | 48.710 |
+| baseline_task2_step4000_dev20 | E06 | completed | 27.311 | 43.136 | 0 | 0 | 0.00 | False | 71.295 | 276.696 | 47.617 |
+| baseline_task2_step4000_dev20 | E07 | completed | 21.465 | 58.251 | 0 | 0 | 0.00 | False | 90.100 | 278.365 | 55.071 |
+| baseline_task2_step4000_dev20 | E08 | completed | 35.114 | 63.557 | 0 | 0 | 0.00 | False | 80.183 | 274.719 | 47.783 |
+| baseline_task2_step4000_dev20 | E09 | completed | 31.981 | 77.182 | 0 | 0 | 0.00 | False | 80.016 | 275.744 | 43.049 |
+| baseline_task2_step4000_dev20 | E10 | completed | 23.202 | 111.354 | 0 | 0 | 0.00 | False | 129.468 | 278.227 | 51.653 |
+| baseline_task2_step4000_dev20 | E11 | completed | 26.020 | 42.918 | 0 | 0 | 0.00 | False | 62.792 | 277.246 | 48.254 |
+| baseline_task2_step4000_dev20 | E12 | completed | 34.778 | 74.906 | 0 | 0 | 0.00 | False | 74.883 | 275.372 | 44.195 |
+| baseline_task2_step4000_dev20 | E13 | completed | 39.024 | 44.941 | 0 | 0 | 0.00 | False | 87.859 | 277.269 | 49.950 |
+| baseline_task2_step4000_dev20 | E14 | completed | 31.559 | 52.137 | 0 | 0 | 0.00 | False | 111.487 | 277.723 | 47.186 |
+| baseline_task2_step4000_dev20 | E15 | completed | 29.391 | 46.174 | 0 | 0 | 0.00 | False | 58.620 | 279.289 | 49.594 |
+| baseline_task2_step4000_dev20 | E16 | completed | 30.988 | 59.332 | 0 | 0 | 0.00 | False | 63.442 | 277.256 | 48.998 |
+| baseline_task2_step4000_dev20 | E17 | completed | 19.155 | 28.557 | 1 | 1 | 0.05 | False | 74.150 | 279.433 | 50.376 |
+| baseline_task2_step4000_dev20 | E18 | completed | 29.827 | 59.940 | 0 | 0 | 0.00 | False | 65.556 | 277.974 | 49.962 |
+| baseline_task2_step4000_dev20 | E19 | completed | 30.815 | 44.523 | 0 | 0 | 0.00 | False | 62.943 | 278.206 | 49.438 |
+| v4_fallback_F_step4000_fast5 | E00 | completed | 45.647 | 56.718 | 0 | 0 | 0.00 | False | 66.561 | 272.554 | 40.909 |
+| v4_fallback_F_step4000_fast5 | E02 | completed | 43.815 | 57.302 | 0 | 0 | 0.00 | False | 70.602 | 272.268 | 40.779 |
+| v4_fallback_F_step4000_fast5 | E06 | completed | 26.522 | 36.798 | 0 | 0 | 0.00 | False | 71.663 | 276.015 | 49.723 |
+| v4_fallback_F_step4000_fast5 | E08 | completed | 33.273 | 58.161 | 0 | 0 | 0.00 | False | 81.158 | 273.195 | 41.140 |
+| v4_fallback_F_step4000_fast5 | E10 | completed | 16.992 | 62.590 | 1 | 4 | 0.20 | False | 74.950 | 276.679 | 51.310 |
+| v4_fallback_F_step4000_dev20 | E00 | completed | 45.647 | 56.718 | 0 | 0 | 0.00 | False | 66.561 | 272.554 | 40.909 |
+| v4_fallback_F_step4000_dev20 | E01 | completed | 29.454 | 75.891 | 0 | 0 | 0.00 | False | 102.811 | 274.221 | 45.516 |
+| v4_fallback_F_step4000_dev20 | E02 | completed | 43.815 | 57.302 | 0 | 0 | 0.00 | False | 70.602 | 272.268 | 40.779 |
+| v4_fallback_F_step4000_dev20 | E03 | completed | 26.867 | 47.121 | 0 | 0 | 0.00 | False | 79.800 | 275.110 | 46.148 |
+| v4_fallback_F_step4000_dev20 | E04 | completed | 29.752 | 57.217 | 0 | 0 | 0.00 | False | 70.860 | 275.331 | 44.895 |
+| v4_fallback_F_step4000_dev20 | E05 | completed | 29.790 | 57.306 | 0 | 0 | 0.00 | False | 58.011 | 277.104 | 46.575 |
+| v4_fallback_F_step4000_dev20 | E06 | completed | 26.522 | 36.798 | 0 | 0 | 0.00 | False | 71.663 | 276.015 | 49.723 |
+| v4_fallback_F_step4000_dev20 | E07 | completed | 25.269 | 51.554 | 0 | 0 | 0.00 | False | 58.123 | 276.703 | 50.451 |
+| v4_fallback_F_step4000_dev20 | E08 | completed | 33.273 | 58.161 | 0 | 0 | 0.00 | False | 81.158 | 273.195 | 41.140 |
+| v4_fallback_F_step4000_dev20 | E09 | completed | 37.066 | 53.673 | 0 | 0 | 0.00 | False | 77.089 | 275.075 | 42.198 |
+| v4_fallback_F_step4000_dev20 | E10 | completed | 16.992 | 62.590 | 1 | 4 | 0.20 | False | 74.950 | 276.679 | 51.310 |
+| v4_fallback_F_step4000_dev20 | E11 | completed | 31.617 | 38.589 | 0 | 0 | 0.00 | False | 80.007 | 276.603 | 47.531 |
+| v4_fallback_F_step4000_dev20 | E12 | completed | 34.842 | 57.151 | 0 | 0 | 0.00 | False | 66.075 | 274.982 | 45.957 |
+| v4_fallback_F_step4000_dev20 | E13 | completed | 38.096 | 42.057 | 0 | 0 | 0.00 | False | 92.893 | 275.380 | 46.367 |
+| v4_fallback_F_step4000_dev20 | E14 | completed | 26.324 | 38.451 | 0 | 0 | 0.00 | False | 80.150 | 277.318 | 43.888 |
+| v4_fallback_F_step4000_dev20 | E15 | completed | 28.616 | 45.298 | 0 | 0 | 0.00 | False | 63.144 | 277.557 | 48.412 |
+| v4_fallback_F_step4000_dev20 | E16 | completed | 31.852 | 59.544 | 0 | 0 | 0.00 | False | 62.919 | 276.909 | 49.044 |
+| v4_fallback_F_step4000_dev20 | E17 | completed | 34.791 | 38.657 | 0 | 0 | 0.00 | False | 105.658 | 278.488 | 48.276 |
+| v4_fallback_F_step4000_dev20 | E18 | completed | 30.599 | 59.940 | 0 | 0 | 0.00 | False | 65.556 | 277.173 | 50.103 |
+| v4_fallback_F_step4000_dev20 | E19 | completed | 26.613 | 37.607 | 0 | 0 | 0.00 | False | 75.493 | 276.887 | 49.595 |
+| stage4_1_oct_symlog_fast5 | E00 | completed | 31.593 | 75.755 | 0 | 0 | 0.00 | False | 85.741 | 273.638 | 43.383 |
+| stage4_1_oct_symlog_fast5 | E02 | completed | 32.100 | 85.744 | 0 | 0 | 0.00 | False | 81.654 | 274.346 | 42.204 |
+| stage4_1_oct_symlog_fast5 | E06 | completed | 35.065 | 84.865 | 0 | 0 | 0.00 | False | 101.167 | 276.387 | 47.695 |
+| stage4_1_oct_symlog_fast5 | E08 | completed | 34.492 | 76.784 | 0 | 0 | 0.00 | False | 85.409 | 274.318 | 43.516 |
+| stage4_1_oct_symlog_fast5 | E10 | completed | 19.984 | 142.970 | 1 | 1 | 0.05 | False | 154.697 | 278.131 | 52.524 |
+| v5_A_step2000_fast5 | E00 | completed | 45.725 | 50.906 | 0 | 0 | 0.00 | False | 69.161 | 273.069 | 44.264 |
+| v5_A_step2000_fast5 | E02 | completed | 39.490 | 59.741 | 0 | 0 | 0.00 | False | 72.729 | 274.229 | 42.715 |
+| v5_A_step2000_fast5 | E06 | completed | 25.818 | 27.135 | 0 | 0 | 0.00 | False | 73.089 | 276.955 | 47.620 |
+| v5_A_step2000_fast5 | E08 | completed | 33.173 | 62.225 | 0 | 0 | 0.00 | False | 82.124 | 273.971 | 44.697 |
+| v5_A_step2000_fast5 | E10 | completed | 24.088 | 85.448 | 0 | 0 | 0.00 | False | 94.255 | 278.186 | 51.477 |
+| v5_A_step4000_fast5 | E00 | completed | 37.823 | 53.144 | 0 | 0 | 0.00 | False | 60.344 | 273.058 | 42.554 |
+| v5_A_step4000_fast5 | E02 | completed | 39.612 | 59.136 | 0 | 0 | 0.00 | False | 74.930 | 274.573 | 43.558 |
+| v5_A_step4000_fast5 | E06 | completed | 31.972 | 33.922 | 0 | 0 | 0.00 | False | 97.774 | 276.951 | 48.606 |
+| v5_A_step4000_fast5 | E08 | completed | 32.855 | 57.026 | 0 | 0 | 0.00 | False | 76.374 | 274.763 | 47.778 |
+| v5_A_step4000_fast5 | E10 | completed | 20.520 | 67.881 | 0 | 0 | 0.00 | False | 95.074 | 278.130 | 52.537 |
+| v5_B_step4000_fast5 | E00 | completed | 52.732 | 63.735 | 0 | 0 | 0.00 | False | 85.283 | 269.871 | 38.433 |
+| v5_B_step4000_fast5 | E02 | completed | 54.971 | 60.756 | 0 | 0 | 0.00 | False | 98.117 | 270.805 | 37.881 |
+| v5_B_step4000_fast5 | E06 | completed | 50.784 | 50.518 | 0 | 0 | 0.00 | False | 109.258 | 274.242 | 44.956 |
+| v5_B_step4000_fast5 | E08 | completed | 38.817 | 74.759 | 0 | 0 | 0.00 | False | 113.609 | 272.048 | 41.747 |
+| v5_B_step4000_fast5 | E10 | completed | 26.717 | 43.444 | 0 | 0 | 0.00 | False | 51.922 | 275.280 | 46.944 |

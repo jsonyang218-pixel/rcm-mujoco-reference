@@ -1,0 +1,6 @@
+/usr/bin/gnome-terminal --window --working-directory=/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261125/local_oct_adaln_code_v1/rcm_4090_deploy '--title=Local OCT AdaLN v1 | GPU0 | 150 min' -- /bin/bash --noprofile --norc -c 'set -o pipefail
+env -u PYTHONHOME -u PYTHONPATH -u LD_LIBRARY_PATH RCM_RUNTIME_ROOT=/home/him1/mujoco_bc/rcm_4090_deploy CUDA_VISIBLE_DEVICES=0 RCM_DRIVER_VARIANT=g10 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=0 MPLBACKEND=Agg TORCH_DISABLE_NATIVE_JIT=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /home/him1/mujoco_bc/rcm_4090_deploy/.venv/bin/python -E -B -u -m scripts.research.local_oct_adaln_v1 run --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261125/local_oct_adaln_v1 2>&1 | tee /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261125/local_oct_adaln_preflight_v1/terminal_console.log
+run_status=${PIPESTATUS[0]}
+printf "\nWorkflow exit status: %s\n" "$run_status"
+read -r -p "Press Enter to close this terminal..."
+'

@@ -1,0 +1,2618 @@
+[
+  {
+    "target": 6,
+    "step": 964,
+    "query": {
+      "state": [
+        -7.320599999999999,
+        3.9748914272030405,
+        19.663688740907414
+      ],
+      "oct": [
+        -0.007276773918420076,
+        -0.006697927601635456,
+        0.09130964428186417
+      ],
+      "velocity": [
+        0.0,
+        0.005402293906644468,
+        -0.011594618019514225
+      ],
+      "previous": [
+        -0.0036794841289520264,
+        0.0005192998796701431,
+        -0.0007263645529747009
+      ]
+    },
+    "policy_action_deg_deg_mm": [
+      0.002546417061239481,
+      -0.00974858459085226,
+      0.0004619210958480835
+    ],
+    "original_pool": {
+      "matched_windows": 0,
+      "matched_episode_count": 0,
+      "matched_sampling_probability_within_pool": 0.0,
+      "nearest": [
+        {
+          "row": 210481,
+          "episode": 709,
+          "context_score": 25.960449932360476,
+          "within_all_gates": false,
+          "oct_difference_um": 42.904892336730526,
+          "state_difference_deg_deg_mm": [
+            1.065599885559081,
+            0.7057278126040885,
+            0.010215840516789143
+          ],
+          "velocity_difference_deg_deg_mm_s": [
+            0.0,
+            0.0360915334085977,
+            0.01754966908986088
+          ],
+          "previous_action_difference_deg_deg_mm": [
+            0.0017109927721321583,
+            0.00020257371943444014,
+            0.0014824459794908762
+          ],
+          "actual_training_label_deg_deg_mm": [
+            -0.006408269517123699,
+            0.0017769188852980733,
+            0.0028365887701511383
+          ],
+          "label_window_weight": 1.0
+        },
+        {
+          "row": 210276,
+          "episode": 708,
+          "context_score": 26.99330251852411,
+          "within_all_gates": false,
+          "oct_difference_um": 42.221339126818684,
+          "state_difference_deg_deg_mm": [
+            1.065599885559081,
+            0.6976187198916861,
+            0.04290000420977336
+          ],
+          "velocity_difference_deg_deg_mm_s": [
+            0.0,
+            0.006298747764066346,
+            0.02975670033986092
+          ],
+          "previous_action_difference_deg_deg_mm": [
+            0.00273191585438326,
+            0.00017372961156070232,
+            0.0030975451227277517
+          ],
+          "actual_training_label_deg_deg_mm": [
+            -0.0008915726211853325,
+            0.0005884078564122319,
+            0.001681770896539092
+          ],
+          "label_window_weight": 1.0
+        },
+        {
+          "row": 210275,
+          "episode": 708,
+          "context_score": 28.91931956457462,
+          "within_all_gates": false,
+          "oct_difference_um": 43.42032688333176,
+          "state_difference_deg_deg_mm": [
+            1.065599885559081,
+            0.6976635425845572,
+            0.04496757012774211
+          ],
+          "velocity_difference_deg_deg_mm_s": [
+            0.0,
+            0.007862773642972602,
+            0.015985643210954623
+          ],
+          "previous_action_difference_deg_deg_mm": [
+            0.002623481210321188,
+            0.00031420489540323615,
+            0.008456138893961906
+          ],
+          "actual_training_label_deg_deg_mm": [
+            -0.0009475682745687664,
+            0.0006930294912308455,
+            0.002371180569753051
+          ],
+          "label_window_weight": 1.0
+        },
+        {
+          "row": 210482,
+          "episode": 709,
+          "context_score": 31.582230590102576,
+          "within_all_gates": false,
+          "oct_difference_um": 41.632913715043976,
+          "state_difference_deg_deg_mm": [
+            1.065599885559081,
+            0.7052910297671744,
+            0.00813110846112508
+          ],
+          "velocity_difference_deg_deg_mm_s": [
+            0.0,
+            0.014137950644925748,
+            0.05328925913279562
+          ],
+          "previous_action_difference_deg_deg_mm": [
+            0.002728785388171673,
+            0.0012576190056279302,
+            0.0035629533231258392
+          ],
+          "actual_training_label_deg_deg_mm": [
+            -0.00743413669988513,
+            0.00218749581836164,
+            0.008090929128229618
+          ],
+          "label_window_weight": 1.0
+        },
+        {
+          "row": 210277,
+          "episode": 708,
+          "context_score": 31.817242136492343,
+          "within_all_gates": false,
+          "oct_difference_um": 41.74089535406526,
+          "state_difference_deg_deg_mm": [
+            1.065599885559081,
+            0.6922643154422232,
+            0.03979865533282023
+          ],
+          "velocity_difference_deg_deg_mm_s": [
+            0.0,
+            0.11249038289590076,
+            0.050432359519547394
+          ],
+          "previous_action_difference_deg_deg_mm": [
+            0.002787911507766694,
+            6.91079767420888e-05,
+            0.002408135449513793
+          ],
+          "actual_training_label_deg_deg_mm": [
+            -0.0011453148908913136,
+            0.0017018401995301247,
+            0.0006476562703028321
+          ],
+          "label_window_weight": 1.0
+        }
+      ],
+      "limitation": "Matching uses state/OCT/velocity/previous action; RGB and full observation history are not matched. Zero matches establish only absence within declared gates."
+    },
+    "correction_pool": {
+      "matched_windows": 0,
+      "matched_episode_count": 0,
+      "matched_sampling_probability_within_pool": 0.0,
+      "nearest": [
+        {
+          "row": 35800,
+          "episode": 49,
+          "context_score": 93.56606964139237,
+          "within_all_gates": false,
+          "oct_difference_um": 54.72422819005875,
+          "state_difference_deg_deg_mm": [
+            3.5099997848510753,
+            0.6252021819790414,
+            0.14996155279706258
+          ],
+          "velocity_difference_deg_deg_mm_s": [
+            0.0,
+            0.11236163686318744,
+            0.062063062843732975
+          ],
+          "previous_action_difference_deg_deg_mm": [
+            0.00831908406689763,
+            0.00605480233207345,
+            0.004476364469155669
+          ],
+          "actual_training_label_deg_deg_mm": [
+            0.009277396835386753,
+            -0.004926914349198341,
+            0.006325224414467812
+          ],
+          "label_window_weight": 0.953125
+        },
+        {
+          "row": 35802,
+          "episode": 49,
+          "context_score": 117.17370998303734,
+          "within_all_gates": false,
+          "oct_difference_um": 64.90533185628063,
+          "state_difference_deg_deg_mm": [
+            3.497399839782716,
+            0.6325295001705697,
+            0.14114006537030477
+          ],
+          "velocity_difference_deg_deg_mm_s": [
+            0.036010742187499986,
+            0.12119266103310927,
+            0.0899484998554517
+          ],
+          "previous_action_difference_deg_deg_mm": [
+            0.005172450561076403,
+            0.008425734005868435,
+            0.006512342486530542
+          ],
+          "actual_training_label_deg_deg_mm": [
+            0.0024324441328644753,
+            -0.005747711285948753,
+            0.005643562413752079
+          ],
+          "label_window_weight": 0.90625
+        },
+        {
+          "row": 35803,
+          "episode": 49,
+          "context_score": 118.08538663274832,
+          "within_all_gates": false,
+          "oct_difference_um": 68.56843174595471,
+          "state_difference_deg_deg_mm": [
+            3.4956002563476574,
+            0.6341917545040658,
+            0.13748940008710164
+          ],
+          "velocity_difference_deg_deg_mm_s": [
+            0.03599166870117188,
+            0.03864738057656635,
+            0.08460792368357674
+          ],
+          "previous_action_difference_deg_deg_mm": [
+            0.006111928261816502,
+            0.0062670111656188965,
+            0.00636992696672678
+          ],
+          "actual_training_label_deg_deg_mm": [
+            0.0031107666436582804,
+            -0.007471126038581133,
+            0.005220240913331509
+          ],
+          "label_window_weight": 0.859375
+        },
+        {
+          "row": 35805,
+          "episode": 49,
+          "context_score": 119.15549973999372,
+          "within_all_gates": false,
+          "oct_difference_um": 74.5838536856638,
+          "state_difference_deg_deg_mm": [
+            3.4956002563476574,
+            0.6416890651424936,
+            0.13123901861737508
+          ],
+          "velocity_difference_deg_deg_mm_s": [
+            0.0,
+            0.03887626241250385,
+            0.06549629038279549
+          ],
+          "previous_action_difference_deg_deg_mm": [
+            0.009265342727303505,
+            0.004682817962020636,
+            0.0050831083208322525
+          ],
+          "actual_training_label_deg_deg_mm": [
+            0.008063114248216152,
+            -0.0047425865195691586,
+            0.0039526913315057755
+          ],
+          "label_window_weight": 0.765625
+        },
+        {
+          "row": 35806,
+          "episode": 49,
+          "context_score": 123.2248460240395,
+          "within_all_gates": false,
+          "oct_difference_um": 77.12780836903163,
+          "state_difference_deg_deg_mm": [
+            3.4956002563476574,
+            0.6475129157742074,
+            0.12879379767010946
+          ],
+          "velocity_difference_deg_deg_mm_s": [
+            0.0,
+            0.12187930654092184,
+            0.06049903696482674
+          ],
+          "previous_action_difference_deg_deg_mm": [
+            0.011742598377168179,
+            0.005261886399239302,
+            0.004679055884480476
+          ],
+          "actual_training_label_deg_deg_mm": [
+            0.010516691021621227,
+            -0.00030967252678237855,
+            0.003433368168771267
+          ],
+          "label_window_weight": 0.71875
+        }
+      ],
+      "limitation": "Matching uses state/OCT/velocity/previous action; RGB and full observation history are not matched. Zero matches establish only absence within declared gates."
+    }
+  },
+  {
+    "target": 6,
+    "step": 969,
+    "query": {
+      "state": [
+        -7.304400000000001,
+        3.953179292368688,
+        19.664315477016576
+      ],
+      "oct": [
+        -0.0006644822424277663,
+        0.0018297554925084114,
+        0.08851262181997299
+      ],
+      "velocity": [
+        0.0359999999999825,
+        -0.033994477794719896,
+        0.015355034674521817
+      ],
+      "previous": [
+        0.007077632937580347,
+        0.001335054636001587,
+        0.0014978349208831787
+      ]
+    },
+    "policy_action_deg_deg_mm": [
+      0.0024346248246729374,
+      -0.0003393144579604268,
+      -0.00215279683470726
+    ],
+    "original_pool": {
+      "matched_windows": 0,
+      "matched_episode_count": 0,
+      "matched_sampling_probability_within_pool": 0.0,
+      "nearest": [
+        {
+          "row": 210482,
+          "episode": 709,
+          "context_score": 22.780307134982273,
+          "within_all_gates": false,
+          "oct_difference_um": 35.27174366679583,
+          "state_difference_deg_deg_mm": [
+            1.0493998855590831,
+            0.7270031646015269,
+            0.008757844570286721
+          ],
+          "velocity_difference_deg_deg_mm_s": [
+            0.0359999999999825,
+            0.025258821056438615,
+            0.02633960643875958
+          ],
+          "previous_action_difference_deg_deg_mm": [
+            0.013485902454704046,
+            0.0004418642492964864,
+            0.0013387538492679596
+          ],
+          "actual_training_label_deg_deg_mm": [
+            -0.00743413669988513,
+            0.00218749581836164,
+            0.008090929128229618
+          ],
+          "label_window_weight": 1.0
+        },
+        {
+          "row": 210275,
+          "episode": 708,
+          "context_score": 26.484278611160796,
+          "within_all_gates": false,
+          "oct_difference_um": 35.989094972436334,
+          "state_difference_deg_deg_mm": [
+            1.0493998855590831,
+            0.7193756774189097,
+            0.044340834018580466
+          ],
+          "velocity_difference_deg_deg_mm_s": [
+            0.0359999999999825,
+            0.031533998058391764,
+            0.042935295904990664
+          ],
+          "previous_action_difference_deg_deg_mm": [
+            0.008133635856211185,
+            0.0005015498609282076,
+            0.006231939420104027
+          ],
+          "actual_training_label_deg_deg_mm": [
+            -0.0009475682745687664,
+            0.0006930294912308455,
+            0.002371180569753051
+          ],
+          "label_window_weight": 1.0
+        },
+        {
+          "row": 210481,
+          "episode": 709,
+          "context_score": 27.28677384851601,
+          "within_all_gates": false,
+          "oct_difference_um": 36.836635788563235,
+          "state_difference_deg_deg_mm": [
+            1.0493998855590831,
+            0.727439947438441,
+            0.010842576625950784
+          ],
+          "velocity_difference_deg_deg_mm_s": [
+            0.0359999999999825,
+            0.0033052382927666636,
+            0.04449932178389692
+          ],
+          "previous_action_difference_deg_deg_mm": [
+            0.012468109838664532,
+            0.001018328475765884,
+            0.003706645453348756
+          ],
+          "actual_training_label_deg_deg_mm": [
+            -0.006408269517123699,
+            0.0017769188852980733,
+            0.0028365887701511383
+          ],
+          "label_window_weight": 1.0
+        },
+        {
+          "row": 210276,
+          "episode": 708,
+          "context_score": 27.45052343646433,
+          "within_all_gates": false,
+          "oct_difference_um": 34.66581096151589,
+          "state_difference_deg_deg_mm": [
+            1.0493998855590831,
+            0.7193308547260386,
+            0.042273268100611716
+          ],
+          "velocity_difference_deg_deg_mm_s": [
+            0.0359999999999825,
+            0.03309802393729802,
+            0.05670635303389696
+          ],
+          "previous_action_difference_deg_deg_mm": [
+            0.008025201212149113,
+            0.0006420251447707415,
+            0.0008733456488698721
+          ],
+          "actual_training_label_deg_deg_mm": [
+            -0.0008915726211853325,
+            0.0005884078564122319,
+            0.001681770896539092
+          ],
+          "label_window_weight": 1.0
+        },
+        {
+          "row": 140173,
+          "episode": 262,
+          "context_score": 28.4282464531451,
+          "within_all_gates": false,
+          "oct_difference_um": 29.08641471622571,
+          "state_difference_deg_deg_mm": [
+            0.32579990921020396,
+            1.8947467133281606,
+            0.01812814175783828
+          ],
+          "velocity_difference_deg_deg_mm_s": [
+            0.0359999999999825,
+            0.07296486516182307,
+            0.03507526317704068
+          ],
+          "previous_action_difference_deg_deg_mm": [
+            0.007077632937580347,
+            0.008831411600112915,
+            0.0020269453525543213
+          ],
+          "actual_training_label_deg_deg_mm": [
+            0.0,
+            -0.009656667709350586,
+            0.009229660034179688
+          ],
+          "label_window_weight": 1.0
+        }
+      ],
+      "limitation": "Matching uses state/OCT/velocity/previous action; RGB and full observation history are not matched. Zero matches establish only absence within declared gates."
+    },
+    "correction_pool": {
+      "matched_windows": 0,
+      "matched_episode_count": 0,
+      "matched_sampling_probability_within_pool": 0.0,
+      "nearest": [
+        {
+          "row": 35800,
+          "episode": 49,
+          "context_score": 83.8662450811218,
+          "within_all_gates": false,
+          "oct_difference_um": 53.077006359811634,
+          "state_difference_deg_deg_mm": [
+            3.526199784851073,
+            0.6034900471446889,
+            0.15058828890622422
+          ],
+          "velocity_difference_deg_deg_mm_s": [
+            0.0359999999999825,
+            0.07296486516182307,
+            0.03511341014969693
+          ],
+          "previous_action_difference_deg_deg_mm": [
+            0.0024380329996347427,
+            0.006870557088404894,
+            0.0022521649952977896
+          ],
+          "actual_training_label_deg_deg_mm": [
+            0.009277396835386753,
+            -0.004926914349198341,
+            0.006325224414467812
+          ],
+          "label_window_weight": 0.953125
+        },
+        {
+          "row": 35802,
+          "episode": 49,
+          "context_score": 102.46795799548853,
+          "within_all_gates": false,
+          "oct_difference_um": 62.51501965997976,
+          "state_difference_deg_deg_mm": [
+            3.5135998397827137,
+            0.6108173653362172,
+            0.1417668014794664
+          ],
+          "velocity_difference_deg_deg_mm_s": [
+            1.0742187517488733e-05,
+            0.0817958893317449,
+            0.06299884716141566
+          ],
+          "previous_action_difference_deg_deg_mm": [
+            0.005584666505455971,
+            0.009241488762199879,
+            0.004288143012672663
+          ],
+          "actual_training_label_deg_deg_mm": [
+            0.0024324441328644753,
+            -0.005747711285948753,
+            0.005643562413752079
+          ],
+          "label_window_weight": 0.90625
+        },
+        {
+          "row": 35803,
+          "episode": 49,
+          "context_score": 104.30083062779495,
+          "within_all_gates": false,
+          "oct_difference_um": 66.13176451763862,
+          "state_difference_deg_deg_mm": [
+            3.511800256347655,
+            0.6124796196697133,
+            0.13811613619626328
+          ],
+          "velocity_difference_deg_deg_mm_s": [
+            8.33129881061545e-06,
+            0.0007493911247980142,
+            0.0576582709895407
+          ],
+          "previous_action_difference_deg_deg_mm": [
+            0.004645188804715872,
+            0.00708276592195034,
+            0.0041457274928689
+          ],
+          "actual_training_label_deg_deg_mm": [
+            0.0031107666436582804,
+            -0.007471126038581133,
+            0.005220240913331509
+          ],
+          "label_window_weight": 0.859375
+        },
+        {
+          "row": 35805,
+          "episode": 49,
+          "context_score": 107.12547835936093,
+          "within_all_gates": false,
+          "oct_difference_um": 71.9332144700506,
+          "state_difference_deg_deg_mm": [
+            3.511800256347655,
+            0.619976930308141,
+            0.13186575472653672
+          ],
+          "velocity_difference_deg_deg_mm_s": [
+            0.0359999999999825,
+            0.0005205092888605142,
+            0.03854663768875945
+          ],
+          "previous_action_difference_deg_deg_mm": [
+            0.0014917743392288685,
+            0.005498572718352079,
+            0.002858908846974373
+          ],
+          "actual_training_label_deg_deg_mm": [
+            0.008063114248216152,
+            -0.0047425865195691586,
+            0.0039526913315057755
+          ],
+          "label_window_weight": 0.765625
+        },
+        {
+          "row": 35801,
+          "episode": 49,
+          "context_score": 107.2811777592538,
+          "within_all_gates": false,
+          "oct_difference_um": 58.85867597627968,
+          "state_difference_deg_deg_mm": [
+            3.5154003768920887,
+            0.605027846979894,
+            0.14568449557126328
+          ],
+          "velocity_difference_deg_deg_mm_s": [
+            0.179988159179705,
+            0.0032384810906183337,
+            0.08272083202469693
+          ],
+          "previous_action_difference_deg_deg_mm": [
+            0.002199763897806406,
+            0.006261968985199928,
+            0.004827389493584633
+          ],
+          "actual_training_label_deg_deg_mm": [
+            0.0014929664321243763,
+            -0.007906434126198292,
+            0.0057859779335558414
+          ],
+          "label_window_weight": 0.953125
+        }
+      ],
+      "limitation": "Matching uses state/OCT/velocity/previous action; RGB and full observation history are not matched. Zero matches establish only absence within declared gates."
+    }
+  },
+  {
+    "target": 6,
+    "step": 974,
+    "query": {
+      "state": [
+        -7.304400000000001,
+        3.952503899641869,
+        19.660821423208
+      ],
+      "oct": [
+        0.00018045108299702406,
+        0.0023211748339235783,
+        0.09186577796936035
+      ],
+      "velocity": [
+        0.0,
+        0.0,
+        0.01378819440144008
+      ],
+      "previous": [
+        -0.004150230437517166,
+        0.003354061394929886,
+        0.0007291026413440704
+      ]
+    },
+    "policy_action_deg_deg_mm": [
+      0.0030551841482520103,
+      0.004725834354758263,
+      -0.00016072019934654236
+    ],
+    "original_pool": {
+      "matched_windows": 0,
+      "matched_episode_count": 0,
+      "matched_sampling_probability_within_pool": 0.0,
+      "nearest": [
+        {
+          "row": 210482,
+          "episode": 709,
+          "context_score": 19.38916475909258,
+          "within_all_gates": false,
+          "oct_difference_um": 32.64664691813406,
+          "state_difference_deg_deg_mm": [
+            1.0493998855590831,
+            0.7276785573283457,
+            0.005263790761709686
+          ],
+          "velocity_difference_deg_deg_mm_s": [
+            0.0,
+            0.008735656738281281,
+            0.027906446711841316
+          ],
+          "previous_action_difference_deg_deg_mm": [
+            0.002258039079606533,
+            0.0015771425096318126,
+            0.002107486128807068
+          ],
+          "actual_training_label_deg_deg_mm": [
+            -0.00743413669988513,
+            0.00218749581836164,
+            0.008090929128229618
+          ],
+          "label_window_weight": 1.0
+        },
+        {
+          "row": 210481,
+          "episode": 709,
+          "context_score": 23.32186403210542,
+          "within_all_gates": false,
+          "oct_difference_um": 34.119165252197185,
+          "state_difference_deg_deg_mm": [
+            1.0493998855590831,
+            0.7281153401652598,
+            0.007348522817373748
+          ],
+          "velocity_difference_deg_deg_mm_s": [
+            0.0,
+            0.030689239501953233,
+            0.04293248151081518
+          ],
+          "previous_action_difference_deg_deg_mm": [
+            0.0012402464635670185,
+            0.003037335234694183,
+            0.0029379131738096476
+          ],
+          "actual_training_label_deg_deg_mm": [
+            -0.006408269517123699,
+            0.0017769188852980733,
+            0.0028365887701511383
+          ],
+          "label_window_weight": 1.0
+        },
+        {
+          "row": 210275,
+          "episode": 708,
+          "context_score": 27.774345173190216,
+          "within_all_gates": false,
+          "oct_difference_um": 38.59348841129811,
+          "state_difference_deg_deg_mm": [
+            1.0493998855590831,
+            0.7200510701457286,
+            0.0478348878271575
+          ],
+          "velocity_difference_deg_deg_mm_s": [
+            0.0,
+            0.0024604797363281337,
+            0.041368455631908926
+          ],
+          "previous_action_difference_deg_deg_mm": [
+            0.0030942275188863277,
+            0.0025205566198565066,
+            0.007000671699643135
+          ],
+          "actual_training_label_deg_deg_mm": [
+            -0.0009475682745687664,
+            0.0006930294912308455,
+            0.002371180569753051
+          ],
+          "label_window_weight": 1.0
+        },
+        {
+          "row": 210276,
+          "episode": 708,
+          "context_score": 28.215147141380626,
+          "within_all_gates": false,
+          "oct_difference_um": 37.21857445288569,
+          "state_difference_deg_deg_mm": [
+            1.0493998855590831,
+            0.7200062474528575,
+            0.04576732190918875
+          ],
+          "velocity_difference_deg_deg_mm_s": [
+            0.0,
+            0.0008964538574218781,
+            0.055139512760815225
+          ],
+          "previous_action_difference_deg_deg_mm": [
+            0.0032026621629483998,
+            0.0026610319036990404,
+            0.0016420779284089804
+          ],
+          "actual_training_label_deg_deg_mm": [
+            -0.0008915726211853325,
+            0.0005884078564122319,
+            0.001681770896539092
+          ],
+          "label_window_weight": 1.0
+        },
+        {
+          "row": 140173,
+          "episode": 262,
+          "context_score": 29.268600576727,
+          "within_all_gates": false,
+          "oct_difference_um": 28.862941892361718,
+          "state_difference_deg_deg_mm": [
+            0.32579990921020396,
+            1.8940713206013418,
+            0.021622195566415314
+          ],
+          "velocity_difference_deg_deg_mm_s": [
+            0.0,
+            0.10695934295654297,
+            0.03664210345012242
+          ],
+          "previous_action_difference_deg_deg_mm": [
+            0.004150230437517166,
+            0.010850418359041214,
+            0.0027956776320934296
+          ],
+          "actual_training_label_deg_deg_mm": [
+            0.0,
+            -0.009656667709350586,
+            0.009229660034179688
+          ],
+          "label_window_weight": 1.0
+        }
+      ],
+      "limitation": "Matching uses state/OCT/velocity/previous action; RGB and full observation history are not matched. Zero matches establish only absence within declared gates."
+    },
+    "correction_pool": {
+      "matched_windows": 0,
+      "matched_episode_count": 0,
+      "matched_sampling_probability_within_pool": 0.0,
+      "nearest": [
+        {
+          "row": 35800,
+          "episode": 49,
+          "context_score": 89.55470749012277,
+          "within_all_gates": false,
+          "oct_difference_um": 56.48687420520295,
+          "state_difference_deg_deg_mm": [
+            3.526199784851073,
+            0.6028146544178701,
+            0.14709423509764719
+          ],
+          "velocity_difference_deg_deg_mm_s": [
+            0.0,
+            0.10695934295654297,
+            0.03668025042277867
+          ],
+          "previous_action_difference_deg_deg_mm": [
+            0.00878983037546277,
+            0.008889563847333193,
+            0.003020897274836898
+          ],
+          "actual_training_label_deg_deg_mm": [
+            0.009277396835386753,
+            -0.004926914349198341,
+            0.006325224414467812
+          ],
+          "label_window_weight": 0.953125
+        },
+        {
+          "row": 35802,
+          "episode": 49,
+          "context_score": 108.82289708285015,
+          "within_all_gates": false,
+          "oct_difference_um": 65.90264594306497,
+          "state_difference_deg_deg_mm": [
+            3.5135998397827137,
+            0.6101419726093984,
+            0.13827274767088937
+          ],
+          "velocity_difference_deg_deg_mm_s": [
+            0.036010742187499986,
+            0.1157903671264648,
+            0.06456568743449739
+          ],
+          "previous_action_difference_deg_deg_mm": [
+            0.0056431968696415424,
+            0.011260495521128178,
+            0.005056875292211771
+          ],
+          "actual_training_label_deg_deg_mm": [
+            0.0024324441328644753,
+            -0.005747711285948753,
+            0.005643562413752079
+          ],
+          "label_window_weight": 0.90625
+        },
+        {
+          "row": 35803,
+          "episode": 49,
+          "context_score": 110.41963460676739,
+          "within_all_gates": false,
+          "oct_difference_um": 69.5243959213518,
+          "state_difference_deg_deg_mm": [
+            3.511800256347655,
+            0.6118042269428945,
+            0.13462208238768625
+          ],
+          "velocity_difference_deg_deg_mm_s": [
+            0.03599166870117188,
+            0.03324508666992188,
+            0.059225111262622435
+          ],
+          "previous_action_difference_deg_deg_mm": [
+            0.006582674570381641,
+            0.00910177268087864,
+            0.004914459772408009
+          ],
+          "actual_training_label_deg_deg_mm": [
+            0.0031107666436582804,
+            -0.007471126038581133,
+            0.005220240913331509
+          ],
+          "label_window_weight": 0.859375
+        },
+        {
+          "row": 35805,
+          "episode": 49,
+          "context_score": 113.81596430725013,
+          "within_all_gates": false,
+          "oct_difference_um": 75.33933854026705,
+          "state_difference_deg_deg_mm": [
+            3.511800256347655,
+            0.6193015375813222,
+            0.12837170091795969
+          ],
+          "velocity_difference_deg_deg_mm_s": [
+            0.0,
+            0.03347396850585938,
+            0.040113477961841185
+          ],
+          "previous_action_difference_deg_deg_mm": [
+            0.009736089035868645,
+            0.007517579477280378,
+            0.003627641126513481
+          ],
+          "actual_training_label_deg_deg_mm": [
+            0.008063114248216152,
+            -0.0047425865195691586,
+            0.0039526913315057755
+          ],
+          "label_window_weight": 0.765625
+        },
+        {
+          "row": 35801,
+          "episode": 49,
+          "context_score": 115.90820612903592,
+          "within_all_gates": false,
+          "oct_difference_um": 62.235624721023505,
+          "state_difference_deg_deg_mm": [
+            3.5154003768920887,
+            0.6043524542530752,
+            0.14219044176268625
+          ],
+          "velocity_difference_deg_deg_mm_s": [
+            0.2159881591796875,
+            0.030755996704101562,
+            0.08428767229777867
+          ],
+          "previous_action_difference_deg_deg_mm": [
+            0.01342762727290392,
+            0.008280975744128227,
+            0.005596121773123741
+          ],
+          "actual_training_label_deg_deg_mm": [
+            0.0014929664321243763,
+            -0.007906434126198292,
+            0.0057859779335558414
+          ],
+          "label_window_weight": 0.953125
+        }
+      ],
+      "limitation": "Matching uses state/OCT/velocity/previous action; RGB and full observation history are not matched. Zero matches establish only absence within declared gates."
+    }
+  },
+  {
+    "target": 6,
+    "step": 984,
+    "query": {
+      "state": [
+        -7.293600000000001,
+        3.952503899641869,
+        19.670927542968226
+      ],
+      "oct": [
+        0.002043113810941577,
+        0.0014225768391042948,
+        0.08107130229473114
+      ],
+      "velocity": [
+        0.2159999999999904,
+        0.0,
+        -0.021309027711455264
+      ],
+      "previous": [
+        0.00795621145516634,
+        0.002110449131578207,
+        -0.0012501291930675507
+      ]
+    },
+    "policy_action_deg_deg_mm": [
+      0.013180413283407688,
+      0.002085716463625431,
+      -0.001179974526166916
+    ],
+    "original_pool": {
+      "matched_windows": 0,
+      "matched_episode_count": 0,
+      "matched_sampling_probability_within_pool": 0.0,
+      "nearest": [
+        {
+          "row": 210276,
+          "episode": 708,
+          "context_score": 20.68464801417755,
+          "within_all_gates": false,
+          "oct_difference_um": 26.995644878708468,
+          "state_difference_deg_deg_mm": [
+            1.0385998855590834,
+            0.7200062474528575,
+            0.035661202148961735
+          ],
+          "velocity_difference_deg_deg_mm_s": [
+            0.2159999999999904,
+            0.0008964538574218781,
+            0.020042290647919882
+          ],
+          "previous_action_difference_deg_deg_mm": [
+            0.008903779729735106,
+            0.0014174196403473616,
+            0.0036213097628206015
+          ],
+          "actual_training_label_deg_deg_mm": [
+            -0.0008915726211853325,
+            0.0005884078564122319,
+            0.001681770896539092
+          ],
+          "label_window_weight": 1.0
+        },
+        {
+          "row": 210275,
+          "episode": 708,
+          "context_score": 23.207582529918113,
+          "within_all_gates": false,
+          "oct_difference_um": 28.282374437746512,
+          "state_difference_deg_deg_mm": [
+            1.0385998855590834,
+            0.7200510701457286,
+            0.037728768066930485
+          ],
+          "velocity_difference_deg_deg_mm_s": [
+            0.2159999999999904,
+            0.0024604797363281337,
+            0.006271233519013583
+          ],
+          "previous_action_difference_deg_deg_mm": [
+            0.009012214373797178,
+            0.0012769443565048277,
+            0.008979903534054756
+          ],
+          "actual_training_label_deg_deg_mm": [
+            -0.0009475682745687664,
+            0.0006930294912308455,
+            0.002371180569753051
+          ],
+          "label_window_weight": 1.0
+        },
+        {
+          "row": 210277,
+          "episode": 708,
+          "context_score": 24.203183151192434,
+          "within_all_gates": false,
+          "oct_difference_um": 25.956406074354962,
+          "state_difference_deg_deg_mm": [
+            1.0385998855590834,
+            0.7146518430033946,
+            0.03255985327200861
+          ],
+          "velocity_difference_deg_deg_mm_s": [
+            0.2159999999999904,
+            0.10708808898925629,
+            0.040717949827606355
+          ],
+          "previous_action_difference_deg_deg_mm": [
+            0.008847784076351672,
+            0.001522041275165975,
+            0.0029319000896066427
+          ],
+          "actual_training_label_deg_deg_mm": [
+            -0.0011453148908913136,
+            0.0017018401995301247,
+            0.0006476562703028321
+          ],
+          "label_window_weight": 1.0
+        },
+        {
+          "row": 210481,
+          "episode": 709,
+          "context_score": 29.248242113505576,
+          "within_all_gates": false,
+          "oct_difference_um": 40.06124246774971,
+          "state_difference_deg_deg_mm": [
+            1.0385998855590834,
+            0.7281153401652598,
+            0.017454642577600765
+          ],
+          "velocity_difference_deg_deg_mm_s": [
+            0.2159999999999904,
+            0.030689239501953233,
+            0.00783525939791984
+          ],
+          "previous_action_difference_deg_deg_mm": [
+            0.013346688356250525,
+            0.001793722971342504,
+            0.0009586813393980265
+          ],
+          "actual_training_label_deg_deg_mm": [
+            -0.006408269517123699,
+            0.0017769188852980733,
+            0.0028365887701511383
+          ],
+          "label_window_weight": 1.0
+        },
+        {
+          "row": 210278,
+          "episode": 708,
+          "context_score": 33.844202614981626,
+          "within_all_gates": false,
+          "oct_difference_um": 23.54263330392482,
+          "state_difference_deg_deg_mm": [
+            1.0385998855590834,
+            0.7131173810282969,
+            0.027467232422399235
+          ],
+          "velocity_difference_deg_deg_mm_s": [
+            0.2159999999999904,
+            0.030689239501953233,
+            0.0805433892807326
+          ],
+          "previous_action_difference_deg_deg_mm": [
+            0.009101526346057653,
+            0.00040860893204808235,
+            0.0018977854633703828
+          ],
+          "actual_training_label_deg_deg_mm": [
+            -0.00108718266710639,
+            0.0017837079940363765,
+            -0.0013422309421002865
+          ],
+          "label_window_weight": 1.0
+        }
+      ],
+      "limitation": "Matching uses state/OCT/velocity/previous action; RGB and full observation history are not matched. Zero matches establish only absence within declared gates."
+    },
+    "correction_pool": {
+      "matched_windows": 0,
+      "matched_episode_count": 0,
+      "matched_sampling_probability_within_pool": 0.0,
+      "nearest": [
+        {
+          "row": 35800,
+          "episode": 49,
+          "context_score": 93.03057296295437,
+          "within_all_gates": false,
+          "oct_difference_um": 45.96362533041824,
+          "state_difference_deg_deg_mm": [
+            3.536999784851073,
+            0.6028146544178701,
+            0.1572003548578742
+          ],
+          "velocity_difference_deg_deg_mm_s": [
+            0.2159999999999904,
+            0.10695934295654297,
+            0.07177747253567401
+          ],
+          "previous_action_difference_deg_deg_mm": [
+            0.0033166115172207355,
+            0.007645951583981514,
+            0.005000129109248519
+          ],
+          "actual_training_label_deg_deg_mm": [
+            0.009277396835386753,
+            -0.004926914349198341,
+            0.006325224414467812
+          ],
+          "label_window_weight": 0.953125
+        },
+        {
+          "row": 35808,
+          "episode": 49,
+          "context_score": 112.8945435874,
+          "within_all_gates": false,
+          "oct_difference_um": 72.19884342947742,
+          "state_difference_deg_deg_mm": [
+            3.5081997741699205,
+            0.6272742548664785,
+            0.13213207177681952
+          ],
+          "velocity_difference_deg_deg_mm_s": [
+            0.1439975891113185,
+            0.009503364562988283,
+            0.05171216491848652
+          ],
+          "previous_action_difference_deg_deg_mm": [
+            0.007372574938926846,
+            0.0018762384279398248,
+            0.0038727151695638895
+          ],
+          "actual_training_label_deg_deg_mm": [
+            -0.0027104634791612625,
+            -0.0003338646492920816,
+            0.0024459005799144506
+          ],
+          "label_window_weight": 0.625
+        },
+        {
+          "row": 35807,
+          "episode": 49,
+          "context_score": 113.34846537566672,
+          "within_all_gates": false,
+          "oct_difference_um": 70.31419522991222,
+          "state_difference_deg_deg_mm": [
+            3.511799894714354,
+            0.6267990866383291,
+            0.13365222863717108
+          ],
+          "velocity_difference_deg_deg_mm_s": [
+            7.232666025286383e-06,
+            0.03347396850585938,
+            0.06891644958645528
+          ],
+          "previous_action_difference_deg_deg_mm": [
+            0.0025604795664548874,
+            0.0024201216583605856,
+            0.004683497361838818
+          ],
+          "actual_training_label_deg_deg_mm": [
+            0.0005836365162394941,
+            0.00023421070363838226,
+            0.002622585976496339
+          ],
+          "label_window_weight": 0.671875
+        },
+        {
+          "row": 35805,
+          "episode": 49,
+          "context_score": 113.56049316948051,
+          "within_all_gates": false,
+          "oct_difference_um": 64.61096013914569,
+          "state_difference_deg_deg_mm": [
+            3.522600256347655,
+            0.6193015375813222,
+            0.1384778206781867
+          ],
+          "velocity_difference_deg_deg_mm_s": [
+            0.2159999999999904,
+            0.03347396850585938,
+            0.07521070007473653
+          ],
+          "previous_action_difference_deg_deg_mm": [
+            0.0023703528568148613,
+            0.0062739672139286995,
+            0.005606872960925102
+          ],
+          "actual_training_label_deg_deg_mm": [
+            0.008063114248216152,
+            -0.0047425865195691586,
+            0.0039526913315057755
+          ],
+          "label_window_weight": 0.765625
+        },
+        {
+          "row": 35803,
+          "episode": 49,
+          "context_score": 114.10928029560814,
+          "within_all_gates": false,
+          "oct_difference_um": 58.770860058410065,
+          "state_difference_deg_deg_mm": [
+            3.522600256347655,
+            0.6118042269428945,
+            0.14472820214791327
+          ],
+          "velocity_difference_deg_deg_mm_s": [
+            0.18000833129881852,
+            0.03324508666992188,
+            0.09432233337551778
+          ],
+          "previous_action_difference_deg_deg_mm": [
+            0.005523767322301865,
+            0.00785816041752696,
+            0.00689369160681963
+          ],
+          "actual_training_label_deg_deg_mm": [
+            0.0031107666436582804,
+            -0.007471126038581133,
+            0.005220240913331509
+          ],
+          "label_window_weight": 0.859375
+        }
+      ],
+      "limitation": "Matching uses state/OCT/velocity/previous action; RGB and full observation history are not matched. Zero matches establish only absence within declared gates."
+    }
+  },
+  {
+    "target": 10,
+    "step": 835,
+    "query": {
+      "state": [
+        -5.4864,
+        7.3366603647877895,
+        19.590407621343733
+      ],
+      "oct": [
+        -0.031433846801519394,
+        -0.008659712970256805,
+        0.0912046879529953
+      ],
+      "velocity": [
+        -0.14399999999997767,
+        -0.0825735058955899,
+        0.009401041637449592
+      ],
+      "previous": [
+        -0.005099876318126917,
+        -0.003527811262756586,
+        0.00030301138758659363
+      ]
+    },
+    "policy_action_deg_deg_mm": [
+      0.00829432625323534,
+      0.0005433427286334336,
+      -0.00047331303358078003
+    ],
+    "original_pool": {
+      "matched_windows": 0,
+      "matched_episode_count": 0,
+      "matched_sampling_probability_within_pool": 0.0,
+      "nearest": [
+        {
+          "row": 146719,
+          "episode": 442,
+          "context_score": 36.47140415562077,
+          "within_all_gates": false,
+          "oct_difference_um": 51.881674278883665,
+          "state_difference_deg_deg_mm": [
+            0.629999987030029,
+            0.44467399470111957,
+            0.025351274530290624
+          ],
+          "velocity_difference_deg_deg_mm_s": [
+            0.14399999999997767,
+            0.024495509607339788,
+            0.04102925621411291
+          ],
+          "previous_action_difference_deg_deg_mm": [
+            0.005099876318126917,
+            0.003971883561462164,
+            0.0032217688858509064
+          ],
+          "actual_training_label_deg_deg_mm": [
+            0.0,
+            -0.009645938873291016,
+            0.009229660034179688
+          ],
+          "label_window_weight": 1.0
+        },
+        {
+          "row": 148326,
+          "episode": 486,
+          "context_score": 52.014648303153976,
+          "within_all_gates": false,
+          "oct_difference_um": 65.15171428869466,
+          "state_difference_deg_deg_mm": [
+            0.629999987030029,
+            0.44467399470111957,
+            0.0753657703799
+          ],
+          "velocity_difference_deg_deg_mm_s": [
+            0.14399999999997767,
+            0.024495509607339788,
+            0.04106740318676916
+          ],
+          "previous_action_difference_deg_deg_mm": [
+            0.005099876318126917,
+            0.003971883561462164,
+            0.0032217688858509064
+          ],
+          "actual_training_label_deg_deg_mm": [
+            0.0,
+            -0.009645938873291016,
+            0.006877899169921875
+          ],
+          "label_window_weight": 1.0
+        },
+        {
+          "row": 213324,
+          "episode": 727,
+          "context_score": 57.729364553178854,
+          "within_all_gates": false,
+          "oct_difference_um": 53.48120109837402,
+          "state_difference_deg_deg_mm": [
+            1.4669998802185056,
+            1.8358373845408238,
+            0.07680631824314688
+          ],
+          "velocity_difference_deg_deg_mm_s": [
+            0.14399999999997767,
+            0.08236369754598052,
+            0.03789683021166844
+          ],
+          "previous_action_difference_deg_deg_mm": [
+            0.006121493293903768,
+            0.004846261930651963,
+            0.0014100963016971946
+          ],
+          "actual_training_label_deg_deg_mm": [
+            0.0010138909565284848,
+            0.0012619809713214636,
+            0.0023241753224283457
+          ],
+          "label_window_weight": 1.0
+        },
+        {
+          "row": 213322,
+          "episode": 727,
+          "context_score": 60.08073266107137,
+          "within_all_gates": false,
+          "oct_difference_um": 54.52929621865198,
+          "state_difference_deg_deg_mm": [
+            1.4669998802185056,
+            1.835891743976859,
+            0.07334448047459219
+          ],
+          "velocity_difference_deg_deg_mm_s": [
+            0.14399999999997767,
+            0.07994136478230864,
+            0.024130147327394276
+          ],
+          "previous_action_difference_deg_deg_mm": [
+            0.006122741266153753,
+            0.004805175005458295,
+            0.009322639554738998
+          ],
+          "actual_training_label_deg_deg_mm": [
+            0.0009610741981305182,
+            0.0011234881822019815,
+            0.005426519084721804
+          ],
+          "label_window_weight": 1.0
+        },
+        {
+          "row": 213323,
+          "episode": 727,
+          "context_score": 61.84318423642608,
+          "within_all_gates": false,
+          "oct_difference_um": 53.93283698121486,
+          "state_difference_deg_deg_mm": [
+            1.4669998802185056,
+            1.8358478749583043,
+            0.07538152881443594
+          ],
+          "velocity_difference_deg_deg_mm_s": [
+            0.14399999999997767,
+            0.08169612552449615,
+            0.05014200843432474
+          ],
+          "previous_action_difference_deg_deg_mm": [
+            0.006060950516257435,
+            0.004651299444958568,
+            0.00512350769713521
+          ],
+          "actual_training_label_deg_deg_mm": [
+            0.0010216169757768512,
+            0.0013184506678953767,
+            0.0017131076892837882
+          ],
+          "label_window_weight": 1.0
+        }
+      ],
+      "limitation": "Matching uses state/OCT/velocity/previous action; RGB and full observation history are not matched. Zero matches establish only absence within declared gates."
+    },
+    "correction_pool": {
+      "matched_windows": 0,
+      "matched_episode_count": 0,
+      "matched_sampling_probability_within_pool": 0.0,
+      "nearest": [
+        {
+          "row": 35800,
+          "episode": 49,
+          "context_score": 223.45938958053415,
+          "within_all_gates": false,
+          "oct_difference_um": 61.493350996475705,
+          "state_difference_deg_deg_mm": [
+            5.3441997848510745,
+            3.9869711195637905,
+            0.07668043323338125
+          ],
+          "velocity_difference_deg_deg_mm_s": [
+            0.14399999999997767,
+            0.02438583706095307,
+            0.04106740318676916
+          ],
+          "previous_action_difference_deg_deg_mm": [
+            0.009739476256072521,
+            0.002007691189646721,
+            0.0034469885285943747
+          ],
+          "actual_training_label_deg_deg_mm": [
+            0.009277396835386753,
+            -0.004926914349198341,
+            0.006325224414467812
+          ],
+          "label_window_weight": 0.953125
+        },
+        {
+          "row": 35802,
+          "episode": 49,
+          "context_score": 245.82899638156061,
+          "within_all_gates": false,
+          "oct_difference_um": 71.58004605375582,
+          "state_difference_deg_deg_mm": [
+            5.331599839782715,
+            3.994298437755319,
+            0.06785894580662344
+          ],
+          "velocity_difference_deg_deg_mm_s": [
+            0.18001074218747765,
+            0.0332168612308749,
+            0.06895284019848788
+          ],
+          "previous_action_difference_deg_deg_mm": [
+            0.006592842750251293,
+            0.004378622863441706,
+            0.005482966545969248
+          ],
+          "actual_training_label_deg_deg_mm": [
+            0.0024324441328644753,
+            -0.005747711285948753,
+            0.005643562413752079
+          ],
+          "label_window_weight": 0.90625
+        },
+        {
+          "row": 35803,
+          "episode": 49,
+          "context_score": 248.81740624083096,
+          "within_all_gates": false,
+          "oct_difference_um": 74.80545825005336,
+          "state_difference_deg_deg_mm": [
+            5.3298002563476565,
+            3.995960692088815,
+            0.06420828052342031
+          ],
+          "velocity_difference_deg_deg_mm_s": [
+            0.17999166870114955,
+            0.04932841922566802,
+            0.06361226402661292
+          ],
+          "previous_action_difference_deg_deg_mm": [
+            0.007532320450991392,
+            0.0022199000231921673,
+            0.005340551026165485
+          ],
+          "actual_training_label_deg_deg_mm": [
+            0.0031107666436582804,
+            -0.007471126038581133,
+            0.005220240913331509
+          ],
+          "label_window_weight": 0.859375
+        },
+        {
+          "row": 35805,
+          "episode": 49,
+          "context_score": 250.67106563691087,
+          "within_all_gates": false,
+          "oct_difference_um": 79.91325129690273,
+          "state_difference_deg_deg_mm": [
+            5.3298002563476565,
+            4.003458002727243,
+            0.05795789905369375
+          ],
+          "velocity_difference_deg_deg_mm_s": [
+            0.14399999999997767,
+            0.04909953738973052,
+            0.04450063072583167
+          ],
+          "previous_action_difference_deg_deg_mm": [
+            0.010685734916478395,
+            0.0006357068195939064,
+            0.004053732380270958
+          ],
+          "actual_training_label_deg_deg_mm": [
+            0.008063114248216152,
+            -0.0047425865195691586,
+            0.0039526913315057755
+          ],
+          "label_window_weight": 0.765625
+        },
+        {
+          "row": 35804,
+          "episode": 49,
+          "context_score": 251.65707900451602,
+          "within_all_gates": false,
+          "oct_difference_um": 77.75933578074188,
+          "state_difference_deg_deg_mm": [
+            5.3298002563476565,
+            4.00178430430195,
+            0.060652982671857814
+          ],
+          "velocity_difference_deg_deg_mm_s": [
+            0.14399999999997767,
+            0.03389873836710544,
+            0.06170491539380042
+          ],
+          "previous_action_difference_deg_deg_mm": [
+            0.008210642961785197,
+            0.003943314775824547,
+            0.004917229525744915
+          ],
+          "actual_training_label_deg_deg_mm": [
+            0.005585858598351479,
+            -0.0041635180823504925,
+            0.004356743767857552
+          ],
+          "label_window_weight": 0.8125
+        }
+      ],
+      "limitation": "Matching uses state/OCT/velocity/previous action; RGB and full observation history are not matched. Zero matches establish only absence within declared gates."
+    }
+  },
+  {
+    "target": 10,
+    "step": 840,
+    "query": {
+      "state": [
+        -5.4756,
+        7.32767416928661,
+        19.597192039725403
+      ],
+      "oct": [
+        -0.028412634506821632,
+        -0.006037801504135132,
+        0.08324878662824631
+      ],
+      "velocity": [
+        0.0,
+        -0.009052600206027476,
+        0.02224913187527655
+      ],
+      "previous": [
+        0.004043358378112316,
+        3.7971753044985235e-05,
+        0.0016313455998897552
+      ]
+    },
+    "policy_action_deg_deg_mm": [
+      -0.006804943084716797,
+      0.008199815638363361,
+      -0.000995919108390808
+    ],
+    "original_pool": {
+      "matched_windows": 0,
+      "matched_episode_count": 0,
+      "matched_sampling_probability_within_pool": 0.0,
+      "nearest": [
+        {
+          "row": 146719,
+          "episode": 442,
+          "context_score": 30.46426309268615,
+          "within_all_gates": false,
+          "oct_difference_um": 49.3454820024276,
+          "state_difference_deg_deg_mm": [
+            0.6191999870300293,
+            0.4356877991999397,
+            0.018566856148620303
+          ],
+          "velocity_difference_deg_deg_mm_s": [
+            0.0,
+            0.0980164152969022,
+            0.02818116597628595
+          ],
+          "previous_action_difference_deg_deg_mm": [
+            0.004043358378112316,
+            0.007537666577263735,
+            0.0018934346735477448
+          ],
+          "actual_training_label_deg_deg_mm": [
+            0.0,
+            -0.009645938873291016,
+            0.009229660034179688
+          ],
+          "label_window_weight": 1.0
+        },
+        {
+          "row": 148326,
+          "episode": 486,
+          "context_score": 39.05991432427094,
+          "within_all_gates": false,
+          "oct_difference_um": 57.3896155498456,
+          "state_difference_deg_deg_mm": [
+            0.6191999870300293,
+            0.4356877991999397,
+            0.06858135199822968
+          ],
+          "velocity_difference_deg_deg_mm_s": [
+            0.0,
+            0.0980164152969022,
+            0.0282193129489422
+          ],
+          "previous_action_difference_deg_deg_mm": [
+            0.004043358378112316,
+            0.007537666577263735,
+            0.0018934346735477448
+          ],
+          "actual_training_label_deg_deg_mm": [
+            0.0,
+            -0.009645938873291016,
+            0.006877899169921875
+          ],
+          "label_window_weight": 1.0
+        },
+        {
+          "row": 213322,
+          "episode": 727,
+          "context_score": 47.36904305536242,
+          "within_all_gates": false,
+          "oct_difference_um": 47.20271803312085,
+          "state_difference_deg_deg_mm": [
+            1.4561998802185059,
+            1.8448779394780388,
+            0.08012889885626251
+          ],
+          "velocity_difference_deg_deg_mm_s": [
+            0.0,
+            0.006420459092746216,
+            0.011282057089567317
+          ],
+          "previous_action_difference_deg_deg_mm": [
+            0.00302049343008548,
+            0.001239391989656724,
+            0.007994305342435837
+          ],
+          "actual_training_label_deg_deg_mm": [
+            0.0009610741981305182,
+            0.0011234881822019815,
+            0.005426519084721804
+          ],
+          "label_window_weight": 1.0
+        },
+        {
+          "row": 213324,
+          "episode": 727,
+          "context_score": 50.307225997834415,
+          "within_all_gates": false,
+          "oct_difference_um": 46.53091478320583,
+          "state_difference_deg_deg_mm": [
+            1.4561998802185059,
+            1.8448235800420036,
+            0.0835907366248172
+          ],
+          "velocity_difference_deg_deg_mm_s": [
+            0.0,
+            0.0088427918564181,
+            0.0507449204494954
+          ],
+          "previous_action_difference_deg_deg_mm": [
+            0.003021741402335465,
+            0.0012804789148503914,
+            8.176208939403296e-05
+          ],
+          "actual_training_label_deg_deg_mm": [
+            0.0010138909565284848,
+            0.0012619809713214636,
+            0.0023241753224283457
+          ],
+          "label_window_weight": 1.0
+        },
+        {
+          "row": 213163,
+          "episode": 726,
+          "context_score": 52.53633823019499,
+          "within_all_gates": false,
+          "oct_difference_um": 52.335409816690515,
+          "state_difference_deg_deg_mm": [
+            1.4561998802185059,
+            1.8327805807744255,
+            0.07160495781622345
+          ],
+          "velocity_difference_deg_deg_mm_s": [
+            0.0,
+            0.1376988036025642,
+            0.0031374985744955716
+          ],
+          "previous_action_difference_deg_deg_mm": [
+            0.0030242205830290914,
+            0.0018328837031731382,
+            0.005424687173217535
+          ],
+          "actual_training_label_deg_deg_mm": [
+            0.0009649596177041531,
+            0.00297713209874928,
+            0.004705772735178471
+          ],
+          "label_window_weight": 1.0
+        }
+      ],
+      "limitation": "Matching uses state/OCT/velocity/previous action; RGB and full observation history are not matched. Zero matches establish only absence within declared gates."
+    },
+    "correction_pool": {
+      "matched_windows": 0,
+      "matched_episode_count": 0,
+      "matched_sampling_probability_within_pool": 0.0,
+      "nearest": [
+        {
+          "row": 35800,
+          "episode": 49,
+          "context_score": 209.77318951972939,
+          "within_all_gates": false,
+          "oct_difference_um": 53.21798569417745,
+          "state_difference_deg_deg_mm": [
+            5.354999784851074,
+            3.9779849240626106,
+            0.08346485161505157
+          ],
+          "velocity_difference_deg_deg_mm_s": [
+            0.0,
+            0.09790674275051549,
+            0.0282193129489422
+          ],
+          "previous_action_difference_deg_deg_mm": [
+            0.0005962415598332882,
+            0.005573474205448292,
+            0.002118654316291213
+          ],
+          "actual_training_label_deg_deg_mm": [
+            0.009277396835386753,
+            -0.004926914349198341,
+            0.006325224414467812
+          ],
+          "label_window_weight": 0.953125
+        },
+        {
+          "row": 35802,
+          "episode": 49,
+          "context_score": 228.09818227189461,
+          "within_all_gates": false,
+          "oct_difference_um": 63.14417018108297,
+          "state_difference_deg_deg_mm": [
+            5.342399839782715,
+            3.985312242254139,
+            0.07464336418829376
+          ],
+          "velocity_difference_deg_deg_mm_s": [
+            0.036010742187499986,
+            0.10673776692043732,
+            0.05610474996066092
+          ],
+          "previous_action_difference_deg_deg_mm": [
+            0.00255039194598794,
+            0.007944405879243277,
+            0.004154632333666086
+          ],
+          "actual_training_label_deg_deg_mm": [
+            0.0024324441328644753,
+            -0.005747711285948753,
+            0.005643562413752079
+          ],
+          "label_window_weight": 0.90625
+        },
+        {
+          "row": 35803,
+          "episode": 49,
+          "context_score": 229.31062421113538,
+          "within_all_gates": false,
+          "oct_difference_um": 66.33136453972494,
+          "state_difference_deg_deg_mm": [
+            5.340600256347656,
+            3.986974496587635,
+            0.07099269890509063
+          ],
+          "velocity_difference_deg_deg_mm_s": [
+            0.03599166870117188,
+            0.024192486463894408,
+            0.05076417378878596
+          ],
+          "previous_action_difference_deg_deg_mm": [
+            0.0016109142452478409,
+            0.005785683038993739,
+            0.004012216813862324
+          ],
+          "actual_training_label_deg_deg_mm": [
+            0.0031107666436582804,
+            -0.007471126038581133,
+            0.005220240913331509
+          ],
+          "label_window_weight": 0.859375
+        },
+        {
+          "row": 35805,
+          "episode": 49,
+          "context_score": 231.85184749324827,
+          "within_all_gates": false,
+          "oct_difference_um": 71.32644165548682,
+          "state_difference_deg_deg_mm": [
+            5.340600256347656,
+            3.9944718072260628,
+            0.06474231743536407
+          ],
+          "velocity_difference_deg_deg_mm_s": [
+            0.0,
+            0.024421368299831908,
+            0.03165254048800471
+          ],
+          "previous_action_difference_deg_deg_mm": [
+            0.0015425002202391624,
+            0.004201489835395478,
+            0.0027253981679677963
+          ],
+          "actual_training_label_deg_deg_mm": [
+            0.008063114248216152,
+            -0.0047425865195691586,
+            0.0039526913315057755
+          ],
+          "label_window_weight": 0.765625
+        },
+        {
+          "row": 35801,
+          "episode": 49,
+          "context_score": 233.78596180891077,
+          "within_all_gates": false,
+          "oct_difference_um": 59.75223500332867,
+          "state_difference_deg_deg_mm": [
+            5.34420037689209,
+            3.9795227238978157,
+            0.07856105828009063
+          ],
+          "velocity_difference_deg_deg_mm_s": [
+            0.2159881591796875,
+            0.02170339649807409,
+            0.0758267348239422
+          ],
+          "previous_action_difference_deg_deg_mm": [
+            0.005234038457274437,
+            0.004964886102243327,
+            0.004693878814578056
+          ],
+          "actual_training_label_deg_deg_mm": [
+            0.0014929664321243763,
+            -0.007906434126198292,
+            0.0057859779335558414
+          ],
+          "label_window_weight": 0.953125
+        }
+      ],
+      "limitation": "Matching uses state/OCT/velocity/previous action; RGB and full observation history are not matched. Zero matches establish only absence within declared gates."
+    }
+  },
+  {
+    "target": 10,
+    "step": 845,
+    "query": {
+      "state": [
+        -5.4864,
+        7.327663129519151,
+        19.58943618037453
+      ],
+      "oct": [
+        -0.031095433980226517,
+        -0.004842299968004227,
+        0.09166548401117325
+      ],
+      "velocity": [
+        -0.14399999999997767,
+        -0.007948625903126692,
+        -0.000940104163821287
+      ],
+      "previous": [
+        -0.004486082587391138,
+        -0.00012542118201963603,
+        -1.1064112186431885e-05
+      ]
+    },
+    "policy_action_deg_deg_mm": [
+      0.004125862382352352,
+      0.0011817393824458122,
+      -0.0012098439037799835
+    ],
+    "original_pool": {
+      "matched_windows": 0,
+      "matched_episode_count": 0,
+      "matched_sampling_probability_within_pool": 0.0,
+      "nearest": [
+        {
+          "row": 146719,
+          "episode": 442,
+          "context_score": 39.752338762789485,
+          "within_all_gates": false,
+          "oct_difference_um": 51.48424225759658,
+          "state_difference_deg_deg_mm": [
+            0.629999987030029,
+            0.4356767594324813,
+            0.026322715499492944
+          ],
+          "velocity_difference_deg_deg_mm_s": [
+            0.14399999999997767,
+            0.09912038959980299,
+            0.05137040201538379
+          ],
+          "previous_action_difference_deg_deg_mm": [
+            0.004486082587391138,
+            0.007374273642199114,
+            0.003535844385623932
+          ],
+          "actual_training_label_deg_deg_mm": [
+            0.0,
+            -0.009645938873291016,
+            0.009229660034179688
+          ],
+          "label_window_weight": 1.0
+        },
+        {
+          "row": 213324,
+          "episode": 727,
+          "context_score": 53.631234545889015,
+          "within_all_gates": false,
+          "oct_difference_um": 51.944668347393815,
+          "state_difference_deg_deg_mm": [
+            1.4669998802185056,
+            1.844834619809462,
+            0.07583487727394456
+          ],
+          "velocity_difference_deg_deg_mm_s": [
+            0.14399999999997767,
+            0.0077388175535173164,
+            0.027555684410397564
+          ],
+          "previous_action_difference_deg_deg_mm": [
+            0.005507699563167989,
+            0.0014438718499150127,
+            0.00172417180147022
+          ],
+          "actual_training_label_deg_deg_mm": [
+            0.0010138909565284848,
+            0.0012619809713214636,
+            0.0023241753224283457
+          ],
+          "label_window_weight": 1.0
+        },
+        {
+          "row": 148326,
+          "episode": 486,
+          "context_score": 56.2508136215843,
+          "within_all_gates": false,
+          "oct_difference_um": 65.56661545185517,
+          "state_difference_deg_deg_mm": [
+            0.629999987030029,
+            0.4356767594324813,
+            0.07633721134910232
+          ],
+          "velocity_difference_deg_deg_mm_s": [
+            0.14399999999997767,
+            0.09912038959980299,
+            0.05140854898804004
+          ],
+          "previous_action_difference_deg_deg_mm": [
+            0.004486082587391138,
+            0.007374273642199114,
+            0.003535844385623932
+          ],
+          "actual_training_label_deg_deg_mm": [
+            0.0,
+            -0.009645938873291016,
+            0.006877899169921875
+          ],
+          "label_window_weight": 1.0
+        },
+        {
+          "row": 213323,
+          "episode": 727,
+          "context_score": 57.24948348459875,
+          "within_all_gates": false,
+          "oct_difference_um": 52.42890503500944,
+          "state_difference_deg_deg_mm": [
+            1.4669998802185056,
+            1.8448451102269425,
+            0.07441008784523362
+          ],
+          "velocity_difference_deg_deg_mm_s": [
+            0.14399999999997767,
+            0.007071245532032939,
+            0.03980086263305386
+          ],
+          "previous_action_difference_deg_deg_mm": [
+            0.005447156785521656,
+            0.0012489093642216176,
+            0.0054375831969082355
+          ],
+          "actual_training_label_deg_deg_mm": [
+            0.0010216169757768512,
+            0.0013184506678953767,
+            0.0017131076892837882
+          ],
+          "label_window_weight": 1.0
+        },
+        {
+          "row": 213322,
+          "episode": 727,
+          "context_score": 59.53953191043572,
+          "within_all_gates": false,
+          "oct_difference_um": 53.12867613993057,
+          "state_difference_deg_deg_mm": [
+            1.4669998802185056,
+            1.8448889792454972,
+            0.07237303950538987
+          ],
+          "velocity_difference_deg_deg_mm_s": [
+            0.14399999999997767,
+            0.005316484789845433,
+            0.034471293128665155
+          ],
+          "previous_action_difference_deg_deg_mm": [
+            0.005508947535417974,
+            0.0014027849247213453,
+            0.009636715054512024
+          ],
+          "actual_training_label_deg_deg_mm": [
+            0.0009610741981305182,
+            0.0011234881822019815,
+            0.005426519084721804
+          ],
+          "label_window_weight": 1.0
+        }
+      ],
+      "limitation": "Matching uses state/OCT/velocity/previous action; RGB and full observation history are not matched. Zero matches establish only absence within declared gates."
+    },
+    "correction_pool": {
+      "matched_windows": 0,
+      "matched_episode_count": 0,
+      "matched_sampling_probability_within_pool": 0.0,
+      "nearest": [
+        {
+          "row": 35800,
+          "episode": 49,
+          "context_score": 227.30301410965694,
+          "within_all_gates": false,
+          "oct_difference_um": 61.97256473968644,
+          "state_difference_deg_deg_mm": [
+            5.3441997848510745,
+            3.977973884295152,
+            0.07570899226417893
+          ],
+          "velocity_difference_deg_deg_mm_s": [
+            0.14399999999997767,
+            0.09901071705341627,
+            0.05140854898804004
+          ],
+          "previous_action_difference_deg_deg_mm": [
+            0.009125682525336742,
+            0.005410081270383671,
+            0.0037610640283674
+          ],
+          "actual_training_label_deg_deg_mm": [
+            0.009277396835386753,
+            -0.004926914349198341,
+            0.006325224414467812
+          ],
+          "label_window_weight": 0.953125
+        },
+        {
+          "row": 35802,
+          "episode": 49,
+          "context_score": 251.4020949971292,
+          "within_all_gates": false,
+          "oct_difference_um": 71.92629547974524,
+          "state_difference_deg_deg_mm": [
+            5.331599839782715,
+            3.9853012024866805,
+            0.06688750483742112
+          ],
+          "velocity_difference_deg_deg_mm_s": [
+            0.18001074218747765,
+            0.10784174122333812,
+            0.07929398599975876
+          ],
+          "previous_action_difference_deg_deg_mm": [
+            0.005979049019515514,
+            0.007781012944178656,
+            0.005797042045742273
+          ],
+          "actual_training_label_deg_deg_mm": [
+            0.0024324441328644753,
+            -0.005747711285948753,
+            0.005643562413752079
+          ],
+          "label_window_weight": 0.90625
+        },
+        {
+          "row": 35803,
+          "episode": 49,
+          "context_score": 252.72295918540033,
+          "within_all_gates": false,
+          "oct_difference_um": 75.13864179735936,
+          "state_difference_deg_deg_mm": [
+            5.3298002563476565,
+            3.9869634568201766,
+            0.063236839554218
+          ],
+          "velocity_difference_deg_deg_mm_s": [
+            0.17999166870114955,
+            0.02529646076679519,
+            0.0739534098278838
+          ],
+          "previous_action_difference_deg_deg_mm": [
+            0.006918526720255613,
+            0.005622290103929117,
+            0.005654626525938511
+          ],
+          "actual_training_label_deg_deg_mm": [
+            0.0031107666436582804,
+            -0.007471126038581133,
+            0.005220240913331509
+          ],
+          "label_window_weight": 0.859375
+        },
+        {
+          "row": 35805,
+          "episode": 49,
+          "context_score": 253.2669745972081,
+          "within_all_gates": false,
+          "oct_difference_um": 80.13448647806456,
+          "state_difference_deg_deg_mm": [
+            5.3298002563476565,
+            3.9944607674586043,
+            0.05698645808449143
+          ],
+          "velocity_difference_deg_deg_mm_s": [
+            0.14399999999997767,
+            0.02552534260273269,
+            0.05484177652710255
+          ],
+          "previous_action_difference_deg_deg_mm": [
+            0.010071941185742617,
+            0.0040380969003308564,
+            0.0043678078800439835
+          ],
+          "actual_training_label_deg_deg_mm": [
+            0.008063114248216152,
+            -0.0047425865195691586,
+            0.0039526913315057755
+          ],
+          "label_window_weight": 0.765625
+        },
+        {
+          "row": 35804,
+          "episode": 49,
+          "context_score": 256.674776031393,
+          "within_all_gates": false,
+          "oct_difference_um": 77.99707350925117,
+          "state_difference_deg_deg_mm": [
+            5.3298002563476565,
+            3.9927870690333114,
+            0.059681541702655494
+          ],
+          "velocity_difference_deg_deg_mm_s": [
+            0.14399999999997767,
+            0.10852361835956864,
+            0.0720460611950713
+          ],
+          "previous_action_difference_deg_deg_mm": [
+            0.0075968492310494184,
+            0.007345704856561497,
+            0.0052313050255179405
+          ],
+          "actual_training_label_deg_deg_mm": [
+            0.005585858598351479,
+            -0.0041635180823504925,
+            0.004356743767857552
+          ],
+          "label_window_weight": 0.8125
+        }
+      ],
+      "limitation": "Matching uses state/OCT/velocity/previous action; RGB and full observation history are not matched. Zero matches establish only absence within declared gates."
+    }
+  },
+  {
+    "target": 10,
+    "step": 855,
+    "query": {
+      "state": [
+        -5.4792000000000005,
+        7.334871985209801,
+        19.581445294982725
+      ],
+      "oct": [
+        -0.02660210430622101,
+        -0.007028801832348108,
+        0.09925948828458786
+      ],
+      "velocity": [
+        0.2159999999999904,
+        0.006402869691739886,
+        -0.012221354128705286
+      ],
+      "previous": [
+        0.011634902097284794,
+        -0.00143873889464885,
+        -0.0007712841033935547
+      ]
+    },
+    "policy_action_deg_deg_mm": [
+      -0.0005915298243053257,
+      -0.0010719344718381763,
+      -0.0002822764217853546
+    ],
+    "original_pool": {
+      "matched_windows": 0,
+      "matched_episode_count": 0,
+      "matched_sampling_probability_within_pool": 0.0,
+      "nearest": [
+        {
+          "row": 146719,
+          "episode": 442,
+          "context_score": 43.3755403966641,
+          "within_all_gates": false,
+          "oct_difference_um": 47.762625861663324,
+          "state_difference_deg_deg_mm": [
+            0.6227999870300298,
+            0.4428856151231315,
+            0.034313600891298535
+          ],
+          "velocity_difference_deg_deg_mm_s": [
+            0.2159999999999904,
+            0.11347188519466958,
+            0.06265165198026779
+          ],
+          "previous_action_difference_deg_deg_mm": [
+            0.011634902097284794,
+            0.0060609559295699,
+            0.004296064376831055
+          ],
+          "actual_training_label_deg_deg_mm": [
+            0.0,
+            -0.009645938873291016,
+            0.009229660034179688
+          ],
+          "label_window_weight": 1.0
+        },
+        {
+          "row": 213324,
+          "episode": 727,
+          "context_score": 57.73548570756258,
+          "within_all_gates": false,
+          "oct_difference_um": 53.77536917052019,
+          "state_difference_deg_deg_mm": [
+            1.4597998802185064,
+            1.8376257641188118,
+            0.06784399188213897
+          ],
+          "velocity_difference_deg_deg_mm_s": [
+            0.2159999999999904,
+            0.006612678041349262,
+            0.016274434445513564
+          ],
+          "previous_action_difference_deg_deg_mm": [
+            0.010613285121507943,
+            0.0027571895625442266,
+            0.002484391792677343
+          ],
+          "actual_training_label_deg_deg_mm": [
+            0.0010138909565284848,
+            0.0012619809713214636,
+            0.0023241753224283457
+          ],
+          "label_window_weight": 1.0
+        },
+        {
+          "row": 213323,
+          "episode": 727,
+          "context_score": 61.1438522026266,
+          "within_all_gates": false,
+          "oct_difference_um": 54.462796727348156,
+          "state_difference_deg_deg_mm": [
+            1.4597998802185064,
+            1.8376362545362923,
+            0.06641920245342803
+          ],
+          "velocity_difference_deg_deg_mm_s": [
+            0.2159999999999904,
+            0.00728025006283364,
+            0.02851961266816986
+          ],
+          "previous_action_difference_deg_deg_mm": [
+            0.010673827899154276,
+            0.0025622270768508315,
+            0.006197803188115358
+          ],
+          "actual_training_label_deg_deg_mm": [
+            0.0010216169757768512,
+            0.0013184506678953767,
+            0.0017131076892837882
+          ],
+          "label_window_weight": 1.0
+        },
+        {
+          "row": 213326,
+          "episode": 727,
+          "context_score": 62.940152851177395,
+          "within_all_gates": false,
+          "oct_difference_um": 51.13847809122885,
+          "state_difference_deg_deg_mm": [
+            1.4597998802185064,
+            1.8376257641188118,
+            0.07519300616436553
+          ],
+          "velocity_difference_deg_deg_mm_s": [
+            0.2159999999999904,
+            0.006402869691739886,
+            0.059533101437701214
+          ],
+          "previous_action_difference_deg_deg_mm": [
+            0.010601397603750229,
+            0.002725705737248063,
+            0.0007608674486618838
+          ],
+          "actual_training_label_deg_deg_mm": [
+            0.0010059992782771587,
+            0.0012877972330898046,
+            0.00016193577903322875
+          ],
+          "label_window_weight": 1.0
+        },
+        {
+          "row": 213325,
+          "episode": 727,
+          "context_score": 65.54131777498134,
+          "within_all_gates": false,
+          "oct_difference_um": 52.2750149081695,
+          "state_difference_deg_deg_mm": [
+            1.4597998802185064,
+            1.8376257641188118,
+            0.07160528338604522
+          ],
+          "velocity_difference_deg_deg_mm_s": [
+            0.2159999999999904,
+            0.006402869691739886,
+            0.06300447594941865
+          ],
+          "previous_action_difference_deg_deg_mm": [
+            0.010621011140756309,
+            0.0027007198659703135,
+            0.0030954594258219004
+          ],
+          "actual_training_label_deg_deg_mm": [
+            0.001033504493534565,
+            0.0012869668425992131,
+            -1.041665473167086e-05
+          ],
+          "label_window_weight": 1.0
+        }
+      ],
+      "limitation": "Matching uses state/OCT/velocity/previous action; RGB and full observation history are not matched. Zero matches establish only absence within declared gates."
+    },
+    "correction_pool": {
+      "matched_windows": 0,
+      "matched_episode_count": 0,
+      "matched_sampling_probability_within_pool": 0.0,
+      "nearest": [
+        {
+          "row": 35800,
+          "episode": 49,
+          "context_score": 240.0742762569922,
+          "within_all_gates": false,
+          "oct_difference_um": 66.88980642593894,
+          "state_difference_deg_deg_mm": [
+            5.351399784851074,
+            3.9851827399858024,
+            0.06771810687237334
+          ],
+          "velocity_difference_deg_deg_mm_s": [
+            0.2159999999999904,
+            0.11336221264828286,
+            0.06268979895292404
+          ],
+          "previous_action_difference_deg_deg_mm": [
+            0.0069953021593391895,
+            0.004096763557754457,
+            0.004521284019574523
+          ],
+          "actual_training_label_deg_deg_mm": [
+            0.009277396835386753,
+            -0.004926914349198341,
+            0.006325224414467812
+          ],
+          "label_window_weight": 0.953125
+        },
+        {
+          "row": 35801,
+          "episode": 49,
+          "context_score": 264.34934026404727,
+          "within_all_gates": false,
+          "oct_difference_um": 73.4425916355135,
+          "state_difference_deg_deg_mm": [
+            5.340600376892089,
+            3.9867205398210075,
+            0.0628143135374124
+          ],
+          "velocity_difference_deg_deg_mm_s": [
+            1.1840820302894128e-05,
+            0.03715886639584145,
+            0.11029722082792404
+          ],
+          "previous_action_difference_deg_deg_mm": [
+            0.0023575052618980408,
+            0.0034881754545494914,
+            0.007096508517861366
+          ],
+          "actual_training_label_deg_deg_mm": [
+            0.0014929664321243763,
+            -0.007906434126198292,
+            0.0057859779335558414
+          ],
+          "label_window_weight": 0.953125
+        },
+        {
+          "row": 35802,
+          "episode": 49,
+          "context_score": 265.6685905915784,
+          "within_all_gates": false,
+          "oct_difference_um": 77.12601270034108,
+          "state_difference_deg_deg_mm": [
+            5.338799839782714,
+            3.9925100581773307,
+            0.05889661944561553
+          ],
+          "velocity_difference_deg_deg_mm_s": [
+            0.17998925781249042,
+            0.12219323681820468,
+            0.09057523596464276
+          ],
+          "previous_action_difference_deg_deg_mm": [
+            0.010141935665160418,
+            0.006467695231549442,
+            0.006557262036949396
+          ],
+          "actual_training_label_deg_deg_mm": [
+            0.0024324441328644753,
+            -0.005747711285948753,
+            0.005643562413752079
+          ],
+          "label_window_weight": 0.90625
+        },
+        {
+          "row": 35803,
+          "episode": 49,
+          "context_score": 266.8170458241808,
+          "within_all_gates": false,
+          "oct_difference_um": 80.5156244914368,
+          "state_difference_deg_deg_mm": [
+            5.337000256347656,
+            3.994172312510827,
+            0.0552459541624124
+          ],
+          "velocity_difference_deg_deg_mm_s": [
+            0.18000833129881852,
+            0.03964795636166177,
+            0.0852346597927678
+          ],
+          "previous_action_difference_deg_deg_mm": [
+            0.009202457964420319,
+            0.004308972391299903,
+            0.006414846517145634
+          ],
+          "actual_training_label_deg_deg_mm": [
+            0.0031107666436582804,
+            -0.007471126038581133,
+            0.005220240913331509
+          ],
+          "label_window_weight": 0.859375
+        },
+        {
+          "row": 35805,
+          "episode": 49,
+          "context_score": 269.03040571074587,
+          "within_all_gates": false,
+          "oct_difference_um": 85.90285561141557,
+          "state_difference_deg_deg_mm": [
+            5.337000256347656,
+            4.001669623149255,
+            0.04899557269268584
+          ],
+          "velocity_difference_deg_deg_mm_s": [
+            0.2159999999999904,
+            0.03987683819759927,
+            0.06612302649198655
+          ],
+          "previous_action_difference_deg_deg_mm": [
+            0.006049043498933315,
+            0.0027247791877016425,
+            0.005128027871251106
+          ],
+          "actual_training_label_deg_deg_mm": [
+            0.008063114248216152,
+            -0.0047425865195691586,
+            0.0039526913315057755
+          ],
+          "label_window_weight": 0.765625
+        }
+      ],
+      "limitation": "Matching uses state/OCT/velocity/previous action; RGB and full observation history are not matched. Zero matches establish only absence within declared gates."
+    }
+  }
+]

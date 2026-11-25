@@ -1,0 +1,30 @@
+{
+  "checkpoint": "/home/him1/mujoco_bc/rcm_4090_deploy/outputs/homog_label_fix_20261124_v5/homog_label_fix_20261124_v5_phase1_A/step_004000.pth",
+  "checkpoint_sha256": "6cc389df3786f1f34c43cf65d6dc17fe910ab342fae8d84c8e37cea6a7db6c11",
+  "training_metadata": "/home/him1/mujoco_bc/rcm_4090_deploy/data/homog_label_fix_20261124_v5_A_t3_w025/metadata.json",
+  "training_source_sha256": "9b009377f36f585a9daa1a83c3af17b755a62b7d9197a7661cacbb14c37b6d79",
+  "train_episode": 40,
+  "target_robot_mm": [
+    0.4367277917467681,
+    3.652696250194051,
+    23.605009145695448
+  ],
+  "nearest_dev_um": 416.7194413864796,
+  "initial_error_um": 90.0020518790646,
+  "code_sha256": "8dc4a559347d90b7a3c15e4b14bfd7e77c8b33fac5d6f8b9a5f0aec4dec36b38",
+  "selection_code_sha256": "003556413b1f02591114f770b9ab4bdf0898bd334bd8a350bf62527775df618d",
+  "prefix": "24 forward and 24 reverse C commands, 3 um per tick; setup only",
+  "selection": "one pair, pre-action true tip and signed OCT; no future errors or policy outputs",
+  "controls": [
+    "v5 A4000 alone",
+    "strict RGBD teacher"
+  ],
+  "control_period_s": 0.05,
+  "steps": 20,
+  "k": 1,
+  "flow_steps": 4,
+  "exec_steps": 1,
+  "common_policy_seed": 43001,
+  "outputs": "per-step actual encoder positions, tip movement, independent 3D error, raw/accepted commands",
+  "scope": "One deliberately induced axial history pair on a training target. No generalization or hold test."
+}

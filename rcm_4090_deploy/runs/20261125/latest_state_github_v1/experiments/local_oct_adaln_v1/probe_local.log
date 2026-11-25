@@ -1,0 +1,116 @@
+Warning: wandb not available, logging will be local only
+加载数据集: 41422 个有效样本 (from 42399 total frames)
+{
+  "output_dir": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261125/local_oct_adaln_v1/probe_local",
+  "elapsed_s": 4.348439741996117,
+  "probe2_under60": {
+    "F_vis": {
+      "feature_dim": 37632,
+      "sign_accuracy_xyz": {
+        "X": 0.48264984227129337,
+        "Y": 0.5899053627760252,
+        "Z": 0.5678233438485805
+      },
+      "mean_cosine": 0.08882625237751048,
+      "cosine_median": 0.13598132571426164,
+      "cosine_p10": -0.7185469615825079,
+      "positive_target_fraction_xyz": {
+        "X": 0.6151419558359621,
+        "Y": 0.47003154574132494,
+        "Z": 0.5899053627760252
+      }
+    },
+    "F_cond": {
+      "feature_dim": 38784,
+      "sign_accuracy_xyz": {
+        "X": 0.5299684542586751,
+        "Y": 0.6088328075709779,
+        "Z": 0.555205047318612
+      },
+      "mean_cosine": 0.16384247479375716,
+      "cosine_median": 0.2755843511387034,
+      "cosine_p10": -0.6298960589381215,
+      "positive_target_fraction_xyz": {
+        "X": 0.6151419558359621,
+        "Y": 0.47003154574132494,
+        "Z": 0.5899053627760252
+      }
+    },
+    "F_geom_cond": {
+      "feature_dim": 384,
+      "sign_accuracy_xyz": {
+        "X": 0.9211356466876972,
+        "Y": 0.8391167192429022,
+        "Z": 0.7066246056782335
+      },
+      "mean_cosine": 0.7452860552270306,
+      "cosine_median": 0.8723227523229033,
+      "cosine_p10": 0.30528464277368,
+      "positive_target_fraction_xyz": {
+        "X": 0.6151419558359621,
+        "Y": 0.47003154574132494,
+        "Z": 0.5899053627760252
+      }
+    },
+    "F_oct": {
+      "feature_dim": 3,
+      "sign_accuracy_xyz": {
+        "X": 1.0,
+        "Y": 0.9968454258675079,
+        "Z": 0.9652996845425867
+      },
+      "mean_cosine": 0.9992698010359574,
+      "cosine_median": 0.999903954090649,
+      "cosine_p10": 0.9987526075840992,
+      "positive_target_fraction_xyz": {
+        "X": 0.6151419558359621,
+        "Y": 0.47003154574132494,
+        "Z": 0.5899053627760252
+      }
+    }
+  },
+  "probe3_per_axis": {
+    "A": {
+      "mean_sign_agreement_action0": 0.6666666666666666,
+      "mean_first16_majority_agreement": 0.659375,
+      "fraction_observations_with_sign_flip_action0": 0.9666666666666667,
+      "std_over_abs_mean_action0": {
+        "count": 30,
+        "median": 2.667089343070984,
+        "p90": 9.622337150573731,
+        "mean": 4.4223720073699955
+      }
+    },
+    "B": {
+      "mean_sign_agreement_action0": 0.6875,
+      "mean_first16_majority_agreement": 0.66640625,
+      "fraction_observations_with_sign_flip_action0": 0.9666666666666667,
+      "std_over_abs_mean_action0": {
+        "count": 30,
+        "median": 2.534727454185486,
+        "p90": 9.546367931365968,
+        "mean": 4.738502417008082
+      }
+    },
+    "C": {
+      "mean_sign_agreement_action0": 0.8125,
+      "mean_first16_majority_agreement": 0.74609375,
+      "fraction_observations_with_sign_flip_action0": 0.6,
+      "std_over_abs_mean_action0": {
+        "count": 30,
+        "median": 1.2058624029159546,
+        "p90": 6.11069674491884,
+        "mean": 3.235722216963768
+      }
+    }
+  },
+  "verdict": {
+    "decision": "A: Input Representation / Scaling",
+    "reason": "F_cond fails the near-target direction criterion while raw OCT direction remains strong.",
+    "f_cond_ab_sign_accuracy": 0.5299684542586751,
+    "f_cond_mean_cosine": 0.16384247479375716,
+    "f_oct_ab_sign_accuracy": 0.9968454258675079,
+    "max_ab_sample_flip_fraction": 0.9666666666666667,
+    "visual_20um_below_one_policy_pixel": true
+  }
+}

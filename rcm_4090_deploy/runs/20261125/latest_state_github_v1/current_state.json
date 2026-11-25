@@ -1,0 +1,405 @@
+{
+  "snapshot_at": "2026-11-25T21:34:34+08:00",
+  "base_commit": "8147120c523732b9f08c1da5b51d7a93f647801b",
+  "branch": "experiment/local-oct-adaln-20261125",
+  "local_oct_adaln": {
+    "status": "completed",
+    "evaluations": {
+      "local4000_k1": {
+        "aggregate": {
+          "completed_targets": 5,
+          "final_mean_um": 98.34491249456755,
+          "min_mean_um": 33.39202951254059,
+          "entered_20_um_count": 0,
+          "sustained_200_count": 0
+        },
+        "strict_success_count": 0
+      },
+      "historical_baseline_fast5": {
+        "aggregate": {
+          "completed_targets": 5,
+          "final_mean_um": 65.56928808053874,
+          "min_mean_um": 32.56482497246049,
+          "entered_20_um_count": 0,
+          "sustained_200_count": 0
+        },
+        "strict_success_count": null
+      },
+      "historical_stage4_fast5": {
+        "aggregate": {
+          "completed_targets": 5,
+          "final_mean_um": 93.22356138945617,
+          "min_mean_um": 30.646513110169376,
+          "entered_20_um_count": 1,
+          "sustained_200_count": 0
+        },
+        "strict_success_count": null
+      },
+      "selected_k4_mean": {
+        "aggregate": {
+          "completed_targets": 5,
+          "final_mean_um": 99.4121540538059,
+          "min_mean_um": 62.92832523273213,
+          "entered_20_um_count": 0,
+          "sustained_200_count": 0
+        },
+        "strict_success_count": 0
+      }
+    },
+    "dev20_gate": {
+      "passed": false,
+      "remaining_minutes": 119.30845147371292,
+      "rule": "complete fast5 AND ((final<58 AND min<25) OR entered20>=2); remaining>=40"
+    },
+    "original_publication": {
+      "status": "pushed",
+      "branch": "experiment/local-oct-adaln-20261125",
+      "commit": "8147120c523732b9f08c1da5b51d7a93f647801b"
+    }
+  },
+  "terminal_round": {
+    "status": "completed",
+    "stage": "report",
+    "models": {
+      "baseline": {
+        "final_mean_um": 65.56928808053874,
+        "targets": {
+          "E00": {
+            "final_um": 50.90558715953609,
+            "max_hold_cycles": 0
+          },
+          "E02": {
+            "final_um": 58.89450626945718,
+            "max_hold_cycles": 0
+          },
+          "E06": {
+            "final_um": 43.13566854474498,
+            "max_hold_cycles": 0
+          },
+          "E08": {
+            "final_um": 63.55687479946394,
+            "max_hold_cycles": 0
+          },
+          "E10": {
+            "final_um": 111.35380362949151,
+            "max_hold_cycles": 0
+          }
+        }
+      },
+      "v5_A4000": {
+        "final_mean_um": 54.221842675874086,
+        "targets": {
+          "E00": {
+            "final_um": 53.14388020333446,
+            "max_hold_cycles": 0
+          },
+          "E02": {
+            "final_um": 59.13587593788196,
+            "max_hold_cycles": 0
+          },
+          "E06": {
+            "final_um": 33.92221564948523,
+            "max_hold_cycles": 0
+          },
+          "E08": {
+            "final_um": 57.026156970517206,
+            "max_hold_cycles": 0
+          },
+          "E10": {
+            "final_um": 67.88108461815155,
+            "max_hold_cycles": 0
+          }
+        }
+      }
+    },
+    "teacher_replays": [
+      {
+        "model": "baseline",
+        "target": 6,
+        "status": "completed",
+        "diagnostic_teacher_only": true,
+        "policy_success_evidence": false,
+        "prefix_exact": true,
+        "source_step": 964,
+        "final_um": 17.40868999144646,
+        "max_hold_cycles": 379
+      },
+      {
+        "model": "baseline",
+        "target": 10,
+        "status": "completed",
+        "diagnostic_teacher_only": true,
+        "policy_success_evidence": false,
+        "prefix_exact": true,
+        "source_step": 760,
+        "final_um": 15.860570375818076,
+        "max_hold_cycles": 382
+      },
+      {
+        "model": "v5_A4000",
+        "target": 6,
+        "status": "completed",
+        "diagnostic_teacher_only": true,
+        "policy_success_evidence": false,
+        "prefix_exact": true,
+        "source_step": 964,
+        "final_um": 17.40868999144646,
+        "max_hold_cycles": 379
+      },
+      {
+        "model": "v5_A4000",
+        "target": 10,
+        "status": "completed",
+        "diagnostic_teacher_only": true,
+        "policy_success_evidence": false,
+        "prefix_exact": true,
+        "source_step": 835,
+        "final_um": 15.860570375818076,
+        "max_hold_cycles": 382
+      }
+    ]
+  },
+  "sampling_ab": {
+    "status": "completed",
+    "stage": "report",
+    "fast5_results": {
+      "A_original": {
+        "final_mean_um": 54.221842675874086,
+        "min_mean_um": 32.55633400109185,
+        "max_final_um": 67.88108461815155,
+        "sustained200": 0,
+        "hold_details": {
+          "E00": {
+            "status": "completed",
+            "frames": 1600,
+            "min_error_um": 37.82325770892795,
+            "final_error_um": 53.14388020333446,
+            "entries_le_20_um": 0,
+            "max_consecutive_le_20_um_cycles": 0,
+            "max_consecutive_le_20_um_seconds": 0.0,
+            "sustained_200_pass": false,
+            "last_200_max_error_um": 60.343926547016295,
+            "actual_speed_um_per_s_overall": 273.0576592859372,
+            "actual_speed_um_per_s_last_200": 42.55372597893733,
+            "hold_start_step": null,
+            "hold_end_step": null,
+            "raw_result": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261125/terminal_sampling_ab_v1/eval_A_original/shards/tasks/eval_E00/raw/evaluation_results.json"
+          },
+          "E02": {
+            "status": "completed",
+            "frames": 1600,
+            "min_error_um": 39.6116282019321,
+            "final_error_um": 59.13587593788196,
+            "entries_le_20_um": 0,
+            "max_consecutive_le_20_um_cycles": 0,
+            "max_consecutive_le_20_um_seconds": 0.0,
+            "sustained_200_pass": false,
+            "last_200_max_error_um": 74.92998976252663,
+            "actual_speed_um_per_s_overall": 274.5725408795793,
+            "actual_speed_um_per_s_last_200": 43.55774492624225,
+            "hold_start_step": null,
+            "hold_end_step": null,
+            "raw_result": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261125/terminal_sampling_ab_v1/eval_A_original/shards/tasks/eval_E02/raw/evaluation_results.json"
+          },
+          "E06": {
+            "status": "completed",
+            "frames": 1600,
+            "min_error_um": 31.972037597143796,
+            "final_error_um": 33.92221564948523,
+            "entries_le_20_um": 0,
+            "max_consecutive_le_20_um_cycles": 0,
+            "max_consecutive_le_20_um_seconds": 0.0,
+            "sustained_200_pass": false,
+            "last_200_max_error_um": 97.77438229904317,
+            "actual_speed_um_per_s_overall": 276.9512604355179,
+            "actual_speed_um_per_s_last_200": 48.60598958268538,
+            "hold_start_step": null,
+            "hold_end_step": null,
+            "raw_result": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261125/terminal_sampling_ab_v1/eval_A_original/shards/tasks/eval_E06/raw/evaluation_results.json"
+          },
+          "E08": {
+            "status": "completed",
+            "frames": 1600,
+            "min_error_um": 32.85523543919169,
+            "final_error_um": 57.026156970517206,
+            "entries_le_20_um": 0,
+            "max_consecutive_le_20_um_cycles": 0,
+            "max_consecutive_le_20_um_seconds": 0.0,
+            "sustained_200_pass": false,
+            "last_200_max_error_um": 76.37379074404649,
+            "actual_speed_um_per_s_overall": 274.7628995798553,
+            "actual_speed_um_per_s_last_200": 47.77779426802139,
+            "hold_start_step": null,
+            "hold_end_step": null,
+            "raw_result": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261125/terminal_sampling_ab_v1/eval_A_original/shards/tasks/eval_E08/raw/evaluation_results.json"
+          },
+          "E10": {
+            "status": "completed",
+            "frames": 1600,
+            "min_error_um": 20.519511058263706,
+            "final_error_um": 67.88108461815155,
+            "entries_le_20_um": 0,
+            "max_consecutive_le_20_um_cycles": 0,
+            "max_consecutive_le_20_um_seconds": 0.0,
+            "sustained_200_pass": false,
+            "last_200_max_error_um": 95.07355822918042,
+            "actual_speed_um_per_s_overall": 278.12969600792314,
+            "actual_speed_um_per_s_last_200": 52.53685264679938,
+            "hold_start_step": null,
+            "hold_end_step": null,
+            "raw_result": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261125/terminal_sampling_ab_v1/eval_A_original/shards/tasks/eval_E10/raw/evaluation_results.json"
+          }
+        },
+        "checkpoint": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261125/terminal_sampling_ab_v1/checkpoints/A_original/step_004000.pth"
+      },
+      "B_balanced": {
+        "final_mean_um": 54.564508173072184,
+        "min_mean_um": 32.24792873200602,
+        "max_final_um": 62.5007284532774,
+        "sustained200": 0,
+        "hold_details": {
+          "E00": {
+            "status": "completed",
+            "frames": 1600,
+            "min_error_um": 40.248033794421836,
+            "final_error_um": 53.22562201053386,
+            "entries_le_20_um": 0,
+            "max_consecutive_le_20_um_cycles": 0,
+            "max_consecutive_le_20_um_seconds": 0.0,
+            "sustained_200_pass": false,
+            "last_200_max_error_um": 63.45953642201048,
+            "actual_speed_um_per_s_overall": 273.36889781685454,
+            "actual_speed_um_per_s_last_200": 43.062487157061675,
+            "hold_start_step": null,
+            "hold_end_step": null,
+            "raw_result": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261125/terminal_sampling_ab_v1/eval_B_balanced/shards/tasks/eval_E00/raw/evaluation_results.json"
+          },
+          "E02": {
+            "status": "completed",
+            "frames": 1600,
+            "min_error_um": 38.62831139529208,
+            "final_error_um": 59.47901671698493,
+            "entries_le_20_um": 0,
+            "max_consecutive_le_20_um_cycles": 0,
+            "max_consecutive_le_20_um_seconds": 0.0,
+            "sustained_200_pass": false,
+            "last_200_max_error_um": 71.2428614795095,
+            "actual_speed_um_per_s_overall": 274.11237532103667,
+            "actual_speed_um_per_s_last_200": 41.11833122748147,
+            "hold_start_step": null,
+            "hold_end_step": null,
+            "raw_result": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261125/terminal_sampling_ab_v1/eval_B_balanced/shards/tasks/eval_E02/raw/evaluation_results.json"
+          },
+          "E06": {
+            "status": "completed",
+            "frames": 1600,
+            "min_error_um": 26.96098068559979,
+            "final_error_um": 40.57617857251979,
+            "entries_le_20_um": 0,
+            "max_consecutive_le_20_um_cycles": 0,
+            "max_consecutive_le_20_um_seconds": 0.0,
+            "sustained_200_pass": false,
+            "last_200_max_error_um": 77.74621772230154,
+            "actual_speed_um_per_s_overall": 276.8584666123217,
+            "actual_speed_um_per_s_last_200": 51.05058099072652,
+            "hold_start_step": null,
+            "hold_end_step": null,
+            "raw_result": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261125/terminal_sampling_ab_v1/eval_B_balanced/shards/tasks/eval_E06/raw/evaluation_results.json"
+          },
+          "E08": {
+            "status": "completed",
+            "frames": 1600,
+            "min_error_um": 32.2262818915119,
+            "final_error_um": 57.04099511204492,
+            "entries_le_20_um": 0,
+            "max_consecutive_le_20_um_cycles": 0,
+            "max_consecutive_le_20_um_seconds": 0.0,
+            "sustained_200_pass": false,
+            "last_200_max_error_um": 78.51061330304853,
+            "actual_speed_um_per_s_overall": 274.7657338865458,
+            "actual_speed_um_per_s_last_200": 47.31342405847076,
+            "hold_start_step": null,
+            "hold_end_step": null,
+            "raw_result": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261125/terminal_sampling_ab_v1/eval_B_balanced/shards/tasks/eval_E08/raw/evaluation_results.json"
+          },
+          "E10": {
+            "status": "completed",
+            "frames": 1600,
+            "min_error_um": 23.176035893204485,
+            "final_error_um": 62.5007284532774,
+            "entries_le_20_um": 0,
+            "max_consecutive_le_20_um_cycles": 0,
+            "max_consecutive_le_20_um_seconds": 0.0,
+            "sustained_200_pass": false,
+            "last_200_max_error_um": 86.81786152403004,
+            "actual_speed_um_per_s_overall": 277.93351432851244,
+            "actual_speed_um_per_s_last_200": 52.05689343349368,
+            "hold_start_step": null,
+            "hold_end_step": null,
+            "raw_result": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261125/terminal_sampling_ab_v1/eval_B_balanced/shards/tasks/eval_E10/raw/evaluation_results.json"
+          }
+        },
+        "checkpoint": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261125/terminal_sampling_ab_v1/checkpoints/B_balanced/step_004000.pth"
+      }
+    },
+    "dev20_gate": false,
+    "dev20": {
+      "status": "skipped_failed_gate",
+      "remaining_minutes": 57.43442903508257
+    }
+  },
+  "tinyfit_scope": "8 training windows; offline fit diagnostic only; no rollout evidence",
+  "first_step_fit": {
+    "status": "completed",
+    "preliminary_gate_passed": false,
+    "C_seed_wins_vs_full16": 0
+  },
+  "training_direction_pair": {
+    "status": "completed",
+    "scope": "one training target, approach/recede starts, 20 cycles per branch; teacher is diagnostic only",
+    "pair_match": {
+      "radius_difference_um": 0.6580701839317555,
+      "true_vector_difference_um": 0.6580729146178403,
+      "oct_vector_difference_um": 0.6489699248931637,
+      "true_vector_cosine": 0.999999998737736,
+      "oct_vector_cosine": 0.9999999812948648,
+      "velocity_cosine": -0.9999999999999998
+    },
+    "branches": {
+      "approach": {
+        "policy": {
+          "initial_error_um": 38.06138640251697,
+          "error_1s_um": 63.974500174149554,
+          "prefix_verified": true,
+          "first_rgb_and_history_equal": true
+        },
+        "teacher": {
+          "initial_error_um": 38.06138640251697,
+          "error_1s_um": 4.250208227783764,
+          "prefix_verified": true,
+          "first_rgb_and_history_equal": true
+        }
+      },
+      "recede": {
+        "policy": {
+          "initial_error_um": 37.403316218585225,
+          "error_1s_um": 59.62163930319404,
+          "prefix_verified": true,
+          "first_rgb_and_history_equal": true
+        },
+        "teacher": {
+          "initial_error_um": 37.403316218585225,
+          "error_1s_um": 4.250208227783764,
+          "prefix_verified": true,
+          "first_rgb_and_history_equal": true
+        }
+      }
+    }
+  },
+  "scope_limits": [
+    "All results are software/MuJoCo simulation; no hardware accuracy claim.",
+    "Teacher branch performance is not learned policy success.",
+    "Training-window fit and single training-target diagnostics do not establish development/final-test generalization.",
+    "Historical branch source is preserved; source_snapshot stores the latest deployment modules verbatim."
+  ]
+}

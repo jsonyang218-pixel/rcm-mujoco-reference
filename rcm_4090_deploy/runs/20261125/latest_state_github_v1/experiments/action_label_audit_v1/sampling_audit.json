@@ -1,0 +1,62 @@
+{
+  "original": {
+    "name": "original_85pct",
+    "valid_windows": 220816,
+    "positive_weight_windows": 220816,
+    "first_action_zero_label_fraction": 0.014903811318020436,
+    "first_observation_under20_fraction": 0.04351133975798856,
+    "first_observation_20to100_fraction": 0.05307133541047751,
+    "first_observation_100to200_fraction": 0.030414462720092746,
+    "action_block_zero_label_fraction": 0.025940998387798037,
+    "action_block_under20_fraction": 0.06990435475690099
+  },
+  "correction": {
+    "name": "correction_15pct",
+    "valid_windows": 41422,
+    "positive_weight_windows": 11680,
+    "first_action_zero_label_fraction": 0.942188596672309,
+    "first_observation_under20_fraction": 0.9836763552289335,
+    "first_observation_20to100_fraction": 0.016323644771066428,
+    "first_observation_100to200_fraction": 0.0,
+    "action_block_zero_label_fraction": 0.966201849634601,
+    "action_block_under20_fraction": 0.9975311971016745,
+    "truth_action_block_under20_fraction": 0.9975311971016745,
+    "action_block_t3_stationary_fraction": 0.9661115354444354,
+    "first_action_t3_stationary_fraction": 0.9420286115354444,
+    "sampled_episode_ids": [
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47,
+      48,
+      49,
+      50,
+      51,
+      52,
+      53,
+      54,
+      55,
+      56,
+      57,
+      58,
+      59
+    ]
+  },
+  "weights_receipt": {
+    "source": "/home/him1/mujoco_bc/rcm_4090_deploy/data/homog_label_fix_20261124_v5_A_t3_w025/data/label_repair_overlay.npz",
+    "window_count": 41422,
+    "weight_min": 0.0,
+    "weight_max": 0.953125,
+    "weight_mean": 0.07309219738303317,
+    "near_target_um": null,
+    "near_target_windows": 0
+  },
+  "checks": {
+    "actual_dataset_getitem_parity": "passed for one real sample per pool",
+    "exposure_probability_sum": "passed for both pools"
+  }
+}

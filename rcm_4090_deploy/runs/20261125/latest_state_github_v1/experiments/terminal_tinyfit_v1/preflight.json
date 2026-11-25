@@ -1,0 +1,65 @@
+{
+  "status": "prepared",
+  "windows": 8,
+  "moving_windows": 6,
+  "hold_windows": 2,
+  "training_dataset_sample_indices": [
+    18070,
+    18654,
+    19236,
+    19820,
+    20401,
+    20984,
+    30039,
+    30623
+  ],
+  "source_rows": [
+    18408,
+    19008,
+    19606,
+    20206,
+    20803,
+    21402,
+    30697,
+    31297
+  ],
+  "training_episode_ids": [
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    40,
+    41
+  ],
+  "reference": "/home/him1/mujoco_bc/rcm_4090_deploy/outputs/homog_label_fix_20261124_v5/homog_label_fix_20261124_v5_phase1_A/step_004000.pth",
+  "reference_sha256": "6cc389df3786f1f34c43cf65d6dc17fe910ab342fae8d84c8e37cea6a7db6c11",
+  "updates_per_arm": 128,
+  "lr_both": 3e-05,
+  "arms": [
+    "temporal_only",
+    "temporal_plus_output_linear"
+  ],
+  "additional_trainable_B": [
+    "output.weight",
+    "output.bias"
+  ],
+  "conditions_cached": true,
+  "cached_loss_parity": "passed",
+  "evaluation": "same eight windows, four fixed probe RNG seeds and four single-sample inference seeds; no held-out state generalization",
+  "before": {
+    "flow_loss_4_fixed_probes": 0.06778501253575087,
+    "first_action_mae_ABC_deg_deg_um": [
+      0.007049582898616791,
+      0.0037555305752903223,
+      3.354113817214966
+    ],
+    "moving_first_action_mae_ABC_deg_deg_um": [
+      0.007668036501854658,
+      0.004045635927468538,
+      3.567037582397461
+    ]
+  },
+  "time_cap_seconds": 180
+}

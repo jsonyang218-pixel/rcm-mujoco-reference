@@ -1,0 +1,29 @@
+{
+  "scope": "matched baseline + terminal audit + diagnostic teacher replay; no training or data collection",
+  "models": {
+    "baseline": "/home/him1/mujoco_bc/rcm_4090_deploy/outputs/overnight_c_fix_symlog_081234/task2_train/step_004000.pth",
+    "v5_A4000": "/home/him1/mujoco_bc/rcm_4090_deploy/outputs/homog_label_fix_20261124_v5/homog_label_fix_20261124_v5_phase1_A/step_004000.pth"
+  },
+  "targets": [
+    0,
+    2,
+    6,
+    8,
+    10
+  ],
+  "seed": "42+index",
+  "steps": 1600,
+  "period_s": 0.05,
+  "samples": 1,
+  "exec_steps": 1,
+  "flow_steps": 4,
+  "geometric_takeover": false,
+  "hold_threshold_um": 20,
+  "hold_cycles": 200,
+  "legacy_strict_threshold_um": 0.35,
+  "workers": 5,
+  "timeout_minutes": 90,
+  "teacher_replays": "E06/E10 per model, one selected state each, 400 steps; diagnostic only",
+  "selection": "first receding frame at <=100um, else minimum-error pre-action frame; missing eligible states skipped",
+  "stopping": "No retries; execution failure stops dependent work; no training or dev20 in this batch"
+}

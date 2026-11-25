@@ -1,0 +1,55 @@
+{
+  "status": "completed",
+  "stage": "report",
+  "started_at": "2026-11-25T18:04:06+08:00",
+  "elapsed_minutes": 30.802332603931426,
+  "hard_stop_epoch": 1795610046.2048345,
+  "stages": {
+    "step0_existing_hold": {
+      "status": "completed",
+      "started_at": "2026-11-25T18:04:06+08:00",
+      "ended_at": "2026-11-25T18:04:07+08:00"
+    },
+    "step0_probe_baseline": {
+      "status": "completed",
+      "started_at": "2026-11-25T18:04:07+08:00",
+      "ended_at": "2026-11-25T18:04:12+08:00"
+    },
+    "step0_probe_stage4_symlog": {
+      "status": "completed",
+      "started_at": "2026-11-25T18:04:12+08:00",
+      "ended_at": "2026-11-25T18:04:17+08:00"
+    },
+    "two_batch_smoke": {
+      "status": "completed",
+      "started_at": "2026-11-25T18:04:17+08:00",
+      "ended_at": "2026-11-25T18:04:24+08:00"
+    },
+    "matched_train4000": {
+      "status": "completed",
+      "started_at": "2026-11-25T18:04:24+08:00",
+      "ended_at": "2026-11-25T18:07:09+08:00"
+    },
+    "step1_probe_local": {
+      "status": "completed",
+      "started_at": "2026-11-25T18:07:09+08:00",
+      "ended_at": "2026-11-25T18:07:13+08:00"
+    },
+    "step1_fast5": {
+      "status": "completed",
+      "started_at": "2026-11-25T18:07:13+08:00",
+      "ended_at": "2026-11-25T18:20:59+08:00"
+    },
+    "step2_k4_mean": {
+      "status": "completed",
+      "started_at": "2026-11-25T18:21:01+08:00",
+      "ended_at": "2026-11-25T18:34:47+08:00"
+    },
+    "step3_dev20": {
+      "status": "skipped_gate_or_time",
+      "passed": false,
+      "remaining_minutes": 119.30845147371292,
+      "rule": "complete fast5 AND ((final<58 AND min<25) OR entered20>=2); remaining>=40"
+    }
+  }
+}

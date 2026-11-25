@@ -1,0 +1,398 @@
+{
+  "pair": {
+    "status": "matched",
+    "gates": {
+      "error_range_um": [
+        20.0,
+        100.0
+      ],
+      "max_radius_difference_um": 5.0,
+      "max_true_vector_difference_um": 10.0,
+      "max_oct_vector_difference_um": 10.0,
+      "min_signed_position_cosine": 0.95,
+      "min_abs_radial_speed_um_s": 5.0,
+      "max_velocity_cosine": -0.25,
+      "min_history_index": 2,
+      "min_separation_steps": 3
+    },
+    "counts": {
+      "observations": 48,
+      "eligible": 46,
+      "approach": 23,
+      "recede": 23,
+      "pairs": 85
+    },
+    "match": {
+      "radius_difference_um": 0.6580701839317555,
+      "true_vector_difference_um": 0.6580729146178403,
+      "oct_vector_difference_um": 0.6489699248931637,
+      "true_vector_cosine": 0.999999998737736,
+      "oct_vector_cosine": 0.9999999812948648,
+      "velocity_cosine": -0.9999999999999998
+    },
+    "approach": {
+      "step": 22,
+      "error_um": 38.06138640251697,
+      "tip_minus_target_world_um": [
+        -19.04530733224874,
+        -0.587304607826411,
+        32.94845181187611
+      ],
+      "oct_target_minus_tip_camera_um": [
+        3.7043492775410414,
+        3.1815762631595135,
+        37.797924131155014
+      ],
+      "truth_radial_speed_um_s": -47.00501651046306,
+      "tip_velocity_world_um_s": [
+        23.52163733007726,
+        0.8595076300110797,
+        -40.68763228133317
+      ],
+      "state_deg_deg_mm": [
+        1.0602,
+        4.969151878402187,
+        19.851881926085813
+      ],
+      "velocity_deg_deg_mm_s": [
+        0.0,
+        0.0,
+        0.04700520818710918
+      ]
+    },
+    "recede": {
+      "step": 26,
+      "error_um": 37.403316218585225,
+      "tip_minus_target_world_um": [
+        -18.71600440961174,
+        -0.5752715010061138,
+        32.378824959948815
+      ],
+      "oct_target_minus_tip_camera_um": [
+        3.6483274307101965,
+        3.1258335802704096,
+        37.153784185647964
+      ],
+      "truth_radial_speed_um_s": 43.871342393532515,
+      "tip_velocity_world_um_s": [
+        -21.953528175799857,
+        -0.8022071213176212,
+        37.97512346295658
+      ],
+      "state_deg_deg_mm": [
+        1.0602,
+        4.969151878402187,
+        19.85253999900043
+      ],
+      "velocity_deg_deg_mm_s": [
+        0.0,
+        0.0,
+        -0.04387152764136204
+      ]
+    }
+  },
+  "branches": {
+    "approach": {
+      "policy": {
+        "prefix_verified": true,
+        "first_rgb_and_history_equal": true,
+        "step": 22,
+        "initial_error_um": 38.06138640251697,
+        "first_actual_velocity": [
+          0.0,
+          0.0,
+          0.04700520818710918
+        ],
+        "first_policy_velocity_from_encoder_history": [
+          0.0,
+          0.0,
+          0.0469970703125
+        ],
+        "previous_accepted": [
+          0.0,
+          0.0,
+          0.003
+        ],
+        "first_signed_oct_mm": [
+          0.0037043492775410414,
+          0.0031815762631595135,
+          0.037797924131155014
+        ],
+        "first": {
+          "cycle": 1,
+          "error_um": 37.38764788204068,
+          "tip_delta_xyz_um": [
+            0.3371434684140695,
+            0.01231960936287635,
+            -0.5831893960248635
+          ],
+          "raw_action_deg_deg_mm": [
+            -0.00034409534418955445,
+            -0.0010923062218353152,
+            0.0010091140866279602
+          ],
+          "accepted_action_deg_deg_mm": [
+            -0.00034409534418955445,
+            -0.0010923062218353152,
+            0.0010091140866279602
+          ],
+          "quantized_increment_deg_deg_mm": [
+            0.0,
+            0.0,
+            0.0009401041637424612
+          ],
+          "actual_increment_deg_deg_mm": [
+            0.0,
+            0.0,
+            0.0006737413173460993
+          ],
+          "actual_encoder_ABCE": [
+            589,
+            1902115,
+            2160562,
+            0
+          ],
+          "actual_velocity_before_deg_deg_mm_s": [
+            0.0,
+            0.0,
+            0.04700520818710918
+          ]
+        },
+        "error_1s_um": 63.974500174149554,
+        "error_change_1s_um": 25.91311377163258,
+        "tip_displacement_1s_xyz_um": [
+          -11.826439195317562,
+          -18.179699374879732,
+          19.848058493096232
+        ],
+        "motionless_A_cycles": 11
+      },
+      "teacher": {
+        "prefix_verified": true,
+        "first_rgb_and_history_equal": true,
+        "step": 22,
+        "initial_error_um": 38.06138640251697,
+        "first_actual_velocity": [
+          0.0,
+          0.0,
+          0.04700520818710918
+        ],
+        "first_policy_velocity_from_encoder_history": [
+          0.0,
+          0.0,
+          0.0469970703125
+        ],
+        "previous_accepted": [
+          0.0,
+          0.0,
+          0.003
+        ],
+        "first_signed_oct_mm": [
+          0.0037043492775410414,
+          0.0031815762631595135,
+          0.037797924131155014
+        ],
+        "first": {
+          "cycle": 1,
+          "error_um": 34.03462526419873,
+          "tip_delta_xyz_um": [
+            2.0150202647073456,
+            0.07363115363645534,
+            -3.485573832051614
+          ],
+          "raw_action_deg_deg_mm": [
+            -3.111626585813627e-05,
+            -9.037919873564063e-06,
+            0.005716790049927617
+          ],
+          "accepted_action_deg_deg_mm": [
+            -3.111626585813627e-05,
+            -9.037919873564063e-06,
+            0.005716790049927617
+          ],
+          "quantized_increment_deg_deg_mm": [
+            0.0,
+            0.0,
+            0.005640624982454767
+          ],
+          "actual_increment_deg_deg_mm": [
+            0.0,
+            0.0,
+            0.004026779501362654
+          ],
+          "actual_encoder_ABCE": [
+            589,
+            1902115,
+            2160776,
+            0
+          ],
+          "actual_velocity_before_deg_deg_mm_s": [
+            0.0,
+            0.0,
+            0.04700520818710918
+          ]
+        },
+        "error_1s_um": 4.250208227783764,
+        "error_change_1s_um": -33.81117817473321,
+        "tip_displacement_1s_xyz_um": [
+          16.919897786749516,
+          0.6182724885039903,
+          -29.267970154023715
+        ],
+        "motionless_A_cycles": 20
+      }
+    },
+    "recede": {
+      "policy": {
+        "prefix_verified": true,
+        "first_rgb_and_history_equal": true,
+        "step": 26,
+        "initial_error_um": 37.403316218585225,
+        "first_actual_velocity": [
+          0.0,
+          0.0,
+          -0.04387152764136204
+        ],
+        "first_policy_velocity_from_encoder_history": [
+          0.0,
+          0.0,
+          -0.04390716552734375
+        ],
+        "previous_accepted": [
+          0.0,
+          0.0,
+          -0.003
+        ],
+        "first_signed_oct_mm": [
+          0.0036483274307101965,
+          0.0031258335802704096,
+          0.037153784185647964
+        ],
+        "first": {
+          "cycle": 1,
+          "error_um": 38.876140091665874,
+          "tip_delta_xyz_um": [
+            -0.7370113029878667,
+            -0.026931239073491042,
+            1.2748791448302654
+          ],
+          "raw_action_deg_deg_mm": [
+            -0.0010461113415658474,
+            -0.0013910449342802167,
+            -0.002577897161245346
+          ],
+          "accepted_action_deg_deg_mm": [
+            -0.0010461113415658474,
+            -0.0013910449342802167,
+            -0.002577897161245346
+          ],
+          "quantized_increment_deg_deg_mm": [
+            0.0,
+            0.0,
+            -0.0020682291602334146
+          ],
+          "actual_increment_deg_deg_mm": [
+            0.0,
+            0.0,
+            -0.0014728298565280795
+          ],
+          "actual_encoder_ABCE": [
+            589,
+            1902115,
+            2160467,
+            0
+          ],
+          "actual_velocity_before_deg_deg_mm_s": [
+            0.0,
+            0.0,
+            -0.04387152764136204
+          ]
+        },
+        "error_1s_um": 59.62163930319404,
+        "error_change_1s_um": 22.218323084608812,
+        "tip_displacement_1s_xyz_um": [
+          -11.321563268666068,
+          -1.8846998327024522,
+          19.06466775011495
+        ],
+        "motionless_A_cycles": 6
+      },
+      "teacher": {
+        "prefix_verified": true,
+        "first_rgb_and_history_equal": true,
+        "step": 26,
+        "initial_error_um": 37.403316218585225,
+        "first_actual_velocity": [
+          0.0,
+          0.0,
+          -0.04387152764136204
+        ],
+        "first_policy_velocity_from_encoder_history": [
+          0.0,
+          0.0,
+          -0.04390716552734375
+        ],
+        "previous_accepted": [
+          0.0,
+          0.0,
+          -0.003
+        ],
+        "first_signed_oct_mm": [
+          0.0036483274307101965,
+          0.0031258335802704096,
+          0.037153784185647964
+        ],
+        "first": {
+          "cycle": 1,
+          "error_um": 36.36920612919024,
+          "tip_delta_xyz_um": [
+            0.5174760213435547,
+            0.018909167859959553,
+            -0.8951279101552245
+          ],
+          "raw_action_deg_deg_mm": [
+            -3.317677525710497e-05,
+            -9.392809256420912e-06,
+            0.0015564236179321789
+          ],
+          "accepted_action_deg_deg_mm": [
+            -3.317677525710497e-05,
+            -9.392809256420912e-06,
+            0.0015564236179321789
+          ],
+          "quantized_increment_deg_deg_mm": [
+            0.0,
+            0.0,
+            0.0014571614537999267
+          ],
+          "actual_increment_deg_deg_mm": [
+            0.0,
+            0.0,
+            0.001034114580114931
+          ],
+          "actual_encoder_ABCE": [
+            589,
+            1902115,
+            2160627,
+            0
+          ],
+          "actual_velocity_before_deg_deg_mm_s": [
+            0.0,
+            0.0,
+            -0.04387152764136204
+          ]
+        },
+        "error_1s_um": 4.250208227783764,
+        "error_change_1s_um": -33.15310799080146,
+        "tip_displacement_1s_xyz_um": [
+          16.590594864112518,
+          0.6062393816836931,
+          -28.69834330209642
+        ],
+        "motionless_A_cycles": 20
+      }
+    }
+  },
+  "policy_seed": 43001,
+  "steps": 20
+}

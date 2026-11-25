@@ -1,0 +1,92 @@
+{
+  "status": "matched",
+  "gates": {
+    "error_range_um": [
+      20.0,
+      100.0
+    ],
+    "max_radius_difference_um": 5.0,
+    "max_true_vector_difference_um": 10.0,
+    "max_oct_vector_difference_um": 10.0,
+    "min_signed_position_cosine": 0.95,
+    "min_abs_radial_speed_um_s": 5.0,
+    "max_velocity_cosine": -0.25,
+    "min_history_index": 2,
+    "min_separation_steps": 3
+  },
+  "counts": {
+    "observations": 48,
+    "eligible": 46,
+    "approach": 23,
+    "recede": 23,
+    "pairs": 85
+  },
+  "match": {
+    "radius_difference_um": 0.6580701839317555,
+    "true_vector_difference_um": 0.6580729146178403,
+    "oct_vector_difference_um": 0.6489699248931637,
+    "true_vector_cosine": 0.999999998737736,
+    "oct_vector_cosine": 0.9999999812948648,
+    "velocity_cosine": -0.9999999999999998
+  },
+  "approach": {
+    "step": 22,
+    "error_um": 38.06138640251697,
+    "tip_minus_target_world_um": [
+      -19.04530733224874,
+      -0.587304607826411,
+      32.94845181187611
+    ],
+    "oct_target_minus_tip_camera_um": [
+      3.7043492775410414,
+      3.1815762631595135,
+      37.797924131155014
+    ],
+    "truth_radial_speed_um_s": -47.00501651046306,
+    "tip_velocity_world_um_s": [
+      23.52163733007726,
+      0.8595076300110797,
+      -40.68763228133317
+    ],
+    "state_deg_deg_mm": [
+      1.0602,
+      4.969151878402187,
+      19.851881926085813
+    ],
+    "velocity_deg_deg_mm_s": [
+      0.0,
+      0.0,
+      0.04700520818710918
+    ]
+  },
+  "recede": {
+    "step": 26,
+    "error_um": 37.403316218585225,
+    "tip_minus_target_world_um": [
+      -18.71600440961174,
+      -0.5752715010061138,
+      32.378824959948815
+    ],
+    "oct_target_minus_tip_camera_um": [
+      3.6483274307101965,
+      3.1258335802704096,
+      37.153784185647964
+    ],
+    "truth_radial_speed_um_s": 43.871342393532515,
+    "tip_velocity_world_um_s": [
+      -21.953528175799857,
+      -0.8022071213176212,
+      37.97512346295658
+    ],
+    "state_deg_deg_mm": [
+      1.0602,
+      4.969151878402187,
+      19.85253999900043
+    ],
+    "velocity_deg_deg_mm_s": [
+      0.0,
+      0.0,
+      -0.04387152764136204
+    ]
+  }
+}

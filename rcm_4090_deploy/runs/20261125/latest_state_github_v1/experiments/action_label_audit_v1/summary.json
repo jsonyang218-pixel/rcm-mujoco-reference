@@ -1,0 +1,222 @@
+{
+  "status": "completed",
+  "comparisons": [
+    {
+      "model": "baseline",
+      "target": 6,
+      "source_step": 964,
+      "source_error_um": 94.66546912136802,
+      "policy_action_deg_deg_mm": [
+        0.002462164731696248,
+        -0.008796884678304195,
+        0.0005829334259033203
+      ],
+      "teacher_action_deg_deg_mm": [
+        0.0103125220530527,
+        -0.0038669644842904407,
+        0.003123263890840444
+      ],
+      "A_policy_to_teacher_ratio": 0.23875485735008936,
+      "C_policy_um": 0.5829334259033203,
+      "C_teacher_um": 3.123263890840444,
+      "same_sign_ABC": [
+        true,
+        true,
+        true
+      ],
+      "initial_state_same": true,
+      "teacher_final_um": 17.40868999144646,
+      "teacher_hold_cycles": 379
+    },
+    {
+      "model": "baseline",
+      "target": 10,
+      "source_step": 760,
+      "source_error_um": 95.33003100910017,
+      "policy_action_deg_deg_mm": [
+        0.003946921322494745,
+        -0.0024195571895688772,
+        -0.000505741685628891
+      ],
+      "teacher_action_deg_deg_mm": [
+        0.016000000000000434,
+        -0.00864573030781587,
+        0.0037186631945441972
+      ],
+      "A_policy_to_teacher_ratio": 0.2466825826559149,
+      "C_policy_um": -0.505741685628891,
+      "C_teacher_um": 3.718663194544197,
+      "same_sign_ABC": [
+        true,
+        true,
+        false
+      ],
+      "initial_state_same": true,
+      "teacher_final_um": 15.860570375818076,
+      "teacher_hold_cycles": 382
+    },
+    {
+      "model": "v5_A4000",
+      "target": 6,
+      "source_step": 964,
+      "source_error_um": 91.73281691450445,
+      "policy_action_deg_deg_mm": [
+        0.002546417061239481,
+        -0.00974858459085226,
+        0.0004619210958480835
+      ],
+      "teacher_action_deg_deg_mm": [
+        0.010315567137020061,
+        -0.004946312056480902,
+        0.0031702690990245697
+      ],
+      "A_policy_to_teacher_ratio": 0.24685187226410552,
+      "C_policy_um": 0.4619210958480835,
+      "C_teacher_um": 3.1702690990245697,
+      "same_sign_ABC": [
+        true,
+        true,
+        true
+      ],
+      "initial_state_same": true,
+      "teacher_final_um": 17.40868999144646,
+      "teacher_hold_cycles": 379
+    },
+    {
+      "model": "v5_A4000",
+      "target": 10,
+      "source_step": 835,
+      "source_error_um": 96.81496173050219,
+      "policy_action_deg_deg_mm": [
+        0.00829432625323534,
+        0.0005433427286334336,
+        -0.00047331303358078003
+      ],
+      "teacher_action_deg_deg_mm": [
+        0.01780000000000115,
+        -0.007673834954871687,
+        0.0042200520818727605
+      ],
+      "A_policy_to_teacher_ratio": 0.4659733850131912,
+      "C_policy_um": -0.47331303358078003,
+      "C_teacher_um": 4.22005208187276,
+      "same_sign_ABC": [
+        true,
+        false,
+        false
+      ],
+      "initial_state_same": true,
+      "teacher_final_um": 15.860570375818076,
+      "teacher_hold_cycles": 382
+    }
+  ],
+  "sampling": {
+    "original": {
+      "name": "original_85pct",
+      "valid_windows": 220816,
+      "positive_weight_windows": 220816,
+      "first_action_zero_label_fraction": 0.014903811318020436,
+      "first_observation_under20_fraction": 0.04351133975798856,
+      "first_observation_20to100_fraction": 0.05307133541047751,
+      "first_observation_100to200_fraction": 0.030414462720092746,
+      "action_block_zero_label_fraction": 0.025940998387798037,
+      "action_block_under20_fraction": 0.06990435475690099
+    },
+    "correction": {
+      "name": "correction_15pct",
+      "valid_windows": 41422,
+      "positive_weight_windows": 11680,
+      "first_action_zero_label_fraction": 0.942188596672309,
+      "first_observation_under20_fraction": 0.9836763552289335,
+      "first_observation_20to100_fraction": 0.016323644771066428,
+      "first_observation_100to200_fraction": 0.0,
+      "action_block_zero_label_fraction": 0.966201849634601,
+      "action_block_under20_fraction": 0.9975311971016745,
+      "truth_action_block_under20_fraction": 0.9975311971016745,
+      "action_block_t3_stationary_fraction": 0.9661115354444354,
+      "first_action_t3_stationary_fraction": 0.9420286115354444,
+      "sampled_episode_ids": [
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59
+      ]
+    }
+  },
+  "matched_windows": [
+    {
+      "target": 6,
+      "step": 964,
+      "original": 0,
+      "correction": 0
+    },
+    {
+      "target": 6,
+      "step": 969,
+      "original": 0,
+      "correction": 0
+    },
+    {
+      "target": 6,
+      "step": 974,
+      "original": 0,
+      "correction": 0
+    },
+    {
+      "target": 6,
+      "step": 984,
+      "original": 0,
+      "correction": 0
+    },
+    {
+      "target": 10,
+      "step": 835,
+      "original": 0,
+      "correction": 0
+    },
+    {
+      "target": 10,
+      "step": 840,
+      "original": 0,
+      "correction": 0
+    },
+    {
+      "target": 10,
+      "step": 845,
+      "original": 0,
+      "correction": 0
+    },
+    {
+      "target": 10,
+      "step": 855,
+      "original": 0,
+      "correction": 0
+    }
+  ],
+  "checks": {
+    "actual_dataset_getitem_parity": "passed for one real sample per pool",
+    "exposure_probability_sum": "passed for both pools"
+  },
+  "interpretation_limits": [
+    "Historical training labels are read from exact configured datasets. Nearest labels are not same-state truth.",
+    "Only the first action of teacher/policy branches shares a state. Later errors compare trajectories from a shared start.",
+    "Coverage and freeze configuration are measured; their causal contribution is not isolated.",
+    "No label declared wrong and no training launched on this evidence alone."
+  ]
+}
