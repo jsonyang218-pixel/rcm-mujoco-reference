@@ -57,3 +57,26 @@ python -E -B -u -m scripts.research.output_head_sanity.workflow run --output-dir
 Report workflow completion, final/min20µm, sustained200 cycles, strict0.35µm
 success and temporal versus repeated-observation flips separately. All results
 concern this software/MuJoCo simulation; no hardware/clinical claim is supported.
+
+## Cache precision repair (recovery_v2)
+
+The first run stopped before training: with `torch` matmul precision `high`,
+the first identical input produced a 0.000399827957 feature difference between
+a large cache GEMM and singleton inference. All four input fields matched
+exactly. With `highest` the same comparison was 7.152557e-7. The shared geometry
+helper now scopes highest/FP32 and disables autocast for frozen feature
+extraction, restoring the caller's setting afterward. Output-head training keeps
+AMP fp16. The original rtol1e-5/atol1e-6 checks are unchanged.
+
+Regression checked three observations in each of73 actual cache blocks
+(219 comparisons), rebuilt the full301634x384 cache, and completed real R1/R2
+two-update backward/optimizer smoke checks with matching initialization.
+Outer-autocast parity, deterministic action repeat and unchanged frozen encoder
+were verified. This verifies the cache repair, not model accuracy.
+
+Authorized recovery uses a fresh child directory under the original card root:
+`runs/20261125/output_head_sanity_v1/recovery_v2/`. The CLI propagates this
+explicit output destination to spawned workers through
+`RCM_OUTPUT_HEAD_SANITY_DIR`. The publication destination follows the same
+relative path and preserves the original failure reports. Recovery preflight
+requires the219-comparison regression receipt and matching extractor checksum.

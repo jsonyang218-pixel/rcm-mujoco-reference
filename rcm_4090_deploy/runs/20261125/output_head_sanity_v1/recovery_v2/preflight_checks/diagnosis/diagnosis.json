@@ -1,0 +1,93 @@
+{
+  "status": "completed",
+  "checkpoint": "/home/him1/mujoco_bc/rcm_4090_deploy/outputs/overnight_c_fix_symlog_081234/task2_train/step_004000.pth",
+  "checkpoint_sha256": "185a6ef02caea4ea74ba752d67618d459c906450f5b315cd8010c3c5f1703f1b",
+  "dataset": "/home/him1/mujoco_bc/rcm_4090_deploy/data/plan2_plus_original_train_224_20261119",
+  "command": "python -m scripts.research.output_head_sanity.diagnose_cache --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261125/output_head_sanity_v1/recovery_v2/preflight_checks/diagnosis",
+  "measurements": [
+    {
+      "chunk": 0,
+      "row": 1,
+      "precision": "high",
+      "input_max_abs_by_field": {
+        "state": 0.0,
+        "oct": 0.0,
+        "velocity": 0.0,
+        "previous": 0.0
+      },
+      "batch_vs_dataset_singleton_max_abs": 0.0003998279571533203,
+      "same_input_batch_vs_singleton_max_abs": 0.0003998279571533203,
+      "passes_original_tolerance": false
+    },
+    {
+      "chunk": 0,
+      "row": 1,
+      "precision": "highest",
+      "input_max_abs_by_field": {
+        "state": 0.0,
+        "oct": 0.0,
+        "velocity": 0.0,
+        "previous": 0.0
+      },
+      "batch_vs_dataset_singleton_max_abs": 7.152557373046875e-07,
+      "same_input_batch_vs_singleton_max_abs": 7.152557373046875e-07,
+      "passes_original_tolerance": true
+    },
+    {
+      "chunk": 36,
+      "row": 157035,
+      "precision": "high",
+      "input_max_abs_by_field": {
+        "state": 0.0,
+        "oct": 0.0,
+        "velocity": 0.0,
+        "previous": 0.0
+      },
+      "batch_vs_dataset_singleton_max_abs": 9.292364120483398e-05,
+      "same_input_batch_vs_singleton_max_abs": 9.292364120483398e-05,
+      "passes_original_tolerance": false
+    },
+    {
+      "chunk": 36,
+      "row": 157035,
+      "precision": "highest",
+      "input_max_abs_by_field": {
+        "state": 0.0,
+        "oct": 0.0,
+        "velocity": 0.0,
+        "previous": 0.0
+      },
+      "batch_vs_dataset_singleton_max_abs": 2.086162567138672e-07,
+      "same_input_batch_vs_singleton_max_abs": 2.086162567138672e-07,
+      "passes_original_tolerance": true
+    },
+    {
+      "chunk": 72,
+      "row": 315503,
+      "precision": "high",
+      "input_max_abs_by_field": {
+        "state": 0.0,
+        "oct": 0.0,
+        "velocity": 0.0,
+        "previous": 0.0
+      },
+      "batch_vs_dataset_singleton_max_abs": 0.0001627206802368164,
+      "same_input_batch_vs_singleton_max_abs": 0.0001627206802368164,
+      "passes_original_tolerance": false
+    },
+    {
+      "chunk": 72,
+      "row": 315503,
+      "precision": "highest",
+      "input_max_abs_by_field": {
+        "state": 0.0,
+        "oct": 0.0,
+        "velocity": 0.0,
+        "previous": 0.0
+      },
+      "batch_vs_dataset_singleton_max_abs": 3.5762786865234375e-07,
+      "same_input_batch_vs_singleton_max_abs": 3.5762786865234375e-07,
+      "passes_original_tolerance": true
+    }
+  ]
+}

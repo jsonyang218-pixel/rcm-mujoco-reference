@@ -23,7 +23,10 @@ from .head import RegressionHead, geom_condition, make_sample, symlog, symexp, S
 
 CODE = Path(__file__).resolve().parents[3]
 RUNTIME = Path('/home/him1/mujoco_bc/rcm_4090_deploy')
-OUTPUT = RUNTIME / 'runs/20261125/output_head_sanity_v1'
+OUTPUT_ROOT = RUNTIME / 'runs/20261125/output_head_sanity_v1'
+OUTPUT = Path(os.environ.get('RCM_OUTPUT_HEAD_SANITY_DIR', str(OUTPUT_ROOT))).resolve()
+if OUTPUT != OUTPUT_ROOT and not OUTPUT.is_relative_to(OUTPUT_ROOT):
+    raise ValueError('Plan8 output must remain under its designated artifact root')
 BASELINE = RUNTIME / 'outputs/overnight_c_fix_symlog_081234/task2_train/step_004000.pth'
 BASE_SHA = '185a6ef02caea4ea74ba752d67618d459c906450f5b315cd8010c3c5f1703f1b'
 DATA = RUNTIME / 'data/plan2_plus_original_train_224_20261119'
@@ -194,6 +197,7 @@ def unit_checks(model=None, ds=None):
                 assert torch.equal(rng, torch.cuda.get_rng_state())
         receipt['F_geom_full_condition_exact_parity'] = True
         receipt['training_inference_transform_shared'] = True
+        receipt['feature_precision']='highest FP32; caller setting restored; head AMP unchanged'
     return receipt
 
 
@@ -208,9 +212,22 @@ def preflight():
               PAIR_ARCHIVE/'setup.json', PAIR_ARCHIVE/'pair.json',PAIR_ARCHIVE/'approach_policy.json',
               PAIR_ARCHIVE/'recede_policy.json',RUNTIME/'data/homog_label_fix_20261124_v5_A_t3_w025/metadata.json',
               RUNTIME/'data/homog_label_fix_20261124_v5_A_t3_w025/data/dataset.npz']
+    regression_receipt=None
+    if OUTPUT != OUTPUT_ROOT:
+        regression_path=OUTPUT/'preflight_checks/regression/verification.json'
+        regression_receipt=read(regression_path)
+        assert regression_receipt['status']=='passed'
+        assert regression_receipt['baseline_sha256']==BASE_SHA
+        assert regression_receipt['cache_singleton_checks']>=219
+        assert regression_receipt['full_cache_shape']==[301634,384]
+        assert regression_receipt['source_sha256']['scripts/research/output_head_sanity/head.py']==sha(Path(__file__).with_name('head.py'))
+        assert regression_receipt['caller_precision_restored'] and regression_receipt['outer_amp_feature_parity']
+        assert all(v['updates']==2 for v in regression_receipt['smokes'].values())
     evidence=read(OUTPUT/'preflight_checks/resolved_targets.json')
     assert evidence['status']=='passed' and evidence['episodes']==1039 and evidence['frames']==319697
-    receipt = {'truth_reconstruction_preflight':{'episodes':evidence['episodes'],'frames':evidence['frames'],
+    receipt = {'cache_repair_regression':{'path':str(OUTPUT/'preflight_checks/regression/verification.json'),
+        'checks':regression_receipt['cache_singleton_checks'],'max_abs':regression_receipt['cache_singleton_max_abs']} if regression_receipt else None,
+        'truth_reconstruction_preflight':{'episodes':evidence['episodes'],'frames':evidence['frames'],
         'receipt_sha256':sha(OUTPUT/'preflight_checks/resolved_targets.json')},'gpu': torch.cuda.get_device_name(0), 'python': sys.version,
         'python_executable': sys.executable, 'asset_sha256': {str(p): sha(p) for p in assets},
         'source_sha256': {str(p.relative_to(CODE)): sha(p) for directory in ('rcm','lerobot_training','mujoco_model','scripts/research/output_head_sanity')
@@ -283,6 +300,7 @@ def training_cache(ds, model, distance):
     targets = actions[rows]
     near = torch.as_tensor(distance<80,device='cuda')[rows]
     save(OUTPUT/'sampling.json', {'original_windows':len(original),'correction_windows':len(correction),
+        'frozen_feature_precision':'highest FP32 in shared train/inference helper; head AMP retained',
         'cached_vs_dataset_feature_checks':5,'feature_parity_rtol':1e-5,'feature_parity_atol':1e-6,
         'batches':4000,'batch_size':16,'original_draws':58880,'correction_draws':5120,
         'ordered_rows_sha256':hashlib.sha256(starts.tobytes()).hexdigest(),
@@ -449,7 +467,8 @@ def report(metrics):
         '','Frozen baseline: baseline_task2_step4000, SHA256 '+BASE_SHA+'.',
         'Training: same effective baseline dataset, C-only overlay, 8% correction replacement sampling, batch16, 4000 updates per arm.',
         'Head: 384→384→384→48, LayerNorm/SiLU, AdamW lr1e-4 (baseline config general lr), decay1e-4, AMP fp16, seed20261118.',
-        'Encoder eval/frozen; exact F_geom_cond cache parity, no global vision fusion. Ground truth only audit/training mask/post-hoc metrics.',
+        'Encoder eval/frozen; F_geom_cond cache parity checked with unchanged rtol1e-5/atol1e-6, no global vision fusion. Ground truth only audit/training mask/post-hoc metrics.',
+        'Recovery: shared frozen feature extraction uses highest FP32 with autocast disabled; caller precision restored; output-head AMP unchanged.',
         'R2 cosine uses physical action divided by fixed per-axis symlog scales; masked per future training frame <80µm and nonzero.',
         '','## Action-scale audit','']
     if 'audit' in metrics:
@@ -483,13 +502,16 @@ def report(metrics):
 
 def publish(metrics):
     repo=CODE.parent
-    rel=Path('runs/20261125/output_head_sanity_v1')
+    rel=OUTPUT.relative_to(RUNTIME)
     destination=CODE/rel;destination.mkdir(parents=True,exist_ok=True)
     # Exact allowlist: lightweight summaries only, no weights/raw trajectories/secrets.
     files=['card.json','preflight.json','units.json','sampling.json','training.json','audit.json',
-           'paired.json','fast5_gate.json','fast5_summary.json','metrics.json','report.md','workflow_status.json']
-    for check in (OUTPUT/'preflight_checks').glob('*.json'):
-        shutil.copy2(check,destination/check.name)
+           'paired.json','fast5_gate.json','fast5_summary.json','metrics.json','report.md','workflow_status.json',
+           'launch_receipt.json','terminal_launch_failure.json']
+    for check in (OUTPUT/'preflight_checks').rglob('*.json'):
+        target=destination/'preflight_checks'/check.relative_to(OUTPUT/'preflight_checks')
+        target.parent.mkdir(parents=True,exist_ok=True)
+        shutil.copy2(check,target)
     for name in files:
         source=OUTPUT/name
         if source.is_file():
@@ -610,9 +632,13 @@ def run():
 
 
 def main():
+    global OUTPUT
     p=argparse.ArgumentParser();p.add_argument('stage',choices=('preflight','run'))
     p.add_argument('--output-dir',type=Path,required=True);args=p.parse_args()
-    assert args.output_dir.resolve()==OUTPUT
+    OUTPUT=args.output_dir.resolve()
+    if OUTPUT != OUTPUT_ROOT and not OUTPUT.is_relative_to(OUTPUT_ROOT):
+        raise ValueError('Output must be inside '+str(OUTPUT_ROOT))
+    os.environ['RCM_OUTPUT_HEAD_SANITY_DIR']=str(OUTPUT)
     torch.set_num_threads(1);torch.set_float32_matmul_precision('high')
     os.environ['RCM_DRIVER_VARIANT']='g10'
     os.environ['RCM_RUNTIME_ROOT']=str(RUNTIME)
@@ -629,7 +655,9 @@ def main():
             'scope':'no teacher takeover, no privileged truth policy input; no hyperparameter search or retries',
             'baseline_note':'Archived replay flow was v5 A4000; baseline training episode40 is a different source target; report both identities',
             'paths':{'output':str(OUTPUT),'code':str(CODE)},'training_head':'three linear layers384/384/48; LayerNorm SiLU; no visual fusion',
-            'unspecified_defaults':'AdamW general baseline config lr1e-4,weight_decay1e-4,clip1; frozen encoder eval; AMPfp16'}
+            'unspecified_defaults':'AdamW general baseline config lr1e-4,weight_decay1e-4,clip1; frozen encoder eval; AMPfp16',
+            'feature_numeric_policy':'shared geometry extractor highest FP32 with autocast disabled; restore caller precision; head AMP unchanged',
+            'recovery_of':str(OUTPUT_ROOT/'metrics.json') if OUTPUT != OUTPUT_ROOT else None}
         save(OUTPUT/'card.json',card);save(OUTPUT/'preflight.json',receipt)
         shutil.copy2(RUNTIME.parent/'规划8.txt',OUTPUT/'input_plan.txt')
         record('preflight','passed',{'gpu':receipt['gpu'],'unit_checks':receipt['units_test'],'source':str(CODE)})
