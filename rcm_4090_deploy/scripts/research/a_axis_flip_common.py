@@ -13,7 +13,7 @@ from lerobot_training.navigation_overlay import file_sha256
 from scripts.research.clean_oct_workers import QUALITY, UNIT
 from scripts.research.gpu_episode_pool import run_pool, signature, write_json
 
-ROOT = Path(__file__).resolve().parents[2]
+ROOT = Path(os.environ.get("RCM_RUNTIME_ROOT", Path(__file__).resolve().parents[2])).resolve()
 DATA = ROOT / 'data/plan2_plus_original_train_224_20261119'
 VAL = ROOT / 'data/lerobot_rcm_val_acthist_20261117_224'
 OLD = ROOT / 'outputs/overnight_c_fix_symlog_081234/task2_train/step_004000.pth'
@@ -56,16 +56,19 @@ def record(purpose, status, output, details):
                       'Software/MuJoCo simulation only.\n').encode())
 
 
+CODE_ROOT = Path(__file__).resolve().parents[2]
+
+
 def code_identity():
     from scripts.tools.experiment_workflow import scene_and_code
-    files = list((ROOT / 'scripts/research').glob('a_axis_flip_*.py'))
-    files += [ROOT / 'scripts/research/gpu_episode_pool.py',
-              ROOT / 'scripts/research/clean_oct_workers.py',
-              ROOT / 'lerobot_training/navigation_overlay.py',
-              ROOT / 'lerobot_training/eval_policy.py',
-              ROOT / 'lerobot_training/dit_experience_replay.py',
-              ROOT / 'lerobot_training/dataset_contract.py', TARGETS]
-    return {**scene_and_code(), **{str(p.relative_to(ROOT)): file_sha256(p) for p in files}}
+    files = list((CODE_ROOT / 'scripts/research').glob('a_axis_flip_*.py'))
+    files += [CODE_ROOT / 'scripts/research/gpu_episode_pool.py',
+              CODE_ROOT / 'scripts/research/clean_oct_workers.py',
+              CODE_ROOT / 'lerobot_training/navigation_overlay.py',
+              CODE_ROOT / 'lerobot_training/eval_policy.py',
+              CODE_ROOT / 'lerobot_training/dit_experience_replay.py',
+              CODE_ROOT / 'lerobot_training/dataset_contract.py']
+    return {"targets_sha256": file_sha256(TARGETS), **scene_and_code(), **{str(p.relative_to(CODE_ROOT)): file_sha256(p) for p in files}}
 
 
 def gpu_check():

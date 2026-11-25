@@ -10,9 +10,12 @@ import time
 
 import numpy as np
 
-ROOT = Path(__file__).resolve().parents[2]
-if str(ROOT) not in sys.path:
-    sys.path.insert(0, str(ROOT))
+ROOT = Path(__import__("os").environ.get(
+    "RCM_RUNTIME_ROOT", Path(__file__).resolve().parents[2]
+)).resolve()
+CODE_ROOT = Path(__file__).resolve().parents[2]
+if str(CODE_ROOT) not in sys.path:
+    sys.path.insert(0, str(CODE_ROOT))
 
 CHECKPOINT = (
     ROOT / "outputs/overnight_c_fix_symlog_081234/task2_train/step_004000.pth"
@@ -591,10 +594,8 @@ def write_report(path, metrics):
         "",
         f"{verdict['reason']}",
         "",
-        "The K=8 probe also exposes a strong secondary diffusion-sampling "
-        "symptom: A/B signs disagree between samples for 96.7% of observations. "
-        "That supports later variance reduction, but the pre-registered binary "
-        "rule selects A because the conditioning readout itself is poor.",
+        "Read the measured per-axis K=8 values above; the original baseline "
+        "conclusion is not reused for this checkpoint.",
         "",
     ]
     path.write_text("\n".join(lines), encoding="utf-8")
@@ -651,7 +652,7 @@ def main(argv=None):
         ),
     )
     model.eval()
-    feature_arrays = {"F_vis": [], "F_cond": [], "F_oct": []}
+    feature_arrays = {"F_vis": [], "F_cond": [], "F_geom_cond": [], "F_oct": []}
     batches = {}
     with torch.inference_mode():
         for start in range(0, len(selected_indices), 16):
@@ -679,6 +680,9 @@ def main(argv=None):
                 tensor_batch["observation.velocity"],
                 tensor_batch["observation.previous_action"],
             )
+            if isinstance(global_condition, tuple):
+                global_condition = global_condition[0] + global_condition[1]
+            feature_arrays["F_geom_cond"].append(global_condition.cpu().numpy())
             feature_arrays["F_vis"].append(
                 visual.flatten(1).cpu().numpy()
             )
@@ -795,6 +799,7 @@ def main(argv=None):
         "status": "completed",
         "elapsed_s": time.monotonic() - started,
         "read_only_and_zero_training": True,
+        "feature_dimensions": {name: int(values.shape[1]) for name, values in features.items()},
         "probe1": probe1,
         "probe2": probe2,
         "probe2_selection": {

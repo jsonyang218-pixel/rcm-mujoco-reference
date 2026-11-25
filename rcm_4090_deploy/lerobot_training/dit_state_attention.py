@@ -10,6 +10,7 @@ from __future__ import annotations
 import argparse
 import copy
 import importlib
+import math
 import os
 import sys
 
@@ -126,13 +127,29 @@ class StateConditionedDiTBlock(_base.DiTBlock):
 class StateConditionedDiTRectifiedFlowPolicy(_OriginalPolicy):
     """Reuse the original observations, normalization, Flow loss and sampler."""
 
-    def __init__(self, *args, oct_symlog_enabled=False, **kwargs):
+    def __init__(self, *args, oct_symlog_enabled=False,
+                 use_local_oct_branch=False, local_oct_tanh_scale_mm=0.05,
+                 local_oct_log_scale_mm=0.005,
+                 local_oct_log_reference_mm=0.5, **kwargs):
         super().__init__(*args, **kwargs)
         self.oct_symlog_enabled = bool(oct_symlog_enabled)
+        self.use_local_oct_branch = bool(use_local_oct_branch)
+        self.local_oct_tanh_scale_mm = float(local_oct_tanh_scale_mm)
+        self.local_oct_log_scale_mm = float(local_oct_log_scale_mm)
+        self.local_oct_log_reference_mm = float(local_oct_log_reference_mm)
+        if min(self.local_oct_tanh_scale_mm, self.local_oct_log_scale_mm,
+               self.local_oct_log_reference_mm) <= 0:
+            raise ValueError("local OCT scales must be positive")
         self.blocks = nn.ModuleList([
             StateConditionedDiTBlock(block, self.n_action_steps)
             for block in self.blocks
         ])
+        if self.use_local_oct_branch:
+            self.local_oct_mlp = nn.Sequential(
+                nn.Linear(7, 64), nn.SiLU(), nn.Linear(64, self.dit_dim)
+            )
+            nn.init.zeros_(self.local_oct_mlp[-1].weight)
+            nn.init.zeros_(self.local_oct_mlp[-1].bias)
         if not self.oct_symlog_enabled:
             return
         hidden_dim = max(64, self.dit_dim // 2)
@@ -164,10 +181,28 @@ class StateConditionedDiTRectifiedFlowPolicy(_OriginalPolicy):
         ).clamp_min(1.0)
         return (oct_symlog / scale) * valid, valid
 
+    def local_oct_features(self, oct_feature):
+        oct_float = oct_feature.float()
+        valid = (oct_float[..., 3:4] > 0.5).float()
+        oct_mm = torch.where(valid.bool(), oct_float[..., :3], 0.0)
+        signed_log = torch.sign(oct_mm) * torch.log1p(
+            oct_mm.abs() / self.local_oct_log_scale_mm
+        ) / math.log1p(self.local_oct_log_reference_mm / self.local_oct_log_scale_mm)
+        return torch.cat((torch.tanh(oct_mm / self.local_oct_tanh_scale_mm),
+                          signed_log, valid), dim=-1), valid
+
     def _condition(self, image, state, oct_feature, velocity, previous_action):
         condition_tokens, global_condition = super()._condition(
             image, state, oct_feature, velocity, previous_action
         )
+        if self.use_local_oct_branch:
+            if self.oct_symlog_enabled:
+                raise ValueError("local OCT experiment requires linear global OCT")
+            with torch.autocast(device_type=oct_feature.device.type, enabled=False):
+                local, valid = self.local_oct_features(oct_feature)
+                residual = (self.local_oct_mlp(local) * valid).mean(dim=1)
+            # Preserve the baseline vector for temporal-bias conditioning.
+            return condition_tokens, (global_condition, residual.to(global_condition.dtype))
         if not self.oct_symlog_enabled:
             return condition_tokens, global_condition
 
@@ -199,7 +234,11 @@ class StateConditionedDiTRectifiedFlowPolicy(_OriginalPolicy):
     ):
         # Original geometry encoder: q + OCT + velocity + previous command.
         # Keep diffusion/Flow time out of this state-conditioning path.
-        motion_condition = global_condition
+        if isinstance(global_condition, tuple):
+            motion_condition, local_residual = global_condition
+            global_condition = motion_condition + local_residual
+        else:
+            motion_condition = global_condition
         timestep_embedding = self.time_mlp(
             _base._sinusoidal(timestep, self.dit_dim)
         )

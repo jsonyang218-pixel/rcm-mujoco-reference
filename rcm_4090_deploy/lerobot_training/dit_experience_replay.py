@@ -417,7 +417,7 @@ def _validation_loader(args, dataset):
     )
 
 
-def _load_policy(init_from, device, oct_symlog_enabled=None):
+def _load_policy(init_from, device, oct_symlog_enabled=None, use_local_oct_branch=None):
     checkpoint = torch.load(init_from, map_location="cpu", weights_only=False)
     if checkpoint.get("policy_type") != "dit_rectified_flow":
         raise ValueError("initial checkpoint is not a DiT rectified-Flow policy")
@@ -434,6 +434,11 @@ def _load_policy(init_from, device, oct_symlog_enabled=None):
             if oct_symlog_enabled is None
             else bool(oct_symlog_enabled)
         ),
+        use_local_oct_branch=(bool(config.get("use_local_oct_branch", False))
+                              if use_local_oct_branch is None else bool(use_local_oct_branch)),
+        local_oct_tanh_scale_mm=float(config.get("local_oct_tanh_scale_mm", 0.05)),
+        local_oct_log_scale_mm=float(config.get("local_oct_log_scale_mm", 0.005)),
+        local_oct_log_reference_mm=float(config.get("local_oct_log_reference_mm", 0.5)),
     ).to(device)
     state = dict(checkpoint["model_state_dict"])
     if policy.oct_symlog_enabled and not config.get("oct_symlog_enabled", False):
@@ -443,6 +448,11 @@ def _load_policy(init_from, device, oct_symlog_enabled=None):
             name: value for name, value in policy.state_dict().items()
             if name.startswith("oct_symlog_")
         })
+    if policy.use_local_oct_branch and not config.get("use_local_oct_branch", False):
+        if any(name.startswith("local_oct_mlp.") for name in state):
+            raise ValueError("unexpected local OCT weights in baseline checkpoint")
+        state.update({name: value for name, value in policy.state_dict().items()
+                      if name.startswith("local_oct_mlp.")})
     policy.load_state_dict(state)
     return policy, config, int(checkpoint.get("epoch", -1))
 
@@ -826,6 +836,13 @@ def _log_metrics(
                 dim=-1,
             ).float().mean()
         ),
+        "local_oct_gradient_norm_after_clip": (
+            float(torch.linalg.vector_norm(torch.stack([
+                parameter.grad.detach().float().norm()
+                for name, parameter in model.named_parameters()
+                if name.startswith("local_oct_mlp.") and parameter.grad is not None
+            ]))) if getattr(model, "use_local_oct_branch", False) else None
+        ),
         "gradient_norm_before_clip": float(gradient_norm),
         "amp_optimizer_updated": bool(optimizer_updated),
         "amp_scale_after_update": float(amp_scale),
@@ -913,6 +930,7 @@ def train(argv):
     )
     parser.add_argument("--device", default="cuda")
     parser.add_argument("--oct-symlog", action="store_true")
+    parser.add_argument("--use-local-oct-branch", action="store_true")
     parser.add_argument("--label-overlay", type=Path)
     parser.add_argument("--oct-overlay", type=Path)
     parser.add_argument("--c-label-overlay", type=Path)
@@ -1103,6 +1121,7 @@ def train(argv):
         args.init_from,
         device,
         oct_symlog_enabled=args.oct_symlog,
+        use_local_oct_branch=args.use_local_oct_branch,
     )
     assert_temporal_bias_only(model, args, freeze=True)
     optimizer = _optimizer(model, args)
@@ -1146,6 +1165,10 @@ def train(argv):
         "supervision_action_source": args.correction_source,
         "initial_checkpoint_epoch": initial_epoch,
         "oct_symlog_enabled": bool(args.oct_symlog),
+        "use_local_oct_branch": bool(args.use_local_oct_branch),
+        "local_oct_tanh_scale_mm": 0.05,
+        "local_oct_log_scale_mm": 0.005,
+        "local_oct_log_reference_mm": 0.5,
         "dagger_repeat": 1,
         "overlay_receipt": overlay_receipt,
         "correction_weight_receipt": correction_weight_receipt,

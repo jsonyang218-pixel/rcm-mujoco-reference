@@ -192,7 +192,7 @@ class PolicyEvaluator:
         )
         config = self.checkpoint.get('config', {})
         training_metadata_path = (
-            Path(config["data_dir"]) / "metadata.json"
+            (Path(os.environ.get("RCM_RUNTIME_ROOT", Path(__file__).resolve().parents[1])) / config["data_dir"]) / "metadata.json"
             if config.get("data_dir") is not None
             else None
         )
@@ -357,7 +357,11 @@ class PolicyEvaluator:
                     {
                         "oct_symlog_enabled": bool(
                             config.get("oct_symlog_enabled", False)
-                        )
+                        ),
+                        "use_local_oct_branch": bool(config.get("use_local_oct_branch", False)),
+                        "local_oct_tanh_scale_mm": float(config.get("local_oct_tanh_scale_mm", 0.05)),
+                        "local_oct_log_scale_mm": float(config.get("local_oct_log_scale_mm", 0.005)),
+                        "local_oct_log_reference_mm": float(config.get("local_oct_log_reference_mm", 0.5)),
                     }
                     if architecture
                     == "state_conditioned_temporal_attention_v1"

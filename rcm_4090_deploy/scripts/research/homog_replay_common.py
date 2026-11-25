@@ -64,19 +64,25 @@ def record(purpose, status, output, details):
                       'Software/MuJoCo simulation only.\n').encode())
 
 
+CODE_ROOT = Path(__file__).resolve().parents[2]
+
+
 def identity():
-    files = list((ROOT / 'scripts/research').glob('homog_replay_*.py'))
-    files += [ROOT / 'scripts/verification/verify_homog_replay.py',
-              ROOT / 'scripts/verification/verify_homog_teacher_intent.py',
-              ROOT / 'scripts/verification/verify_homog_t3_hold.py',
-              ROOT / 'scripts/tools/prepare_homog_hold_repair.py',
-              ROOT / 'scripts/tools/prepare_teacher_intent_repair.py',
-              ROOT / 'scripts/tools/prepare_homog_mixed_budget.py',
-              ROOT / 'scripts/research/a_axis_flip_audit.py',
-              ROOT / 'scripts/research/a_axis_flip_pipeline.py',
-              ROOT / 'rcm/fundus.py', ROOT / 'rcm/visual_servo.py',
-              ROOT / 'lerobot_training/train_diffusion_policy.py']
-    return {**previous_identity(), **{str(p.relative_to(ROOT)): file_sha256(p) for p in files}}
+    files = list((CODE_ROOT / 'scripts/research').glob('homog_replay_*.py'))
+    files += [CODE_ROOT / 'scripts/verification/verify_homog_replay.py',
+              CODE_ROOT / 'scripts/verification/verify_homog_teacher_intent.py',
+              CODE_ROOT / 'scripts/verification/verify_homog_t3_hold.py',
+              CODE_ROOT / 'scripts/tools/prepare_homog_hold_repair.py',
+              CODE_ROOT / 'scripts/tools/prepare_teacher_intent_repair.py',
+              CODE_ROOT / 'scripts/tools/prepare_homog_mixed_budget.py',
+              CODE_ROOT / 'scripts/research/a_axis_flip_audit.py',
+              CODE_ROOT / 'scripts/research/a_axis_flip_pipeline.py',
+              CODE_ROOT / 'rcm/fundus.py', CODE_ROOT / 'rcm/visual_servo.py',
+              CODE_ROOT / 'lerobot_training/train_diffusion_policy.py',
+              CODE_ROOT / 'scripts/research/local_oct_adaln_v1.py',
+              CODE_ROOT / 'scripts/research/probe_near_target_blindness.py',
+              CODE_ROOT / 'scripts/research/eval_20um_hold_metrics.py']
+    return {**previous_identity(), **{str(p.relative_to(CODE_ROOT)): file_sha256(p) for p in files}}
 
 
 def pool(groups, output, *, snapshot_every=5, workers=WORKERS, max_workers=None):

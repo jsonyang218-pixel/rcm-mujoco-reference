@@ -16,7 +16,7 @@ import time
 
 from lerobot_training.navigation_overlay import file_sha256
 
-ROOT = Path(__file__).resolve().parents[2]
+ROOT = Path(os.environ.get("RCM_RUNTIME_ROOT", Path(__file__).resolve().parents[2])).resolve()
 
 
 def write_json(path, value):
