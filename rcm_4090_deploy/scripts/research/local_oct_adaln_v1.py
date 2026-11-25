@@ -284,6 +284,16 @@ def _evaluate_worker(args):
     from scripts.research.homog_replay_common import identity
 
     indices = tuple(int(value) for value in args.indices.split(",") if value)
+    # Read on each new evaluation subprocess so an authorized concurrency
+    # change can take effect between stages without restarting training.
+    override_path = OUTPUT / "parallel_override.json"
+    override = read(override_path) if override_path.is_file() else {}
+    requested_workers = int(override.get("workers", args.workers))
+    if not 1 <= requested_workers <= 12:
+        raise ValueError("evaluation concurrency must be in [1, 12]")
+    workers = min(requested_workers, len(indices))
+    print(f"Evaluation workers={workers}; requested={requested_workers}; "
+          f"targets={len(indices)}; override={override_path if override else None}", flush=True)
     evaluate(
         args.checkpoint,
         args.samples,
@@ -291,8 +301,8 @@ def _evaluate_worker(args):
         indices,
         args.destination,
         {"identity": identity()},
-        workers=args.workers,
-        max_workers=6,
+        workers=workers,
+        max_workers=12,
         action_aggregation=args.action_aggregation,
     )
 

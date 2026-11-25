@@ -86,6 +86,24 @@ class WorkflowGateTests(unittest.TestCase):
         self.assertEqual(args[3], (6, 10))
         self.assertEqual(kwargs['action_aggregation'], 'mean')
 
+    def test_runtime_override_uses_twelve_for_twenty_targets(self):
+        import json
+        import tempfile
+        from pathlib import Path
+        from types import SimpleNamespace
+        from scripts.research import local_oct_adaln_v1 as workflow
+        with tempfile.TemporaryDirectory(prefix='rcm_oct_parallel_') as directory:
+            output = Path(directory)
+            (output / 'parallel_override.json').write_text(json.dumps({'workers': 12}))
+            with mock.patch.object(workflow, 'OUTPUT', output), \
+                    mock.patch('scripts.research.homog_replay_evaluate.evaluate') as evaluate, \
+                    mock.patch('scripts.research.homog_replay_common.identity', return_value={}):
+                workflow._evaluate_worker(SimpleNamespace(checkpoint='selected.pth', samples=1,
+                    indices=','.join(map(str, range(20))), destination='test_output',
+                    workers=6, action_aggregation='median'))
+            self.assertEqual(evaluate.call_args.kwargs['workers'], 12)
+            self.assertEqual(evaluate.call_args.kwargs['max_workers'], 12)
+
     def test_report_handles_failed_preflight(self):
         import tempfile
         from pathlib import Path
