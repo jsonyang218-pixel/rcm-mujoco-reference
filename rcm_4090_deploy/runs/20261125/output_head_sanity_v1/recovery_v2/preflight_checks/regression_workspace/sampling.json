@@ -1,0 +1,20 @@
+{
+  "original_windows": 220816,
+  "correction_windows": 80818,
+  "frozen_feature_precision": "highest FP32 in shared train/inference helper; head AMP retained",
+  "cached_vs_dataset_feature_checks": 5,
+  "feature_parity_rtol": 1e-05,
+  "feature_parity_atol": 1e-06,
+  "batches": 4000,
+  "batch_size": 16,
+  "original_draws": 58880,
+  "correction_draws": 5120,
+  "ordered_rows_sha256": "28b4607cfe9c22820b7112f7d0dff399be62a32248723d0471dbea8781ff1063",
+  "batch_indices_sha256": "804d6c69d124d0cdb0866622866d2a18111b0d2379fc126732e5ab108451d443",
+  "feature_cache_shape": [
+    301634,
+    384
+  ],
+  "zero_image_loading_reason": "F_geom_cond contains no visual features; exact full-condition parity checked",
+  "direction_mask": "each future training label frame true_error_um <80 and nonzero action; no truth at inference"
+}
