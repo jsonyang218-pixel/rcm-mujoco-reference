@@ -1,0 +1,10 @@
+{
+  "status": "technical_failure",
+  "time": "2026-11-26T10:12:58.857959+08:00",
+  "stage": "offline_after",
+  "error": "TypeError(\"dict() got multiple values for keyword argument 'time'\")",
+  "traceback": "Traceback (most recent call last):\n  File \"/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261126/original_neural_terminal_pilot_v1/pilot.py\", line 898, in run\n    state('finished',**result)\n  File \"/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261126/original_neural_terminal_pilot_v1/pilot.py\", line 82, in state\n    save('workflow_status.json', dict(time=now(), pid=os.getpid(), stage=stage, **kwargs))\n                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nTypeError: dict() got multiple values for keyword argument 'time'\n",
+  "elapsed_s": 82.469014678034,
+  "scientific_negative": false,
+  "no_unrequested_retry": true
+}

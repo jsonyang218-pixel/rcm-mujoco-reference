@@ -1,0 +1,55 @@
+{
+  "name": "Plan8 deterministic output-head sanity",
+  "source_base": "9fef16daca9b496d64b06803c0bc1dc8c94f9824",
+  "branch": "experiment/output-head-sanity-20261125",
+  "budget_minutes": 35,
+  "checkpoint": "/home/him1/mujoco_bc/rcm_4090_deploy/outputs/overnight_c_fix_symlog_081234/task2_train/step_004000.pth",
+  "dataset": "/home/him1/mujoco_bc/rcm_4090_deploy/data/plan2_plus_original_train_224_20261119",
+  "overlay": "/home/him1/mujoco_bc/rcm_4090_deploy/data/overnight_c_fix_symlog_081234_overlay/label_override.npz",
+  "batch_size": 16,
+  "updates_per_arm": 4000,
+  "lr": 0.0001,
+  "seed": 20261118,
+  "correction_ratio": 0.08,
+  "symlog_scales_deg_deg_mm": [
+    0.003,
+    0.002,
+    0.001
+  ],
+  "direction_weight": 0.1,
+  "direction_true_error_um": 80,
+  "steps": 1600,
+  "fast5": [
+    0,
+    2,
+    6,
+    8,
+    10
+  ],
+  "seed_eval": "42+index",
+  "hold200_cycles": 200,
+  "strict_error_um": 0.35,
+  "stop_on_success": false,
+  "K": 1,
+  "execute": 1,
+  "period_s": 0.05,
+  "driver": "G10",
+  "max_workers": 12,
+  "paired_starts": {
+    "approach": 22,
+    "recede": 26
+  },
+  "paired_cycles": 20,
+  "paired_seed": 43001,
+  "fast5_gate": "both finals beat rerun baseline_task2 AND archived v5 A4000; prioritize lower mean if <15min",
+  "scope": "no teacher takeover, no privileged truth policy input; no hyperparameter search or retries",
+  "baseline_note": "Archived replay flow was v5 A4000; baseline training episode40 is a different source target; report both identities",
+  "paths": {
+    "output": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261125/output_head_sanity_v1/recovery_v2",
+    "code": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261125/output_head_sanity_code_v1/rcm_4090_deploy"
+  },
+  "training_head": "three linear layers384/384/48; LayerNorm SiLU; no visual fusion",
+  "unspecified_defaults": "AdamW general baseline config lr1e-4,weight_decay1e-4,clip1; frozen encoder eval; AMPfp16",
+  "feature_numeric_policy": "shared geometry extractor highest FP32 with autocast disabled; restore caller precision; head AMP unchanged",
+  "recovery_of": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261125/output_head_sanity_v1/metrics.json"
+}

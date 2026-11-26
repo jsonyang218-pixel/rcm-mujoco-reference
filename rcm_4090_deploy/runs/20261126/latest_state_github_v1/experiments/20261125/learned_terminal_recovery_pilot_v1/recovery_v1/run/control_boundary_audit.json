@@ -1,0 +1,23 @@
+{
+  "status": "passed",
+  "explicit_measured_inputs": [
+    "signed_oct_x_mm",
+    "signed_oct_y_mm",
+    "signed_oct_z_mm",
+    "A_deg",
+    "B_deg",
+    "C_mm",
+    "actual_velocity_A_deg_s",
+    "actual_velocity_B_deg_s",
+    "actual_velocity_C_mm_s",
+    "previous_accepted_dA_deg",
+    "previous_accepted_dB_deg",
+    "previous_accepted_dC_mm"
+  ],
+  "pure_student_module": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261125/learned_terminal_recovery_pilot_v1/recovery_v1/run/student_policy.py",
+  "student_sha256": "7909a2932b682d38c688c1846177ceb424a5c436d822d56e4e16e7e8461f71a5",
+  "ast_forbidden_symbols_present": [],
+  "runtime_student_teacher_instances": 0,
+  "runtime_control": "get_action builds only signed OCT + evaluator supplied ABC + motor actual velocity + prior accepted action, then LearnedPolicy.predict",
+  "limit": "Sensor perceives the scene/target marker as production does. Scoring/setup retain truth outside student; this is software boundary evidence, not an information-theoretic guarantee."
+}

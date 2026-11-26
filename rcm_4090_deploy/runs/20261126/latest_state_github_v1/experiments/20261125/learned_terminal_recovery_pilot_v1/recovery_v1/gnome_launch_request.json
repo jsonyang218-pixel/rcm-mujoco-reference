@@ -1,0 +1,17 @@
+{
+  "time": "2026-11-25T22:47:40.850520+08:00",
+  "command": [
+    "/usr/bin/gnome-terminal",
+    "--window",
+    "--working-directory=/home/him1/mujoco_bc/rcm_4090_deploy",
+    "--title=Learned terminal recovery pilot v1 - authorized recovery",
+    "--",
+    "/usr/bin/env",
+    "DISPLAY=:1",
+    "XDG_RUNTIME_DIR=/run/user/1000",
+    "DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus",
+    "/bin/bash",
+    "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261125/learned_terminal_recovery_pilot_v1/launch_recovery_v1.sh"
+  ],
+  "one_attempt_only": true
+}

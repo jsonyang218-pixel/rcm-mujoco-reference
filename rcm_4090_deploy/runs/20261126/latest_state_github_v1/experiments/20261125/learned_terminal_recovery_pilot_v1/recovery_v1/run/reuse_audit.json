@@ -1,0 +1,194 @@
+{
+  "status": "completed",
+  "exact_whole_experiment_reusable": false,
+  "evaluation_reusable": false,
+  "reason": "No existing twelve-feature learned ridge with E43 isolated three-start 240-cycle matched evaluation. Existing paired teacher continuations are E40 only and 20 cycles.",
+  "training_reuse": [
+    {
+      "kind": "lateral_recovery",
+      "target": "E40",
+      "start": 0,
+      "end": 40,
+      "path": "/home/him1/mujoco_bc/rcm_4090_deploy/data/homog_clean_replay_20261123_mixed_1600_600_12_hold_v2/shards/tasks/collection_E40/policy_trajectory.json"
+    },
+    {
+      "kind": "hold",
+      "target": "E40",
+      "start": 400,
+      "end": 600,
+      "selected_spaced_frames": 16,
+      "path": "/home/him1/mujoco_bc/rcm_4090_deploy/data/homog_clean_replay_20261123_mixed_1600_600_12_hold_v2/shards/tasks/collection_E40/policy_trajectory.json"
+    },
+    {
+      "kind": "lateral_recovery",
+      "target": "E41",
+      "start": 0,
+      "end": 40,
+      "path": "/home/him1/mujoco_bc/rcm_4090_deploy/data/homog_clean_replay_20261123_mixed_1600_600_12_hold_v2/shards/tasks/collection_E41/policy_trajectory.json"
+    },
+    {
+      "kind": "hold",
+      "target": "E41",
+      "start": 400,
+      "end": 600,
+      "selected_spaced_frames": 16,
+      "path": "/home/him1/mujoco_bc/rcm_4090_deploy/data/homog_clean_replay_20261123_mixed_1600_600_12_hold_v2/shards/tasks/collection_E41/policy_trajectory.json"
+    },
+    {
+      "kind": "lateral_recovery",
+      "target": "E42",
+      "start": 0,
+      "end": 40,
+      "path": "/home/him1/mujoco_bc/rcm_4090_deploy/data/homog_clean_replay_20261123_mixed_1600_600_12_hold_v2/shards/tasks/collection_E42/policy_trajectory.json"
+    },
+    {
+      "kind": "hold",
+      "target": "E42",
+      "start": 400,
+      "end": 600,
+      "selected_spaced_frames": 16,
+      "path": "/home/him1/mujoco_bc/rcm_4090_deploy/data/homog_clean_replay_20261123_mixed_1600_600_12_hold_v2/shards/tasks/collection_E42/policy_trajectory.json"
+    },
+    {
+      "kind": "below_approach",
+      "target": "E40",
+      "start": 22,
+      "end": 42,
+      "path": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261125/output_head_sanity_v1/recovery_v2/paired/approach_teacher_raw.json"
+    },
+    {
+      "kind": "below_recede",
+      "target": "E40",
+      "start": 26,
+      "end": 46,
+      "path": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261125/output_head_sanity_v1/recovery_v2/paired/recede_teacher_raw.json"
+    }
+  ],
+  "new_short_clips": 10,
+  "total_training_segments": 18,
+  "isolation": "E43 target metadata may construct/evaluate starts; no E43 trajectory, action, OCT, statistics or normalization enters fit.",
+  "legacy_registry_note": "The 2026-11-23 homogeneous collection is a separately registered training set; its E40-E43 are not claimed as entries of the older target_split_manifest training list.",
+  "target_pair_min_separation_um": 2613.429287107786,
+  "selected_segment_alignment_audits": [
+    {
+      "target_id": "E40",
+      "segment": "lateral_recovery",
+      "frames": 40,
+      "source": "/home/him1/mujoco_bc/rcm_4090_deploy/data/homog_clean_replay_20261123_mixed_1600_600_12_hold_v2/shards/tasks/collection_E40/policy_trajectory.json",
+      "start_frame": 0,
+      "end_frame": 40,
+      "initial_um": 35.423806823122376,
+      "final_um": 4.124746939252867,
+      "post_max_um": 32.328273911197385,
+      "successful_terminal": true,
+      "hold": false,
+      "time_action_state_alignment": "all selected rows verified against actual motor request and after-state",
+      "retained_for_fit": true
+    },
+    {
+      "target_id": "E40",
+      "segment": "hold",
+      "frames": 16,
+      "source": "/home/him1/mujoco_bc/rcm_4090_deploy/data/homog_clean_replay_20261123_mixed_1600_600_12_hold_v2/shards/tasks/collection_E40/policy_trajectory.json",
+      "start_frame": 400,
+      "end_frame": 600,
+      "initial_um": 4.124746939252867,
+      "final_um": 4.124746939252867,
+      "post_max_um": 4.124746939252867,
+      "successful_terminal": true,
+      "hold": true,
+      "time_action_state_alignment": "all selected rows verified against actual motor request and after-state",
+      "retained_for_fit": true
+    },
+    {
+      "target_id": "E41",
+      "segment": "lateral_recovery",
+      "frames": 40,
+      "source": "/home/him1/mujoco_bc/rcm_4090_deploy/data/homog_clean_replay_20261123_mixed_1600_600_12_hold_v2/shards/tasks/collection_E41/policy_trajectory.json",
+      "start_frame": 0,
+      "end_frame": 40,
+      "initial_um": 35.352419097552506,
+      "final_um": 4.00973681864201,
+      "post_max_um": 32.24218479940014,
+      "successful_terminal": true,
+      "hold": false,
+      "time_action_state_alignment": "all selected rows verified against actual motor request and after-state",
+      "retained_for_fit": true
+    },
+    {
+      "target_id": "E41",
+      "segment": "hold",
+      "frames": 16,
+      "source": "/home/him1/mujoco_bc/rcm_4090_deploy/data/homog_clean_replay_20261123_mixed_1600_600_12_hold_v2/shards/tasks/collection_E41/policy_trajectory.json",
+      "start_frame": 400,
+      "end_frame": 600,
+      "initial_um": 4.00973681864201,
+      "final_um": 4.00973681864201,
+      "post_max_um": 4.00973681864201,
+      "successful_terminal": true,
+      "hold": true,
+      "time_action_state_alignment": "all selected rows verified against actual motor request and after-state",
+      "retained_for_fit": true
+    },
+    {
+      "target_id": "E42",
+      "segment": "lateral_recovery",
+      "frames": 40,
+      "source": "/home/him1/mujoco_bc/rcm_4090_deploy/data/homog_clean_replay_20261123_mixed_1600_600_12_hold_v2/shards/tasks/collection_E42/policy_trajectory.json",
+      "start_frame": 0,
+      "end_frame": 40,
+      "initial_um": 31.591609979501445,
+      "final_um": 4.210965949306167,
+      "post_max_um": 28.851833933678854,
+      "successful_terminal": true,
+      "hold": false,
+      "time_action_state_alignment": "all selected rows verified against actual motor request and after-state",
+      "retained_for_fit": true
+    },
+    {
+      "target_id": "E42",
+      "segment": "hold",
+      "frames": 16,
+      "source": "/home/him1/mujoco_bc/rcm_4090_deploy/data/homog_clean_replay_20261123_mixed_1600_600_12_hold_v2/shards/tasks/collection_E42/policy_trajectory.json",
+      "start_frame": 400,
+      "end_frame": 600,
+      "initial_um": 4.210965949306167,
+      "final_um": 4.210965949306167,
+      "post_max_um": 4.210965949306167,
+      "successful_terminal": true,
+      "hold": true,
+      "time_action_state_alignment": "all selected rows verified against actual motor request and after-state",
+      "retained_for_fit": true
+    },
+    {
+      "target_id": "E40",
+      "segment": "below_approach",
+      "frames": 20,
+      "source": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261125/output_head_sanity_v1/recovery_v2/paired/approach_teacher_raw.json",
+      "start_frame": 22,
+      "end_frame": 42,
+      "initial_um": 38.06138640251697,
+      "final_um": 4.250208227783764,
+      "post_max_um": 34.03462526419873,
+      "successful_terminal": true,
+      "hold": false,
+      "time_action_state_alignment": "all selected rows verified against actual motor request and after-state",
+      "retained_for_fit": true
+    },
+    {
+      "target_id": "E40",
+      "segment": "below_recede",
+      "frames": 20,
+      "source": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261125/output_head_sanity_v1/recovery_v2/paired/recede_teacher_raw.json",
+      "start_frame": 26,
+      "end_frame": 46,
+      "initial_um": 37.40331621858522,
+      "final_um": 4.250208227783764,
+      "post_max_um": 36.36920612919024,
+      "successful_terminal": true,
+      "hold": false,
+      "time_action_state_alignment": "all selected rows verified against actual motor request and after-state",
+      "retained_for_fit": true
+    }
+  ]
+}

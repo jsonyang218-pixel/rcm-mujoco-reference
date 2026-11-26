@@ -1,0 +1,235 @@
+{
+  "name": "learned_terminal_recovery_pilot_v1",
+  "hypothesis": "Measured signed OCT, ABC, velocity and previous accepted command permit a fully learned local braking/recovery/hold policy.",
+  "output_dir": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261125/learned_terminal_recovery_pilot_v1",
+  "targets": [
+    {
+      "id": "E40",
+      "episode_index": 40,
+      "seed": 1040,
+      "regime": "T3",
+      "target_robot_mm": [
+        0.4367277917467681,
+        3.652696250194051,
+        23.605009145695448
+      ],
+      "target_world_mm": [
+        346.7111251543748,
+        -10.824024183615435,
+        371.35725739137047
+      ],
+      "initial_state_si": [
+        0.018810705738879198,
+        0.08616229754890467,
+        0.019858072541690124
+      ],
+      "goal_state_si": [
+        0.01849937731040504,
+        0.08672813134099054,
+        0.019889943026902168
+      ],
+      "initial_error_um": 35.423806823122376,
+      "abc_offset_sign": [
+        1,
+        -1,
+        -1
+      ],
+      "min_development_distance_um": 416.7194413864799,
+      "role": "fit",
+      "registry": "homog_clean_replay_20261123_mixed_1600_600_12_hold_v2/shards/contract.json#collection",
+      "nearest_legacy_dev_or_final_um": 416.66768100504487,
+      "nearest_reachable_dev_um": 416.7194413864796,
+      "nearest_final_um": 3763.083350395854
+    },
+    {
+      "id": "E41",
+      "episode_index": 41,
+      "seed": 1041,
+      "regime": "T3",
+      "target_robot_mm": [
+        -1.3695654807400628,
+        6.588496568516707,
+        22.973909828421377
+      ],
+      "target_world_mm": [
+        349.2189832461999,
+        -12.630317456102267,
+        373.0088801232904
+      ],
+      "initial_state_si": [
+        -0.05985504851460952,
+        -0.038023251711698174,
+        0.019971079068627717
+      ],
+      "goal_state_si": [
+        -0.05954347970880375,
+        -0.0385895223852399,
+        0.019939183976147298
+      ],
+      "initial_error_um": 35.352419097552506,
+      "abc_offset_sign": [
+        -1,
+        1,
+        1
+      ],
+      "min_development_distance_um": 507.69805534735826,
+      "role": "fit",
+      "registry": "homog_clean_replay_20261123_mixed_1600_600_12_hold_v2/shards/contract.json#collection",
+      "nearest_legacy_dev_or_final_um": 507.59043485649113,
+      "nearest_reachable_dev_um": 507.69805534735804,
+      "nearest_final_um": 4420.401736581294
+    },
+    {
+      "id": "E42",
+      "episode_index": 42,
+      "seed": 1042,
+      "regime": "T3",
+      "target_robot_mm": [
+        -2.9397154279549578,
+        8.360724108675214,
+        21.867631686235832
+      ],
+      "target_world_mm": [
+        350.47016467398396,
+        -14.20046740331716,
+        374.6819571737403
+      ],
+      "initial_state_si": [
+        -0.13439579508167637,
+        -0.12136996120087193,
+        0.01961773289038897
+      ],
+      "goal_state_si": [
+        -0.13363112045378228,
+        -0.12198000789850152,
+        0.0195952738908368
+      ],
+      "initial_error_um": 31.591609979501445,
+      "abc_offset_sign": [
+        -1,
+        1,
+        1
+      ],
+      "min_development_distance_um": 997.4996301375694,
+      "role": "fit",
+      "registry": "homog_clean_replay_20261123_mixed_1600_600_12_hold_v2/shards/contract.json#collection",
+      "nearest_legacy_dev_or_final_um": 997.6230309496578,
+      "nearest_reachable_dev_um": 997.4996301375704,
+      "nearest_final_um": 1836.2168186466274
+    },
+    {
+      "id": "E43",
+      "episode_index": 43,
+      "seed": 1043,
+      "regime": "T3",
+      "target_robot_mm": [
+        3.8415682853310384,
+        8.14191455454727,
+        21.68638870349258
+      ],
+      "target_world_mm": [
+        350.2005649934454,
+        -7.419183690031167,
+        374.7716380079517
+      ],
+      "initial_state_si": [
+        0.17608901571675767,
+        -0.11448548589317724,
+        0.01945830459154138
+      ],
+      "goal_state_si": [
+        0.17532316970353543,
+        -0.1138745046807553,
+        0.019480797995455355
+      ],
+      "initial_error_um": 31.521940506073417,
+      "abc_offset_sign": [
+        1,
+        -1,
+        -1
+      ],
+      "min_development_distance_um": 985.7107012606207,
+      "role": "isolated_training_split_prescreen",
+      "registry": "homog_clean_replay_20261123_mixed_1600_600_12_hold_v2/shards/contract.json#collection",
+      "nearest_legacy_dev_or_final_um": 985.7554535966259,
+      "nearest_reachable_dev_um": 985.7107012606174,
+      "nearest_final_um": 1276.3278384923285
+    }
+  ],
+  "training_ids": [
+    "E40",
+    "E41",
+    "E42"
+  ],
+  "isolated_target": "E43",
+  "initialization": "none; no neural checkpoint loaded",
+  "model": "standardized weighted linear ridge, all 39 output coefficients/intercepts learned",
+  "alpha": 0.01,
+  "alpha_definition": "min sum_i normalized_weight_i ||y_i - intercept - standardized_x_i W||^2 + 0.01 ||W||^2",
+  "features": [
+    "signed_oct_x_mm",
+    "signed_oct_y_mm",
+    "signed_oct_z_mm",
+    "A_deg",
+    "B_deg",
+    "C_mm",
+    "actual_velocity_A_deg_s",
+    "actual_velocity_B_deg_s",
+    "actual_velocity_C_mm_s",
+    "previous_accepted_dA_deg",
+    "previous_accepted_dB_deg",
+    "previous_accepted_dC_mm"
+  ],
+  "units": "incremental A degrees, B degrees, C millimeters per 50 ms control tick",
+  "fixed_action_caps_deg_deg_mm": [
+    0.2,
+    0.1,
+    0.03
+  ],
+  "action_caps_source": "Existing homogeneous-replay collection and matched-pair evaluation caps, identical for student and teacher",
+  "data_budget": {
+    "reused_segments": 8,
+    "new_segments": 10,
+    "new_segment_cycles": 40,
+    "total_segments": 18,
+    "hold_subsample_per_target": 16,
+    "stationary_weight_per_segment_max": 0.25
+  },
+  "balance": "equal total target weight; equal segment weight within target; dynamic/static split 0.75/0.25 when both present, equally within each class",
+  "setup": "G10 executed prefix from goal C +/-90um, 22 approach ticks or 24 approach + 2 reverse ticks, +/-3um requested per tick; target coordinates used only for offline setup, audit and independent scoring",
+  "validation": {
+    "target": "E43",
+    "starts": [
+      "below_recede",
+      "above_recede",
+      "lateral"
+    ],
+    "cycles": 240,
+    "control_period_s": 0.05,
+    "student_alone": true,
+    "teacher_same_starts": true,
+    "lateral_start": "Registered E43 T3 ABC-perturbed initial task, snapped by actual G10 initialization",
+    "stop_on_success": false,
+    "safety_streak_stop": null,
+    "legacy_strict_threshold_um": 0.35,
+    "gate": "All 3 student last-200 post-action maximum errors <=20um AND same-start teacher last-200 maxima <=20um; all exactly240 ticks"
+  },
+  "constraints": [
+    "No manual OCT-action signs, Jacobian, geometry or braking coefficients in student",
+    "Teacher not constructed on student rollouts; no privileged coordinates or truth in student inputs",
+    "No hyperparameter search, retries, dev20/final test, long-range evaluation, external publication or modification of R2 tasks"
+  ],
+  "budgets_s": {
+    "total": 900,
+    "collection": 300,
+    "fit": 10,
+    "validation": 600
+  },
+  "workers": 1,
+  "scene": "RCMSceneV9, strict RGBD same-call OCT, production PolicyEvaluator.evaluate_episode feedback + MotorBackend G10",
+  "training_teacher": "Raw same-observation geometry_action_from_observation with actual previous velocity, request capped by existing production caps; executed accepted actions are labels",
+  "reused_teacher": "Original accepted executable bounded_teacher_intent_t3_settlement_v1 plus matched raw-teacher E40 branches; pre-acceleration labels are excluded",
+  "timestamps": {
+    "prepared": "2026-11-25T22:41:15.674338+08:00"
+  }
+}

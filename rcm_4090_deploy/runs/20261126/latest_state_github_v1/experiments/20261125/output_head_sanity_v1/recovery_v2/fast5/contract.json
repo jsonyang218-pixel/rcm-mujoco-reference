@@ -1,0 +1,43 @@
+{
+  "groups": {
+    "R2": {
+      "factory": "scripts.research.output_head_sanity.workflow:EvaluationWorker",
+      "spec": {
+        "arm": "R2",
+        "head_checkpoint": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261125/output_head_sanity_v1/recovery_v2/weights/R2_step004000.pth",
+        "head_sha256": "d800ee41f70b499db020286c44a671b7b35b0f0749f3793ab302c0d4b34e5d1d"
+      },
+      "tasks": [
+        {
+          "id": "E00",
+          "episode_index": 0
+        },
+        {
+          "id": "E02",
+          "episode_index": 2
+        },
+        {
+          "id": "E06",
+          "episode_index": 6
+        },
+        {
+          "id": "E08",
+          "episode_index": 8
+        },
+        {
+          "id": "E10",
+          "episode_index": 10
+        }
+      ]
+    }
+  },
+  "workers": 5,
+  "max_workers": 12,
+  "timeout_s": null,
+  "stage_timeout_s": 1825.1110963940155,
+  "pool_sha256": "ce33209bb209221fbfd14d80f5255dfa653fc3697e4b5ef9ff5e3e2f3c3a01cd",
+  "admission_min_ram_mib": 4096,
+  "initializer_timeout_s": 120,
+  "execution_timeout_s": 1825.1110963940155,
+  "snapshot_every": null
+}

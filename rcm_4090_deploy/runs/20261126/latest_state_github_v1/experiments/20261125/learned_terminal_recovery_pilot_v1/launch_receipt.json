@@ -1,0 +1,22 @@
+{
+  "time": "2026-11-25T22:41:48.877614+08:00",
+  "command": [
+    "/usr/bin/gnome-terminal",
+    "--window",
+    "--working-directory=/home/him1/mujoco_bc/rcm_4090_deploy",
+    "--title=Learned terminal recovery pilot v1 (local only)",
+    "--",
+    "/bin/bash",
+    "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261125/learned_terminal_recovery_pilot_v1/launch.sh"
+  ],
+  "output_dir": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261125/learned_terminal_recovery_pilot_v1",
+  "launch_script_sha256": "d13a7a1d4fcc4c23af4d8d06ec7bbc90dd4eb63045096aae49ae16408e4aa13f",
+  "poll_after_launch": false,
+  "background_fallback": false,
+  "returncode": 1,
+  "stdout": "",
+  "stderr": "# Failed to parse arguments: Cannot open display: \n",
+  "status": "gnome_launch_failed",
+  "error": "RuntimeError('GNOME launch returned 1: # Failed to parse arguments: Cannot open display: \\n')",
+  "completion_verified": false
+}

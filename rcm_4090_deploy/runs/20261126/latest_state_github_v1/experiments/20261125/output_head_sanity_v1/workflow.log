@@ -1,0 +1,22 @@
+Stage: audit_and_feature_cache output: /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261125/output_head_sanity_v1
+Warning: wandb not available, logging will be local only
+加载模型: /home/him1/mujoco_bc/rcm_4090_deploy/outputs/overnight_c_fix_symlog_081234/task2_train/step_004000.pth
+模型加载完成 (type=dit_rectified_flow, epoch=3, train_loss=0.116777, val_loss=0.148003)
+加载数据集: 301634 个有效样本 (from 319697 total frames)
+[audit] completed: {'near60_fraction': 0.2935873655367426, 'near60_energy_share': 0.3369042285214194, 'units': {'symlog_max_abs_roundtrip': 5.960464477539063e-08, 'deterministic_head_repeat': True, 'no_sampling_rng_consumed': True, 'parameters': 315696, 'F_geom_full_condition_exact_parity': True, 'training_inference_transform_shared': True}}
+Traceback (most recent call last):
+  File "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261125/output_head_sanity_code_v1/rcm_4090_deploy/scripts/research/output_head_sanity/workflow.py", line 541, in run
+    cache=training_cache(ds,model,distance)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261125/output_head_sanity_code_v1/rcm_4090_deploy/scripts/research/output_head_sanity/workflow.py", line 280, in training_cache
+    torch.testing.assert_close(features[index:index+1],expected,rtol=1e-5,atol=1e-6)
+  File "/home/him1/mujoco_bc/rcm_4090_deploy/.venv/lib/python3.12/site-packages/torch/testing/_comparison.py", line 1689, in assert_close
+    raise error_metas[0].to_error(msg)
+AssertionError: Tensor-likes are not close!
+
+Mismatched elements: 361 / 384 (94.0%)
+Greatest absolute difference: 0.0003998279571533203 at index (0, 245) (up to 1e-06 allowed)
+Greatest relative difference: 0.048562709242105484 at index (0, 3) (up to 1e-05 allowed)
+[audit_and_feature_cache] failed: {'error': "AssertionError('Tensor-likes are not close!\\n\\nMismatched elements: 361 / 384 (94.0%)\\nGreatest absolute difference: 0.0003998279571533203 at index (0, 245) (up to 1e-06 allowed)\\nGreatest relative difference: 0.048562709242105484 at index (0, 3) (up to 1e-05 allowed)')", 'partial': True}
+[workflow] failed: {'elapsed_s': 4.743194309994578, 'report': '/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261125/output_head_sanity_v1/report.md', 'conclusion': {}}
+Published experiment/output-head-sanity-20261125 38cff8d2c498f8a9caec9ae5bbb9298f6a9303f7

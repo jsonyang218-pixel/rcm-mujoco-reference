@@ -1,0 +1,26 @@
+{
+  "model_name": "dit_rectified_flow_plan2_plus_original200",
+  "model_entry": "lerobot_training/dit_rectified_flow_eval.py",
+  "checkpoint": "best_model.pth",
+  "baseline_manifest": "configs/baselines/state_attention_v1/BASELINE.json",
+  "environment": {
+    "MUJOCO_GL": "egl",
+    "OMP_NUM_THREADS": "1"
+  },
+  "training": {},
+  "evaluation": {
+    "target_manifest": "configs/v12_reachable_development_targets_0p35um.json",
+    "target_split": "development",
+    "target_start": 0,
+    "target_end": 20,
+    "episodes": 20,
+    "shards": 10,
+    "device": "cuda",
+    "seed": 42,
+    "max_steps": 1600,
+    "error_threshold_mm": 0.00035,
+    "control_period_s": 0.05,
+    "num_action_samples": 1,
+    "n_action_execute_steps": 1
+  }
+}

@@ -1,0 +1,142 @@
+{
+  "R1": {
+    "arm": "R1",
+    "updates": 4000,
+    "elapsed_s": 3.961215703980997,
+    "initial_head_sha256": "50c122c7e0386f48c5bfeee82dc547bdc3718ea23ded55739c0636aebcfd574f",
+    "history": [
+      {
+        "step": 500,
+        "loss": 0.021964266896247864,
+        "huber": 0.021964266896247864,
+        "direction": 0.0,
+        "elapsed_s": 0.49718804098665714
+      },
+      {
+        "step": 1000,
+        "loss": 0.012376847676932812,
+        "huber": 0.012376847676932812,
+        "direction": 0.0,
+        "elapsed_s": 0.9897554540075362
+      },
+      {
+        "step": 1500,
+        "loss": 0.06009098142385483,
+        "huber": 0.06009098142385483,
+        "direction": 0.0,
+        "elapsed_s": 1.4830402979860082
+      },
+      {
+        "step": 2000,
+        "loss": 0.035513561218976974,
+        "huber": 0.035513561218976974,
+        "direction": 0.0,
+        "elapsed_s": 1.9832381429732777
+      },
+      {
+        "step": 2500,
+        "loss": 0.01672586426138878,
+        "huber": 0.01672586426138878,
+        "direction": 0.0,
+        "elapsed_s": 2.47856449696701
+      },
+      {
+        "step": 3000,
+        "loss": 0.030796488747000694,
+        "huber": 0.030796488747000694,
+        "direction": 0.0,
+        "elapsed_s": 2.9743986789835617
+      },
+      {
+        "step": 3500,
+        "loss": 0.029708798974752426,
+        "huber": 0.029708798974752426,
+        "direction": 0.0,
+        "elapsed_s": 3.466952577000484
+      },
+      {
+        "step": 4000,
+        "loss": 0.020474325865507126,
+        "huber": 0.020474325865507126,
+        "direction": 0.0,
+        "elapsed_s": 3.9605213699978776
+      }
+    ],
+    "lr": 0.0001,
+    "batch_size": 16,
+    "AMP": true,
+    "frozen_encoder_no_grad": true,
+    "checkpoint": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261125/output_head_sanity_v1/recovery_v2/weights/R1_step004000.pth",
+    "sha256": "45398277d8617bde077d250b39f5d4c3126704dd170803d92fd2c133d50d016a"
+  },
+  "R2": {
+    "arm": "R2",
+    "updates": 4000,
+    "elapsed_s": 5.716281209024601,
+    "initial_head_sha256": "50c122c7e0386f48c5bfeee82dc547bdc3718ea23ded55739c0636aebcfd574f",
+    "history": [
+      {
+        "step": 500,
+        "loss": 0.41543129086494446,
+        "huber": 0.4017139673233032,
+        "direction": 0.1371733546257019,
+        "elapsed_s": 0.7388717600260861
+      },
+      {
+        "step": 1000,
+        "loss": 0.37182798981666565,
+        "huber": 0.3546639382839203,
+        "direction": 0.17164038121700287,
+        "elapsed_s": 1.440652471035719
+      },
+      {
+        "step": 1500,
+        "loss": 0.4421224892139435,
+        "huber": 0.3939933478832245,
+        "direction": 0.48129144310951233,
+        "elapsed_s": 2.122308926016558
+      },
+      {
+        "step": 2000,
+        "loss": 0.43136197328567505,
+        "huber": 0.39043474197387695,
+        "direction": 0.40927231311798096,
+        "elapsed_s": 2.8064108900143765
+      },
+      {
+        "step": 2500,
+        "loss": 0.36942580342292786,
+        "huber": 0.3544454276561737,
+        "direction": 0.14980387687683105,
+        "elapsed_s": 3.5253678929875605
+      },
+      {
+        "step": 3000,
+        "loss": 0.3985953629016876,
+        "huber": 0.373407781124115,
+        "direction": 0.2518758177757263,
+        "elapsed_s": 4.255344192031771
+      },
+      {
+        "step": 3500,
+        "loss": 0.46415093541145325,
+        "huber": 0.4273197054862976,
+        "direction": 0.36831241846084595,
+        "elapsed_s": 4.974419725011103
+      },
+      {
+        "step": 4000,
+        "loss": 0.4082403779029846,
+        "huber": 0.386488139629364,
+        "direction": 0.2175225019454956,
+        "elapsed_s": 5.7155662110308185
+      }
+    ],
+    "lr": 0.0001,
+    "batch_size": 16,
+    "AMP": true,
+    "frozen_encoder_no_grad": true,
+    "checkpoint": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261125/output_head_sanity_v1/recovery_v2/weights/R2_step004000.pth",
+    "sha256": "d800ee41f70b499db020286c44a671b7b35b0f0749f3793ab302c0d4b34e5d1d"
+  }
+}

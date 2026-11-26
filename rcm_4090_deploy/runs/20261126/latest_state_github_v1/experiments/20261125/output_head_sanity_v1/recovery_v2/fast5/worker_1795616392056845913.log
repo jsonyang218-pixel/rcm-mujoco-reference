@@ -1,0 +1,27 @@
+Warning: wandb not available, logging will be local only
+加载模型: /home/him1/mujoco_bc/rcm_4090_deploy/outputs/overnight_c_fix_symlog_081234/task2_train/step_004000.pth
+模型加载完成 (type=dit_rectified_flow, epoch=3, train_loss=0.116777, val_loss=0.148003)
+评估 episodes:   0%|          | 0/1 [00:00<?, ?it/s]
+Episode 1/1
+  目标世界坐标: [348.825, -16.156, 373.943] mm
+  closed-loop step 1/1600, error=19548.126 um
+  closed-loop step 200/1600, error=15164.715 um
+  closed-loop step 400/1600, error=9653.543 um
+  closed-loop step 600/1600, error=3690.889 um
+  closed-loop step 800/1600, error=984.850 um
+  closed-loop step 1000/1600, error=797.742 um
+  closed-loop step 1200/1600, error=928.428 um
+  closed-loop step 1400/1600, error=1236.714 um
+  closed-loop step 1600/1600, error=1624.451 um
+  ✗ 失败: 1600 步, 误差 1.626 mm
+评估 episodes: 100%|##########| 1/1 [13:22<00:00, 802.62s/it]评估 episodes: 100%|##########| 1/1 [13:22<00:00, 802.62s/it]
+
+============================================================
+评估结果汇总:
+  成功率: 0.0% (0/1)
+  平均步数: 1600.0
+  平均最终误差: 1.626 mm
+============================================================
+
+结果已保存到: /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261125/output_head_sanity_v1/recovery_v2/fast5/tasks/R2_E00/raw/evaluation_results.json
+[fast5_R2_E00] completed: {'episode_index': 0, 'seed': 42, 'actions': 1600, 'final_error_um': 1626.4991083335822, 'min_error_um': 797.7271091324238, 'error_1000_um': 797.7603105726719, 'drift_1000_to_1600_um': 828.7387977609103, 'absolute_drift_1000_to_1600_um': 828.7387977609103, 'strict_success': False, 'final_hit_le_5_um': False, 'final_hit_le_10_um': False, 'final_hit_le_30_um': False, 'status': 'completed', 'frames': 1600, 'entries_le_20_um': 0, 'max_consecutive_le_20_um_cycles': 0, 'max_consecutive_le_20_um_seconds': 0.0, 'sustained_200_pass': False, 'last_200_max_error_um': 1624.4513460483925, 'actual_speed_um_per_s_overall': 268.875643862973, 'actual_speed_um_per_s_last_200': 47.00520818709532, 'hold_start_step': None, 'hold_end_step': None, 'raw_result': '/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261125/output_head_sanity_v1/recovery_v2/fast5/tasks/R2_E00/raw/evaluation_results.json', 'late1000_1600_raw_ABC_sign_flip': {'A': {'flips': 0, 'eligible_adjacent_nonzero_pairs': 599, 'rate': 0.0}, 'B': {'flips': 0, 'eligible_adjacent_nonzero_pairs': 599, 'rate': 0.0}, 'C': {'flips': 0, 'eligible_adjacent_nonzero_pairs': 599, 'rate': 0.0}}, 'late1000_1600_accepted_ABC_sign_flip': {'A': {'flips': 0, 'eligible_adjacent_nonzero_pairs': 599, 'rate': 0.0}, 'B': {'flips': 0, 'eligible_adjacent_nonzero_pairs': 599, 'rate': 0.0}, 'C': {'flips': 0, 'eligible_adjacent_nonzero_pairs': 599, 'rate': 0.0}}, 'raw_sha256': 'cc1e9d8c50f4b268fddee14543532f88bea7562bcf04b92410ba5da72e10518a', 'arm': 'R2'}

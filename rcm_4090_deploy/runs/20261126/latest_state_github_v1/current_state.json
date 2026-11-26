@@ -1,0 +1,763 @@
+{
+  "snapshot_at": "2026-11-26T10:15:08+08:00",
+  "capture_finished_at": "2026-11-26T10:15:08+08:00",
+  "base_commit": "b362ea79e00a24bbc1ec68199e78ac4656e59463",
+  "branch": "experiment/output-head-sanity-20261125",
+  "log_cutoff_bytes": 5939110,
+  "authoritative_log": "TEST_LOG.md",
+  "deployment_source": "source_snapshot/",
+  "experiments": {
+    "20261125/learned_terminal_recovery_pilot_v1": {
+      "workflow_status": {
+        "status": "launch_failed",
+        "reason": "RuntimeError('GNOME launch returned 1: # Failed to parse arguments: Cannot open display: \\n')",
+        "experiment_started": false,
+        "no_background_fallback": true
+      },
+      "summary_path": null
+    },
+    "20261125/output_head_sanity_v1": {
+      "workflow_status": {
+        "status": "failed",
+        "stage": "finished",
+        "elapsed_s": 4.743194309994578
+      },
+      "summary_path": null
+    },
+    "20261126/original_neural_terminal_pilot_v1": {
+      "workflow_status": {
+        "status": "technical_failure",
+        "time": "2026-11-26T10:12:58.857959+08:00",
+        "stage": "offline_after",
+        "error": "TypeError(\"dict() got multiple values for keyword argument 'time'\")",
+        "traceback": "Traceback (most recent call last):\n  File \"/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261126/original_neural_terminal_pilot_v1/pilot.py\", line 898, in run\n    state('finished',**result)\n  File \"/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261126/original_neural_terminal_pilot_v1/pilot.py\", line 82, in state\n    save('workflow_status.json', dict(time=now(), pid=os.getpid(), stage=stage, **kwargs))\n                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nTypeError: dict() got multiple values for keyword argument 'time'\n",
+        "elapsed_s": 82.469014678034,
+        "scientific_negative": false,
+        "no_unrequested_retry": true
+      },
+      "summary_path": "experiments/20261126/original_neural_terminal_pilot_v1/summary.json",
+      "summary": {
+        "status": "completed_offline_gate_failed",
+        "time": "2026-11-26T10:12:58.762870+08:00",
+        "optimizer_updates": 128,
+        "closed_loop_started": false,
+        "offline_gate": {
+          "status": "failed",
+          "time": "2026-11-26T10:12:58.745861+08:00",
+          "checks": [
+            {
+              "name": "heldout_moving_C_MAE_um",
+              "passed": false,
+              "before": 1.468264518189244,
+              "after": 1.9467759219696745,
+              "required": "after < before"
+            },
+            {
+              "name": "heldout_moving_nonzero_C_direction_accuracy",
+              "passed": true,
+              "before": 0.75,
+              "after": 0.755,
+              "required": "after > before"
+            },
+            {
+              "name": "heldout_all_A_MAE_deg",
+              "passed": false,
+              "before": 0.004174078311152698,
+              "after": 0.005942978518469318,
+              "required": "after <= before; zero tolerance"
+            },
+            {
+              "name": "heldout_all_B_MAE_deg",
+              "passed": false,
+              "before": 0.0032876208572361065,
+              "after": 0.003938557878364009,
+              "required": "after <= before; zero tolerance"
+            },
+            {
+              "name": "heldout_moving_encoder_A_MAE_deg",
+              "passed": false,
+              "before": 0.004174078311152698,
+              "after": 0.005942978518469318,
+              "required": "after <= before; zero tolerance"
+            },
+            {
+              "name": "heldout_moving_encoder_B_MAE_deg",
+              "passed": false,
+              "before": 0.0032876208572361065,
+              "after": 0.003938557878364009,
+              "required": "after <= before; zero tolerance"
+            }
+          ],
+          "scientific_scope": "One128-update neural candidate on E40, whole-target E41 local windows; flow loss excluded from promotion"
+        },
+        "elapsed_s": 82.37372556899209,
+        "scientific_conclusion": "This single candidate did not pass action-improvement gate; no claim architecture cannot learn, no extra updates/candidates"
+      }
+    },
+    "20261126/v5_learned_local_standard2_protocol_v2": {
+      "workflow_status": {
+        "status": "completed",
+        "time": "2026-11-26T09:16:16.398029+08:00",
+        "completed_targets": 2,
+        "requested_targets": 2,
+        "worker_exit_codes": [
+          0,
+          0
+        ],
+        "protocol_and_baseline_verified": true,
+        "primary_200um_passes": 2,
+        "long_term_20um_passes": 2,
+        "additional_targets_run": false,
+        "additional_targets_require_separate_planner_action": true,
+        "both20_gate_for_original_plan": true
+      },
+      "summary_path": "experiments/20261126/v5_learned_local_standard2_protocol_v2/summary.json",
+      "summary": {
+        "status": "completed",
+        "time": "2026-11-26T09:16:16.398029+08:00",
+        "completed_targets": 2,
+        "requested_targets": 2,
+        "worker_exit_codes": [
+          0,
+          0
+        ],
+        "protocol_and_baseline_verified": true,
+        "primary_200um_passes": 2,
+        "long_term_20um_passes": 2,
+        "additional_targets_run": false,
+        "additional_targets_require_separate_planner_action": true,
+        "both20_gate_for_original_plan": true
+      },
+      "target_metrics": [
+        {
+          "target": "E06",
+          "seed": 48,
+          "actions": 1600,
+          "final_true_error_um": 2.9039412124185415,
+          "last200_max_true_error_um": 3.5603593589180456,
+          "primary_200um_pass": true,
+          "long_term_20um_pass": true,
+          "strict_0p35um_success": false,
+          "model_sha256": {
+            "v5": "6cc389df3786f1f34c43cf65d6dc17fe910ab342fae8d84c8e37cea6a7db6c11",
+            "local": "8d0679fc706c8a1a384977c59af5ec131e22e281afa9d02bd2f6625baccfbfc1"
+          }
+        },
+        {
+          "target": "E08",
+          "seed": 50,
+          "actions": 1600,
+          "final_true_error_um": 3.2639973038591834,
+          "last200_max_true_error_um": 5.579104910834274,
+          "primary_200um_pass": true,
+          "long_term_20um_pass": true,
+          "strict_0p35um_success": false,
+          "model_sha256": {
+            "v5": "6cc389df3786f1f34c43cf65d6dc17fe910ab342fae8d84c8e37cea6a7db6c11",
+            "local": "8d0679fc706c8a1a384977c59af5ec131e22e281afa9d02bd2f6625baccfbfc1"
+          }
+        }
+      ]
+    },
+    "20261126/v5_learned_local_standard2_v1": {
+      "workflow_status": {
+        "status": "failed_or_incomplete",
+        "time": "2026-11-26T09:07:41.681135+08:00",
+        "completed_targets": 2,
+        "requested_targets": 2,
+        "worker_exit_codes": [
+          0,
+          0
+        ],
+        "protocol_and_baseline_verified": false,
+        "primary_200um_passes": 2,
+        "long_term_20um_passes": 0,
+        "additional_targets_run": false,
+        "additional_targets_require_separate_planner_action": true,
+        "both20_gate_for_original_plan": false
+      },
+      "summary_path": "experiments/20261126/v5_learned_local_standard2_v1/summary.json",
+      "summary": {
+        "status": "failed_or_incomplete",
+        "time": "2026-11-26T09:07:41.681135+08:00",
+        "completed_targets": 2,
+        "requested_targets": 2,
+        "worker_exit_codes": [
+          0,
+          0
+        ],
+        "protocol_and_baseline_verified": false,
+        "primary_200um_passes": 2,
+        "long_term_20um_passes": 0,
+        "additional_targets_run": false,
+        "additional_targets_require_separate_planner_action": true,
+        "both20_gate_for_original_plan": false
+      },
+      "target_metrics": [
+        {
+          "target": "E06",
+          "seed": 48,
+          "actions": 1600,
+          "final_true_error_um": 5.419354270709071,
+          "last200_max_true_error_um": 96.86389368160128,
+          "primary_200um_pass": true,
+          "long_term_20um_pass": false,
+          "strict_0p35um_success": false,
+          "model_sha256": {
+            "v5": "6cc389df3786f1f34c43cf65d6dc17fe910ab342fae8d84c8e37cea6a7db6c11",
+            "local": "8d0679fc706c8a1a384977c59af5ec131e22e281afa9d02bd2f6625baccfbfc1"
+          }
+        },
+        {
+          "target": "E08",
+          "seed": 50,
+          "actions": 1600,
+          "final_true_error_um": 3.9109712637372906,
+          "last200_max_true_error_um": 100.04021948211549,
+          "primary_200um_pass": true,
+          "long_term_20um_pass": false,
+          "strict_0p35um_success": false,
+          "model_sha256": {
+            "v5": "6cc389df3786f1f34c43cf65d6dc17fe910ab342fae8d84c8e37cea6a7db6c11",
+            "local": "8d0679fc706c8a1a384977c59af5ec131e22e281afa9d02bd2f6625baccfbfc1"
+          }
+        }
+      ]
+    },
+    "20261126/v5_learned_local_standard3_v1": {
+      "workflow_status": {
+        "status": "completed",
+        "time": "2026-11-26T09:36:13.826962+08:00",
+        "completed_targets": 3,
+        "requested_targets": 3,
+        "worker_exit_codes": [
+          0,
+          0,
+          0
+        ],
+        "protocol_and_baseline_verified": true,
+        "primary_200um_passes": 3,
+        "long_term_20um_passes": 2,
+        "additional_targets_run": true,
+        "additional_targets_require_separate_planner_action": false,
+        "both20_gate_for_original_plan": false
+      },
+      "summary_path": "experiments/20261126/v5_learned_local_standard3_v1/summary.json",
+      "summary": {
+        "status": "completed",
+        "time": "2026-11-26T09:36:13.826962+08:00",
+        "completed_targets": 3,
+        "requested_targets": 3,
+        "worker_exit_codes": [
+          0,
+          0,
+          0
+        ],
+        "protocol_and_baseline_verified": true,
+        "primary_200um_passes": 3,
+        "long_term_20um_passes": 2,
+        "additional_targets_run": true,
+        "additional_targets_require_separate_planner_action": false,
+        "both20_gate_for_original_plan": false
+      },
+      "target_metrics": [
+        {
+          "target": "E00",
+          "seed": 42,
+          "actions": 1600,
+          "final_true_error_um": 3.032141955981213,
+          "last200_max_true_error_um": 4.795080276819309,
+          "primary_200um_pass": true,
+          "long_term_20um_pass": true,
+          "strict_0p35um_success": false,
+          "model_sha256": {
+            "v5": "6cc389df3786f1f34c43cf65d6dc17fe910ab342fae8d84c8e37cea6a7db6c11",
+            "local": "8d0679fc706c8a1a384977c59af5ec131e22e281afa9d02bd2f6625baccfbfc1"
+          }
+        },
+        {
+          "target": "E02",
+          "seed": 44,
+          "actions": 1600,
+          "final_true_error_um": 59.13587593788196,
+          "last200_max_true_error_um": 74.92998976252663,
+          "primary_200um_pass": true,
+          "long_term_20um_pass": false,
+          "strict_0p35um_success": false,
+          "model_sha256": {
+            "v5": "6cc389df3786f1f34c43cf65d6dc17fe910ab342fae8d84c8e37cea6a7db6c11",
+            "local": "8d0679fc706c8a1a384977c59af5ec131e22e281afa9d02bd2f6625baccfbfc1"
+          }
+        },
+        {
+          "target": "E10",
+          "seed": 52,
+          "actions": 1600,
+          "final_true_error_um": 2.710038094238036,
+          "last200_max_true_error_um": 6.559135402333968,
+          "primary_200um_pass": true,
+          "long_term_20um_pass": true,
+          "strict_0p35um_success": false,
+          "model_sha256": {
+            "v5": "6cc389df3786f1f34c43cf65d6dc17fe910ab342fae8d84c8e37cea6a7db6c11",
+            "local": "8d0679fc706c8a1a384977c59af5ec131e22e281afa9d02bd2f6625baccfbfc1"
+          }
+        }
+      ]
+    }
+  },
+  "output_head_recovery": {
+    "status": {
+      "status": "completed",
+      "stage": "finished",
+      "elapsed_s": 942.1373905049986
+    },
+    "publication": {
+      "status": "pushed_verified",
+      "commit": "b362ea79e00a24bbc1ec68199e78ac4656e59463",
+      "remote": "b362ea79e00a24bbc1ec68199e78ac4656e59463",
+      "branch": "experiment/output-head-sanity-20261125"
+    },
+    "fast5": {
+      "status": "completed",
+      "final_mean_um": 2596.6691248943175,
+      "final_le20_count": 0,
+      "sustained200_count": 0,
+      "strict_success_count": 0,
+      "targets": [
+        {
+          "episode_index": 0,
+          "seed": 42,
+          "actions": 1600,
+          "final_error_um": 1626.4991083335822,
+          "min_error_um": 797.7271091324238,
+          "strict_success": false,
+          "sustained_200_pass": false
+        },
+        {
+          "episode_index": 2,
+          "seed": 44,
+          "actions": 1600,
+          "final_error_um": 3563.4810420736003,
+          "min_error_um": 1576.9133626343184,
+          "strict_success": false,
+          "sustained_200_pass": false
+        },
+        {
+          "episode_index": 6,
+          "seed": 48,
+          "actions": 1600,
+          "final_error_um": 1588.2005465829886,
+          "min_error_um": 1057.2080056481543,
+          "strict_success": false,
+          "sustained_200_pass": false
+        },
+        {
+          "episode_index": 8,
+          "seed": 50,
+          "actions": 1600,
+          "final_error_um": 4900.470267054229,
+          "min_error_um": 2235.5862877564864,
+          "strict_success": false,
+          "sustained_200_pass": false
+        },
+        {
+          "episode_index": 10,
+          "seed": 52,
+          "actions": 1600,
+          "final_error_um": 1304.6946604271866,
+          "min_error_um": 1131.036843313207,
+          "strict_success": false,
+          "sustained_200_pass": false
+        }
+      ]
+    }
+  },
+  "learned_terminal_recovery": {
+    "status": "completed",
+    "local_feasibility_candidate": true,
+    "student_local_last200_passes": 3,
+    "student_local_cases": 3,
+    "teacher_diagnostic_last200_passes": 3,
+    "teacher_cases": 3,
+    "standard_full_trajectory_independent_acceptance": false,
+    "dev20_run": false,
+    "final_test_run": false,
+    "no_further_expansion": true,
+    "model_sha256": "8d0679fc706c8a1a384977c59af5ec131e22e281afa9d02bd2f6625baccfbfc1",
+    "actual_total_elapsed_s": 581.6093303610105,
+    "isolated_target": "E43",
+    "training_targets": [
+      "E40",
+      "E41",
+      "E42"
+    ],
+    "results": [
+      {
+        "target_id": "E43",
+        "start": "below_recede",
+        "controller": "student",
+        "diagnostic_teacher_only": false,
+        "cycles": 240,
+        "initial_true_error_um": 37.40766551575786,
+        "longest_contiguous_le20_cycles": 232,
+        "last200_max_true_error_um": 6.535070979418082,
+        "final_true_3d_error_um": 1.8819301586730215,
+        "min_true_3d_error_um": 1.8819301586730215,
+        "first_enter_cycle": 9,
+        "first_exit": null,
+        "all_exits": [],
+        "signed_oct_z_crossing_preaction_indices": [],
+        "final_raw_action_deg_deg_mm": [
+          0.007495056252715988,
+          -0.002180754050924623,
+          -0.000423316266569857
+        ],
+        "final_accepted_action_deg_deg_mm": [
+          0.007495056252715988,
+          -0.002180754050924623,
+          -0.000423316266569857
+        ],
+        "final_velocity_deg_deg_mm_s": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "encoder_settled_at_exit": true,
+        "elapsed_s": 73.74440130102448,
+        "early_stop_reason": null,
+        "last200_le20": true,
+        "strict_0p35um_success": false,
+        "trace_note": "Trajectory JSON contains every pre-action OCT/state/velocity/input, raw and accepted ABC action, G10 request/quantization/actual-after state; final post-action state included."
+      },
+      {
+        "target_id": "E43",
+        "start": "below_recede",
+        "controller": "teacher",
+        "diagnostic_teacher_only": true,
+        "cycles": 240,
+        "initial_true_error_um": 37.40766551575786,
+        "longest_contiguous_le20_cycles": 234,
+        "last200_max_true_error_um": 3.052928801198365,
+        "final_true_3d_error_um": 3.052928801198365,
+        "min_true_3d_error_um": 3.052928801198365,
+        "first_enter_cycle": 7,
+        "first_exit": null,
+        "all_exits": [],
+        "signed_oct_z_crossing_preaction_indices": [],
+        "final_raw_action_deg_deg_mm": [
+          -7.665866931133358e-05,
+          6.3209565855244714e-06,
+          0.00046744765145115275
+        ],
+        "final_accepted_action_deg_deg_mm": [
+          -7.665866931133358e-05,
+          6.3209565855244714e-06,
+          0.00046744765145115275
+        ],
+        "final_velocity_deg_deg_mm_s": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "encoder_settled_at_exit": true,
+        "elapsed_s": 73.80736790399533,
+        "early_stop_reason": null,
+        "last200_le20": true,
+        "strict_0p35um_success": false,
+        "trace_note": "Trajectory JSON contains every pre-action OCT/state/velocity/input, raw and accepted ABC action, G10 request/quantization/actual-after state; final post-action state included.",
+        "matched_executable_start_verified": true
+      },
+      {
+        "target_id": "E43",
+        "start": "above_recede",
+        "controller": "student",
+        "diagnostic_teacher_only": false,
+        "cycles": 240,
+        "initial_true_error_um": 37.394366944104604,
+        "longest_contiguous_le20_cycles": 233,
+        "last200_max_true_error_um": 6.394533595192055,
+        "final_true_3d_error_um": 5.45991327293185,
+        "min_true_3d_error_um": 0.3488361840390757,
+        "first_enter_cycle": 8,
+        "first_exit": null,
+        "all_exits": [],
+        "signed_oct_z_crossing_preaction_indices": [
+          63
+        ],
+        "final_raw_action_deg_deg_mm": [
+          0.006366854699364576,
+          -0.0011632378421738158,
+          0.0004528820659008394
+        ],
+        "final_accepted_action_deg_deg_mm": [
+          0.006366854699364576,
+          -0.0011632378421738158,
+          0.0004528820659008394
+        ],
+        "final_velocity_deg_deg_mm_s": [
+          0.17999999999997607,
+          0.03047641345588511,
+          0.0012534722183127345
+        ],
+        "encoder_settled_at_exit": false,
+        "elapsed_s": 73.90248077601427,
+        "early_stop_reason": null,
+        "last200_le20": true,
+        "strict_0p35um_success": false,
+        "trace_note": "Trajectory JSON contains every pre-action OCT/state/velocity/input, raw and accepted ABC action, G10 request/quantization/actual-after state; final post-action state included."
+      },
+      {
+        "target_id": "E43",
+        "start": "above_recede",
+        "controller": "teacher",
+        "diagnostic_teacher_only": true,
+        "cycles": 240,
+        "initial_true_error_um": 37.394366944104604,
+        "longest_contiguous_le20_cycles": 234,
+        "last200_max_true_error_um": 3.0396589542999437,
+        "final_true_3d_error_um": 3.0396589542999437,
+        "min_true_3d_error_um": 3.0396589542999437,
+        "first_enter_cycle": 7,
+        "first_exit": null,
+        "all_exits": [],
+        "signed_oct_z_crossing_preaction_indices": [],
+        "final_raw_action_deg_deg_mm": [
+          -7.718164940133538e-05,
+          -1.9277858017055764e-06,
+          -0.00044283458457139435
+        ],
+        "final_accepted_action_deg_deg_mm": [
+          -7.718164940133538e-05,
+          -1.9277858017055764e-06,
+          -0.00044283458457139435
+        ],
+        "final_velocity_deg_deg_mm_s": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "encoder_settled_at_exit": true,
+        "elapsed_s": 74.2745367870084,
+        "early_stop_reason": null,
+        "last200_le20": true,
+        "strict_0p35um_success": false,
+        "trace_note": "Trajectory JSON contains every pre-action OCT/state/velocity/input, raw and accepted ABC action, G10 request/quantization/actual-after state; final post-action state included.",
+        "matched_executable_start_verified": true
+      },
+      {
+        "target_id": "E43",
+        "start": "lateral",
+        "controller": "student",
+        "diagnostic_teacher_only": false,
+        "cycles": 240,
+        "initial_true_error_um": 31.521940506073417,
+        "longest_contiguous_le20_cycles": 237,
+        "last200_max_true_error_um": 5.992780857062059,
+        "final_true_3d_error_um": 2.1487686924209584,
+        "min_true_3d_error_um": 1.0520772154415445,
+        "first_enter_cycle": 4,
+        "first_exit": null,
+        "all_exits": [],
+        "signed_oct_z_crossing_preaction_indices": [
+          56,
+          58,
+          63,
+          65,
+          70,
+          72,
+          76,
+          78,
+          84,
+          85,
+          91,
+          92,
+          99,
+          101,
+          106,
+          107,
+          112,
+          114,
+          122,
+          124,
+          133,
+          134,
+          145,
+          147,
+          152,
+          154,
+          159,
+          161,
+          165,
+          167,
+          172,
+          174,
+          177,
+          179,
+          184,
+          186,
+          191,
+          193,
+          196,
+          198,
+          203,
+          205,
+          210,
+          212,
+          215,
+          218,
+          224,
+          225,
+          233,
+          235
+        ],
+        "final_raw_action_deg_deg_mm": [
+          -0.006531942313896564,
+          0.00291396204745087,
+          0.0007039499569115805
+        ],
+        "final_accepted_action_deg_deg_mm": [
+          -0.006531942313896564,
+          0.00291396204745087,
+          0.0007039499569115805
+        ],
+        "final_velocity_deg_deg_mm_s": [
+          -0.2159999999999904,
+          -0.0002539848792097505,
+          0.016608506892765162
+        ],
+        "encoder_settled_at_exit": false,
+        "elapsed_s": 74.11085825401824,
+        "early_stop_reason": null,
+        "last200_le20": true,
+        "strict_0p35um_success": false,
+        "trace_note": "Trajectory JSON contains every pre-action OCT/state/velocity/input, raw and accepted ABC action, G10 request/quantization/actual-after state; final post-action state included."
+      },
+      {
+        "target_id": "E43",
+        "start": "lateral",
+        "controller": "teacher",
+        "diagnostic_teacher_only": true,
+        "cycles": 240,
+        "initial_true_error_um": 31.521940506073417,
+        "longest_contiguous_le20_cycles": 231,
+        "last200_max_true_error_um": 19.05766382910286,
+        "final_true_3d_error_um": 19.05766382910286,
+        "min_true_3d_error_um": 19.05766382910286,
+        "first_enter_cycle": 10,
+        "first_exit": null,
+        "all_exits": [],
+        "signed_oct_z_crossing_preaction_indices": [],
+        "final_raw_action_deg_deg_mm": [
+          -0.006558133705047546,
+          0.002999841053589661,
+          0.0005568636996834686
+        ],
+        "final_accepted_action_deg_deg_mm": [
+          -0.006558133705047546,
+          0.002999841053589661,
+          0.0005568636996834686
+        ],
+        "final_velocity_deg_deg_mm_s": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "encoder_settled_at_exit": true,
+        "elapsed_s": 74.1991841760464,
+        "early_stop_reason": null,
+        "last200_le20": true,
+        "strict_0p35um_success": false,
+        "trace_note": "Trajectory JSON contains every pre-action OCT/state/velocity/input, raw and accepted ABC action, G10 request/quantization/actual-after state; final post-action state included.",
+        "matched_executable_start_verified": true
+      }
+    ],
+    "teacher_failures": [],
+    "interpretation": "Only local isolated training-target feasibility. A failed lateral teacher invalidates comprehensive recovery claims; no case is dropped. No claim about ordinary initial positions, dev20, final test, clinical or hardware precision."
+  },
+  "latest_neural_candidate": {
+    "training": {
+      "status": "completed",
+      "time": "2026-11-26T10:12:53.613632+08:00",
+      "optimizer_updates": 128,
+      "attempted_batches": 129,
+      "amp_skipped_attempts": 1,
+      "init_sha256": "6cc389df3786f1f34c43cf65d6dc17fe910ab342fae8d84c8e37cea6a7db6c11",
+      "after_sha256": "80423c79de3d79ba7858ea95610b429b58d0583484a46089e94808dd54ebb8c3",
+      "vision_all_parameters_buffers_bit_exact": true,
+      "normalization_all_buffers_bit_exact": true,
+      "trainable_count": 23164611,
+      "trainable_parameter_manifest": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261126/original_neural_terminal_pilot_v1/parameters.json",
+      "elapsed_s": 2.40835143905133,
+      "loss_first": 0.005880223121494055,
+      "loss_last": 0.011768288910388947
+    },
+    "offline_gate": {
+      "status": "failed",
+      "time": "2026-11-26T10:12:58.745861+08:00",
+      "checks": [
+        {
+          "name": "heldout_moving_C_MAE_um",
+          "passed": false,
+          "before": 1.468264518189244,
+          "after": 1.9467759219696745,
+          "required": "after < before"
+        },
+        {
+          "name": "heldout_moving_nonzero_C_direction_accuracy",
+          "passed": true,
+          "before": 0.75,
+          "after": 0.755,
+          "required": "after > before"
+        },
+        {
+          "name": "heldout_all_A_MAE_deg",
+          "passed": false,
+          "before": 0.004174078311152698,
+          "after": 0.005942978518469318,
+          "required": "after <= before; zero tolerance"
+        },
+        {
+          "name": "heldout_all_B_MAE_deg",
+          "passed": false,
+          "before": 0.0032876208572361065,
+          "after": 0.003938557878364009,
+          "required": "after <= before; zero tolerance"
+        },
+        {
+          "name": "heldout_moving_encoder_A_MAE_deg",
+          "passed": false,
+          "before": 0.004174078311152698,
+          "after": 0.005942978518469318,
+          "required": "after <= before; zero tolerance"
+        },
+        {
+          "name": "heldout_moving_encoder_B_MAE_deg",
+          "passed": false,
+          "before": 0.0032876208572361065,
+          "after": 0.003938557878364009,
+          "required": "after <= before; zero tolerance"
+        }
+      ],
+      "scientific_scope": "One128-update neural candidate on E40, whole-target E41 local windows; flow loss excluded from promotion"
+    },
+    "workflow_status": {
+      "status": "technical_failure",
+      "time": "2026-11-26T10:12:58.857959+08:00",
+      "stage": "offline_after",
+      "error": "TypeError(\"dict() got multiple values for keyword argument 'time'\")",
+      "traceback": "Traceback (most recent call last):\n  File \"/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261126/original_neural_terminal_pilot_v1/pilot.py\", line 898, in run\n    state('finished',**result)\n  File \"/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261126/original_neural_terminal_pilot_v1/pilot.py\", line 82, in state\n    save('workflow_status.json', dict(time=now(), pid=os.getpid(), stage=stage, **kwargs))\n                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nTypeError: dict() got multiple values for keyword argument 'time'\n",
+      "elapsed_s": 82.469014678034,
+      "scientific_negative": false,
+      "no_unrequested_retry": true
+    }
+  },
+  "scope": [
+    "Read-only publication snapshot; no experiment started, retried or modified.",
+    "Workflow completion, metric gates and strict success are separate; technical failure does not erase the completed offline negative result.",
+    "Source snapshot preserves verbatim runtime modules; Git branch historical source and pinned vendor driver remain unchanged.",
+    "Model weight binaries, arrays, images, videos, caches and raw trajectories remain local; cards, SHA identities, summaries and lightweight logs are included.",
+    "The snapshot is per-file consistent, not an atomic filesystem-wide checkpoint; capture_inventory.json records each file and cutoff.",
+    "MuJoCo/software simulation evidence only; no hardware or clinical precision claim."
+  ]
+}

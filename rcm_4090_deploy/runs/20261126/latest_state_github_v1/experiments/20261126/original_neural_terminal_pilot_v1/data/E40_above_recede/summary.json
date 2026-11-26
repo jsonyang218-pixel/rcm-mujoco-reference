@@ -1,0 +1,20 @@
+{
+  "status": "completed",
+  "time": "2026-11-26T10:12:11.547865+08:00",
+  "target": "E40",
+  "kind": "above_recede",
+  "role": "train",
+  "observations": 42,
+  "teacher_actions": 40,
+  "windows_horizon16": 25,
+  "source_sha256": "de6ba5f7374bf03da5e7c6e2f313c4e68a696099b3dcef719468cb010bf6fb8a",
+  "final_true_error_um": 3.038933667648969,
+  "last10_max_true_error_um": 3.038933667648969,
+  "teacher_terminal_gate": true,
+  "prior_replay_parity": {
+    "source": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261125/learned_terminal_recovery_pilot_v1/recovery_v1/run/trajectories/train_E40_above_recede.json",
+    "state_max_abs_diff": 0.0,
+    "accepted_action_max_abs_diff": 0.0
+  },
+  "sample_alignment": "same-call RGB/OCT+ABC/actual encoder velocity/previous accepted at t; accepted label at t; actual state/error at t+.05"
+}

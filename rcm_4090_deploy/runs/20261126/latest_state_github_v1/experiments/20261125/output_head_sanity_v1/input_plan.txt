@@ -1,0 +1,50 @@
+# Task: 30-Minute Decisive Output-Head & Action-Scale Sanity Check (Episode 40 Paired Replay + fast5)
+
+## Context & Hypothesis to Test
+- Start from branch `experiment/local-oct-adaln-20261125` (commit `9fef16d`) and create a new branch `experiment/output-head-sanity-20261125`.
+- Confirmed facts from `9fef16d`:
+  - `F_geom_cond` (excluding visual tokens) ALREADY encodes `< 60 um` target direction with `0.73–0.77` cosine (`91%` X sign accuracy).
+  - On **Training Episode 40** (`approach` from `38.061 um`, `recede` from `37.403 um`), in just 20 steps (1 s):
+    - Geometric Teacher reaches **`4.250 um`**.
+    - Current `dit_rectified_flow` policy diverges to **`63.975 um` / `59.622 um`**, with `96.7%` K=8 A/B sign-flipping.
+- Hypothesis: Global linear action normalization (`action_std = [0.0454 deg, 0.0297 deg, 0.0167 mm]`) + Rectified Flow Gaussian noise `x_0 ~ N(0, I)` crushes `< 50 um` micro-actions into noise and negligible MSE loss.
+- Goal: Test in <= 30 minutes whether a **deterministic regression head** (and **action_symlog scaling**) on top of the exact same frozen encoder can reproduce the Teacher's `< 15 um` convergence on Episode 40 and eliminate the 96.7% A/B sign-flipping.
+
+## Hard Constraints
+1. Learned policy outputs actions independently; geometric teacher is ONLY for training & paired replay reference; MuJoCo ground truth is ONLY for post-hoc evaluation.
+2. Do NOT overwrite any existing `baseline`, `v3`, `v4`, `v5`, `stage4_1`, or `local_oct_adaln` files. Save all outputs under `rcm_4090_deploy/runs/20261125/output_head_sanity_v1/`.
+3. Total wall-clock budget: **<= 35 minutes**.
+
+## Step 1 (~5m): Near-Target Action-Scale & Loss-Share Audit
+- On the training dataset (and specifically Training Episode 40 frames with `true_error_um < 60 um`):
+  - Report median / p90 / max of ground-truth `|action|` on A/B/C in both physical units and current linearly-normalized units `(action - mean) / std`.
+  - Report the fraction of total dataset frames that have `true_error_um < 60 um` and their percentage share of total linear MSE action energy (`||norm_action||^2`).
+
+## Step 2 (~15m): Train Two Fast Deterministic Heads (Frozen Backbone & Same Data)
+Using the exact same training dataset as `baseline_task2_step4000` and initializing/freezing the visual backbone from `baseline_task2_step4000` (so training 4,000 batches takes ~2–3 min per arm):
+- **Arm R1 (Deterministic Head + Linear Action + Huber Loss)**:
+  - Attach a lightweight deterministic MLP head (e.g., 3-layer MLP with LayerNorm/SiLU) taking `F_geom_cond` (plus pooled visual feature if already fused in global cond) and directly regressing the `16 × 3` action chunk (zero Gaussian sampling noise).
+  - Train with Huber/SmoothL1 loss on linearly normalized actions for `4,000` batches (verify 2-batch smoke test first).
+- **Arm R2 (Deterministic Head + `action_symlog` + Near-Target Direction Loss)**:
+  - Same deterministic head architecture, but transform target actions with per-axis `symlog`:
+    `y = sign(a) * log1p(|a| / s_axis)` with `s_axis = [0.003, 0.002, 0.001]` (A_deg, B_deg, C_mm) and exact inverse `sign(y) * s_axis * expm1(|y|)` at inference (unit-test round-trip invertibility `< 1e-7` error!).
+  - Train with Huber/SmoothL1 loss in `symlog` space + a small cosine direction loss (`weight = 0.1`) on non-zero `< 80 um` frames for `4,000` batches.
+
+## Step 3 (~10–15m): Decisive Paired Replay & Conditional `fast5_1600`
+1. **Training Episode 40 Paired 20-Step (1 s) Replay** (exact same `approach` 38.061 um & `recede` 37.403 um starting states as `9fef16d`):
+   - Compare final error after 20 steps (1 s) and min error across:
+     - `Geometric Teacher` (reference: `4.250 um`)
+     - `Baseline dit_rectified_flow` (reference: `63.975 / 59.622 um`)
+     - **`Arm R1`** (deterministic linear)
+     - **`Arm R2`** (deterministic `action_symlog`)
+2. **Conditional `fast5_1600` (`E00 / E02 / E06 / E08 / E10`, WITH raw frame-by-frame trajectories saved)**:
+   - Run `fast5_1600` on whichever of `Arm R1` / `Arm R2` beats Baseline on Episode 40 (run both if time permits; prioritize the better one if `< 15 min` remain).
+   - Run `eval_20um_hold_metrics.py` to report the full 20 um sustained-hold table (`min_error_um`, `final_error_um`, `entries_le_20_um`, `max_consecutive_le_20_um_cycles`, `last_200_max_error_um`, late `1000–1600` A/B/C sign-flip rate).
+
+## Deliverables & Push
+- Write `rcm_4090_deploy/runs/20261125/output_head_sanity_v1/report.md` and `metrics.json` with:
+  1. Step 1 near-target action scale & MSE energy share audit.
+  2. Episode 40 paired 1 s replay comparison table (`Teacher` vs `Baseline Flow` vs `Arm R1` vs `Arm R2`).
+  3. `fast5_1600` 20 um hold & late A/B/C sign-flip rate comparison (if run).
+  4. Clear binary conclusion: did removing diffusion noise + applying `action_symlog` unlock `< 20 um` convergence on Episode 40 and `fast5`?
+- Commit code + reports (respecting `.gitignore`, no large weights/raw `.npz`/secret patterns) and push branch `experiment/output-head-sanity-20261125`.

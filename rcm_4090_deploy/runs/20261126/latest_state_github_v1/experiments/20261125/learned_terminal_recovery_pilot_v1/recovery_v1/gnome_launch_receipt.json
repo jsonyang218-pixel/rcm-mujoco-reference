@@ -1,0 +1,51 @@
+{
+  "time": "2026-11-25T22:47:40.935753+08:00",
+  "command": [
+    "/usr/bin/gnome-terminal",
+    "--window",
+    "--working-directory=/home/him1/mujoco_bc/rcm_4090_deploy",
+    "--title=Learned terminal recovery pilot v1 - authorized recovery",
+    "--",
+    "/usr/bin/env",
+    "DISPLAY=:1",
+    "XDG_RUNTIME_DIR=/run/user/1000",
+    "DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus",
+    "/bin/bash",
+    "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261125/learned_terminal_recovery_pilot_v1/launch_recovery_v1.sh"
+  ],
+  "returncode": 0,
+  "stdout": "",
+  "stderr": "",
+  "desktop_environment": {
+    "DISPLAY": ":1",
+    "XDG_RUNTIME_DIR": "/run/user/1000",
+    "DBUS_SESSION_BUS_ADDRESS": "unix:path=/run/user/1000/bus"
+  },
+  "original_files_preserved": {
+    "original_file_count": 11,
+    "unchanged": true
+  },
+  "runtime_output_dir": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261125/learned_terminal_recovery_pilot_v1/recovery_v1/run",
+  "completion_verified": false,
+  "status": "actual_start_confirmed",
+  "startup_acknowledgment": {
+    "status": "host_preflight_passed",
+    "time": "2026-11-25T22:47:43.281743+08:00",
+    "pid": 301544,
+    "ppid": 301542,
+    "tty": "/dev/pts/7",
+    "gpu": "NVIDIA GeForce RTX 4090",
+    "actual_start_path": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261125/learned_terminal_recovery_pilot_v1/recovery_v1/first_actual_start.json",
+    "original_files_preserved": {
+      "original_file_count": 11,
+      "unchanged": true
+    },
+    "runtime_output_dir": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261125/learned_terminal_recovery_pilot_v1/recovery_v1/run",
+    "completion_verified": false
+  },
+  "x11_window_matches": [
+    "0x3e011e4 \"Learned terminal recovery pilot v1 - authorized recovery\": (\"gnome-terminal-server\" \"Gnome-terminal\")  866x725+240+209  +240+209"
+  ],
+  "startup_confirmation_only": true,
+  "training_or_completion_polled": false
+}

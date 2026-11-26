@@ -1,0 +1,27 @@
+{
+  "status": "passed",
+  "gpu": {
+    "device": "NVIDIA GeForce RTX 4090",
+    "total_memory_bytes": 50857050112,
+    "python": "3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]",
+    "executable": "/home/him1/mujoco_bc/rcm_4090_deploy/.venv/bin/python"
+  },
+  "python": "/home/him1/mujoco_bc/rcm_4090_deploy/.venv/bin/python",
+  "environment": {
+    "CUDA_VISIBLE_DEVICES": "0",
+    "MUJOCO_GL": "egl",
+    "MUJOCO_EGL_DEVICE_ID": "0",
+    "RCM_DRIVER_VARIANT": "g10"
+  },
+  "relevant_process_snapshot": [
+    " 301521  300932       00:01  9.7 python          .venv/bin/python -E -B -u runs/20261125/learned_terminal_recovery_pilot_v1/recovery_entry_v1.py launch --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261125/learned_terminal_recovery_pilot_v1",
+    " 301538  288590       00:00  0.0 bash            /bin/bash /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261125/learned_terminal_recovery_pilot_v1/launch_recovery_v1.sh",
+    " 301542  301538       00:00  0.0 timeout         timeout --signal=TERM --kill-after=10s 930s python -E -B -u runs/20261125/learned_terminal_recovery_pilot_v1/recovery_entry_v1.py _run --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261125/learned_terminal_recovery_pilot_v1",
+    " 301543  301538       00:00  0.0 tee             tee runs/20261125/learned_terminal_recovery_pilot_v1/recovery_v1/terminal.log",
+    " 301544  301542       00:00 97.5 python          python -E -B -u runs/20261125/learned_terminal_recovery_pilot_v1/recovery_entry_v1.py _run --output-dir /home/him1/mujoco_bc/rcm_4090_deploy/runs/20261125/learned_terminal_recovery_pilot_v1"
+  ],
+  "protected_tasks_touched": false,
+  "pid": 301544,
+  "ppid": 301542,
+  "proc_start_time": "2026-11-25T22:47:43.280904+08:00"
+}

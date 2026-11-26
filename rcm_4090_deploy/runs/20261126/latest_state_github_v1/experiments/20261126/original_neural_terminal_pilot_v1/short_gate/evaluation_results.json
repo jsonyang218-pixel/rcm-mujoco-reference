@@ -1,0 +1,356 @@
+{
+  "success": false,
+  "steps": 2,
+  "final_error_mm": 0.0382789896146617,
+  "max_error_mm": 0.03804145986150602,
+  "final_state_A_deg_B_deg_C_mm": [
+    -3.411,
+    -2.2163652431895926,
+    19.90097103183587
+  ],
+  "final_velocity_deg_deg_mm_per_s": [
+    0.0,
+    -0.10708058556928973,
+    -0.003447048600307978
+  ],
+  "final_tip_world_mm": [
+    349.1976797110335,
+    -12.627858509089322,
+    373.040588072056
+  ],
+  "target_world_mm": [
+    349.2189832461999,
+    -12.630317456102267,
+    373.0088801232904
+  ],
+  "motor_summary": {
+    "backend": "MotorBackend",
+    "driver": {
+      "variant": "g10",
+      "control_gear": 10,
+      "kinematics_path": "/home/him1/mujoco_bc/rcm_4090_deploy/mujoco_model/vendor/simulation_driver/ros_msg/src/robot_control/kinematics.py",
+      "kinematics_sha256": "e48eb4a909208e8d1caa3ee2a7aff157de91c808730282dd17ccb17a46591530"
+    },
+    "tau_s": 0.04,
+    "control_period_s": 0.05,
+    "integration_step_s": 0.002,
+    "speed_limits_A_deg_B_deg_C_mm_per_s": [
+      10.0,
+      10.0,
+      2.0
+    ],
+    "timeout_s": 0.5,
+    "simulation_time_s": 1.4000000000000006,
+    "control_steps": 28,
+    "robot_ABCE": [
+      -1895,
+      1278156,
+      2163652,
+      0
+    ],
+    "target_robot_ABCE": [
+      -1895,
+      1277976,
+      2163647,
+      0
+    ],
+    "encoder_settled": false,
+    "status": "moving",
+    "fault": null,
+    "physical_dynamics_identified": false,
+    "direct_pose_fallback_used": false
+  },
+  "motor_records": [
+    {
+      "driver": {
+        "variant": "g10",
+        "control_gear": 10,
+        "kinematics_path": "/home/him1/mujoco_bc/rcm_4090_deploy/mujoco_model/vendor/simulation_driver/ros_msg/src/robot_control/kinematics.py",
+        "kinematics_sha256": "e48eb4a909208e8d1caa3ee2a7aff157de91c808730282dd17ccb17a46591530"
+      },
+      "step_index": 26,
+      "start_time_s": 1.3000000000000005,
+      "end_time_s": 1.3500000000000005,
+      "duration_s": 0.05,
+      "integration_steps": 25,
+      "tau_s": 0.04,
+      "requested_task_rad_rad_m": [
+        -0.059555244954873514,
+        -0.03864531366980464,
+        0.01990106350714297
+      ],
+      "commanded_task_rad_rad_m": [
+        -0.05953318078552658,
+        -0.038589425481265836,
+        0.01990089268982222
+      ],
+      "requested_robot_ABCE": [
+        -1896,
+        1278336,
+        2163658,
+        0
+      ],
+      "handles_ABCE": [
+        0,
+        0,
+        44,
+        0
+      ],
+      "quantized_target_robot_ABCE": [
+        -1895,
+        1278604,
+        2163647,
+        0
+      ],
+      "actual_before_robot_ABCE": [
+        -1895,
+        1278604,
+        2163704,
+        0
+      ],
+      "actual_after_robot_ABCE": [
+        -1895,
+        1278604,
+        2163663,
+        0
+      ],
+      "actual_before_task_rad_rad_m": [
+        -0.05953318078552658,
+        -0.038589425481265836,
+        0.01990178578877778
+      ],
+      "actual_after_task_rad_rad_m": [
+        -0.05953318078552658,
+        -0.038589425481265836,
+        0.019901143384265886
+      ],
+      "actual_velocity_rad_rad_m_per_s": [
+        0.0,
+        0.0,
+        -1.2848090237896348e-05
+      ],
+      "tip_rcm_radius_before_mm": 23.901785658416667,
+      "tip_rcm_radius_after_mm": 23.90114325390478,
+      "tip_displacement_um": 0.6424045118856642,
+      "status": "moving",
+      "fault": null
+    },
+    {
+      "driver": {
+        "variant": "g10",
+        "control_gear": 10,
+        "kinematics_path": "/home/him1/mujoco_bc/rcm_4090_deploy/mujoco_model/vendor/simulation_driver/ros_msg/src/robot_control/kinematics.py",
+        "kinematics_sha256": "e48eb4a909208e8d1caa3ee2a7aff157de91c808730282dd17ccb17a46591530"
+      },
+      "step_index": 27,
+      "start_time_s": 1.3500000000000005,
+      "end_time_s": 1.4000000000000006,
+      "duration_s": 0.05,
+      "integration_steps": 25,
+      "tau_s": 0.04,
+      "requested_task_rad_rad_m": [
+        -0.059409471816424475,
+        -0.03876948223493966,
+        0.019900531907665716
+      ],
+      "commanded_task_rad_rad_m": [
+        -0.05953318078552658,
+        -0.03872041768988299,
+        0.01990089268982222
+      ],
+      "requested_robot_ABCE": [
+        -1891,
+        1277741,
+        2163624,
+        0
+      ],
+      "handles_ABCE": [
+        0,
+        -1,
+        44,
+        0
+      ],
+      "quantized_target_robot_ABCE": [
+        -1895,
+        1277976,
+        2163647,
+        0
+      ],
+      "actual_before_robot_ABCE": [
+        -1895,
+        1278604,
+        2163663,
+        0
+      ],
+      "actual_after_robot_ABCE": [
+        -1895,
+        1278156,
+        2163652,
+        0
+      ],
+      "actual_before_task_rad_rad_m": [
+        -0.05953318078552658,
+        -0.038589425481265836,
+        0.019901143384265886
+      ],
+      "actual_after_task_rad_rad_m": [
+        -0.05953318078552658,
+        -0.03868287092042322,
+        0.01990097103183587
+      ],
+      "actual_velocity_rad_rad_m_per_s": [
+        0.0,
+        -0.0018689087831476325,
+        -3.447048600307978e-06
+      ],
+      "tip_rcm_radius_before_mm": 23.90114325390478,
+      "tip_rcm_radius_after_mm": 23.90097090147476,
+      "tip_displacement_um": 2.240085024986922,
+      "status": "moving",
+      "fault": null
+    }
+  ],
+  "ground_truth_used_for_control": false,
+  "ground_truth_used_for_success": true,
+  "execution_backend": "MotorBackend",
+  "evaluation_contract_version": 2,
+  "controller_variant": "feedback",
+  "state_action_units": "A_deg,B_deg,C_mm",
+  "oct_navigation_used": true,
+  "safety_limited_steps": 0,
+  "last_safety_error": null,
+  "early_stop_reason": null,
+  "terminal_success": {
+    "error_threshold_mm": 0.00035,
+    "required_consecutive_frames": 3,
+    "consecutive_frames_at_exit": 0,
+    "low_speed_at_exit": false,
+    "encoder_settled_at_exit": false,
+    "terminal_frame_pass": false,
+    "terminal_condition": "MotorExecution.settled"
+  },
+  "policy_control_mode_counts": {
+    "coarse": 0,
+    "fine": 0,
+    "stabilize": 0,
+    "terminal": 0
+  },
+  "last_terminal_refinement": null,
+  "terminal_locked_target_world_mm": null,
+  "trajectory": {
+    "raw_actions": [
+      [
+        -0.0012641837820410728,
+        -0.0032021573279052973,
+        -0.0007222816348075867
+      ],
+      [
+        0.0070880018174648285,
+        -0.010316492058336735,
+        -0.0006114766001701355
+      ]
+    ],
+    "control_targets": [
+      {
+        "controller_variant": "feedback",
+        "scale": 1.0,
+        "accepted_delta_deg_deg_mm": [
+          -0.0012641837820410728,
+          -0.0032021573279052973,
+          -0.0007222816348075867
+        ]
+      },
+      {
+        "controller_variant": "feedback",
+        "scale": 1.0,
+        "accepted_delta_deg_deg_mm": [
+          0.0070880018174648285,
+          -0.010316492058336735,
+          -0.0006114766001701355
+        ]
+      }
+    ],
+    "states": [
+      [
+        -3.411,
+        -2.211011213911128,
+        19.90178578877778
+      ],
+      [
+        -3.411,
+        -2.211011213911128,
+        19.901143384265886
+      ]
+    ],
+    "actions": [
+      [
+        -0.0012641837820410728,
+        -0.0032021573279052973,
+        -0.0007222816348075867
+      ],
+      [
+        0.0070880018174648285,
+        -0.010316492058336735,
+        -0.0006114766001701355
+      ]
+    ],
+    "errors": [
+      0.03739906803490367,
+      0.03804145986150602
+    ],
+    "velocities": [
+      [
+        0.0,
+        0.0,
+        -0.04387152764122326
+      ],
+      [
+        0.0,
+        0.0,
+        -0.012848090237896348
+      ]
+    ],
+    "low_speed": [
+      false,
+      false
+    ],
+    "encoder_settled": [
+      false,
+      false
+    ],
+    "oct_navigation_mm": [
+      [
+        0.006420920602977276,
+        -0.001638061716221273,
+        0.03687034547328949
+      ],
+      [
+        0.006553797051310539,
+        -0.0017165731405839324,
+        0.037504035979509354
+      ]
+    ],
+    "oct_navigation_norm_mm": [
+      0.03746109828352928,
+      0.038111042231321335
+    ],
+    "oct_navigation_valid": [
+      true,
+      true
+    ],
+    "simulation_time_s": [
+      1.3000000000000005,
+      1.3500000000000005
+    ]
+  },
+  "model_sha256": "6cc389df3786f1f34c43cf65d6dc17fe910ab342fae8d84c8e37cea6a7db6c11",
+  "model_path": "/home/him1/mujoco_bc/rcm_4090_deploy/outputs/homog_label_fix_20261124_v5/homog_label_fix_20261124_v5_phase1_A/step_004000.pth",
+  "start_kind": "below_recede",
+  "target_id": "E41",
+  "prefix": "identical26 real G10 ticks",
+  "teacher_instances": 0,
+  "neural_action_calls": 2,
+  "all_ABC_actions_from_original_neural_model": true,
+  "no_control_handoff": true,
+  "prior_observations": "real prefix RGB/encoder/OCT, no reset gap"
+}

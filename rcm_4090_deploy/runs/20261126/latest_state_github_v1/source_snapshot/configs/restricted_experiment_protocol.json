@@ -1,0 +1,77 @@
+{
+  "schema_version": 1,
+  "name": "restricted_oct_imitation_v1",
+  "target_split_manifest": "configs/target_split_manifest.json",
+  "restricted_perception_config": "configs/restricted_perception.json",
+  "stage0": {
+    "report": "outputs/restricted_perception_stage0_20261106/stage0_report.json",
+    "selected_switch_distance_mm": 2.0,
+    "selected_transition_half_width_mm": 0.2,
+    "selected_precision_threshold_um": 20.0,
+    "required_step_reduction": 0.8,
+    "required_closed_loop_success": 0.95
+  },
+  "stage1": {
+    "development_targets": 40,
+    "image_ladder": [
+      {
+        "name": "full_224",
+        "resolution": 224,
+        "gaussian_blur_radius": 0.0,
+        "center_occlusion_fraction": 0.0
+      },
+      {
+        "name": "reduced_112",
+        "resolution": 112,
+        "gaussian_blur_radius": 0.0,
+        "center_occlusion_fraction": 0.0
+      },
+      {
+        "name": "reduced_112_blur_1p5",
+        "resolution": 112,
+        "gaussian_blur_radius": 1.5,
+        "center_occlusion_fraction": 0.0
+      },
+      {
+        "name": "reduced_112_blur_1p5_center_occlusion_0p25",
+        "resolution": 112,
+        "gaussian_blur_radius": 1.5,
+        "center_occlusion_fraction": 0.25
+      }
+    ],
+    "vector_ablations": [
+      "normal",
+      "zero",
+      "same_distance_cross_episode_mismatch"
+    ],
+    "minimum_success_drop": 0.10,
+    "minimum_near_error_increase": 0.10
+  },
+  "stage2": {
+    "training_targets": 60,
+    "starts_per_target": 2,
+    "start_error_range_um": [
+      20.0,
+      200.0
+    ],
+    "residual_distance_scale_um": 10.0,
+    "single_factor_order": [
+      "restricted_dagger_only",
+      "velocity_input_only",
+      "distance_scaled_residual_limit_only",
+      "stop_head_only"
+    ]
+  },
+  "stage3": {
+    "development_targets": 40,
+    "distillation_samples": 7,
+    "distillation_aggregation": "median",
+    "distillation_data": "training_split_only"
+  },
+  "stage4": {
+    "test_targets": 60,
+    "seeds_per_target": 3,
+    "median_control_subset": 20,
+    "median_control_selection": "target_hash_before_results"
+  }
+}

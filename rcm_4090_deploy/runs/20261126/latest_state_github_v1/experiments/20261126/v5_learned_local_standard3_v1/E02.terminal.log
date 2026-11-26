@@ -1,0 +1,22 @@
+Warning: wandb not available, logging will be local only
+加载模型: /home/him1/mujoco_bc/rcm_4090_deploy/outputs/homog_label_fix_20261124_v5/homog_label_fix_20261124_v5_phase1_A/step_004000.pth
+模型加载完成 (type=dit_rectified_flow, epoch=3, train_loss=0.103753, val_loss=0.148062)
+  closed-loop step 1/1600, error=19545.438 um
+- 2026-11-26T09:25:18.367612+08:00: v5_learned_local_standard3_v1 actual first action; config=/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261126/v5_learned_local_standard3_v1/experiment_card.json; result={"status": "actual_first_action_completed", "time": "2026-11-26T09:25:18.367385+08:00", "pid": 326581, "ppid": 326575, "target": "E02", "seed": 44, "action_cycle": 1, "simulation_time_s": 0.05, "initial_error_um": 19545.43844113079, "post_true_error_um": 19545.43844113079, "driver": "g10", "gpu": "NVIDIA GeForce RTX 4090", "receipt_path": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261126/v5_learned_local_standard3_v1/E02/actual_start_receipt.json"}; output=/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261126/v5_learned_local_standard3_v1; MuJoCo simulation only.
+  closed-loop step 100/1600, error=16629.242 um
+  closed-loop step 200/1600, error=13618.729 um
+  closed-loop step 300/1600, error=10618.504 um
+  closed-loop step 400/1600, error=7620.428 um
+  closed-loop step 500/1600, error=4621.952 um
+  closed-loop step 600/1600, error=1620.550 um
+  closed-loop step 700/1600, error=61.447 um
+  closed-loop step 800/1600, error=68.679 um
+  closed-loop step 900/1600, error=49.112 um
+  closed-loop step 1000/1600, error=56.028 um
+  closed-loop step 1100/1600, error=45.052 um
+  closed-loop step 1200/1600, error=57.605 um
+  closed-loop step 1300/1600, error=68.185 um
+  closed-loop step 1400/1600, error=62.512 um
+  closed-loop step 1500/1600, error=47.799 um
+  closed-loop step 1600/1600, error=56.206 um
+- 2026-11-26T09:36:12.994639+08:00: v5_learned_local_standard3_v1 trajectory completed pending exact protocol gate; config=/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261126/v5_learned_local_standard3_v1/experiment_card.json; result={"status": "trajectory_completed_pending_protocol_gate", "target": "E02", "seed": 44, "actions": 1600, "initial_true_error_um": 19545.43844113079, "final_true_error_um": 59.13587593788196, "last200_max_true_error_um": 74.92998976252663, "last200_includes_final_action": true, "primary_200um": {"radius_um": 200, "first_enter_post_action_cycle": 647, "entry_cycles": [647], "first_exit_post_action_cycle": null, "exit_cycles": [], "longest_hold_cycles": 954, "longest_hold_s": 47.7, "terminal_hold_cycles": 954, "terminal_hold_s": 47.7, "last200_max_um": 74.92998976252663, "last200_cycles_inclusive": [1401, 1600], "last200_duration_s": 10.0, "passed": true}, "long_term_20um": {"radius_um": 20, "first_enter_post_action_cycle": null, "entry_cycles": [], "first_exit_post_action_cycle": null, "exit_cycles": [], "longest_hold_cycles": 0, "longest_hold_s": 0.0, "terminal_hold_cycles": 0, "terminal_hold_s": 0.0, "last200_max_um": 74.92998976252663, "last200_cycles_inclusive": [1401, 1600], "last200_duration_s": 10.0, "passed": false}, "original_strict_0p35um_success": false, "original_terminal_success": {"error_threshold_mm": 0.00035, "required_consecutive_frames": 3, "consecutive_frames_at_exit": 0, "low_speed_at_exit": false, "encoder_settled_at_exit": false, "terminal_frame_pass": false, "terminal_condition": "MotorExecution.settled"}, "switch": null, "route_counts": {"v5": 1600, "learned_local": 0, "teacher": 0, "geometry": 0}, "teacher_calls": 0, "geometry_calls": 0, "model_sha256": {"v5": "6cc389df3786f1f34c43cf65d6dc17fe910ab342fae8d84c8e37cea6a7db6c11", "local": "8d0679fc706c8a1a384977c59af5ec131e22e281afa9d02bd2f6625baccfbfc1"}, "elapsed_s": 655.0060356640024, "independent_truth": "Live scene.site_mm(needle_tip) after each apply_prepared_motor; worldXYZ 3D norm to target", "control_inputs": "Measured RGB/OCT + ABC; ridge only measured OCT/ABC/actual velocity/previous accepted command", "source_protocol": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261126/v5_learned_local_standard3_v1/experiment_card.json", "trajectory": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261126/v5_learned_local_standard3_v1/E02/cycles.jsonl", "raw": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261126/v5_learned_local_standard3_v1/E02/evaluation_results.json"}; output=/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261126/v5_learned_local_standard3_v1; MuJoCo simulation only.

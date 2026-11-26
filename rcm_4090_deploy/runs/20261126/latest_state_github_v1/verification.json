@@ -1,0 +1,23 @@
+{
+  "phase": "payload_and_metadata_before_publication_record",
+  "command": [
+    "/usr/bin/python3",
+    "-E",
+    "-B",
+    "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261126/latest_state_github_v1/verify_snapshot.py",
+    "--snapshot-dir",
+    "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261126/latest_state_github_v1"
+  ],
+  "result": {
+    "status": "passed",
+    "counts": {
+      "files": 678,
+      "bytes": 16478858,
+      "json": 277,
+      "jsonl": 2,
+      "python": 298
+    },
+    "snapshot_at": "2026-11-26T10:15:08+08:00"
+  },
+  "new_experiments_run": false
+}

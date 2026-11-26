@@ -1,0 +1,2968 @@
+{
+  "success": false,
+  "steps": 24,
+  "final_error_mm": 19.00017948633183,
+  "max_error_mm": 19.609872414922812,
+  "final_state_A_deg_B_deg_C_mm": [
+    -4.1148,
+    -2.012835683734245,
+    0.570580553780416
+  ],
+  "final_velocity_deg_deg_mm_per_s": [
+    -4.175999999999989,
+    -2.1000026101278015,
+    0.6120078105959761
+  ],
+  "final_tip_world_mm": [
+    337.5038358577411,
+    -11.576359390162002,
+    388.3973126272755
+  ],
+  "target_world_mm": [
+    351.0549894697093,
+    -13.61189066077876,
+    375.23563838939805
+  ],
+  "motor_summary": {
+    "backend": "MotorBackend",
+    "driver": {
+      "variant": "g10",
+      "control_gear": 10,
+      "kinematics_path": "/home/him1/mujoco_bc/rcm_4090_deploy/mujoco_model/vendor/simulation_driver/ros_msg/src/robot_control/kinematics.py",
+      "kinematics_sha256": "e48eb4a909208e8d1caa3ee2a7aff157de91c808730282dd17ccb17a46591530"
+    },
+    "tau_s": 0.04,
+    "control_period_s": 0.05,
+    "integration_step_s": 0.002,
+    "speed_limits_A_deg_B_deg_C_mm_per_s": [
+      10.0,
+      10.0,
+      2.0
+    ],
+    "timeout_s": 0.5,
+    "simulation_time_s": 1.2000000000000004,
+    "control_steps": 24,
+    "robot_ABCE": [
+      -2286,
+      1295207,
+      929934,
+      0
+    ],
+    "target_robot_ABCE": [
+      -2333,
+      1291671,
+      930718,
+      0
+    ],
+    "encoder_settled": false,
+    "status": "moving",
+    "fault": null,
+    "physical_dynamics_identified": false,
+    "direct_pose_fallback_used": false
+  },
+  "motor_records": [
+    {
+      "driver": {
+        "variant": "g10",
+        "control_gear": 10,
+        "kinematics_path": "/home/him1/mujoco_bc/rcm_4090_deploy/mujoco_model/vendor/simulation_driver/ros_msg/src/robot_control/kinematics.py",
+        "kinematics_sha256": "e48eb4a909208e8d1caa3ee2a7aff157de91c808730282dd17ccb17a46591530"
+      },
+      "step_index": 0,
+      "start_time_s": 0.0,
+      "end_time_s": 0.05,
+      "duration_s": 0.05,
+      "integration_steps": 25,
+      "tau_s": 0.04,
+      "requested_task_rad_rad_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "commanded_task_rad_rad_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "requested_robot_ABCE": [
+        0,
+        1466018,
+        893518,
+        0
+      ],
+      "handles_ABCE": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "quantized_target_robot_ABCE": [
+        0,
+        1466018,
+        893518,
+        0
+      ],
+      "actual_before_robot_ABCE": [
+        0,
+        1466018,
+        893518,
+        0
+      ],
+      "actual_after_robot_ABCE": [
+        0,
+        1466018,
+        893518,
+        0
+      ],
+      "actual_before_task_rad_rad_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "actual_after_task_rad_rad_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "actual_velocity_rad_rad_m_per_s": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "tip_rcm_radius_before_mm": 3.99999986963889,
+      "tip_rcm_radius_after_mm": 3.99999986963889,
+      "tip_displacement_um": 0.0,
+      "status": "holding",
+      "fault": null
+    },
+    {
+      "driver": {
+        "variant": "g10",
+        "control_gear": 10,
+        "kinematics_path": "/home/him1/mujoco_bc/rcm_4090_deploy/mujoco_model/vendor/simulation_driver/ros_msg/src/robot_control/kinematics.py",
+        "kinematics_sha256": "e48eb4a909208e8d1caa3ee2a7aff157de91c808730282dd17ccb17a46591530"
+      },
+      "step_index": 1,
+      "start_time_s": 0.05,
+      "end_time_s": 0.1,
+      "duration_s": 0.05,
+      "integration_steps": 25,
+      "tau_s": 0.04,
+      "requested_task_rad_rad_m": [
+        -0.0007859332325118913,
+        -0.00021851963326746185,
+        4.019197076559067e-06
+      ],
+      "commanded_task_rad_rad_m": [
+        -0.0007853981633974482,
+        -0.0002618154815006526,
+        3.5253906140321184e-06
+      ],
+      "requested_robot_ABCE": [
+        -25,
+        1464944,
+        893775,
+        0
+      ],
+      "handles_ABCE": [
+        -3,
+        -2,
+        3,
+        0
+      ],
+      "quantized_target_robot_ABCE": [
+        -25,
+        1464731,
+        893743,
+        0
+      ],
+      "actual_before_robot_ABCE": [
+        0,
+        1466018,
+        893518,
+        0
+      ],
+      "actual_after_robot_ABCE": [
+        -18,
+        1465100,
+        893679,
+        0
+      ],
+      "actual_before_task_rad_rad_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "actual_after_task_rad_rad_m": [
+        -0.0005654866776461627,
+        -0.0001867453168470347,
+        2.5226128393740932e-06
+      ],
+      "actual_velocity_rad_rad_m_per_s": [
+        -0.011309733552923255,
+        -0.003734906336940694,
+        5.045225678748186e-05
+      ],
+      "tip_rcm_radius_before_mm": 3.99999986963889,
+      "tip_rcm_radius_after_mm": 4.002522482478264,
+      "tip_displacement_um": 3.428047186349043,
+      "status": "moving",
+      "fault": null
+    },
+    {
+      "driver": {
+        "variant": "g10",
+        "control_gear": 10,
+        "kinematics_path": "/home/him1/mujoco_bc/rcm_4090_deploy/mujoco_model/vendor/simulation_driver/ros_msg/src/robot_control/kinematics.py",
+        "kinematics_sha256": "e48eb4a909208e8d1caa3ee2a7aff157de91c808730282dd17ccb17a46591530"
+      },
+      "step_index": 2,
+      "start_time_s": 0.1,
+      "end_time_s": 0.15000000000000002,
+      "duration_s": 0.05,
+      "integration_steps": 25,
+      "tau_s": 0.04,
+      "requested_task_rad_rad_m": [
+        -0.001708418019673383,
+        -0.0006773582363999637,
+        9.418875827822235e-06
+      ],
+      "commanded_task_rad_rad_m": [
+        -0.0015707963267948964,
+        -0.0006545138084803305,
+        9.401041637418982e-06
+      ],
+      "requested_robot_ABCE": [
+        -54,
+        1462689,
+        894119,
+        0
+      ],
+      "handles_ABCE": [
+        -6,
+        -5,
+        8,
+        0
+      ],
+      "quantized_target_robot_ABCE": [
+        -50,
+        1462801,
+        894118,
+        0
+      ],
+      "actual_before_robot_ABCE": [
+        -18,
+        1465100,
+        893679,
+        0
+      ],
+      "actual_after_robot_ABCE": [
+        -41,
+        1463460,
+        893992,
+        0
+      ],
+      "actual_before_task_rad_rad_m": [
+        -0.0005654866776461627,
+        -0.0001867453168470347,
+        2.5226128393740932e-06
+      ],
+      "actual_after_task_rad_rad_m": [
+        -0.0012880529879718153,
+        -0.0005204162859562298,
+        7.4268228935609956e-06
+      ],
+      "actual_velocity_rad_rad_m_per_s": [
+        -0.01445132620651305,
+        -0.0066734193821839025,
+        9.808420108373803e-05
+      ],
+      "tip_rcm_radius_before_mm": 4.002522482478264,
+      "tip_rcm_radius_after_mm": 4.00742669253245,
+      "tip_displacement_um": 5.808277427292625,
+      "status": "moving",
+      "fault": null
+    },
+    {
+      "driver": {
+        "variant": "g10",
+        "control_gear": 10,
+        "kinematics_path": "/home/him1/mujoco_bc/rcm_4090_deploy/mujoco_model/vendor/simulation_driver/ros_msg/src/robot_control/kinematics.py",
+        "kinematics_sha256": "e48eb4a909208e8d1caa3ee2a7aff157de91c808730282dd17ccb17a46591530"
+      },
+      "step_index": 3,
+      "start_time_s": 0.15000000000000002,
+      "end_time_s": 0.2,
+      "duration_s": 0.05,
+      "integration_steps": 25,
+      "tau_s": 0.04,
+      "requested_task_rad_rad_m": [
+        -0.0030690551007157285,
+        -0.0012437058708865314,
+        1.8817238845170607e-05
+      ],
+      "commanded_task_rad_rad_m": [
+        -0.003141592653589793,
+        -0.001309080647716728,
+        1.8802083274837964e-05
+      ],
+      "requested_robot_ABCE": [
+        -98,
+        1459906,
+        894719,
+        0
+      ],
+      "handles_ABCE": [
+        -12,
+        -10,
+        16,
+        0
+      ],
+      "quantized_target_robot_ABCE": [
+        -100,
+        1459585,
+        894718,
+        0
+      ],
+      "actual_before_robot_ABCE": [
+        -41,
+        1463460,
+        893992,
+        0
+      ],
+      "actual_after_robot_ABCE": [
+        -83,
+        1460695,
+        894510,
+        0
+      ],
+      "actual_before_task_rad_rad_m": [
+        -0.0012880529879718153,
+        -0.0005204162859562298,
+        7.4268228935609956e-06
+      ],
+      "actual_after_task_rad_rad_m": [
+        -0.0026075219024795284,
+        -0.0010831283507657804,
+        1.5543055507199382e-05
+      ],
+      "actual_velocity_rad_rad_m_per_s": [
+        -0.02638937829015426,
+        -0.01125424129619101,
+        0.0001623246522727677
+      ],
+      "tip_rcm_radius_before_mm": 4.00742669253245,
+      "tip_rcm_radius_after_mm": 4.0155429251460895,
+      "tip_displacement_um": 9.868560526367292,
+      "status": "moving",
+      "fault": null
+    },
+    {
+      "driver": {
+        "variant": "g10",
+        "control_gear": 10,
+        "kinematics_path": "/home/him1/mujoco_bc/rcm_4090_deploy/mujoco_model/vendor/simulation_driver/ros_msg/src/robot_control/kinematics.py",
+        "kinematics_sha256": "e48eb4a909208e8d1caa3ee2a7aff157de91c808730282dd17ccb17a46591530"
+      },
+      "step_index": 4,
+      "start_time_s": 0.2,
+      "end_time_s": 0.25,
+      "duration_s": 0.05,
+      "integration_steps": 25,
+      "tau_s": 0.04,
+      "requested_task_rad_rad_m": [
+        -0.005151803798731427,
+        -0.0022029077463262626,
+        3.22637341644927e-05
+      ],
+      "commanded_task_rad_rad_m": [
+        -0.005246459731494955,
+        -0.0022252143444906974,
+        3.172851552628906e-05
+      ],
+      "requested_robot_ABCE": [
+        -164,
+        1455196,
+        895577,
+        0
+      ],
+      "handles_ABCE": [
+        -20,
+        -17,
+        27,
+        0
+      ],
+      "quantized_target_robot_ABCE": [
+        -167,
+        1455086,
+        895543,
+        0
+      ],
+      "actual_before_robot_ABCE": [
+        -83,
+        1460695,
+        894510,
+        0
+      ],
+      "actual_after_robot_ABCE": [
+        -143,
+        1456693,
+        895247,
+        0
+      ],
+      "actual_before_task_rad_rad_m": [
+        -0.0026075219024795284,
+        -0.0010831283507657804,
+        1.5543055507199382e-05
+      ],
+      "actual_after_task_rad_rad_m": [
+        -0.0044924774946334045,
+        -0.0018979221056041609,
+        2.70906683184957e-05
+      ],
+      "actual_velocity_rad_rad_m_per_s": [
+        -0.03769911184307752,
+        -0.01629587509676761,
+        0.0002309522562259264
+      ],
+      "tip_rcm_radius_before_mm": 4.0155429251460895,
+      "tip_rcm_radius_after_mm": 4.027090537957385,
+      "tip_displacement_um": 14.080029725094601,
+      "status": "moving",
+      "fault": null
+    },
+    {
+      "driver": {
+        "variant": "g10",
+        "control_gear": 10,
+        "kinematics_path": "/home/him1/mujoco_bc/rcm_4090_deploy/mujoco_model/vendor/simulation_driver/ros_msg/src/robot_control/kinematics.py",
+        "kinematics_sha256": "e48eb4a909208e8d1caa3ee2a7aff157de91c808730282dd17ccb17a46591530"
+      },
+      "step_index": 5,
+      "start_time_s": 0.25,
+      "end_time_s": 0.3,
+      "duration_s": 0.05,
+      "integration_steps": 25,
+      "tau_s": 0.04,
+      "requested_task_rad_rad_m": [
+        -0.007780910317663117,
+        -0.003309998905223189,
+        4.926340245984549e-05
+      ],
+      "commanded_task_rad_rad_m": [
+        -0.007853981633974483,
+        -0.003272495108166861,
+        4.935546859644965e-05
+      ],
+      "requested_robot_ABCE": [
+        -248,
+        1449762,
+        896662,
+        0
+      ],
+      "handles_ABCE": [
+        -30,
+        -25,
+        42,
+        0
+      ],
+      "quantized_target_robot_ABCE": [
+        -250,
+        1449946,
+        896668,
+        0
+      ],
+      "actual_before_robot_ABCE": [
+        -143,
+        1456693,
+        895247,
+        0
+      ],
+      "actual_after_robot_ABCE": [
+        -219,
+        1451878,
+        896261,
+        0
+      ],
+      "actual_before_task_rad_rad_m": [
+        -0.0044924774946334045,
+        -0.0018979221056041609,
+        2.70906683184957e-05
+      ],
+      "actual_after_task_rad_rad_m": [
+        -0.006880087911361647,
+        -0.0028787701624964426,
+        4.2978428685733776e-05
+      ],
+      "actual_velocity_rad_rad_m_per_s": [
+        -0.047752208334564845,
+        -0.019616961137845633,
+        0.00031775520734476145
+      ],
+      "tip_rcm_radius_before_mm": 4.027090537957385,
+      "tip_rcm_radius_after_mm": 4.042978298324623,
+      "tip_displacement_um": 18.855848110956902,
+      "status": "moving",
+      "fault": null
+    },
+    {
+      "driver": {
+        "variant": "g10",
+        "control_gear": 10,
+        "kinematics_path": "/home/him1/mujoco_bc/rcm_4090_deploy/mujoco_model/vendor/simulation_driver/ros_msg/src/robot_control/kinematics.py",
+        "kinematics_sha256": "e48eb4a909208e8d1caa3ee2a7aff157de91c808730282dd17ccb17a46591530"
+      },
+      "step_index": 6,
+      "start_time_s": 0.3,
+      "end_time_s": 0.35,
+      "duration_s": 0.05,
+      "integration_steps": 25,
+      "tau_s": 0.04,
+      "requested_task_rad_rad_m": [
+        -0.010917543633503203,
+        -0.004659855889135909,
+        7.297821381098936e-05
+      ],
+      "commanded_task_rad_rad_m": [
+        -0.010995574287564275,
+        -0.004712470674740147,
+        7.285807268999711e-05
+      ],
+      "requested_robot_ABCE": [
+        -348,
+        1443142,
+        898176,
+        0
+      ],
+      "handles_ABCE": [
+        -42,
+        -36,
+        62,
+        0
+      ],
+      "quantized_target_robot_ABCE": [
+        -350,
+        1442884,
+        898168,
+        0
+      ],
+      "actual_before_robot_ABCE": [
+        -219,
+        1451878,
+        896261,
+        0
+      ],
+      "actual_after_robot_ABCE": [
+        -313,
+        1445460,
+        897622,
+        0
+      ],
+      "actual_before_task_rad_rad_m": [
+        -0.006880087911361647,
+        -0.0028787701624964426,
+        4.2978428685733776e-05
+      ],
+      "actual_after_task_rad_rad_m": [
+        -0.009833185005736053,
+        -0.004187065893002593,
+        6.430312479994583e-05
+      ],
+      "actual_velocity_rad_rad_m_per_s": [
+        -0.05906194188748813,
+        -0.02616591461012301,
+        0.0004264939222842411
+      ],
+      "tip_rcm_radius_before_mm": 4.042978298324623,
+      "tip_rcm_radius_after_mm": 4.064302994438835,
+      "tip_displacement_um": 24.855975470242562,
+      "status": "moving",
+      "fault": null
+    },
+    {
+      "driver": {
+        "variant": "g10",
+        "control_gear": 10,
+        "kinematics_path": "/home/him1/mujoco_bc/rcm_4090_deploy/mujoco_model/vendor/simulation_driver/ros_msg/src/robot_control/kinematics.py",
+        "kinematics_sha256": "e48eb4a909208e8d1caa3ee2a7aff157de91c808730282dd17ccb17a46591530"
+      },
+      "step_index": 7,
+      "start_time_s": 0.35,
+      "end_time_s": 0.39999999999999997,
+      "duration_s": 0.05,
+      "integration_steps": 25,
+      "tau_s": 0.04,
+      "requested_task_rad_rad_m": [
+        -0.014578972398068182,
+        -0.006538042345560821,
+        0.00010114078830144692
+      ],
+      "commanded_task_rad_rad_m": [
+        -0.014671237692264335,
+        -0.0065449561436591265,
+        0.00010106119760225406
+      ],
+      "requested_robot_ABCE": [
+        -464,
+        1433940,
+        899973,
+        0
+      ],
+      "handles_ABCE": [
+        -56,
+        -50,
+        86,
+        0
+      ],
+      "quantized_target_robot_ABCE": [
+        -467,
+        1433906,
+        899968,
+        0
+      ],
+      "actual_before_robot_ABCE": [
+        -313,
+        1445460,
+        897622,
+        0
+      ],
+      "actual_after_robot_ABCE": [
+        -423,
+        1437215,
+        899296,
+        0
+      ],
+      "actual_before_task_rad_rad_m": [
+        -0.009833185005736053,
+        -0.004187065893002593,
+        6.430312479994583e-05
+      ],
+      "actual_after_task_rad_rad_m": [
+        -0.013288936924684825,
+        -0.0058693220229471535,
+        9.05320309683448e-05
+      ],
+      "actual_velocity_rad_rad_m_per_s": [
+        -0.06911503837897542,
+        -0.03364512259889121,
+        0.0005245781233679793
+      ],
+      "tip_rcm_radius_before_mm": 4.064302994438835,
+      "tip_rcm_radius_after_mm": 4.090531900607234,
+      "tip_displacement_um": 30.361830418473076,
+      "status": "moving",
+      "fault": null
+    },
+    {
+      "driver": {
+        "variant": "g10",
+        "control_gear": 10,
+        "kinematics_path": "/home/him1/mujoco_bc/rcm_4090_deploy/mujoco_model/vendor/simulation_driver/ros_msg/src/robot_control/kinematics.py",
+        "kinematics_sha256": "e48eb4a909208e8d1caa3ee2a7aff157de91c808730282dd17ccb17a46591530"
+      },
+      "step_index": 8,
+      "start_time_s": 0.39999999999999997,
+      "end_time_s": 0.44999999999999996,
+      "duration_s": 0.05,
+      "integration_steps": 25,
+      "tau_s": 0.04,
+      "requested_task_rad_rad_m": [
+        -0.018346900892233883,
+        -0.008388592831418601,
+        0.00013211334502545653
+      ],
+      "commanded_task_rad_rad_m": [
+        -0.018315485170428497,
+        -0.008377668026748004,
+        0.00013161458292386576
+      ],
+      "requested_robot_ABCE": [
+        -584,
+        1424884,
+        901950,
+        0
+      ],
+      "handles_ABCE": [
+        -70,
+        -64,
+        112,
+        0
+      ],
+      "quantized_target_robot_ABCE": [
+        -583,
+        1424937,
+        901918,
+        0
+      ],
+      "actual_before_robot_ABCE": [
+        -423,
+        1437215,
+        899296,
+        0
+      ],
+      "actual_after_robot_ABCE": [
+        -537,
+        1428453,
+        901167,
+        0
+      ],
+      "actual_before_task_rad_rad_m": [
+        -0.013288936924684825,
+        -0.0058693220229471535,
+        9.05320309683448e-05
+      ],
+      "actual_after_task_rad_rad_m": [
+        -0.01687035254977719,
+        -0.007658966776738012,
+        0.000119847612474363
+      ],
+      "actual_velocity_rad_rad_m_per_s": [
+        -0.07162831250184731,
+        -0.03579289507581717,
+        0.0005863116301203639
+      ],
+      "tip_rcm_radius_before_mm": 4.090531900607234,
+      "tip_rcm_radius_after_mm": 4.1198474821132525,
+      "tip_displacement_um": 33.41579042981473,
+      "status": "moving",
+      "fault": null
+    },
+    {
+      "driver": {
+        "variant": "g10",
+        "control_gear": 10,
+        "kinematics_path": "/home/him1/mujoco_bc/rcm_4090_deploy/mujoco_model/vendor/simulation_driver/ros_msg/src/robot_control/kinematics.py",
+        "kinematics_sha256": "e48eb4a909208e8d1caa3ee2a7aff157de91c808730282dd17ccb17a46591530"
+      },
+      "step_index": 9,
+      "start_time_s": 0.44999999999999996,
+      "end_time_s": 0.49999999999999994,
+      "duration_s": 0.05,
+      "integration_steps": 25,
+      "tau_s": 0.04,
+      "requested_task_rad_rad_m": [
+        -0.02192831651732625,
+        -0.010178237585209459,
+        0.00016255967879692806
+      ],
+      "commanded_task_rad_rad_m": [
+        -0.02199114857512855,
+        -0.010210212070971959,
+        0.00016216796824547746
+      ],
+      "requested_robot_ABCE": [
+        -698,
+        1416135,
+        903893,
+        0
+      ],
+      "handles_ABCE": [
+        -84,
+        -78,
+        138,
+        0
+      ],
+      "quantized_target_robot_ABCE": [
+        -700,
+        1415979,
+        903868,
+        0
+      ],
+      "actual_before_robot_ABCE": [
+        -537,
+        1428453,
+        901167,
+        0
+      ],
+      "actual_after_robot_ABCE": [
+        -653,
+        1419551,
+        903094,
+        0
+      ],
+      "actual_before_task_rad_rad_m": [
+        -0.01687035254977719,
+        -0.007658966776738012,
+        0.000119847612474363
+      ],
+      "actual_after_task_rad_rad_m": [
+        -0.020514600027941348,
+        -0.009479235103842121,
+        0.00015004062453320694
+      ],
+      "actual_velocity_rad_rad_m_per_s": [
+        -0.07288494956328315,
+        -0.036405366542082186,
+        0.0006038602411768788
+      ],
+      "tip_rcm_radius_before_mm": 4.1198474821132525,
+      "tip_rcm_radius_after_mm": 4.150040494172097,
+      "tip_displacement_um": 34.37390035792936,
+      "status": "moving",
+      "fault": null
+    },
+    {
+      "driver": {
+        "variant": "g10",
+        "control_gear": 10,
+        "kinematics_path": "/home/him1/mujoco_bc/rcm_4090_deploy/mujoco_model/vendor/simulation_driver/ros_msg/src/robot_control/kinematics.py",
+        "kinematics_sha256": "e48eb4a909208e8d1caa3ee2a7aff157de91c808730282dd17ccb17a46591530"
+      },
+      "step_index": 10,
+      "start_time_s": 0.49999999999999994,
+      "end_time_s": 0.5499999999999999,
+      "duration_s": 0.05,
+      "integration_steps": 25,
+      "tau_s": 0.04,
+      "requested_task_rad_rad_m": [
+        -0.02557256399549041,
+        -0.011998505912313568,
+        0.0001916230599026985
+      ],
+      "commanded_task_rad_rad_m": [
+        -0.025666811979828612,
+        -0.012042806945115144,
+        0.00019154622336241175
+      ],
+      "requested_robot_ABCE": [
+        -814,
+        1407247,
+        905748,
+        0
+      ],
+      "handles_ABCE": [
+        -98,
+        -92,
+        163,
+        0
+      ],
+      "quantized_target_robot_ABCE": [
+        -817,
+        1407031,
+        905743,
+        0
+      ],
+      "actual_before_robot_ABCE": [
+        -653,
+        1419551,
+        903094,
+        0
+      ],
+      "actual_after_robot_ABCE": [
+        -770,
+        1410616,
+        904984,
+        0
+      ],
+      "actual_before_task_rad_rad_m": [
+        -0.020514600027941348,
+        -0.009479235103842121,
+        0.00015004062453320694
+      ],
+      "actual_after_task_rad_rad_m": [
+        -0.02419026343264141,
+        -0.0113083281718177,
+        0.00017965390569107674
+      ],
+      "actual_velocity_rad_rad_m_per_s": [
+        -0.07351326809400122,
+        -0.036581861359511574,
+        0.000592265623157396
+      ],
+      "tip_rcm_radius_before_mm": 4.150040494172097,
+      "tip_rcm_radius_after_mm": 4.1796537753299665,
+      "tip_displacement_um": 33.98401095604636,
+      "status": "moving",
+      "fault": null
+    },
+    {
+      "driver": {
+        "variant": "g10",
+        "control_gear": 10,
+        "kinematics_path": "/home/him1/mujoco_bc/rcm_4090_deploy/mujoco_model/vendor/simulation_driver/ros_msg/src/robot_control/kinematics.py",
+        "kinematics_sha256": "e48eb4a909208e8d1caa3ee2a7aff157de91c808730282dd17ccb17a46591530"
+      },
+      "step_index": 11,
+      "start_time_s": 0.5499999999999999,
+      "end_time_s": 0.6,
+      "duration_s": 0.05,
+      "integration_steps": 25,
+      "tau_s": 0.04,
+      "requested_task_rad_rad_m": [
+        -0.029248227400190466,
+        -0.013827598980289147,
+        0.0002223659720136418
+      ],
+      "commanded_task_rad_rad_m": [
+        -0.02931105945799277,
+        -0.013875467119684579,
+        0.00022209960868402345
+      ],
+      "requested_robot_ABCE": [
+        -931,
+        1398326,
+        907710,
+        0
+      ],
+      "handles_ABCE": [
+        -112,
+        -106,
+        189,
+        0
+      ],
+      "quantized_target_robot_ABCE": [
+        -933,
+        1398093,
+        907693,
+        0
+      ],
+      "actual_before_robot_ABCE": [
+        -770,
+        1410616,
+        904984,
+        0
+      ],
+      "actual_after_robot_ABCE": [
+        -886,
+        1401679,
+        906917,
+        0
+      ],
+      "actual_before_task_rad_rad_m": [
+        -0.02419026343264141,
+        -0.0113083281718177,
+        0.00017965390569107674
+      ],
+      "actual_after_task_rad_rad_m": [
+        -0.027834510910805566,
+        -0.01313993350719984,
+        0.0002099409281662949
+      ],
+      "actual_velocity_rad_rad_m_per_s": [
+        -0.07288494956328315,
+        -0.03663210670764281,
+        0.0006057404495043631
+      ],
+      "tip_rcm_radius_before_mm": 4.1796537753299665,
+      "tip_rcm_radius_after_mm": 4.209940797805185,
+      "tip_displacement_um": 34.57514225675823,
+      "status": "moving",
+      "fault": null
+    },
+    {
+      "driver": {
+        "variant": "g10",
+        "control_gear": 10,
+        "kinematics_path": "/home/him1/mujoco_bc/rcm_4090_deploy/mujoco_model/vendor/simulation_driver/ros_msg/src/robot_control/kinematics.py",
+        "kinematics_sha256": "e48eb4a909208e8d1caa3ee2a7aff157de91c808730282dd17ccb17a46591530"
+      },
+      "step_index": 12,
+      "start_time_s": 0.6,
+      "end_time_s": 0.65,
+      "duration_s": 0.05,
+      "integration_steps": 25,
+      "tau_s": 0.04,
+      "requested_task_rad_rad_m": [
+        -0.03289247487835462,
+        -0.015659204315671287,
+        0.00025265299448886
+      ],
+      "commanded_task_rad_rad_m": [
+        -0.03298672286269283,
+        -0.01570800169141848,
+        0.00025265299400563515
+      ],
+      "requested_robot_ABCE": [
+        -1047,
+        1389404,
+        909643,
+        0
+      ],
+      "handles_ABCE": [
+        -126,
+        -120,
+        215,
+        0
+      ],
+      "quantized_target_robot_ABCE": [
+        -1050,
+        1389166,
+        909643,
+        0
+      ],
+      "actual_before_robot_ABCE": [
+        -886,
+        1401679,
+        906917,
+        0
+      ],
+      "actual_after_robot_ABCE": [
+        -1003,
+        1392749,
+        908862,
+        0
+      ],
+      "actual_before_task_rad_rad_m": [
+        -0.027834510910805566,
+        -0.01313993350719984,
+        0.0002099409281662949
+      ],
+      "actual_after_task_rad_rad_m": [
+        -0.03151017431550563,
+        -0.014972226345829866,
+        0.00024041597147426142
+      ],
+      "actual_velocity_rad_rad_m_per_s": [
+        -0.07351326809400129,
+        -0.036645856772600516,
+        0.0006095008661593306
+      ],
+      "tip_rcm_radius_before_mm": 4.209940797805185,
+      "tip_rcm_radius_after_mm": 4.240415841113151,
+      "tip_displacement_um": 34.85094090243296,
+      "status": "moving",
+      "fault": null
+    },
+    {
+      "driver": {
+        "variant": "g10",
+        "control_gear": 10,
+        "kinematics_path": "/home/him1/mujoco_bc/rcm_4090_deploy/mujoco_model/vendor/simulation_driver/ros_msg/src/robot_control/kinematics.py",
+        "kinematics_sha256": "e48eb4a909208e8d1caa3ee2a7aff157de91c808730282dd17ccb17a46591530"
+      },
+      "step_index": 13,
+      "start_time_s": 0.65,
+      "end_time_s": 0.7000000000000001,
+      "duration_s": 0.05,
+      "integration_steps": 25,
+      "tau_s": 0.04,
+      "requested_task_rad_rad_m": [
+        -0.03656813828305469,
+        -0.017491497154301313,
+        0.000282847095028968
+      ],
+      "commanded_task_rad_rad_m": [
+        -0.036662386267392884,
+        -0.017540630101181152,
+        0.00028320637932724684
+      ],
+      "requested_robot_ABCE": [
+        -1164,
+        1380488,
+        911570,
+        0
+      ],
+      "handles_ABCE": [
+        -140,
+        -134,
+        241,
+        0
+      ],
+      "quantized_target_robot_ABCE": [
+        -1167,
+        1380249,
+        911593,
+        0
+      ],
+      "actual_before_robot_ABCE": [
+        -1003,
+        1392749,
+        908862,
+        0
+      ],
+      "actual_after_robot_ABCE": [
+        -1120,
+        1383828,
+        910811,
+        0
+      ],
+      "actual_before_task_rad_rad_m": [
+        -0.03151017431550563,
+        -0.014972226345829866,
+        0.00024041597147426142
+      ],
+      "actual_after_task_rad_rad_m": [
+        -0.035185837720205684,
+        -0.016804812247657352,
+        0.00027095368839314413
+      ],
+      "actual_velocity_rad_rad_m_per_s": [
+        -0.07351326809400108,
+        -0.03665171803654971,
+        0.0006107543383776542
+      ],
+      "tip_rcm_radius_before_mm": 4.240415841113151,
+      "tip_rcm_radius_after_mm": 4.2709535580320335,
+      "tip_displacement_um": 34.962197030818814,
+      "status": "moving",
+      "fault": null
+    },
+    {
+      "driver": {
+        "variant": "g10",
+        "control_gear": 10,
+        "kinematics_path": "/home/him1/mujoco_bc/rcm_4090_deploy/mujoco_model/vendor/simulation_driver/ros_msg/src/robot_control/kinematics.py",
+        "kinematics_sha256": "e48eb4a909208e8d1caa3ee2a7aff157de91c808730282dd17ccb17a46591530"
+      },
+      "step_index": 14,
+      "start_time_s": 0.7000000000000001,
+      "end_time_s": 0.7500000000000001,
+      "duration_s": 0.05,
+      "integration_steps": 25,
+      "tau_s": 0.04,
+      "requested_task_rad_rad_m": [
+        -0.040243801687754745,
+        -0.019324083056128802,
+        0.0003136657547157092
+      ],
+      "commanded_task_rad_rad_m": [
+        -0.04030663374555705,
+        -0.01937316101023347,
+        0.00031375976464885854
+      ],
+      "requested_robot_ABCE": [
+        -1281,
+        1371581,
+        913537,
+        0
+      ],
+      "handles_ABCE": [
+        -154,
+        -148,
+        267,
+        0
+      ],
+      "quantized_target_robot_ABCE": [
+        -1283,
+        1371343,
+        913543,
+        0
+      ],
+      "actual_before_robot_ABCE": [
+        -1120,
+        1383828,
+        910811,
+        0
+      ],
+      "actual_after_robot_ABCE": [
+        -1236,
+        1374918,
+        912760,
+        0
+      ],
+      "actual_before_task_rad_rad_m": [
+        -0.035185837720205684,
+        -0.016804812247657352,
+        0.00027095368839314413
+      ],
+      "actual_after_task_rad_rad_m": [
+        -0.03883008519836985,
+        -0.01863729489543749,
+        0.00030149140531202676
+      ],
+      "actual_velocity_rad_rad_m_per_s": [
+        -0.07288494956328329,
+        -0.03664965295560277,
+        0.0006107543383776525
+      ],
+      "tip_rcm_radius_before_mm": 4.2709535580320335,
+      "tip_rcm_radius_after_mm": 4.301491274950916,
+      "tip_displacement_um": 34.96210653131594,
+      "status": "moving",
+      "fault": null
+    },
+    {
+      "driver": {
+        "variant": "g10",
+        "control_gear": 10,
+        "kinematics_path": "/home/him1/mujoco_bc/rcm_4090_deploy/mujoco_model/vendor/simulation_driver/ros_msg/src/robot_control/kinematics.py",
+        "kinematics_sha256": "e48eb4a909208e8d1caa3ee2a7aff157de91c808730282dd17ccb17a46591530"
+      },
+      "step_index": 15,
+      "start_time_s": 0.7500000000000001,
+      "end_time_s": 0.8000000000000002,
+      "duration_s": 0.05,
+      "integration_steps": 25,
+      "tau_s": 0.04,
+      "requested_task_rad_rad_m": [
+        -0.0438880491659189,
+        -0.021156565703908937,
+        0.00034420347163459185
+      ],
+      "commanded_task_rad_rad_m": [
+        -0.0439822971502571,
+        -0.021205814389709223,
+        0.0003443131499704702
+      ],
+      "requested_robot_ABCE": [
+        -1397,
+        1362686,
+        915486,
+        0
+      ],
+      "handles_ABCE": [
+        -168,
+        -162,
+        293,
+        0
+      ],
+      "quantized_target_robot_ABCE": [
+        -1400,
+        1362447,
+        915493,
+        0
+      ],
+      "actual_before_robot_ABCE": [
+        -1236,
+        1374918,
+        912760,
+        0
+      ],
+      "actual_after_robot_ABCE": [
+        -1353,
+        1366018,
+        914710,
+        0
+      ],
+      "actual_before_task_rad_rad_m": [
+        -0.03883008519836985,
+        -0.01863729489543749,
+        0.00030149140531202676
+      ],
+      "actual_after_task_rad_rad_m": [
+        -0.0425057486030699,
+        -0.020469894151297293,
+        0.00033204479063363845
+      ],
+      "actual_velocity_rad_rad_m_per_s": [
+        -0.07351326809400108,
+        -0.036651985117196056,
+        0.000611067706432234
+      ],
+      "tip_rcm_radius_before_mm": 4.301491274950916,
+      "tip_rcm_radius_after_mm": 4.332044660272528,
+      "tip_displacement_um": 35.088990254380924,
+      "status": "moving",
+      "fault": null
+    },
+    {
+      "driver": {
+        "variant": "g10",
+        "control_gear": 10,
+        "kinematics_path": "/home/him1/mujoco_bc/rcm_4090_deploy/mujoco_model/vendor/simulation_driver/ros_msg/src/robot_control/kinematics.py",
+        "kinematics_sha256": "e48eb4a909208e8d1caa3ee2a7aff157de91c808730282dd17ccb17a46591530"
+      },
+      "step_index": 16,
+      "start_time_s": 0.8000000000000002,
+      "end_time_s": 0.8500000000000002,
+      "duration_s": 0.05,
+      "integration_steps": 25,
+      "tau_s": 0.04,
+      "requested_task_rad_rad_m": [
+        -0.047563712570618956,
+        -0.02298916495976874,
+        0.00037475685695620355
+      ],
+      "commanded_task_rad_rad_m": [
+        -0.04765796055495716,
+        -0.023038398462326217,
+        0.00037486653529208194
+      ],
+      "requested_robot_ABCE": [
+        -1514,
+        1353801,
+        917436,
+        0
+      ],
+      "handles_ABCE": [
+        -182,
+        -176,
+        319,
+        0
+      ],
+      "quantized_target_robot_ABCE": [
+        -1517,
+        1353562,
+        917443,
+        0
+      ],
+      "actual_before_robot_ABCE": [
+        -1353,
+        1366018,
+        914710,
+        0
+      ],
+      "actual_after_robot_ABCE": [
+        -1470,
+        1357129,
+        916660,
+        0
+      ],
+      "actual_before_task_rad_rad_m": [
+        -0.0425057486030699,
+        -0.020469894151297293,
+        0.00033204479063363845
+      ],
+      "actual_after_task_rad_rad_m": [
+        -0.046181412007769956,
+        -0.02230241832483964,
+        0.00036259817595525015
+      ],
+      "actual_velocity_rad_rad_m_per_s": [
+        -0.07351326809400108,
+        -0.036650483470846915,
+        0.000611067706432234
+      ],
+      "tip_rcm_radius_before_mm": 4.332044660272528,
+      "tip_rcm_radius_after_mm": 4.36259804559414,
+      "tip_displacement_um": 35.14581739167998,
+      "status": "moving",
+      "fault": null
+    },
+    {
+      "driver": {
+        "variant": "g10",
+        "control_gear": 10,
+        "kinematics_path": "/home/him1/mujoco_bc/rcm_4090_deploy/mujoco_model/vendor/simulation_driver/ros_msg/src/robot_control/kinematics.py",
+        "kinematics_sha256": "e48eb4a909208e8d1caa3ee2a7aff157de91c808730282dd17ccb17a46591530"
+      },
+      "step_index": 17,
+      "start_time_s": 0.8500000000000002,
+      "end_time_s": 0.9000000000000002,
+      "duration_s": 0.05,
+      "integration_steps": 25,
+      "tau_s": 0.04,
+      "requested_task_rad_rad_m": [
+        -0.05123937597531902,
+        -0.024821689133311085,
+        0.00040359425808234446
+      ],
+      "commanded_task_rad_rad_m": [
+        -0.05130220803312132,
+        -0.024870927112923102,
+        0.00040306966020433883
+      ],
+      "requested_robot_ABCE": [
+        -1631,
+        1344926,
+        919276,
+        0
+      ],
+      "handles_ABCE": [
+        -196,
+        -190,
+        343,
+        0
+      ],
+      "quantized_target_robot_ABCE": [
+        -1633,
+        1344688,
+        919243,
+        0
+      ],
+      "actual_before_robot_ABCE": [
+        -1470,
+        1357129,
+        916660,
+        0
+      ],
+      "actual_after_robot_ABCE": [
+        -1586,
+        1348250,
+        918503,
+        0
+      ],
+      "actual_before_task_rad_rad_m": [
+        -0.046181412007769956,
+        -0.02230241832483964,
+        0.00036259817595525015
+      ],
+      "actual_after_task_rad_rad_m": [
+        -0.04982565948593412,
+        -0.024135087819836865,
+        0.0003914750421848554
+      ],
+      "actual_velocity_rad_rad_m_per_s": [
+        -0.07288494956328329,
+        -0.036653389899944516,
+        0.0005775373245921049
+      ],
+      "tip_rcm_radius_before_mm": 4.36259804559414,
+      "tip_rcm_radius_after_mm": 4.391474911823744,
+      "tip_displacement_um": 33.695656724667074,
+      "status": "moving",
+      "fault": null
+    },
+    {
+      "driver": {
+        "variant": "g10",
+        "control_gear": 10,
+        "kinematics_path": "/home/him1/mujoco_bc/rcm_4090_deploy/mujoco_model/vendor/simulation_driver/ros_msg/src/robot_control/kinematics.py",
+        "kinematics_sha256": "e48eb4a909208e8d1caa3ee2a7aff157de91c808730282dd17ccb17a46591530"
+      },
+      "step_index": 18,
+      "start_time_s": 0.9000000000000002,
+      "end_time_s": 0.9500000000000003,
+      "duration_s": 0.05,
+      "integration_steps": 25,
+      "tau_s": 0.04,
+      "requested_task_rad_rad_m": [
+        -0.054883623453483174,
+        -0.02665435862830831,
+        0.0004341871085074205
+      ],
+      "commanded_task_rad_rad_m": [
+        -0.05497787143782138,
+        -0.026703621131546996,
+        0.00043362304552595053
+      ],
+      "requested_robot_ABCE": [
+        -1747,
+        1336062,
+        921229,
+        0
+      ],
+      "handles_ABCE": [
+        -210,
+        -204,
+        369,
+        0
+      ],
+      "quantized_target_robot_ABCE": [
+        -1750,
+        1335824,
+        921193,
+        0
+      ],
+      "actual_before_robot_ABCE": [
+        -1586,
+        1348250,
+        918503,
+        0
+      ],
+      "actual_after_robot_ABCE": [
+        -1703,
+        1339382,
+        920422,
+        0
+      ],
+      "actual_before_task_rad_rad_m": [
+        -0.04982565948593412,
+        -0.024135087819836865,
+        0.0003914750421848554
+      ],
+      "actual_after_task_rad_rad_m": [
+        -0.053501322890634175,
+        -0.025967710504874845,
+        0.00042154270702186717
+      ],
+      "actual_velocity_rad_rad_m_per_s": [
+        -0.07351326809400108,
+        -0.036652453700759605,
+        0.0006013532967402355
+      ],
+      "tip_rcm_radius_before_mm": 4.391474911823744,
+      "tip_rcm_radius_after_mm": 4.421542576660757,
+      "tip_displacement_um": 34.836458951590636,
+      "status": "moving",
+      "fault": null
+    },
+    {
+      "driver": {
+        "variant": "g10",
+        "control_gear": 10,
+        "kinematics_path": "/home/him1/mujoco_bc/rcm_4090_deploy/mujoco_model/vendor/simulation_driver/ros_msg/src/robot_control/kinematics.py",
+        "kinematics_sha256": "e48eb4a909208e8d1caa3ee2a7aff157de91c808730282dd17ccb17a46591530"
+      },
+      "step_index": 19,
+      "start_time_s": 0.9500000000000003,
+      "end_time_s": 1.0000000000000002,
+      "duration_s": 0.05,
+      "integration_steps": 25,
+      "tau_s": 0.04,
+      "requested_task_rad_rad_m": [
+        -0.058559286858183235,
+        -0.028486981313346295,
+        0.00046425477334443227
+      ],
+      "commanded_task_rad_rad_m": [
+        -0.05865353484252144,
+        -0.028536080935492286,
+        0.0004641764308475622
+      ],
+      "requested_robot_ABCE": [
+        -1864,
+        1327209,
+        923148,
+        0
+      ],
+      "handles_ABCE": [
+        -224,
+        -218,
+        395,
+        0
+      ],
+      "quantized_target_robot_ABCE": [
+        -1867,
+        1326972,
+        923143,
+        0
+      ],
+      "actual_before_robot_ABCE": [
+        -1703,
+        1339382,
+        920422,
+        0
+      ],
+      "actual_after_robot_ABCE": [
+        -1820,
+        1330525,
+        922364,
+        0
+      ],
+      "actual_before_task_rad_rad_m": [
+        -0.053501322890634175,
+        -0.025967710504874845,
+        0.00042154270702186717
+      ],
+      "actual_after_task_rad_rad_m": [
+        -0.05717698629533424,
+        -0.027800300303889466,
+        0.0004519707451216466
+      ],
+      "actual_velocity_rad_rad_m_per_s": [
+        -0.07351326809400135,
+        -0.03665179598029242,
+        0.000608560761995589
+      ],
+      "tip_rcm_radius_before_mm": 4.421542576660757,
+      "tip_rcm_radius_after_mm": 4.451970614760535,
+      "tip_displacement_um": 35.20502699119682,
+      "status": "moving",
+      "fault": null
+    },
+    {
+      "driver": {
+        "variant": "g10",
+        "control_gear": 10,
+        "kinematics_path": "/home/him1/mujoco_bc/rcm_4090_deploy/mujoco_model/vendor/simulation_driver/ros_msg/src/robot_control/kinematics.py",
+        "kinematics_sha256": "e48eb4a909208e8d1caa3ee2a7aff157de91c808730282dd17ccb17a46591530"
+      },
+      "step_index": 20,
+      "start_time_s": 1.0000000000000002,
+      "end_time_s": 1.0500000000000003,
+      "duration_s": 0.05,
+      "integration_steps": 25,
+      "tau_s": 0.04,
+      "requested_task_rad_rad_m": [
+        -0.062234950262883296,
+        -0.030319571112360912,
+        0.0004946828114442117
+      ],
+      "commanded_task_rad_rad_m": [
+        -0.0622977823206856,
+        -0.03036873450515255,
+        0.0004947298161691739
+      ],
+      "requested_robot_ABCE": [
+        -1981,
+        1318367,
+        925090,
+        0
+      ],
+      "handles_ABCE": [
+        -238,
+        -232,
+        421,
+        0
+      ],
+      "quantized_target_robot_ABCE": [
+        -1983,
+        1318130,
+        925093,
+        0
+      ],
+      "actual_before_robot_ABCE": [
+        -1820,
+        1330525,
+        922364,
+        0
+      ],
+      "actual_after_robot_ABCE": [
+        -1936,
+        1321679,
+        924311,
+        0
+      ],
+      "actual_before_task_rad_rad_m": [
+        -0.05717698629533424,
+        -0.027800300303889466,
+        0.0004519707451216466
+      ],
+      "actual_after_task_rad_rad_m": [
+        -0.06082123377349839,
+        -0.02963287116468257,
+        0.0004824771252350712
+      ],
+      "actual_velocity_rad_rad_m_per_s": [
+        -0.07288494956328301,
+        -0.03665141721586211,
+        0.0006101276022684918
+      ],
+      "tip_rcm_radius_before_mm": 4.451970614760535,
+      "tip_rcm_radius_after_mm": 4.482476994873962,
+      "tip_displacement_um": 35.269954090201885,
+      "status": "moving",
+      "fault": null
+    },
+    {
+      "driver": {
+        "variant": "g10",
+        "control_gear": 10,
+        "kinematics_path": "/home/him1/mujoco_bc/rcm_4090_deploy/mujoco_model/vendor/simulation_driver/ros_msg/src/robot_control/kinematics.py",
+        "kinematics_sha256": "e48eb4a909208e8d1caa3ee2a7aff157de91c808730282dd17ccb17a46591530"
+      },
+      "step_index": 21,
+      "start_time_s": 1.0500000000000003,
+      "end_time_s": 1.1000000000000003,
+      "duration_s": 0.05,
+      "integration_steps": 25,
+      "tau_s": 0.04,
+      "requested_task_rad_rad_m": [
+        -0.06587919774104745,
+        -0.03215214197315402,
+        0.0005245729428605939
+      ],
+      "commanded_task_rad_rad_m": [
+        -0.06597344572538566,
+        -0.03220138894331947,
+        0.0005241080712861082
+      ],
+      "requested_robot_ABCE": [
+        -2097,
+        1309536,
+        926998,
+        0
+      ],
+      "handles_ABCE": [
+        -252,
+        -246,
+        446,
+        0
+      ],
+      "quantized_target_robot_ABCE": [
+        -2100,
+        1309299,
+        926968,
+        0
+      ],
+      "actual_before_robot_ABCE": [
+        -1936,
+        1321679,
+        924311,
+        0
+      ],
+      "actual_after_robot_ABCE": [
+        -2053,
+        1312844,
+        926207,
+        0
+      ],
+      "actual_before_task_rad_rad_m": [
+        -0.06082123377349839,
+        -0.02963287116468257,
+        0.0004824771252350712
+      ],
+      "actual_after_task_rad_rad_m": [
+        -0.06449689717819845,
+        -0.03146543706030259,
+        0.0005121844168093152
+      ],
+      "actual_velocity_rad_rad_m_per_s": [
+        -0.07351326809400122,
+        -0.03665131791240034,
+        0.0005941458314848798
+      ],
+      "tip_rcm_radius_before_mm": 4.482476994873962,
+      "tip_rcm_radius_after_mm": 4.512184286448205,
+      "tip_displacement_um": 34.70095814109794,
+      "status": "moving",
+      "fault": null
+    },
+    {
+      "driver": {
+        "variant": "g10",
+        "control_gear": 10,
+        "kinematics_path": "/home/him1/mujoco_bc/rcm_4090_deploy/mujoco_model/vendor/simulation_driver/ros_msg/src/robot_control/kinematics.py",
+        "kinematics_sha256": "e48eb4a909208e8d1caa3ee2a7aff157de91c808730282dd17ccb17a46591530"
+      },
+      "step_index": 22,
+      "start_time_s": 1.1000000000000003,
+      "end_time_s": 1.1500000000000004,
+      "duration_s": 0.05,
+      "integration_steps": 25,
+      "tau_s": 0.04,
+      "requested_task_rad_rad_m": [
+        -0.06955486114574752,
+        -0.033984707868774035,
+        0.0005511951427247472
+      ],
+      "commanded_task_rad_rad_m": [
+        -0.06964910913008572,
+        -0.034033850346911754,
+        0.0005511360659936879
+      ],
+      "requested_robot_ABCE": [
+        -2214,
+        1300716,
+        928697,
+        0
+      ],
+      "handles_ABCE": [
+        -266,
+        -260,
+        469,
+        0
+      ],
+      "quantized_target_robot_ABCE": [
+        -2217,
+        1300480,
+        928693,
+        0
+      ],
+      "actual_before_robot_ABCE": [
+        -2053,
+        1312844,
+        926207,
+        0
+      ],
+      "actual_after_robot_ABCE": [
+        -2170,
+        1304020,
+        927981,
+        0
+      ],
+      "actual_before_task_rad_rad_m": [
+        -0.06449689717819845,
+        -0.03146543706030259,
+        0.0005121844168093152
+      ],
+      "actual_after_task_rad_rad_m": [
+        -0.06817256058289851,
+        -0.0332980119904336,
+        0.0005399801632506173
+      ],
+      "actual_velocity_rad_rad_m_per_s": [
+        -0.07351326809400122,
+        -0.03665149860262021,
+        0.000555914928826041
+      ],
+      "tip_rcm_radius_before_mm": 4.512184286448205,
+      "tip_rcm_radius_after_mm": 4.539980032889506,
+      "tip_displacement_um": 33.137611988642,
+      "status": "moving",
+      "fault": null
+    },
+    {
+      "driver": {
+        "variant": "g10",
+        "control_gear": 10,
+        "kinematics_path": "/home/him1/mujoco_bc/rcm_4090_deploy/mujoco_model/vendor/simulation_driver/ros_msg/src/robot_control/kinematics.py",
+        "kinematics_sha256": "e48eb4a909208e8d1caa3ee2a7aff157de91c808730282dd17ccb17a46591530"
+      },
+      "step_index": 23,
+      "start_time_s": 1.1500000000000004,
+      "end_time_s": 1.2000000000000004,
+      "duration_s": 0.05,
+      "integration_steps": 25,
+      "tau_s": 0.04,
+      "requested_task_rad_rad_m": [
+        -0.07323052455044758,
+        -0.035817282798905045,
+        0.0005826922295731823
+      ],
+      "commanded_task_rad_rad_m": [
+        -0.07329335660824987,
+        -0.035866548327538474,
+        0.0005828645815199769
+      ],
+      "requested_robot_ABCE": [
+        -2331,
+        1291908,
+        930707,
+        0
+      ],
+      "handles_ABCE": [
+        -280,
+        -274,
+        496,
+        0
+      ],
+      "quantized_target_robot_ABCE": [
+        -2333,
+        1291671,
+        930718,
+        0
+      ],
+      "actual_before_robot_ABCE": [
+        -2170,
+        1304020,
+        927981,
+        0
+      ],
+      "actual_after_robot_ABCE": [
+        -2286,
+        1295207,
+        929934,
+        0
+      ],
+      "actual_before_task_rad_rad_m": [
+        -0.06817256058289851,
+        -0.0332980119904336,
+        0.0005399801632506173
+      ],
+      "actual_after_task_rad_rad_m": [
+        -0.07181680806106266,
+        -0.035130609982793846,
+        0.0005705805537804161
+      ],
+      "actual_velocity_rad_rad_m_per_s": [
+        -0.07288494956328301,
+        -0.03665195984720496,
+        0.0006120078105959761
+      ],
+      "tip_rcm_radius_before_mm": 4.539980032889506,
+      "tip_rcm_radius_after_mm": 4.570580423419305,
+      "tip_displacement_um": 35.51629864041013,
+      "status": "moving",
+      "fault": null
+    }
+  ],
+  "ground_truth_used_for_control": false,
+  "ground_truth_used_for_success": true,
+  "execution_backend": "MotorBackend",
+  "evaluation_contract_version": 2,
+  "controller_variant": "feedback",
+  "state_action_units": "A_deg,B_deg,C_mm",
+  "oct_navigation_used": true,
+  "safety_limited_steps": 0,
+  "last_safety_error": null,
+  "early_stop_reason": null,
+  "terminal_success": {
+    "error_threshold_mm": 0.00035,
+    "required_consecutive_frames": 3,
+    "consecutive_frames_at_exit": 0,
+    "low_speed_at_exit": false,
+    "encoder_settled_at_exit": false,
+    "terminal_frame_pass": false,
+    "terminal_condition": "MotorExecution.settled"
+  },
+  "policy_control_mode_counts": {
+    "coarse": 0,
+    "fine": 0,
+    "stabilize": 0,
+    "terminal": 0
+  },
+  "last_terminal_refinement": null,
+  "terminal_locked_target_world_mm": null,
+  "trajectory": {
+    "raw_actions": [
+      [
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        -0.045030657202005386,
+        -0.012520252726972103,
+        0.004019197076559067
+      ],
+      [
+        -0.0654851421713829,
+        -0.028110049664974213,
+        0.006896262988448143
+      ],
+      [
+        -0.10204390436410904,
+        -0.04144144058227539,
+        0.011390415951609612
+      ],
+      [
+        -0.14577661454677582,
+        -0.06415863335132599,
+        0.01672067865729332
+      ],
+      [
+        -0.1884133219718933,
+        -0.08090604096651077,
+        0.022172734141349792
+      ],
+      [
+        -0.23132917284965515,
+        -0.10204869508743286,
+        0.029999785125255585
+      ],
+      [
+        -0.2719135880470276,
+        -0.13470102846622467,
+        0.03683766350150108
+      ],
+      [
+        -0.3007187247276306,
+        -0.1551714390516281,
+        0.04158131405711174
+      ],
+      [
+        -0.30257290601730347,
+        -0.1583847850561142,
+        0.043116845190525055
+      ],
+      [
+        -0.30241042375564575,
+        -0.15394710004329681,
+        0.04158243536949158
+      ],
+      [
+        -0.3045012652873993,
+        -0.15391437709331512,
+        0.04508424550294876
+      ],
+      [
+        -0.30018550157546997,
+        -0.1495925486087799,
+        0.043265100568532944
+      ],
+      [
+        -0.29857325553894043,
+        -0.1604205071926117,
+        0.042431123554706573
+      ],
+      [
+        -0.2989117503166199,
+        -0.14721623063087463,
+        0.046134140342473984
+      ],
+      [
+        -0.3110242784023285,
+        -0.14975933730602264,
+        0.04382222518324852
+      ],
+      [
+        -0.30156391859054565,
+        -0.14823803305625916,
+        0.04355353116989136
+      ],
+      [
+        -0.30514946579933167,
+        -0.1521652787923813,
+        0.04099608212709427
+      ],
+      [
+        -0.3040303885936737,
+        -0.14905773103237152,
+        0.04308655858039856
+      ],
+      [
+        -0.3174464702606201,
+        -0.14990919828414917,
+        0.04274587333202362
+      ],
+      [
+        -0.3016805052757263,
+        -0.14963705837726593,
+        0.04371648654341698
+      ],
+      [
+        -0.3007277846336365,
+        -0.1597185879945755,
+        0.042095817625522614
+      ],
+      [
+        -0.3128627836704254,
+        -0.1525556892156601,
+        0.039010725915431976
+      ],
+      [
+        -0.30305200815200806,
+        -0.1468975841999054,
+        0.04387882351875305
+      ]
+    ],
+    "control_targets": [
+      {
+        "controller_variant": "feedback",
+        "scale": 1.0,
+        "accepted_delta_deg_deg_mm": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "controller_variant": "feedback",
+        "scale": 1.0,
+        "accepted_delta_deg_deg_mm": [
+          -0.045030657202005386,
+          -0.012520252726972103,
+          0.004019197076559067
+        ]
+      },
+      {
+        "controller_variant": "feedback",
+        "scale": 1.0,
+        "accepted_delta_deg_deg_mm": [
+          -0.0654851421713829,
+          -0.028110049664974213,
+          0.006896262988448143
+        ]
+      },
+      {
+        "controller_variant": "feedback",
+        "scale": 1.0,
+        "accepted_delta_deg_deg_mm": [
+          -0.10204390436410904,
+          -0.04144144058227539,
+          0.011390415951609612
+        ]
+      },
+      {
+        "controller_variant": "feedback",
+        "scale": 1.0,
+        "accepted_delta_deg_deg_mm": [
+          -0.14577661454677582,
+          -0.06415863335132599,
+          0.01672067865729332
+        ]
+      },
+      {
+        "controller_variant": "feedback",
+        "scale": 1.0,
+        "accepted_delta_deg_deg_mm": [
+          -0.1884133219718933,
+          -0.08090604096651077,
+          0.022172734141349792
+        ]
+      },
+      {
+        "controller_variant": "feedback",
+        "scale": 1.0,
+        "accepted_delta_deg_deg_mm": [
+          -0.23132917284965515,
+          -0.10204869508743286,
+          0.029999785125255585
+        ]
+      },
+      {
+        "controller_variant": "feedback",
+        "scale": 1.0,
+        "accepted_delta_deg_deg_mm": [
+          -0.2719135880470276,
+          -0.13470102846622467,
+          0.03683766350150108
+        ]
+      },
+      {
+        "controller_variant": "feedback",
+        "scale": 1.0,
+        "accepted_delta_deg_deg_mm": [
+          -0.2897999882698059,
+          -0.14434358477592468,
+          0.04158131405711174
+        ]
+      },
+      {
+        "controller_variant": "feedback",
+        "scale": 1.0,
+        "accepted_delta_deg_deg_mm": [
+          -0.2897999882698059,
+          -0.14434358477592468,
+          0.04271206632256508
+        ]
+      },
+      {
+        "controller_variant": "feedback",
+        "scale": 1.0,
+        "accepted_delta_deg_deg_mm": [
+          -0.2897999882698059,
+          -0.14434358477592468,
+          0.04158243536949158
+        ]
+      },
+      {
+        "controller_variant": "feedback",
+        "scale": 1.0,
+        "accepted_delta_deg_deg_mm": [
+          -0.2897999882698059,
+          -0.14434358477592468,
+          0.04271206632256508
+        ]
+      },
+      {
+        "controller_variant": "feedback",
+        "scale": 1.0,
+        "accepted_delta_deg_deg_mm": [
+          -0.2897999882698059,
+          -0.14434358477592468,
+          0.04271206632256508
+        ]
+      },
+      {
+        "controller_variant": "feedback",
+        "scale": 1.0,
+        "accepted_delta_deg_deg_mm": [
+          -0.2897999882698059,
+          -0.14434358477592468,
+          0.042431123554706573
+        ]
+      },
+      {
+        "controller_variant": "feedback",
+        "scale": 1.0,
+        "accepted_delta_deg_deg_mm": [
+          -0.2897999882698059,
+          -0.14434358477592468,
+          0.04271206632256508
+        ]
+      },
+      {
+        "controller_variant": "feedback",
+        "scale": 1.0,
+        "accepted_delta_deg_deg_mm": [
+          -0.2897999882698059,
+          -0.14434358477592468,
+          0.04271206632256508
+        ]
+      },
+      {
+        "controller_variant": "feedback",
+        "scale": 1.0,
+        "accepted_delta_deg_deg_mm": [
+          -0.2897999882698059,
+          -0.14434358477592468,
+          0.04271206632256508
+        ]
+      },
+      {
+        "controller_variant": "feedback",
+        "scale": 1.0,
+        "accepted_delta_deg_deg_mm": [
+          -0.2897999882698059,
+          -0.14434358477592468,
+          0.04099608212709427
+        ]
+      },
+      {
+        "controller_variant": "feedback",
+        "scale": 1.0,
+        "accepted_delta_deg_deg_mm": [
+          -0.2897999882698059,
+          -0.14434358477592468,
+          0.04271206632256508
+        ]
+      },
+      {
+        "controller_variant": "feedback",
+        "scale": 1.0,
+        "accepted_delta_deg_deg_mm": [
+          -0.2897999882698059,
+          -0.14434358477592468,
+          0.04271206632256508
+        ]
+      },
+      {
+        "controller_variant": "feedback",
+        "scale": 1.0,
+        "accepted_delta_deg_deg_mm": [
+          -0.2897999882698059,
+          -0.14434358477592468,
+          0.04271206632256508
+        ]
+      },
+      {
+        "controller_variant": "feedback",
+        "scale": 1.0,
+        "accepted_delta_deg_deg_mm": [
+          -0.2897999882698059,
+          -0.14434358477592468,
+          0.042095817625522614
+        ]
+      },
+      {
+        "controller_variant": "feedback",
+        "scale": 1.0,
+        "accepted_delta_deg_deg_mm": [
+          -0.2897999882698059,
+          -0.14434358477592468,
+          0.039010725915431976
+        ]
+      },
+      {
+        "controller_variant": "feedback",
+        "scale": 1.0,
+        "accepted_delta_deg_deg_mm": [
+          -0.2897999882698059,
+          -0.14434358477592468,
+          0.04271206632256508
+        ]
+      }
+    ],
+    "states": [
+      [
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        -0.0324,
+        -0.010699718499168398,
+        0.0025226128393740933
+      ],
+      [
+        -0.0738,
+        -0.029817656775165347,
+        0.007426822893560996
+      ],
+      [
+        -0.1494,
+        -0.06205868316984464,
+        0.015543055507199382
+      ],
+      [
+        -0.2574,
+        -0.10874292649570094,
+        0.0270906683184957
+      ],
+      [
+        -0.3942,
+        -0.16494138049923635,
+        0.042978428685733774
+      ],
+      [
+        -0.5634,
+        -0.23990120421222372,
+        0.06430312479994583
+      ],
+      [
+        -0.7614,
+        -0.3362873805180584,
+        0.09053203096834479
+      ],
+      [
+        -0.9666000000000001,
+        -0.43882647173800393,
+        0.119847612474363
+      ],
+      [
+        -1.1754,
+        -0.5431201644624082,
+        0.15004062453320693
+      ],
+      [
+        -1.3860000000000001,
+        -0.6479194775940442,
+        0.17965390569107673
+      ],
+      [
+        -1.5948,
+        -0.7528627330450846,
+        0.2099409281662949
+      ],
+      [
+        -1.8054000000000003,
+        -0.8578453795306302,
+        0.24041597147426141
+      ],
+      [
+        -2.016,
+        -0.962844817300521,
+        0.27095368839314415
+      ],
+      [
+        -2.2248,
+        -1.0678383390492812,
+        0.3014914053120268
+      ],
+      [
+        -2.4354,
+        -1.1728385419488632,
+        0.33204479063363845
+      ],
+      [
+        -2.646,
+        -1.2778344429485387,
+        0.3625981759552502
+      ],
+      [
+        -2.8548,
+        -1.3828386702542517,
+        0.3914750421848554
+      ],
+      [
+        -3.0654,
+        -1.4878402155468609,
+        0.4215427070218672
+      ],
+      [
+        -3.2760000000000002,
+        -1.5928398766091263,
+        0.45197074512164664
+      ],
+      [
+        -3.4848,
+        -1.6978384525912276,
+        0.4824771252350712
+      ],
+      [
+        -3.6954000000000002,
+        -1.8028367440898663,
+        0.5121844168093151
+      ],
+      [
+        -3.906,
+        -1.9078355532278548,
+        0.5399801632506173
+      ]
+    ],
+    "actions": [
+      [
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        -0.045030657202005386,
+        -0.012520252726972103,
+        0.004019197076559067
+      ],
+      [
+        -0.0654851421713829,
+        -0.028110049664974213,
+        0.006896262988448143
+      ],
+      [
+        -0.10204390436410904,
+        -0.04144144058227539,
+        0.011390415951609612
+      ],
+      [
+        -0.14577661454677582,
+        -0.06415863335132599,
+        0.01672067865729332
+      ],
+      [
+        -0.1884133219718933,
+        -0.08090604096651077,
+        0.022172734141349792
+      ],
+      [
+        -0.23132917284965515,
+        -0.10204869508743286,
+        0.029999785125255585
+      ],
+      [
+        -0.2719135880470276,
+        -0.13470102846622467,
+        0.03683766350150108
+      ],
+      [
+        -0.2897999882698059,
+        -0.14434358477592468,
+        0.04158131405711174
+      ],
+      [
+        -0.2897999882698059,
+        -0.14434358477592468,
+        0.04271206632256508
+      ],
+      [
+        -0.2897999882698059,
+        -0.14434358477592468,
+        0.04158243536949158
+      ],
+      [
+        -0.2897999882698059,
+        -0.14434358477592468,
+        0.04271206632256508
+      ],
+      [
+        -0.2897999882698059,
+        -0.14434358477592468,
+        0.04271206632256508
+      ],
+      [
+        -0.2897999882698059,
+        -0.14434358477592468,
+        0.042431123554706573
+      ],
+      [
+        -0.2897999882698059,
+        -0.14434358477592468,
+        0.04271206632256508
+      ],
+      [
+        -0.2897999882698059,
+        -0.14434358477592468,
+        0.04271206632256508
+      ],
+      [
+        -0.2897999882698059,
+        -0.14434358477592468,
+        0.04271206632256508
+      ],
+      [
+        -0.2897999882698059,
+        -0.14434358477592468,
+        0.04099608212709427
+      ],
+      [
+        -0.2897999882698059,
+        -0.14434358477592468,
+        0.04271206632256508
+      ],
+      [
+        -0.2897999882698059,
+        -0.14434358477592468,
+        0.04271206632256508
+      ],
+      [
+        -0.2897999882698059,
+        -0.14434358477592468,
+        0.04271206632256508
+      ],
+      [
+        -0.2897999882698059,
+        -0.14434358477592468,
+        0.042095817625522614
+      ],
+      [
+        -0.2897999882698059,
+        -0.14434358477592468,
+        0.039010725915431976
+      ],
+      [
+        -0.2897999882698059,
+        -0.14434358477592468,
+        0.04271206632256508
+      ]
+    ],
+    "errors": [
+      19.609872414922812,
+      19.609872414922812,
+      19.607009579153246,
+      19.601642417549478,
+      19.59269808534584,
+      19.57996549975967,
+      19.562658430188385,
+      19.539564323641315,
+      19.511205013451054,
+      19.479721890633115,
+      19.447359607988655,
+      19.41557626115983,
+      19.383175139954595,
+      19.3506109598191,
+      19.31802051312195,
+      19.285477640825953,
+      19.252947711048776,
+      19.220458818892975,
+      19.189671825674132,
+      19.15774943503275,
+      19.125519110214075,
+      19.09326759471558,
+      19.061847121926952,
+      19.032366870072217
+    ],
+    "velocities": [
+      [
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        -0.648,
+        -0.21399436998336796,
+        0.05045225678748186
+      ],
+      [
+        -0.8280000000000001,
+        -0.3823587655199389,
+        0.09808420108373803
+      ],
+      [
+        -1.5119999999999998,
+        -0.644820527893586,
+        0.1623246522727677
+      ],
+      [
+        -2.16,
+        -0.933684866517126,
+        0.23095225622592638
+      ],
+      [
+        -2.7359999999999993,
+        -1.1239690800707078,
+        0.3177552073447614
+      ],
+      [
+        -3.3840000000000012,
+        -1.4991964742597474,
+        0.4264939222842411
+      ],
+      [
+        -3.9599999999999986,
+        -1.9277235261166938,
+        0.5245781233679793
+      ],
+      [
+        -4.104000000000002,
+        -2.0507818243989107,
+        0.5863116301203639
+      ],
+      [
+        -4.175999999999997,
+        -2.085873854488085,
+        0.6038602411768789
+      ],
+      [
+        -4.212000000000003,
+        -2.0959862626327213,
+        0.5922656231573961
+      ],
+      [
+        -4.175999999999997,
+        -2.0988651090208066,
+        0.6057404495043631
+      ],
+      [
+        -4.212000000000007,
+        -2.099652929710914,
+        0.6095008661593306
+      ],
+      [
+        -4.211999999999995,
+        -2.0999887553978147,
+        0.6107543383776541
+      ],
+      [
+        -4.176000000000005,
+        -2.099870434975202,
+        0.6107543383776526
+      ],
+      [
+        -4.211999999999995,
+        -2.10000405799164,
+        0.611067706432234
+      ],
+      [
+        -4.211999999999995,
+        -2.099918019993513,
+        0.611067706432234
+      ],
+      [
+        -4.176000000000005,
+        -2.1000845461142594,
+        0.5775373245921048
+      ],
+      [
+        -4.211999999999995,
+        -2.1000309058521807,
+        0.6013532967402355
+      ],
+      [
+        -4.212000000000011,
+        -2.0999932212453114,
+        0.608560761995589
+      ],
+      [
+        -4.175999999999989,
+        -2.099971519642025,
+        0.6101276022684918
+      ],
+      [
+        -4.212000000000003,
+        -2.0999658299727746,
+        0.5941458314848798
+      ],
+      [
+        -4.212000000000003,
+        -2.0999761827597725,
+        0.5559149288260411
+      ]
+    ],
+    "low_speed": [
+      true,
+      true,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "encoder_settled": [
+      true,
+      true,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "oct_navigation_mm": [
+      [
+        4.359891414642334,
+        -3.831596612930298,
+        18.731189727783203
+      ],
+      [
+        4.359891414642334,
+        -3.831596612930298,
+        18.731189727783203
+      ],
+      [
+        4.357446670532227,
+        -3.8307855129241943,
+        18.72892951965332
+      ],
+      [
+        4.354142189025879,
+        -3.829375982284546,
+        18.724365234375
+      ],
+      [
+        4.348183631896973,
+        -3.8269593715667725,
+        18.716899871826172
+      ],
+      [
+        4.339639186859131,
+        -3.8234310150146484,
+        18.70623207092285
+      ],
+      [
+        4.328619003295898,
+        -3.8190958499908447,
+        18.691587448120117
+      ],
+      [
+        4.314702033996582,
+        -3.813321352005005,
+        18.67180633544922
+      ],
+      [
+        4.298152923583984,
+        -3.8058321475982666,
+        18.64750862121582
+      ],
+      [
+        4.280562400817871,
+        -3.7977817058563232,
+        18.6202449798584
+      ],
+      [
+        4.262438774108887,
+        -3.7894012928009033,
+        18.592222213745117
+      ],
+      [
+        4.244082927703857,
+        -3.7809135913848877,
+        18.5649356842041
+      ],
+      [
+        4.225577354431152,
+        -3.772261381149292,
+        18.537033081054688
+      ],
+      [
+        4.206737041473389,
+        -3.7635176181793213,
+        18.50908660888672
+      ],
+      [
+        4.187706470489502,
+        -3.754554033279419,
+        18.481138229370117
+      ],
+      [
+        4.168618202209473,
+        -3.745511531829834,
+        18.453304290771484
+      ],
+      [
+        4.149205207824707,
+        -3.736313581466675,
+        18.425539016723633
+      ],
+      [
+        4.129615306854248,
+        -3.7270123958587646,
+        18.397884368896484
+      ],
+      [
+        4.110243320465088,
+        -3.717608690261841,
+        18.37198829650879
+      ],
+      [
+        4.090364933013916,
+        -3.7080469131469727,
+        18.34498405456543
+      ],
+      [
+        4.070255756378174,
+        -3.6983320713043213,
+        18.317777633666992
+      ],
+      [
+        4.050087928771973,
+        -3.688469409942627,
+        18.29056167602539
+      ],
+      [
+        4.029750823974609,
+        -3.6785407066345215,
+        18.264297485351562
+      ],
+      [
+        4.009571075439453,
+        -3.6685056686401367,
+        18.239965438842773
+      ]
+    ],
+    "oct_navigation_norm_mm": [
+      19.60987663269043,
+      19.60987663269043,
+      19.60701560974121,
+      19.601646423339844,
+      19.59271812438965,
+      19.579944610595703,
+      19.562665939331055,
+      19.539560317993164,
+      19.511228561401367,
+      19.4797306060791,
+      19.447330474853516,
+      19.415571212768555,
+      19.383163452148438,
+      19.350631713867188,
+      19.318023681640625,
+      19.285503387451172,
+      19.252958297729492,
+      19.220470428466797,
+      19.1897029876709,
+      19.157743453979492,
+      19.12552261352539,
+      19.09326171875,
+      19.06187629699707,
+      19.032365798950195
+    ],
+    "oct_navigation_valid": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    ],
+    "simulation_time_s": [
+      0.0,
+      0.05,
+      0.1,
+      0.15000000000000002,
+      0.2,
+      0.25,
+      0.3,
+      0.35,
+      0.39999999999999997,
+      0.44999999999999996,
+      0.49999999999999994,
+      0.5499999999999999,
+      0.6,
+      0.65,
+      0.7000000000000001,
+      0.7500000000000001,
+      0.8000000000000002,
+      0.8500000000000002,
+      0.9000000000000002,
+      0.9500000000000003,
+      1.0000000000000002,
+      1.0500000000000003,
+      1.1000000000000003,
+      1.1500000000000004
+    ],
+    "policy_inference_ms": [
+      null,
+      164.82540893554688,
+      10.372063636779785,
+      10.445535659790039,
+      11.29212760925293,
+      8.862303733825684,
+      9.836000442504883,
+      11.049023628234863,
+      9.875904083251953,
+      9.74124813079834,
+      9.031455993652344,
+      10.09068775177002,
+      9.777024269104004,
+      9.427103996276855,
+      10.701663970947266,
+      9.087615966796875,
+      9.916255950927734,
+      10.205951690673828,
+      9.548735618591309,
+      9.573408126831055,
+      9.59382438659668,
+      9.755264282226562,
+      16.870527267456055,
+      9.222240447998047
+    ]
+  },
+  "episode_index": 8,
+  "target_id": "E08",
+  "seed": 50,
+  "target_manifest": {
+    "generator_versions": [
+      "v7_runtime_random_fundus_targets"
+    ],
+    "id": "target_29b219ad42c3",
+    "point_mm": [
+      -2.350914,
+      9.106387,
+      21.563409
+    ],
+    "roles": [
+      "development"
+    ],
+    "seed": null,
+    "seeds": [],
+    "sources": [
+      "outputs\\evaluation_v7_guided_20mm_repeat_20261106\\g1\\evaluation_results.json"
+    ],
+    "target_hash": "29B219AD42C3C7854D901148B62709BB20B4C3F3D32F00D8F6C1865AFB9A1948",
+    "nominal_target_robot_mm": [
+      -2.350914,
+      9.106387,
+      21.563409
+    ],
+    "nominal_target_world_mm": [
+      351.0550017322704,
+      -13.611665975362204,
+      375.2356088743375
+    ],
+    "reachable_target_robot_mm": [
+      -2.3511386854165575,
+      9.106386260772627,
+      21.563377047492345
+    ],
+    "reachable_target_world_mm": [
+      351.0549894697093,
+      -13.611890660778762,
+      375.23563838939805
+    ],
+    "reachable_encoder_counts_ABC": [
+      -3457,
+      736275,
+      2139667
+    ],
+    "target_shift_um": 0.22694723090762572,
+    "target_shift_vector_um": [
+      -0.012262561085663037,
+      -0.22468541655840113,
+      0.029515060532503412
+    ],
+    "quantization_search_radius_counts": 2
+  },
+  "initial_boundary": {
+    "tip_world_mm": [
+      337.0507865724399,
+      -11.260751975282796,
+      388.75974812805464
+    ],
+    "target_world_mm": [
+      351.0549894697093,
+      -13.61189066077876,
+      375.23563838939805
+    ],
+    "initial_error_um": 19609.87241492281,
+    "state_deg_deg_mm": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "start": "untouched production standard constructor reset"
+  },
+  "route_counts": {
+    "v5": 24,
+    "learned_local": 0,
+    "teacher": 0,
+    "geometry": 0
+  },
+  "switch": null,
+  "checkpoint_sha256": "6cc389df3786f1f34c43cf65d6dc17fe910ab342fae8d84c8e37cea6a7db6c11",
+  "local_model_sha256": "8d0679fc706c8a1a384977c59af5ec131e22e281afa9d02bd2f6625baccfbfc1",
+  "egl": {
+    "vendor": "NVIDIA Corporation",
+    "renderer": "NVIDIA GeForce RTX 4090/PCIe/SSE2"
+  },
+  "elapsed_s": 10.579960329050664
+}

@@ -1,0 +1,25 @@
+{
+  "status": "passed",
+  "original_24step_gate": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261126/v5_learned_local_standard2_protocol_v2/prefix_gate/validation.json",
+  "new_control_execution": false,
+  "checks": {
+    "original_gate_source_hash:/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261126/v5_learned_local_standard2_protocol_v2/standard2.py": true,
+    "original_gate_source_hash:/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261126/v5_learned_local_standard2_protocol_v2/protocol_checks.py": true,
+    "original_gate_source_hash:/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261126/v5_learned_local_standard2_protocol_v2/launch.sh": true,
+    "identical_AST:standard2.py:worker": true,
+    "identical_AST:standard2.py:radius_metrics": true,
+    "identical_AST:standard2.py:finish_comparison": true,
+    "identical_AST:protocol_checks.py:compare": true,
+    "frozen_input_unchanged:/home/him1/mujoco_bc/rcm_4090_deploy/outputs/homog_label_fix_20261124_v5/homog_label_fix_20261124_v5_phase1_A/step_004000.pth": true,
+    "frozen_input_unchanged:/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261125/learned_terminal_recovery_pilot_v1/recovery_v1/run/model.json": true,
+    "frozen_input_unchanged:/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261125/learned_terminal_recovery_pilot_v1/recovery_v1/run/student_policy.py": true,
+    "frozen_input_unchanged:/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261125/learned_terminal_recovery_pilot_v1/recovery_v1/run/training_arrays.npz": true,
+    "frozen_input_unchanged:/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261125/learned_terminal_recovery_pilot_v1/recovery_v1/run/local_metrics.json": true,
+    "frozen_input_unchanged:/home/him1/mujoco_bc/rcm_4090_deploy/lerobot_training/eval_policy.py": true,
+    "frozen_input_unchanged:/home/him1/mujoco_bc/rcm_4090_deploy/rcm/scene_v9.py": true,
+    "frozen_input_unchanged:/home/him1/mujoco_bc/rcm_4090_deploy/rcm/motor_execution.py": true,
+    "frozen_input_unchanged:/home/him1/mujoco_bc/rcm_4090_deploy/configs/v12_reachable_development_targets_0p35um.json": true,
+    "frozen_input_unchanged:/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261125/terminal_round_v1/v5_A4000/shards/contract.json": true,
+    "prior_both20_gate": true
+  }
+}

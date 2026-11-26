@@ -1,0 +1,31 @@
+{
+  "status": "passed",
+  "categories": {
+    "signed_OCT_Z_positive": 256,
+    "C_velocity_stationary": 254,
+    "nonzero_accepted_action": 486,
+    "lateral_OCT_over_5um": 69,
+    "samples": 608,
+    "C_velocity_positive": 160,
+    "lateral_OCT_le_5um": 539,
+    "zero_accepted_action": 122,
+    "C_velocity_negative": 194,
+    "signed_OCT_Z_negative": 352,
+    "teacher_post_improves": 344,
+    "teacher_post_equal_or_worse": 264
+  },
+  "total_rows": 608,
+  "successful_segments": 18,
+  "excluded_failed_segments": [],
+  "weights_per_target": {
+    "E40": 0.3333333333333327,
+    "E41": 0.33333333333333265,
+    "E42": 0.33333333333333254
+  },
+  "weighted_stationary_fraction": 0.20833333333333334,
+  "independent_truth_spotcheck_frames": 24,
+  "max_truth_score_difference_um": 0.0,
+  "labels": "Exactly executed/accepted teacher command; no pre-acceleration or zero-velocity relabels",
+  "sample_alignment": "OCT/state/velocity/previous action at t; teacher accepted action at t; actual after-state and score at t+0.05s",
+  "cpu_reason": "Twelve-variable analytic ridge and data audit are small CPU work; actual rendering uses RTX4090 NVIDIA EGL"
+}

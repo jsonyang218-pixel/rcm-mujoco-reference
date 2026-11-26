@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "created": "2026-11-25T22:47:40.849302+08:00",
+  "authorization": "User explicitly authorized recovery of verified zero-execution GNOME-only failure; same experiment, no duplicate process or recipe change.",
+  "original_files_sha256": {
+    "experiment_card.json": "8d2ef5d6cfdb529e40af89d9f2ebcf7459e28536cacc2f77a4866f873ee634f3",
+    "input_fingerprints.json": "14203379d3dac085a64458415d9d402b88a23352121184988798f3980c54180c",
+    "launch.sh": "d13a7a1d4fcc4c23af4d8d06ec7bbc90dd4eb63045096aae49ae16408e4aa13f",
+    "launch_failure_report.json": "6a6d21cababa26729da43d4529559516425bd68958b3dc4ad991e2ef0c785b14",
+    "launch_once.py": "a5bfe5db251762ea817d16564bbce1e785242d2e5005985fecca98fc5bfa3b7c",
+    "launch_receipt.json": "6907416bcc6c4e982fb4a754762dd941f5c875252906db9ff88a2b71699a6103",
+    "pilot.py": "7ab77beae858e54f4d2287f0247d52cbebb0de2cb9b342045f4b3dfa44568172",
+    "report.md": "3b527b4d7571357d40b438708bfa05c3687f20051049a34f47991abf41f4eb3c",
+    "reuse_audit.json": "9a0d138904d4cef326c024208b7c4c1b2f77d8c751626a7e347b24d200a922ff",
+    "student_policy.py": "7909a2932b682d38c688c1846177ceb424a5c436d822d56e4e16e7e8461f71a5",
+    "workflow_status.json": "c28c24fb4c305d7201ca4f9c3a862e71028f3583f4d09f83c8930eee93ac22fb"
+  },
+  "original_status": {
+    "status": "launch_failed",
+    "reason": "RuntimeError('GNOME launch returned 1: # Failed to parse arguments: Cannot open display: \\n')",
+    "experiment_started": false,
+    "no_background_fallback": true
+  },
+  "original_launch_receipt_sha256": "6907416bcc6c4e982fb4a754762dd941f5c875252906db9ff88a2b71699a6103",
+  "no_active_experiment_processes": true,
+  "process_snapshot": [],
+  "no_execution_results": true,
+  "checked_absent": [
+    "model.json",
+    "training_result.json",
+    "training_arrays.npz",
+    "training_samples.json",
+    "host_preflight.json",
+    "failure.json",
+    "trajectories",
+    "local_metrics.json",
+    "summary.json",
+    "terminal.log"
+  ],
+  "frozen_input_hashes_verified": 25,
+  "desktop_environment": {
+    "DISPLAY": ":1",
+    "XDG_RUNTIME_DIR": "/run/user/1000",
+    "DBUS_SESSION_BUS_ADDRESS": "unix:path=/run/user/1000/bus"
+  },
+  "x11_probe": "name of display:    :1\nversion number:    11.0\nvendor string:    The X.Org Foundation\nvendor release number:    12101011\nX.Org version: 21.1.11\nmaximum request size:  16777212 bytes\nmotion buffer size:  256\nbitmap unit, bit order, padding:    32, LSBFirst, 32\nimage byte order:    LSBFirst\nnumber of supported pixmap formats:    7",
+  "gnome_terminal_server_owner": "(true,)",
+  "gpu_probe": "NVIDIA GeForce RTX 4090, 425 MiB, 0 %",
+  "preserved_original_directory": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261125/learned_terminal_recovery_pilot_v1",
+  "resumed_runtime_directory": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261125/learned_terminal_recovery_pilot_v1/recovery_v1/run",
+  "prepared_state_restoration": "New recovery runtime state only; original failed workflow_status.json is immutable.",
+  "recipe_changes": [],
+  "infrastructure_changes": [
+    "Explicit host desktop environment",
+    "Separate runtime output path beneath the same experiment directory",
+    "Startup acknowledgment and duplicate-execution guard",
+    "Append stage records to parent and deployment TEST_LOG.md"
+  ],
+  "frozen_pipeline_code_sha256": "7ab77beae858e54f4d2287f0247d52cbebb0de2cb9b342045f4b3dfa44568172",
+  "recovery_entry_sha256": "87fc8cecc350e254d196be0d7aececece07560936cbf89d4e9589f414d139b2c",
+  "recovery_shell_sha256": "5c968ba63a27f4a8c9802ad33a4b01785ed2054cd7c9b0941fac9be5d9e3349d"
+}
