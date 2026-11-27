@@ -1,0 +1,38 @@
+{
+  "phase": "payload_before_publication_record",
+  "command": [
+    "/usr/bin/python3",
+    "-E",
+    "-B",
+    "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261127/latest_results_github_v2/verify_snapshot.py",
+    "--snapshot-dir",
+    "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261127/latest_results_github_v2"
+  ],
+  "result": {
+    "status": "passed",
+    "counts": {
+      "files": 743,
+      "bytes": 23082777,
+      "json": 260,
+      "jsonl": 7,
+      "python": 297
+    },
+    "snapshot_at": "2026-11-27T10:02:43+08:00"
+  },
+  "actual_candidate1_candidate2_sha256_verified": true,
+  "input_provenance_checks": 25,
+  "paired_standard_protocol_fields_equal": [
+    "targets",
+    "seeds",
+    "cycles_each",
+    "period_s",
+    "K",
+    "exec",
+    "flow_steps",
+    "caps",
+    "driver",
+    "start",
+    "route"
+  ],
+  "new_experiments_run": false
+}

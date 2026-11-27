@@ -1,0 +1,27 @@
+Warning: wandb not available, logging will be local only
+加载模型: /home/him1/mujoco_bc/rcm_4090_deploy/outputs/homog_label_fix_20261124_v5/homog_label_fix_20261124_v5_phase1_A/step_004000.pth
+模型加载完成 (type=dit_rectified_flow, epoch=3, train_loss=0.103753, val_loss=0.148062)
+加载模型: /home/him1/mujoco_bc/rcm_4090_deploy/outputs/homog_label_fix_20261124_v5/homog_label_fix_20261124_v5_phase1_A/step_004000.pth
+模型加载完成 (type=dit_rectified_flow, epoch=3, train_loss=0.103753, val_loss=0.148062)
+  closed-loop step 1/1600, error=19609.872 um
+  closed-loop step 80/1600, error=17303.961 um
+  closed-loop step 160/1600, error=14902.846 um
+  closed-loop step 240/1600, error=12492.827 um
+  closed-loop step 320/1600, error=10099.260 um
+  closed-loop step 400/1600, error=7704.275 um
+  closed-loop step 480/1600, error=5301.459 um
+  closed-loop step 560/1600, error=2894.026 um
+  closed-loop step 640/1600, error=506.149 um
+  closed-loop step 720/1600, error=7.912 um
+  closed-loop step 800/1600, error=1.245 um
+  closed-loop step 880/1600, error=2.238 um
+  closed-loop step 960/1600, error=2.599 um
+  closed-loop step 1040/1600, error=4.769 um
+  closed-loop step 1120/1600, error=7.416 um
+  closed-loop step 1200/1600, error=10.494 um
+  closed-loop step 1280/1600, error=12.443 um
+  closed-loop step 1360/1600, error=8.269 um
+  closed-loop step 1440/1600, error=8.223 um
+  closed-loop step 1520/1600, error=9.046 um
+  closed-loop step 1600/1600, error=7.897 um
+{"time": "2026-11-27T09:55:17.066080+08:00", "experiment": "dit_quantization_recovery_v3", "stage": "standard_test_completed", "result": {"status": "completed", "candidate": "candidate2", "target": "E08", "metrics": {"completed_cycles": 1600, "endpoint_um": 1.1099645285131694, "first_enter20_post_cycle": 662, "last200_max_post_error_um": 13.614177041238202, "longest_le20_cycles": 939, "terminal_le20_cycles": 939, "last200_includes_final_post": true, "strict20um_pass": true}, "route_counts": {"original_v5_DiT_RF": 654, "fixed_noise_near_DiT_RF": 945, "original_RGB2_startup_zero": 1, "teacher": 0, "geometry": 0}, "seed": 50, "expected_cycles": 1600, "model_checkpoint_sha256": "dae7252fe5ee1af6a35d39974b395b674f9b6607175b8e6d984d5331812cd843", "all_policy_ABC_produced_by_DiT": true, "input_ablation": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261127/dit_quantization_recovery_v3/candidate2/input_ablation_after.json", "original_startup_zero_cycles": 1, "truth_setup_scoring_only": true, "simulation_only": true}, "card": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261127/dit_quantization_recovery_v3/experiment_card.json", "command": ["/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261127/dit_quantization_recovery_v3/v3.py", "evaluate", "--candidate", "candidate2", "--index", "8"], "far_checkpoint_sha256": "6cc389df3786f1f34c43cf65d6dc17fe910ab342fae8d84c8e37cea6a7db6c11", "init_sha256": "748d950a31c1d2529af8f0fb18a5d90933de16b723e7dc4dc55ae20f9096ce94", "output": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261127/dit_quantization_recovery_v3"}

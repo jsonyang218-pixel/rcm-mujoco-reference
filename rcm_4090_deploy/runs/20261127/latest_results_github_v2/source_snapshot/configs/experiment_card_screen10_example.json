@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "id": "state_attention_v1_screen_example",
+  "hypothesis": "The candidate checkpoint reduces mean final error on the fixed screen.",
+  "main_change": "Replace the evaluated checkpoint only, without retraining or changing the protocol.",
+  "output_dir": "outputs/state_attention_v1_screen_example",
+  "stages": [
+    {
+      "id": "screen",
+      "type": "pipeline",
+      "tier": "screen10",
+      "config": "configs/state_attention_v1_plan2_plus_original200_eval_dev10_shards10_20261119.json",
+      "checkpoint": "outputs/state_attention_v1_plan2_plus_original200_20261119_1/best_model.pth",
+      "timeout_s": 7200,
+      "gates": [
+        {
+          "file": "summary.json",
+          "key": "baseline_comparison.delta_candidate_minus_baseline.final_error_mean_um",
+          "op": "<",
+          "value": 0
+        }
+      ]
+    }
+  ]
+}

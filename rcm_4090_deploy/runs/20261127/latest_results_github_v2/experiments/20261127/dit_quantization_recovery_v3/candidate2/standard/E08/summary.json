@@ -1,0 +1,30 @@
+{
+  "status": "completed",
+  "candidate": "candidate2",
+  "target": "E08",
+  "metrics": {
+    "completed_cycles": 1600,
+    "endpoint_um": 1.1099645285131694,
+    "first_enter20_post_cycle": 662,
+    "last200_max_post_error_um": 13.614177041238202,
+    "longest_le20_cycles": 939,
+    "terminal_le20_cycles": 939,
+    "last200_includes_final_post": true,
+    "strict20um_pass": true
+  },
+  "route_counts": {
+    "original_v5_DiT_RF": 654,
+    "fixed_noise_near_DiT_RF": 945,
+    "original_RGB2_startup_zero": 1,
+    "teacher": 0,
+    "geometry": 0
+  },
+  "seed": 50,
+  "expected_cycles": 1600,
+  "model_checkpoint_sha256": "dae7252fe5ee1af6a35d39974b395b674f9b6607175b8e6d984d5331812cd843",
+  "all_policy_ABC_produced_by_DiT": true,
+  "input_ablation": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261127/dit_quantization_recovery_v3/candidate2/input_ablation_after.json",
+  "original_startup_zero_cycles": 1,
+  "truth_setup_scoring_only": true,
+  "simulation_only": true
+}

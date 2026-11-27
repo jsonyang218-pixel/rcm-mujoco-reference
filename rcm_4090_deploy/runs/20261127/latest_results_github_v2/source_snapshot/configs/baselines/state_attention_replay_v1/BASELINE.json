@@ -1,0 +1,230 @@
+{
+  "schema_version": 1,
+  "baseline_id": "state_attention_replay_v1_20261117_1",
+  "status": "frozen",
+  "source_report": "github_reports/model_status_20261117_state_attention_replay",
+  "source_episodes_sha256": "a358615395c90b4a15cbcbf32d953c4966f6216b8e957d1a6213ec624be056e1",
+  "model": {
+    "checkpoint": {
+      "path": "outputs/state_attention_replay_v1_20261117_1/training/best_model.pth",
+      "sha256": "015bb3d2330693f9d8a46967c4f40698e2e54b708f2da2a8e1e87398fe740c8c"
+    }
+  },
+  "evaluation": {
+    "target_manifest": {
+      "path": "configs/v12_reachable_development_targets_0p35um.json",
+      "sha256": "fcc4872a9d5b58bb7158b36d3c0ab6d7452e4d8d747317dfb077b6e7bbc815c7"
+    },
+    "protocol": {
+      "target_manifest": "configs/v12_reachable_development_targets_0p35um.json",
+      "target_split": "development",
+      "target_start": 0,
+      "target_end": 20,
+      "episodes": 20,
+      "shards": 10,
+      "device": "cuda",
+      "seed": 42,
+      "max_steps": 1600,
+      "error_threshold_mm": 0.00035,
+      "control_period_s": 0.05,
+      "num_action_samples": 1,
+      "n_action_execute_steps": 1
+    },
+    "episodes": 20,
+    "successes": 0,
+    "success_rate": 0.0,
+    "final_error": {
+      "mean_um": 171.0276789644418,
+      "median_um": 161.43855803169055,
+      "maximum_um": 269.20339675057227
+    },
+    "per_episode_minimum_error": {
+      "mean_um": 77.84127321267582
+    },
+    "safety_limited_steps": {
+      "total": 0
+    },
+    "records": [
+      {
+        "episode_index": 0,
+        "target_id": "target_d30721d6bc45",
+        "success": false,
+        "final_error_um": 152.75541685141803,
+        "minimum_error_um": 65.11462235043118,
+        "steps": 1600,
+        "safety_limited_steps": 0
+      },
+      {
+        "episode_index": 1,
+        "target_id": "target_aa2ca282c44d",
+        "success": false,
+        "final_error_um": 180.22365041343403,
+        "minimum_error_um": 84.06361705888462,
+        "steps": 1600,
+        "safety_limited_steps": 0
+      },
+      {
+        "episode_index": 2,
+        "target_id": "target_26985bd28045",
+        "success": false,
+        "final_error_um": 112.96686184283861,
+        "minimum_error_um": 41.75222161903287,
+        "steps": 1600,
+        "safety_limited_steps": 0
+      },
+      {
+        "episode_index": 3,
+        "target_id": "target_3af19f0abe43",
+        "success": false,
+        "final_error_um": 197.49318232332405,
+        "minimum_error_um": 87.81711403563664,
+        "steps": 1600,
+        "safety_limited_steps": 0
+      },
+      {
+        "episode_index": 4,
+        "target_id": "target_1f3394af4340",
+        "success": false,
+        "final_error_um": 152.02639975435073,
+        "minimum_error_um": 108.3017366698039,
+        "steps": 1600,
+        "safety_limited_steps": 0
+      },
+      {
+        "episode_index": 5,
+        "target_id": "target_c3ec6b3c195b",
+        "success": false,
+        "final_error_um": 218.15899652191106,
+        "minimum_error_um": 52.86510358268567,
+        "steps": 1600,
+        "safety_limited_steps": 0
+      },
+      {
+        "episode_index": 6,
+        "target_id": "target_6f265ab4f315",
+        "success": false,
+        "final_error_um": 187.5475237361588,
+        "minimum_error_um": 136.0664629137713,
+        "steps": 1600,
+        "safety_limited_steps": 0
+      },
+      {
+        "episode_index": 7,
+        "target_id": "target_16f33fbaf614",
+        "success": false,
+        "final_error_um": 144.04986939668802,
+        "minimum_error_um": 69.7565839440971,
+        "steps": 1600,
+        "safety_limited_steps": 0
+      },
+      {
+        "episode_index": 8,
+        "target_id": "target_29b219ad42c3",
+        "success": false,
+        "final_error_um": 116.29672731306667,
+        "minimum_error_um": 54.567615320270775,
+        "steps": 1600,
+        "safety_limited_steps": 0
+      },
+      {
+        "episode_index": 9,
+        "target_id": "target_6cbc262e87a7",
+        "success": false,
+        "final_error_um": 111.12833402365123,
+        "minimum_error_um": 88.90506295224947,
+        "steps": 1600,
+        "safety_limited_steps": 0
+      },
+      {
+        "episode_index": 10,
+        "target_id": "target_087ecb1a48ae",
+        "success": false,
+        "final_error_um": 149.02495539048613,
+        "minimum_error_um": 72.4945324090401,
+        "steps": 1600,
+        "safety_limited_steps": 0
+      },
+      {
+        "episode_index": 11,
+        "target_id": "target_9d730c206335",
+        "success": false,
+        "final_error_um": 114.67546911930441,
+        "minimum_error_um": 28.462622389615543,
+        "steps": 1600,
+        "safety_limited_steps": 0
+      },
+      {
+        "episode_index": 12,
+        "target_id": "target_8c09d0273c72",
+        "success": false,
+        "final_error_um": 92.67126168011949,
+        "minimum_error_um": 51.42510090205103,
+        "steps": 1600,
+        "safety_limited_steps": 0
+      },
+      {
+        "episode_index": 13,
+        "target_id": "target_6568a41173bf",
+        "success": false,
+        "final_error_um": 163.59787412630487,
+        "minimum_error_um": 99.23306418833401,
+        "steps": 1600,
+        "safety_limited_steps": 0
+      },
+      {
+        "episode_index": 14,
+        "target_id": "target_60c55f2f653c",
+        "success": false,
+        "final_error_um": 199.60399576242497,
+        "minimum_error_um": 163.08697141267876,
+        "steps": 1600,
+        "safety_limited_steps": 0
+      },
+      {
+        "episode_index": 15,
+        "target_id": "target_a17303552cb6",
+        "success": false,
+        "final_error_um": 255.73359383994554,
+        "minimum_error_um": 56.14643723925347,
+        "steps": 1600,
+        "safety_limited_steps": 0
+      },
+      {
+        "episode_index": 16,
+        "target_id": "target_fbc038a60a6e",
+        "success": false,
+        "final_error_um": 238.27861495691246,
+        "minimum_error_um": 42.987147611240324,
+        "steps": 1600,
+        "safety_limited_steps": 0
+      },
+      {
+        "episode_index": 17,
+        "target_id": "target_baf07b4fdc81",
+        "success": false,
+        "final_error_um": 205.83821354884822,
+        "minimum_error_um": 85.98940018424688,
+        "steps": 1600,
+        "safety_limited_steps": 0
+      },
+      {
+        "episode_index": 18,
+        "target_id": "target_9f48f99f6b42",
+        "success": false,
+        "final_error_um": 269.20339675057227,
+        "minimum_error_um": 125.01290823780673,
+        "steps": 1600,
+        "safety_limited_steps": 0
+      },
+      {
+        "episode_index": 19,
+        "target_id": "target_ce1d61e67e1a",
+        "success": false,
+        "final_error_um": 159.2792419370762,
+        "minimum_error_um": 42.77713923238607,
+        "steps": 1600,
+        "safety_limited_steps": 0
+      }
+    ]
+  }
+}

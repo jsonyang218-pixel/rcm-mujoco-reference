@@ -1,0 +1,159 @@
+{
+  "candidate": "candidate1",
+  "arms": {
+    "below_approaching": {
+      "metrics": {
+        "completed_cycles": 240,
+        "endpoint_um": 5.555016685903445,
+        "first_enter20_post_cycle": 3,
+        "last200_max_post_error_um": 18.791121423498293,
+        "longest_le20_cycles": 238,
+        "terminal_le20_cycles": 238,
+        "last200_includes_final_post": true,
+        "strict20um_pass": true
+      },
+      "v2_metrics": {
+        "completed_cycles": 240,
+        "endpoint_um": 2.0216603639621513,
+        "first_enter20_post_cycle": 9,
+        "last200_max_post_error_um": 2.0216603639621513,
+        "longest_le20_cycles": 232,
+        "terminal_le20_cycles": 232,
+        "last200_includes_final_post": true,
+        "strict20um_pass": true
+      },
+      "mean_error_xyz_um": [
+        -1.6101373698944599,
+        -2.165416568678164,
+        -3.2010593544700328
+      ],
+      "stationary_cycles": 0,
+      "mean_actions": [
+        0.0005074472308979239,
+        -0.0008869006592703954,
+        8.40476353187114e-05
+      ],
+      "mean_OCT_um": [
+        -2.457797681017837,
+        -3.1291925538488385,
+        -1.3703246187515106
+      ]
+    },
+    "below_receding": {
+      "metrics": {
+        "completed_cycles": 240,
+        "endpoint_um": 6.612765929958131,
+        "first_enter20_post_cycle": 2,
+        "last200_max_post_error_um": 18.264939906987248,
+        "longest_le20_cycles": 239,
+        "terminal_le20_cycles": 239,
+        "last200_includes_final_post": true,
+        "strict20um_pass": true
+      },
+      "v2_metrics": {
+        "completed_cycles": 240,
+        "endpoint_um": 1.4320703611771872,
+        "first_enter20_post_cycle": 10,
+        "last200_max_post_error_um": 1.4320703611771872,
+        "longest_le20_cycles": 231,
+        "terminal_le20_cycles": 231,
+        "last200_includes_final_post": true,
+        "strict20um_pass": true
+      },
+      "mean_error_xyz_um": [
+        -1.9843372930142777,
+        -1.6366700674695966,
+        -3.6717558180032484
+      ],
+      "stationary_cycles": 0,
+      "mean_actions": [
+        9.156397569313412e-05,
+        -0.0006945286135032802,
+        -8.077967277358766e-05
+      ],
+      "mean_OCT_um": [
+        -1.9780253880444576,
+        -3.700683931006097,
+        -1.646351191350277
+      ]
+    },
+    "above_approaching": {
+      "metrics": {
+        "completed_cycles": 240,
+        "endpoint_um": 3.1946517202949396,
+        "first_enter20_post_cycle": 3,
+        "last200_max_post_error_um": 16.33601593276223,
+        "longest_le20_cycles": 238,
+        "terminal_le20_cycles": 238,
+        "last200_includes_final_post": true,
+        "strict20um_pass": true
+      },
+      "v2_metrics": {
+        "completed_cycles": 240,
+        "endpoint_um": 7.4014432105545795,
+        "first_enter20_post_cycle": 10,
+        "last200_max_post_error_um": 7.4014432105545795,
+        "longest_le20_cycles": 231,
+        "terminal_le20_cycles": 231,
+        "last200_includes_final_post": true,
+        "strict20um_pass": true
+      },
+      "mean_error_xyz_um": [
+        -0.09632827205194872,
+        -1.2787228452956951,
+        -4.580775423363548
+      ],
+      "stationary_cycles": 0,
+      "mean_actions": [
+        0.0005492844532091112,
+        -0.00019096509629889624,
+        5.3678036292694744e-05
+      ],
+      "mean_OCT_um": [
+        -1.8136877576989718,
+        -2.667917589260469,
+        -3.4332991940755164
+      ]
+    },
+    "above_receding": {
+      "metrics": {
+        "completed_cycles": 240,
+        "endpoint_um": 6.702208654075554,
+        "first_enter20_post_cycle": 2,
+        "last200_max_post_error_um": 21.829975336132005,
+        "longest_le20_cycles": 156,
+        "terminal_le20_cycles": 156,
+        "last200_includes_final_post": true,
+        "strict20um_pass": false
+      },
+      "v2_metrics": {
+        "completed_cycles": 240,
+        "endpoint_um": 6.822034953755547,
+        "first_enter20_post_cycle": 11,
+        "last200_max_post_error_um": 6.822034953755547,
+        "longest_le20_cycles": 230,
+        "terminal_le20_cycles": 230,
+        "last200_includes_final_post": true,
+        "strict20um_pass": true
+      },
+      "mean_error_xyz_um": [
+        -3.6611905839052383,
+        -3.3678076262453787,
+        0.29330081699953325
+      ],
+      "stationary_cycles": 0,
+      "mean_actions": [
+        0.0005010011913327616,
+        -0.0004731492938253723,
+        8.836803661324666e-05
+      ],
+      "mean_OCT_um": [
+        -3.213883022731352,
+        -2.7395896330142477,
+        2.8199013150333485
+      ]
+    }
+  },
+  "correction": "One preauthorized E40/E42-only retention-weighted repair; no E41 labels/inputs used in optimization",
+  "repair_data": "Same frozen contiguous E40/E42 training data; increased axial/hold retention only"
+}

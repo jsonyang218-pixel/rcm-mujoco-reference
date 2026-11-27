@@ -1,0 +1,17 @@
+Warning: wandb not available, logging will be local only
+加载模型: /home/him1/mujoco_bc/rcm_4090_deploy/outputs/homog_label_fix_20261124_v5/homog_label_fix_20261124_v5_phase1_A/step_004000.pth
+模型加载完成 (type=dit_rectified_flow, epoch=3, train_loss=0.103753, val_loss=0.148062)
+Traceback (most recent call last):
+  File "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261127/dit_quantization_recovery_v3/v3.py", line 360, in <module>
+    if __name__=='__main__':main()
+                            ^^^^^^
+  File "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261127/dit_quantization_recovery_v3/v3.py", line 352, in main
+    if a.mode=='preflight':preflight()
+                           ^^^^^^^^^^^
+  File "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261127/dit_quantization_recovery_v3/v3.py", line 292, in preflight
+    result=teacher.geometry_action_from_observation(q,obs,previous_velocity=np.zeros(3),command_q=q)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261127/dit_quantization_recovery_v3/teacher.py", line 30, in geometry_action_from_observation
+    base=np.asarray(self.scene.robot_to_world(self.scene.forward_kinematics(q)))
+                                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'RCMSceneV9' object has no attribute 'forward_kinematics'

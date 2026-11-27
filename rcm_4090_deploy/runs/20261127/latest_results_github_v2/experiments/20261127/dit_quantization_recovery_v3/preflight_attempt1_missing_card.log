@@ -1,0 +1,23 @@
+Warning: wandb not available, logging will be local only
+加载模型: /home/him1/mujoco_bc/rcm_4090_deploy/outputs/homog_label_fix_20261124_v5/homog_label_fix_20261124_v5_phase1_A/step_004000.pth
+模型加载完成 (type=dit_rectified_flow, epoch=3, train_loss=0.103753, val_loss=0.148062)
+Traceback (most recent call last):
+  File "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261127/dit_quantization_recovery_v3/v3.py", line 360, in <module>
+    if __name__=='__main__':main()
+                            ^^^^^^
+  File "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261127/dit_quantization_recovery_v3/v3.py", line 352, in main
+    if a.mode=='preflight':preflight()
+                           ^^^^^^^^^^^
+  File "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261127/dit_quantization_recovery_v3/v3.py", line 284, in preflight
+    task=next(t['task'] for t in c.read(OUT/'experiment_card.json')['targets'] if t['task']['id']==target)
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261127/dit_quantization_recovery_v3/campaign.py", line 56, in read
+    def read(p): return json.loads(Path(p).read_text())
+                                   ^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/pathlib.py", line 1029, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/pathlib.py", line 1015, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261127/dit_quantization_recovery_v3/experiment_card.json'

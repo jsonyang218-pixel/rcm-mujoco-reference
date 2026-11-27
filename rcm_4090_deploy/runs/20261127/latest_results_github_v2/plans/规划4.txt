@@ -1,0 +1,55 @@
+已去掉全部阶段和单集时间限制（保留逐集落盘断点续跑与 NaN/异常防卡死护栏），下面是可直接交给 Codex 执行的**无时间限制版任务书**：
+
+### Codex 自主执行任务书：A 轴反向偏置溯源与末段漂移根治（基于 `dad76c5`，无时间限制版）
+
+**全局硬约束**
+
+* **不设任何运行时长或超时限制**：严禁为阶段、训练或单 episode 设置 wall-clock 超时中断，确保每一阶段完整跑完；仅在出现进程崩溃、NaN/Inf 或非法状态时止损并记录原因。
+* **工作分支与资产保护**：基于 `feature/g15-control-single-packet-20261121`（`dad76c5`）新建独立分支 `fix/a-axis-flip-20261123`，严禁覆盖原数据集、`task2_step4000` 或 `clean_oct_cbias_20261121_resume_v2`。
+* **并行与断点续跑**：沿用 `b622047` 的 GPU 并行评估调度器；每完成 1 个 episode 立刻落盘 `E{idx}.json`、`partial_summary.json` 与 `reuse_receipt.json`，如遇外部中断重启自动跳过已完成项；**严禁以 `≤ 0.35 µm` 作为任何阶段的停机门禁**。
+* **统一评估口径**：所有 5 目标快筛固定跑 **`E00, E02, E06, E08, E10`（seeds `42, 44, 48, 50, 52`）× `1,600` 步**（50 ms，新渲染 `offsamples=0, numslices=112, numstacks=64`，不使用 1,000 步），同时记录 `final_mean_um`、`min_mean_um`、`drift_1000_to_1600_um` 及 `≤ 5 / 10 / 30 µm` 命中数。
+
+#### Phase 1：三项零训练离线审计
+
+输出目录：`rcm_4090_deploy/github_reports/audit_20261123_a_axis_flip/`
+
+1. **9 快照新旧权重同条件对照**（`snapshot_task2_vs_cleanoct.json`）
+* 复用 `runs/20261122/analysis/clean_oct_drift_interpretation_v1/` 的 9 个固定漂移快照，分别加载 `outputs/overnight_c_fix_symlog_081234/task2_train/step_004000.pth`（`A_old`）与 `outputs/clean_oct_cbias_20261121_resume_v2/step_002000.pth`（`A_new`），各跑 32 次并行 CUDA 采样，统计 A/B/C 均值方向与教师一致率及朝目标一阶位移占比。
+
+
+2. **A/B 轴速度惯性标签污染审计**（`ab_label_contamination.json`）
+* 对 `data/plan2_plus_original_train_224_20261119` 中 `OCT < 200 µm` 全部有效帧，用**零初速教师（`previous_velocity = 0`）**与**限加速度前几何期望**重算 `dA`、`dB`，按 `original` 与 `plan2` 分桶统计反向污染比例。
+
+
+3. **RGB / OCT 同源性与边界跳变审计**（`rgb_oct_consistency.json`）
+* 核查 `clean_oct_cbias_20261121_resume_v2` 实际训练读取样本是否仅替换了 `< 200 µm` 的 `oct_navigation_mm` 而保留旧渲染 RGB，以及 `200 µm` 边界相邻帧的 OCT 跳变中位数。
+
+
+4. **自动分流判定**（写入 `AUDIT_SUMMARY.md`）
+* 若 `ab_label_contamination.json` 中 A 轴或 B 轴反向污染占比 **`≥ 20%`** → 命中 **分支 A**；
+* 否则若 `A_old` 反向快照显著少于 `A_new`（如 `≤ 3/9` vs `7/9`）且存在 RGB/OCT 不同源或 `200 µm` 边界跳变 → 命中 **分支 B**；
+* 若两者均命中，优先执行 **分支 B**。
+
+
+
+#### Phase 2：单变量修复与 8% 低比例回放微调
+
+输出目录：`rcm_4090_deploy/github_reports/phase2_20261123_a_axis_fix_train/`
+
+* **分支 A（全三轴 `ABC-overlay` 去惯性污染）**：对 `< 200 µm` 中速度惯性拖反的 A/B/C 监督帧统一替换为零初速/安全正向期望增量（写独立 overlay 并过 `valid_window_indices` 校验）；从 `task2_step4000/step_004000.pth` 热启动，`dagger_repeat = 1`，**8% 清洗回放 + 92% 原始**，完整跑完 `4 × 1,000` batches，保存 `step_002000.pth` 与 `step_004000.pth`。
+* **分支 B（100% 同源新渲染近目标纠偏回放包）**：在新渲染（`offsamples=0, numslices=112, numstacks=64`）下，用 `task2_step4000` 闭环采集近目标状态 + **零初速无惯性污染 ABC 教师**打标，采集 40–60 条 **RGB + OCT + ABC 标签 100% 同源**的纠偏轨迹（按 shard 落盘可续跑）；以 **8% 新同源纠偏 + 92% 原始**（`dagger_repeat = 1`）从 `task2_step4000` 热启动微调 `4 × 1,000` batches，保存 `step_002000.pth` 与 `step_004000.pth`。
+
+#### Phase 3：5 目标 × `1,600` 步快筛 + 9 快照复检
+
+输出目录：`rcm_4090_deploy/github_reports/phase3_20261123_fast5_1600/`
+
+1. 在 `V0`（G10 feedback、`I0` 单采样、新渲染）上 GPU 并行评测 `step_002000` 与 `step_004000`（5 目标 × `1,600` 步），选终值均值更低者为 `BEST_CKPT`。
+2. 对 `BEST_CKPT` 复跑 9 快照 32 采样检验，检查：A 轴反向快照是否从 `7/9` 降至 **`≤ 1/9`**、朝目标一阶位移占比是否升至 **`> 75%`**、`1,000 → 1,600` 步末段漂移均值是否 **`< 15 µm`**。
+3. 若方向复检明显改善，用 `BEST_CKPT` 完整补跑两组 5 目标 × `1,600` 步对照：**`I_med5`（5 样本中位数）** 与 **`V3`（G10 + P2 连续累积）**。
+
+#### Phase 4：20 目标全量终审（条件触发）
+
+输出目录：`rcm_4090_deploy/github_reports/phase4_20261123_dev20/`
+
+* **触发条件**：Phase 3 最优组合的 5 目标 × `1,600` 步终值均值 **`< 35 µm`** 且 `1,000 → 1,600` 步漂移 `< 15 µm`。
+* **执行**：GPU 并行完整跑满 `E00–E19`（seeds `42–61`）× `1,600` 步，每 5 目标落盘快照；输出 `summary.json`、`episodes.csv`、`error_curves_all.png`、`best_and_final_error.png` 与 `≤ 5 / 10 / 30 µm` 命中率，推送至新分支并附根汇总 `SUMMARY.md`。

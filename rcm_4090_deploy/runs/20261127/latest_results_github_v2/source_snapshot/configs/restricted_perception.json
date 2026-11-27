@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "name": "restricted_coarse_fine_oct_v1",
+  "control_period_s": 0.05,
+  "extrinsic": {
+    "camera_to_robot_rotation": [
+      [0.041476060837683904, -0.8204925960165526, 0.570150538243547],
+      [-0.9934223023311515, 0.027093347819501512, 0.11125681882475885],
+      [-0.10673268294417815, -0.5710147549634328, -0.813971918437969]
+    ],
+    "translation_robot_mm": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "calibration_status": "rcm_scene_v9_eye_internal_optical_axes_snapshot_20261106"
+  },
+  "coarse": {
+    "bias_limit_mm": [
+      0.35,
+      0.25,
+      0.30
+    ],
+    "drift_ar1_coefficient": 0.92,
+    "drift_innovation_sigma_mm": [
+      0.025,
+      0.02,
+      0.025
+    ],
+    "noise_floor_mm": 0.06,
+    "noise_slope_mm_per_mm": 0.012,
+    "delay_frames": 1,
+    "max_distance_mm": 30.0
+  },
+  "fine": {
+    "bias_limit_mm": 0.002,
+    "noise_floor_mm": 0.001,
+    "noise_slope_mm_per_mm": 0.0005,
+    "delay_frames": 1,
+    "dropout_probability": 0.01,
+    "fov_half_angle_deg": 45.0,
+    "min_range_mm": 0.001,
+    "max_range_mm": 3.5
+  },
+  "fusion": {
+    "switch_distance_mm": 2.0,
+    "transition_half_width_mm": 0.2,
+    "weight_lowpass_tau_s": 0.1,
+    "coast_max_frames": 2,
+    "coast_max_time_s": 0.1,
+    "retract_after_loss_s": 0.5,
+    "retract_speed_mm_s": 0.2,
+    "retract_max_mm": 1.0,
+    "precision_levels_um": [
+      20.0,
+      10.0,
+      5.0
+    ],
+    "precision_sigma_multiplier": 2.0,
+    "required_closed_loop_success": 0.95
+  }
+}

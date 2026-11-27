@@ -1,0 +1,279 @@
+{
+  "name": "dit_quantization_recovery_v3",
+  "created_at": "2026-11-27T09:22:43.063838+08:00",
+  "output_scope": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261127/dit_quantization_recovery_v3",
+  "hypothesis": "Nonzero v2 actions remain below actual G10 thresholds; expand measured-geometry real G10 teacher lateral recovery coverage and warmstart the original near DiT.",
+  "init_checkpoint": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261127/dit_relative_v2_resume/candidate1/checkpoint.pth",
+  "init_sha256": "748d950a31c1d2529af8f0fb18a5d90933de16b723e7dc4dc55ae20f9096ce94",
+  "far_checkpoint": "/home/him1/mujoco_bc/rcm_4090_deploy/outputs/homog_label_fix_20261124_v5/homog_label_fix_20261124_v5_phase1_A/step_004000.pth",
+  "targets": [
+    {
+      "task": {
+        "id": "E40",
+        "episode_index": 40,
+        "seed": 1040,
+        "regime": "T3",
+        "target_robot_mm": [
+          0.4367277917467681,
+          3.652696250194051,
+          23.605009145695448
+        ],
+        "target_world_mm": [
+          346.7111251543748,
+          -10.824024183615435,
+          371.35725739137047
+        ],
+        "initial_state_si": [
+          0.018810705738879198,
+          0.08616229754890467,
+          0.019858072541690124
+        ],
+        "goal_state_si": [
+          0.01849937731040504,
+          0.08672813134099054,
+          0.019889943026902168
+        ],
+        "initial_error_um": 35.423806823122376,
+        "abc_offset_sign": [
+          1,
+          -1,
+          -1
+        ],
+        "min_development_distance_um": 416.7194413864799
+      },
+      "role": "training_only"
+    },
+    {
+      "task": {
+        "id": "E42",
+        "episode_index": 42,
+        "seed": 1042,
+        "regime": "T3",
+        "target_robot_mm": [
+          -2.9397154279549578,
+          8.360724108675214,
+          21.867631686235832
+        ],
+        "target_world_mm": [
+          350.47016467398396,
+          -14.20046740331716,
+          374.6819571737403
+        ],
+        "initial_state_si": [
+          -0.13439579508167637,
+          -0.12136996120087193,
+          0.01961773289038897
+        ],
+        "goal_state_si": [
+          -0.13363112045378228,
+          -0.12198000789850152,
+          0.0195952738908368
+        ],
+        "initial_error_um": 31.591609979501445,
+        "abc_offset_sign": [
+          -1,
+          1,
+          1
+        ],
+        "min_development_distance_um": 997.4996301375694
+      },
+      "role": "training_only"
+    }
+  ],
+  "near_task": {
+    "id": "E41",
+    "episode_index": 41,
+    "seed": 1041,
+    "regime": "T3",
+    "target_robot_mm": [
+      -1.3695654807400628,
+      6.588496568516707,
+      22.973909828421377
+    ],
+    "target_world_mm": [
+      349.2189832461999,
+      -12.630317456102267,
+      373.0088801232904
+    ],
+    "initial_state_si": [
+      -0.05985504851460952,
+      -0.038023251711698174,
+      0.019971079068627717
+    ],
+    "goal_state_si": [
+      -0.05954347970880375,
+      -0.0385895223852399,
+      0.019939183976147298
+    ],
+    "initial_error_um": 35.352419097552506,
+    "abc_offset_sign": [
+      -1,
+      1,
+      1
+    ],
+    "min_development_distance_um": 507.69805534735826
+  },
+  "baseline": {
+    "source": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261127/dit_relative_v2_resume",
+    "near_pass": "4/4",
+    "standard_pass": "1/5",
+    "E00_E06_E08_E10_um": [
+      46.567830434903776,
+      31.04965603182882,
+      38.592537304154675,
+      35.978458963537875
+    ]
+  },
+  "data": {
+    "training": [
+      "E40",
+      "E42"
+    ],
+    "excluded": [
+      "E41",
+      "E00",
+      "E02",
+      "E06",
+      "E08",
+      "E10"
+    ],
+    "new_branches": 92,
+    "factorial": "2targets x5 lateral20/35/50/75/100um x8 AB directions +2targets x2 Csigns x3 axial20/50/100um",
+    "collector": "real strict RGB2/OCT + teacher-only measured-geometry inverse and nearest executable G10 candidate; no true XYZ in action decisions",
+    "trajectory": "2 actual prefix ticks +64 teacher ticks; one observation per motor timestamp; no in-flight reset",
+    "labels": "actual safety-accepted ABC; genuine contiguous future16; no synthetic label/interpolation/padding",
+    "reuse": "v2 real E40/E42 teacher windows only where sensor lateral<=5um, to retain axial/hold behavior",
+    "balance": "stationary executable recovery / recovery / new hold / v2 axial retention"
+  },
+  "architecture": {
+    "class_name": "StateConditionedDiTRectifiedFlowPolicy",
+    "blocks": 6,
+    "dim": 384,
+    "horizon": 16,
+    "flow_steps": 4,
+    "K": 1,
+    "execute": 1,
+    "inputs": "unchanged two OCT frames + measured velocity from actual encoder frames + previous accepted ABC; same RGB/absoluteABC mask",
+    "masked": "vision tokens constant0 + original learned temporal constants; absoluteABC constant0 inside original condition",
+    "path": "all inputs through original condition encoders + six DiT blocks + four original midpoint RF steps; directABC",
+    "scales": {
+      "OCT_mm": [
+        0.05,
+        0.05,
+        0.05,
+        1
+      ],
+      "velocity_deg_deg_mm_s": [
+        0.1,
+        0.1,
+        0.1
+      ],
+      "previous_deg_deg_mm": [
+        0.005,
+        0.005,
+        0.005
+      ]
+    },
+    "frozen": "vision weights and untouched farv5; all nonvision DiT/condition weights trainable",
+    "forbidden": [
+      "handwritten axis control",
+      "sign correction",
+      "MLP output head replacement",
+      "geometry/teacher during policy evaluation",
+      "truth-conditioned inference"
+    ],
+    "output_scales": "frozen v2 train-only mean/std; no external gain, geometric correction or command accumulator during policy evaluation"
+  },
+  "training": {
+    "updates": 2400,
+    "batch": 12,
+    "lr": 3e-05,
+    "optimizer": "AdamW",
+    "weight_decay": 0.0001,
+    "gradient_clip": 1.0,
+    "loss": "first-action normalized MSE +.02 genuine16-action MSE +.002 original RF loss",
+    "precision": "v2 FP32 parity with TF32 off; shared trainer AMP defaults unchanged",
+    "validation": "E40/E42-only fixed offline recovery/hold diagnostics; finite loss/gradient, all6blocks changed; no E41 fitting/scales",
+    "checkpoints": "every600 and finally, optimizer plus CPU/CUDA/sampler RNG"
+  },
+  "near": {
+    "target": "E41",
+    "seed": 434341,
+    "states": [
+      "below_approaching",
+      "below_receding",
+      "above_approaching",
+      "above_receding"
+    ],
+    "gate": "original50+-1um start, two actual prefix ticks,nonzero actual incoming velocity, valid RGB2",
+    "cycles_each": 240,
+    "period_s": 0.05,
+    "strict": "all last200 postXYZ<=20um including final",
+    "concurrency": 4,
+    "baseline": "old campaign and saved original exec1 trajectories read-only",
+    "offline_rejection_gate": false
+  },
+  "standard": {
+    "dependency": "all4 E41 development strict pass and E40/E42 training coverage",
+    "targets": [
+      "E00",
+      "E02",
+      "E06",
+      "E08",
+      "E10"
+    ],
+    "seeds": [
+      42,
+      44,
+      48,
+      50,
+      52
+    ],
+    "cycles_each": 1600,
+    "period_s": 0.05,
+    "K": 1,
+    "exec": 1,
+    "flow_steps": 4,
+    "caps": "original DEFAULT_ACTION_LIMIT_DEG_DEG_MM",
+    "driver": "G10",
+    "start": "fresh production RCMSceneV9 constructor default, target set only; original first-cycle history warmup zero retained",
+    "route": "original v5 until valid observable OCT norm<=100um then fixed-noise near DiT, one-way no state/velocity/accepted/history reset",
+    "strict": "each all last200 independent postXYZ<=20um including final, all5 required",
+    "concurrency": 5
+  },
+  "protocol": {
+    "truth": "initialization and independent postXYZ scoring only",
+    "driver": "g10",
+    "period_s": 0.05,
+    "cap": "original DEFAULT_ACTION_LIMIT_DEG_DEG_MM",
+    "history": "shared continuous actual two-frame history; previousaccepted and velocity never reset at100um switch",
+    "gate": "all4 E41 real50um x240: all last200 independent postXYZ<=20um including final; otherwise stop with four trajectories",
+    "standard": "E00/E02/E06/E08/E10 x1600; originalv5 to valid measuredOCT<=100um then newnearDiT",
+    "bias": "report old/new postXYZ, signed OCTC, acceptedC and crossing actions; bound independentXYZ for disappearance"
+  },
+  "near_regression_branch": {
+    "trigger": "any of four E41 strict20um gates fails",
+    "diagnosis": "save last200 independent XYZ/signedOCT/acceptedABC/encoder hold counts against v2",
+    "repair": "one1200update fit atlr1e-5 initialized from candidate1; same E40/E42-only data with increased axial/hold retention; no E41 relabeling",
+    "next": "repeat original four E41 starts once; only4/4 strict pass authorizes standard five",
+    "stop": "second near strict failure blocks standard; retain all results"
+  },
+  "budget_s": 2700,
+  "concurrency_max": 12,
+  "stage_max_seconds": {
+    "collection": 760,
+    "build": 160,
+    "train": 450,
+    "near": 360,
+    "repair_train": 240,
+    "repair_near": 360,
+    "standard": 970,
+    "shared_hard": 2700,
+    "cleanup_reserve": 30
+  },
+  "budget_policy": "All stage caps subordinate to ONE shared2700s deadline; workers terminate at2670 with30s cleanup reserve",
+  "launch": "once in new GNOME; FIFO actual PID acknowledgement only; no postlaunch wait/poll",
+  "reporting": "root/local TEST_LOG locked/fsync/readback each outcome; real RGB/OCT, raw/clipped/accepted actions, requested/quantized/actual encoder values and independent pre/postXYZ",
+  "implementation_scope": "all modified implementation under new run directory; root TEST_LOG append only",
+  "simulation_only": true
+}

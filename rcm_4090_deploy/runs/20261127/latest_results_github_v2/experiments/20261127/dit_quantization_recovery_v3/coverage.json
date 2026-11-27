@@ -1,0 +1,3623 @@
+{
+  "status": "passed",
+  "switch100um_supported": true,
+  "training_windows": 5941,
+  "new_windows": 4508,
+  "stationary_executable_recovery_windows": 40,
+  "pools": {
+    "recovery": 157,
+    "stalled_recovery": 40,
+    "new_hold": 4351,
+    "retention": 1433
+  },
+  "branches": [
+    {
+      "id": "E40_lateral20_A-1_B+0",
+      "target": "E40",
+      "setup": {
+        "id": "E40_lateral20_A-1_B+0",
+        "target": "E40",
+        "role": "training",
+        "side": "lateral",
+        "level_um": 20,
+        "lateral_um": 20,
+        "AB_sign": [
+          -1,
+          0
+        ],
+        "requested_incoming": "hold",
+        "initial_C_offset_m": 0.0,
+        "initial_AB_offset_rad": [
+          0.0,
+          0.0
+        ],
+        "prefix_actions_deg_deg_mm": [
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "teacher_steps": 64,
+        "teacher": "measured_geometry_discrete_G10",
+        "history": "continuous_no_reset"
+      },
+      "initial_um": 19.91721990474894,
+      "final_um": 1.374721405965704
+    },
+    {
+      "id": "E40_lateral20_A+1_B+0",
+      "target": "E40",
+      "setup": {
+        "id": "E40_lateral20_A+1_B+0",
+        "target": "E40",
+        "role": "training",
+        "side": "lateral",
+        "level_um": 20,
+        "lateral_um": 20,
+        "AB_sign": [
+          1,
+          0
+        ],
+        "requested_incoming": "approaching",
+        "initial_C_offset_m": 0.0,
+        "initial_AB_offset_rad": [
+          0.0,
+          0.0
+        ],
+        "prefix_actions_deg_deg_mm": [
+          [
+            -0.015,
+            0.0,
+            0.0
+          ],
+          [
+            -0.015,
+            0.0,
+            0.0
+          ]
+        ],
+        "teacher_steps": 64,
+        "teacher": "measured_geometry_discrete_G10",
+        "history": "continuous_no_reset"
+      },
+      "initial_um": 9.750784151889766,
+      "final_um": 1.592085758106752
+    },
+    {
+      "id": "E40_lateral20_A+0_B-1",
+      "target": "E40",
+      "setup": {
+        "id": "E40_lateral20_A+0_B-1",
+        "target": "E40",
+        "role": "training",
+        "side": "lateral",
+        "level_um": 20,
+        "lateral_um": 20,
+        "AB_sign": [
+          0,
+          -1
+        ],
+        "requested_incoming": "receding",
+        "initial_C_offset_m": 0.0,
+        "initial_AB_offset_rad": [
+          0.0,
+          0.0
+        ],
+        "prefix_actions_deg_deg_mm": [
+          [
+            0.0,
+            -0.0075,
+            0.0
+          ],
+          [
+            0.0,
+            -0.0075,
+            0.0
+          ]
+        ],
+        "teacher_steps": 64,
+        "teacher": "measured_geometry_discrete_G10",
+        "history": "continuous_no_reset"
+      },
+      "initial_um": 25.103803009689738,
+      "final_um": 1.2417298879865903
+    },
+    {
+      "id": "E40_lateral20_A+0_B+1",
+      "target": "E40",
+      "setup": {
+        "id": "E40_lateral20_A+0_B+1",
+        "target": "E40",
+        "role": "training",
+        "side": "lateral",
+        "level_um": 20,
+        "lateral_um": 20,
+        "AB_sign": [
+          0,
+          1
+        ],
+        "requested_incoming": "hold",
+        "initial_C_offset_m": 0.0,
+        "initial_AB_offset_rad": [
+          0.0,
+          0.0
+        ],
+        "prefix_actions_deg_deg_mm": [
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "teacher_steps": 64,
+        "teacher": "measured_geometry_discrete_G10",
+        "history": "continuous_no_reset"
+      },
+      "initial_um": 20.002420746273906,
+      "final_um": 1.243017369142493
+    },
+    {
+      "id": "E40_lateral20_A-1_B-1",
+      "target": "E40",
+      "setup": {
+        "id": "E40_lateral20_A-1_B-1",
+        "target": "E40",
+        "role": "training",
+        "side": "lateral",
+        "level_um": 20,
+        "lateral_um": 20,
+        "AB_sign": [
+          -1,
+          -1
+        ],
+        "requested_incoming": "approaching",
+        "initial_C_offset_m": 0.0,
+        "initial_AB_offset_rad": [
+          0.0,
+          0.0
+        ],
+        "prefix_actions_deg_deg_mm": [
+          [
+            0.015,
+            0.0075,
+            0.0
+          ],
+          [
+            0.015,
+            0.0075,
+            0.0
+          ]
+        ],
+        "teacher_steps": 64,
+        "teacher": "measured_geometry_discrete_G10",
+        "history": "continuous_no_reset"
+      },
+      "initial_um": 9.726746762775552,
+      "final_um": 2.030710288069834
+    },
+    {
+      "id": "E40_lateral20_A-1_B+1",
+      "target": "E40",
+      "setup": {
+        "id": "E40_lateral20_A-1_B+1",
+        "target": "E40",
+        "role": "training",
+        "side": "lateral",
+        "level_um": 20,
+        "lateral_um": 20,
+        "AB_sign": [
+          -1,
+          1
+        ],
+        "requested_incoming": "receding",
+        "initial_C_offset_m": 0.0,
+        "initial_AB_offset_rad": [
+          0.0,
+          0.0
+        ],
+        "prefix_actions_deg_deg_mm": [
+          [
+            -0.015,
+            0.0075,
+            0.0
+          ],
+          [
+            -0.015,
+            0.0075,
+            0.0
+          ]
+        ],
+        "teacher_steps": 64,
+        "teacher": "measured_geometry_discrete_G10",
+        "history": "continuous_no_reset"
+      },
+      "initial_um": 31.053174488379366,
+      "final_um": 2.0297580926964423
+    },
+    {
+      "id": "E40_lateral20_A+1_B-1",
+      "target": "E40",
+      "setup": {
+        "id": "E40_lateral20_A+1_B-1",
+        "target": "E40",
+        "role": "training",
+        "side": "lateral",
+        "level_um": 20,
+        "lateral_um": 20,
+        "AB_sign": [
+          1,
+          -1
+        ],
+        "requested_incoming": "hold",
+        "initial_C_offset_m": 0.0,
+        "initial_AB_offset_rad": [
+          0.0,
+          0.0
+        ],
+        "prefix_actions_deg_deg_mm": [
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "teacher_steps": 64,
+        "teacher": "measured_geometry_discrete_G10",
+        "history": "continuous_no_reset"
+      },
+      "initial_um": 20.04059625840878,
+      "final_um": 2.1837281513695967
+    },
+    {
+      "id": "E40_lateral20_A+1_B+1",
+      "target": "E40",
+      "setup": {
+        "id": "E40_lateral20_A+1_B+1",
+        "target": "E40",
+        "role": "training",
+        "side": "lateral",
+        "level_um": 20,
+        "lateral_um": 20,
+        "AB_sign": [
+          1,
+          1
+        ],
+        "requested_incoming": "approaching",
+        "initial_C_offset_m": 0.0,
+        "initial_AB_offset_rad": [
+          0.0,
+          0.0
+        ],
+        "prefix_actions_deg_deg_mm": [
+          [
+            -0.015,
+            -0.0075,
+            0.0
+          ],
+          [
+            -0.015,
+            -0.0075,
+            0.0
+          ]
+        ],
+        "teacher_steps": 64,
+        "teacher": "measured_geometry_discrete_G10",
+        "history": "continuous_no_reset"
+      },
+      "initial_um": 9.81371723866737,
+      "final_um": 2.1828398477198854
+    },
+    {
+      "id": "E40_lateral35_A-1_B+0",
+      "target": "E40",
+      "setup": {
+        "id": "E40_lateral35_A-1_B+0",
+        "target": "E40",
+        "role": "training",
+        "side": "lateral",
+        "level_um": 35,
+        "lateral_um": 35,
+        "AB_sign": [
+          -1,
+          0
+        ],
+        "requested_incoming": "hold",
+        "initial_C_offset_m": 0.0,
+        "initial_AB_offset_rad": [
+          0.0,
+          0.0
+        ],
+        "prefix_actions_deg_deg_mm": [
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "teacher_steps": 64,
+        "teacher": "measured_geometry_discrete_G10",
+        "history": "continuous_no_reset"
+      },
+      "initial_um": 34.751219228010925,
+      "final_um": 2.3337848594488055
+    },
+    {
+      "id": "E40_lateral35_A+1_B+0",
+      "target": "E40",
+      "setup": {
+        "id": "E40_lateral35_A+1_B+0",
+        "target": "E40",
+        "role": "training",
+        "side": "lateral",
+        "level_um": 35,
+        "lateral_um": 35,
+        "AB_sign": [
+          1,
+          0
+        ],
+        "requested_incoming": "approaching",
+        "initial_C_offset_m": 0.0,
+        "initial_AB_offset_rad": [
+          0.0,
+          0.0
+        ],
+        "prefix_actions_deg_deg_mm": [
+          [
+            -0.015,
+            0.0,
+            0.0
+          ],
+          [
+            -0.015,
+            0.0,
+            0.0
+          ]
+        ],
+        "teacher_steps": 64,
+        "teacher": "measured_geometry_discrete_G10",
+        "history": "continuous_no_reset"
+      },
+      "initial_um": 24.584784778241033,
+      "final_um": 2.116420231260336
+    },
+    {
+      "id": "E40_lateral35_A+0_B-1",
+      "target": "E40",
+      "setup": {
+        "id": "E40_lateral35_A+0_B-1",
+        "target": "E40",
+        "role": "training",
+        "side": "lateral",
+        "level_um": 35,
+        "lateral_um": 35,
+        "AB_sign": [
+          0,
+          -1
+        ],
+        "requested_incoming": "receding",
+        "initial_C_offset_m": 0.0,
+        "initial_AB_offset_rad": [
+          0.0,
+          0.0
+        ],
+        "prefix_actions_deg_deg_mm": [
+          [
+            0.0,
+            -0.0075,
+            0.0
+          ],
+          [
+            0.0,
+            -0.0075,
+            0.0
+          ]
+        ],
+        "teacher_steps": 64,
+        "teacher": "measured_geometry_discrete_G10",
+        "history": "continuous_no_reset"
+      },
+      "initial_um": 40.10230574319776,
+      "final_um": 0.6081341347618651
+    },
+    {
+      "id": "E40_lateral35_A+0_B+1",
+      "target": "E40",
+      "setup": {
+        "id": "E40_lateral35_A+0_B+1",
+        "target": "E40",
+        "role": "training",
+        "side": "lateral",
+        "level_um": 35,
+        "lateral_um": 35,
+        "AB_sign": [
+          0,
+          1
+        ],
+        "requested_incoming": "hold",
+        "initial_C_offset_m": 0.0,
+        "initial_AB_offset_rad": [
+          0.0,
+          0.0
+        ],
+        "prefix_actions_deg_deg_mm": [
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "teacher_steps": 64,
+        "teacher": "measured_geometry_discrete_G10",
+        "history": "continuous_no_reset"
+      },
+      "initial_um": 35.001179848599605,
+      "final_um": 0.609423310432403
+    },
+    {
+      "id": "E40_lateral35_A-1_B-1",
+      "target": "E40",
+      "setup": {
+        "id": "E40_lateral35_A-1_B-1",
+        "target": "E40",
+        "role": "training",
+        "side": "lateral",
+        "level_um": 35,
+        "lateral_um": 35,
+        "AB_sign": [
+          -1,
+          -1
+        ],
+        "requested_incoming": "approaching",
+        "initial_C_offset_m": 0.0,
+        "initial_AB_offset_rad": [
+          0.0,
+          0.0
+        ],
+        "prefix_actions_deg_deg_mm": [
+          [
+            0.015,
+            0.0075,
+            0.0
+          ],
+          [
+            0.015,
+            0.0075,
+            0.0
+          ]
+        ],
+        "teacher_steps": 64,
+        "teacher": "measured_geometry_discrete_G10",
+        "history": "continuous_no_reset"
+      },
+      "initial_um": 24.55290540623622,
+      "final_um": 0.6876867693627849
+    },
+    {
+      "id": "E40_lateral35_A-1_B+1",
+      "target": "E40",
+      "setup": {
+        "id": "E40_lateral35_A-1_B+1",
+        "target": "E40",
+        "role": "training",
+        "side": "lateral",
+        "level_um": 35,
+        "lateral_um": 35,
+        "AB_sign": [
+          -1,
+          1
+        ],
+        "requested_incoming": "receding",
+        "initial_C_offset_m": 0.0,
+        "initial_AB_offset_rad": [
+          0.0,
+          0.0
+        ],
+        "prefix_actions_deg_deg_mm": [
+          [
+            -0.015,
+            0.0075,
+            0.0
+          ],
+          [
+            -0.015,
+            0.0075,
+            0.0
+          ]
+        ],
+        "teacher_steps": 64,
+        "teacher": "measured_geometry_discrete_G10",
+        "history": "continuous_no_reset"
+      },
+      "initial_um": 46.380720388431065,
+      "final_um": 0.6871732226012152
+    },
+    {
+      "id": "E40_lateral35_A+1_B-1",
+      "target": "E40",
+      "setup": {
+        "id": "E40_lateral35_A+1_B-1",
+        "target": "E40",
+        "role": "training",
+        "side": "lateral",
+        "level_um": 35,
+        "lateral_um": 35,
+        "AB_sign": [
+          1,
+          -1
+        ],
+        "requested_incoming": "hold",
+        "initial_C_offset_m": 0.0,
+        "initial_AB_offset_rad": [
+          0.0,
+          0.0
+        ],
+        "prefix_actions_deg_deg_mm": [
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "teacher_steps": 64,
+        "teacher": "measured_geometry_discrete_G10",
+        "history": "continuous_no_reset"
+      },
+      "initial_um": 34.88317092234067,
+      "final_um": 0.28984979668363636
+    },
+    {
+      "id": "E40_lateral35_A+1_B+1",
+      "target": "E40",
+      "setup": {
+        "id": "E40_lateral35_A+1_B+1",
+        "target": "E40",
+        "role": "training",
+        "side": "lateral",
+        "level_um": 35,
+        "lateral_um": 35,
+        "AB_sign": [
+          1,
+          1
+        ],
+        "requested_incoming": "approaching",
+        "initial_C_offset_m": 0.0,
+        "initial_AB_offset_rad": [
+          0.0,
+          0.0
+        ],
+        "prefix_actions_deg_deg_mm": [
+          [
+            -0.015,
+            -0.0075,
+            0.0
+          ],
+          [
+            -0.015,
+            -0.0075,
+            0.0
+          ]
+        ],
+        "teacher_steps": 64,
+        "teacher": "measured_geometry_discrete_G10",
+        "history": "continuous_no_reset"
+      },
+      "initial_um": 24.243267428180907,
+      "final_um": 0.2886315988821971
+    },
+    {
+      "id": "E40_lateral50_A-1_B+0",
+      "target": "E40",
+      "setup": {
+        "id": "E40_lateral50_A-1_B+0",
+        "target": "E40",
+        "role": "training",
+        "side": "lateral",
+        "level_um": 50,
+        "lateral_um": 50,
+        "AB_sign": [
+          -1,
+          0
+        ],
+        "requested_incoming": "hold",
+        "initial_C_offset_m": 0.0,
+        "initial_AB_offset_rad": [
+          0.0,
+          0.0
+        ],
+        "prefix_actions_deg_deg_mm": [
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "teacher_steps": 64,
+        "teacher": "measured_geometry_discrete_G10",
+        "history": "continuous_no_reset"
+      },
+      "initial_um": 50.32691486774342,
+      "final_um": 0.6330255635068303
+    },
+    {
+      "id": "E40_lateral50_A+1_B+0",
+      "target": "E40",
+      "setup": {
+        "id": "E40_lateral50_A+1_B+0",
+        "target": "E40",
+        "role": "training",
+        "side": "lateral",
+        "level_um": 50,
+        "lateral_um": 50,
+        "AB_sign": [
+          1,
+          0
+        ],
+        "requested_incoming": "approaching",
+        "initial_C_offset_m": 0.0,
+        "initial_AB_offset_rad": [
+          0.0,
+          0.0
+        ],
+        "prefix_actions_deg_deg_mm": [
+          [
+            -0.015,
+            0.0,
+            0.0
+          ],
+          [
+            -0.015,
+            0.0,
+            0.0
+          ]
+        ],
+        "teacher_steps": 64,
+        "teacher": "measured_geometry_discrete_G10",
+        "history": "continuous_no_reset"
+      },
+      "initial_um": 39.41878321075122,
+      "final_um": 0.10872836266192341
+    },
+    {
+      "id": "E40_lateral50_A+0_B-1",
+      "target": "E40",
+      "setup": {
+        "id": "E40_lateral50_A+0_B-1",
+        "target": "E40",
+        "role": "training",
+        "side": "lateral",
+        "level_um": 50,
+        "lateral_um": 50,
+        "AB_sign": [
+          0,
+          -1
+        ],
+        "requested_incoming": "receding",
+        "initial_C_offset_m": 0.0,
+        "initial_AB_offset_rad": [
+          0.0,
+          0.0
+        ],
+        "prefix_actions_deg_deg_mm": [
+          [
+            0.0,
+            -0.0075,
+            0.0
+          ],
+          [
+            0.0,
+            -0.0075,
+            0.0
+          ]
+        ],
+        "teacher_steps": 64,
+        "teacher": "measured_geometry_discrete_G10",
+        "history": "continuous_no_reset"
+      },
+      "initial_um": 55.104310141716326,
+      "final_um": 0.11440164445758627
+    },
+    {
+      "id": "E40_lateral50_A+0_B+1",
+      "target": "E40",
+      "setup": {
+        "id": "E40_lateral50_A+0_B+1",
+        "target": "E40",
+        "role": "training",
+        "side": "lateral",
+        "level_um": 50,
+        "lateral_um": 50,
+        "AB_sign": [
+          0,
+          1
+        ],
+        "requested_incoming": "hold",
+        "initial_C_offset_m": 0.0,
+        "initial_AB_offset_rad": [
+          0.0,
+          0.0
+        ],
+        "prefix_actions_deg_deg_mm": [
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "teacher_steps": 64,
+        "teacher": "measured_geometry_discrete_G10",
+        "history": "continuous_no_reset"
+      },
+      "initial_um": 50.00129406242295,
+      "final_um": 0.11399887416576364
+    },
+    {
+      "id": "E40_lateral50_A-1_B-1",
+      "target": "E40",
+      "setup": {
+        "id": "E40_lateral50_A-1_B-1",
+        "target": "E40",
+        "role": "training",
+        "side": "lateral",
+        "level_um": 50,
+        "lateral_um": 50,
+        "AB_sign": [
+          -1,
+          -1
+        ],
+        "requested_incoming": "approaching",
+        "initial_C_offset_m": 0.0,
+        "initial_AB_offset_rad": [
+          0.0,
+          0.0
+        ],
+        "prefix_actions_deg_deg_mm": [
+          [
+            0.015,
+            0.0075,
+            0.0
+          ],
+          [
+            0.015,
+            0.0075,
+            0.0
+          ]
+        ],
+        "teacher_steps": 64,
+        "teacher": "measured_geometry_discrete_G10",
+        "history": "continuous_no_reset"
+      },
+      "initial_um": 39.31315710013612,
+      "final_um": 1.8577102884620045
+    },
+    {
+      "id": "E40_lateral50_A-1_B+1",
+      "target": "E40",
+      "setup": {
+        "id": "E40_lateral50_A-1_B+1",
+        "target": "E40",
+        "role": "training",
+        "side": "lateral",
+        "level_um": 50,
+        "lateral_um": 50,
+        "AB_sign": [
+          -1,
+          1
+        ],
+        "requested_incoming": "receding",
+        "initial_C_offset_m": 0.0,
+        "initial_AB_offset_rad": [
+          0.0,
+          0.0
+        ],
+        "prefix_actions_deg_deg_mm": [
+          [
+            -0.015,
+            0.0075,
+            0.0
+          ],
+          [
+            -0.015,
+            0.0075,
+            0.0
+          ]
+        ],
+        "teacher_steps": 64,
+        "teacher": "measured_geometry_discrete_G10",
+        "history": "continuous_no_reset"
+      },
+      "initial_um": 61.171433730506095,
+      "final_um": 1.8559897449582987
+    },
+    {
+      "id": "E40_lateral50_A+1_B-1",
+      "target": "E40",
+      "setup": {
+        "id": "E40_lateral50_A+1_B-1",
+        "target": "E40",
+        "role": "training",
+        "side": "lateral",
+        "level_um": 50,
+        "lateral_um": 50,
+        "AB_sign": [
+          1,
+          -1
+        ],
+        "requested_incoming": "hold",
+        "initial_C_offset_m": 0.0,
+        "initial_AB_offset_rad": [
+          0.0,
+          0.0
+        ],
+        "prefix_actions_deg_deg_mm": [
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "teacher_steps": 64,
+        "teacher": "measured_geometry_discrete_G10",
+        "history": "continuous_no_reset"
+      },
+      "initial_um": 50.247818011676564,
+      "final_um": 1.6751756296621694
+    },
+    {
+      "id": "E40_lateral50_A+1_B+1",
+      "target": "E40",
+      "setup": {
+        "id": "E40_lateral50_A+1_B+1",
+        "target": "E40",
+        "role": "training",
+        "side": "lateral",
+        "level_um": 50,
+        "lateral_um": 50,
+        "AB_sign": [
+          1,
+          1
+        ],
+        "requested_incoming": "approaching",
+        "initial_C_offset_m": 0.0,
+        "initial_AB_offset_rad": [
+          0.0,
+          0.0
+        ],
+        "prefix_actions_deg_deg_mm": [
+          [
+            -0.015,
+            -0.0075,
+            0.0
+          ],
+          [
+            -0.015,
+            -0.0075,
+            0.0
+          ]
+        ],
+        "teacher_steps": 64,
+        "teacher": "measured_geometry_discrete_G10",
+        "history": "continuous_no_reset"
+      },
+      "initial_um": 39.45658171561927,
+      "final_um": 1.6732650196181702
+    },
+    {
+      "id": "E40_lateral75_A-1_B+0",
+      "target": "E40",
+      "setup": {
+        "id": "E40_lateral75_A-1_B+0",
+        "target": "E40",
+        "role": "training",
+        "side": "lateral",
+        "level_um": 75,
+        "lateral_um": 75,
+        "AB_sign": [
+          -1,
+          0
+        ],
+        "requested_incoming": "approaching",
+        "initial_C_offset_m": 0.0,
+        "initial_AB_offset_rad": [
+          0.0,
+          0.0
+        ],
+        "prefix_actions_deg_deg_mm": [
+          [
+            0.015,
+            0.0,
+            0.0
+          ],
+          [
+            0.015,
+            0.0,
+            0.0
+          ]
+        ],
+        "teacher_steps": 64,
+        "teacher": "measured_geometry_discrete_G10",
+        "history": "continuous_no_reset"
+      },
+      "initial_um": 64.41920626892457,
+      "final_um": 0.6330255635068303
+    },
+    {
+      "id": "E40_lateral75_A+1_B+0",
+      "target": "E40",
+      "setup": {
+        "id": "E40_lateral75_A+1_B+0",
+        "target": "E40",
+        "role": "training",
+        "side": "lateral",
+        "level_um": 75,
+        "lateral_um": 75,
+        "AB_sign": [
+          1,
+          0
+        ],
+        "requested_incoming": "receding",
+        "initial_C_offset_m": 0.0,
+        "initial_AB_offset_rad": [
+          0.0,
+          0.0
+        ],
+        "prefix_actions_deg_deg_mm": [
+          [
+            0.015,
+            0.0,
+            0.0
+          ],
+          [
+            0.015,
+            0.0,
+            0.0
+          ]
+        ],
+        "teacher_steps": 64,
+        "teacher": "measured_geometry_discrete_G10",
+        "history": "continuous_no_reset"
+      },
+      "initial_um": 85.4041472834336,
+      "final_um": 0.8503883952535471
+    },
+    {
+      "id": "E40_lateral75_A+0_B-1",
+      "target": "E40",
+      "setup": {
+        "id": "E40_lateral75_A+0_B-1",
+        "target": "E40",
+        "role": "training",
+        "side": "lateral",
+        "level_um": 75,
+        "lateral_um": 75,
+        "AB_sign": [
+          0,
+          -1
+        ],
+        "requested_incoming": "hold",
+        "initial_C_offset_m": 0.0,
+        "initial_AB_offset_rad": [
+          0.0,
+          0.0
+        ],
+        "prefix_actions_deg_deg_mm": [
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "teacher_steps": 64,
+        "teacher": "measured_geometry_discrete_G10",
+        "history": "continuous_no_reset"
+      },
+      "initial_um": 75.00040532716254,
+      "final_um": 0.12150580286076672
+    },
+    {
+      "id": "E40_lateral75_A+0_B+1",
+      "target": "E40",
+      "setup": {
+        "id": "E40_lateral75_A+0_B+1",
+        "target": "E40",
+        "role": "training",
+        "side": "lateral",
+        "level_um": 75,
+        "lateral_um": 75,
+        "AB_sign": [
+          0,
+          1
+        ],
+        "requested_incoming": "approaching",
+        "initial_C_offset_m": 0.0,
+        "initial_AB_offset_rad": [
+          0.0,
+          0.0
+        ],
+        "prefix_actions_deg_deg_mm": [
+          [
+            0.0,
+            -0.0075,
+            0.0
+          ],
+          [
+            0.0,
+            -0.0075,
+            0.0
+          ]
+        ],
+        "teacher_steps": 64,
+        "teacher": "measured_geometry_discrete_G10",
+        "history": "continuous_no_reset"
+      },
+      "initial_um": 69.89690991970429,
+      "final_um": 0.12092397186680602
+    },
+    {
+      "id": "E40_lateral75_A-1_B-1",
+      "target": "E40",
+      "setup": {
+        "id": "E40_lateral75_A-1_B-1",
+        "target": "E40",
+        "role": "training",
+        "side": "lateral",
+        "level_um": 75,
+        "lateral_um": 75,
+        "AB_sign": [
+          -1,
+          -1
+        ],
+        "requested_incoming": "receding",
+        "initial_C_offset_m": 0.0,
+        "initial_AB_offset_rad": [
+          0.0,
+          0.0
+        ],
+        "prefix_actions_deg_deg_mm": [
+          [
+            -0.015,
+            -0.0075,
+            0.0
+          ],
+          [
+            -0.015,
+            -0.0075,
+            0.0
+          ]
+        ],
+        "teacher_steps": 64,
+        "teacher": "measured_geometry_discrete_G10",
+        "history": "continuous_no_reset"
+      },
+      "initial_um": 86.21582437354746,
+      "final_um": 2.3373393157122786
+    },
+    {
+      "id": "E40_lateral75_A-1_B+1",
+      "target": "E40",
+      "setup": {
+        "id": "E40_lateral75_A-1_B+1",
+        "target": "E40",
+        "role": "training",
+        "side": "lateral",
+        "level_um": 75,
+        "lateral_um": 75,
+        "AB_sign": [
+          -1,
+          1
+        ],
+        "requested_incoming": "hold",
+        "initial_C_offset_m": 0.0,
+        "initial_AB_offset_rad": [
+          0.0,
+          0.0
+        ],
+        "prefix_actions_deg_deg_mm": [
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "teacher_steps": 64,
+        "teacher": "measured_geometry_discrete_G10",
+        "history": "continuous_no_reset"
+      },
+      "initial_um": 75.19129486935432,
+      "final_um": 2.337265240598414
+    },
+    {
+      "id": "E40_lateral75_A+1_B-1",
+      "target": "E40",
+      "setup": {
+        "id": "E40_lateral75_A+1_B-1",
+        "target": "E40",
+        "role": "training",
+        "side": "lateral",
+        "level_um": 75,
+        "lateral_um": 75,
+        "AB_sign": [
+          1,
+          -1
+        ],
+        "requested_incoming": "approaching",
+        "initial_C_offset_m": 0.0,
+        "initial_AB_offset_rad": [
+          0.0,
+          0.0
+        ],
+        "prefix_actions_deg_deg_mm": [
+          [
+            -0.015,
+            0.0075,
+            0.0
+          ],
+          [
+            -0.015,
+            0.0075,
+            0.0
+          ]
+        ],
+        "teacher_steps": 64,
+        "teacher": "measured_geometry_discrete_G10",
+        "history": "continuous_no_reset"
+      },
+      "initial_um": 63.97806495743885,
+      "final_um": 2.8610232300554523
+    },
+    {
+      "id": "E40_lateral75_A+1_B+1",
+      "target": "E40",
+      "setup": {
+        "id": "E40_lateral75_A+1_B+1",
+        "target": "E40",
+        "role": "training",
+        "side": "lateral",
+        "level_um": 75,
+        "lateral_um": 75,
+        "AB_sign": [
+          1,
+          1
+        ],
+        "requested_incoming": "receding",
+        "initial_C_offset_m": 0.0,
+        "initial_AB_offset_rad": [
+          0.0,
+          0.0
+        ],
+        "prefix_actions_deg_deg_mm": [
+          [
+            0.015,
+            0.0075,
+            0.0
+          ],
+          [
+            0.015,
+            0.0075,
+            0.0
+          ]
+        ],
+        "teacher_steps": 64,
+        "teacher": "measured_geometry_discrete_G10",
+        "history": "continuous_no_reset"
+      },
+      "initial_um": 85.84465529380161,
+      "final_um": 2.860961924080758
+    },
+    {
+      "id": "E40_lateral100_A-1_B+0",
+      "target": "E40",
+      "setup": {
+        "id": "E40_lateral100_A-1_B+0",
+        "target": "E40",
+        "role": "training",
+        "side": "lateral",
+        "level_um": 100,
+        "lateral_um": 100,
+        "AB_sign": [
+          -1,
+          0
+        ],
+        "requested_incoming": "receding",
+        "initial_C_offset_m": 0.0,
+        "initial_AB_offset_rad": [
+          0.0,
+          0.0
+        ],
+        "prefix_actions_deg_deg_mm": [
+          [
+            -0.015,
+            0.0,
+            0.0
+          ],
+          [
+            -0.015,
+            0.0,
+            0.0
+          ]
+        ],
+        "teacher_steps": 64,
+        "teacher": "measured_geometry_discrete_G10",
+        "history": "continuous_no_reset"
+      },
+      "initial_um": 110.40453174970912,
+      "final_um": 1.374721405965704
+    },
+    {
+      "id": "E40_lateral100_A+1_B+0",
+      "target": "E40",
+      "setup": {
+        "id": "E40_lateral100_A+1_B+0",
+        "target": "E40",
+        "role": "training",
+        "side": "lateral",
+        "level_um": 100,
+        "lateral_um": 100,
+        "AB_sign": [
+          1,
+          0
+        ],
+        "requested_incoming": "hold",
+        "initial_C_offset_m": 0.0,
+        "initial_AB_offset_rad": [
+          0.0,
+          0.0
+        ],
+        "prefix_actions_deg_deg_mm": [
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "teacher_steps": 64,
+        "teacher": "measured_geometry_discrete_G10",
+        "history": "continuous_no_reset"
+      },
+      "initial_um": 100.23812052869158,
+      "final_um": 1.592085758106752
+    },
+    {
+      "id": "E40_lateral100_A+0_B-1",
+      "target": "E40",
+      "setup": {
+        "id": "E40_lateral100_A+0_B-1",
+        "target": "E40",
+        "role": "training",
+        "side": "lateral",
+        "level_um": 100,
+        "lateral_um": 100,
+        "AB_sign": [
+          0,
+          -1
+        ],
+        "requested_incoming": "approaching",
+        "initial_C_offset_m": 0.0,
+        "initial_AB_offset_rad": [
+          0.0,
+          0.0
+        ],
+        "prefix_actions_deg_deg_mm": [
+          [
+            0.0,
+            0.0075,
+            0.0
+          ],
+          [
+            0.0,
+            0.0075,
+            0.0
+          ]
+        ],
+        "teacher_steps": 64,
+        "teacher": "measured_geometry_discrete_G10",
+        "history": "continuous_no_reset"
+      },
+      "initial_um": 94.89798229163344,
+      "final_um": 0.12836240935186058
+    },
+    {
+      "id": "E40_lateral100_A+0_B+1",
+      "target": "E40",
+      "setup": {
+        "id": "E40_lateral100_A+0_B+1",
+        "target": "E40",
+        "role": "training",
+        "side": "lateral",
+        "level_um": 100,
+        "lateral_um": 100,
+        "AB_sign": [
+          0,
+          1
+        ],
+        "requested_incoming": "receding",
+        "initial_C_offset_m": 0.0,
+        "initial_AB_offset_rad": [
+          0.0,
+          0.0
+        ],
+        "prefix_actions_deg_deg_mm": [
+          [
+            0.0,
+            0.0075,
+            0.0
+          ],
+          [
+            0.0,
+            0.0075,
+            0.0
+          ]
+        ],
+        "teacher_steps": 64,
+        "teacher": "measured_geometry_discrete_G10",
+        "history": "continuous_no_reset"
+      },
+      "initial_um": 105.10038591791566,
+      "final_um": 0.13017217833374675
+    },
+    {
+      "id": "E40_lateral100_A-1_B-1",
+      "target": "E40",
+      "setup": {
+        "id": "E40_lateral100_A-1_B-1",
+        "target": "E40",
+        "role": "training",
+        "side": "lateral",
+        "level_um": 100,
+        "lateral_um": 100,
+        "AB_sign": [
+          -1,
+          -1
+        ],
+        "requested_incoming": "hold",
+        "initial_C_offset_m": 0.0,
+        "initial_AB_offset_rad": [
+          0.0,
+          0.0
+        ],
+        "prefix_actions_deg_deg_mm": [
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "teacher_steps": 64,
+        "teacher": "measured_geometry_discrete_G10",
+        "history": "continuous_no_reset"
+      },
+      "initial_um": 99.73651059440444,
+      "final_um": 2.4403614743678705
+    },
+    {
+      "id": "E40_lateral100_A-1_B+1",
+      "target": "E40",
+      "setup": {
+        "id": "E40_lateral100_A-1_B+1",
+        "target": "E40",
+        "role": "training",
+        "side": "lateral",
+        "level_um": 100,
+        "lateral_um": 100,
+        "AB_sign": [
+          -1,
+          1
+        ],
+        "requested_incoming": "approaching",
+        "initial_C_offset_m": 0.0,
+        "initial_AB_offset_rad": [
+          0.0,
+          0.0
+        ],
+        "prefix_actions_deg_deg_mm": [
+          [
+            0.015,
+            -0.0075,
+            0.0
+          ],
+          [
+            0.015,
+            -0.0075,
+            0.0
+          ]
+        ],
+        "teacher_steps": 64,
+        "teacher": "measured_geometry_discrete_G10",
+        "history": "continuous_no_reset"
+      },
+      "initial_um": 88.89437177192121,
+      "final_um": 2.4397034525388412
+    },
+    {
+      "id": "E40_lateral100_A+1_B-1",
+      "target": "E40",
+      "setup": {
+        "id": "E40_lateral100_A+1_B-1",
+        "target": "E40",
+        "role": "training",
+        "side": "lateral",
+        "level_um": 100,
+        "lateral_um": 100,
+        "AB_sign": [
+          1,
+          -1
+        ],
+        "requested_incoming": "receding",
+        "initial_C_offset_m": 0.0,
+        "initial_AB_offset_rad": [
+          0.0,
+          0.0
+        ],
+        "prefix_actions_deg_deg_mm": [
+          [
+            0.015,
+            -0.0075,
+            0.0
+          ],
+          [
+            0.015,
+            -0.0075,
+            0.0
+          ]
+        ],
+        "teacher_steps": 64,
+        "teacher": "measured_geometry_discrete_G10",
+        "history": "continuous_no_reset"
+      },
+      "initial_um": 110.89546833795505,
+      "final_um": 2.631100325106189
+    },
+    {
+      "id": "E40_lateral100_A+1_B+1",
+      "target": "E40",
+      "setup": {
+        "id": "E40_lateral100_A+1_B+1",
+        "target": "E40",
+        "role": "training",
+        "side": "lateral",
+        "level_um": 100,
+        "lateral_um": 100,
+        "AB_sign": [
+          1,
+          1
+        ],
+        "requested_incoming": "hold",
+        "initial_C_offset_m": 0.0,
+        "initial_AB_offset_rad": [
+          0.0,
+          0.0
+        ],
+        "prefix_actions_deg_deg_mm": [
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "teacher_steps": 64,
+        "teacher": "measured_geometry_discrete_G10",
+        "history": "continuous_no_reset"
+      },
+      "initial_um": 99.91272959810956,
+      "final_um": 2.6304871255047417
+    },
+    {
+      "id": "E42_lateral20_A-1_B+0",
+      "target": "E42",
+      "setup": {
+        "id": "E42_lateral20_A-1_B+0",
+        "target": "E42",
+        "role": "training",
+        "side": "lateral",
+        "level_um": 20,
+        "lateral_um": 20,
+        "AB_sign": [
+          -1,
+          0
+        ],
+        "requested_incoming": "receding",
+        "initial_C_offset_m": 0.0,
+        "initial_AB_offset_rad": [
+          0.0,
+          0.0
+        ],
+        "prefix_actions_deg_deg_mm": [
+          [
+            -0.015,
+            0.0,
+            0.0
+          ],
+          [
+            -0.015,
+            0.0,
+            0.0
+          ]
+        ],
+        "teacher_steps": 64,
+        "teacher": "measured_geometry_discrete_G10",
+        "history": "continuous_no_reset"
+      },
+      "initial_um": 29.38308704363854,
+      "final_um": 2.349394271828105
+    },
+    {
+      "id": "E42_lateral20_A+1_B+0",
+      "target": "E42",
+      "setup": {
+        "id": "E42_lateral20_A+1_B+0",
+        "target": "E42",
+        "role": "training",
+        "side": "lateral",
+        "level_um": 20,
+        "lateral_um": 20,
+        "AB_sign": [
+          1,
+          0
+        ],
+        "requested_incoming": "hold",
+        "initial_C_offset_m": 0.0,
+        "initial_AB_offset_rad": [
+          0.0,
+          0.0
+        ],
+        "prefix_actions_deg_deg_mm": [
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "teacher_steps": 64,
+        "teacher": "measured_geometry_discrete_G10",
+        "history": "continuous_no_reset"
+      },
+      "initial_um": 19.83211521566026,
+      "final_um": 2.502826327899368
+    },
+    {
+      "id": "E42_lateral20_A+0_B-1",
+      "target": "E42",
+      "setup": {
+        "id": "E42_lateral20_A+0_B-1",
+        "target": "E42",
+        "role": "training",
+        "side": "lateral",
+        "level_um": 20,
+        "lateral_um": 20,
+        "AB_sign": [
+          0,
+          -1
+        ],
+        "requested_incoming": "approaching",
+        "initial_C_offset_m": 0.0,
+        "initial_AB_offset_rad": [
+          0.0,
+          0.0
+        ],
+        "prefix_actions_deg_deg_mm": [
+          [
+            0.0,
+            0.0075,
+            0.0
+          ],
+          [
+            0.0,
+            0.0075,
+            0.0
+          ]
+        ],
+        "teacher_steps": 64,
+        "teacher": "measured_geometry_discrete_G10",
+        "history": "continuous_no_reset"
+      },
+      "initial_um": 14.967466539769795,
+      "final_um": 1.495424709236525
+    },
+    {
+      "id": "E42_lateral20_A+0_B+1",
+      "target": "E42",
+      "setup": {
+        "id": "E42_lateral20_A+0_B+1",
+        "target": "E42",
+        "role": "training",
+        "side": "lateral",
+        "level_um": 20,
+        "lateral_um": 20,
+        "AB_sign": [
+          0,
+          1
+        ],
+        "requested_incoming": "receding",
+        "initial_C_offset_m": 0.0,
+        "initial_AB_offset_rad": [
+          0.0,
+          0.0
+        ],
+        "prefix_actions_deg_deg_mm": [
+          [
+            0.0,
+            0.0075,
+            0.0
+          ],
+          [
+            0.0,
+            0.0075,
+            0.0
+          ]
+        ],
+        "teacher_steps": 64,
+        "teacher": "measured_geometry_discrete_G10",
+        "history": "continuous_no_reset"
+      },
+      "initial_um": 25.039229177843747,
+      "final_um": 1.4940760018090016
+    },
+    {
+      "id": "E42_lateral20_A-1_B-1",
+      "target": "E42",
+      "setup": {
+        "id": "E42_lateral20_A-1_B-1",
+        "target": "E42",
+        "role": "training",
+        "side": "lateral",
+        "level_um": 20,
+        "lateral_um": 20,
+        "AB_sign": [
+          -1,
+          -1
+        ],
+        "requested_incoming": "hold",
+        "initial_C_offset_m": 0.0,
+        "initial_AB_offset_rad": [
+          0.0,
+          0.0
+        ],
+        "prefix_actions_deg_deg_mm": [
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "teacher_steps": 64,
+        "teacher": "measured_geometry_discrete_G10",
+        "history": "continuous_no_reset"
+      },
+      "initial_um": 19.99289817702469,
+      "final_um": 2.685524269479601
+    },
+    {
+      "id": "E42_lateral20_A-1_B+1",
+      "target": "E42",
+      "setup": {
+        "id": "E42_lateral20_A-1_B+1",
+        "target": "E42",
+        "role": "training",
+        "side": "lateral",
+        "level_um": 20,
+        "lateral_um": 20,
+        "AB_sign": [
+          -1,
+          1
+        ],
+        "requested_incoming": "approaching",
+        "initial_C_offset_m": 0.0,
+        "initial_AB_offset_rad": [
+          0.0,
+          0.0
+        ],
+        "prefix_actions_deg_deg_mm": [
+          [
+            0.015,
+            -0.0075,
+            0.0
+          ],
+          [
+            0.015,
+            -0.0075,
+            0.0
+          ]
+        ],
+        "teacher_steps": 64,
+        "teacher": "measured_geometry_discrete_G10",
+        "history": "continuous_no_reset"
+      },
+      "initial_um": 10.123634296086713,
+      "final_um": 2.6835866802613526
+    },
+    {
+      "id": "E42_lateral20_A+1_B-1",
+      "target": "E42",
+      "setup": {
+        "id": "E42_lateral20_A+1_B-1",
+        "target": "E42",
+        "role": "training",
+        "side": "lateral",
+        "level_um": 20,
+        "lateral_um": 20,
+        "AB_sign": [
+          1,
+          -1
+        ],
+        "requested_incoming": "receding",
+        "initial_C_offset_m": 0.0,
+        "initial_AB_offset_rad": [
+          0.0,
+          0.0
+        ],
+        "prefix_actions_deg_deg_mm": [
+          [
+            0.015,
+            -0.0075,
+            0.0
+          ],
+          [
+            0.015,
+            -0.0075,
+            0.0
+          ]
+        ],
+        "teacher_steps": 64,
+        "teacher": "measured_geometry_discrete_G10",
+        "history": "continuous_no_reset"
+      },
+      "initial_um": 30.711563990214287,
+      "final_um": 3.309027282031545
+    },
+    {
+      "id": "E42_lateral20_A+1_B+1",
+      "target": "E42",
+      "setup": {
+        "id": "E42_lateral20_A+1_B+1",
+        "target": "E42",
+        "role": "training",
+        "side": "lateral",
+        "level_um": 20,
+        "lateral_um": 20,
+        "AB_sign": [
+          1,
+          1
+        ],
+        "requested_incoming": "hold",
+        "initial_C_offset_m": 0.0,
+        "initial_AB_offset_rad": [
+          0.0,
+          0.0
+        ],
+        "prefix_actions_deg_deg_mm": [
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "teacher_steps": 64,
+        "teacher": "measured_geometry_discrete_G10",
+        "history": "continuous_no_reset"
+      },
+      "initial_um": 20.10483965698827,
+      "final_um": 3.0776038684402254
+    },
+    {
+      "id": "E42_lateral35_A-1_B+0",
+      "target": "E42",
+      "setup": {
+        "id": "E42_lateral35_A-1_B+0",
+        "target": "E42",
+        "role": "training",
+        "side": "lateral",
+        "level_um": 35,
+        "lateral_um": 35,
+        "AB_sign": [
+          -1,
+          0
+        ],
+        "requested_incoming": "receding",
+        "initial_C_offset_m": 0.0,
+        "initial_AB_offset_rad": [
+          0.0,
+          0.0
+        ],
+        "prefix_actions_deg_deg_mm": [
+          [
+            -0.015,
+            0.0,
+            0.0
+          ],
+          [
+            -0.015,
+            0.0,
+            0.0
+          ]
+        ],
+        "teacher_steps": 64,
+        "teacher": "measured_geometry_discrete_G10",
+        "history": "continuous_no_reset"
+      },
+      "initial_um": 44.63286266673629,
+      "final_um": 0.2699480214676084
+    },
+    {
+      "id": "E42_lateral35_A+1_B+0",
+      "target": "E42",
+      "setup": {
+        "id": "E42_lateral35_A+1_B+0",
+        "target": "E42",
+        "role": "training",
+        "side": "lateral",
+        "level_um": 35,
+        "lateral_um": 35,
+        "AB_sign": [
+          1,
+          0
+        ],
+        "requested_incoming": "hold",
+        "initial_C_offset_m": 0.0,
+        "initial_AB_offset_rad": [
+          0.0,
+          0.0
+        ],
+        "prefix_actions_deg_deg_mm": [
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "teacher_steps": 64,
+        "teacher": "measured_geometry_discrete_G10",
+        "history": "continuous_no_reset"
+      },
+      "initial_um": 35.08189303186223,
+      "final_um": 0.42335222159209757
+    },
+    {
+      "id": "E42_lateral35_A+0_B-1",
+      "target": "E42",
+      "setup": {
+        "id": "E42_lateral35_A+0_B-1",
+        "target": "E42",
+        "role": "training",
+        "side": "lateral",
+        "level_um": 35,
+        "lateral_um": 35,
+        "AB_sign": [
+          0,
+          -1
+        ],
+        "requested_incoming": "approaching",
+        "initial_C_offset_m": 0.0,
+        "initial_AB_offset_rad": [
+          0.0,
+          0.0
+        ],
+        "prefix_actions_deg_deg_mm": [
+          [
+            0.0,
+            0.0075,
+            0.0
+          ],
+          [
+            0.0,
+            0.0075,
+            0.0
+          ]
+        ],
+        "teacher_steps": 64,
+        "teacher": "measured_geometry_discrete_G10",
+        "history": "continuous_no_reset"
+      },
+      "initial_um": 29.960683595632183,
+      "final_um": 1.057953299766491
+    },
+    {
+      "id": "E42_lateral35_A+0_B+1",
+      "target": "E42",
+      "setup": {
+        "id": "E42_lateral35_A+0_B+1",
+        "target": "E42",
+        "role": "training",
+        "side": "lateral",
+        "level_um": 35,
+        "lateral_um": 35,
+        "AB_sign": [
+          0,
+          1
+        ],
+        "requested_incoming": "receding",
+        "initial_C_offset_m": 0.0,
+        "initial_AB_offset_rad": [
+          0.0,
+          0.0
+        ],
+        "prefix_actions_deg_deg_mm": [
+          [
+            0.0,
+            0.0075,
+            0.0
+          ],
+          [
+            0.0,
+            0.0075,
+            0.0
+          ]
+        ],
+        "teacher_steps": 64,
+        "teacher": "measured_geometry_discrete_G10",
+        "history": "continuous_no_reset"
+      },
+      "initial_um": 40.04242089324099,
+      "final_um": 1.061765717277476
+    },
+    {
+      "id": "E42_lateral35_A-1_B-1",
+      "target": "E42",
+      "setup": {
+        "id": "E42_lateral35_A-1_B-1",
+        "target": "E42",
+        "role": "training",
+        "side": "lateral",
+        "level_um": 35,
+        "lateral_um": 35,
+        "AB_sign": [
+          -1,
+          -1
+        ],
+        "requested_incoming": "hold",
+        "initial_C_offset_m": 0.0,
+        "initial_AB_offset_rad": [
+          0.0,
+          0.0
+        ],
+        "prefix_actions_deg_deg_mm": [
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "teacher_steps": 64,
+        "teacher": "measured_geometry_discrete_G10",
+        "history": "continuous_no_reset"
+      },
+      "initial_um": 34.84203706204074,
+      "final_um": 1.6566506906736347
+    },
+    {
+      "id": "E42_lateral35_A-1_B+1",
+      "target": "E42",
+      "setup": {
+        "id": "E42_lateral35_A-1_B+1",
+        "target": "E42",
+        "role": "training",
+        "side": "lateral",
+        "level_um": 35,
+        "lateral_um": 35,
+        "AB_sign": [
+          -1,
+          1
+        ],
+        "requested_incoming": "approaching",
+        "initial_C_offset_m": 0.0,
+        "initial_AB_offset_rad": [
+          0.0,
+          0.0
+        ],
+        "prefix_actions_deg_deg_mm": [
+          [
+            0.015,
+            -0.0075,
+            0.0
+          ],
+          [
+            0.015,
+            -0.0075,
+            0.0
+          ]
+        ],
+        "teacher_steps": 64,
+        "teacher": "measured_geometry_discrete_G10",
+        "history": "continuous_no_reset"
+      },
+      "initial_um": 24.6652019626744,
+      "final_um": 1.6567467578402322
+    },
+    {
+      "id": "E42_lateral35_A+1_B-1",
+      "target": "E42",
+      "setup": {
+        "id": "E42_lateral35_A+1_B-1",
+        "target": "E42",
+        "role": "training",
+        "side": "lateral",
+        "level_um": 35,
+        "lateral_um": 35,
+        "AB_sign": [
+          1,
+          -1
+        ],
+        "requested_incoming": "receding",
+        "initial_C_offset_m": 0.0,
+        "initial_AB_offset_rad": [
+          0.0,
+          0.0
+        ],
+        "prefix_actions_deg_deg_mm": [
+          [
+            0.015,
+            -0.0075,
+            0.0
+          ],
+          [
+            0.015,
+            -0.0075,
+            0.0
+          ]
+        ],
+        "teacher_steps": 64,
+        "teacher": "measured_geometry_discrete_G10",
+        "history": "continuous_no_reset"
+      },
+      "initial_um": 45.488303751389815,
+      "final_um": 1.8100461434676687
+    },
+    {
+      "id": "E42_lateral35_A+1_B+1",
+      "target": "E42",
+      "setup": {
+        "id": "E42_lateral35_A+1_B+1",
+        "target": "E42",
+        "role": "training",
+        "side": "lateral",
+        "level_um": 35,
+        "lateral_um": 35,
+        "AB_sign": [
+          1,
+          1
+        ],
+        "requested_incoming": "hold",
+        "initial_C_offset_m": 0.0,
+        "initial_AB_offset_rad": [
+          0.0,
+          0.0
+        ],
+        "prefix_actions_deg_deg_mm": [
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "teacher_steps": 64,
+        "teacher": "measured_geometry_discrete_G10",
+        "history": "continuous_no_reset"
+      },
+      "initial_um": 34.957585966195964,
+      "final_um": 1.8101342561302949
+    },
+    {
+      "id": "E42_lateral50_A-1_B+0",
+      "target": "E42",
+      "setup": {
+        "id": "E42_lateral50_A-1_B+0",
+        "target": "E42",
+        "role": "training",
+        "side": "lateral",
+        "level_um": 50,
+        "lateral_um": 50,
+        "AB_sign": [
+          -1,
+          0
+        ],
+        "requested_incoming": "receding",
+        "initial_C_offset_m": 0.0,
+        "initial_AB_offset_rad": [
+          0.0,
+          0.0
+        ],
+        "prefix_actions_deg_deg_mm": [
+          [
+            -0.015,
+            0.0,
+            0.0
+          ],
+          [
+            -0.015,
+            0.0,
+            0.0
+          ]
+        ],
+        "teacher_steps": 64,
+        "teacher": "measured_geometry_discrete_G10",
+        "history": "continuous_no_reset"
+      },
+      "initial_um": 59.88263308500561,
+      "final_um": 1.8096576891079164
+    },
+    {
+      "id": "E42_lateral50_A+1_B+0",
+      "target": "E42",
+      "setup": {
+        "id": "E42_lateral50_A+1_B+0",
+        "target": "E42",
+        "role": "training",
+        "side": "lateral",
+        "level_um": 50,
+        "lateral_um": 50,
+        "AB_sign": [
+          1,
+          0
+        ],
+        "requested_incoming": "hold",
+        "initial_C_offset_m": 0.0,
+        "initial_AB_offset_rad": [
+          0.0,
+          0.0
+        ],
+        "prefix_actions_deg_deg_mm": [
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "teacher_steps": 64,
+        "teacher": "measured_geometry_discrete_G10",
+        "history": "continuous_no_reset"
+      },
+      "initial_um": 50.331666939516595,
+      "final_um": 1.6562261639400415
+    },
+    {
+      "id": "E42_lateral50_A+0_B-1",
+      "target": "E42",
+      "setup": {
+        "id": "E42_lateral50_A+0_B-1",
+        "target": "E42",
+        "role": "training",
+        "side": "lateral",
+        "level_um": 50,
+        "lateral_um": 50,
+        "AB_sign": [
+          0,
+          -1
+        ],
+        "requested_incoming": "approaching",
+        "initial_C_offset_m": 0.0,
+        "initial_AB_offset_rad": [
+          0.0,
+          0.0
+        ],
+        "prefix_actions_deg_deg_mm": [
+          [
+            0.0,
+            0.0075,
+            0.0
+          ],
+          [
+            0.0,
+            0.0075,
+            0.0
+          ]
+        ],
+        "teacher_steps": 64,
+        "teacher": "measured_geometry_discrete_G10",
+        "history": "continuous_no_reset"
+      },
+      "initial_um": 44.96370890552156,
+      "final_um": 0.6400036753115583
+    },
+    {
+      "id": "E42_lateral50_A+0_B+1",
+      "target": "E42",
+      "setup": {
+        "id": "E42_lateral50_A+0_B+1",
+        "target": "E42",
+        "role": "training",
+        "side": "lateral",
+        "level_um": 50,
+        "lateral_um": 50,
+        "AB_sign": [
+          0,
+          1
+        ],
+        "requested_incoming": "receding",
+        "initial_C_offset_m": 0.0,
+        "initial_AB_offset_rad": [
+          0.0,
+          0.0
+        ],
+        "prefix_actions_deg_deg_mm": [
+          [
+            0.0,
+            0.0075,
+            0.0
+          ],
+          [
+            0.0,
+            0.0075,
+            0.0
+          ]
+        ],
+        "teacher_steps": 64,
+        "teacher": "measured_geometry_discrete_G10",
+        "history": "continuous_no_reset"
+      },
+      "initial_um": 55.03699143825985,
+      "final_um": 0.6388265394415581
+    },
+    {
+      "id": "E42_lateral50_A-1_B-1",
+      "target": "E42",
+      "setup": {
+        "id": "E42_lateral50_A-1_B-1",
+        "target": "E42",
+        "role": "training",
+        "side": "lateral",
+        "level_um": 50,
+        "lateral_um": 50,
+        "AB_sign": [
+          -1,
+          -1
+        ],
+        "requested_incoming": "hold",
+        "initial_C_offset_m": 0.0,
+        "initial_AB_offset_rad": [
+          0.0,
+          0.0
+        ],
+        "prefix_actions_deg_deg_mm": [
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "teacher_steps": 64,
+        "teacher": "measured_geometry_discrete_G10",
+        "history": "continuous_no_reset"
+      },
+      "initial_um": 50.18272203940079,
+      "final_um": 1.6838604225190714
+    },
+    {
+      "id": "E42_lateral50_A-1_B+1",
+      "target": "E42",
+      "setup": {
+        "id": "E42_lateral50_A-1_B+1",
+        "target": "E42",
+        "role": "training",
+        "side": "lateral",
+        "level_um": 50,
+        "lateral_um": 50,
+        "AB_sign": [
+          -1,
+          1
+        ],
+        "requested_incoming": "approaching",
+        "initial_C_offset_m": 0.0,
+        "initial_AB_offset_rad": [
+          0.0,
+          0.0
+        ],
+        "prefix_actions_deg_deg_mm": [
+          [
+            0.015,
+            -0.0075,
+            0.0
+          ],
+          [
+            0.015,
+            -0.0075,
+            0.0
+          ]
+        ],
+        "teacher_steps": 64,
+        "teacher": "measured_geometry_discrete_G10",
+        "history": "continuous_no_reset"
+      },
+      "initial_um": 39.88537108946723,
+      "final_um": 1.6827553664864046
+    },
+    {
+      "id": "E42_lateral50_A+1_B-1",
+      "target": "E42",
+      "setup": {
+        "id": "E42_lateral50_A+1_B-1",
+        "target": "E42",
+        "role": "training",
+        "side": "lateral",
+        "level_um": 50,
+        "lateral_um": 50,
+        "AB_sign": [
+          1,
+          -1
+        ],
+        "requested_incoming": "receding",
+        "initial_C_offset_m": 0.0,
+        "initial_AB_offset_rad": [
+          0.0,
+          0.0
+        ],
+        "prefix_actions_deg_deg_mm": [
+          [
+            0.015,
+            -0.0075,
+            0.0
+          ],
+          [
+            0.015,
+            -0.0075,
+            0.0
+          ]
+        ],
+        "teacher_steps": 64,
+        "teacher": "measured_geometry_discrete_G10",
+        "history": "continuous_no_reset"
+      },
+      "initial_um": 60.299289470149965,
+      "final_um": 1.4446931677445538
+    },
+    {
+      "id": "E42_lateral50_A+1_B+1",
+      "target": "E42",
+      "setup": {
+        "id": "E42_lateral50_A+1_B+1",
+        "target": "E42",
+        "role": "training",
+        "side": "lateral",
+        "level_um": 50,
+        "lateral_um": 50,
+        "AB_sign": [
+          1,
+          1
+        ],
+        "requested_incoming": "hold",
+        "initial_C_offset_m": 0.0,
+        "initial_AB_offset_rad": [
+          0.0,
+          0.0
+        ],
+        "prefix_actions_deg_deg_mm": [
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "teacher_steps": 64,
+        "teacher": "measured_geometry_discrete_G10",
+        "history": "continuous_no_reset"
+      },
+      "initial_um": 49.81269577058243,
+      "final_um": 1.443393525692903
+    },
+    {
+      "id": "E42_lateral75_A-1_B+0",
+      "target": "E42",
+      "setup": {
+        "id": "E42_lateral75_A-1_B+0",
+        "target": "E42",
+        "role": "training",
+        "side": "lateral",
+        "level_um": 75,
+        "lateral_um": 75,
+        "AB_sign": [
+          -1,
+          0
+        ],
+        "requested_incoming": "hold",
+        "initial_C_offset_m": 0.0,
+        "initial_AB_offset_rad": [
+          0.0,
+          0.0
+        ],
+        "prefix_actions_deg_deg_mm": [
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "teacher_steps": 64,
+        "teacher": "measured_geometry_discrete_G10",
+        "history": "continuous_no_reset"
+      },
+      "initial_um": 75.13239640095253,
+      "final_um": 0.2699480214676084
+    },
+    {
+      "id": "E42_lateral75_A+1_B+0",
+      "target": "E42",
+      "setup": {
+        "id": "E42_lateral75_A+1_B+0",
+        "target": "E42",
+        "role": "training",
+        "side": "lateral",
+        "level_um": 75,
+        "lateral_um": 75,
+        "AB_sign": [
+          1,
+          0
+        ],
+        "requested_incoming": "approaching",
+        "initial_C_offset_m": 0.0,
+        "initial_AB_offset_rad": [
+          0.0,
+          0.0
+        ],
+        "prefix_actions_deg_deg_mm": [
+          [
+            -0.015,
+            0.0,
+            0.0
+          ],
+          [
+            -0.015,
+            0.0,
+            0.0
+          ]
+        ],
+        "teacher_steps": 64,
+        "teacher": "measured_geometry_discrete_G10",
+        "history": "continuous_no_reset"
+      },
+      "initial_um": 65.58143492143131,
+      "final_um": 0.42335222159209757
+    },
+    {
+      "id": "E42_lateral75_A+0_B-1",
+      "target": "E42",
+      "setup": {
+        "id": "E42_lateral75_A+0_B-1",
+        "target": "E42",
+        "role": "training",
+        "side": "lateral",
+        "level_um": 75,
+        "lateral_um": 75,
+        "AB_sign": [
+          0,
+          -1
+        ],
+        "requested_incoming": "receding",
+        "initial_C_offset_m": 0.0,
+        "initial_AB_offset_rad": [
+          0.0,
+          0.0
+        ],
+        "prefix_actions_deg_deg_mm": [
+          [
+            0.0,
+            -0.0075,
+            0.0
+          ],
+          [
+            0.0,
+            -0.0075,
+            0.0
+          ]
+        ],
+        "teacher_steps": 64,
+        "teacher": "measured_geometry_discrete_G10",
+        "history": "continuous_no_reset"
+      },
+      "initial_um": 80.03997774751939,
+      "final_um": 0.9160615796360378
+    },
+    {
+      "id": "E42_lateral75_A+0_B+1",
+      "target": "E42",
+      "setup": {
+        "id": "E42_lateral75_A+0_B+1",
+        "target": "E42",
+        "role": "training",
+        "side": "lateral",
+        "level_um": 75,
+        "lateral_um": 75,
+        "AB_sign": [
+          0,
+          1
+        ],
+        "requested_incoming": "hold",
+        "initial_C_offset_m": 0.0,
+        "initial_AB_offset_rad": [
+          0.0,
+          0.0
+        ],
+        "prefix_actions_deg_deg_mm": [
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "teacher_steps": 64,
+        "teacher": "measured_geometry_discrete_G10",
+        "history": "continuous_no_reset"
+      },
+      "initial_um": 74.99856754092508,
+      "final_um": 0.909771167269446
+    },
+    {
+      "id": "E42_lateral75_A-1_B-1",
+      "target": "E42",
+      "setup": {
+        "id": "E42_lateral75_A-1_B-1",
+        "target": "E42",
+        "role": "training",
+        "side": "lateral",
+        "level_um": 75,
+        "lateral_um": 75,
+        "AB_sign": [
+          -1,
+          -1
+        ],
+        "requested_incoming": "approaching",
+        "initial_C_offset_m": 0.0,
+        "initial_AB_offset_rad": [
+          0.0,
+          0.0
+        ],
+        "prefix_actions_deg_deg_mm": [
+          [
+            0.015,
+            0.0075,
+            0.0
+          ],
+          [
+            0.015,
+            0.0075,
+            0.0
+          ]
+        ],
+        "teacher_steps": 64,
+        "teacher": "measured_geometry_discrete_G10",
+        "history": "continuous_no_reset"
+      },
+      "initial_um": 64.59226848177397,
+      "final_um": 1.0955838930876702
+    },
+    {
+      "id": "E42_lateral75_A-1_B+1",
+      "target": "E42",
+      "setup": {
+        "id": "E42_lateral75_A-1_B+1",
+        "target": "E42",
+        "role": "training",
+        "side": "lateral",
+        "level_um": 75,
+        "lateral_um": 75,
+        "AB_sign": [
+          -1,
+          1
+        ],
+        "requested_incoming": "receding",
+        "initial_C_offset_m": 0.0,
+        "initial_AB_offset_rad": [
+          0.0,
+          0.0
+        ],
+        "prefix_actions_deg_deg_mm": [
+          [
+            -0.015,
+            0.0075,
+            0.0
+          ],
+          [
+            -0.015,
+            0.0075,
+            0.0
+          ]
+        ],
+        "teacher_steps": 64,
+        "teacher": "measured_geometry_discrete_G10",
+        "history": "continuous_no_reset"
+      },
+      "initial_um": 85.44858042557374,
+      "final_um": 1.0974903046486768
+    },
+    {
+      "id": "E42_lateral75_A+1_B-1",
+      "target": "E42",
+      "setup": {
+        "id": "E42_lateral75_A+1_B-1",
+        "target": "E42",
+        "role": "training",
+        "side": "lateral",
+        "level_um": 75,
+        "lateral_um": 75,
+        "AB_sign": [
+          1,
+          -1
+        ],
+        "requested_incoming": "hold",
+        "initial_C_offset_m": 0.0,
+        "initial_AB_offset_rad": [
+          0.0,
+          0.0
+        ],
+        "prefix_actions_deg_deg_mm": [
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "teacher_steps": 64,
+        "teacher": "measured_geometry_discrete_G10",
+        "history": "continuous_no_reset"
+      },
+      "initial_um": 75.03255474133765,
+      "final_um": 1.2326260183980573
+    },
+    {
+      "id": "E42_lateral75_A+1_B+1",
+      "target": "E42",
+      "setup": {
+        "id": "E42_lateral75_A+1_B+1",
+        "target": "E42",
+        "role": "training",
+        "side": "lateral",
+        "level_um": 75,
+        "lateral_um": 75,
+        "AB_sign": [
+          1,
+          1
+        ],
+        "requested_incoming": "approaching",
+        "initial_C_offset_m": 0.0,
+        "initial_AB_offset_rad": [
+          0.0,
+          0.0
+        ],
+        "prefix_actions_deg_deg_mm": [
+          [
+            -0.015,
+            -0.0075,
+            0.0
+          ],
+          [
+            -0.015,
+            -0.0075,
+            0.0
+          ]
+        ],
+        "teacher_steps": 64,
+        "teacher": "measured_geometry_discrete_G10",
+        "history": "continuous_no_reset"
+      },
+      "initial_um": 64.71878678222583,
+      "final_um": 1.2343229627262808
+    },
+    {
+      "id": "E42_lateral100_A-1_B+0",
+      "target": "E42",
+      "setup": {
+        "id": "E42_lateral100_A-1_B+0",
+        "target": "E42",
+        "role": "training",
+        "side": "lateral",
+        "level_um": 100,
+        "lateral_um": 100,
+        "AB_sign": [
+          -1,
+          0
+        ],
+        "requested_incoming": "approaching",
+        "initial_C_offset_m": 0.0,
+        "initial_AB_offset_rad": [
+          0.0,
+          0.0
+        ],
+        "prefix_actions_deg_deg_mm": [
+          [
+            0.015,
+            0.0,
+            0.0
+          ],
+          [
+            0.015,
+            0.0,
+            0.0
+          ]
+        ],
+        "teacher_steps": 64,
+        "teacher": "measured_geometry_discrete_G10",
+        "history": "continuous_no_reset"
+      },
+      "initial_um": 90.38215076861977,
+      "final_um": 1.6562261639400415
+    },
+    {
+      "id": "E42_lateral100_A+1_B+0",
+      "target": "E42",
+      "setup": {
+        "id": "E42_lateral100_A+1_B+0",
+        "target": "E42",
+        "role": "training",
+        "side": "lateral",
+        "level_um": 100,
+        "lateral_um": 100,
+        "AB_sign": [
+          1,
+          0
+        ],
+        "requested_incoming": "receding",
+        "initial_C_offset_m": 0.0,
+        "initial_AB_offset_rad": [
+          0.0,
+          0.0
+        ],
+        "prefix_actions_deg_deg_mm": [
+          [
+            0.015,
+            0.0,
+            0.0
+          ],
+          [
+            0.015,
+            0.0,
+            0.0
+          ]
+        ],
+        "teacher_steps": 64,
+        "teacher": "measured_geometry_discrete_G10",
+        "history": "continuous_no_reset"
+      },
+      "initial_um": 109.94434535631855,
+      "final_um": 1.8096576891079164
+    },
+    {
+      "id": "E42_lateral100_A+0_B-1",
+      "target": "E42",
+      "setup": {
+        "id": "E42_lateral100_A+0_B-1",
+        "target": "E42",
+        "role": "training",
+        "side": "lateral",
+        "level_um": 100,
+        "lateral_um": 100,
+        "AB_sign": [
+          0,
+          -1
+        ],
+        "requested_incoming": "hold",
+        "initial_C_offset_m": 0.0,
+        "initial_AB_offset_rad": [
+          0.0,
+          0.0
+        ],
+        "prefix_actions_deg_deg_mm": [
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "teacher_steps": 64,
+        "teacher": "measured_geometry_discrete_G10",
+        "history": "continuous_no_reset"
+      },
+      "initial_um": 99.99858266527,
+      "final_um": 1.196075691543932
+    },
+    {
+      "id": "E42_lateral100_A+0_B+1",
+      "target": "E42",
+      "setup": {
+        "id": "E42_lateral100_A+0_B+1",
+        "target": "E42",
+        "role": "training",
+        "side": "lateral",
+        "level_um": 100,
+        "lateral_um": 100,
+        "AB_sign": [
+          0,
+          1
+        ],
+        "requested_incoming": "approaching",
+        "initial_C_offset_m": 0.0,
+        "initial_AB_offset_rad": [
+          0.0,
+          0.0
+        ],
+        "prefix_actions_deg_deg_mm": [
+          [
+            0.0,
+            -0.0075,
+            0.0
+          ],
+          [
+            0.0,
+            -0.0075,
+            0.0
+          ]
+        ],
+        "teacher_steps": 64,
+        "teacher": "measured_geometry_discrete_G10",
+        "history": "continuous_no_reset"
+      },
+      "initial_um": 94.96025136968932,
+      "final_um": 1.1947711079133587
+    },
+    {
+      "id": "E42_lateral100_A-1_B-1",
+      "target": "E42",
+      "setup": {
+        "id": "E42_lateral100_A-1_B-1",
+        "target": "E42",
+        "role": "training",
+        "side": "lateral",
+        "level_um": 100,
+        "lateral_um": 100,
+        "AB_sign": [
+          -1,
+          -1
+        ],
+        "requested_incoming": "receding",
+        "initial_C_offset_m": 0.0,
+        "initial_AB_offset_rad": [
+          0.0,
+          0.0
+        ],
+        "prefix_actions_deg_deg_mm": [
+          [
+            -0.015,
+            -0.0075,
+            0.0
+          ],
+          [
+            -0.015,
+            -0.0075,
+            0.0
+          ]
+        ],
+        "teacher_steps": 64,
+        "teacher": "measured_geometry_discrete_G10",
+        "history": "continuous_no_reset"
+      },
+      "initial_um": 110.62827665076757,
+      "final_um": 1.6880207394820654
+    },
+    {
+      "id": "E42_lateral100_A-1_B+1",
+      "target": "E42",
+      "setup": {
+        "id": "E42_lateral100_A-1_B+1",
+        "target": "E42",
+        "role": "training",
+        "side": "lateral",
+        "level_um": 100,
+        "lateral_um": 100,
+        "AB_sign": [
+          -1,
+          1
+        ],
+        "requested_incoming": "hold",
+        "initial_C_offset_m": 0.0,
+        "initial_AB_offset_rad": [
+          0.0,
+          0.0
+        ],
+        "prefix_actions_deg_deg_mm": [
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "teacher_steps": 64,
+        "teacher": "measured_geometry_discrete_G10",
+        "history": "continuous_no_reset"
+      },
+      "initial_um": 100.21431929735148,
+      "final_um": 1.688261977278053
+    },
+    {
+      "id": "E42_lateral100_A+1_B-1",
+      "target": "E42",
+      "setup": {
+        "id": "E42_lateral100_A+1_B-1",
+        "target": "E42",
+        "role": "training",
+        "side": "lateral",
+        "level_um": 100,
+        "lateral_um": 100,
+        "AB_sign": [
+          1,
+          -1
+        ],
+        "requested_incoming": "approaching",
+        "initial_C_offset_m": 0.0,
+        "initial_AB_offset_rad": [
+          0.0,
+          0.0
+        ],
+        "prefix_actions_deg_deg_mm": [
+          [
+            -0.015,
+            0.0075,
+            0.0
+          ],
+          [
+            -0.015,
+            0.0075,
+            0.0
+          ]
+        ],
+        "teacher_steps": 64,
+        "teacher": "measured_geometry_discrete_G10",
+        "history": "continuous_no_reset"
+      },
+      "initial_um": 89.4242574846544,
+      "final_um": 1.163132767801677
+    },
+    {
+      "id": "E42_lateral100_A+1_B+1",
+      "target": "E42",
+      "setup": {
+        "id": "E42_lateral100_A+1_B+1",
+        "target": "E42",
+        "role": "training",
+        "side": "lateral",
+        "level_um": 100,
+        "lateral_um": 100,
+        "AB_sign": [
+          1,
+          1
+        ],
+        "requested_incoming": "receding",
+        "initial_C_offset_m": 0.0,
+        "initial_AB_offset_rad": [
+          0.0,
+          0.0
+        ],
+        "prefix_actions_deg_deg_mm": [
+          [
+            0.015,
+            0.0075,
+            0.0
+          ],
+          [
+            0.015,
+            0.0075,
+            0.0
+          ]
+        ],
+        "teacher_steps": 64,
+        "teacher": "measured_geometry_discrete_G10",
+        "history": "continuous_no_reset"
+      },
+      "initial_um": 110.30796927559454,
+      "final_um": 1.1634895900502398
+    },
+    {
+      "id": "E40_axial-20",
+      "target": "E40",
+      "setup": {
+        "id": "E40_axial-20",
+        "target": "E40",
+        "role": "training",
+        "side": "below",
+        "level_um": 20,
+        "lateral_um": 0,
+        "AB_sign": [
+          0,
+          0
+        ],
+        "requested_incoming": "hold",
+        "initial_C_offset_m": -1.9999999999999998e-05,
+        "initial_AB_offset_rad": [
+          0.0,
+          0.0
+        ],
+        "prefix_actions_deg_deg_mm": [
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "teacher_steps": 64,
+        "teacher": "measured_geometry_discrete_G10",
+        "history": "continuous_no_reset"
+      },
+      "initial_um": 19.995858280272024,
+      "final_um": 0.11023324662284403
+    },
+    {
+      "id": "E40_axial-50",
+      "target": "E40",
+      "setup": {
+        "id": "E40_axial-50",
+        "target": "E40",
+        "role": "training",
+        "side": "below",
+        "level_um": 50,
+        "lateral_um": 0,
+        "AB_sign": [
+          0,
+          0
+        ],
+        "requested_incoming": "hold",
+        "initial_C_offset_m": -4.9999999999999996e-05,
+        "initial_AB_offset_rad": [
+          0.0,
+          0.0
+        ],
+        "prefix_actions_deg_deg_mm": [
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "teacher_steps": 64,
+        "teacher": "measured_geometry_discrete_G10",
+        "history": "continuous_no_reset"
+      },
+      "initial_um": 50.000672221502,
+      "final_um": 0.5410749297907265
+    },
+    {
+      "id": "E40_axial-100",
+      "target": "E40",
+      "setup": {
+        "id": "E40_axial-100",
+        "target": "E40",
+        "role": "training",
+        "side": "below",
+        "level_um": 100,
+        "lateral_um": 0,
+        "AB_sign": [
+          0,
+          0
+        ],
+        "requested_incoming": "hold",
+        "initial_C_offset_m": -9.999999999999999e-05,
+        "initial_AB_offset_rad": [
+          0.0,
+          0.0
+        ],
+        "prefix_actions_deg_deg_mm": [
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "teacher_steps": 64,
+        "teacher": "measured_geometry_discrete_G10",
+        "history": "continuous_no_reset"
+      },
+      "initial_um": 99.9984862588635,
+      "final_um": 0.1563310301945027
+    },
+    {
+      "id": "E40_axial+20",
+      "target": "E40",
+      "setup": {
+        "id": "E40_axial+20",
+        "target": "E40",
+        "role": "training",
+        "side": "above",
+        "level_um": 20,
+        "lateral_um": 0,
+        "AB_sign": [
+          0,
+          0
+        ],
+        "requested_incoming": "hold",
+        "initial_C_offset_m": 1.9999999999999998e-05,
+        "initial_AB_offset_rad": [
+          0.0,
+          0.0
+        ],
+        "prefix_actions_deg_deg_mm": [
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "teacher_steps": 64,
+        "teacher": "measured_geometry_discrete_G10",
+        "history": "continuous_no_reset"
+      },
+      "initial_um": 20.006164594938305,
+      "final_um": 0.11240919126676267
+    },
+    {
+      "id": "E40_axial+50",
+      "target": "E40",
+      "setup": {
+        "id": "E40_axial+50",
+        "target": "E40",
+        "role": "training",
+        "side": "above",
+        "level_um": 50,
+        "lateral_um": 0,
+        "AB_sign": [
+          0,
+          0
+        ],
+        "requested_incoming": "hold",
+        "initial_C_offset_m": 4.9999999999999996e-05,
+        "initial_AB_offset_rad": [
+          0.0,
+          0.0
+        ],
+        "prefix_actions_deg_deg_mm": [
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "teacher_steps": 64,
+        "teacher": "measured_geometry_discrete_G10",
+        "history": "continuous_no_reset"
+      },
+      "initial_um": 49.995310298351036,
+      "final_um": 0.41904025847380505
+    },
+    {
+      "id": "E40_axial+100",
+      "target": "E40",
+      "setup": {
+        "id": "E40_axial+100",
+        "target": "E40",
+        "role": "training",
+        "side": "above",
+        "level_um": 100,
+        "lateral_um": 0,
+        "AB_sign": [
+          0,
+          0
+        ],
+        "requested_incoming": "hold",
+        "initial_C_offset_m": 9.999999999999999e-05,
+        "initial_AB_offset_rad": [
+          0.0,
+          0.0
+        ],
+        "prefix_actions_deg_deg_mm": [
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "teacher_steps": 64,
+        "teacher": "measured_geometry_discrete_G10",
+        "history": "continuous_no_reset"
+      },
+      "initial_um": 99.99312432618856,
+      "final_um": 0.15252281609262783
+    },
+    {
+      "id": "E42_axial-20",
+      "target": "E42",
+      "setup": {
+        "id": "E42_axial-20",
+        "target": "E42",
+        "role": "training",
+        "side": "below",
+        "level_um": 20,
+        "lateral_um": 0,
+        "AB_sign": [
+          0,
+          0
+        ],
+        "requested_incoming": "hold",
+        "initial_C_offset_m": -1.9999999999999998e-05,
+        "initial_AB_offset_rad": [
+          0.0,
+          0.0
+        ],
+        "prefix_actions_deg_deg_mm": [
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "teacher_steps": 64,
+        "teacher": "measured_geometry_discrete_G10",
+        "history": "continuous_no_reset"
+      },
+      "initial_um": 20.00389612583287,
+      "final_um": 0.2710131744996712
+    },
+    {
+      "id": "E42_axial-50",
+      "target": "E42",
+      "setup": {
+        "id": "E42_axial-50",
+        "target": "E42",
+        "role": "training",
+        "side": "below",
+        "level_um": 50,
+        "lateral_um": 0,
+        "AB_sign": [
+          0,
+          0
+        ],
+        "requested_incoming": "hold",
+        "initial_C_offset_m": -4.9999999999999996e-05,
+        "initial_AB_offset_rad": [
+          0.0,
+          0.0
+        ],
+        "prefix_actions_deg_deg_mm": [
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "teacher_steps": 64,
+        "teacher": "measured_geometry_discrete_G10",
+        "history": "continuous_no_reset"
+      },
+      "initial_um": 50.00779506530852,
+      "final_um": 0.5889954946529457
+    },
+    {
+      "id": "E42_axial-100",
+      "target": "E42",
+      "setup": {
+        "id": "E42_axial-100",
+        "target": "E42",
+        "role": "training",
+        "side": "below",
+        "level_um": 100,
+        "lateral_um": 0,
+        "AB_sign": [
+          0,
+          0
+        ],
+        "requested_incoming": "hold",
+        "initial_C_offset_m": -9.999999999999999e-05,
+        "initial_AB_offset_rad": [
+          0.0,
+          0.0
+        ],
+        "prefix_actions_deg_deg_mm": [
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "teacher_steps": 64,
+        "teacher": "measured_geometry_discrete_G10",
+        "history": "continuous_no_reset"
+      },
+      "initial_um": 100.00530411319045,
+      "final_um": 0.29489100465174356
+    },
+    {
+      "id": "E42_axial+20",
+      "target": "E42",
+      "setup": {
+        "id": "E42_axial+20",
+        "target": "E42",
+        "role": "training",
+        "side": "above",
+        "level_um": 20,
+        "lateral_um": 0,
+        "AB_sign": [
+          0,
+          0
+        ],
+        "requested_incoming": "hold",
+        "initial_C_offset_m": 1.9999999999999998e-05,
+        "initial_AB_offset_rad": [
+          0.0,
+          0.0
+        ],
+        "prefix_actions_deg_deg_mm": [
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "teacher_steps": 64,
+        "teacher": "measured_geometry_discrete_G10",
+        "history": "continuous_no_reset"
+      },
+      "initial_um": 20.00117724597339,
+      "final_um": 0.27077726565899846
+    },
+    {
+      "id": "E42_axial+50",
+      "target": "E42",
+      "setup": {
+        "id": "E42_axial+50",
+        "target": "E42",
+        "role": "training",
+        "side": "above",
+        "level_um": 50,
+        "lateral_um": 0,
+        "AB_sign": [
+          0,
+          0
+        ],
+        "requested_incoming": "hold",
+        "initial_C_offset_m": 4.9999999999999996e-05,
+        "initial_AB_offset_rad": [
+          0.0,
+          0.0
+        ],
+        "prefix_actions_deg_deg_mm": [
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "teacher_steps": 64,
+        "teacher": "measured_geometry_discrete_G10",
+        "history": "continuous_no_reset"
+      },
+      "initial_um": 50.005075977550874,
+      "final_um": 0.5914137184596184
+    },
+    {
+      "id": "E42_axial+100",
+      "target": "E42",
+      "setup": {
+        "id": "E42_axial+100",
+        "target": "E42",
+        "role": "training",
+        "side": "above",
+        "level_um": 100,
+        "lateral_um": 0,
+        "AB_sign": [
+          0,
+          0
+        ],
+        "requested_incoming": "hold",
+        "initial_C_offset_m": 9.999999999999999e-05,
+        "initial_AB_offset_rad": [
+          0.0,
+          0.0
+        ],
+        "prefix_actions_deg_deg_mm": [
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "teacher_steps": 64,
+        "teacher": "measured_geometry_discrete_G10",
+        "history": "continuous_no_reset"
+      },
+      "initial_um": 100.0025849956574,
+      "final_um": 0.2938054439241084
+    }
+  ],
+  "by_target": {
+    "E40": {
+      "windows": 3253,
+      "stationary_executable": 20,
+      "max_sensor_lateral_um": 110.00891223330264
+    },
+    "E42": {
+      "windows": 2688,
+      "stationary_executable": 20,
+      "max_sensor_lateral_um": 106.99197416649527
+    }
+  },
+  "excluded": [
+    "E41",
+    "E00",
+    "E02",
+    "E06",
+    "E08",
+    "E10"
+  ]
+}

@@ -1,0 +1,58 @@
+下面是方案 1（100% 同源新渲染近目标纠偏回放包 + 8% 低比例微调）的完整 Codex 自主执行任务书（无时间限制、防卡死断点续跑版），可直接粘贴执行：
+
+### Codex 自主执行任务书：100% 同源新渲染近目标回放包采集与微调（基于 `71040dd`）
+
+**全局硬约束**
+
+* **不设任何运行时长或超时限制**：严禁为采集、训练或单 episode 设置 wall-clock 超时中断，确保每个阶段完整跑完；仅在崩溃、NaN/Inf 或非法状态时止损并写明原因。
+* **工作分支与资产保护**：基于 `fix/a-axis-flip-20261123`（`71040dd`）新建分支 `feature/clean-render-homog-replay-20261123`，严禁覆盖原数据集、`task2_step4000` 或历史实验输出。
+* **全链路渲染同源锁定**：采集、数据校验、闭环评估三端统一强制使用 `offsamples=0, numslices=112, numstacks=64`（确保 RGB 图像、OCT 向量与 A/B/C 教师标签 100% 同源，彻底消除 `RGB_OCT_render_provenance_mismatch`）。
+* **防卡死与断点续跑**：采集按 shard / episode 逐条落盘，评估复用 `b622047` 的 GPU 并行调度器并逐集写盘 `E{idx}.json`、`partial_summary.json` 与 `reuse_receipt.json`，中断重启自动跳过已完成项；**严禁以 `≤ 0.35 µm` 作为任何阶段的停机门禁**。
+* **统一快筛口径**：所有 5 目标快筛固定跑 **`E00, E02, E06, E08, E10`（seeds `42, 44, 48, 50, 52`）× `1,600` 步**（50 ms，不用 1,000 步）。
+
+#### Stage 1：采集 100% 同源新渲染近目标纠偏回放包（60 条轨迹）
+
+数据输出目录：`rcm_4090_deploy/data/homog_clean_replay_20261123/`
+审计报告目录：`rcm_4090_deploy/github_reports/homog_20261123_s1_collection/`
+
+1. **目标池隔离**：生成 60 个与开发测试集 `E00–E19`（seeds `42–61`）严格互斥的随机眼底训练目标（例如 seeds `1000–1059`）。
+2. **三类近目标工况组成（全程开启 `offsamples=0, numslices=112, numstacks=64`，每帧同步保存新渲染 `RGB 224×224` + 新渲染 `oct_navigation_mm`）**：
+* **T1（20 条，学生闭环 DAgger 纠偏）**：用 `outputs/overnight_c_fix_symlog_081234/task2_train/step_004000.pth` 跑闭环进入 `< 200 µm` 近目标区，每步用 **新渲染 + 零初速无惯性污染几何教师（`previous_velocity = 0`，限加速度前安全期望增量，受单步物理上限约束）** 计算**全三轴 `[dA, dB, dC]**` 作为监督标签 `action`，同时单独记录实际执行动作 `executed_action`。
+* **T2（20 条，近目标全向扰动恢复）**：在目标周围 `10–200 µm` 球壳内随机初始化针尖（保证 A/B/C 正负偏移对称），由新渲染 Strict RGB-D 教师平滑收敛至目标。
+* **T3（20 条，专家主导精调与停稳保持）**：`beta = 1.0` 由新渲染 Strict RGB-D 教师执行 `< 50 µm` 精调至协议物理极限并附加静止保持帧（教模型在 `< 5 µm` 处输出近零动作停稳）。
+
+
+3. **采集后强制数据质量门禁（写入 `dataset_audit.json`，全部通过才进入 Stage 2）**：
+* 随机抽样 200 帧验证 `oct_navigation_mm` 与真值偏差中位数 **`< 0.2 µm`**；
+* 运行与 `71040dd` 同口径的 `ab_label_contamination` 审计，验证新包中 **A、B、C 三轴反向标签占比均 `< 2%**`；
+* 验证 `RGB_OCT_render_provenance_mismatch == false` 且 `valid_window_indices` 连续帧契约 100% 通过。
+
+
+
+#### Stage 2：8% 低比例同源经验回放微调（单变量，不改架构）
+
+输出目录：`rcm_4090_deploy/github_reports/homog_20261123_s2_train/`
+
+* **起点与架构**：从 `outputs/overnight_c_fix_symlog_081234/task2_train/step_004000.pth` 热启动，保持 `State-Attention v1` 架构与原归一化统计量不变。
+* **采样配比**：严格 **`dagger_repeat = 1`**，按 **8% 新同源干净回放池（`homog_clean_replay_20261123`）+ 92% 原始完整轨迹有效窗口池**混合采样（**不混入**带旧渲染 `~9.5 µm` 偏置的旧 Plan-2 近目标帧）。
+* **训练预算**：完整跑完 `4 × 1,000` batches，每 `1,000` batches 保存 checkpoint（`step_001000` 到 `step_004000`）；若出现连续 NaN 则止损并回退上一个合法 checkpoint。
+
+#### Stage 3：GPU 并行 5 目标 × `1,600` 步快筛 + 9 快照方向复检 + 叠加对照
+
+输出目录：`rcm_4090_deploy/github_reports/homog_20261123_s3_fast5_1600/`
+
+1. **主快筛（`V0` 单采样，G10 feedback + 新渲染）**：GPU 并行评测 `step_002000` 与 `step_004000`（5 目标 × **`1,600` 步**），选终值均值更低者记为 `BEST_CKPT`，输出 `error_curves_all.png`、`best_and_final_error.png` 与 `axis_floor_summary.json`。
+2. **9 快照方向复检**：在 `dad76c5` 同款 9 个漂移快照上对 `BEST_CKPT` 跑 32 次并行采样，核对三项指标：
+* A 轴反向快照数是否从 `7/9` 降至 **`≤ 2/9`**；
+* 朝向测量目标的一阶位移占比是否从 `37.8%` 提升至 **`> 70%`**；
+* `1,000 → 1,600` 步绝对漂移均值是否 **`< 15 µm`**。
+
+
+3. **无偏置叠加测试**：若 `BEST_CKPT` 终值优于 `task2_step4000` 或方向复检显著改善，用 `BEST_CKPT` 补跑两组 5 目标 × `1,600` 步对照：**`I_med5`（5 样本中位数）** 与 **`V3`（G10 + P2 连续累积）**，检验消除方向偏置后的真实叠加收益。
+
+#### Stage 4：20 目标 × `1,600` 步全量终审（条件触发）
+
+输出目录：`rcm_4090_deploy/github_reports/homog_20261123_s4_dev20/`
+
+* **触发条件**：Stage 3 最优组合在 5 目标 × `1,600` 步的终值均值 **`< 35 µm`** 且 `1,000 → 1,600` 步绝对漂移 `< 15 µm`。
+* **执行**：GPU 并行完整跑满 `E00–E19`（seeds `42–61`）× `1,600` 步（每 5 目标落盘快照），输出 `summary.json`、`episodes.csv`、`error_curves_all.png`、`best_and_final_error.png`、`≤ 5 / 10 / 30 µm` 命中率及相对 G10 视觉教师（`~1.70 µm`）的超额误差，统一汇总至根 `SUMMARY.md` 并推送新分支。

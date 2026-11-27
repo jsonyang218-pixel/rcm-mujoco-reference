@@ -1,0 +1,50 @@
+{
+  "status": "passed",
+  "driver": {
+    "variant": "g10",
+    "control_gear": 10,
+    "kinematics_path": "/home/him1/mujoco_bc/rcm_4090_deploy/mujoco_model/vendor/simulation_driver/ros_msg/src/robot_control/kinematics.py",
+    "kinematics_sha256": "e48eb4a909208e8d1caa3ee2a7aff157de91c808730282dd17ccb17a46591530"
+  },
+  "verified_standard_cycles": 8000,
+  "standard": {
+    "E00": {
+      "cycles": 1600,
+      "cycles_sha256": "032cf3fe3e8bde28a00f30a11bf16fcb3e0429e6581f461b27318830cbb7d0b9"
+    },
+    "E02": {
+      "cycles": 1600,
+      "cycles_sha256": "1ba109f9b914610da39da0e78c6356bbc578b320599871370054a17780a4f575"
+    },
+    "E06": {
+      "cycles": 1600,
+      "cycles_sha256": "5ecd944257945f56105ad5fc384ce71dfea09dd36a58d5797ca6155a8c372236"
+    },
+    "E08": {
+      "cycles": 1600,
+      "cycles_sha256": "281b3f9f0c29cb2fcb54dbacad1de1b20fadca54af26792f27d4eb4531d5d7f6"
+    },
+    "E10": {
+      "cycles": 1600,
+      "cycles_sha256": "3d80c4f725f2ba224a87c068aaca4a4ac4cc5adae25e89e0d64aa25210614d20"
+    }
+  },
+  "teacher_stationary_recovery_counts": [
+    {
+      "target": "E40",
+      "state": "stationary_input_20to100",
+      "label": "executable",
+      "count": 8
+    },
+    {
+      "target": "E42",
+      "state": "stationary_input_20to100",
+      "label": "executable",
+      "count": 8
+    }
+  ],
+  "interpretation": "Old labels include executable recovery from some20..100um stationary states; not absence of all recovery labels. Improve lateral range/direction coverage and output threshold margins.",
+  "motor_ticks": 0,
+  "optimizer_updates": 0,
+  "preliminary_import_repair": "Read-only audit helper needed explicit mujoco_model import path; no data or model write occurred on failed import"
+}

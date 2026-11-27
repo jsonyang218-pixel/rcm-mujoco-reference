@@ -1,0 +1,57 @@
+{
+  "status": "passed",
+  "architecture": {
+    "blocks": 6,
+    "dim": 384,
+    "horizon": 16
+  },
+  "image_and_absolute_ABC_invariant": true,
+  "output_path": "original six-block DiT + original four midpoint RF steps + original action denormalization",
+  "fixed_input_scales": true,
+  "checks": [
+    {
+      "split": "train",
+      "ablation": "RGB_only",
+      "max_abs_action_delta": 0.0,
+      "bit_exact": true
+    },
+    {
+      "split": "train",
+      "ablation": "absolute_ABC_only",
+      "max_abs_action_delta": 0.0,
+      "bit_exact": true
+    },
+    {
+      "split": "train",
+      "ablation": "RGB_and_absolute_ABC",
+      "max_abs_action_delta": 0.0,
+      "bit_exact": true
+    },
+    {
+      "split": "train",
+      "live_input_sensitivity": {
+        "OCT_frame0": {
+          "condition_max_abs_delta": 0.3581220805644989,
+          "action_max_abs_delta": 0.027090299874544144
+        },
+        "OCT_frame1": {
+          "condition_max_abs_delta": 0.3581220805644989,
+          "action_max_abs_delta": 0.02991345338523388
+        },
+        "OCT_valid": {
+          "condition_max_abs_delta": 0.2814416289329529,
+          "action_max_abs_delta": 0.04571042209863663
+        },
+        "velocity": {
+          "condition_max_abs_delta": 0.33788877725601196,
+          "action_max_abs_delta": 0.016193274408578873
+        },
+        "previous_accepted": {
+          "condition_max_abs_delta": 0.43320900201797485,
+          "action_max_abs_delta": 0.005282485857605934
+        }
+      },
+      "original_four_step_sampler_max_abs": 0.0
+    }
+  ]
+}

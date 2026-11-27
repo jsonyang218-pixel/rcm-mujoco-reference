@@ -1,0 +1,45 @@
+{
+  "status": "completed",
+  "time": "2026-11-27T09:31:29.315531+08:00",
+  "branch": {
+    "id": "E42_lateral35_A+0_B-1",
+    "target": "E42",
+    "role": "training",
+    "side": "lateral",
+    "level_um": 35,
+    "lateral_um": 35,
+    "AB_sign": [
+      0,
+      -1
+    ],
+    "requested_incoming": "approaching",
+    "initial_C_offset_m": 0.0,
+    "initial_AB_offset_rad": [
+      0.0,
+      0.0
+    ],
+    "prefix_actions_deg_deg_mm": [
+      [
+        0.0,
+        0.0075,
+        0.0
+      ],
+      [
+        0.0,
+        0.0075,
+        0.0
+      ]
+    ],
+    "teacher_steps": 64,
+    "teacher": "measured_geometry_discrete_G10",
+    "history": "continuous_no_reset"
+  },
+  "observations": 67,
+  "teacher_actions": 64,
+  "real_sensor_calls": 67,
+  "final_true_error_um": 1.057953299766491,
+  "elapsed_s": 66.25977950898232,
+  "final_post_RGB_OCT_saved": true,
+  "no_midbranch_resets": true,
+  "neural_action_calls": 0
+}
