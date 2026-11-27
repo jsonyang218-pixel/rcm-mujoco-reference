@@ -1,0 +1,44 @@
+{
+  "status": "completed",
+  "job": {
+    "id": "G01_s1926112702",
+    "target_id": "G01",
+    "target_robot_mm": [
+      4.357816530468215,
+      5.1499125918781905,
+      22.597533220345248
+    ],
+    "seed": 1926112702
+  },
+  "metrics": {
+    "completed_cycles": 1600,
+    "endpoint_um": 8.182000474633508,
+    "first_enter20_post_cycle": 1276,
+    "last200_max_post_error_um": 8.182000474633508,
+    "longest_le20_cycles": 325,
+    "terminal_le20_cycles": 325,
+    "last200_includes_final_post": true,
+    "strict20um_pass": true,
+    "endpoint_le20um": true,
+    "last200_le20_fraction": 1.0,
+    "first_terminal_hold_start_post_cycle": 1276,
+    "terminal_hold_s": 16.25,
+    "longest_hold_s": 16.25
+  },
+  "route_counts": {
+    "original_v5_DiT_RF": 1264,
+    "fixed_noise_near_DiT_RF": 335,
+    "original_RGB2_startup_zero": 1,
+    "teacher": 0,
+    "geometry": 0
+  },
+  "post_invalid_sensor_cycles": 0,
+  "no_valid_sensor": false,
+  "expected_cycles": 1600,
+  "model_checkpoint_sha256": "dae7252fe5ee1af6a35d39974b395b674f9b6607175b8e6d984d5331812cd843",
+  "far_checkpoint_sha256": "6cc389df3786f1f34c43cf65d6dc17fe910ab342fae8d84c8e37cea6a7db6c11",
+  "truth_setup_scoring_only": true,
+  "eval_updates": 0,
+  "simulation_only": true,
+  "elapsed_s": 1516.0933632250526
+}

@@ -1,0 +1,40 @@
+# DiT v3 独立目标泛化测试
+{
+  "planned": 20,
+  "completed": 20,
+  "strict20um_pass": 19,
+  "strict20um_success_rate": 0.95,
+  "endpoint_le20um_count": 19,
+  "endpoint_le20um_rate": 0.95,
+  "endpoint_mean_um_completed": 16.410331828223992,
+  "endpoint_max_um_completed": 217.02185245771577,
+  "last200_max_um_completed": 223.75166547711572,
+  "scope": "All planned jobs stay in denominator; incomplete jobs are not success; means explicitly completed-only"
+}
+
+|目标|种子|状态|终点µm|末200最大µm|20µm保持通过|首次到达周期|末尾持续周期|
+|---|---|---|---|---|---|---|---|
+|G00|1926112701|completed|6.343701108327845|12.217610108244292|True|667|934|
+|G00|1926112702|completed|3.6198981255618277|3.6198981255618277|True|812|789|
+|G01|1926112701|completed|13.882210089868451|17.557199426520288|True|695|903|
+|G01|1926112702|completed|8.182000474633508|8.182000474633508|True|1276|325|
+|G02|1926112701|completed|13.142325861390061|13.142325861390061|True|661|940|
+|G02|1926112702|completed|217.02185245771577|223.75166547711572|False|None|0|
+|G03|1926112701|completed|3.088932879844695|15.971055376320969|True|670|927|
+|G03|1926112702|completed|4.9388661694823925|12.299810453081127|True|683|918|
+|G04|1926112701|completed|1.6516516795104517|13.357369832627276|True|662|939|
+|G04|1926112702|completed|1.9763093741277977|13.357369832627276|True|664|937|
+|G05|1926112701|completed|2.550617088577805|16.585696843831027|True|661|940|
+|G05|1926112702|completed|3.3379180439578064|16.585696843831027|True|665|936|
+|G06|1926112701|completed|3.6910415950641497|11.047308717153683|True|670|931|
+|G06|1926112702|completed|8.173376879995518|8.201155714749675|True|676|925|
+|G07|1926112701|completed|8.268741778324342|13.109580268957165|True|695|906|
+|G07|1926112702|completed|4.7404426816665435|4.7404426816665435|True|679|922|
+|G08|1926112701|completed|8.347955031806885|8.347955031806885|True|684|917|
+|G08|1926112702|completed|8.283712787360722|8.347955031806885|True|683|918|
+|G09|1926112701|completed|4.1918154105548595|12.249700223165599|True|925|676|
+|G09|1926112702|completed|2.773267046708412|2.773267046708412|True|674|927|
+
+10 distinct spatial targets x 2 sampling seeds = 20 episodes, not 20 independent spatial targets; limited frozen simulation generalization evidence, not universal generalization; no same-target historical v3 baseline exists; not original 0.35um settled criterion
+
+详见 existing_target_usage.json、target_provenance.json、frozen_plan.json、experiment_card.json、tasks/*/cycles.jsonl 及 sensors/*.npz。

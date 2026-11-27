@@ -1,0 +1,52 @@
+# Task: DiT Fusion Audit + Local-Scale Signed OCT Branch (AdaLN Injection) + Inference Variance Check
+
+## Context & Principles
+- Start from branch `experiment/stage4-oct-symlog-20261125` (commit `a9d6ed3`) and create a new branch `experiment/local-oct-adaln-20261125`.
+- Confirmed facts:
+  - In `a9d6ed3`, replacing global OCT normalization with `oct_symlog = True` amplified `20 um` OCT input 20–100x (`[0.429, 0.443, 0.350]`), yet `F_cond` cosine barely moved (`0.1468 -> 0.1619`), `K=8` A/B sign-flip rate stayed `96.7%`, and `final_mean_um` regressed (`65.57 -> 93.22 um`).
+  - Therefore, we MUST keep the original global OCT channel (`oct_symlog = False`) intact for far-field stability, and instead add a dedicated **local-scale signed OCT branch** injected directly into the **DiT global conditioning (AdaLN / timestep+cond)** path.
+- Strict invariance rules:
+  - Learned policy outputs actions independently; geometric teacher is used ONLY for training; MuJoCo ground truth is used ONLY for post-hoc evaluation (NO geometric controller takeover).
+  - Keep existing dataset, driver, rendering, action budget, control period (50 ms), and training budget identical to `baseline_task2_step4000`.
+  - Do NOT overwrite any existing `baseline`, `v3`, `v4`, `v5`, `step4_0`, or `stage4_1` files. Save all outputs under `rcm_4090_deploy/runs/20261125/local_oct_adaln_v1/`.
+  - Hard wall-clock budget: **<= 150 minutes** (stop new jobs if `< 20 min` remain and jump to final report & push).
+
+## Step 0 (~10m, Zero Training): DiT Conditioning Audit + Existing 20 μm Hold Table
+1. **White-box DiT fusion audit**:
+   - Inspect `dit_rectified_flow` / `state_conditioned_temporal_attention_v1` in `train_diffusion_policy.py` and document exactly how OCT enters the DiT blocks (concatenated to 37,632 visual tokens vs. fused into the global AdaLN/FiLM conditioning vector).
+   - Run Probe 2 on the **pure geometric/global conditioning vector alone (`F_geom_cond`, excluding the 37,632 visual tokens)** on `baseline_task2_step4000` and `stage4_1_oct_symlog` to determine whether OCT direction is lost before DiT or drowned out by visual tokens.
+2. **Canonical 20 μm sustained-hold evaluation on existing raw trajectories**:
+   - Create `rcm_4090_deploy/scripts/research/eval_20um_hold_metrics.py` and run it on all existing complete raw trajectories (`baseline_task2_step4000` fast5/dev20, `v4 Fallback F` dev20/fast5, `stage4_1_oct_symlog` fast5).
+   - For each model & target, report: `min_error_um`, `final_error_um`, `entries_le_20_um`, `max_consecutive_le_20_um_cycles` (& seconds), `sustained_200_pass` (`>= 200` cycles = 10 s), `last_200_max_error_um`, `actual_speed_um_per_s`. Explicitly mark any missing/short raw trajectories.
+
+## Step 1 (~80m): Matched Control — `+ Local-Scale Signed OCT Branch` Injected into DiT Global Conditioning
+1. **Surgical architectural addition (behind `use_local_oct_branch: bool = False`)**:
+   - Keep **all** existing global inputs untouched (including global linear OCT with `oct_symlog = False`, 224x224 RGB, joint state, velocity, previous_action).
+   - When `use_local_oct_branch = True`, compute a deployable local-scale signed OCT vector from the exact same 3D OCT input:
+     - `tanh(oct_xyz_mm / 0.05)` concatenated with `sign(oct_xyz_mm) * log1p(abs(oct_xyz_mm) / 0.005) / log1p(0.5 / 0.005)` plus validity flag (`7` dims total).
+   - Pass this local OCT vector through a small dedicated 2-layer MLP (with small/zero-init output projection for smooth start from baseline init) and **add it directly to the DiT global conditioning vector (AdaLN / timestep+cond embedding)** that modulates every DiT block.
+   - Persist `use_local_oct_branch` and its scale constants inside checkpoint metadata; add a unit test verifying `train_transform == eval_transform` and exact bit-for-bit fallback when `use_local_oct_branch = False`.
+2. **Matched training**:
+   - Replicate the exact training recipe of `baseline_task2_step4000` (same dataset, init, seed, batch size, optimizer, LR, 4,000 steps), changing ONLY `use_local_oct_branch = True`.
+   - Run a 2-batch smoke test first to confirm nonzero gradients flow through the local OCT MLP into DiT AdaLN and no NaN/Inf occurs.
+   - Save `step_002000.pth` and `step_004000.pth`.
+3. **Evaluation (Arm B `local_oct_adaln` vs. Baseline Control)**:
+   - Run **Probe 2** on BOTH `F_cond` (full) AND `F_geom_cond` (pure global/AdaLN conditioning vector alone) for `< 60 um` and `< 40 um`.
+   - Run **Probe 3** (`K=8` A/B/C sign-flip rate and `std/|mean|`).
+   - Run **`fast5_1600`** WITH raw frame-by-frame trajectories saved, and run `eval_20um_hold_metrics.py` + late `1000–1600` A/B/C sign-flip rate + `toward_fraction`.
+
+## Step 2 (~25m, Zero Retraining): Inference-Only Denoising Variance Check
+- On the best Step 1 checkpoint (`step_004000.pth` or `step_002000.pth`), run an inference-only comparison on `fast5_1600` (or `E06` and `E10` if time is tight):
+  - (a) `num_action_samples = 1` (default random Gaussian start)
+  - (b) `num_action_samples = 4` (`mean` aggregation)
+  - (c) Deterministic `x_0 = 0` flow start (if supported cleanly by `dit_rectified_flow` without modifying weights; otherwise skip and note).
+- Compare `min_error_um`, `final_error_um`, `entries_le_20_um`, `max_consecutive_le_20_um_cycles`, `last_200_max_error_um`, and late A/B/C sign-flip rate.
+
+## Step 3 (Conditional `dev20` + Report & Push, ~25–35m)
+- If Step 1 or Step 2 beats `baseline_task2_step4000` on `fast5_1600` (`final_mean_um < 58.0` AND `min_mean_um < 25.0`, OR `>= 2/5` targets enter `<= 20 um`) AND `>= 40 min` remain, run `dev20` (20 episodes × 1600 steps) with full 20 um hold metrics.
+- Write `rcm_4090_deploy/runs/20261125/local_oct_adaln_v1/report.md` and `metrics.json` containing:
+  1. DiT conditioning architecture finding + `F_geom_cond` vs `F_cond` probe comparison.
+  2. Complete Step 0 existing 20 um hold table.
+  3. Baseline vs `stage4_1_oct_symlog` vs `local_oct_adaln` comparison (Probe 2/3, `fast5_1600` 20 um hold metrics, late A/B/C flip rates, Step 2 inference-only comparison, and `dev20` if run).
+  4. Clear decision for Step 4: did AdaLN local OCT injection cut A/B flipping & break `20 um`? If targets now enter `<= 20 um` but leave, specify exact terminal overshoot/braking/hold data needed next.
+- Commit code + reports (respecting `.gitignore`, excluding large weights/raw `.npz`/secret patterns) and push branch `experiment/local-oct-adaln-20261125`.

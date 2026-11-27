@@ -1,0 +1,19 @@
+{
+  "models": [
+    {
+      "route": "near",
+      "checkpoint": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261127/dit_quantization_recovery_v3/candidate2/checkpoint.pth",
+      "bytes": 323684684,
+      "sha256": "dae7252fe5ee1af6a35d39974b395b674f9b6607175b8e6d984d5331812cd843",
+      "weight_uploaded": false
+    },
+    {
+      "route": "far",
+      "checkpoint": "/home/him1/mujoco_bc/rcm_4090_deploy/outputs/homog_label_fix_20261124_v5/homog_label_fix_20261124_v5_phase1_A/step_004000.pth",
+      "bytes": 139187711,
+      "sha256": "6cc389df3786f1f34c43cf65d6dc17fe910ab342fae8d84c8e37cea6a7db6c11",
+      "weight_uploaded": false
+    }
+  ],
+  "verification": "Actual frozen near and far files streamed through SHA-256; no imports, inference, updates or simulation."
+}

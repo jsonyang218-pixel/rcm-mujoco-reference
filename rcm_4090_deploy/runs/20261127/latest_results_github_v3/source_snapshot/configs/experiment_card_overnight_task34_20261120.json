@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "id": "overnight_task34_20261120_v1",
+  "hypothesis": "Controlled inference settings may reduce jitter, and independent FP32 OCT symlog residuals may lower the near-target error floor.",
+  "main_change": "Complete the missing Task 3 comparison on the Task 2 checkpoint, then evaluate the Task 4 symlog residual model. Do not rerun Tasks 1 or 2 or start Task 5.",
+  "output_dir": "runs/20261120/overnight_task34_20261120_v1",
+  "plan": "../overnight_codex_plan_20261119.md",
+  "training": {
+    "checkpoint_output_dir": "outputs/overnight_task34_20261120_v1/task4_train",
+    "initial_checkpoint": "outputs/overnight_c_fix_symlog_081234/task2_train/step_004000.pth",
+    "dataset": "data/plan2_plus_original_train_224_20261119",
+    "validation_dataset": "data/lerobot_rcm_val_acthist_20261117_224",
+    "label_overlay": "data/overnight_c_fix_symlog_081234_overlay/label_override.npz",
+    "correction_ratio": 0.08,
+    "epochs": 4,
+    "steps_per_epoch": 1000,
+    "batch_size": 16,
+    "seed": 20261118,
+    "validation_seed": 20261119,
+    "amp": true,
+    "timeout_s": 2700
+  },
+  "protocol": {
+    "split": "development E00-E19",
+    "target_manifest": "configs/v12_reachable_development_targets_0p35um.json",
+    "seed": "42+index",
+    "max_steps": 1600,
+    "control_period_s": 0.05,
+    "error_threshold_um": 0.35,
+    "consecutive_encoder_settled_frames": 3,
+    "arms_flow_steps_and_samples": {"I0": [4, 1], "I1": [8, 1], "I3": [8, 5]},
+    "per_arm_timeout_s": {"I0": 18000, "I1": 18000, "I3": 25200},
+    "selection": "Minimum final mean error, ties broken by median inference latency. No historical evaluation is substituted.",
+    "task4_gate": "Same inputs and noise at step zero; FP32 and AMP maximum sample difference strictly below 1e-6; timeout 600 s.",
+    "task4_eval_arms": "I0 and the Task 3 winner; run once if I0 wins. Stop on any failed gate without retry."
+  },
+  "stages": [
+    {
+      "id": "task34",
+      "type": "module",
+      "tier": "dev20",
+      "module": "scripts.research.overnight_cfix",
+      "args": ["run34", "--asset-receipt", "runs/20261120/task4_oct_symlog_preflight_192534/assets.json"],
+      "assets": [
+        "../overnight_codex_plan_20261119.md",
+        "runs/20261120/task4_oct_symlog_preflight_192534/assets.json",
+        "scripts/research/overnight_cfix_eval.py",
+        "scripts/research/overnight_cfix_data.py",
+        "lerobot_training/dit_experience_replay.py",
+        "lerobot_training/dit_state_attention.py",
+        "lerobot_training/eval_policy.py"
+      ],
+      "timeout_s": 108030
+    }
+  ]
+}

@@ -1,0 +1,322 @@
+{
+  "schema_version": 1,
+  "baseline_id": "state_attention_v1_continue_e1_20261117",
+  "display_name": "State-attention v1 continue E1",
+  "status": "frozen",
+  "frozen_at": "2026-11-17T21:05:00+08:00",
+  "comparison_role": "same-budget control for KV8 and later compression experiments",
+  "model": {
+    "model_name": "state_attention_v1_continue",
+    "architecture": "state_conditioned_temporal_attention_v1",
+    "model_entry": {
+      "path": "lerobot_training/dit_state_attention.py",
+      "sha256": "415b8a303c8b01aa5ab4d1f33d7ace8406f14a8760cdf3185c9adcdb9b0b0766",
+      "size_bytes": 8844
+    },
+    "checkpoint": {
+      "path": "/home/him1/mujoco_bc/rcm_4090_deploy/outputs/state_attention_v1_continue_20261117_1/training/best_model.pth",
+      "sha256": "4bc962b328ac57cc9f00e137f7866afe28ce5aa3592c3d166c525619d5f0610b",
+      "size_bytes": 414732057
+    }
+  },
+  "pipeline": {
+    "config": {
+      "path": "configs/baselines/state_attention_v1_continue_e1/pipeline_config.json",
+      "sha256": "fd930f3ac43762074665eef1b9277c07b2c51ba0f935189d1ce611a921a71fce",
+      "size_bytes": 1289
+    },
+    "training_result": {
+      "path": "outputs/state_attention_v1_continue_20261117_1/training/result.json",
+      "sha256": "b00a6b96f40eaa27f89c953a600c8d5d33584323b27d76c2b962010ff5250856",
+      "size_bytes": 1268
+    },
+    "training_history": {
+      "path": "configs/baselines/state_attention_v1_continue_e1/training_history.json",
+      "sha256": "df0711afbb5db441833200a5986bd1f62eca4a9c8ba9f619f6f9b032f75a0b5e",
+      "size_bytes": 547
+    }
+  },
+  "training": {
+    "initial_checkpoint": {
+      "path": "outputs/dit_rectified_flow_state_attention_v1_acthist_20261117/best_model.pth",
+      "sha256": "d1e2527fe087ad1f619450bdd83eac24e63d1e3a0d96186dc2cdd849fdfbc424",
+      "size_bytes": 414731865
+    },
+    "settings": {
+      "data_dir": "data/lerobot_v12_oct_dit_rf_dagger2_acthist_20261116_224",
+      "val_data_dir": "data/lerobot_rcm_val_acthist_20261117_224",
+      "init_from": "outputs/dit_rectified_flow_state_attention_v1_acthist_20261117/best_model.pth",
+      "epochs": 4,
+      "batch_size": 64,
+      "val_batch_size": 64,
+      "num_workers": 12,
+      "lr": 1e-05,
+      "n_obs_steps": 2,
+      "n_action_steps": 16,
+      "flow_integration_steps": 4,
+      "dit_dim": 384,
+      "dit_depth": 6,
+      "dit_heads": 6,
+      "dagger_episode_start": 760,
+      "dagger_repeat": 10,
+      "seed": 20261116
+    },
+    "best_epoch": 1,
+    "best_train_loss": 0.11072691402610438,
+    "best_val_loss": 0.1467070204677056,
+    "last_epoch": 3,
+    "last_train_loss": 0.10894681252074981,
+    "last_val_loss": 0.14771842323154283,
+    "history": [
+      {
+        "epoch": 0,
+        "train_loss": 0.11189173552216014,
+        "val_loss": 0.14718416614605367,
+        "elapsed_s": 243.81299883598695
+      },
+      {
+        "epoch": 1,
+        "train_loss": 0.11072691402610438,
+        "val_loss": 0.1467070204677056,
+        "elapsed_s": 486.5825895239832
+      },
+      {
+        "epoch": 2,
+        "train_loss": 0.11003156550826629,
+        "val_loss": 0.14751926574596969,
+        "elapsed_s": 730.0042928609764
+      },
+      {
+        "epoch": 3,
+        "train_loss": 0.10894681252074981,
+        "val_loss": 0.14771842323154283,
+        "elapsed_s": 973.3839555180166
+      }
+    ]
+  },
+  "evaluation": {
+    "source_summary": {
+      "path": "configs/baselines/state_attention_v1_continue_e1/evaluation_summary.json",
+      "sha256": "cc43b8f02558707fbc5d13656df9cffc86d34c5b63d95a800d31339d6296463e",
+      "size_bytes": 11330
+    },
+    "target_manifest": {
+      "path": "configs/v12_reachable_development_targets_0p35um.json",
+      "sha256": "fcc4872a9d5b58bb7158b36d3c0ab6d7452e4d8d747317dfb077b6e7bbc815c7",
+      "size_bytes": 52689
+    },
+    "protocol": {
+      "target_manifest": "configs/v12_reachable_development_targets_0p35um.json",
+      "target_split": "development",
+      "target_start": 0,
+      "target_end": 20,
+      "episodes": 20,
+      "shards": 10,
+      "device": "cuda",
+      "seed": 42,
+      "max_steps": 1600,
+      "error_threshold_mm": 0.00035,
+      "control_period_s": 0.05,
+      "num_action_samples": 1,
+      "n_action_execute_steps": 1
+    },
+    "episodes": 20,
+    "successes": 0,
+    "success_rate": 0.0,
+    "final_error": {
+      "mean": 978.8150079392502,
+      "median": 637.9270686897894,
+      "min": 143.67206783737478,
+      "max": 2548.9896834705496
+    },
+    "per_episode_minimum_error_mean_um": 72.53056889664072,
+    "safety_limited_steps": 0,
+    "records": [
+      {
+        "episode_index": 0,
+        "target_id": "target_d30721d6bc45",
+        "success": false,
+        "final_error_um": 1693.7242507941855,
+        "minimum_error_um": 45.15788851713221,
+        "steps": 1600,
+        "safety_limited_steps": 0
+      },
+      {
+        "episode_index": 1,
+        "target_id": "target_aa2ca282c44d",
+        "success": false,
+        "final_error_um": 276.7636537598572,
+        "minimum_error_um": 43.82026145817937,
+        "steps": 1600,
+        "safety_limited_steps": 0
+      },
+      {
+        "episode_index": 2,
+        "target_id": "target_26985bd28045",
+        "success": false,
+        "final_error_um": 209.22287846285712,
+        "minimum_error_um": 35.314701194621335,
+        "steps": 1600,
+        "safety_limited_steps": 0
+      },
+      {
+        "episode_index": 3,
+        "target_id": "target_3af19f0abe43",
+        "success": false,
+        "final_error_um": 175.0997338377253,
+        "minimum_error_um": 94.6488842024324,
+        "steps": 1600,
+        "safety_limited_steps": 0
+      },
+      {
+        "episode_index": 4,
+        "target_id": "target_1f3394af4340",
+        "success": false,
+        "final_error_um": 2548.9896834705496,
+        "minimum_error_um": 141.1997993164871,
+        "steps": 1600,
+        "safety_limited_steps": 0
+      },
+      {
+        "episode_index": 5,
+        "target_id": "target_c3ec6b3c195b",
+        "success": false,
+        "final_error_um": 2461.7968167439108,
+        "minimum_error_um": 59.61177140606325,
+        "steps": 1600,
+        "safety_limited_steps": 0
+      },
+      {
+        "episode_index": 6,
+        "target_id": "target_6f265ab4f315",
+        "success": false,
+        "final_error_um": 149.13536992465936,
+        "minimum_error_um": 111.87425938694749,
+        "steps": 1600,
+        "safety_limited_steps": 0
+      },
+      {
+        "episode_index": 7,
+        "target_id": "target_16f33fbaf614",
+        "success": false,
+        "final_error_um": 335.8033845569627,
+        "minimum_error_um": 93.1665178275022,
+        "steps": 1600,
+        "safety_limited_steps": 0
+      },
+      {
+        "episode_index": 8,
+        "target_id": "target_29b219ad42c3",
+        "success": false,
+        "final_error_um": 687.5454403309209,
+        "minimum_error_um": 17.23938901666834,
+        "steps": 1600,
+        "safety_limited_steps": 0
+      },
+      {
+        "episode_index": 9,
+        "target_id": "target_6cbc262e87a7",
+        "success": false,
+        "final_error_um": 143.67206783737478,
+        "minimum_error_um": 86.19387315932502,
+        "steps": 1600,
+        "safety_limited_steps": 0
+      },
+      {
+        "episode_index": 10,
+        "target_id": "target_087ecb1a48ae",
+        "success": false,
+        "final_error_um": 588.308697048658,
+        "minimum_error_um": 99.4539200580554,
+        "steps": 1600,
+        "safety_limited_steps": 0
+      },
+      {
+        "episode_index": 11,
+        "target_id": "target_9d730c206335",
+        "success": false,
+        "final_error_um": 158.31468939189566,
+        "minimum_error_um": 39.66250625128921,
+        "steps": 1600,
+        "safety_limited_steps": 0
+      },
+      {
+        "episode_index": 12,
+        "target_id": "target_8c09d0273c72",
+        "success": false,
+        "final_error_um": 1980.9371070424634,
+        "minimum_error_um": 77.03784214222172,
+        "steps": 1600,
+        "safety_limited_steps": 0
+      },
+      {
+        "episode_index": 13,
+        "target_id": "target_6568a41173bf",
+        "success": false,
+        "final_error_um": 2113.4750521347864,
+        "minimum_error_um": 148.29446887524884,
+        "steps": 1600,
+        "safety_limited_steps": 0
+      },
+      {
+        "episode_index": 14,
+        "target_id": "target_60c55f2f653c",
+        "success": false,
+        "final_error_um": 912.9623210332843,
+        "minimum_error_um": 96.64739558544515,
+        "steps": 1600,
+        "safety_limited_steps": 0
+      },
+      {
+        "episode_index": 15,
+        "target_id": "target_a17303552cb6",
+        "success": false,
+        "final_error_um": 2500.6305223860018,
+        "minimum_error_um": 44.487523352844015,
+        "steps": 1600,
+        "safety_limited_steps": 0
+      },
+      {
+        "episode_index": 16,
+        "target_id": "target_fbc038a60a6e",
+        "success": false,
+        "final_error_um": 832.4449918439241,
+        "minimum_error_um": 62.05491976727355,
+        "steps": 1600,
+        "safety_limited_steps": 0
+      },
+      {
+        "episode_index": 17,
+        "target_id": "target_baf07b4fdc81",
+        "success": false,
+        "final_error_um": 198.31804533485868,
+        "minimum_error_um": 39.27560281539036,
+        "steps": 1600,
+        "safety_limited_steps": 0
+      },
+      {
+        "episode_index": 18,
+        "target_id": "target_9f48f99f6b42",
+        "success": false,
+        "final_error_um": 1193.911969790839,
+        "minimum_error_um": 69.532895293649,
+        "steps": 1600,
+        "safety_limited_steps": 0
+      },
+      {
+        "episode_index": 19,
+        "target_id": "target_ce1d61e67e1a",
+        "success": false,
+        "final_error_um": 415.24348305929004,
+        "minimum_error_um": 45.93695830603848,
+        "steps": 1600,
+        "safety_limited_steps": 0
+      }
+    ]
+  },
+  "comparison_policy": {
+    "use_for": "same-budget effects of KV compression",
+    "primary_baseline": "state_attention_v1_20261117",
+    "require_identical_targets": true
+  }
+}

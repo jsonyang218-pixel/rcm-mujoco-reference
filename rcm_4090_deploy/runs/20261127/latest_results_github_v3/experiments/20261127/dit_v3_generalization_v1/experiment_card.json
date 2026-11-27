@@ -1,0 +1,482 @@
+{
+  "name": "dit_v3_generalization_v1",
+  "created_at": "2026-11-27T10:10:14.711354+08:00",
+  "hypothesis": "Evaluate frozen v3 candidate2 + original far v5 on independently generated, geometrically separated targets with no learning or tuning",
+  "plan_sha256": "3e9c646c4e8d0f3b1ac7bd47252472d9c190a470ae534c9add73990ffbeb8678",
+  "fingerprints": {
+    "config.json": {
+      "path": "/home/him1/mujoco_bc/rcm_4090_deploy/config.json",
+      "sha256": "72e42acb575f174baefd36063a637c9d8814782ed13c7ad7e234a3ade53997db"
+    },
+    "configs/target_split_manifest.json": {
+      "path": "/home/him1/mujoco_bc/rcm_4090_deploy/configs/target_split_manifest.json",
+      "sha256": "f9dbed6bed720d4b4c931e411f8c5b324adf397f68d5b8aef7bd177d4d8cb7bb"
+    },
+    "lerobot_training/benchmark_policy_inference.py": {
+      "path": "/home/him1/mujoco_bc/rcm_4090_deploy/lerobot_training/benchmark_policy_inference.py",
+      "sha256": "5f4e9d7bb6660fd87b569aff1a7b79909c1375f68ce687a905e974bfdac190a8"
+    },
+    "lerobot_training/convert_to_lerobot.py": {
+      "path": "/home/him1/mujoco_bc/rcm_4090_deploy/lerobot_training/convert_to_lerobot.py",
+      "sha256": "3f99ca4382fc148003c69d8131c9b7f39c1efc363a4a68ffae6ee43ca10ad8ce"
+    },
+    "lerobot_training/dataset_contract.py": {
+      "path": "/home/him1/mujoco_bc/rcm_4090_deploy/lerobot_training/dataset_contract.py",
+      "sha256": "942d43813b5083986eeca542f6b57c480e4db6a6e163dbb084ed86f3f0a4343a"
+    },
+    "lerobot_training/dit_experience_replay.py": {
+      "path": "/home/him1/mujoco_bc/rcm_4090_deploy/lerobot_training/dit_experience_replay.py",
+      "sha256": "33404a58a250c0a8aca034459008de4981163dd0cc5ae79fd8c07b27a9753ae9"
+    },
+    "lerobot_training/dit_frontiers2022_ddpg.py": {
+      "path": "/home/him1/mujoco_bc/rcm_4090_deploy/lerobot_training/dit_frontiers2022_ddpg.py",
+      "sha256": "972e19aa6a7e776c4f26f133787d74e2586a27750b76090c45c0e3f4421d974e"
+    },
+    "lerobot_training/dit_rectified_flow.py": {
+      "path": "/home/him1/mujoco_bc/rcm_4090_deploy/lerobot_training/dit_rectified_flow.py",
+      "sha256": "9b73bf96d7a04107f5f8365f74703f7d00388e62b0466b16da66377675829b38"
+    },
+    "lerobot_training/dit_rectified_flow_eval.py": {
+      "path": "/home/him1/mujoco_bc/rcm_4090_deploy/lerobot_training/dit_rectified_flow_eval.py",
+      "sha256": "f7f6f0fce4b46b1bc14263bb760c7a3864577f9fdcb44b3b344a647bb68a427e"
+    },
+    "lerobot_training/dit_replay_actor_critic.py": {
+      "path": "/home/him1/mujoco_bc/rcm_4090_deploy/lerobot_training/dit_replay_actor_critic.py",
+      "sha256": "691a007dc9fd160f2ca0edbe71b3ce6902d02a5db6d5b116395ec6969eade943"
+    },
+    "lerobot_training/dit_state_attention.py": {
+      "path": "/home/him1/mujoco_bc/rcm_4090_deploy/lerobot_training/dit_state_attention.py",
+      "sha256": "006a675fdede216d1e4832d19f279f851fa365a0518fd846944584bf8bf5133f"
+    },
+    "lerobot_training/dit_state_attention_kv8.py": {
+      "path": "/home/him1/mujoco_bc/rcm_4090_deploy/lerobot_training/dit_state_attention_kv8.py",
+      "sha256": "1b57216b9bea596c73d64fee9bcee01848f0e7b546b18dc6c8d1071823fddad8"
+    },
+    "lerobot_training/eval_policy.py": {
+      "path": "/home/him1/mujoco_bc/rcm_4090_deploy/lerobot_training/eval_policy.py",
+      "sha256": "416448b00b77a71ae57decf3fa2896c87e241697e3d5b3f9bc00cf8e0489846a"
+    },
+    "lerobot_training/evaluate_oct_guided_causal.py": {
+      "path": "/home/him1/mujoco_bc/rcm_4090_deploy/lerobot_training/evaluate_oct_guided_causal.py",
+      "sha256": "0c1d40c2ad8d2f6203a74c78b670d59f32c8710648ff75d318ec75cd824e7f70"
+    },
+    "lerobot_training/experience_replay.py": {
+      "path": "/home/him1/mujoco_bc/rcm_4090_deploy/lerobot_training/experience_replay.py",
+      "sha256": "50104076ef5aa617c294f70f8187d28ec4ec4ef1ab5d838fde5c6879d4aeff22"
+    },
+    "lerobot_training/flow_temporal_unet.py": {
+      "path": "/home/him1/mujoco_bc/rcm_4090_deploy/lerobot_training/flow_temporal_unet.py",
+      "sha256": "9fc81d2ffa6e20bc71616ecfff0e2ef8117535dd4fb15029c55ad4611f0c2628"
+    },
+    "lerobot_training/frontiers2022_ddpg.py": {
+      "path": "/home/him1/mujoco_bc/rcm_4090_deploy/lerobot_training/frontiers2022_ddpg.py",
+      "sha256": "152b3a9c3d22c37f4000d2f037d54f2c9c3ad390e43ff0db4d8fa3e56bbf6206"
+    },
+    "lerobot_training/merge_lerobot_datasets.py": {
+      "path": "/home/him1/mujoco_bc/rcm_4090_deploy/lerobot_training/merge_lerobot_datasets.py",
+      "sha256": "7d290bb0264a18079c61fcb55c238a46fb0a886090f91c17be357beecc3ed8ca"
+    },
+    "lerobot_training/navigation_overlay.py": {
+      "path": "/home/him1/mujoco_bc/rcm_4090_deploy/lerobot_training/navigation_overlay.py",
+      "sha256": "3330474b01973ab121f55f341b7f6969a70bc6d546e5823b1160657e4cdf65a5"
+    },
+    "lerobot_training/oct_terminal_refinement.py": {
+      "path": "/home/him1/mujoco_bc/rcm_4090_deploy/lerobot_training/oct_terminal_refinement.py",
+      "sha256": "c22005339235e91d3a0ca7ff1dc40c6809cfdfbbfb3d7caa619c04a9fdb092d4"
+    },
+    "lerobot_training/plot_closed_loop_errors.py": {
+      "path": "/home/him1/mujoco_bc/rcm_4090_deploy/lerobot_training/plot_closed_loop_errors.py",
+      "sha256": "f6478b50296dacacf9d44b4bbed6cf452e89b467e60fc47e90fe7e4d9bb70a67"
+    },
+    "lerobot_training/plot_flow_evaluation.py": {
+      "path": "/home/him1/mujoco_bc/rcm_4090_deploy/lerobot_training/plot_flow_evaluation.py",
+      "sha256": "6fdf271295f3b3dec63dfa047543b591253f3e5b63f72f34d7606faa27722084"
+    },
+    "lerobot_training/plot_trajectory_3d.py": {
+      "path": "/home/him1/mujoco_bc/rcm_4090_deploy/lerobot_training/plot_trajectory_3d.py",
+      "sha256": "171bd515bacc8c15eee6d0845181e39db50a886986f5040d33ee32d43df47546"
+    },
+    "lerobot_training/prepare_guided_oct_base.py": {
+      "path": "/home/him1/mujoco_bc/rcm_4090_deploy/lerobot_training/prepare_guided_oct_base.py",
+      "sha256": "d7e3f540717527af7151796c74d4250de8090da0b243a29405b466cbd50c5384"
+    },
+    "lerobot_training/prepare_image_cache.py": {
+      "path": "/home/him1/mujoco_bc/rcm_4090_deploy/lerobot_training/prepare_image_cache.py",
+      "sha256": "82dcfbcf73a477f43f620cbe51c1f76ff314ba3597fbed265ffe1b112e2fce7b"
+    },
+    "lerobot_training/prepare_vision_feature_cache.py": {
+      "path": "/home/him1/mujoco_bc/rcm_4090_deploy/lerobot_training/prepare_vision_feature_cache.py",
+      "sha256": "40f6108e7bb4d00d5d5a5d61fca63fa9603aa67dbc6e1ad73620a488cb2daa10"
+    },
+    "lerobot_training/run_model_pipeline.py": {
+      "path": "/home/him1/mujoco_bc/rcm_4090_deploy/lerobot_training/run_model_pipeline.py",
+      "sha256": "b1753efb1c67f2a685cbd88fe5ccee6f2bd41993698a4eb858128a2a987a614b"
+    },
+    "lerobot_training/summarize_flow_zero_error_evaluation.py": {
+      "path": "/home/him1/mujoco_bc/rcm_4090_deploy/lerobot_training/summarize_flow_zero_error_evaluation.py",
+      "sha256": "af33c4d0f9f8527f9887e71664770f23ab9456e9b82ed8782f703e5d281c1efe"
+    },
+    "lerobot_training/train_diffusion_policy.py": {
+      "path": "/home/him1/mujoco_bc/rcm_4090_deploy/lerobot_training/train_diffusion_policy.py",
+      "sha256": "e809558031ea6d1b1bd28904d5d101778831a50761c5b0d9f893943e5254a50c"
+    },
+    "lerobot_training/train_dit_rectified_flow.py": {
+      "path": "/home/him1/mujoco_bc/rcm_4090_deploy/lerobot_training/train_dit_rectified_flow.py",
+      "sha256": "f8a3e8502d0d6b46b3915149f950771291fdff04fc18a3809bb26e87e2e402b9"
+    },
+    "lerobot_training/train_flow_temporal_unet.py": {
+      "path": "/home/him1/mujoco_bc/rcm_4090_deploy/lerobot_training/train_flow_temporal_unet.py",
+      "sha256": "ef001b363e6c9b627e17bf0e48bef33fd7b34a2614d69da04862df8810a01c5c"
+    },
+    "lerobot_training/train_oct_guided_regression.py": {
+      "path": "/home/him1/mujoco_bc/rcm_4090_deploy/lerobot_training/train_oct_guided_regression.py",
+      "sha256": "f83dd5d3225ba848259c665f5efa0ae60ee1cdb63770b7335bec5521841b992b"
+    },
+    "lerobot_training/train_oct_policy.py": {
+      "path": "/home/him1/mujoco_bc/rcm_4090_deploy/lerobot_training/train_oct_policy.py",
+      "sha256": "e09dd6f0055cc107a2257144910070f5b3694f04ae43954333edbba3ff8208d1"
+    },
+    "lerobot_training/train_oct_regression.py": {
+      "path": "/home/him1/mujoco_bc/rcm_4090_deploy/lerobot_training/train_oct_regression.py",
+      "sha256": "354ba33072b1531382075ccab719f2928052bba1bbfe74810fa94d87e4723405"
+    },
+    "lerobot_training/v13_policy.py": {
+      "path": "/home/him1/mujoco_bc/rcm_4090_deploy/lerobot_training/v13_policy.py",
+      "sha256": "62c8bde63b6d51a5b016b1a937957c1c921e16bbcd4f250f6ab1ec70b2c095cf"
+    },
+    "mujoco_model/model_sync.py": {
+      "path": "/home/him1/mujoco_bc/rcm_4090_deploy/mujoco_model/model_sync.py",
+      "sha256": "3fdc6b0f74becb15ceeed1b5d1c2973cd74fbad174fb67dce2852dc0c67ba66d"
+    },
+    "mujoco_model/motor_backend.py": {
+      "path": "/home/him1/mujoco_bc/rcm_4090_deploy/mujoco_model/motor_backend.py",
+      "sha256": "1bc2a5b79eceda9cc31bfaa49be20986e680784ad15e5ebc35fe629a453302e4"
+    },
+    "mujoco_model/vendor/simulation_driver/ros_msg/package.xml": {
+      "path": "/home/him1/mujoco_bc/rcm_4090_deploy/mujoco_model/vendor/simulation_driver/ros_msg/package.xml",
+      "sha256": "2873263deae533ea807325880bef784e3053dd2f6cdc18eede17df5ea908ea5d"
+    },
+    "mujoco_model/vendor/simulation_driver/ros_msg/scripts/base_position_response.py": {
+      "path": "/home/him1/mujoco_bc/rcm_4090_deploy/mujoco_model/vendor/simulation_driver/ros_msg/scripts/base_position_response.py",
+      "sha256": "8d415a1b0be8caf760e17856d43461d27a123107b55836be4afb930e48b491ee"
+    },
+    "mujoco_model/vendor/simulation_driver/ros_msg/scripts/base_sine_response.py": {
+      "path": "/home/him1/mujoco_bc/rcm_4090_deploy/mujoco_model/vendor/simulation_driver/ros_msg/scripts/base_sine_response.py",
+      "sha256": "31a7a8a3800308c12221f6912db4a2d657f570c6cac1fe3847208b303bbd5bce"
+    },
+    "mujoco_model/vendor/simulation_driver/ros_msg/scripts/feedback_probe.py": {
+      "path": "/home/him1/mujoco_bc/rcm_4090_deploy/mujoco_model/vendor/simulation_driver/ros_msg/scripts/feedback_probe.py",
+      "sha256": "91703b777429f22d1cfc3374a7593b2b5b5bbb9c4efce03631cdc8305898248b"
+    },
+    "mujoco_model/vendor/simulation_driver/ros_msg/setup.py": {
+      "path": "/home/him1/mujoco_bc/rcm_4090_deploy/mujoco_model/vendor/simulation_driver/ros_msg/setup.py",
+      "sha256": "6e16a8691625509b8123c9b249c35c0da66dda1111e9cd443e3d51566b452f28"
+    },
+    "mujoco_model/vendor/simulation_driver/ros_msg/src/robot_control/__init__.py": {
+      "path": "/home/him1/mujoco_bc/rcm_4090_deploy/mujoco_model/vendor/simulation_driver/ros_msg/src/robot_control/__init__.py",
+      "sha256": "91001005caf2dfc2cd3f0d122d34097178cd237713bfc88d69f86b38f4cb8dba"
+    },
+    "mujoco_model/vendor/simulation_driver/ros_msg/src/robot_control/base_position.py": {
+      "path": "/home/him1/mujoco_bc/rcm_4090_deploy/mujoco_model/vendor/simulation_driver/ros_msg/src/robot_control/base_position.py",
+      "sha256": "e7a50935649b155c5be4b6bc129c81d2f6280a74cd21b7a27b6e005b830284c4"
+    },
+    "mujoco_model/vendor/simulation_driver/ros_msg/src/robot_control/data_model.py": {
+      "path": "/home/him1/mujoco_bc/rcm_4090_deploy/mujoco_model/vendor/simulation_driver/ros_msg/src/robot_control/data_model.py",
+      "sha256": "1f597abdf234e1582c4d91bf5b75de95a58efc7c2835109d3a4bb1c082d68967"
+    },
+    "mujoco_model/vendor/simulation_driver/ros_msg/src/robot_control/experiment_io.py": {
+      "path": "/home/him1/mujoco_bc/rcm_4090_deploy/mujoco_model/vendor/simulation_driver/ros_msg/src/robot_control/experiment_io.py",
+      "sha256": "a6bd29060eb13a302e69117e123825419606351bfcede5bf309d564fd7ff119d"
+    },
+    "mujoco_model/vendor/simulation_driver/ros_msg/src/robot_control/experiment_plotting.py": {
+      "path": "/home/him1/mujoco_bc/rcm_4090_deploy/mujoco_model/vendor/simulation_driver/ros_msg/src/robot_control/experiment_plotting.py",
+      "sha256": "b81621fc1850cf7b7c4e1cef56871bc143af26dc8ae26cf9bbcfc5bf666ed132"
+    },
+    "mujoco_model/vendor/simulation_driver/ros_msg/src/robot_control/joint_response.py": {
+      "path": "/home/him1/mujoco_bc/rcm_4090_deploy/mujoco_model/vendor/simulation_driver/ros_msg/src/robot_control/joint_response.py",
+      "sha256": "389f8115a8412a55f90d1b26b4097b87aa17911ae966f7f0a35c00683b9737fe"
+    },
+    "mujoco_model/vendor/simulation_driver/ros_msg/src/robot_control/kinematics.py": {
+      "path": "/home/him1/mujoco_bc/rcm_4090_deploy/mujoco_model/vendor/simulation_driver/ros_msg/src/robot_control/kinematics.py",
+      "sha256": "e48eb4a909208e8d1caa3ee2a7aff157de91c808730282dd17ccb17a46591530"
+    },
+    "mujoco_model/vendor/simulation_driver/ros_msg/src/robot_control/profiles.py": {
+      "path": "/home/him1/mujoco_bc/rcm_4090_deploy/mujoco_model/vendor/simulation_driver/ros_msg/src/robot_control/profiles.py",
+      "sha256": "ee66b00ac857bced90f55e915af9e3d4c1a136206a900a9edd065377665a4f11"
+    },
+    "mujoco_model/vendor/simulation_driver/ros_msg/src/robot_control/response_experiments.py": {
+      "path": "/home/him1/mujoco_bc/rcm_4090_deploy/mujoco_model/vendor/simulation_driver/ros_msg/src/robot_control/response_experiments.py",
+      "sha256": "7544d6843a47abdf4a689e055a01f74a3d99673c60c89af9336a91de59b222b7"
+    },
+    "mujoco_model/vendor/simulation_driver/ros_msg/src/robot_control/response_reporting.py": {
+      "path": "/home/him1/mujoco_bc/rcm_4090_deploy/mujoco_model/vendor/simulation_driver/ros_msg/src/robot_control/response_reporting.py",
+      "sha256": "9f1b1adbbbd9c36ab184fddd62b3c849d05129e49f063209bcd14d112e018f15"
+    },
+    "mujoco_model/vendor/simulation_driver/ros_msg/src/robot_control/response_signals.py": {
+      "path": "/home/him1/mujoco_bc/rcm_4090_deploy/mujoco_model/vendor/simulation_driver/ros_msg/src/robot_control/response_signals.py",
+      "sha256": "b5e831b02107a7e6082193b19ef095cc16f78a0a993def7c0152bc36f073697c"
+    },
+    "mujoco_model/vendor/simulation_driver/ros_msg/src/robot_control/trajectory.py": {
+      "path": "/home/him1/mujoco_bc/rcm_4090_deploy/mujoco_model/vendor/simulation_driver/ros_msg/src/robot_control/trajectory.py",
+      "sha256": "8c2f40b9f830f7f2ba9e6ad1fa083dbb11814957f5f389198f29ad60f13fa130"
+    },
+    "mujoco_model/vendor/simulation_driver/ros_msg/src/robot_control/validation_experiments.py": {
+      "path": "/home/him1/mujoco_bc/rcm_4090_deploy/mujoco_model/vendor/simulation_driver/ros_msg/src/robot_control/validation_experiments.py",
+      "sha256": "2cd7d211c7e220784da43b19fc9c17a99c94944fa3e8cba48dd29e980bdd14d1"
+    },
+    "mujoco_model/vendor/simulation_driver/ros_msg/src/robot_control/wire_sine.py": {
+      "path": "/home/him1/mujoco_bc/rcm_4090_deploy/mujoco_model/vendor/simulation_driver/ros_msg/src/robot_control/wire_sine.py",
+      "sha256": "c2fee942b0f41f02c029f4b6503359dbdea7b99613924ae13450198cc9c062bf"
+    },
+    "mujoco_model/vendor/simulation_driver/ros_msg/src/robot_control/wire_sine_reporting.py": {
+      "path": "/home/him1/mujoco_bc/rcm_4090_deploy/mujoco_model/vendor/simulation_driver/ros_msg/src/robot_control/wire_sine_reporting.py",
+      "sha256": "ae99265260481fdb69ce32cc300af614d846121820743f42e6221a1a68722863"
+    },
+    "far": {
+      "path": "/home/him1/mujoco_bc/rcm_4090_deploy/outputs/homog_label_fix_20261124_v5/homog_label_fix_20261124_v5_phase1_A/step_004000.pth",
+      "sha256": "6cc389df3786f1f34c43cf65d6dc17fe910ab342fae8d84c8e37cea6a7db6c11"
+    },
+    "rcm/__init__.py": {
+      "path": "/home/him1/mujoco_bc/rcm_4090_deploy/rcm/__init__.py",
+      "sha256": "459371a533eea39d8fad83e3d036910b1d26a4a1679e1a7aee79780a979cb485"
+    },
+    "rcm/control_target.py": {
+      "path": "/home/him1/mujoco_bc/rcm_4090_deploy/rcm/control_target.py",
+      "sha256": "80a782cbe4fc8cdcc785005a469ded8eae72f7af7de53c8295a8279a7a98174d"
+    },
+    "rcm/front_tool.py": {
+      "path": "/home/him1/mujoco_bc/rcm_4090_deploy/rcm/front_tool.py",
+      "sha256": "2430b6a00644aa0f15ff2a025e0b9ab139a4dd3180b4036c46d5a11970becb85"
+    },
+    "rcm/fundus.py": {
+      "path": "/home/him1/mujoco_bc/rcm_4090_deploy/rcm/fundus.py",
+      "sha256": "1432e337aecde1e60d65c63250cd773a7c8b150c90cb67b5bf2c0f3ae1befed3"
+    },
+    "rcm/motor_execution.py": {
+      "path": "/home/him1/mujoco_bc/rcm_4090_deploy/rcm/motor_execution.py",
+      "sha256": "497fbc163854aa99af0e951e36388e0a53db8e791b6b6ae4382c7f106ed4c9b7"
+    },
+    "rcm/multitarget_visual.py": {
+      "path": "/home/him1/mujoco_bc/rcm_4090_deploy/rcm/multitarget_visual.py",
+      "sha256": "06fa93edca98f9361cb6d18c80022c51a77204db5135eda2966692d1e72b6764"
+    },
+    "rcm/navigation.py": {
+      "path": "/home/him1/mujoco_bc/rcm_4090_deploy/rcm/navigation.py",
+      "sha256": "94052796df06ceb69d4a2d66b761e54d9836bab7e999c82111959e326ac77a94"
+    },
+    "rcm/occlusion_fixture.py": {
+      "path": "/home/him1/mujoco_bc/rcm_4090_deploy/rcm/occlusion_fixture.py",
+      "sha256": "3f0acf1111e7ec6225071da70b47de4c6eb7cff38133ee59656811ea70a8597d"
+    },
+    "rcm/occlusion_policy.py": {
+      "path": "/home/him1/mujoco_bc/rcm_4090_deploy/rcm/occlusion_policy.py",
+      "sha256": "f9da59a16d25f19c6195a0ec21fa1c271e0429b5377836f122bb251a128f5b3e"
+    },
+    "rcm/oct.py": {
+      "path": "/home/him1/mujoco_bc/rcm_4090_deploy/rcm/oct.py",
+      "sha256": "e34265d2ec8b09af1e5db2815a5f3ab0ae4d6e560bebd3b8ba4f690bc25491cc"
+    },
+    "rcm/recovered_model.py": {
+      "path": "/home/him1/mujoco_bc/rcm_4090_deploy/rcm/recovered_model.py",
+      "sha256": "9c23a20a18305cd1b4718f9266fa87fbe337c868a88b94b242bd4dbf7a870271"
+    },
+    "rcm/reference.py": {
+      "path": "/home/him1/mujoco_bc/rcm_4090_deploy/rcm/reference.py",
+      "sha256": "ce7dae2061e6272d0ba7d1a709a29a270456194f114f2b88a1b28a37642dc520"
+    },
+    "rcm/rgb_features.py": {
+      "path": "/home/him1/mujoco_bc/rcm_4090_deploy/rcm/rgb_features.py",
+      "sha256": "dcf8a569ec05edf44dfa53bb4c65793863938761678a07260a6c09069c347a70"
+    },
+    "rcm/sampling_planners.py": {
+      "path": "/home/him1/mujoco_bc/rcm_4090_deploy/rcm/sampling_planners.py",
+      "sha256": "c55049346fa95bab32dace52706eb6fc49fc261b27eacd6924165c6377de1237"
+    },
+    "rcm/scene_v9.py": {
+      "path": "/home/him1/mujoco_bc/rcm_4090_deploy/rcm/scene_v9.py",
+      "sha256": "c6b04b4aa33b653e78262feac073d48c099ce08982293eab5866571707ab7058"
+    },
+    "rcm/strict_rgbd.py": {
+      "path": "/home/him1/mujoco_bc/rcm_4090_deploy/rcm/strict_rgbd.py",
+      "sha256": "240ef03a903b61f7b6be3f99a873f493bd368f1de1c9578a4175178b8e6a33a2"
+    },
+    "rcm/target_tracking.py": {
+      "path": "/home/him1/mujoco_bc/rcm_4090_deploy/rcm/target_tracking.py",
+      "sha256": "81872f5b97e8fea38dc761e8fca07278c99260293486ba890eb0759880928146"
+    },
+    "rcm/tip_occluder.py": {
+      "path": "/home/him1/mujoco_bc/rcm_4090_deploy/rcm/tip_occluder.py",
+      "sha256": "2952267c3a5bde0b46faf8b7f7f5d255dac5e9d605be8195131ee9107319c748"
+    },
+    "rcm/vision_navigation.py": {
+      "path": "/home/him1/mujoco_bc/rcm_4090_deploy/rcm/vision_navigation.py",
+      "sha256": "4b7afa6c8516d67d8c2dd2112d8e54f7ae13da3de1893b2df7f90e83710e24b7"
+    },
+    "rcm/visual_geometry.py": {
+      "path": "/home/him1/mujoco_bc/rcm_4090_deploy/rcm/visual_geometry.py",
+      "sha256": "d1250e484fa38c2fe0c9d7e9c6a614747d22348ced2e8845195106dbcc8eded5"
+    },
+    "rcm/visual_servo.py": {
+      "path": "/home/him1/mujoco_bc/rcm_4090_deploy/rcm/visual_servo.py",
+      "sha256": "b217af0f60eb0a1de462d37dfa22a507911420a7b3cc9c4d899e012e89cbb507"
+    },
+    "rcm/waypoint_dataset.py": {
+      "path": "/home/him1/mujoco_bc/rcm_4090_deploy/rcm/waypoint_dataset.py",
+      "sha256": "f0a5026090399aaf78e9b1939005eaab7c4e7374c88833deb39ee330e26a7d5c"
+    },
+    "runs/20261120/motor_perception_gate_v1/oracle/code_snapshots/mujoco_model/motor_backend.py": {
+      "path": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/motor_perception_gate_v1/oracle/code_snapshots/mujoco_model/motor_backend.py",
+      "sha256": "1bc2a5b79eceda9cc31bfaa49be20986e680784ad15e5ebc35fe629a453302e4"
+    },
+    "runs/20261120/motor_perception_gate_v1/oracle/code_snapshots/rcm/motor_execution.py": {
+      "path": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/motor_perception_gate_v1/oracle/code_snapshots/rcm/motor_execution.py",
+      "sha256": "97415225e203497c1c6b5d94605a090de439c261bd68354979e6796b872a5b12"
+    },
+    "runs/20261120/motor_perception_gate_v1/perception/code_snapshots/mujoco_model/motor_backend.py": {
+      "path": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/motor_perception_gate_v1/perception/code_snapshots/mujoco_model/motor_backend.py",
+      "sha256": "1bc2a5b79eceda9cc31bfaa49be20986e680784ad15e5ebc35fe629a453302e4"
+    },
+    "runs/20261120/motor_perception_gate_v1/perception/code_snapshots/rcm/motor_execution.py": {
+      "path": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/motor_perception_gate_v1/perception/code_snapshots/rcm/motor_execution.py",
+      "sha256": "97415225e203497c1c6b5d94605a090de439c261bd68354979e6796b872a5b12"
+    },
+    "runs/20261120/motor_perception_gate_v1/reports/code_snapshots/mujoco_model/motor_backend.py": {
+      "path": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/motor_perception_gate_v1/reports/code_snapshots/mujoco_model/motor_backend.py",
+      "sha256": "1bc2a5b79eceda9cc31bfaa49be20986e680784ad15e5ebc35fe629a453302e4"
+    },
+    "runs/20261120/motor_perception_gate_v1/reports/code_snapshots/rcm/motor_execution.py": {
+      "path": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261120/motor_perception_gate_v1/reports/code_snapshots/rcm/motor_execution.py",
+      "sha256": "97415225e203497c1c6b5d94605a090de439c261bd68354979e6796b872a5b12"
+    },
+    "runs/20261121/control_p2_parallel_publication_v1/snapshot/rcm_4090_deploy/mujoco_model/model_sync.py": {
+      "path": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_parallel_publication_v1/snapshot/rcm_4090_deploy/mujoco_model/model_sync.py",
+      "sha256": "3fdc6b0f74becb15ceeed1b5d1c2973cd74fbad174fb67dce2852dc0c67ba66d"
+    },
+    "runs/20261121/control_p2_parallel_publication_v1/snapshot/rcm_4090_deploy/mujoco_model/motor_backend.py": {
+      "path": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_parallel_publication_v1/snapshot/rcm_4090_deploy/mujoco_model/motor_backend.py",
+      "sha256": "1bc2a5b79eceda9cc31bfaa49be20986e680784ad15e5ebc35fe629a453302e4"
+    },
+    "runs/20261121/control_p2_parallel_publication_v1/snapshot/rcm_4090_deploy/rcm/motor_execution.py": {
+      "path": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_parallel_publication_v1/snapshot/rcm_4090_deploy/rcm/motor_execution.py",
+      "sha256": "497fbc163854aa99af0e951e36388e0a53db8e791b6b6ae4382c7f106ed4c9b7"
+    },
+    "runs/20261121/control_p2_publication_v1/snapshot/rcm_4090_deploy/mujoco_model/model_sync.py": {
+      "path": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_publication_v1/snapshot/rcm_4090_deploy/mujoco_model/model_sync.py",
+      "sha256": "3fdc6b0f74becb15ceeed1b5d1c2973cd74fbad174fb67dce2852dc0c67ba66d"
+    },
+    "runs/20261121/control_p2_publication_v1/snapshot/rcm_4090_deploy/mujoco_model/motor_backend.py": {
+      "path": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_publication_v1/snapshot/rcm_4090_deploy/mujoco_model/motor_backend.py",
+      "sha256": "1bc2a5b79eceda9cc31bfaa49be20986e680784ad15e5ebc35fe629a453302e4"
+    },
+    "runs/20261121/control_p2_publication_v1/snapshot/rcm_4090_deploy/rcm/motor_execution.py": {
+      "path": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261121/control_p2_publication_v1/snapshot/rcm_4090_deploy/rcm/motor_execution.py",
+      "sha256": "497fbc163854aa99af0e951e36388e0a53db8e791b6b6ae4382c7f106ed4c9b7"
+    },
+    "runs/20261123/verification/homog_t3_hold_diagnosis_v1/original_sources/mujoco_model/motor_backend.py": {
+      "path": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261123/verification/homog_t3_hold_diagnosis_v1/original_sources/mujoco_model/motor_backend.py",
+      "sha256": "1bc2a5b79eceda9cc31bfaa49be20986e680784ad15e5ebc35fe629a453302e4"
+    },
+    "runs/20261123/verification/homog_t3_hold_diagnosis_v1/original_sources/rcm/motor_execution.py": {
+      "path": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261123/verification/homog_t3_hold_diagnosis_v1/original_sources/rcm/motor_execution.py",
+      "sha256": "497fbc163854aa99af0e951e36388e0a53db8e791b6b6ae4382c7f106ed4c9b7"
+    },
+    "runs/20261125/local_oct_adaln_code_v1/mujoco_model/model_sync.py": {
+      "path": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261125/local_oct_adaln_code_v1/mujoco_model/model_sync.py",
+      "sha256": "11b42a3a5da9b4484afd073141bb09f8c2cf7450643862536cef3ed455f828fd"
+    },
+    "runs/20261125/local_oct_adaln_code_v1/mujoco_model/motor_backend.py": {
+      "path": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261125/local_oct_adaln_code_v1/mujoco_model/motor_backend.py",
+      "sha256": "283799f7d9fcbb01daffa3711b7f5449c5681c5bd28233b0708456e9329cd26f"
+    },
+    "runs/20261125/local_oct_adaln_code_v1/rcm_4090_deploy/mujoco_model/model_sync.py": {
+      "path": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261125/local_oct_adaln_code_v1/rcm_4090_deploy/mujoco_model/model_sync.py",
+      "sha256": "3fdc6b0f74becb15ceeed1b5d1c2973cd74fbad174fb67dce2852dc0c67ba66d"
+    },
+    "runs/20261125/local_oct_adaln_code_v1/rcm_4090_deploy/mujoco_model/motor_backend.py": {
+      "path": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261125/local_oct_adaln_code_v1/rcm_4090_deploy/mujoco_model/motor_backend.py",
+      "sha256": "1bc2a5b79eceda9cc31bfaa49be20986e680784ad15e5ebc35fe629a453302e4"
+    },
+    "runs/20261125/local_oct_adaln_code_v1/rcm_4090_deploy/rcm/motor_execution.py": {
+      "path": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261125/local_oct_adaln_code_v1/rcm_4090_deploy/rcm/motor_execution.py",
+      "sha256": "497fbc163854aa99af0e951e36388e0a53db8e791b6b6ae4382c7f106ed4c9b7"
+    },
+    "runs/20261125/trained_policy_github_publication/repository/mujoco_model/model_sync.py": {
+      "path": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261125/trained_policy_github_publication/repository/mujoco_model/model_sync.py",
+      "sha256": "11b42a3a5da9b4484afd073141bb09f8c2cf7450643862536cef3ed455f828fd"
+    },
+    "runs/20261125/trained_policy_github_publication/repository/mujoco_model/motor_backend.py": {
+      "path": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261125/trained_policy_github_publication/repository/mujoco_model/motor_backend.py",
+      "sha256": "283799f7d9fcbb01daffa3711b7f5449c5681c5bd28233b0708456e9329cd26f"
+    },
+    "runs/20261127/dit_quantization_recovery_v3/campaign.py": {
+      "path": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261127/dit_quantization_recovery_v3/campaign.py",
+      "sha256": "0f5f72016933bd83f9365cfa01e142457ad4cbd100d107f61f7d52ae472d7de1"
+    },
+    "near": {
+      "path": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261127/dit_quantization_recovery_v3/candidate2/checkpoint.pth",
+      "sha256": "dae7252fe5ee1af6a35d39974b395b674f9b6607175b8e6d984d5331812cd843"
+    },
+    "runs/20261127/dit_quantization_recovery_v3/model.py": {
+      "path": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261127/dit_quantization_recovery_v3/model.py",
+      "sha256": "be9641badf953a7f0aa1ea8064236702d3a0bc762dde81da34acb7d1fe1862e7"
+    },
+    "runs/20261127/dit_v3_generalization_v1/audit_history.py": {
+      "path": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261127/dit_v3_generalization_v1/audit_history.py",
+      "sha256": "7537accfcd0d392645912d607ffeb68f85385536cc184c318d474f56cdae6741"
+    },
+    "runs/20261127/dit_v3_generalization_v1/evaluate.py": {
+      "path": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261127/dit_v3_generalization_v1/evaluate.py",
+      "sha256": "69f57f2f9cae1a01545bf9e80e82950a451e662e255f48c3a551eeebf6882a35"
+    },
+    "runs/20261127/dit_v3_generalization_v1/launch.sh": {
+      "path": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261127/dit_v3_generalization_v1/launch.sh",
+      "sha256": "5a1d64ad2cc5141cdf1bd515ff5cea1b06ba7d067e4ee01e2773dd10c6036ad1"
+    },
+    "runs/20261127/dit_v3_generalization_v1/prepare.py": {
+      "path": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261127/dit_v3_generalization_v1/prepare.py",
+      "sha256": "0575b6ae7263f281f9300fdce5757317b033b47aacd27cf838c65934562073cb"
+    },
+    "v9_alignment.json": {
+      "path": "/home/him1/mujoco_bc/rcm_4090_deploy/v9_alignment.json",
+      "sha256": "13954376243c1503490d43dfee451aa4498984a948cd51644dfd4dae1e06427d"
+    },
+    "v9_side_profile.json": {
+      "path": "/home/him1/mujoco_bc/rcm_4090_deploy/v9_side_profile.json",
+      "sha256": "8cc5bf048c883ba7c70630791b6319f263e7a17a85220406aad00e96e10d8f9f"
+    },
+    "v9_tool_mount.json": {
+      "path": "/home/him1/mujoco_bc/rcm_4090_deploy/v9_tool_mount.json",
+      "sha256": "6504207f7415780ab73530b25c483b6db2fb0bc27bbec8e39b2ddec000abb5e2"
+    }
+  },
+  "checkpoints": {
+    "near": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261127/dit_quantization_recovery_v3/candidate2/checkpoint.pth",
+    "far": "/home/him1/mujoco_bc/rcm_4090_deploy/outputs/homog_label_fix_20261124_v5/homog_label_fix_20261124_v5_phase1_A/step_004000.pth"
+  },
+  "protocol": {
+    "cycles": 1600,
+    "control_period_s": 0.05,
+    "K": 1,
+    "exec_steps": 1,
+    "flow_integration_steps": 4,
+    "switch": "latch near once valid measured OCT norm<=0.100mm; no history reset",
+    "start": "Fresh RCMSceneV9 default exact zero ABC SI; fresh G10 motor session and zero time; same method for all20 jobs; no target-relative offsets",
+    "control": "Existing feedback controller, production action clipping and safety preview scales, G10, original strictRGBD/OCT settings",
+    "success": "All final200 post-action XYZ errors<=20um including action1600; endpoint and per-cycle20um rate, first entry and longest/terminal hold also reported",
+    "original_early_stop_error_mm": 30.0,
+    "stop_on_success": false,
+    "max_consecutive_safety_limited": null,
+    "invalid_or_unreachable": "Never replace/drop frozen job; preserve negative or incomplete in denominator, record sensor validity and all exceptions",
+    "truth": "Setup and offline scoring only; both routes current DiT neural policy, no geometry/teacher control"
+  },
+  "eval_tier": "Independent frozen10targets x2sampling seeds, custom user-authorized; no old five-target, screen10/dev20 or historical final-test reruns",
+  "train_updates": 0,
+  "no_results_based_tuning": true,
+  "concurrency": 12,
+  "worker_timeout_s": 7200,
+  "batch_timeout_s": 18000,
+  "resume": "Explicit run --resume: skip complete jobs, deterministically replay saved prefix from identical standard start with exact RGB/OCT/raw-action/postXYZ/encoder checks, append only new cycles; never silently discard mismatch or replace target",
+  "qualification": "Limited simulation sample:10 spatial targets x2seeds; does not prove universal generalization or original0.35um settled acceptance",
+  "output": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261127/dit_v3_generalization_v1",
+  "baseline": "Original far v5 is the preserved controller component; no matched independent-target historical baseline, so no paired improvement claim"
+}

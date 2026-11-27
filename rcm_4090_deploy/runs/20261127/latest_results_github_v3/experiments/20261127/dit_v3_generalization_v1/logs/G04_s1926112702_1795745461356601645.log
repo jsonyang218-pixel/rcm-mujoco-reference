@@ -1,0 +1,27 @@
+Warning: wandb not available, logging will be local only
+加载模型: /home/him1/mujoco_bc/rcm_4090_deploy/outputs/homog_label_fix_20261124_v5/homog_label_fix_20261124_v5_phase1_A/step_004000.pth
+模型加载完成 (type=dit_rectified_flow, epoch=3, train_loss=0.103753, val_loss=0.148062)
+加载模型: /home/him1/mujoco_bc/rcm_4090_deploy/outputs/homog_label_fix_20261124_v5/homog_label_fix_20261124_v5_phase1_A/step_004000.pth
+模型加载完成 (type=dit_rectified_flow, epoch=3, train_loss=0.103753, val_loss=0.148062)
+  closed-loop step 1/1600, error=19668.912 um
+  closed-loop step 80/1600, error=17364.632 um
+  closed-loop step 160/1600, error=14964.382 um
+  closed-loop step 240/1600, error=12559.152 um
+  closed-loop step 320/1600, error=10177.586 um
+  closed-loop step 400/1600, error=7794.609 um
+  closed-loop step 480/1600, error=5387.238 um
+  closed-loop step 560/1600, error=2993.422 um
+  closed-loop step 640/1600, error=603.674 um
+  closed-loop step 720/1600, error=5.073 um
+  closed-loop step 800/1600, error=3.078 um
+  closed-loop step 880/1600, error=1.743 um
+  closed-loop step 960/1600, error=1.652 um
+  closed-loop step 1040/1600, error=1.527 um
+  closed-loop step 1120/1600, error=5.073 um
+  closed-loop step 1200/1600, error=3.078 um
+  closed-loop step 1280/1600, error=1.743 um
+  closed-loop step 1360/1600, error=1.652 um
+  closed-loop step 1440/1600, error=1.527 um
+  closed-loop step 1520/1600, error=5.073 um
+  closed-loop step 1600/1600, error=3.078 um
+{"time": "2026-11-27T10:35:12.008782+08:00", "experiment": "dit_v3_generalization_v1", "stage": "independent_job_completed", "result": {"status": "completed", "job": {"id": "G04_s1926112702", "target_id": "G04", "target_robot_mm": [-4.280396024488218, 6.254708379334939, 22.335673672085502], "seed": 1926112702}, "metrics": {"completed_cycles": 1600, "endpoint_um": 1.9763093741277977, "first_enter20_post_cycle": 664, "last200_max_post_error_um": 13.357369832627276, "longest_le20_cycles": 937, "terminal_le20_cycles": 937, "last200_includes_final_post": true, "strict20um_pass": true, "endpoint_le20um": true, "last200_le20_fraction": 1.0, "first_terminal_hold_start_post_cycle": 664, "terminal_hold_s": 46.85, "longest_hold_s": 46.85}, "route_counts": {"original_v5_DiT_RF": 658, "fixed_noise_near_DiT_RF": 941, "original_RGB2_startup_zero": 1, "teacher": 0, "geometry": 0}, "post_invalid_sensor_cycles": 0, "no_valid_sensor": false, "expected_cycles": 1600, "model_checkpoint_sha256": "dae7252fe5ee1af6a35d39974b395b674f9b6607175b8e6d984d5331812cd843", "far_checkpoint_sha256": "6cc389df3786f1f34c43cf65d6dc17fe910ab342fae8d84c8e37cea6a7db6c11", "truth_setup_scoring_only": true, "eval_updates": 0, "simulation_only": true, "elapsed_s": 1446.5145383700146}, "card": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261127/dit_v3_generalization_v1/experiment_card.json", "command": ["/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261127/dit_v3_generalization_v1/evaluate.py", "worker", "--job", "G04_s1926112702"], "far_checkpoint_sha256": "6cc389df3786f1f34c43cf65d6dc17fe910ab342fae8d84c8e37cea6a7db6c11", "init_sha256": null, "output": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261127/dit_v3_generalization_v1"}
