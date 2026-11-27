@@ -1,0 +1,303 @@
+{
+  "status": "passed",
+  "time": "2026-11-26T15:58:40.048509+08:00",
+  "gpu": "0, NVIDIA GeForce RTX 4090, 49140 MiB, 444 MiB",
+  "display": ":1 available",
+  "checkpoint_sha256": "6cc389df3786f1f34c43cf65d6dc17fe910ab342fae8d84c8e37cea6a7db6c11",
+  "hashed_files": 174,
+  "production_files_modified": 0,
+  "duplicate_launch_detected": false,
+  "concurrency": 4,
+  "actual_preflight_model_calls": 0,
+  "actual_preflight_simulation_cycles": 0,
+  "start_motion_reference": [
+    {
+      "target": "E41",
+      "side": "below",
+      "level_um": 50,
+      "OCT_vector_L2_um": 1.0445361592347615,
+      "approaching": {
+        "episode": "E41_below_50_approaching",
+        "target": "E41",
+        "split": "development_E41",
+        "teacher_step": 0,
+        "pre_observation": 2,
+        "post_observation": 3,
+        "time_s": 0.1,
+        "side": "below",
+        "registered_side": "below",
+        "level_um": 50,
+        "designated_anchor": true,
+        "signed_OCT_mm": [
+          0.008420432917773724,
+          -0.0021882331930100918,
+          0.048777852207422256,
+          1.0
+        ],
+        "measured_error_um": 49.54766312348996,
+        "true_error_um": 49.47922313667578,
+        "post_true_error_um": 45.45249393734541,
+        "previous_accepted": [
+          0.0,
+          0.0,
+          0.003
+        ],
+        "accepted_label": [
+          -6.142747179578084e-05,
+          -1.156637235673035e-05,
+          0.0061472656175398654
+        ],
+        "raw_teacher": [
+          -6.142747179578084e-05,
+          -1.156637235673035e-05,
+          0.0061472656175398654
+        ],
+        "raw_minus_accepted": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "true_post_minus_pre_um": -4.026729199330369,
+        "measured_crossing_outcome": false,
+        "actual_execution_delta": [
+          0.0,
+          0.0,
+          0.004026779501359101
+        ],
+        "history_complete": true,
+        "future_teacher_actions": 32,
+        "eligible_first_window": true,
+        "excluded_reason": "",
+        "zero_teacher_C": false,
+        "strict_hold": false,
+        "settled_nonzero_command": false,
+        "input_class": "approaching",
+        "actual_C_velocity_mm_s": 0.04794531235079169,
+        "incoming_XYZ_radial_um_s": -47.94478758919823,
+        "incoming_OCT_radial_um_s": -47.54841161303592,
+        "unchanged_encoders": false,
+        "unchanged_actual_state": false
+      },
+      "receding": {
+        "episode": "E41_below_50_receding",
+        "target": "E41",
+        "split": "development_E41",
+        "teacher_step": 0,
+        "pre_observation": 2,
+        "post_observation": 3,
+        "time_s": 0.1,
+        "side": "below",
+        "registered_side": "below",
+        "level_um": 50,
+        "designated_anchor": true,
+        "signed_OCT_mm": [
+          0.008588651195168495,
+          -0.0022361089941114187,
+          0.04980764165520668,
+          1.0
+        ],
+        "measured_error_um": 50.592156309444796,
+        "true_error_um": 50.51332609294117,
+        "post_true_error_um": 49.51055958278176,
+        "previous_accepted": [
+          0.0,
+          0.0,
+          -0.003
+        ],
+        "accepted_label": [
+          -5.92323322474532e-05,
+          -1.257782396093475e-05,
+          0.0013527343824572269
+        ],
+        "raw_teacher": [
+          -5.92323322474532e-05,
+          -1.257782396093475e-05,
+          0.0013527343824572269
+        ],
+        "raw_minus_accepted": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "true_post_minus_pre_um": -1.002766510159411,
+        "measured_crossing_outcome": false,
+        "actual_execution_delta": [
+          0.0,
+          0.0,
+          0.0010027777746586253
+        ],
+        "history_complete": true,
+        "future_teacher_actions": 32,
+        "eligible_first_window": true,
+        "excluded_reason": "",
+        "zero_teacher_C": false,
+        "strict_hold": false,
+        "settled_nonzero_command": false,
+        "input_class": "receding",
+        "actual_C_velocity_mm_s": -0.04794531235086108,
+        "incoming_XYZ_radial_um_s": 47.94475816118336,
+        "incoming_OCT_radial_um_s": 47.872334847924165,
+        "unchanged_encoders": false,
+        "unchanged_actual_state": false
+      },
+      "checks": {
+        "opposite_input_classes": true,
+        "same_measured_side": true,
+        "vector_L2_le5um": true,
+        "both_valid_first": true,
+        "both_true_and_measured_distances_20_100": true,
+        "opposite_actual_C": true,
+        "real_C_velocity_nonzero": true
+      },
+      "passed": true
+    },
+    {
+      "target": "E41",
+      "side": "above",
+      "level_um": 50,
+      "OCT_vector_L2_um": 1.0441573551579875,
+      "approaching": {
+        "episode": "E41_above_50_approaching",
+        "target": "E41",
+        "split": "development_E41",
+        "teacher_step": 0,
+        "pre_observation": 2,
+        "post_observation": 3,
+        "time_s": 0.1,
+        "side": "above",
+        "registered_side": "above",
+        "level_um": 50,
+        "designated_anchor": true,
+        "signed_OCT_mm": [
+          -0.008016347885131836,
+          0.0021009529009461403,
+          -0.04873349890112877,
+          1.0
+        ],
+        "measured_error_um": 49.43308357419928,
+        "true_error_um": 49.48354402474475,
+        "post_true_error_um": 45.4568148163547,
+        "previous_accepted": [
+          0.0,
+          0.0,
+          -0.003
+        ],
+        "accepted_label": [
+          -8.568006078604767e-05,
+          -1.2215763968249943e-05,
+          -0.006147265617543335
+        ],
+        "raw_teacher": [
+          -8.568006078604767e-05,
+          -1.2215763968249943e-05,
+          -0.006147265617543335
+        ],
+        "raw_minus_accepted": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "true_post_minus_pre_um": -4.026729208390051,
+        "measured_crossing_outcome": false,
+        "actual_execution_delta": [
+          0.0,
+          0.0,
+          -0.004026779501359101
+        ],
+        "history_complete": true,
+        "future_teacher_actions": 32,
+        "eligible_first_window": true,
+        "excluded_reason": "",
+        "zero_teacher_C": false,
+        "strict_hold": false,
+        "settled_nonzero_command": false,
+        "input_class": "approaching",
+        "actual_C_velocity_mm_s": -0.04794531235086108,
+        "incoming_XYZ_radial_um_s": -47.944787680309844,
+        "incoming_OCT_radial_um_s": -47.77759785072833,
+        "unchanged_encoders": false,
+        "unchanged_actual_state": false
+      },
+      "receding": {
+        "episode": "E41_above_50_receding",
+        "target": "E41",
+        "split": "development_E41",
+        "teacher_step": 0,
+        "pre_observation": 2,
+        "post_observation": 3,
+        "time_s": 0.1,
+        "side": "above",
+        "registered_side": "above",
+        "level_um": 50,
+        "designated_anchor": true,
+        "signed_OCT_mm": [
+          -0.008189045824110508,
+          0.002154543297365308,
+          -0.049761880189180374,
+          1.0
+        ],
+        "measured_error_um": 50.47719532909832,
+        "true_error_um": 50.5176469830536,
+        "post_true_error_um": 49.51488047094773,
+        "previous_accepted": [
+          0.0,
+          0.0,
+          0.003
+        ],
+        "accepted_label": [
+          -8.604531276750803e-05,
+          -9.223400114341419e-06,
+          -0.0013527343824606963
+        ],
+        "raw_teacher": [
+          -8.604531276750803e-05,
+          -9.223400114341419e-06,
+          -0.0013527343824606963
+        ],
+        "raw_minus_accepted": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "true_post_minus_pre_um": -1.0027665121058718,
+        "measured_crossing_outcome": false,
+        "actual_execution_delta": [
+          0.0,
+          0.0,
+          -0.0010027777746586253
+        ],
+        "history_complete": true,
+        "future_teacher_actions": 32,
+        "eligible_first_window": true,
+        "excluded_reason": "",
+        "zero_teacher_C": false,
+        "strict_hold": false,
+        "settled_nonzero_command": false,
+        "input_class": "receding",
+        "actual_C_velocity_mm_s": 0.04794531235079169,
+        "incoming_XYZ_radial_um_s": 47.94475825744158,
+        "incoming_OCT_radial_um_s": 48.14161307607506,
+        "unchanged_encoders": false,
+        "unchanged_actual_state": false
+      },
+      "checks": {
+        "opposite_input_classes": true,
+        "same_measured_side": true,
+        "vector_L2_le5um": true,
+        "both_valid_first": true,
+        "both_true_and_measured_distances_20_100": true,
+        "opposite_actual_C": true,
+        "real_C_velocity_nonzero": true
+      },
+      "passed": true
+    }
+  ],
+  "runtime_s": 1.245681184984278,
+  "command": [
+    "/home/him1/mujoco_bc/rcm_4090_deploy/.venv/bin/python",
+    "-E",
+    "-B",
+    "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261126/neural_exec124_50um_v1/pilot.py",
+    "run"
+  ]
+}

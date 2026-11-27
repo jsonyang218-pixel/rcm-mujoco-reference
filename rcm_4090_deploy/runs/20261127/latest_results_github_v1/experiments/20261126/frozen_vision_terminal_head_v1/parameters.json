@@ -1,0 +1,653 @@
+{
+  "parameters": [
+    {
+      "name": "vision.features.0.weight",
+      "shape": [
+        64,
+        3,
+        7,
+        7
+      ],
+      "count": 9408,
+      "trainable": false
+    },
+    {
+      "name": "vision.features.1.weight",
+      "shape": [
+        64
+      ],
+      "count": 64,
+      "trainable": false
+    },
+    {
+      "name": "vision.features.1.bias",
+      "shape": [
+        64
+      ],
+      "count": 64,
+      "trainable": false
+    },
+    {
+      "name": "vision.features.4.0.conv1.weight",
+      "shape": [
+        64,
+        64,
+        3,
+        3
+      ],
+      "count": 36864,
+      "trainable": false
+    },
+    {
+      "name": "vision.features.4.0.bn1.weight",
+      "shape": [
+        64
+      ],
+      "count": 64,
+      "trainable": false
+    },
+    {
+      "name": "vision.features.4.0.bn1.bias",
+      "shape": [
+        64
+      ],
+      "count": 64,
+      "trainable": false
+    },
+    {
+      "name": "vision.features.4.0.conv2.weight",
+      "shape": [
+        64,
+        64,
+        3,
+        3
+      ],
+      "count": 36864,
+      "trainable": false
+    },
+    {
+      "name": "vision.features.4.0.bn2.weight",
+      "shape": [
+        64
+      ],
+      "count": 64,
+      "trainable": false
+    },
+    {
+      "name": "vision.features.4.0.bn2.bias",
+      "shape": [
+        64
+      ],
+      "count": 64,
+      "trainable": false
+    },
+    {
+      "name": "vision.features.4.1.conv1.weight",
+      "shape": [
+        64,
+        64,
+        3,
+        3
+      ],
+      "count": 36864,
+      "trainable": false
+    },
+    {
+      "name": "vision.features.4.1.bn1.weight",
+      "shape": [
+        64
+      ],
+      "count": 64,
+      "trainable": false
+    },
+    {
+      "name": "vision.features.4.1.bn1.bias",
+      "shape": [
+        64
+      ],
+      "count": 64,
+      "trainable": false
+    },
+    {
+      "name": "vision.features.4.1.conv2.weight",
+      "shape": [
+        64,
+        64,
+        3,
+        3
+      ],
+      "count": 36864,
+      "trainable": false
+    },
+    {
+      "name": "vision.features.4.1.bn2.weight",
+      "shape": [
+        64
+      ],
+      "count": 64,
+      "trainable": false
+    },
+    {
+      "name": "vision.features.4.1.bn2.bias",
+      "shape": [
+        64
+      ],
+      "count": 64,
+      "trainable": false
+    },
+    {
+      "name": "vision.features.5.0.conv1.weight",
+      "shape": [
+        128,
+        64,
+        3,
+        3
+      ],
+      "count": 73728,
+      "trainable": false
+    },
+    {
+      "name": "vision.features.5.0.bn1.weight",
+      "shape": [
+        128
+      ],
+      "count": 128,
+      "trainable": false
+    },
+    {
+      "name": "vision.features.5.0.bn1.bias",
+      "shape": [
+        128
+      ],
+      "count": 128,
+      "trainable": false
+    },
+    {
+      "name": "vision.features.5.0.conv2.weight",
+      "shape": [
+        128,
+        128,
+        3,
+        3
+      ],
+      "count": 147456,
+      "trainable": false
+    },
+    {
+      "name": "vision.features.5.0.bn2.weight",
+      "shape": [
+        128
+      ],
+      "count": 128,
+      "trainable": false
+    },
+    {
+      "name": "vision.features.5.0.bn2.bias",
+      "shape": [
+        128
+      ],
+      "count": 128,
+      "trainable": false
+    },
+    {
+      "name": "vision.features.5.0.downsample.0.weight",
+      "shape": [
+        128,
+        64,
+        1,
+        1
+      ],
+      "count": 8192,
+      "trainable": false
+    },
+    {
+      "name": "vision.features.5.0.downsample.1.weight",
+      "shape": [
+        128
+      ],
+      "count": 128,
+      "trainable": false
+    },
+    {
+      "name": "vision.features.5.0.downsample.1.bias",
+      "shape": [
+        128
+      ],
+      "count": 128,
+      "trainable": false
+    },
+    {
+      "name": "vision.features.5.1.conv1.weight",
+      "shape": [
+        128,
+        128,
+        3,
+        3
+      ],
+      "count": 147456,
+      "trainable": false
+    },
+    {
+      "name": "vision.features.5.1.bn1.weight",
+      "shape": [
+        128
+      ],
+      "count": 128,
+      "trainable": false
+    },
+    {
+      "name": "vision.features.5.1.bn1.bias",
+      "shape": [
+        128
+      ],
+      "count": 128,
+      "trainable": false
+    },
+    {
+      "name": "vision.features.5.1.conv2.weight",
+      "shape": [
+        128,
+        128,
+        3,
+        3
+      ],
+      "count": 147456,
+      "trainable": false
+    },
+    {
+      "name": "vision.features.5.1.bn2.weight",
+      "shape": [
+        128
+      ],
+      "count": 128,
+      "trainable": false
+    },
+    {
+      "name": "vision.features.5.1.bn2.bias",
+      "shape": [
+        128
+      ],
+      "count": 128,
+      "trainable": false
+    },
+    {
+      "name": "vision.features.6.0.conv1.weight",
+      "shape": [
+        256,
+        128,
+        3,
+        3
+      ],
+      "count": 294912,
+      "trainable": false
+    },
+    {
+      "name": "vision.features.6.0.bn1.weight",
+      "shape": [
+        256
+      ],
+      "count": 256,
+      "trainable": false
+    },
+    {
+      "name": "vision.features.6.0.bn1.bias",
+      "shape": [
+        256
+      ],
+      "count": 256,
+      "trainable": false
+    },
+    {
+      "name": "vision.features.6.0.conv2.weight",
+      "shape": [
+        256,
+        256,
+        3,
+        3
+      ],
+      "count": 589824,
+      "trainable": false
+    },
+    {
+      "name": "vision.features.6.0.bn2.weight",
+      "shape": [
+        256
+      ],
+      "count": 256,
+      "trainable": false
+    },
+    {
+      "name": "vision.features.6.0.bn2.bias",
+      "shape": [
+        256
+      ],
+      "count": 256,
+      "trainable": false
+    },
+    {
+      "name": "vision.features.6.0.downsample.0.weight",
+      "shape": [
+        256,
+        128,
+        1,
+        1
+      ],
+      "count": 32768,
+      "trainable": false
+    },
+    {
+      "name": "vision.features.6.0.downsample.1.weight",
+      "shape": [
+        256
+      ],
+      "count": 256,
+      "trainable": false
+    },
+    {
+      "name": "vision.features.6.0.downsample.1.bias",
+      "shape": [
+        256
+      ],
+      "count": 256,
+      "trainable": false
+    },
+    {
+      "name": "vision.features.6.1.conv1.weight",
+      "shape": [
+        256,
+        256,
+        3,
+        3
+      ],
+      "count": 589824,
+      "trainable": false
+    },
+    {
+      "name": "vision.features.6.1.bn1.weight",
+      "shape": [
+        256
+      ],
+      "count": 256,
+      "trainable": false
+    },
+    {
+      "name": "vision.features.6.1.bn1.bias",
+      "shape": [
+        256
+      ],
+      "count": 256,
+      "trainable": false
+    },
+    {
+      "name": "vision.features.6.1.conv2.weight",
+      "shape": [
+        256,
+        256,
+        3,
+        3
+      ],
+      "count": 589824,
+      "trainable": false
+    },
+    {
+      "name": "vision.features.6.1.bn2.weight",
+      "shape": [
+        256
+      ],
+      "count": 256,
+      "trainable": false
+    },
+    {
+      "name": "vision.features.6.1.bn2.bias",
+      "shape": [
+        256
+      ],
+      "count": 256,
+      "trainable": false
+    },
+    {
+      "name": "vision.features.7.0.conv1.weight",
+      "shape": [
+        512,
+        256,
+        3,
+        3
+      ],
+      "count": 1179648,
+      "trainable": false
+    },
+    {
+      "name": "vision.features.7.0.bn1.weight",
+      "shape": [
+        512
+      ],
+      "count": 512,
+      "trainable": false
+    },
+    {
+      "name": "vision.features.7.0.bn1.bias",
+      "shape": [
+        512
+      ],
+      "count": 512,
+      "trainable": false
+    },
+    {
+      "name": "vision.features.7.0.conv2.weight",
+      "shape": [
+        512,
+        512,
+        3,
+        3
+      ],
+      "count": 2359296,
+      "trainable": false
+    },
+    {
+      "name": "vision.features.7.0.bn2.weight",
+      "shape": [
+        512
+      ],
+      "count": 512,
+      "trainable": false
+    },
+    {
+      "name": "vision.features.7.0.bn2.bias",
+      "shape": [
+        512
+      ],
+      "count": 512,
+      "trainable": false
+    },
+    {
+      "name": "vision.features.7.0.downsample.0.weight",
+      "shape": [
+        512,
+        256,
+        1,
+        1
+      ],
+      "count": 131072,
+      "trainable": false
+    },
+    {
+      "name": "vision.features.7.0.downsample.1.weight",
+      "shape": [
+        512
+      ],
+      "count": 512,
+      "trainable": false
+    },
+    {
+      "name": "vision.features.7.0.downsample.1.bias",
+      "shape": [
+        512
+      ],
+      "count": 512,
+      "trainable": false
+    },
+    {
+      "name": "vision.features.7.1.conv1.weight",
+      "shape": [
+        512,
+        512,
+        3,
+        3
+      ],
+      "count": 2359296,
+      "trainable": false
+    },
+    {
+      "name": "vision.features.7.1.bn1.weight",
+      "shape": [
+        512
+      ],
+      "count": 512,
+      "trainable": false
+    },
+    {
+      "name": "vision.features.7.1.bn1.bias",
+      "shape": [
+        512
+      ],
+      "count": 512,
+      "trainable": false
+    },
+    {
+      "name": "vision.features.7.1.conv2.weight",
+      "shape": [
+        512,
+        512,
+        3,
+        3
+      ],
+      "count": 2359296,
+      "trainable": false
+    },
+    {
+      "name": "vision.features.7.1.bn2.weight",
+      "shape": [
+        512
+      ],
+      "count": 512,
+      "trainable": false
+    },
+    {
+      "name": "vision.features.7.1.bn2.bias",
+      "shape": [
+        512
+      ],
+      "count": 512,
+      "trainable": false
+    },
+    {
+      "name": "vision.project.weight",
+      "shape": [
+        384,
+        512,
+        1,
+        1
+      ],
+      "count": 196608,
+      "trainable": false
+    },
+    {
+      "name": "vision.project.bias",
+      "shape": [
+        384
+      ],
+      "count": 384,
+      "trainable": false
+    },
+    {
+      "name": "head.visual.0.weight",
+      "shape": [
+        64,
+        1536
+      ],
+      "count": 98304,
+      "trainable": true
+    },
+    {
+      "name": "head.visual.0.bias",
+      "shape": [
+        64
+      ],
+      "count": 64,
+      "trainable": true
+    },
+    {
+      "name": "head.state.0.weight",
+      "shape": [
+        64,
+        20
+      ],
+      "count": 1280,
+      "trainable": true
+    },
+    {
+      "name": "head.state.0.bias",
+      "shape": [
+        64
+      ],
+      "count": 64,
+      "trainable": true
+    },
+    {
+      "name": "head.state.2.weight",
+      "shape": [
+        64,
+        64
+      ],
+      "count": 4096,
+      "trainable": true
+    },
+    {
+      "name": "head.state.2.bias",
+      "shape": [
+        64
+      ],
+      "count": 64,
+      "trainable": true
+    },
+    {
+      "name": "head.fusion.0.weight",
+      "shape": [
+        64,
+        128
+      ],
+      "count": 8192,
+      "trainable": true
+    },
+    {
+      "name": "head.fusion.0.bias",
+      "shape": [
+        64
+      ],
+      "count": 64,
+      "trainable": true
+    },
+    {
+      "name": "head.fusion.2.weight",
+      "shape": [
+        3,
+        64
+      ],
+      "count": 192,
+      "trainable": true
+    },
+    {
+      "name": "head.fusion.2.bias",
+      "shape": [
+        3
+      ],
+      "count": 3,
+      "trainable": true
+    }
+  ],
+  "trainable": 112323,
+  "frozen": 11373504,
+  "vision_eval": true,
+  "GroupNorm": 20,
+  "BatchNorm": 0
+}

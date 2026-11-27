@@ -1,0 +1,752 @@
+{
+  "name": "neural_paired_terminal_minifit_v1",
+  "time": "2026-11-26T14:59:07.766553+08:00",
+  "question": "After paired coverage and balanced first-window sampling changes, does one128-update original neural candidate improve physical first actions?",
+  "scope": "diagnostic only; never a20um neural success claim",
+  "init_checkpoint": "/home/him1/mujoco_bc/rcm_4090_deploy/outputs/homog_label_fix_20261124_v5/homog_label_fix_20261124_v5_phase1_A/step_004000.pth",
+  "init_sha256": "6cc389df3786f1f34c43cf65d6dc17fe910ab342fae8d84c8e37cea6a7db6c11",
+  "original_pilot": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261126/original_neural_terminal_pilot_v1/pilot.py",
+  "old_audit": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261126/original_neural_terminal_data_audit_v1/report.md",
+  "targets": [
+    {
+      "task": {
+        "id": "E40",
+        "episode_index": 40,
+        "seed": 1040,
+        "regime": "T3",
+        "target_robot_mm": [
+          0.4367277917467681,
+          3.652696250194051,
+          23.605009145695448
+        ],
+        "target_world_mm": [
+          346.7111251543748,
+          -10.824024183615435,
+          371.35725739137047
+        ],
+        "initial_state_si": [
+          0.018810705738879198,
+          0.08616229754890467,
+          0.019858072541690124
+        ],
+        "goal_state_si": [
+          0.01849937731040504,
+          0.08672813134099054,
+          0.019889943026902168
+        ],
+        "initial_error_um": 35.423806823122376,
+        "abc_offset_sign": [
+          1,
+          -1,
+          -1
+        ],
+        "min_development_distance_um": 416.7194413864799
+      },
+      "role": "training"
+    },
+    {
+      "task": {
+        "id": "E41",
+        "episode_index": 41,
+        "seed": 1041,
+        "regime": "T3",
+        "target_robot_mm": [
+          -1.3695654807400628,
+          6.588496568516707,
+          22.973909828421377
+        ],
+        "target_world_mm": [
+          349.2189832461999,
+          -12.630317456102267,
+          373.0088801232904
+        ],
+        "initial_state_si": [
+          -0.05985504851460952,
+          -0.038023251711698174,
+          0.019971079068627717
+        ],
+        "goal_state_si": [
+          -0.05954347970880375,
+          -0.0385895223852399,
+          0.019939183976147298
+        ],
+        "initial_error_um": 35.352419097552506,
+        "abc_offset_sign": [
+          -1,
+          1,
+          1
+        ],
+        "min_development_distance_um": 507.69805534735826
+      },
+      "role": "development_holdout_previously_used_for_selection"
+    }
+  ],
+  "split": "E40 training / E41 whole-target DEVELOPMENT holdout already used for selection; no dev5/dev20/final test collection",
+  "branches": [
+    {
+      "id": "E40_below_30_approaching",
+      "target": "E40",
+      "side": "below",
+      "level_um": 30,
+      "requested_incoming": "approaching",
+      "initial_C_offset_m": -3.4399999999999996e-05,
+      "prefix_actions_deg_deg_mm": [
+        [
+          0.0,
+          0.0,
+          0.003
+        ],
+        [
+          0.0,
+          0.0,
+          0.003
+        ]
+      ],
+      "teacher_steps": 260,
+      "designated_anchor_teacher_step": 0
+    },
+    {
+      "id": "E40_below_30_receding",
+      "target": "E40",
+      "side": "below",
+      "level_um": 30,
+      "requested_incoming": "receding",
+      "initial_C_offset_m": -2.56e-05,
+      "prefix_actions_deg_deg_mm": [
+        [
+          0.0,
+          0.0,
+          -0.003
+        ],
+        [
+          0.0,
+          0.0,
+          -0.003
+        ]
+      ],
+      "teacher_steps": 32,
+      "designated_anchor_teacher_step": 0
+    },
+    {
+      "id": "E40_below_50_approaching",
+      "target": "E40",
+      "side": "below",
+      "level_um": 50,
+      "requested_incoming": "approaching",
+      "initial_C_offset_m": -5.4399999999999994e-05,
+      "prefix_actions_deg_deg_mm": [
+        [
+          0.0,
+          0.0,
+          0.003
+        ],
+        [
+          0.0,
+          0.0,
+          0.003
+        ]
+      ],
+      "teacher_steps": 32,
+      "designated_anchor_teacher_step": 0
+    },
+    {
+      "id": "E40_below_50_receding",
+      "target": "E40",
+      "side": "below",
+      "level_um": 50,
+      "requested_incoming": "receding",
+      "initial_C_offset_m": -4.56e-05,
+      "prefix_actions_deg_deg_mm": [
+        [
+          0.0,
+          0.0,
+          -0.003
+        ],
+        [
+          0.0,
+          0.0,
+          -0.003
+        ]
+      ],
+      "teacher_steps": 32,
+      "designated_anchor_teacher_step": 0
+    },
+    {
+      "id": "E40_below_70_approaching",
+      "target": "E40",
+      "side": "below",
+      "level_um": 70,
+      "requested_incoming": "approaching",
+      "initial_C_offset_m": -7.44e-05,
+      "prefix_actions_deg_deg_mm": [
+        [
+          0.0,
+          0.0,
+          0.003
+        ],
+        [
+          0.0,
+          0.0,
+          0.003
+        ]
+      ],
+      "teacher_steps": 32,
+      "designated_anchor_teacher_step": 0
+    },
+    {
+      "id": "E40_below_70_receding",
+      "target": "E40",
+      "side": "below",
+      "level_um": 70,
+      "requested_incoming": "receding",
+      "initial_C_offset_m": -6.56e-05,
+      "prefix_actions_deg_deg_mm": [
+        [
+          0.0,
+          0.0,
+          -0.003
+        ],
+        [
+          0.0,
+          0.0,
+          -0.003
+        ]
+      ],
+      "teacher_steps": 32,
+      "designated_anchor_teacher_step": 0
+    },
+    {
+      "id": "E40_above_30_approaching",
+      "target": "E40",
+      "side": "above",
+      "level_um": 30,
+      "requested_incoming": "approaching",
+      "initial_C_offset_m": 3.4399999999999996e-05,
+      "prefix_actions_deg_deg_mm": [
+        [
+          0.0,
+          0.0,
+          -0.003
+        ],
+        [
+          0.0,
+          0.0,
+          -0.003
+        ]
+      ],
+      "teacher_steps": 260,
+      "designated_anchor_teacher_step": 0
+    },
+    {
+      "id": "E40_above_30_receding",
+      "target": "E40",
+      "side": "above",
+      "level_um": 30,
+      "requested_incoming": "receding",
+      "initial_C_offset_m": 2.56e-05,
+      "prefix_actions_deg_deg_mm": [
+        [
+          0.0,
+          0.0,
+          0.003
+        ],
+        [
+          0.0,
+          0.0,
+          0.003
+        ]
+      ],
+      "teacher_steps": 32,
+      "designated_anchor_teacher_step": 0
+    },
+    {
+      "id": "E40_above_50_approaching",
+      "target": "E40",
+      "side": "above",
+      "level_um": 50,
+      "requested_incoming": "approaching",
+      "initial_C_offset_m": 5.4399999999999994e-05,
+      "prefix_actions_deg_deg_mm": [
+        [
+          0.0,
+          0.0,
+          -0.003
+        ],
+        [
+          0.0,
+          0.0,
+          -0.003
+        ]
+      ],
+      "teacher_steps": 32,
+      "designated_anchor_teacher_step": 0
+    },
+    {
+      "id": "E40_above_50_receding",
+      "target": "E40",
+      "side": "above",
+      "level_um": 50,
+      "requested_incoming": "receding",
+      "initial_C_offset_m": 4.56e-05,
+      "prefix_actions_deg_deg_mm": [
+        [
+          0.0,
+          0.0,
+          0.003
+        ],
+        [
+          0.0,
+          0.0,
+          0.003
+        ]
+      ],
+      "teacher_steps": 32,
+      "designated_anchor_teacher_step": 0
+    },
+    {
+      "id": "E40_above_70_approaching",
+      "target": "E40",
+      "side": "above",
+      "level_um": 70,
+      "requested_incoming": "approaching",
+      "initial_C_offset_m": 7.44e-05,
+      "prefix_actions_deg_deg_mm": [
+        [
+          0.0,
+          0.0,
+          -0.003
+        ],
+        [
+          0.0,
+          0.0,
+          -0.003
+        ]
+      ],
+      "teacher_steps": 32,
+      "designated_anchor_teacher_step": 0
+    },
+    {
+      "id": "E40_above_70_receding",
+      "target": "E40",
+      "side": "above",
+      "level_um": 70,
+      "requested_incoming": "receding",
+      "initial_C_offset_m": 6.56e-05,
+      "prefix_actions_deg_deg_mm": [
+        [
+          0.0,
+          0.0,
+          0.003
+        ],
+        [
+          0.0,
+          0.0,
+          0.003
+        ]
+      ],
+      "teacher_steps": 32,
+      "designated_anchor_teacher_step": 0
+    },
+    {
+      "id": "E41_below_30_approaching",
+      "target": "E41",
+      "side": "below",
+      "level_um": 30,
+      "requested_incoming": "approaching",
+      "initial_C_offset_m": -3.4399999999999996e-05,
+      "prefix_actions_deg_deg_mm": [
+        [
+          0.0,
+          0.0,
+          0.003
+        ],
+        [
+          0.0,
+          0.0,
+          0.003
+        ]
+      ],
+      "teacher_steps": 260,
+      "designated_anchor_teacher_step": 0
+    },
+    {
+      "id": "E41_below_30_receding",
+      "target": "E41",
+      "side": "below",
+      "level_um": 30,
+      "requested_incoming": "receding",
+      "initial_C_offset_m": -2.56e-05,
+      "prefix_actions_deg_deg_mm": [
+        [
+          0.0,
+          0.0,
+          -0.003
+        ],
+        [
+          0.0,
+          0.0,
+          -0.003
+        ]
+      ],
+      "teacher_steps": 32,
+      "designated_anchor_teacher_step": 0
+    },
+    {
+      "id": "E41_below_50_approaching",
+      "target": "E41",
+      "side": "below",
+      "level_um": 50,
+      "requested_incoming": "approaching",
+      "initial_C_offset_m": -5.4399999999999994e-05,
+      "prefix_actions_deg_deg_mm": [
+        [
+          0.0,
+          0.0,
+          0.003
+        ],
+        [
+          0.0,
+          0.0,
+          0.003
+        ]
+      ],
+      "teacher_steps": 32,
+      "designated_anchor_teacher_step": 0
+    },
+    {
+      "id": "E41_below_50_receding",
+      "target": "E41",
+      "side": "below",
+      "level_um": 50,
+      "requested_incoming": "receding",
+      "initial_C_offset_m": -4.56e-05,
+      "prefix_actions_deg_deg_mm": [
+        [
+          0.0,
+          0.0,
+          -0.003
+        ],
+        [
+          0.0,
+          0.0,
+          -0.003
+        ]
+      ],
+      "teacher_steps": 32,
+      "designated_anchor_teacher_step": 0
+    },
+    {
+      "id": "E41_below_70_approaching",
+      "target": "E41",
+      "side": "below",
+      "level_um": 70,
+      "requested_incoming": "approaching",
+      "initial_C_offset_m": -7.44e-05,
+      "prefix_actions_deg_deg_mm": [
+        [
+          0.0,
+          0.0,
+          0.003
+        ],
+        [
+          0.0,
+          0.0,
+          0.003
+        ]
+      ],
+      "teacher_steps": 32,
+      "designated_anchor_teacher_step": 0
+    },
+    {
+      "id": "E41_below_70_receding",
+      "target": "E41",
+      "side": "below",
+      "level_um": 70,
+      "requested_incoming": "receding",
+      "initial_C_offset_m": -6.56e-05,
+      "prefix_actions_deg_deg_mm": [
+        [
+          0.0,
+          0.0,
+          -0.003
+        ],
+        [
+          0.0,
+          0.0,
+          -0.003
+        ]
+      ],
+      "teacher_steps": 32,
+      "designated_anchor_teacher_step": 0
+    },
+    {
+      "id": "E41_above_30_approaching",
+      "target": "E41",
+      "side": "above",
+      "level_um": 30,
+      "requested_incoming": "approaching",
+      "initial_C_offset_m": 3.4399999999999996e-05,
+      "prefix_actions_deg_deg_mm": [
+        [
+          0.0,
+          0.0,
+          -0.003
+        ],
+        [
+          0.0,
+          0.0,
+          -0.003
+        ]
+      ],
+      "teacher_steps": 260,
+      "designated_anchor_teacher_step": 0
+    },
+    {
+      "id": "E41_above_30_receding",
+      "target": "E41",
+      "side": "above",
+      "level_um": 30,
+      "requested_incoming": "receding",
+      "initial_C_offset_m": 2.56e-05,
+      "prefix_actions_deg_deg_mm": [
+        [
+          0.0,
+          0.0,
+          0.003
+        ],
+        [
+          0.0,
+          0.0,
+          0.003
+        ]
+      ],
+      "teacher_steps": 32,
+      "designated_anchor_teacher_step": 0
+    },
+    {
+      "id": "E41_above_50_approaching",
+      "target": "E41",
+      "side": "above",
+      "level_um": 50,
+      "requested_incoming": "approaching",
+      "initial_C_offset_m": 5.4399999999999994e-05,
+      "prefix_actions_deg_deg_mm": [
+        [
+          0.0,
+          0.0,
+          -0.003
+        ],
+        [
+          0.0,
+          0.0,
+          -0.003
+        ]
+      ],
+      "teacher_steps": 32,
+      "designated_anchor_teacher_step": 0
+    },
+    {
+      "id": "E41_above_50_receding",
+      "target": "E41",
+      "side": "above",
+      "level_um": 50,
+      "requested_incoming": "receding",
+      "initial_C_offset_m": 4.56e-05,
+      "prefix_actions_deg_deg_mm": [
+        [
+          0.0,
+          0.0,
+          0.003
+        ],
+        [
+          0.0,
+          0.0,
+          0.003
+        ]
+      ],
+      "teacher_steps": 32,
+      "designated_anchor_teacher_step": 0
+    },
+    {
+      "id": "E41_above_70_approaching",
+      "target": "E41",
+      "side": "above",
+      "level_um": 70,
+      "requested_incoming": "approaching",
+      "initial_C_offset_m": 7.44e-05,
+      "prefix_actions_deg_deg_mm": [
+        [
+          0.0,
+          0.0,
+          -0.003
+        ],
+        [
+          0.0,
+          0.0,
+          -0.003
+        ]
+      ],
+      "teacher_steps": 32,
+      "designated_anchor_teacher_step": 0
+    },
+    {
+      "id": "E41_above_70_receding",
+      "target": "E41",
+      "side": "above",
+      "level_um": 70,
+      "requested_incoming": "receding",
+      "initial_C_offset_m": 6.56e-05,
+      "prefix_actions_deg_deg_mm": [
+        [
+          0.0,
+          0.0,
+          0.003
+        ],
+        [
+          0.0,
+          0.0,
+          0.003
+        ]
+      ],
+      "teacher_steps": 32,
+      "designated_anchor_teacher_step": 0
+    }
+  ],
+  "max_teacher_branches": 24,
+  "max_collection_workers": 4,
+  "setup": "Fresh branch only: exact target task, fixed signed C initial offset,2 actual3um G10 ticks at50ms. Record from initial state; never reset velocity/history/previous command within branch. No adaptive search.",
+  "setup_offset_estimate_um": 4.4,
+  "preferred_anchor_distances_um": [
+    30,
+    50,
+    70
+  ],
+  "teacher": "Unchanged homog_replay_common.make_teacher + original PolicyEvaluator.evaluate_episode feedback acceptance/scales, .2/.1/.03 teacher caps, actual previous velocity",
+  "observation": "Original real RGB2/signed measured OCT/ABC/float32 encoder finite-difference velocity/previous ACCEPTED command. XYZ only setup, metadata, offline scores/groups.",
+  "direction_definition": {
+    "actual_C_velocity_min_abs_mm_s": 1e-06,
+    "radial_deadband_um_s": 0.02,
+    "measured": "(norm(OCT_t)-norm(OCT_tminus1))*1000/.05",
+    "independent": "(norm(siteXYZ_t-targetXYZ)-norm(siteXYZ_tminus1-targetXYZ))*1000/.05",
+    "moving": "actual|vC|>1e-6 AND measured and independent radial rates both beyond .02um/s in same direction",
+    "settled": "ALL actual encoder counts unchanged over preceding real interval; actual state delta exactly0; independent distance<=20um",
+    "ambiguous": "Everything else: save but do not select as FIRST window. Such actions remain future labels.",
+    "crossing": "Measured signedOCT Z sign change pre/post saved separately as action outcome; never defines incoming motion"
+  },
+  "data_gate": {
+    "pairs_per_target_side_min": 3,
+    "pairing": "Only predesignated teacher step0, same target/side/30,50,70level opposite-direction independent branches; no nearest-neighbor search",
+    "OCT_vector_L2_max_um": 5.0,
+    "true_and_measured_anchor_distance_um": [
+      20.0,
+      100.0
+    ],
+    "opposite_actual_C_signs": true,
+    "complete_real_history_min_frames": 2,
+    "future_contiguous_teacher_actions": 16,
+    "physical_hold": "Each target at least200 consecutive real intervals, pre/post independent error<=20um and ALL actual encoder counts unchanged; after that200-run at least16 REAL future teacher actions",
+    "hold_encoder_count_threshold": 0,
+    "hold_actual_state_displacement_threshold_rad_rad_m": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "strict_hold_separate": "abs(accepted_C)<=1e-9mm and abs(actual_vC)<=1e-6mm/s; nonzero-command settled separately counted",
+    "alignments": "RGB and lastpost observation real; t/t-1/accepted label and next motor interval; ABC units and actual encoder difference; independent XYZ norm; full16 unpadded same-episode teacher horizon",
+    "required_classes_per_target": [
+      "approaching",
+      "receding",
+      "settled"
+    ],
+    "failure": "Stop without training; preserve evidence; never loosen gate"
+  },
+  "windows": "All same-episode teacher starts with2 actual images and16 true future labels; ambiguous anchors saved but unselected; no padding/concatenation. Target and episode fully isolated between train/development.",
+  "train": {
+    "candidates": 1,
+    "seed": 20261126,
+    "optimizer_updates": 128,
+    "max_attempts": 144,
+    "AMP_skips_not_updates": true,
+    "optimizer": "AdamW",
+    "lr": 3e-05,
+    "weight_decay": 0.0001,
+    "batch": 4,
+    "clip": 1.0,
+    "AMP": "original FP16 autocast/dynamic GradScaler defaults",
+    "architecture": "Original v5 state_conditioned_temporal_attention_v1 DiT rectified flow, no changes",
+    "loss": "Original rectified_flow_loss all16x3 normalized velocity MSE",
+    "vision": "frozen/eval, all62 tensors unchanged; GroupNorm no BN drift",
+    "nonvision_parameters": 23164611,
+    "sampler": "Each slot: uniform3classes, uniform2measured target sides, uniform episode within side/class, uniform independent window within episode; replacement, original CPU seed. Long settled trajectories cannot dominate by count.",
+    "interpretation": "Data amount, coverage and sampling distribution change together; not a single-factor causal experiment"
+  },
+  "offline": {
+    "K": 1,
+    "flow_steps": 4,
+    "exec_steps": 1,
+    "batch": 1,
+    "precision": "FP32/no autocast",
+    "seeds": [
+      92001,
+      92002,
+      92003,
+      92004
+    ],
+    "flow_loss_seeds": [
+      91001,
+      91002,
+      91003,
+      91004
+    ],
+    "all_admitted_windows": true,
+    "groups": [
+      "all",
+      "approaching",
+      "receding",
+      "settled",
+      "teacher_C_nonzero",
+      "teacher_C_zero",
+      "below",
+      "above",
+      "settled_nonzero_command",
+      "strict_hold"
+    ],
+    "moving_aggregation": "approaching and receding group means weighted equally, regardless of independent window counts",
+    "production_caps_deg_deg_mm": [
+      0.2897999882698059,
+      0.14434358477592468,
+      0.04271206632256508
+    ],
+    "flow_loss_secondary_only": true,
+    "promotion": [
+      "E41 equal-motion-weighted C_MAE strictly decreases",
+      "E41 receding C_MAE strictly decreases",
+      "E41 all nonzero-teacher-C direction accuracy does not decrease",
+      "E41 all-window A_MAE does not increase",
+      "E41 all-window B_MAE does not increase",
+      "E41 settled C_MAE does not increase"
+    ],
+    "tolerance": "numeric zero tolerance; all4seeds retained; training reported separately"
+  },
+  "budgets_seconds": {
+    "total": 900,
+    "collection_including_data_gate": 600,
+    "training": 120,
+    "offline_before_plus_after": 180
+  },
+  "no_closed_loop": true,
+  "no_dev5": true,
+  "no_dev20": true,
+  "no_publication": true,
+  "reused_parity": [
+    "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261126/original_neural_terminal_pilot_v1/short_gate/first_input_parity.json",
+    "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261126/original_neural_terminal_pilot_v1/step0_parity.json",
+    "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261126/original_neural_terminal_pilot_v1/recovery_report_v1/checkpoint_training_audit.json"
+  ],
+  "new_parity": "Only one fresh-data production get_action versus standalone first-action check, no action executed",
+  "desktop": {
+    "DISPLAY": ":1",
+    "DBUS_SESSION_BUS_ADDRESS": "unix:path=/run/user/1000/bus",
+    "XDG_RUNTIME_DIR": "/run/user/1000"
+  }
+}

@@ -1,0 +1,290 @@
+{
+  "name": "dit_terminal_precision_campaign",
+  "created_at": "2026-11-26T22:40:17.025796+08:00",
+  "status": "frozen_before_preflight",
+  "hypothesis": "Fixed-noise differentiable original four-step RF first-action supervision with train-only local action scale; frozen vision and complete DiT backbone",
+  "acceptance": "independent MuJoCo postXYZ <=20um for 200 consecutive 50ms cycles; near four states then five standard targets each1600",
+  "budget_s": 2700,
+  "external_step_timeout_s": 900,
+  "max_candidates": 2,
+  "truth": "setup/offline scoring only",
+  "forbidden": [
+    "MLP/ridge/geometry controller",
+    "old measurement edits",
+    "upload",
+    "subagents"
+  ],
+  "launch": "one real GNOME launch; no polling afterwards",
+  "init_checkpoint": "/home/him1/mujoco_bc/rcm_4090_deploy/outputs/homog_label_fix_20261124_v5/homog_label_fix_20261124_v5_phase1_A/step_004000.pth",
+  "init_sha256": "6cc389df3786f1f34c43cf65d6dc17fe910ab342fae8d84c8e37cea6a7db6c11",
+  "near_task": {
+    "id": "E41",
+    "episode_index": 41,
+    "seed": 1041,
+    "regime": "T3",
+    "target_robot_mm": [
+      -1.3695654807400628,
+      6.588496568516707,
+      22.973909828421377
+    ],
+    "target_world_mm": [
+      349.2189832461999,
+      -12.630317456102267,
+      373.0088801232904
+    ],
+    "initial_state_si": [
+      -0.05985504851460952,
+      -0.038023251711698174,
+      0.019971079068627717
+    ],
+    "goal_state_si": [
+      -0.05954347970880375,
+      -0.0385895223852399,
+      0.019939183976147298
+    ],
+    "initial_error_um": 35.352419097552506,
+    "abc_offset_sign": [
+      -1,
+      1,
+      1
+    ],
+    "min_development_distance_um": 507.69805534735826
+  },
+  "targets": [
+    {
+      "task": {
+        "id": "E40",
+        "episode_index": 40,
+        "seed": 1040,
+        "regime": "T3",
+        "target_robot_mm": [
+          0.4367277917467681,
+          3.652696250194051,
+          23.605009145695448
+        ],
+        "target_world_mm": [
+          346.7111251543748,
+          -10.824024183615435,
+          371.35725739137047
+        ],
+        "initial_state_si": [
+          0.018810705738879198,
+          0.08616229754890467,
+          0.019858072541690124
+        ],
+        "goal_state_si": [
+          0.01849937731040504,
+          0.08672813134099054,
+          0.019889943026902168
+        ],
+        "initial_error_um": 35.423806823122376,
+        "abc_offset_sign": [
+          1,
+          -1,
+          -1
+        ],
+        "min_development_distance_um": 416.7194413864799
+      },
+      "role": "training_after_expansion"
+    },
+    {
+      "task": {
+        "id": "E41",
+        "episode_index": 41,
+        "seed": 1041,
+        "regime": "T3",
+        "target_robot_mm": [
+          -1.3695654807400628,
+          6.588496568516707,
+          22.973909828421377
+        ],
+        "target_world_mm": [
+          349.2189832461999,
+          -12.630317456102267,
+          373.0088801232904
+        ],
+        "initial_state_si": [
+          -0.05985504851460952,
+          -0.038023251711698174,
+          0.019971079068627717
+        ],
+        "goal_state_si": [
+          -0.05954347970880375,
+          -0.0385895223852399,
+          0.019939183976147298
+        ],
+        "initial_error_um": 35.352419097552506,
+        "abc_offset_sign": [
+          -1,
+          1,
+          1
+        ],
+        "min_development_distance_um": 507.69805534735826
+      },
+      "role": "selected_development_for_candidate1_then_explicitly_promoted_to_training_for_candidate2"
+    },
+    {
+      "task": {
+        "id": "E42",
+        "episode_index": 42,
+        "seed": 1042,
+        "regime": "T3",
+        "target_robot_mm": [
+          -2.9397154279549578,
+          8.360724108675214,
+          21.867631686235832
+        ],
+        "target_world_mm": [
+          350.47016467398396,
+          -14.20046740331716,
+          374.6819571737403
+        ],
+        "initial_state_si": [
+          -0.13439579508167637,
+          -0.12136996120087193,
+          0.01961773289038897
+        ],
+        "goal_state_si": [
+          -0.13363112045378228,
+          -0.12198000789850152,
+          0.0195952738908368
+        ],
+        "initial_error_um": 31.591609979501445,
+        "abc_offset_sign": [
+          -1,
+          1,
+          1
+        ],
+        "min_development_distance_um": 997.4996301375694
+      },
+      "role": "training_after_expansion"
+    }
+  ],
+  "architecture": {
+    "policy": "StateConditionedDiTRectifiedFlowPolicy original6block38416action",
+    "freeze": "vision.* frozen/eval, all nonvision parameters trainable",
+    "cache": "full original FP32 visual tokens [2,49,384]; original _condition and _predict_velocity reused including all original OCT branches",
+    "sampler": "original midpoint-in-time Euler RF four steps fixed_template_seed434341, K1,exec1",
+    "not_a_MLP": true
+  },
+  "scales": {
+    "ABC": "original global mean/std unchanged",
+    "OCT_valid_velocity_previous_accepted": "original global buffers and original extra branches preserved",
+    "action": "train-only first-action population mean/std; fixed floors [1e-4deg,1e-4deg,1e-5mm]",
+    "candidate2": "new registered E40-E42 training only; previous E41 development retired, no independent holdout claim"
+  },
+  "training": {
+    "candidate1_updates": 3000,
+    "candidate2_updates": 3000,
+    "actual_updates_required_minimum": 2000,
+    "batch": 8,
+    "precision": "FP32 no autocast/TF32; intentional numerical parity and direct sampler gradient stability",
+    "optimizer": "AdamW",
+    "lr": 3e-05,
+    "weight_decay": 0.0001,
+    "gradient_clip": 1.0,
+    "loss": "mean(((sample4step_first-accepted_same_tick)/train_action_std)^2) + 0.005 * original all16 rectified-flow MSE in same local output coordinates",
+    "primary_weight": 1.0,
+    "RF_aux_weight": 0.005,
+    "balanced_sampling": "class/side/episode/window uniform, existing pools_for/draw_batch",
+    "checkpoint": "every500 updates and finally, before metrics/report CPU/GPU operations",
+    "selection": "final3000 actual updates, no dev checkpoint selection",
+    "engineering_failure": "retain weights and failure; no science conclusion; all time charged"
+  },
+  "parity": {
+    "original_sampler": "all four intermediate states/velocities and final16 outputs,12real windows",
+    "cache": "full original online RGB2 vs cached tokens,12real windows; FP32 atol1e-6 rtol1e-5",
+    "expanded_cache": "one actual RGB2 window per real collection episode; compare original full sampler"
+  },
+  "near": {
+    "target": "E41",
+    "seed": 434341,
+    "states": [
+      "below_approaching",
+      "below_receding",
+      "above_approaching",
+      "above_receding"
+    ],
+    "gate": "original50+-1um start, two actual prefix ticks,nonzero actual incoming velocity, valid RGB2",
+    "cycles_each": 240,
+    "period_s": 0.05,
+    "strict": "all last200 postXYZ<=20um including final",
+    "concurrency": 4,
+    "baseline": "saved original neural_exec124_50um_v1 exec1 only, no rerun",
+    "offline_rejection_gate": false
+  },
+  "expansion": {
+    "condition": "any near strict pass OR >=2/4 last200max reductions>=20% AND geometric mean ratio<=0.8",
+    "target_ids": [
+      "E40",
+      "E41",
+      "E42"
+    ],
+    "role": "training only; E41 selected-development role retired after candidate1",
+    "exclude": "standard/development0..19 are never collected",
+    "branches": 36,
+    "teacher_steps_each": 80,
+    "sides": [
+      "below",
+      "above"
+    ],
+    "levels_um": [
+      20,
+      70,
+      140
+    ],
+    "motion": [
+      "approaching",
+      "receding",
+      "settled during final hold"
+    ],
+    "AB_perturbation_deg": 0.01,
+    "RGB2": "real continuous images,actual velocity,previous accepted,same-tick accepted label,16 horizon no padding",
+    "entry": "100um only after observed valid OCT 90..150um support>=4 windows on each training target; full original state/history preserved"
+  },
+  "standard": {
+    "dependency": "candidate2 all4 near strict pass and expansion coverage supports100um",
+    "targets": [
+      "E00",
+      "E02",
+      "E06",
+      "E08",
+      "E10"
+    ],
+    "seeds": [
+      42,
+      44,
+      48,
+      50,
+      52
+    ],
+    "cycles_each": 1600,
+    "period_s": 0.05,
+    "K": 1,
+    "exec": 1,
+    "flow_steps": 4,
+    "caps": "original DEFAULT_ACTION_LIMIT_DEG_DEG_MM",
+    "driver": "G10",
+    "start": "fresh production RCMSceneV9 constructor default, target set only; original first-cycle history warmup zero retained",
+    "route": "original v5 until valid observable OCT norm<=100um then fixed-noise near DiT, one-way no state/velocity/accepted/history reset",
+    "strict": "each all last200 independent postXYZ<=20um including final, all5 required",
+    "concurrency": 5
+  },
+  "stage_max_seconds": {
+    "candidate1_train_parity_cache": 860,
+    "near_each": 480,
+    "collection": 600,
+    "expanded_cache": 300,
+    "candidate2_train": 800,
+    "standard5": 900,
+    "total_shared_hard_limit": 2700
+  },
+  "reporting": {
+    "goal_achieved_separate": true,
+    "training_is_DiT_separate": true,
+    "reached20um_separate": true,
+    "only_first_batch": true,
+    "no_direction_termination_from_negative": true,
+    "TEST_LOG": "each test immediately append task and deployment root with locked fsync exact readback"
+  }
+}

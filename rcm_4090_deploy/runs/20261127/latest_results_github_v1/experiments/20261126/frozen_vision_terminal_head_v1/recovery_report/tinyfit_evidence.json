@@ -1,0 +1,967 @@
+{
+  "update_count": 512,
+  "sequence_contiguous": true,
+  "batch_all_match_selection": true,
+  "selection": [
+    244,
+    278,
+    312,
+    572,
+    606,
+    640,
+    0,
+    21,
+    329,
+    349
+  ],
+  "selected_windows": [
+    {
+      "index": 244,
+      "episode": "E40_below_30_receding",
+      "target": "E40",
+      "split": "train",
+      "teacher_step": 0,
+      "pre_observation": 2,
+      "post_observation": 3,
+      "time_s": 0.1,
+      "side": "below",
+      "registered_side": "below",
+      "level_um": 30,
+      "designated_anchor": true,
+      "signed_OCT_mm": [
+        0.0030093612149357796,
+        0.0025715988595038652,
+        0.030324021354317665,
+        1.0
+      ],
+      "measured_error_um": 30.581295700366834,
+      "true_error_um": 30.5249230096912,
+      "post_true_error_um": 29.522151808455373,
+      "previous_accepted": [
+        0.0,
+        0.0,
+        -0.003
+      ],
+      "accepted_label": [
+        -3.83967886886809e-05,
+        -1.8710980313680565e-07,
+        0.0013527343824572269
+      ],
+      "raw_teacher": [
+        -3.83967886886809e-05,
+        -1.8710980313680565e-07,
+        0.0013527343824572269
+      ],
+      "raw_minus_accepted": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "true_post_minus_pre_um": -1.0027712012358272,
+      "measured_crossing_outcome": false,
+      "actual_execution_delta": [
+        0.0,
+        0.0,
+        0.0010027777746586253
+      ],
+      "history_complete": true,
+      "future_teacher_actions": 32,
+      "eligible_first_window": true,
+      "excluded_reason": "",
+      "zero_teacher_C": false,
+      "strict_hold": false,
+      "settled_nonzero_command": false,
+      "input_class": "receding",
+      "actual_C_velocity_mm_s": -0.04794531235086108,
+      "incoming_XYZ_radial_um_s": 47.9449824761236,
+      "incoming_OCT_radial_um_s": 47.680459972770784,
+      "unchanged_encoders": false,
+      "unchanged_actual_state": false,
+      "window_index": 244,
+      "history_observation_indices": [
+        1,
+        2
+      ],
+      "action_teacher_steps_inclusive": [
+        0,
+        15
+      ],
+      "image_paths": [
+        "data/E40_below_30_receding/rgb/0001.png",
+        "data/E40_below_30_receding/rgb/0002.png"
+      ],
+      "padding": 0
+    },
+    {
+      "index": 278,
+      "episode": "E40_below_50_receding",
+      "target": "E40",
+      "split": "train",
+      "teacher_step": 0,
+      "pre_observation": 2,
+      "post_observation": 3,
+      "time_s": 0.1,
+      "side": "below",
+      "registered_side": "below",
+      "level_um": 50,
+      "designated_anchor": true,
+      "signed_OCT_mm": [
+        0.004875520709902048,
+        0.004237492103129625,
+        0.0501643568277359,
+        1.0
+      ],
+      "measured_error_um": 50.57855017156169,
+      "true_error_um": 50.51772830229117,
+      "post_true_error_um": 49.51495289584684,
+      "previous_accepted": [
+        0.0,
+        0.0,
+        -0.003
+      ],
+      "accepted_label": [
+        -2.6382959189125536e-05,
+        -6.832841730353209e-06,
+        0.0013527343824606963
+      ],
+      "raw_teacher": [
+        -2.6382959189125536e-05,
+        -6.832841730353209e-06,
+        0.0013527343824606963
+      ],
+      "raw_minus_accepted": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "true_post_minus_pre_um": -1.0027754064443286,
+      "measured_crossing_outcome": false,
+      "actual_execution_delta": [
+        0.0,
+        0.0,
+        0.0010027777746586253
+      ],
+      "history_complete": true,
+      "future_teacher_actions": 32,
+      "eligible_first_window": true,
+      "excluded_reason": "",
+      "zero_teacher_C": false,
+      "strict_hold": false,
+      "settled_nonzero_command": false,
+      "input_class": "receding",
+      "actual_C_velocity_mm_s": -0.04794531235079169,
+      "incoming_XYZ_radial_um_s": 47.9451958402835,
+      "incoming_OCT_radial_um_s": 47.487739767743534,
+      "unchanged_encoders": false,
+      "unchanged_actual_state": false,
+      "window_index": 278,
+      "history_observation_indices": [
+        1,
+        2
+      ],
+      "action_teacher_steps_inclusive": [
+        0,
+        15
+      ],
+      "image_paths": [
+        "data/E40_below_50_receding/rgb/0001.png",
+        "data/E40_below_50_receding/rgb/0002.png"
+      ],
+      "padding": 0
+    },
+    {
+      "index": 312,
+      "episode": "E40_below_70_receding",
+      "target": "E40",
+      "split": "train",
+      "teacher_step": 0,
+      "pre_observation": 2,
+      "post_observation": 3,
+      "time_s": 0.1,
+      "side": "below",
+      "registered_side": "below",
+      "level_um": 70,
+      "designated_anchor": true,
+      "signed_OCT_mm": [
+        0.006795689929276705,
+        0.005931500345468521,
+        0.0700150653719902,
+        1.0
+      ],
+      "measured_error_um": 70.59372122935032,
+      "true_error_um": 70.52624541213238,
+      "post_true_error_um": 69.52346884560885,
+      "previous_accepted": [
+        0.0,
+        0.0,
+        -0.003
+      ],
+      "accepted_label": [
+        -3.338986554003054e-05,
+        -3.4195994232648667e-06,
+        0.0013527343824572269
+      ],
+      "raw_teacher": [
+        -3.338986554003054e-05,
+        -3.4195994232648667e-06,
+        0.0013527343824572269
+      ],
+      "raw_minus_accepted": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "true_post_minus_pre_um": -1.0027765665235364,
+      "measured_crossing_outcome": false,
+      "actual_execution_delta": [
+        0.0,
+        0.0,
+        0.0010027777746586253
+      ],
+      "history_complete": true,
+      "future_teacher_actions": 32,
+      "eligible_first_window": true,
+      "excluded_reason": "",
+      "zero_teacher_C": false,
+      "strict_hold": false,
+      "settled_nonzero_command": false,
+      "input_class": "receding",
+      "actual_C_velocity_mm_s": -0.04794531235086108,
+      "incoming_XYZ_radial_um_s": 47.945253404938626,
+      "incoming_OCT_radial_um_s": 47.87626186740862,
+      "unchanged_encoders": false,
+      "unchanged_actual_state": false,
+      "window_index": 312,
+      "history_observation_indices": [
+        1,
+        2
+      ],
+      "action_teacher_steps_inclusive": [
+        0,
+        15
+      ],
+      "image_paths": [
+        "data/E40_below_70_receding/rgb/0001.png",
+        "data/E40_below_70_receding/rgb/0002.png"
+      ],
+      "padding": 0
+    },
+    {
+      "index": 572,
+      "episode": "E40_above_30_receding",
+      "target": "E40",
+      "split": "train",
+      "teacher_step": 0,
+      "pre_observation": 2,
+      "post_observation": 3,
+      "time_s": 0.1,
+      "side": "above",
+      "registered_side": "above",
+      "level_um": 30,
+      "designated_anchor": true,
+      "signed_OCT_mm": [
+        -0.0028195225168019533,
+        -0.0025968439877033234,
+        -0.030212529003620148,
+        1.0
+      ],
+      "measured_error_um": 30.45472401309545,
+      "true_error_um": 30.51956110779187,
+      "post_true_error_um": 29.516789908933703,
+      "previous_accepted": [
+        0.0,
+        0.0,
+        0.003
+      ],
+      "accepted_label": [
+        -2.6823902455974225e-05,
+        -1.1290031816091967e-05,
+        -0.0013527343824606963
+      ],
+      "raw_teacher": [
+        -2.6823902455974225e-05,
+        -1.1290031816091967e-05,
+        -0.0013527343824606963
+      ],
+      "raw_minus_accepted": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "true_post_minus_pre_um": -1.0027711988581665,
+      "measured_crossing_outcome": false,
+      "actual_execution_delta": [
+        0.0,
+        0.0,
+        -0.0010027777746550726
+      ],
+      "history_complete": true,
+      "future_teacher_actions": 32,
+      "eligible_first_window": true,
+      "excluded_reason": "",
+      "zero_teacher_C": false,
+      "strict_hold": false,
+      "settled_nonzero_command": false,
+      "input_class": "receding",
+      "actual_C_velocity_mm_s": 0.04794531235079169,
+      "incoming_XYZ_radial_um_s": 47.944982353139736,
+      "incoming_OCT_radial_um_s": 48.086546801390654,
+      "unchanged_encoders": false,
+      "unchanged_actual_state": false,
+      "window_index": 572,
+      "history_observation_indices": [
+        1,
+        2
+      ],
+      "action_teacher_steps_inclusive": [
+        0,
+        15
+      ],
+      "image_paths": [
+        "data/E40_above_30_receding/rgb/0001.png",
+        "data/E40_above_30_receding/rgb/0002.png"
+      ],
+      "padding": 0
+    },
+    {
+      "index": 606,
+      "episode": "E40_above_50_receding",
+      "target": "E40",
+      "split": "train",
+      "teacher_step": 0,
+      "pre_observation": 2,
+      "post_observation": 3,
+      "time_s": 0.1,
+      "side": "above",
+      "registered_side": "above",
+      "level_um": 50,
+      "designated_anchor": true,
+      "signed_OCT_mm": [
+        -0.004686577245593071,
+        -0.004252399783581495,
+        -0.05003528669476509,
+        1.0
+      ],
+      "measured_error_um": 50.43388568041977,
+      "true_error_um": 50.512366378931354,
+      "post_true_error_um": 49.50959097294571,
+      "previous_accepted": [
+        0.0,
+        0.0,
+        0.003
+      ],
+      "accepted_label": [
+        -3.7791376950015565e-05,
+        -1.5133162870699855e-06,
+        -0.0013527343824572269
+      ],
+      "raw_teacher": [
+        -3.7791376950015565e-05,
+        -1.5133162870699855e-06,
+        -0.0013527343824572269
+      ],
+      "raw_minus_accepted": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "true_post_minus_pre_um": -1.0027754059856449,
+      "measured_crossing_outcome": false,
+      "actual_execution_delta": [
+        0.0,
+        0.0,
+        -0.0010027777746586253
+      ],
+      "history_complete": true,
+      "future_teacher_actions": 32,
+      "eligible_first_window": true,
+      "excluded_reason": "",
+      "zero_teacher_C": false,
+      "strict_hold": false,
+      "settled_nonzero_command": false,
+      "input_class": "receding",
+      "actual_C_velocity_mm_s": 0.04794531235086108,
+      "incoming_XYZ_radial_um_s": 47.94519581591544,
+      "incoming_OCT_radial_um_s": 47.49650581683806,
+      "unchanged_encoders": false,
+      "unchanged_actual_state": false,
+      "window_index": 606,
+      "history_observation_indices": [
+        1,
+        2
+      ],
+      "action_teacher_steps_inclusive": [
+        0,
+        15
+      ],
+      "image_paths": [
+        "data/E40_above_50_receding/rgb/0001.png",
+        "data/E40_above_50_receding/rgb/0002.png"
+      ],
+      "padding": 0
+    },
+    {
+      "index": 640,
+      "episode": "E40_above_70_receding",
+      "target": "E40",
+      "split": "train",
+      "teacher_step": 0,
+      "pre_observation": 2,
+      "post_observation": 3,
+      "time_s": 0.1,
+      "side": "above",
+      "registered_side": "above",
+      "level_um": 70,
+      "designated_anchor": true,
+      "signed_OCT_mm": [
+        -0.006610601209104061,
+        -0.0059579345397651196,
+        -0.06987794488668442,
+        1.0
+      ],
+      "measured_error_um": 70.44234673768642,
+      "true_error_um": 70.52088348265833,
+      "post_true_error_um": 69.5181069163406,
+      "previous_accepted": [
+        0.0,
+        0.0,
+        0.003
+      ],
+      "accepted_label": [
+        -2.9245851960303292e-05,
+        -9.298174596692655e-06,
+        -0.0013527343824572269
+      ],
+      "raw_teacher": [
+        -2.9245851960303292e-05,
+        -9.298174596692655e-06,
+        -0.0013527343824572269
+      ],
+      "raw_minus_accepted": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "true_post_minus_pre_um": -1.0027765663177348,
+      "measured_crossing_outcome": false,
+      "actual_execution_delta": [
+        0.0,
+        0.0,
+        -0.0010027777746586253
+      ],
+      "history_complete": true,
+      "future_teacher_actions": 32,
+      "eligible_first_window": true,
+      "excluded_reason": "",
+      "zero_teacher_C": false,
+      "strict_hold": false,
+      "settled_nonzero_command": false,
+      "input_class": "receding",
+      "actual_C_velocity_mm_s": 0.04794531235086108,
+      "incoming_XYZ_radial_um_s": 47.94525339540144,
+      "incoming_OCT_radial_um_s": 47.43595754420266,
+      "unchanged_encoders": false,
+      "unchanged_actual_state": false,
+      "window_index": 640,
+      "history_observation_indices": [
+        1,
+        2
+      ],
+      "action_teacher_steps_inclusive": [
+        0,
+        15
+      ],
+      "image_paths": [
+        "data/E40_above_70_receding/rgb/0001.png",
+        "data/E40_above_70_receding/rgb/0002.png"
+      ],
+      "padding": 0
+    },
+    {
+      "index": 0,
+      "episode": "E40_below_30_approaching",
+      "target": "E40",
+      "split": "train",
+      "teacher_step": 0,
+      "pre_observation": 2,
+      "post_observation": 3,
+      "time_s": 0.1,
+      "side": "below",
+      "registered_side": "below",
+      "level_um": 30,
+      "designated_anchor": true,
+      "signed_OCT_mm": [
+        0.002913886681199074,
+        0.002491306746378541,
+        0.029283124953508377,
+        1.0
+      ],
+      "measured_error_um": 29.53301122368333,
+      "true_error_um": 29.475146919363898,
+      "post_true_error_um": 26.278817139991144,
+      "previous_accepted": [
+        0.0,
+        0.0,
+        0.003
+      ],
+      "accepted_label": [
+        -3.9849588075798166e-05,
+        2.724118123111467e-06,
+        0.004429920971365381
+      ],
+      "raw_teacher": [
+        -3.9849588075798166e-05,
+        2.724118123111467e-06,
+        0.004429920971365381
+      ],
+      "raw_minus_accepted": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "true_post_minus_pre_um": -3.1963297793727534,
+      "measured_crossing_outcome": false,
+      "actual_execution_delta": [
+        0.0,
+        0.0,
+        0.003196354156724368
+      ],
+      "history_complete": true,
+      "future_teacher_actions": 260,
+      "eligible_first_window": true,
+      "excluded_reason": "",
+      "zero_teacher_C": false,
+      "strict_hold": false,
+      "settled_nonzero_command": false,
+      "input_class": "approaching",
+      "actual_C_velocity_mm_s": 0.04794531235086108,
+      "incoming_XYZ_radial_um_s": -47.94501086478235,
+      "incoming_OCT_radial_um_s": -47.78634677483788,
+      "unchanged_encoders": false,
+      "unchanged_actual_state": false,
+      "window_index": 0,
+      "history_observation_indices": [
+        1,
+        2
+      ],
+      "action_teacher_steps_inclusive": [
+        0,
+        15
+      ],
+      "image_paths": [
+        "data/E40_below_30_approaching/rgb/0001.png",
+        "data/E40_below_30_approaching/rgb/0002.png"
+      ],
+      "padding": 0
+    },
+    {
+      "index": 21,
+      "episode": "E40_below_30_approaching",
+      "target": "E40",
+      "split": "train",
+      "teacher_step": 22,
+      "pre_observation": 24,
+      "post_observation": 25,
+      "time_s": 1.2000000000000004,
+      "side": "below",
+      "registered_side": "below",
+      "level_um": 30,
+      "designated_anchor": false,
+      "signed_OCT_mm": [
+        0.00047515230835415423,
+        0.0003143759386148304,
+        0.0038473166059702635,
+        1.0
+      ],
+      "measured_error_um": 3.8892733271767854,
+      "true_error_um": 3.8429771206991066,
+      "post_true_error_um": 3.8429771206991066,
+      "previous_accepted": [
+        -3.8792551503592086e-05,
+        -3.7926861382248233e-06,
+        0.0005831698467739788
+      ],
+      "accepted_label": [
+        -3.8792551503592086e-05,
+        -3.7926861382248233e-06,
+        0.0005831698467739788
+      ],
+      "raw_teacher": [
+        -3.8792551503592086e-05,
+        -3.7926861382248233e-06,
+        0.0005831698467739788
+      ],
+      "raw_minus_accepted": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "true_post_minus_pre_um": 0.0,
+      "measured_crossing_outcome": false,
+      "actual_execution_delta": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "history_complete": true,
+      "future_teacher_actions": 238,
+      "eligible_first_window": true,
+      "excluded_reason": "",
+      "zero_teacher_C": false,
+      "strict_hold": false,
+      "settled_nonzero_command": true,
+      "input_class": "settled",
+      "actual_C_velocity_mm_s": 0.0,
+      "incoming_XYZ_radial_um_s": 0.0,
+      "incoming_OCT_radial_um_s": 0.0,
+      "unchanged_encoders": true,
+      "unchanged_actual_state": true,
+      "window_index": 21,
+      "history_observation_indices": [
+        23,
+        24
+      ],
+      "action_teacher_steps_inclusive": [
+        22,
+        37
+      ],
+      "image_paths": [
+        "data/E40_below_30_approaching/rgb/0023.png",
+        "data/E40_below_30_approaching/rgb/0024.png"
+      ],
+      "padding": 0
+    },
+    {
+      "index": 329,
+      "episode": "E40_above_30_approaching",
+      "target": "E40",
+      "split": "train",
+      "teacher_step": 0,
+      "pre_observation": 2,
+      "post_observation": 3,
+      "time_s": 0.1,
+      "side": "above",
+      "registered_side": "above",
+      "level_um": 30,
+      "designated_anchor": true,
+      "signed_OCT_mm": [
+        -0.0027076988480985165,
+        -0.0024834303185343742,
+        -0.029202423989772797,
+        1.0
+      ],
+      "measured_error_um": 29.43264558406987,
+      "true_error_um": 29.485453316247963,
+      "post_true_error_um": 26.28912351877228,
+      "previous_accepted": [
+        0.0,
+        0.0,
+        -0.003
+      ],
+      "accepted_label": [
+        -3.2062380621209984e-05,
+        -1.3019522164043848e-06,
+        -0.004414876563971909
+      ],
+      "raw_teacher": [
+        -3.2062380621209984e-05,
+        -1.3019522164043848e-06,
+        -0.004414876563971909
+      ],
+      "raw_minus_accepted": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "true_post_minus_pre_um": -3.196329797475684,
+      "measured_crossing_outcome": false,
+      "actual_execution_delta": [
+        0.0,
+        0.0,
+        -0.0031963541567208154
+      ],
+      "history_complete": true,
+      "future_teacher_actions": 260,
+      "eligible_first_window": true,
+      "excluded_reason": "",
+      "zero_teacher_C": false,
+      "strict_hold": false,
+      "settled_nonzero_command": false,
+      "input_class": "approaching",
+      "actual_C_velocity_mm_s": -0.04794531235086108,
+      "incoming_XYZ_radial_um_s": -47.94501106603619,
+      "incoming_OCT_radial_um_s": -47.730893212267894,
+      "unchanged_encoders": false,
+      "unchanged_actual_state": false,
+      "window_index": 329,
+      "history_observation_indices": [
+        1,
+        2
+      ],
+      "action_teacher_steps_inclusive": [
+        0,
+        15
+      ],
+      "image_paths": [
+        "data/E40_above_30_approaching/rgb/0001.png",
+        "data/E40_above_30_approaching/rgb/0002.png"
+      ],
+      "padding": 0
+    },
+    {
+      "index": 349,
+      "episode": "E40_above_30_approaching",
+      "target": "E40",
+      "split": "train",
+      "teacher_step": 22,
+      "pre_observation": 24,
+      "post_observation": 25,
+      "time_s": 1.2000000000000004,
+      "side": "above",
+      "registered_side": "above",
+      "level_um": 30,
+      "designated_anchor": false,
+      "signed_OCT_mm": [
+        -0.0003024739562533796,
+        -0.000354152376530692,
+        -0.003791708964854479,
+        1.0
+      ],
+      "measured_error_um": 3.8202056586225472,
+      "true_error_um": 3.8532794752628843,
+      "post_true_error_um": 3.8532794752628843,
+      "previous_accepted": [
+        -2.221799500488952e-05,
+        -1.1267794490953313e-05,
+        -0.0005729383803498855
+      ],
+      "accepted_label": [
+        -2.221799500488952e-05,
+        -1.1267794490953313e-05,
+        -0.0005729383803498855
+      ],
+      "raw_teacher": [
+        -2.221799500488952e-05,
+        -1.1267794490953313e-05,
+        -0.0005729383803498855
+      ],
+      "raw_minus_accepted": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "true_post_minus_pre_um": 0.0,
+      "measured_crossing_outcome": false,
+      "actual_execution_delta": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "history_complete": true,
+      "future_teacher_actions": 238,
+      "eligible_first_window": true,
+      "excluded_reason": "",
+      "zero_teacher_C": false,
+      "strict_hold": false,
+      "settled_nonzero_command": true,
+      "input_class": "settled",
+      "actual_C_velocity_mm_s": 0.0,
+      "incoming_XYZ_radial_um_s": 0.0,
+      "incoming_OCT_radial_um_s": 0.0,
+      "unchanged_encoders": true,
+      "unchanged_actual_state": true,
+      "window_index": 349,
+      "history_observation_indices": [
+        23,
+        24
+      ],
+      "action_teacher_steps_inclusive": [
+        22,
+        37
+      ],
+      "image_paths": [
+        "data/E40_above_30_approaching/rgb/0023.png",
+        "data/E40_above_30_approaching/rgb/0024.png"
+      ],
+      "padding": 0
+    }
+  ],
+  "selected_window_count": 10,
+  "first_update": {
+    "time": "2026-11-26T22:18:45.549959+08:00",
+    "update": 1,
+    "loss": 0.3293592929840088,
+    "gradient_norm_before_clip": 0.1118537187576294,
+    "batch_indices": [
+      244,
+      278,
+      312,
+      572,
+      606,
+      640,
+      0,
+      21,
+      329,
+      349
+    ]
+  },
+  "final_update": {
+    "time": "2026-11-26T22:18:46.530527+08:00",
+    "update": 512,
+    "loss": 0.005666422192007303,
+    "gradient_norm_before_clip": 0.4409680962562561,
+    "batch_indices": [
+      244,
+      278,
+      312,
+      572,
+      606,
+      640,
+      0,
+      21,
+      329,
+      349
+    ]
+  },
+  "curve": [
+    {
+      "update": 128,
+      "loss": 0.04767563194036484,
+      "normalized_RMSE": [
+        0.056689970195293427,
+        0.04278992488980293,
+        0.3714595139026642
+      ],
+      "physical_MAE_deg_deg_mm": [
+        5.0341582209512126e-06,
+        3.877151812048396e-06,
+        0.0006996613810770214
+      ],
+      "C_MAE_um": 0.699661374092102,
+      "normalized_MSE_per_axis": [
+        0.003213752720743257,
+        0.0018309776720749765,
+        0.13798217046880357
+      ],
+      "physical_RMSE_deg_deg_mm": [
+        5.668996876318432e-06,
+        4.278992380883851e-06,
+        0.0008537837505399465
+      ],
+      "recomputed_loss": 0.04767563362054059,
+      "recomputed_C_MAE_um_from_mm": 0.6996613810770214,
+      "axis_gate": [
+        true,
+        true,
+        false
+      ],
+      "c_mae_gate": false,
+      "gate_pass": false
+    },
+    {
+      "update": 256,
+      "loss": 0.04710221663117409,
+      "normalized_RMSE": [
+        0.05500016361474991,
+        0.0387217253446579,
+        0.3698408305644989
+      ],
+      "physical_MAE_deg_deg_mm": [
+        4.834611445403425e-06,
+        3.614412662500399e-06,
+        0.0006936800782568753
+      ],
+      "C_MAE_um": 0.6936801075935364,
+      "normalized_MSE_per_axis": [
+        0.0030250179976492597,
+        0.0014993720136671218,
+        0.13678223995263838
+      ],
+      "physical_RMSE_deg_deg_mm": [
+        5.500016222532891e-06,
+        3.872172436646484e-06,
+        0.0008500632763572408
+      ],
+      "recomputed_loss": 0.04710220998798492,
+      "recomputed_C_MAE_um_from_mm": 0.6936800782568753,
+      "axis_gate": [
+        true,
+        true,
+        false
+      ],
+      "c_mae_gate": false,
+      "gate_pass": false
+    },
+    {
+      "update": 384,
+      "loss": 0.044778238981962204,
+      "normalized_RMSE": [
+        0.05416322499513626,
+        0.036514800041913986,
+        0.3606490194797516
+      ],
+      "physical_MAE_deg_deg_mm": [
+        4.593599896907108e-06,
+        3.311661657789955e-06,
+        0.0006706552812829614
+      ],
+      "C_MAE_um": 0.6706553101539612,
+      "normalized_MSE_per_axis": [
+        0.0029336549418737534,
+        0.0013333306221009616,
+        0.13006771525170624
+      ],
+      "physical_RMSE_deg_deg_mm": [
+        5.416322362685811e-06,
+        3.651479911947255e-06,
+        0.0008289362930697791
+      ],
+      "recomputed_loss": 0.04477823360522698,
+      "recomputed_C_MAE_um_from_mm": 0.6706552812829614,
+      "axis_gate": [
+        true,
+        true,
+        false
+      ],
+      "c_mae_gate": false,
+      "gate_pass": false
+    },
+    {
+      "update": 512,
+      "loss": 0.005876499228179455,
+      "normalized_RMSE": [
+        0.05204429477453232,
+        0.03302924707531929,
+        0.11760083585977554
+      ],
+      "physical_MAE_deg_deg_mm": [
+        4.377235654828837e-06,
+        2.7378353024687385e-06,
+        0.00025840182206593454
+      ],
+      "C_MAE_um": 0.2584018111228943,
+      "normalized_MSE_per_axis": [
+        0.002708608618578412,
+        0.0010909311623624879,
+        0.01382995659491787
+      ],
+      "physical_RMSE_deg_deg_mm": [
+        5.204429345978285e-06,
+        3.3029246240930327e-06,
+        0.00027030047407347255
+      ],
+      "recomputed_loss": 0.005876498791952923,
+      "recomputed_C_MAE_um_from_mm": 0.25840182206593454,
+      "axis_gate": [
+        true,
+        true,
+        false
+      ],
+      "c_mae_gate": false,
+      "gate_pass": false
+    }
+  ],
+  "scope": "10 E40 fixed full-batch windows only; not 657-window train metrics or E41 offline",
+  "loss_timing": "updates.jsonl loss is pre-optimizer; metrics is post-optimizer full selected batch",
+  "recomputation_limit": "Saved aggregate metrics only; no predictions/residuals or final head available for independent per-example recomputation"
+}

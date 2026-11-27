@@ -1,0 +1,158 @@
+{
+  "preflight": {
+    "status": "passed",
+    "time": "2026-11-26T22:16:58.423154+08:00",
+    "executable": "/home/him1/mujoco_bc/rcm_4090_deploy/.venv/bin/python",
+    "gpu": "NVIDIA GeForce RTX 4090",
+    "checkpoint_sha256": "6cc389df3786f1f34c43cf65d6dc17fe910ab342fae8d84c8e37cea6a7db6c11",
+    "hashed_files": 243,
+    "windows": {
+      "train": 657,
+      "development_E41": 657
+    },
+    "head_parameters": 112323,
+    "state_dim": 20,
+    "visual_dim": 1536,
+    "duplicate_execution": false,
+    "model_forward_calls": 0,
+    "simulation_cycles": 0,
+    "old_failure_preserved": true
+  },
+  "shapes": {
+    "original_vision_forward": [
+      1,
+      2,
+      49,
+      384
+    ],
+    "original_project_feature_maps": [
+      [
+        2,
+        384,
+        7,
+        7
+      ],
+      [
+        16,
+        384,
+        7,
+        7
+      ]
+    ],
+    "head_visual_features": [
+      null,
+      1536
+    ],
+    "state": [
+      null,
+      20
+    ],
+    "action": [
+      null,
+      3
+    ],
+    "FP32": true
+  },
+  "scales": {
+    "state_mean": [
+      0.06349938362836838,
+      0.363604873418808,
+      12.981619834899902
+    ],
+    "state_std": [
+      6.787475109100342,
+      5.752523899078369,
+      6.081380844116211
+    ],
+    "velocity_mean": [
+      0.004034513141959906,
+      -0.003496601479128003,
+      0.4751315414905548
+    ],
+    "velocity_std": [
+      0.6506950259208679,
+      0.4250059723854065,
+      0.24601227045059204
+    ],
+    "previous_action_mean": [
+      0.00024240043421741575,
+      -0.0001381530601065606,
+      0.033337727189064026
+    ],
+    "previous_action_std": [
+      0.045525968074798584,
+      0.029723668470978737,
+      0.01701800711452961
+    ],
+    "action_mean": [
+      -3.1076287996256724e-05,
+      -6.424108505598269e-06,
+      6.940580078662606e-06
+    ],
+    "action_std_unfloored": [
+      7.998400178621523e-06,
+      5.065904133516597e-06,
+      0.002298457082360983
+    ],
+    "action_std": [
+      9.999999747378752e-05,
+      9.999999747378752e-05,
+      0.002298457082360983
+    ],
+    "action_std_floor": [
+      9.999999747378752e-05,
+      9.999999747378752e-05,
+      9.999999747378752e-06
+    ],
+    "action_units": [
+      "deg",
+      "deg",
+      "mm"
+    ],
+    "action_statistics_source": "E40 first accepted action only; no E41 statistics",
+    "action_std_definition": "population std correction0",
+    "floor_reason": "Fixed absolute floors: 0.0001deg on A/B and0.00001mm=0.01um on C, prevent near-zero label variance from ill-conditioned normalized targets; no E41 statistics",
+    "OCT_xyz_scale_mm": 0.1,
+    "valid_preserved": true,
+    "state_dimension": 20,
+    "state_layout": [
+      "ABC_tminus1(3)",
+      "ABC_t(3)",
+      "OCT_tminus1_xyz+valid(4)",
+      "OCT_t_xyz+valid(4)",
+      "finite_difference_velocity_current(3)",
+      "previous_acceptedABC(3)"
+    ]
+  },
+  "parameter_count_from_saved_inventory": 112323,
+  "parity_status": "passed",
+  "parity_checks": 12,
+  "max_feature_abs": 1.8998980522155762e-07,
+  "max_normalized_action_abs": 2.532466680804646e-08,
+  "max_production_action_abs": 0.0,
+  "artifacts_exist": {
+    "initial_head.pth": true,
+    "spatial_softmax_cache.pt": true,
+    "tinyfit_result.json": false,
+    "tinyfit_checkpoint.pth": false,
+    "tinyfit_failure_gradients_weights.pt": false,
+    "tinyfit_interrupted_gradients_weights.pt": false,
+    "formal_checkpoint.pth": false,
+    "candidate.pth": false,
+    "formal_updates.jsonl": false,
+    "offline_gate.json": false
+  },
+  "saved_tensor_files": [
+    "initial_head.pth",
+    "spatial_softmax_cache.pt"
+  ],
+  "traceback": "Traceback (most recent call last):\n  File \"/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261126/frozen_vision_terminal_head_v1/pilot.py\", line 300, in train_stage\n    changes={n:float((p.detach().cpu()-initial[n]).abs().max()) for n,p in net.head.named_parameters()}\n                      ~~~~~~~~~~~~~~~~^~~~~~~~~~~\nRuntimeError: Expected all tensors to be on the same device, but found at least two devices, cuda:0 and cpu!\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \"/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261126/frozen_vision_terminal_head_v1/pilot.py\", line 450, in run\n    passed,tiny=train_stage(net,initial,data['train'],cache['train'],manifest['train'],sampler,tiny=True)\n                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261126/frozen_vision_terminal_head_v1/pilot.py\", line 313, in train_stage\n    torch.save(dict(gradients=last_grads,weight_deltas={n:p.detach().cpu()-initial[n] for n,p in net.head.named_parameters()},last_update=PROGRESS['tinyfit_updates' if tiny else 'formal_updates']),OUT/f'{name}_interrupted_gradients_weights.pt')\n                                                          ~~~~~~~~~~~~~~~~^~~~~~~~~~~\nRuntimeError: Expected all tensors to be on the same device, but found at least two devices, cuda:0 and cpu!\n",
+  "traceback_observed_lines": [
+    300,
+    313
+  ],
+  "same_latent_reporting_bug_line": 304,
+  "initial_source": "deepcopy(net.head.state_dict()) on CUDA, saved before training",
+  "tensor_recovery": "Final trained head, final gradients, optimizer state and weight deltas were not saved; cannot recover from initial weights, scalar metrics or cached features without forbidden replay.",
+  "other_training_issues": "No additional failure is evidenced by the existing traceback. Reporting errors prevented later save paths and formal/offline paths from executing; this audit does not certify unexecuted training code."
+}

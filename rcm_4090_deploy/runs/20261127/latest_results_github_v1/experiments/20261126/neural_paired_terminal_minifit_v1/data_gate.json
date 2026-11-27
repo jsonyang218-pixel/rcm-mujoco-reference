@@ -1,0 +1,87 @@
+{
+  "status": "passed",
+  "time": "2026-11-26T15:04:48.437982+08:00",
+  "raw": {
+    "status": "passed",
+    "time": "2026-11-26T15:04:05.677619+08:00",
+    "checks": {
+      "all_alignments": true,
+      "all12_registered_pairs_pass": true,
+      "pairs3_each_target_side": true,
+      "hold200_plus16_each_target": true,
+      "each_class_and_side_nonempty": true,
+      "whole_target_split": true,
+      "no_cross_episode_horizons": true,
+      "no_padding": true,
+      "real_lastpost_observation": true
+    },
+    "counts": {
+      "E40": {
+        "approaching": 205,
+        "settled": 446,
+        "receding": 6
+      },
+      "E41": {
+        "approaching": 210,
+        "settled": 441,
+        "receding": 6
+      }
+    },
+    "teacher_states": 1680,
+    "eligible_windows": 1314,
+    "exclusions": {
+      "ambiguous_incoming_motion": 6,
+      "insufficient_future": 360
+    },
+    "paired_anchors": 12,
+    "pair_evidence": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261126/neural_paired_terminal_minifit_v1/paired_anchor_evidence.json",
+    "hold_evidence": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261126/neural_paired_terminal_minifit_v1/hold_gate_evidence.json",
+    "alignment_check_count": 19056,
+    "alignment_mismatches": 0,
+    "class_counts_include_repeated_draws": false
+  },
+  "preprocessing": {
+    "status": "passed",
+    "images_reprocessed_bit_exact": 1342,
+    "max_float32_velocity_minus_actual_deg_deg_mm_s": [
+      0.0,
+      0.0,
+      3.5779997308305056e-05
+    ],
+    "normalization": "Original checkpoint statistics unchanged; production model applies normalization internally",
+    "dataset_sha256": "b264b9de814fce755b43ddfd45f8a09ba882cfe239e4b38642b6d1d1bde38ff8",
+    "split_window_counts": {
+      "train": 657,
+      "development_E41": 657
+    }
+  },
+  "new_entry_parity": {
+    "status": "passed",
+    "time": "2026-11-26T15:04:48.339579+08:00",
+    "episode": "E40_below_30_approaching",
+    "teacher_step": 0,
+    "sample_seed": 92001,
+    "input_max_abs_difference": 0.0,
+    "first_action_max_abs_difference": 0.0,
+    "physical_first_action_deg_deg_mm": [
+      0.0007247860194183886,
+      -0.0012727982830256224,
+      0.0034033190459012985
+    ],
+    "production_clipped_first_action_deg_deg_mm": [
+      0.0007247860194183886,
+      -0.0012727982830256224,
+      0.0034033190459012985
+    ],
+    "original_production_entry": "PolicyEvaluator.get_action; unchanged graph/K1/flow4/exec1",
+    "neural_samples": 2,
+    "executed_motor_commands": 0,
+    "closed_loop_cycles": 0,
+    "reused_evidence": [
+      "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261126/original_neural_terminal_pilot_v1/short_gate/first_input_parity.json",
+      "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261126/original_neural_terminal_pilot_v1/step0_parity.json",
+      "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261126/original_neural_terminal_pilot_v1/recovery_report_v1/checkpoint_training_audit.json"
+    ]
+  },
+  "all_evidence_saved": true
+}

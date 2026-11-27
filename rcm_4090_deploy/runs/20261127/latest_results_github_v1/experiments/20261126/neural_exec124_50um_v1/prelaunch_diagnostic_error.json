@@ -1,0 +1,11 @@
+{
+  "time": "2026-11-26T15:59:17.254766+08:00",
+  "stage": "prelaunch_readback_diagnostic_only",
+  "error": "TypeError: dict() got multiple values for keyword argument 'status'",
+  "cause": "verification shell snippet used dict(**checks, status=checks['status']); duplicate reporting keyword",
+  "training_updates": 0,
+  "model_calls": 0,
+  "simulation_cycles": 0,
+  "experiment_launch_attempts": 0,
+  "existing_artifacts_modified": false
+}

@@ -1,0 +1,147 @@
+{
+  "status": "actual_first_action_completed",
+  "time": "2026-11-26T10:11:41.047471+08:00",
+  "pid": 328489,
+  "short_gate": "2/2 cycles passed",
+  "production_input_action_parity": "bit_exact",
+  "receipt": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261126/original_neural_terminal_pilot_v1/short_gate/actual_first_action.json",
+  "first_action": {
+    "status": "actual_first_action_completed",
+    "time": "2026-11-26T10:11:40.584202+08:00",
+    "post_action_cycle": 1,
+    "post_true_error_um": 38.04145986150602,
+    "input": {
+      "state": [
+        -3.411,
+        -2.211011213911128,
+        19.90178578877778
+      ],
+      "oct": [
+        0.006420920602977276,
+        -0.001638061716221273,
+        0.03687034547328949,
+        1.0
+      ],
+      "time_s": 1.3000000000000005,
+      "actual_velocity_si": [
+        0.0,
+        0.0,
+        -4.387152764122326e-05
+      ],
+      "previous_accepted": [
+        0.0,
+        0.0,
+        -0.003000000026077032
+      ],
+      "rgb_sha256": "4bfaf8e57285d745eb0e8c765787502049add23ebf6f8cab72e9a0779b3773a8",
+      "raw_model_action": [
+        -0.0012641837820410728,
+        -0.0032021573279052973,
+        -0.0007222816348075867
+      ]
+    },
+    "event": {
+      "step": 0,
+      "error_before_mm": 0.03739906803490367,
+      "raw_action_deg_deg_mm": [
+        -0.0012641837820410728,
+        -0.0032021573279052973,
+        -0.0007222816348075867
+      ],
+      "clipped_action_deg_deg_mm": [
+        -0.0012641837820410728,
+        -0.0032021573279052973,
+        -0.0007222816348075867
+      ],
+      "accepted_action_deg_deg_mm": [
+        -0.0012641837820410728,
+        -0.0032021573279052973,
+        -0.0007222816348075867
+      ],
+      "safety_limited": false,
+      "safety_scale": 1.0,
+      "safety_limited_streak": 0,
+      "motor_record": {
+        "driver": {
+          "variant": "g10",
+          "control_gear": 10,
+          "kinematics_path": "/home/him1/mujoco_bc/rcm_4090_deploy/mujoco_model/vendor/simulation_driver/ros_msg/src/robot_control/kinematics.py",
+          "kinematics_sha256": "e48eb4a909208e8d1caa3ee2a7aff157de91c808730282dd17ccb17a46591530"
+        },
+        "step_index": 26,
+        "start_time_s": 1.3000000000000005,
+        "end_time_s": 1.3500000000000005,
+        "duration_s": 0.05,
+        "integration_steps": 25,
+        "tau_s": 0.04,
+        "requested_task_rad_rad_m": [
+          -0.059555244954873514,
+          -0.03864531366980464,
+          0.01990106350714297
+        ],
+        "commanded_task_rad_rad_m": [
+          -0.05953318078552658,
+          -0.038589425481265836,
+          0.01990089268982222
+        ],
+        "requested_robot_ABCE": [
+          -1896,
+          1278336,
+          2163658,
+          0
+        ],
+        "handles_ABCE": [
+          0,
+          0,
+          44,
+          0
+        ],
+        "quantized_target_robot_ABCE": [
+          -1895,
+          1278604,
+          2163647,
+          0
+        ],
+        "actual_before_robot_ABCE": [
+          -1895,
+          1278604,
+          2163704,
+          0
+        ],
+        "actual_after_robot_ABCE": [
+          -1895,
+          1278604,
+          2163663,
+          0
+        ],
+        "actual_before_task_rad_rad_m": [
+          -0.05953318078552658,
+          -0.038589425481265836,
+          0.01990178578877778
+        ],
+        "actual_after_task_rad_rad_m": [
+          -0.05953318078552658,
+          -0.038589425481265836,
+          0.019901143384265886
+        ],
+        "actual_velocity_rad_rad_m_per_s": [
+          0.0,
+          0.0,
+          -1.2848090237896348e-05
+        ],
+        "tip_rcm_radius_before_mm": 23.901785658416667,
+        "tip_rcm_radius_after_mm": 23.90114325390478,
+        "tip_displacement_um": 0.6424045118856642,
+        "status": "moving",
+        "fault": null
+      }
+    },
+    "encoder_after": [
+      -1895,
+      1278604,
+      2163663,
+      0
+    ]
+  },
+  "workflow_continues": true
+}

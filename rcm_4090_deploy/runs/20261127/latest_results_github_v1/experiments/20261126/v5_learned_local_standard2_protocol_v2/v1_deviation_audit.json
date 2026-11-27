@@ -1,0 +1,500 @@
+{
+  "v1_classification": "Restricted-action control; not a matched standard-v5 acceptance",
+  "v1_preserved": true,
+  "targets": {
+    "E06": {
+      "archive_contract": {
+        "version": 2,
+        "controller_variant": "feedback",
+        "rgbd_render_quality": {
+          "offsamples": 0,
+          "numslices": 112,
+          "numstacks": 64
+        },
+        "execution_backend": "MotorBackend",
+        "control_period_s": 0.05,
+        "state_action_units": "A_deg,B_deg,C_mm",
+        "rgb_preprocessing": "1920x1440 -> 224x224 bilinear",
+        "ground_truth_used_for_control": false,
+        "ground_truth_used_for_success": true,
+        "require_motor_settled_for_success": true,
+        "terminal_condition": "MotorExecution.settled",
+        "success_definition": "error_threshold_and_three_consecutive_MotorExecution.settled_frames",
+        "success_error_threshold_mm": 0.00035,
+        "stop_on_success": false,
+        "success_error_threshold_um": 0.35,
+        "required_consecutive_success_frames": 3,
+        "early_stop_error_mm": 30.0,
+        "max_consecutive_safety_limited": null,
+        "oct_navigation_used": true,
+        "action_limit_deg_deg_mm": [
+          0.2897999882698059,
+          0.14434358477592468,
+          0.04271206632256508
+        ],
+        "num_action_samples": 1,
+        "action_aggregation": "single_sample",
+        "flow_integration_steps": 4,
+        "model_epoch": 3,
+        "policy_type": "dit_rectified_flow",
+        "model_train_loss": 0.10375335215777158,
+        "model_val_loss": 0.14806195978316472,
+        "model_best_normalized_mae": null,
+        "fine_model": null,
+        "fine_switch_error_mm": null,
+        "terminal_refine_error_mm": null,
+        "terminal_confirm_frames": 8
+      },
+      "first24_checks": {
+        "raw_actions": {
+          "first_difference_action_cycle": 8,
+          "v1": [
+            -0.23670920729637146,
+            0.11770316958427429,
+            0.028714066371321678
+          ],
+          "archive": [
+            -0.23684333264827728,
+            0.1180206686258316,
+            0.028746865689754486
+          ]
+        },
+        "actions": {
+          "first_difference_action_cycle": 7,
+          "v1": [
+            -0.19694341719150543,
+            0.1,
+            0.024788953363895416
+          ],
+          "archive": [
+            -0.19694341719150543,
+            0.10097450762987137,
+            0.024788953363895416
+          ]
+        },
+        "states": {
+          "first_difference_action_cycle": 9,
+          "v1": [
+            -0.6156,
+            0.3303161220039428,
+            0.07177695290169392
+          ],
+          "archive": [
+            -0.6372,
+            0.34102484160503366,
+            0.07177695290169392
+          ]
+        },
+        "errors": {
+          "first_difference_action_cycle": 9,
+          "v1": 19.719521929894583,
+          "archive": 19.719261227783516
+        },
+        "velocities": {
+          "first_difference_action_cycle": 9,
+          "v1": [
+            -2.952,
+            1.4780206072897784,
+            0.4048715265181775
+          ],
+          "archive": [
+            -3.3839999999999986,
+            1.6921949993115957,
+            0.4048715265181775
+          ]
+        },
+        "motor_requested_task_rad_rad_m": {
+          "first_difference_action_cycle": 7,
+          "v1": [
+            -0.0091235937731181,
+            0.004978147522388473,
+            5.835067200948118e-05
+          ],
+          "archive": [
+            -0.0091235937731181,
+            0.004995155889115535,
+            5.835067200948118e-05
+          ]
+        },
+        "motor_actual_after_task_rad_rad_m": {
+          "first_difference_action_cycle": 8,
+          "v1": [
+            -0.010744246875277093,
+            0.0057651039013880915,
+            7.177695290169392e-05
+          ],
+          "archive": [
+            -0.011121237993707867,
+            0.005952006317099981,
+            7.177695290169392e-05
+          ]
+        },
+        "motor_actual_velocity_rad_rad_m_per_s": {
+          "first_difference_action_cycle": 8,
+          "v1": [
+            -0.0515221195188726,
+            0.025796326009532734,
+            0.0004048715265181775
+          ],
+          "archive": [
+            -0.05906194188748808,
+            0.029534374323770523,
+            0.0004048715265181775
+          ]
+        },
+        "motor_actual_after_robot_ABCE": {
+          "first_difference_action_cycle": 8,
+          "v1": [
+            -342,
+            1494408,
+            898099,
+            0
+          ],
+          "archive": [
+            -354,
+            1495330,
+            898099,
+            0
+          ]
+        }
+      },
+      "first_motor_record": {
+        "driver": {
+          "variant": "g10",
+          "control_gear": 10,
+          "kinematics_path": "/home/him1/mujoco_bc/rcm_4090_deploy/mujoco_model/vendor/simulation_driver/ros_msg/src/robot_control/kinematics.py",
+          "kinematics_sha256": "e48eb4a909208e8d1caa3ee2a7aff157de91c808730282dd17ccb17a46591530"
+        },
+        "step_index": 0,
+        "start_time_s": 0.0,
+        "end_time_s": 0.05,
+        "duration_s": 0.05,
+        "integration_steps": 25,
+        "tau_s": 0.04,
+        "requested_task_rad_rad_m": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "commanded_task_rad_rad_m": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "requested_robot_ABCE": [
+          0,
+          1466018,
+          893518,
+          0
+        ],
+        "handles_ABCE": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "quantized_target_robot_ABCE": [
+          0,
+          1466018,
+          893518,
+          0
+        ],
+        "actual_before_robot_ABCE": [
+          0,
+          1466018,
+          893518,
+          0
+        ],
+        "actual_after_robot_ABCE": [
+          0,
+          1466018,
+          893518,
+          0
+        ],
+        "actual_before_task_rad_rad_m": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "actual_after_task_rad_rad_m": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "actual_velocity_rad_rad_m_per_s": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "tip_rcm_radius_before_mm": 3.99999986963889,
+        "tip_rcm_radius_after_mm": 3.99999986963889,
+        "tip_displacement_um": 0.0,
+        "status": "holding",
+        "fault": null
+      },
+      "cycle7_clipped": [
+        -0.19694341719150543,
+        0.1,
+        0.024788953363895416
+      ],
+      "cycle7_accepted": [
+        -0.19694341719150543,
+        0.1,
+        0.024788953363895416
+      ],
+      "cycle7_model_raw": [
+        -0.19694341719150543,
+        0.10097450762987137,
+        0.024788953363895416
+      ]
+    },
+    "E08": {
+      "archive_contract": {
+        "version": 2,
+        "controller_variant": "feedback",
+        "rgbd_render_quality": {
+          "offsamples": 0,
+          "numslices": 112,
+          "numstacks": 64
+        },
+        "execution_backend": "MotorBackend",
+        "control_period_s": 0.05,
+        "state_action_units": "A_deg,B_deg,C_mm",
+        "rgb_preprocessing": "1920x1440 -> 224x224 bilinear",
+        "ground_truth_used_for_control": false,
+        "ground_truth_used_for_success": true,
+        "require_motor_settled_for_success": true,
+        "terminal_condition": "MotorExecution.settled",
+        "success_definition": "error_threshold_and_three_consecutive_MotorExecution.settled_frames",
+        "success_error_threshold_mm": 0.00035,
+        "stop_on_success": false,
+        "success_error_threshold_um": 0.35,
+        "required_consecutive_success_frames": 3,
+        "early_stop_error_mm": 30.0,
+        "max_consecutive_safety_limited": null,
+        "oct_navigation_used": true,
+        "action_limit_deg_deg_mm": [
+          0.2897999882698059,
+          0.14434358477592468,
+          0.04271206632256508
+        ],
+        "num_action_samples": 1,
+        "action_aggregation": "single_sample",
+        "flow_integration_steps": 4,
+        "model_epoch": 3,
+        "policy_type": "dit_rectified_flow",
+        "model_train_loss": 0.10375335215777158,
+        "model_val_loss": 0.14806195978316472,
+        "model_best_normalized_mae": null,
+        "fine_model": null,
+        "fine_switch_error_mm": null,
+        "terminal_refine_error_mm": null,
+        "terminal_confirm_frames": 8
+      },
+      "first24_checks": {
+        "raw_actions": {
+          "first_difference_action_cycle": 8,
+          "v1": [
+            -0.2489980310201645,
+            -0.12827886641025543,
+            0.034801531583070755
+          ],
+          "archive": [
+            -0.2719135880470276,
+            -0.13470102846622467,
+            0.03683766350150108
+          ]
+        },
+        "actions": {
+          "first_difference_action_cycle": 7,
+          "v1": [
+            -0.2,
+            -0.1,
+            0.029999785125255585
+          ],
+          "archive": [
+            -0.23132917284965515,
+            -0.10204869508743286,
+            0.029999785125255585
+          ]
+        },
+        "states": {
+          "first_difference_action_cycle": 8,
+          "v1": [
+            -0.54,
+            -0.23454996356707628,
+            0.06430312479994583
+          ],
+          "archive": [
+            -0.5634,
+            -0.23990120421222372,
+            0.06430312479994583
+          ]
+        },
+        "errors": {
+          "first_difference_action_cycle": 8,
+          "v1": 19.539811193911085,
+          "archive": 19.539564323641315
+        },
+        "velocities": {
+          "first_difference_action_cycle": 8,
+          "v1": [
+            -2.9160000000000004,
+            -1.3921716613567985,
+            0.4264939222842411
+          ],
+          "archive": [
+            -3.3840000000000012,
+            -1.4991964742597474,
+            0.4264939222842411
+          ]
+        },
+        "motor_requested_task_rad_rad_m": {
+          "first_difference_action_cycle": 7,
+          "v1": [
+            -0.010370746415350306,
+            -0.004624099414490772,
+            7.297821381098936e-05
+          ],
+          "archive": [
+            -0.010917543633503203,
+            -0.004659855889135909,
+            7.297821381098936e-05
+          ]
+        },
+        "motor_actual_after_task_rad_rad_m": {
+          "first_difference_action_cycle": 7,
+          "v1": [
+            -0.00942477796076938,
+            -0.004093669124678225,
+            6.430312479994583e-05
+          ],
+          "archive": [
+            -0.009833185005736053,
+            -0.004187065893002593,
+            6.430312479994583e-05
+          ]
+        },
+        "motor_actual_velocity_rad_rad_m_per_s": {
+          "first_difference_action_cycle": 7,
+          "v1": [
+            -0.05089380098815465,
+            -0.02429797924363564,
+            0.0004264939222842411
+          ],
+          "archive": [
+            -0.05906194188748813,
+            -0.02616591461012301,
+            0.0004264939222842411
+          ]
+        },
+        "motor_actual_after_robot_ABCE": {
+          "first_difference_action_cycle": 7,
+          "v1": [
+            -300,
+            1445918,
+            897622,
+            0
+          ],
+          "archive": [
+            -313,
+            1445460,
+            897622,
+            0
+          ]
+        }
+      },
+      "first_motor_record": {
+        "driver": {
+          "variant": "g10",
+          "control_gear": 10,
+          "kinematics_path": "/home/him1/mujoco_bc/rcm_4090_deploy/mujoco_model/vendor/simulation_driver/ros_msg/src/robot_control/kinematics.py",
+          "kinematics_sha256": "e48eb4a909208e8d1caa3ee2a7aff157de91c808730282dd17ccb17a46591530"
+        },
+        "step_index": 0,
+        "start_time_s": 0.0,
+        "end_time_s": 0.05,
+        "duration_s": 0.05,
+        "integration_steps": 25,
+        "tau_s": 0.04,
+        "requested_task_rad_rad_m": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "commanded_task_rad_rad_m": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "requested_robot_ABCE": [
+          0,
+          1466018,
+          893518,
+          0
+        ],
+        "handles_ABCE": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "quantized_target_robot_ABCE": [
+          0,
+          1466018,
+          893518,
+          0
+        ],
+        "actual_before_robot_ABCE": [
+          0,
+          1466018,
+          893518,
+          0
+        ],
+        "actual_after_robot_ABCE": [
+          0,
+          1466018,
+          893518,
+          0
+        ],
+        "actual_before_task_rad_rad_m": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "actual_after_task_rad_rad_m": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "actual_velocity_rad_rad_m_per_s": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "tip_rcm_radius_before_mm": 3.99999986963889,
+        "tip_rcm_radius_after_mm": 3.99999986963889,
+        "tip_displacement_um": 0.0,
+        "status": "holding",
+        "fault": null
+      },
+      "cycle7_clipped": [
+        -0.2,
+        -0.1,
+        0.029999785125255585
+      ],
+      "cycle7_accepted": [
+        -0.2,
+        -0.1,
+        0.029999785125255585
+      ],
+      "cycle7_model_raw": [
+        -0.23132917284965515,
+        -0.10204869508743286,
+        0.029999785125255585
+      ]
+    }
+  },
+  "v1_script_sha256": "28bdea5596ee7e5952398ff6f7be0112b88e9d05d791de46aeda2b3f338e4d76",
+  "diagnostic_scope": "Only first24 completed cycles read; original processes/files unchanged"
+}

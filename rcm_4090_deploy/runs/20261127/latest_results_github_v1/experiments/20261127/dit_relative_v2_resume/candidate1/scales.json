@@ -1,0 +1,70 @@
+{
+  "action_mean": [
+    -4.45389832748333e-06,
+    -4.800092938239686e-06,
+    2.4320875127159525e-06
+  ],
+  "action_std": [
+    0.0024447825271636248,
+    0.002419308992102742,
+    0.003597472794353962
+  ],
+  "raw_std": [
+    0.0024447825271636248,
+    0.002419308992102742,
+    0.003597472794353962
+  ],
+  "floors": [
+    0.0001,
+    0.0001,
+    1e-05
+  ],
+  "action_statistics_source": "current train only; development excluded",
+  "global_input_buffers": {
+    "state_mean": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "state_std": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "oct_mean": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "oct_std": [
+      0.05000000074505806,
+      0.05000000074505806,
+      0.05000000074505806,
+      1.0
+    ],
+    "velocity_mean": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "velocity_std": [
+      0.10000000149011612,
+      0.10000000149011612,
+      0.10000000149011612
+    ],
+    "previous_action_mean": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "previous_action_std": [
+      0.004999999888241291,
+      0.004999999888241291,
+      0.004999999888241291
+    ]
+  },
+  "precision": "FP32",
+  "OCT_normalization": "relative50um; valid retained; RGB/absoluteABC fixed; velocity0.1deg_deg_mm_s; previous0.005deg_deg_mm",
+  "noise_seed": 434341
+}

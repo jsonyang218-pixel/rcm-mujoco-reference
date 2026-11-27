@@ -1,0 +1,48 @@
+{
+  "active_workers": [
+    {
+      "pid": 323148,
+      "argv": [
+        "/home/him1/mujoco_bc/rcm_4090_deploy/.venv/bin/python",
+        "-E",
+        "-B",
+        "-u",
+        "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261126/v5_learned_local_standard2_v1/standard2.py",
+        "worker",
+        "--index",
+        "6"
+      ]
+    },
+    {
+      "pid": 323150,
+      "argv": [
+        "/home/him1/mujoco_bc/rcm_4090_deploy/.venv/bin/python",
+        "-E",
+        "-B",
+        "-u",
+        "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261126/v5_learned_local_standard2_v1/standard2.py",
+        "worker",
+        "--index",
+        "8"
+      ]
+    }
+  ],
+  "new_workers": 2,
+  "total_upper_bound": 4,
+  "production_factory": "scripts.research.homog_replay_evaluate:EvaluationWorker (inherits a_axis_flip_common.EvaluationWorker.__init__)",
+  "production_episode": "PolicyEvaluator.evaluate -> evaluate_episode with DEFAULT_ACTION_LIMIT_DEG_DEG_MM",
+  "samples": 1,
+  "execute_steps": 1,
+  "flow_integration_steps": 4,
+  "aggregation": "single_sample",
+  "v5_caps": [
+    0.2897999882698059,
+    0.14434358477592468,
+    0.04271206632256508
+  ],
+  "local_caps": [
+    0.2,
+    0.1,
+    0.03
+  ]
+}

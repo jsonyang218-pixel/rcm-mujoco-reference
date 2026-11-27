@@ -1,0 +1,2154 @@
+{
+  "parameters": [
+    {
+      "name": "observation_temporal_embedding",
+      "shape": [
+        1,
+        2,
+        1,
+        384
+      ],
+      "count": 768,
+      "trainable": true
+    },
+    {
+      "name": "action_position",
+      "shape": [
+        1,
+        16,
+        384
+      ],
+      "count": 6144,
+      "trainable": true
+    },
+    {
+      "name": "vision.features.0.weight",
+      "shape": [
+        64,
+        3,
+        7,
+        7
+      ],
+      "count": 9408,
+      "trainable": false
+    },
+    {
+      "name": "vision.features.1.weight",
+      "shape": [
+        64
+      ],
+      "count": 64,
+      "trainable": false
+    },
+    {
+      "name": "vision.features.1.bias",
+      "shape": [
+        64
+      ],
+      "count": 64,
+      "trainable": false
+    },
+    {
+      "name": "vision.features.4.0.conv1.weight",
+      "shape": [
+        64,
+        64,
+        3,
+        3
+      ],
+      "count": 36864,
+      "trainable": false
+    },
+    {
+      "name": "vision.features.4.0.bn1.weight",
+      "shape": [
+        64
+      ],
+      "count": 64,
+      "trainable": false
+    },
+    {
+      "name": "vision.features.4.0.bn1.bias",
+      "shape": [
+        64
+      ],
+      "count": 64,
+      "trainable": false
+    },
+    {
+      "name": "vision.features.4.0.conv2.weight",
+      "shape": [
+        64,
+        64,
+        3,
+        3
+      ],
+      "count": 36864,
+      "trainable": false
+    },
+    {
+      "name": "vision.features.4.0.bn2.weight",
+      "shape": [
+        64
+      ],
+      "count": 64,
+      "trainable": false
+    },
+    {
+      "name": "vision.features.4.0.bn2.bias",
+      "shape": [
+        64
+      ],
+      "count": 64,
+      "trainable": false
+    },
+    {
+      "name": "vision.features.4.1.conv1.weight",
+      "shape": [
+        64,
+        64,
+        3,
+        3
+      ],
+      "count": 36864,
+      "trainable": false
+    },
+    {
+      "name": "vision.features.4.1.bn1.weight",
+      "shape": [
+        64
+      ],
+      "count": 64,
+      "trainable": false
+    },
+    {
+      "name": "vision.features.4.1.bn1.bias",
+      "shape": [
+        64
+      ],
+      "count": 64,
+      "trainable": false
+    },
+    {
+      "name": "vision.features.4.1.conv2.weight",
+      "shape": [
+        64,
+        64,
+        3,
+        3
+      ],
+      "count": 36864,
+      "trainable": false
+    },
+    {
+      "name": "vision.features.4.1.bn2.weight",
+      "shape": [
+        64
+      ],
+      "count": 64,
+      "trainable": false
+    },
+    {
+      "name": "vision.features.4.1.bn2.bias",
+      "shape": [
+        64
+      ],
+      "count": 64,
+      "trainable": false
+    },
+    {
+      "name": "vision.features.5.0.conv1.weight",
+      "shape": [
+        128,
+        64,
+        3,
+        3
+      ],
+      "count": 73728,
+      "trainable": false
+    },
+    {
+      "name": "vision.features.5.0.bn1.weight",
+      "shape": [
+        128
+      ],
+      "count": 128,
+      "trainable": false
+    },
+    {
+      "name": "vision.features.5.0.bn1.bias",
+      "shape": [
+        128
+      ],
+      "count": 128,
+      "trainable": false
+    },
+    {
+      "name": "vision.features.5.0.conv2.weight",
+      "shape": [
+        128,
+        128,
+        3,
+        3
+      ],
+      "count": 147456,
+      "trainable": false
+    },
+    {
+      "name": "vision.features.5.0.bn2.weight",
+      "shape": [
+        128
+      ],
+      "count": 128,
+      "trainable": false
+    },
+    {
+      "name": "vision.features.5.0.bn2.bias",
+      "shape": [
+        128
+      ],
+      "count": 128,
+      "trainable": false
+    },
+    {
+      "name": "vision.features.5.0.downsample.0.weight",
+      "shape": [
+        128,
+        64,
+        1,
+        1
+      ],
+      "count": 8192,
+      "trainable": false
+    },
+    {
+      "name": "vision.features.5.0.downsample.1.weight",
+      "shape": [
+        128
+      ],
+      "count": 128,
+      "trainable": false
+    },
+    {
+      "name": "vision.features.5.0.downsample.1.bias",
+      "shape": [
+        128
+      ],
+      "count": 128,
+      "trainable": false
+    },
+    {
+      "name": "vision.features.5.1.conv1.weight",
+      "shape": [
+        128,
+        128,
+        3,
+        3
+      ],
+      "count": 147456,
+      "trainable": false
+    },
+    {
+      "name": "vision.features.5.1.bn1.weight",
+      "shape": [
+        128
+      ],
+      "count": 128,
+      "trainable": false
+    },
+    {
+      "name": "vision.features.5.1.bn1.bias",
+      "shape": [
+        128
+      ],
+      "count": 128,
+      "trainable": false
+    },
+    {
+      "name": "vision.features.5.1.conv2.weight",
+      "shape": [
+        128,
+        128,
+        3,
+        3
+      ],
+      "count": 147456,
+      "trainable": false
+    },
+    {
+      "name": "vision.features.5.1.bn2.weight",
+      "shape": [
+        128
+      ],
+      "count": 128,
+      "trainable": false
+    },
+    {
+      "name": "vision.features.5.1.bn2.bias",
+      "shape": [
+        128
+      ],
+      "count": 128,
+      "trainable": false
+    },
+    {
+      "name": "vision.features.6.0.conv1.weight",
+      "shape": [
+        256,
+        128,
+        3,
+        3
+      ],
+      "count": 294912,
+      "trainable": false
+    },
+    {
+      "name": "vision.features.6.0.bn1.weight",
+      "shape": [
+        256
+      ],
+      "count": 256,
+      "trainable": false
+    },
+    {
+      "name": "vision.features.6.0.bn1.bias",
+      "shape": [
+        256
+      ],
+      "count": 256,
+      "trainable": false
+    },
+    {
+      "name": "vision.features.6.0.conv2.weight",
+      "shape": [
+        256,
+        256,
+        3,
+        3
+      ],
+      "count": 589824,
+      "trainable": false
+    },
+    {
+      "name": "vision.features.6.0.bn2.weight",
+      "shape": [
+        256
+      ],
+      "count": 256,
+      "trainable": false
+    },
+    {
+      "name": "vision.features.6.0.bn2.bias",
+      "shape": [
+        256
+      ],
+      "count": 256,
+      "trainable": false
+    },
+    {
+      "name": "vision.features.6.0.downsample.0.weight",
+      "shape": [
+        256,
+        128,
+        1,
+        1
+      ],
+      "count": 32768,
+      "trainable": false
+    },
+    {
+      "name": "vision.features.6.0.downsample.1.weight",
+      "shape": [
+        256
+      ],
+      "count": 256,
+      "trainable": false
+    },
+    {
+      "name": "vision.features.6.0.downsample.1.bias",
+      "shape": [
+        256
+      ],
+      "count": 256,
+      "trainable": false
+    },
+    {
+      "name": "vision.features.6.1.conv1.weight",
+      "shape": [
+        256,
+        256,
+        3,
+        3
+      ],
+      "count": 589824,
+      "trainable": false
+    },
+    {
+      "name": "vision.features.6.1.bn1.weight",
+      "shape": [
+        256
+      ],
+      "count": 256,
+      "trainable": false
+    },
+    {
+      "name": "vision.features.6.1.bn1.bias",
+      "shape": [
+        256
+      ],
+      "count": 256,
+      "trainable": false
+    },
+    {
+      "name": "vision.features.6.1.conv2.weight",
+      "shape": [
+        256,
+        256,
+        3,
+        3
+      ],
+      "count": 589824,
+      "trainable": false
+    },
+    {
+      "name": "vision.features.6.1.bn2.weight",
+      "shape": [
+        256
+      ],
+      "count": 256,
+      "trainable": false
+    },
+    {
+      "name": "vision.features.6.1.bn2.bias",
+      "shape": [
+        256
+      ],
+      "count": 256,
+      "trainable": false
+    },
+    {
+      "name": "vision.features.7.0.conv1.weight",
+      "shape": [
+        512,
+        256,
+        3,
+        3
+      ],
+      "count": 1179648,
+      "trainable": false
+    },
+    {
+      "name": "vision.features.7.0.bn1.weight",
+      "shape": [
+        512
+      ],
+      "count": 512,
+      "trainable": false
+    },
+    {
+      "name": "vision.features.7.0.bn1.bias",
+      "shape": [
+        512
+      ],
+      "count": 512,
+      "trainable": false
+    },
+    {
+      "name": "vision.features.7.0.conv2.weight",
+      "shape": [
+        512,
+        512,
+        3,
+        3
+      ],
+      "count": 2359296,
+      "trainable": false
+    },
+    {
+      "name": "vision.features.7.0.bn2.weight",
+      "shape": [
+        512
+      ],
+      "count": 512,
+      "trainable": false
+    },
+    {
+      "name": "vision.features.7.0.bn2.bias",
+      "shape": [
+        512
+      ],
+      "count": 512,
+      "trainable": false
+    },
+    {
+      "name": "vision.features.7.0.downsample.0.weight",
+      "shape": [
+        512,
+        256,
+        1,
+        1
+      ],
+      "count": 131072,
+      "trainable": false
+    },
+    {
+      "name": "vision.features.7.0.downsample.1.weight",
+      "shape": [
+        512
+      ],
+      "count": 512,
+      "trainable": false
+    },
+    {
+      "name": "vision.features.7.0.downsample.1.bias",
+      "shape": [
+        512
+      ],
+      "count": 512,
+      "trainable": false
+    },
+    {
+      "name": "vision.features.7.1.conv1.weight",
+      "shape": [
+        512,
+        512,
+        3,
+        3
+      ],
+      "count": 2359296,
+      "trainable": false
+    },
+    {
+      "name": "vision.features.7.1.bn1.weight",
+      "shape": [
+        512
+      ],
+      "count": 512,
+      "trainable": false
+    },
+    {
+      "name": "vision.features.7.1.bn1.bias",
+      "shape": [
+        512
+      ],
+      "count": 512,
+      "trainable": false
+    },
+    {
+      "name": "vision.features.7.1.conv2.weight",
+      "shape": [
+        512,
+        512,
+        3,
+        3
+      ],
+      "count": 2359296,
+      "trainable": false
+    },
+    {
+      "name": "vision.features.7.1.bn2.weight",
+      "shape": [
+        512
+      ],
+      "count": 512,
+      "trainable": false
+    },
+    {
+      "name": "vision.features.7.1.bn2.bias",
+      "shape": [
+        512
+      ],
+      "count": 512,
+      "trainable": false
+    },
+    {
+      "name": "vision.project.weight",
+      "shape": [
+        384,
+        512,
+        1,
+        1
+      ],
+      "count": 196608,
+      "trainable": false
+    },
+    {
+      "name": "vision.project.bias",
+      "shape": [
+        384
+      ],
+      "count": 384,
+      "trainable": false
+    },
+    {
+      "name": "geometry_token.0.weight",
+      "shape": [
+        384,
+        13
+      ],
+      "count": 4992,
+      "trainable": true
+    },
+    {
+      "name": "geometry_token.0.bias",
+      "shape": [
+        384
+      ],
+      "count": 384,
+      "trainable": true
+    },
+    {
+      "name": "geometry_token.2.weight",
+      "shape": [
+        384,
+        384
+      ],
+      "count": 147456,
+      "trainable": true
+    },
+    {
+      "name": "geometry_token.2.bias",
+      "shape": [
+        384
+      ],
+      "count": 384,
+      "trainable": true
+    },
+    {
+      "name": "global_condition.0.weight",
+      "shape": [
+        384,
+        26
+      ],
+      "count": 9984,
+      "trainable": true
+    },
+    {
+      "name": "global_condition.0.bias",
+      "shape": [
+        384
+      ],
+      "count": 384,
+      "trainable": true
+    },
+    {
+      "name": "global_condition.2.weight",
+      "shape": [
+        384,
+        384
+      ],
+      "count": 147456,
+      "trainable": true
+    },
+    {
+      "name": "global_condition.2.bias",
+      "shape": [
+        384
+      ],
+      "count": 384,
+      "trainable": true
+    },
+    {
+      "name": "time_mlp.0.weight",
+      "shape": [
+        384,
+        384
+      ],
+      "count": 147456,
+      "trainable": true
+    },
+    {
+      "name": "time_mlp.0.bias",
+      "shape": [
+        384
+      ],
+      "count": 384,
+      "trainable": true
+    },
+    {
+      "name": "time_mlp.2.weight",
+      "shape": [
+        384,
+        384
+      ],
+      "count": 147456,
+      "trainable": true
+    },
+    {
+      "name": "time_mlp.2.bias",
+      "shape": [
+        384
+      ],
+      "count": 384,
+      "trainable": true
+    },
+    {
+      "name": "action_input.weight",
+      "shape": [
+        384,
+        3
+      ],
+      "count": 1152,
+      "trainable": true
+    },
+    {
+      "name": "action_input.bias",
+      "shape": [
+        384
+      ],
+      "count": 384,
+      "trainable": true
+    },
+    {
+      "name": "blocks.0.self_attention.q.weight",
+      "shape": [
+        384,
+        384
+      ],
+      "count": 147456,
+      "trainable": true
+    },
+    {
+      "name": "blocks.0.self_attention.q.bias",
+      "shape": [
+        384
+      ],
+      "count": 384,
+      "trainable": true
+    },
+    {
+      "name": "blocks.0.self_attention.kv.weight",
+      "shape": [
+        768,
+        384
+      ],
+      "count": 294912,
+      "trainable": true
+    },
+    {
+      "name": "blocks.0.self_attention.kv.bias",
+      "shape": [
+        768
+      ],
+      "count": 768,
+      "trainable": true
+    },
+    {
+      "name": "blocks.0.self_attention.output.weight",
+      "shape": [
+        384,
+        384
+      ],
+      "count": 147456,
+      "trainable": true
+    },
+    {
+      "name": "blocks.0.self_attention.output.bias",
+      "shape": [
+        384
+      ],
+      "count": 384,
+      "trainable": true
+    },
+    {
+      "name": "blocks.0.cross_attention.q.weight",
+      "shape": [
+        384,
+        384
+      ],
+      "count": 147456,
+      "trainable": true
+    },
+    {
+      "name": "blocks.0.cross_attention.q.bias",
+      "shape": [
+        384
+      ],
+      "count": 384,
+      "trainable": true
+    },
+    {
+      "name": "blocks.0.cross_attention.kv.weight",
+      "shape": [
+        768,
+        384
+      ],
+      "count": 294912,
+      "trainable": true
+    },
+    {
+      "name": "blocks.0.cross_attention.kv.bias",
+      "shape": [
+        768
+      ],
+      "count": 768,
+      "trainable": true
+    },
+    {
+      "name": "blocks.0.cross_attention.output.weight",
+      "shape": [
+        384,
+        384
+      ],
+      "count": 147456,
+      "trainable": true
+    },
+    {
+      "name": "blocks.0.cross_attention.output.bias",
+      "shape": [
+        384
+      ],
+      "count": 384,
+      "trainable": true
+    },
+    {
+      "name": "blocks.0.mlp.0.weight",
+      "shape": [
+        1536,
+        384
+      ],
+      "count": 589824,
+      "trainable": true
+    },
+    {
+      "name": "blocks.0.mlp.0.bias",
+      "shape": [
+        1536
+      ],
+      "count": 1536,
+      "trainable": true
+    },
+    {
+      "name": "blocks.0.mlp.2.weight",
+      "shape": [
+        384,
+        1536
+      ],
+      "count": 589824,
+      "trainable": true
+    },
+    {
+      "name": "blocks.0.mlp.2.bias",
+      "shape": [
+        384
+      ],
+      "count": 384,
+      "trainable": true
+    },
+    {
+      "name": "blocks.0.modulation.1.weight",
+      "shape": [
+        3456,
+        384
+      ],
+      "count": 1327104,
+      "trainable": true
+    },
+    {
+      "name": "blocks.0.modulation.1.bias",
+      "shape": [
+        3456
+      ],
+      "count": 3456,
+      "trainable": true
+    },
+    {
+      "name": "blocks.0.temporal_bias.templates",
+      "shape": [
+        6,
+        4,
+        31
+      ],
+      "count": 744,
+      "trainable": true
+    },
+    {
+      "name": "blocks.0.temporal_bias.gate.0.weight",
+      "shape": [
+        32,
+        384
+      ],
+      "count": 12288,
+      "trainable": true
+    },
+    {
+      "name": "blocks.0.temporal_bias.gate.0.bias",
+      "shape": [
+        32
+      ],
+      "count": 32,
+      "trainable": true
+    },
+    {
+      "name": "blocks.0.temporal_bias.gate.2.weight",
+      "shape": [
+        24,
+        32
+      ],
+      "count": 768,
+      "trainable": true
+    },
+    {
+      "name": "blocks.0.temporal_bias.gate.2.bias",
+      "shape": [
+        24
+      ],
+      "count": 24,
+      "trainable": true
+    },
+    {
+      "name": "blocks.1.self_attention.q.weight",
+      "shape": [
+        384,
+        384
+      ],
+      "count": 147456,
+      "trainable": true
+    },
+    {
+      "name": "blocks.1.self_attention.q.bias",
+      "shape": [
+        384
+      ],
+      "count": 384,
+      "trainable": true
+    },
+    {
+      "name": "blocks.1.self_attention.kv.weight",
+      "shape": [
+        768,
+        384
+      ],
+      "count": 294912,
+      "trainable": true
+    },
+    {
+      "name": "blocks.1.self_attention.kv.bias",
+      "shape": [
+        768
+      ],
+      "count": 768,
+      "trainable": true
+    },
+    {
+      "name": "blocks.1.self_attention.output.weight",
+      "shape": [
+        384,
+        384
+      ],
+      "count": 147456,
+      "trainable": true
+    },
+    {
+      "name": "blocks.1.self_attention.output.bias",
+      "shape": [
+        384
+      ],
+      "count": 384,
+      "trainable": true
+    },
+    {
+      "name": "blocks.1.cross_attention.q.weight",
+      "shape": [
+        384,
+        384
+      ],
+      "count": 147456,
+      "trainable": true
+    },
+    {
+      "name": "blocks.1.cross_attention.q.bias",
+      "shape": [
+        384
+      ],
+      "count": 384,
+      "trainable": true
+    },
+    {
+      "name": "blocks.1.cross_attention.kv.weight",
+      "shape": [
+        768,
+        384
+      ],
+      "count": 294912,
+      "trainable": true
+    },
+    {
+      "name": "blocks.1.cross_attention.kv.bias",
+      "shape": [
+        768
+      ],
+      "count": 768,
+      "trainable": true
+    },
+    {
+      "name": "blocks.1.cross_attention.output.weight",
+      "shape": [
+        384,
+        384
+      ],
+      "count": 147456,
+      "trainable": true
+    },
+    {
+      "name": "blocks.1.cross_attention.output.bias",
+      "shape": [
+        384
+      ],
+      "count": 384,
+      "trainable": true
+    },
+    {
+      "name": "blocks.1.mlp.0.weight",
+      "shape": [
+        1536,
+        384
+      ],
+      "count": 589824,
+      "trainable": true
+    },
+    {
+      "name": "blocks.1.mlp.0.bias",
+      "shape": [
+        1536
+      ],
+      "count": 1536,
+      "trainable": true
+    },
+    {
+      "name": "blocks.1.mlp.2.weight",
+      "shape": [
+        384,
+        1536
+      ],
+      "count": 589824,
+      "trainable": true
+    },
+    {
+      "name": "blocks.1.mlp.2.bias",
+      "shape": [
+        384
+      ],
+      "count": 384,
+      "trainable": true
+    },
+    {
+      "name": "blocks.1.modulation.1.weight",
+      "shape": [
+        3456,
+        384
+      ],
+      "count": 1327104,
+      "trainable": true
+    },
+    {
+      "name": "blocks.1.modulation.1.bias",
+      "shape": [
+        3456
+      ],
+      "count": 3456,
+      "trainable": true
+    },
+    {
+      "name": "blocks.1.temporal_bias.templates",
+      "shape": [
+        6,
+        4,
+        31
+      ],
+      "count": 744,
+      "trainable": true
+    },
+    {
+      "name": "blocks.1.temporal_bias.gate.0.weight",
+      "shape": [
+        32,
+        384
+      ],
+      "count": 12288,
+      "trainable": true
+    },
+    {
+      "name": "blocks.1.temporal_bias.gate.0.bias",
+      "shape": [
+        32
+      ],
+      "count": 32,
+      "trainable": true
+    },
+    {
+      "name": "blocks.1.temporal_bias.gate.2.weight",
+      "shape": [
+        24,
+        32
+      ],
+      "count": 768,
+      "trainable": true
+    },
+    {
+      "name": "blocks.1.temporal_bias.gate.2.bias",
+      "shape": [
+        24
+      ],
+      "count": 24,
+      "trainable": true
+    },
+    {
+      "name": "blocks.2.self_attention.q.weight",
+      "shape": [
+        384,
+        384
+      ],
+      "count": 147456,
+      "trainable": true
+    },
+    {
+      "name": "blocks.2.self_attention.q.bias",
+      "shape": [
+        384
+      ],
+      "count": 384,
+      "trainable": true
+    },
+    {
+      "name": "blocks.2.self_attention.kv.weight",
+      "shape": [
+        768,
+        384
+      ],
+      "count": 294912,
+      "trainable": true
+    },
+    {
+      "name": "blocks.2.self_attention.kv.bias",
+      "shape": [
+        768
+      ],
+      "count": 768,
+      "trainable": true
+    },
+    {
+      "name": "blocks.2.self_attention.output.weight",
+      "shape": [
+        384,
+        384
+      ],
+      "count": 147456,
+      "trainable": true
+    },
+    {
+      "name": "blocks.2.self_attention.output.bias",
+      "shape": [
+        384
+      ],
+      "count": 384,
+      "trainable": true
+    },
+    {
+      "name": "blocks.2.cross_attention.q.weight",
+      "shape": [
+        384,
+        384
+      ],
+      "count": 147456,
+      "trainable": true
+    },
+    {
+      "name": "blocks.2.cross_attention.q.bias",
+      "shape": [
+        384
+      ],
+      "count": 384,
+      "trainable": true
+    },
+    {
+      "name": "blocks.2.cross_attention.kv.weight",
+      "shape": [
+        768,
+        384
+      ],
+      "count": 294912,
+      "trainable": true
+    },
+    {
+      "name": "blocks.2.cross_attention.kv.bias",
+      "shape": [
+        768
+      ],
+      "count": 768,
+      "trainable": true
+    },
+    {
+      "name": "blocks.2.cross_attention.output.weight",
+      "shape": [
+        384,
+        384
+      ],
+      "count": 147456,
+      "trainable": true
+    },
+    {
+      "name": "blocks.2.cross_attention.output.bias",
+      "shape": [
+        384
+      ],
+      "count": 384,
+      "trainable": true
+    },
+    {
+      "name": "blocks.2.mlp.0.weight",
+      "shape": [
+        1536,
+        384
+      ],
+      "count": 589824,
+      "trainable": true
+    },
+    {
+      "name": "blocks.2.mlp.0.bias",
+      "shape": [
+        1536
+      ],
+      "count": 1536,
+      "trainable": true
+    },
+    {
+      "name": "blocks.2.mlp.2.weight",
+      "shape": [
+        384,
+        1536
+      ],
+      "count": 589824,
+      "trainable": true
+    },
+    {
+      "name": "blocks.2.mlp.2.bias",
+      "shape": [
+        384
+      ],
+      "count": 384,
+      "trainable": true
+    },
+    {
+      "name": "blocks.2.modulation.1.weight",
+      "shape": [
+        3456,
+        384
+      ],
+      "count": 1327104,
+      "trainable": true
+    },
+    {
+      "name": "blocks.2.modulation.1.bias",
+      "shape": [
+        3456
+      ],
+      "count": 3456,
+      "trainable": true
+    },
+    {
+      "name": "blocks.2.temporal_bias.templates",
+      "shape": [
+        6,
+        4,
+        31
+      ],
+      "count": 744,
+      "trainable": true
+    },
+    {
+      "name": "blocks.2.temporal_bias.gate.0.weight",
+      "shape": [
+        32,
+        384
+      ],
+      "count": 12288,
+      "trainable": true
+    },
+    {
+      "name": "blocks.2.temporal_bias.gate.0.bias",
+      "shape": [
+        32
+      ],
+      "count": 32,
+      "trainable": true
+    },
+    {
+      "name": "blocks.2.temporal_bias.gate.2.weight",
+      "shape": [
+        24,
+        32
+      ],
+      "count": 768,
+      "trainable": true
+    },
+    {
+      "name": "blocks.2.temporal_bias.gate.2.bias",
+      "shape": [
+        24
+      ],
+      "count": 24,
+      "trainable": true
+    },
+    {
+      "name": "blocks.3.self_attention.q.weight",
+      "shape": [
+        384,
+        384
+      ],
+      "count": 147456,
+      "trainable": true
+    },
+    {
+      "name": "blocks.3.self_attention.q.bias",
+      "shape": [
+        384
+      ],
+      "count": 384,
+      "trainable": true
+    },
+    {
+      "name": "blocks.3.self_attention.kv.weight",
+      "shape": [
+        768,
+        384
+      ],
+      "count": 294912,
+      "trainable": true
+    },
+    {
+      "name": "blocks.3.self_attention.kv.bias",
+      "shape": [
+        768
+      ],
+      "count": 768,
+      "trainable": true
+    },
+    {
+      "name": "blocks.3.self_attention.output.weight",
+      "shape": [
+        384,
+        384
+      ],
+      "count": 147456,
+      "trainable": true
+    },
+    {
+      "name": "blocks.3.self_attention.output.bias",
+      "shape": [
+        384
+      ],
+      "count": 384,
+      "trainable": true
+    },
+    {
+      "name": "blocks.3.cross_attention.q.weight",
+      "shape": [
+        384,
+        384
+      ],
+      "count": 147456,
+      "trainable": true
+    },
+    {
+      "name": "blocks.3.cross_attention.q.bias",
+      "shape": [
+        384
+      ],
+      "count": 384,
+      "trainable": true
+    },
+    {
+      "name": "blocks.3.cross_attention.kv.weight",
+      "shape": [
+        768,
+        384
+      ],
+      "count": 294912,
+      "trainable": true
+    },
+    {
+      "name": "blocks.3.cross_attention.kv.bias",
+      "shape": [
+        768
+      ],
+      "count": 768,
+      "trainable": true
+    },
+    {
+      "name": "blocks.3.cross_attention.output.weight",
+      "shape": [
+        384,
+        384
+      ],
+      "count": 147456,
+      "trainable": true
+    },
+    {
+      "name": "blocks.3.cross_attention.output.bias",
+      "shape": [
+        384
+      ],
+      "count": 384,
+      "trainable": true
+    },
+    {
+      "name": "blocks.3.mlp.0.weight",
+      "shape": [
+        1536,
+        384
+      ],
+      "count": 589824,
+      "trainable": true
+    },
+    {
+      "name": "blocks.3.mlp.0.bias",
+      "shape": [
+        1536
+      ],
+      "count": 1536,
+      "trainable": true
+    },
+    {
+      "name": "blocks.3.mlp.2.weight",
+      "shape": [
+        384,
+        1536
+      ],
+      "count": 589824,
+      "trainable": true
+    },
+    {
+      "name": "blocks.3.mlp.2.bias",
+      "shape": [
+        384
+      ],
+      "count": 384,
+      "trainable": true
+    },
+    {
+      "name": "blocks.3.modulation.1.weight",
+      "shape": [
+        3456,
+        384
+      ],
+      "count": 1327104,
+      "trainable": true
+    },
+    {
+      "name": "blocks.3.modulation.1.bias",
+      "shape": [
+        3456
+      ],
+      "count": 3456,
+      "trainable": true
+    },
+    {
+      "name": "blocks.3.temporal_bias.templates",
+      "shape": [
+        6,
+        4,
+        31
+      ],
+      "count": 744,
+      "trainable": true
+    },
+    {
+      "name": "blocks.3.temporal_bias.gate.0.weight",
+      "shape": [
+        32,
+        384
+      ],
+      "count": 12288,
+      "trainable": true
+    },
+    {
+      "name": "blocks.3.temporal_bias.gate.0.bias",
+      "shape": [
+        32
+      ],
+      "count": 32,
+      "trainable": true
+    },
+    {
+      "name": "blocks.3.temporal_bias.gate.2.weight",
+      "shape": [
+        24,
+        32
+      ],
+      "count": 768,
+      "trainable": true
+    },
+    {
+      "name": "blocks.3.temporal_bias.gate.2.bias",
+      "shape": [
+        24
+      ],
+      "count": 24,
+      "trainable": true
+    },
+    {
+      "name": "blocks.4.self_attention.q.weight",
+      "shape": [
+        384,
+        384
+      ],
+      "count": 147456,
+      "trainable": true
+    },
+    {
+      "name": "blocks.4.self_attention.q.bias",
+      "shape": [
+        384
+      ],
+      "count": 384,
+      "trainable": true
+    },
+    {
+      "name": "blocks.4.self_attention.kv.weight",
+      "shape": [
+        768,
+        384
+      ],
+      "count": 294912,
+      "trainable": true
+    },
+    {
+      "name": "blocks.4.self_attention.kv.bias",
+      "shape": [
+        768
+      ],
+      "count": 768,
+      "trainable": true
+    },
+    {
+      "name": "blocks.4.self_attention.output.weight",
+      "shape": [
+        384,
+        384
+      ],
+      "count": 147456,
+      "trainable": true
+    },
+    {
+      "name": "blocks.4.self_attention.output.bias",
+      "shape": [
+        384
+      ],
+      "count": 384,
+      "trainable": true
+    },
+    {
+      "name": "blocks.4.cross_attention.q.weight",
+      "shape": [
+        384,
+        384
+      ],
+      "count": 147456,
+      "trainable": true
+    },
+    {
+      "name": "blocks.4.cross_attention.q.bias",
+      "shape": [
+        384
+      ],
+      "count": 384,
+      "trainable": true
+    },
+    {
+      "name": "blocks.4.cross_attention.kv.weight",
+      "shape": [
+        768,
+        384
+      ],
+      "count": 294912,
+      "trainable": true
+    },
+    {
+      "name": "blocks.4.cross_attention.kv.bias",
+      "shape": [
+        768
+      ],
+      "count": 768,
+      "trainable": true
+    },
+    {
+      "name": "blocks.4.cross_attention.output.weight",
+      "shape": [
+        384,
+        384
+      ],
+      "count": 147456,
+      "trainable": true
+    },
+    {
+      "name": "blocks.4.cross_attention.output.bias",
+      "shape": [
+        384
+      ],
+      "count": 384,
+      "trainable": true
+    },
+    {
+      "name": "blocks.4.mlp.0.weight",
+      "shape": [
+        1536,
+        384
+      ],
+      "count": 589824,
+      "trainable": true
+    },
+    {
+      "name": "blocks.4.mlp.0.bias",
+      "shape": [
+        1536
+      ],
+      "count": 1536,
+      "trainable": true
+    },
+    {
+      "name": "blocks.4.mlp.2.weight",
+      "shape": [
+        384,
+        1536
+      ],
+      "count": 589824,
+      "trainable": true
+    },
+    {
+      "name": "blocks.4.mlp.2.bias",
+      "shape": [
+        384
+      ],
+      "count": 384,
+      "trainable": true
+    },
+    {
+      "name": "blocks.4.modulation.1.weight",
+      "shape": [
+        3456,
+        384
+      ],
+      "count": 1327104,
+      "trainable": true
+    },
+    {
+      "name": "blocks.4.modulation.1.bias",
+      "shape": [
+        3456
+      ],
+      "count": 3456,
+      "trainable": true
+    },
+    {
+      "name": "blocks.4.temporal_bias.templates",
+      "shape": [
+        6,
+        4,
+        31
+      ],
+      "count": 744,
+      "trainable": true
+    },
+    {
+      "name": "blocks.4.temporal_bias.gate.0.weight",
+      "shape": [
+        32,
+        384
+      ],
+      "count": 12288,
+      "trainable": true
+    },
+    {
+      "name": "blocks.4.temporal_bias.gate.0.bias",
+      "shape": [
+        32
+      ],
+      "count": 32,
+      "trainable": true
+    },
+    {
+      "name": "blocks.4.temporal_bias.gate.2.weight",
+      "shape": [
+        24,
+        32
+      ],
+      "count": 768,
+      "trainable": true
+    },
+    {
+      "name": "blocks.4.temporal_bias.gate.2.bias",
+      "shape": [
+        24
+      ],
+      "count": 24,
+      "trainable": true
+    },
+    {
+      "name": "blocks.5.self_attention.q.weight",
+      "shape": [
+        384,
+        384
+      ],
+      "count": 147456,
+      "trainable": true
+    },
+    {
+      "name": "blocks.5.self_attention.q.bias",
+      "shape": [
+        384
+      ],
+      "count": 384,
+      "trainable": true
+    },
+    {
+      "name": "blocks.5.self_attention.kv.weight",
+      "shape": [
+        768,
+        384
+      ],
+      "count": 294912,
+      "trainable": true
+    },
+    {
+      "name": "blocks.5.self_attention.kv.bias",
+      "shape": [
+        768
+      ],
+      "count": 768,
+      "trainable": true
+    },
+    {
+      "name": "blocks.5.self_attention.output.weight",
+      "shape": [
+        384,
+        384
+      ],
+      "count": 147456,
+      "trainable": true
+    },
+    {
+      "name": "blocks.5.self_attention.output.bias",
+      "shape": [
+        384
+      ],
+      "count": 384,
+      "trainable": true
+    },
+    {
+      "name": "blocks.5.cross_attention.q.weight",
+      "shape": [
+        384,
+        384
+      ],
+      "count": 147456,
+      "trainable": true
+    },
+    {
+      "name": "blocks.5.cross_attention.q.bias",
+      "shape": [
+        384
+      ],
+      "count": 384,
+      "trainable": true
+    },
+    {
+      "name": "blocks.5.cross_attention.kv.weight",
+      "shape": [
+        768,
+        384
+      ],
+      "count": 294912,
+      "trainable": true
+    },
+    {
+      "name": "blocks.5.cross_attention.kv.bias",
+      "shape": [
+        768
+      ],
+      "count": 768,
+      "trainable": true
+    },
+    {
+      "name": "blocks.5.cross_attention.output.weight",
+      "shape": [
+        384,
+        384
+      ],
+      "count": 147456,
+      "trainable": true
+    },
+    {
+      "name": "blocks.5.cross_attention.output.bias",
+      "shape": [
+        384
+      ],
+      "count": 384,
+      "trainable": true
+    },
+    {
+      "name": "blocks.5.mlp.0.weight",
+      "shape": [
+        1536,
+        384
+      ],
+      "count": 589824,
+      "trainable": true
+    },
+    {
+      "name": "blocks.5.mlp.0.bias",
+      "shape": [
+        1536
+      ],
+      "count": 1536,
+      "trainable": true
+    },
+    {
+      "name": "blocks.5.mlp.2.weight",
+      "shape": [
+        384,
+        1536
+      ],
+      "count": 589824,
+      "trainable": true
+    },
+    {
+      "name": "blocks.5.mlp.2.bias",
+      "shape": [
+        384
+      ],
+      "count": 384,
+      "trainable": true
+    },
+    {
+      "name": "blocks.5.modulation.1.weight",
+      "shape": [
+        3456,
+        384
+      ],
+      "count": 1327104,
+      "trainable": true
+    },
+    {
+      "name": "blocks.5.modulation.1.bias",
+      "shape": [
+        3456
+      ],
+      "count": 3456,
+      "trainable": true
+    },
+    {
+      "name": "blocks.5.temporal_bias.templates",
+      "shape": [
+        6,
+        4,
+        31
+      ],
+      "count": 744,
+      "trainable": true
+    },
+    {
+      "name": "blocks.5.temporal_bias.gate.0.weight",
+      "shape": [
+        32,
+        384
+      ],
+      "count": 12288,
+      "trainable": true
+    },
+    {
+      "name": "blocks.5.temporal_bias.gate.0.bias",
+      "shape": [
+        32
+      ],
+      "count": 32,
+      "trainable": true
+    },
+    {
+      "name": "blocks.5.temporal_bias.gate.2.weight",
+      "shape": [
+        24,
+        32
+      ],
+      "count": 768,
+      "trainable": true
+    },
+    {
+      "name": "blocks.5.temporal_bias.gate.2.bias",
+      "shape": [
+        24
+      ],
+      "count": 24,
+      "trainable": true
+    },
+    {
+      "name": "final_modulation.1.weight",
+      "shape": [
+        768,
+        384
+      ],
+      "count": 294912,
+      "trainable": true
+    },
+    {
+      "name": "final_modulation.1.bias",
+      "shape": [
+        768
+      ],
+      "count": 768,
+      "trainable": true
+    },
+    {
+      "name": "output.weight",
+      "shape": [
+        3,
+        384
+      ],
+      "count": 1152,
+      "trainable": true
+    },
+    {
+      "name": "output.bias",
+      "shape": [
+        3
+      ],
+      "count": 3,
+      "trainable": true
+    }
+  ],
+  "trainable_count": 23164611,
+  "frozen_count": 11373504,
+  "old_freeze_config": {
+    "backbone_frozen": true,
+    "backbone_lr": 0.0,
+    "attention_lr": 3e-05,
+    "trainable_parameters": [
+      "blocks.0.temporal_bias.templates",
+      "blocks.0.temporal_bias.gate.0.weight",
+      "blocks.0.temporal_bias.gate.0.bias",
+      "blocks.0.temporal_bias.gate.2.weight",
+      "blocks.0.temporal_bias.gate.2.bias",
+      "blocks.1.temporal_bias.templates",
+      "blocks.1.temporal_bias.gate.0.weight",
+      "blocks.1.temporal_bias.gate.0.bias",
+      "blocks.1.temporal_bias.gate.2.weight",
+      "blocks.1.temporal_bias.gate.2.bias",
+      "blocks.2.temporal_bias.templates",
+      "blocks.2.temporal_bias.gate.0.weight",
+      "blocks.2.temporal_bias.gate.0.bias",
+      "blocks.2.temporal_bias.gate.2.weight",
+      "blocks.2.temporal_bias.gate.2.bias",
+      "blocks.3.temporal_bias.templates",
+      "blocks.3.temporal_bias.gate.0.weight",
+      "blocks.3.temporal_bias.gate.0.bias",
+      "blocks.3.temporal_bias.gate.2.weight",
+      "blocks.3.temporal_bias.gate.2.bias",
+      "blocks.4.temporal_bias.templates",
+      "blocks.4.temporal_bias.gate.0.weight",
+      "blocks.4.temporal_bias.gate.0.bias",
+      "blocks.4.temporal_bias.gate.2.weight",
+      "blocks.4.temporal_bias.gate.2.bias",
+      "blocks.5.temporal_bias.templates",
+      "blocks.5.temporal_bias.gate.0.weight",
+      "blocks.5.temporal_bias.gate.0.bias",
+      "blocks.5.temporal_bias.gate.2.weight",
+      "blocks.5.temporal_bias.gate.2.bias"
+    ],
+    "frozen_parameters": [
+      "observation_temporal_embedding",
+      "action_position",
+      "vision.features.0.weight",
+      "vision.features.1.weight",
+      "vision.features.1.bias",
+      "vision.features.4.0.conv1.weight",
+      "vision.features.4.0.bn1.weight",
+      "vision.features.4.0.bn1.bias",
+      "vision.features.4.0.conv2.weight",
+      "vision.features.4.0.bn2.weight",
+      "vision.features.4.0.bn2.bias",
+      "vision.features.4.1.conv1.weight",
+      "vision.features.4.1.bn1.weight",
+      "vision.features.4.1.bn1.bias",
+      "vision.features.4.1.conv2.weight",
+      "vision.features.4.1.bn2.weight",
+      "vision.features.4.1.bn2.bias",
+      "vision.features.5.0.conv1.weight",
+      "vision.features.5.0.bn1.weight",
+      "vision.features.5.0.bn1.bias",
+      "vision.features.5.0.conv2.weight",
+      "vision.features.5.0.bn2.weight",
+      "vision.features.5.0.bn2.bias",
+      "vision.features.5.0.downsample.0.weight",
+      "vision.features.5.0.downsample.1.weight",
+      "vision.features.5.0.downsample.1.bias",
+      "vision.features.5.1.conv1.weight",
+      "vision.features.5.1.bn1.weight",
+      "vision.features.5.1.bn1.bias",
+      "vision.features.5.1.conv2.weight",
+      "vision.features.5.1.bn2.weight",
+      "vision.features.5.1.bn2.bias",
+      "vision.features.6.0.conv1.weight",
+      "vision.features.6.0.bn1.weight",
+      "vision.features.6.0.bn1.bias",
+      "vision.features.6.0.conv2.weight",
+      "vision.features.6.0.bn2.weight",
+      "vision.features.6.0.bn2.bias",
+      "vision.features.6.0.downsample.0.weight",
+      "vision.features.6.0.downsample.1.weight",
+      "vision.features.6.0.downsample.1.bias",
+      "vision.features.6.1.conv1.weight",
+      "vision.features.6.1.bn1.weight",
+      "vision.features.6.1.bn1.bias",
+      "vision.features.6.1.conv2.weight",
+      "vision.features.6.1.bn2.weight",
+      "vision.features.6.1.bn2.bias",
+      "vision.features.7.0.conv1.weight",
+      "vision.features.7.0.bn1.weight",
+      "vision.features.7.0.bn1.bias",
+      "vision.features.7.0.conv2.weight",
+      "vision.features.7.0.bn2.weight",
+      "vision.features.7.0.bn2.bias",
+      "vision.features.7.0.downsample.0.weight",
+      "vision.features.7.0.downsample.1.weight",
+      "vision.features.7.0.downsample.1.bias",
+      "vision.features.7.1.conv1.weight",
+      "vision.features.7.1.bn1.weight",
+      "vision.features.7.1.bn1.bias",
+      "vision.features.7.1.conv2.weight",
+      "vision.features.7.1.bn2.weight",
+      "vision.features.7.1.bn2.bias",
+      "vision.project.weight",
+      "vision.project.bias",
+      "geometry_token.0.weight",
+      "geometry_token.0.bias",
+      "geometry_token.2.weight",
+      "geometry_token.2.bias",
+      "global_condition.0.weight",
+      "global_condition.0.bias",
+      "global_condition.2.weight",
+      "global_condition.2.bias",
+      "time_mlp.0.weight",
+      "time_mlp.0.bias",
+      "time_mlp.2.weight",
+      "time_mlp.2.bias",
+      "action_input.weight",
+      "action_input.bias",
+      "blocks.0.self_attention.q.weight",
+      "blocks.0.self_attention.q.bias",
+      "blocks.0.self_attention.kv.weight",
+      "blocks.0.self_attention.kv.bias",
+      "blocks.0.self_attention.output.weight",
+      "blocks.0.self_attention.output.bias",
+      "blocks.0.cross_attention.q.weight",
+      "blocks.0.cross_attention.q.bias",
+      "blocks.0.cross_attention.kv.weight",
+      "blocks.0.cross_attention.kv.bias",
+      "blocks.0.cross_attention.output.weight",
+      "blocks.0.cross_attention.output.bias",
+      "blocks.0.mlp.0.weight",
+      "blocks.0.mlp.0.bias",
+      "blocks.0.mlp.2.weight",
+      "blocks.0.mlp.2.bias",
+      "blocks.0.modulation.1.weight",
+      "blocks.0.modulation.1.bias",
+      "blocks.1.self_attention.q.weight",
+      "blocks.1.self_attention.q.bias",
+      "blocks.1.self_attention.kv.weight",
+      "blocks.1.self_attention.kv.bias",
+      "blocks.1.self_attention.output.weight",
+      "blocks.1.self_attention.output.bias",
+      "blocks.1.cross_attention.q.weight",
+      "blocks.1.cross_attention.q.bias",
+      "blocks.1.cross_attention.kv.weight",
+      "blocks.1.cross_attention.kv.bias",
+      "blocks.1.cross_attention.output.weight",
+      "blocks.1.cross_attention.output.bias",
+      "blocks.1.mlp.0.weight",
+      "blocks.1.mlp.0.bias",
+      "blocks.1.mlp.2.weight",
+      "blocks.1.mlp.2.bias",
+      "blocks.1.modulation.1.weight",
+      "blocks.1.modulation.1.bias",
+      "blocks.2.self_attention.q.weight",
+      "blocks.2.self_attention.q.bias",
+      "blocks.2.self_attention.kv.weight",
+      "blocks.2.self_attention.kv.bias",
+      "blocks.2.self_attention.output.weight",
+      "blocks.2.self_attention.output.bias",
+      "blocks.2.cross_attention.q.weight",
+      "blocks.2.cross_attention.q.bias",
+      "blocks.2.cross_attention.kv.weight",
+      "blocks.2.cross_attention.kv.bias",
+      "blocks.2.cross_attention.output.weight",
+      "blocks.2.cross_attention.output.bias",
+      "blocks.2.mlp.0.weight",
+      "blocks.2.mlp.0.bias",
+      "blocks.2.mlp.2.weight",
+      "blocks.2.mlp.2.bias",
+      "blocks.2.modulation.1.weight",
+      "blocks.2.modulation.1.bias",
+      "blocks.3.self_attention.q.weight",
+      "blocks.3.self_attention.q.bias",
+      "blocks.3.self_attention.kv.weight",
+      "blocks.3.self_attention.kv.bias",
+      "blocks.3.self_attention.output.weight",
+      "blocks.3.self_attention.output.bias",
+      "blocks.3.cross_attention.q.weight",
+      "blocks.3.cross_attention.q.bias",
+      "blocks.3.cross_attention.kv.weight",
+      "blocks.3.cross_attention.kv.bias",
+      "blocks.3.cross_attention.output.weight",
+      "blocks.3.cross_attention.output.bias",
+      "blocks.3.mlp.0.weight",
+      "blocks.3.mlp.0.bias",
+      "blocks.3.mlp.2.weight",
+      "blocks.3.mlp.2.bias",
+      "blocks.3.modulation.1.weight",
+      "blocks.3.modulation.1.bias",
+      "blocks.4.self_attention.q.weight",
+      "blocks.4.self_attention.q.bias",
+      "blocks.4.self_attention.kv.weight",
+      "blocks.4.self_attention.kv.bias",
+      "blocks.4.self_attention.output.weight",
+      "blocks.4.self_attention.output.bias",
+      "blocks.4.cross_attention.q.weight",
+      "blocks.4.cross_attention.q.bias",
+      "blocks.4.cross_attention.kv.weight",
+      "blocks.4.cross_attention.kv.bias",
+      "blocks.4.cross_attention.output.weight",
+      "blocks.4.cross_attention.output.bias",
+      "blocks.4.mlp.0.weight",
+      "blocks.4.mlp.0.bias",
+      "blocks.4.mlp.2.weight",
+      "blocks.4.mlp.2.bias",
+      "blocks.4.modulation.1.weight",
+      "blocks.4.modulation.1.bias",
+      "blocks.5.self_attention.q.weight",
+      "blocks.5.self_attention.q.bias",
+      "blocks.5.self_attention.kv.weight",
+      "blocks.5.self_attention.kv.bias",
+      "blocks.5.self_attention.output.weight",
+      "blocks.5.self_attention.output.bias",
+      "blocks.5.cross_attention.q.weight",
+      "blocks.5.cross_attention.q.bias",
+      "blocks.5.cross_attention.kv.weight",
+      "blocks.5.cross_attention.kv.bias",
+      "blocks.5.cross_attention.output.weight",
+      "blocks.5.cross_attention.output.bias",
+      "blocks.5.mlp.0.weight",
+      "blocks.5.mlp.0.bias",
+      "blocks.5.mlp.2.weight",
+      "blocks.5.mlp.2.bias",
+      "blocks.5.modulation.1.weight",
+      "blocks.5.modulation.1.bias",
+      "final_modulation.1.weight",
+      "final_modulation.1.bias",
+      "output.weight",
+      "output.bias"
+    ]
+  },
+  "new_freeze": "All original vision.* weights frozen and vision.eval(); every other existing parameter trainable",
+  "vision_normalization_modules": {
+    "GroupNorm": 20
+  }
+}

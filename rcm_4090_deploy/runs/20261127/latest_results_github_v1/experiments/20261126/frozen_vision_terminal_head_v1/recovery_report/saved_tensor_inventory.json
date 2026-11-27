@@ -1,0 +1,81 @@
+{
+  "initial_head_tensors": {
+    "visual.0.weight": {
+      "shape": [
+        64,
+        1536
+      ],
+      "dtype": "torch.float32"
+    },
+    "visual.0.bias": {
+      "shape": [
+        64
+      ],
+      "dtype": "torch.float32"
+    },
+    "state.0.weight": {
+      "shape": [
+        64,
+        20
+      ],
+      "dtype": "torch.float32"
+    },
+    "state.0.bias": {
+      "shape": [
+        64
+      ],
+      "dtype": "torch.float32"
+    },
+    "state.2.weight": {
+      "shape": [
+        64,
+        64
+      ],
+      "dtype": "torch.float32"
+    },
+    "state.2.bias": {
+      "shape": [
+        64
+      ],
+      "dtype": "torch.float32"
+    },
+    "fusion.0.weight": {
+      "shape": [
+        64,
+        128
+      ],
+      "dtype": "torch.float32"
+    },
+    "fusion.0.bias": {
+      "shape": [
+        64
+      ],
+      "dtype": "torch.float32"
+    },
+    "fusion.2.weight": {
+      "shape": [
+        3,
+        64
+      ],
+      "dtype": "torch.float32"
+    },
+    "fusion.2.bias": {
+      "shape": [
+        3
+      ],
+      "dtype": "torch.float32"
+    }
+  },
+  "initial_head_numel": 112323,
+  "cache_shapes": {
+    "train": [
+      657,
+      1536
+    ],
+    "development_E41": [
+      657,
+      1536
+    ]
+  },
+  "note": "CPU deserialization only; initial != final; no trained head or gradient artifact exists"
+}

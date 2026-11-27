@@ -1,0 +1,332 @@
+{
+  "time": "2026-11-26T16:03:44.480944+08:00",
+  "status": "first_neural_tick_executed",
+  "row": {
+    "cycle": 1,
+    "pre": {
+      "index": 2,
+      "time_s": 0.1,
+      "rgb_path": "arms/below_approaching/exec4/rgb/0002.png",
+      "rgb_file_sha256": "abdca031a0b13946e11e3866179ecd910c6d4b88ee686220e62cb399da9b900b",
+      "rgb_array_sha256": "914d2540fce0bb7cfa0fab76862577e16f87ef0d13d4b46929d41b1b2a913449",
+      "rgb_shape": [
+        1440,
+        1920,
+        3
+      ],
+      "state_deg_deg_mm": [
+        -3.411,
+        -2.211011213911128,
+        19.889705450273695
+      ],
+      "signed_OCT_mm": [
+        0.008420432917773724,
+        -0.0021882331930100918,
+        0.048777852207422256,
+        1.0
+      ],
+      "actual_velocity_deg_deg_mm_s": [
+        0.0,
+        0.0,
+        0.04794531235079169
+      ],
+      "previous_accepted_deg_deg_mm": [
+        0.0,
+        0.0,
+        0.003
+      ],
+      "encoder_ABCE": [
+        -1895,
+        1278604,
+        2162933,
+        0
+      ],
+      "needle_site_world_mm": [
+        349.18909470475415,
+        -12.627250692583415,
+        373.0481925077764
+      ],
+      "target_world_mm": [
+        349.2189832461999,
+        -12.630317456102267,
+        373.0088801232904
+      ],
+      "true_error_um": 49.47922313667578,
+      "axial_error_um_from_initial_axis": 49.47921849249362,
+      "OCT_metadata": {
+        "schema_version": 1,
+        "frame_id": "sim-oct-9d7f18406fd84c658f340a898c67d419/00000002",
+        "stream_id": "sim-oct-9d7f18406fd84c658f340a898c67d419",
+        "sequence_id": 2,
+        "timestamp_s": 0.1,
+        "clock_domain": "simulation",
+        "acquired_monotonic_s": 443562.287323403,
+        "nominal_period_s": 0.05,
+        "nominal_frequency_hz": 20.0,
+        "nominal_rate_is_wall_clock_guarantee": false,
+        "source": "mujoco_visible_scene_depth_simulation",
+        "is_simulation": true,
+        "raw_oct_available": false,
+        "realtime_validated": false,
+        "camera_name": "eye_internal",
+        "registration_frame": "eye_internal",
+        "registration_description": "One normally visible, registered metric depth map; no hidden-feature render or object-ID segmentation.",
+        "depth_unit": "m",
+        "depth_convention": "positive_camera_optical_axis_z_not_ray_range",
+        "shape_hw": [
+          1440,
+          1920
+        ],
+        "depth_dtype": "float32",
+        "validity_rule": "finite and strictly greater than min; strictly less than max when set",
+        "min_valid_depth_m": 0.0001,
+        "max_valid_depth_m": 0.059994,
+        "scene_valid_pixels": 1585318,
+        "feature_valid_pixels": 1585318,
+        "timestamp_repeated": false,
+        "fresh_simulation_timestamp": true,
+        "extra": {
+          "source": "mujoco_visible_scene_depth_simulation",
+          "is_simulation": true,
+          "raw_oct_available": false,
+          "realtime_validated": false,
+          "rgbd_render_quality": {
+            "offsamples": 0,
+            "numslices": 112,
+            "numstacks": 64
+          },
+          "feature_pass_excludes_fundus_backdrop": false,
+          "visibility_gated_by_normal_scene_segmentation": false,
+          "rgb_and_depth_share_visibility": true,
+          "simulator_object_ids_used": false
+        }
+      },
+      "RGB_depth_source": "mujoco_visible_scene_depth_simulation"
+    },
+    "post": {
+      "index": 3,
+      "time_s": 0.15000000000000002,
+      "rgb_path": "arms/below_approaching/exec4/rgb/0003.png",
+      "rgb_file_sha256": "f6f6189008797a8b199b0391293231af928f4805cf486a0fc3cfaa0750b56cbb",
+      "rgb_array_sha256": "8e223ad2f11a03ae3fe782a6eeea3de46ed0ce91e8ed2058027365693b5c9057",
+      "rgb_shape": [
+        1440,
+        1920,
+        3
+      ],
+      "state_deg_deg_mm": [
+        -3.411,
+        -2.211011213911128,
+        19.89205571068305
+      ],
+      "signed_OCT_mm": [
+        0.008030004799365997,
+        -0.0020779832266271114,
+        0.046481654047966,
+        1.0
+      ],
+      "actual_velocity_deg_deg_mm_s": [
+        0.0,
+        0.0,
+        0.04700520818710918
+      ],
+      "previous_accepted_deg_deg_mm": [
+        -0.0006372163770720363,
+        -0.002654758282005787,
+        0.003758331760764122
+      ],
+      "encoder_ABCE": [
+        -1895,
+        1278604,
+        2163083,
+        0
+      ],
+      "needle_site_world_mm": [
+        349.19051457998376,
+        -12.62738512822386,
+        373.046324459227
+      ],
+      "target_world_mm": [
+        349.2189832461999,
+        -12.630317456102267,
+        373.0088801232904
+      ],
+      "true_error_um": 47.12899104208745,
+      "axial_error_um_from_initial_axis": 47.12898039524888,
+      "OCT_metadata": {
+        "schema_version": 1,
+        "frame_id": "sim-oct-9d7f18406fd84c658f340a898c67d419/00000003",
+        "stream_id": "sim-oct-9d7f18406fd84c658f340a898c67d419",
+        "sequence_id": 3,
+        "timestamp_s": 0.15000000000000002,
+        "clock_domain": "simulation",
+        "acquired_monotonic_s": 443562.977433204,
+        "nominal_period_s": 0.05,
+        "nominal_frequency_hz": 20.0,
+        "nominal_rate_is_wall_clock_guarantee": false,
+        "source": "mujoco_visible_scene_depth_simulation",
+        "is_simulation": true,
+        "raw_oct_available": false,
+        "realtime_validated": false,
+        "camera_name": "eye_internal",
+        "registration_frame": "eye_internal",
+        "registration_description": "One normally visible, registered metric depth map; no hidden-feature render or object-ID segmentation.",
+        "depth_unit": "m",
+        "depth_convention": "positive_camera_optical_axis_z_not_ray_range",
+        "shape_hw": [
+          1440,
+          1920
+        ],
+        "depth_dtype": "float32",
+        "validity_rule": "finite and strictly greater than min; strictly less than max when set",
+        "min_valid_depth_m": 0.0001,
+        "max_valid_depth_m": 0.059994,
+        "scene_valid_pixels": 1585318,
+        "feature_valid_pixels": 1585318,
+        "timestamp_repeated": false,
+        "fresh_simulation_timestamp": true,
+        "extra": {
+          "source": "mujoco_visible_scene_depth_simulation",
+          "is_simulation": true,
+          "raw_oct_available": false,
+          "realtime_validated": false,
+          "rgbd_render_quality": {
+            "offsamples": 0,
+            "numslices": 112,
+            "numstacks": 64
+          },
+          "feature_pass_excludes_fundus_backdrop": false,
+          "visibility_gated_by_normal_scene_segmentation": false,
+          "rgb_and_depth_share_visibility": true,
+          "simulator_object_ids_used": false
+        }
+      },
+      "RGB_depth_source": "mujoco_visible_scene_depth_simulation"
+    },
+    "event": {
+      "step": 0,
+      "error_before_mm": 0.04947922313667578,
+      "raw_action_deg_deg_mm": [
+        -0.0006372163770720363,
+        -0.002654758282005787,
+        0.003758331760764122
+      ],
+      "clipped_action_deg_deg_mm": [
+        -0.0006372163770720363,
+        -0.002654758282005787,
+        0.003758331760764122
+      ],
+      "accepted_action_deg_deg_mm": [
+        -0.0006372163770720363,
+        -0.002654758282005787,
+        0.003758331760764122
+      ],
+      "safety_limited": false,
+      "safety_scale": 1.0,
+      "safety_limited_streak": 0,
+      "motor_record": {
+        "driver": {
+          "variant": "g10",
+          "control_gear": 10,
+          "kinematics_path": "/home/him1/mujoco_bc/rcm_4090_deploy/mujoco_model/vendor/simulation_driver/ros_msg/src/robot_control/kinematics.py",
+          "kinematics_sha256": "e48eb4a909208e8d1caa3ee2a7aff157de91c808730282dd17ccb17a46591530"
+        },
+        "step_index": 2,
+        "start_time_s": 0.1,
+        "end_time_s": 0.15000000000000002,
+        "duration_s": 0.05,
+        "integration_steps": 25,
+        "tau_s": 0.04,
+        "requested_task_rad_rad_m": [
+          -0.05954430230935412,
+          -0.03863575975413142,
+          0.019893463782034458
+        ],
+        "commanded_task_rad_rad_m": [
+          -0.05953318078552658,
+          -0.038589425481265836,
+          0.01989301148324952
+        ],
+        "requested_robot_ABCE": [
+          -1895,
+          1278382,
+          2163173,
+          0
+        ],
+        "handles_ABCE": [
+          0,
+          0,
+          7,
+          0
+        ],
+        "quantized_target_robot_ABCE": [
+          -1895,
+          1278604,
+          2163144,
+          0
+        ],
+        "actual_before_robot_ABCE": [
+          -1895,
+          1278604,
+          2162933,
+          0
+        ],
+        "actual_after_robot_ABCE": [
+          -1895,
+          1278604,
+          2163083,
+          0
+        ],
+        "actual_before_task_rad_rad_m": [
+          -0.05953318078552658,
+          -0.038589425481265836,
+          0.019889705450273694
+        ],
+        "actual_after_task_rad_rad_m": [
+          -0.05953318078552658,
+          -0.038589425481265836,
+          0.01989205571068305
+        ],
+        "actual_velocity_rad_rad_m_per_s": [
+          0.0,
+          0.0,
+          4.700520818710918e-05
+        ],
+        "tip_rcm_radius_before_mm": 23.88970531991259,
+        "tip_rcm_radius_after_mm": 23.89205558032194,
+        "tip_displacement_um": 2.3502604093511894,
+        "status": "moving",
+        "fault": null
+      }
+    },
+    "sampled_this_cycle": true,
+    "sample_calls_so_far": 1,
+    "chunk_id": 0,
+    "chunk_sample_time_s": 0.1,
+    "chunk_index": 0,
+    "queue_before": 0,
+    "queue_after_get_action": 3,
+    "production_float32_velocity_deg_deg_mm_s": [
+      0.0,
+      0.0,
+      0.04795074462890625
+    ],
+    "previous_action_input": [
+      0.0,
+      0.0,
+      0.003000000026077032
+    ],
+    "input_history_state": [
+      [
+        -3.4110000133514404,
+        -2.2110111713409424,
+        19.88730812072754
+      ],
+      [
+        -3.4110000133514404,
+        -2.2110111713409424,
+        19.889705657958984
+      ]
+    ]
+  }
+}

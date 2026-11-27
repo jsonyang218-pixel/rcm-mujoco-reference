@@ -1,0 +1,20 @@
+{
+  "time": "2026-11-26T22:18:46.541421+08:00",
+  "workflow_status": "technical_failure",
+  "progress": {
+    "implementation": "complete",
+    "launch": "actual_started",
+    "parity": "passed",
+    "tinyfit": "failed",
+    "formal_training": "not_started",
+    "offline": "not_started",
+    "closed_loop": "skipped_failure",
+    "tinyfit_updates": 512,
+    "formal_updates": 0
+  },
+  "runtime_s": 5.929314412991516,
+  "actual_budget_total_s": 900,
+  "scientific_scope": "E40 training / E41 selected development; software MuJoCo only; no clinical or hardware claim",
+  "single_factor_causality": false,
+  "error": "RuntimeError('Expected all tensors to be on the same device, but found at least two devices, cuda:0 and cpu!')"
+}

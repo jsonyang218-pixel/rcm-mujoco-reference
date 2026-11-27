@@ -1,0 +1,864 @@
+# 两个标准起点验收
+
+{
+  "status": "completed",
+  "time": "2026-11-26T09:16:16.398029+08:00",
+  "completed_targets": 2,
+  "requested_targets": 2,
+  "worker_exit_codes": [
+    0,
+    0
+  ],
+  "protocol_and_baseline_verified": true,
+  "primary_200um_passes": 2,
+  "long_term_20um_passes": 2,
+  "additional_targets_run": false,
+  "additional_targets_require_separate_planner_action": true,
+  "both20_gate_for_original_plan": true,
+  "targets": [
+    {
+      "status": "completed",
+      "target": "E06",
+      "seed": 48,
+      "actions": 1600,
+      "initial_true_error_um": 19798.1713712755,
+      "final_true_error_um": 2.9039412124185415,
+      "last200_max_true_error_um": 3.5603593589180456,
+      "last200_includes_final_action": true,
+      "primary_200um": {
+        "radius_um": 200,
+        "first_enter_post_action_cycle": 796,
+        "entry_cycles": [
+          796
+        ],
+        "first_exit_post_action_cycle": null,
+        "exit_cycles": [],
+        "longest_hold_cycles": 805,
+        "longest_hold_s": 40.25,
+        "terminal_hold_cycles": 805,
+        "terminal_hold_s": 40.25,
+        "last200_max_um": 3.5603593589180456,
+        "last200_cycles_inclusive": [
+          1401,
+          1600
+        ],
+        "last200_duration_s": 10.0,
+        "passed": true
+      },
+      "long_term_20um": {
+        "radius_um": 20,
+        "first_enter_post_action_cycle": 1184,
+        "entry_cycles": [
+          1184
+        ],
+        "first_exit_post_action_cycle": null,
+        "exit_cycles": [],
+        "longest_hold_cycles": 417,
+        "longest_hold_s": 20.85,
+        "terminal_hold_cycles": 417,
+        "terminal_hold_s": 20.85,
+        "last200_max_um": 3.5603593589180456,
+        "last200_cycles_inclusive": [
+          1401,
+          1600
+        ],
+        "last200_duration_s": 10.0,
+        "passed": true
+      },
+      "original_strict_0p35um_success": false,
+      "original_terminal_success": {
+        "error_threshold_mm": 0.00035,
+        "required_consecutive_frames": 3,
+        "consecutive_frames_at_exit": 0,
+        "low_speed_at_exit": true,
+        "encoder_settled_at_exit": false,
+        "terminal_frame_pass": false,
+        "terminal_condition": "MotorExecution.settled"
+      },
+      "switch": {
+        "action_cycle": 1180,
+        "pre_action_index": 1179,
+        "measured_oct_norm_mm": 0.03605096581285429,
+        "measured_input12": [
+          0.009958353824913502,
+          0.0038984152488410473,
+          0.03442826867103577,
+          -7.248600000000001,
+          3.9376331738093313,
+          19.714093992486706,
+          0.14399999999999358,
+          -0.006979811215481042,
+          0.05264583316948179,
+          0.00441647507250309,
+          -0.0012402685824781656,
+          0.004187475889921188
+        ],
+        "simulation_time_s": 58.94999999999879,
+        "velocity_deg_deg_mm_s": [
+          0.14399999999999358,
+          -0.006979811215481042,
+          0.05264583316948179
+        ],
+        "previous_accepted_deg_deg_mm": [
+          0.00441647507250309,
+          -0.0012402685824781656,
+          0.004187475889921188
+        ]
+      },
+      "route_counts": {
+        "v5": 1179,
+        "learned_local": 421,
+        "teacher": 0,
+        "geometry": 0
+      },
+      "teacher_calls": 0,
+      "geometry_calls": 0,
+      "model_sha256": {
+        "v5": "6cc389df3786f1f34c43cf65d6dc17fe910ab342fae8d84c8e37cea6a7db6c11",
+        "local": "8d0679fc706c8a1a384977c59af5ec131e22e281afa9d02bd2f6625baccfbfc1"
+      },
+      "elapsed_s": 580.1068843869725,
+      "independent_truth": "Live scene.site_mm(needle_tip) after each apply_prepared_motor; worldXYZ 3D norm to target",
+      "control_inputs": "Measured RGB/OCT + ABC; ridge only measured OCT/ABC/actual velocity/previous accepted command",
+      "source_protocol": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261126/v5_learned_local_standard2_protocol_v2/experiment_card.json",
+      "trajectory": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261126/v5_learned_local_standard2_protocol_v2/E06/cycles.jsonl",
+      "raw": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261126/v5_learned_local_standard2_protocol_v2/E06/evaluation_results.json",
+      "switch_scoring_only": {
+        "pre_tip_world_mm": [
+          346.92462108244143,
+          -14.208975418814342,
+          371.89677847759964
+        ],
+        "target_world_mm": [
+          346.94139312204265,
+          -14.214940788895337,
+          371.8654810477438
+        ],
+        "pre_true_error_um": 36.0057782608487,
+        "post_true_error_um": 32.83981628505199,
+        "true_world_delta_mm": [
+          0.016772039601221422,
+          -0.005965370080994958,
+          -0.031297429855840164
+        ],
+        "raw_action": [
+          -0.0040585515347285805,
+          0.00037008635689862756,
+          0.004868295631716536
+        ],
+        "accepted_action": [
+          -0.0040585515347285805,
+          0.00037008635689862756,
+          0.004868295631716536
+        ]
+      },
+      "pre_switch_baseline_comparison": {
+        "status": "passed",
+        "compared_v5_actions": 1179,
+        "comparison": "np.array_equal; no atol/rtol acceptance",
+        "checks": {
+          "target_world_mm": {
+            "exact_equal": true,
+            "max_absolute_difference": 0.0,
+            "first_mismatch_index": null
+          },
+          "raw_actions": {
+            "exact_equal": true,
+            "max_absolute_difference": 0.0,
+            "first_mismatch_index": null
+          },
+          "actions": {
+            "exact_equal": true,
+            "max_absolute_difference": 0.0,
+            "first_mismatch_index": null
+          },
+          "states": {
+            "exact_equal": true,
+            "max_absolute_difference": 0.0,
+            "first_mismatch_index": null
+          },
+          "errors": {
+            "exact_equal": true,
+            "max_absolute_difference": 0.0,
+            "first_mismatch_index": null
+          },
+          "velocities": {
+            "exact_equal": true,
+            "max_absolute_difference": 0.0,
+            "first_mismatch_index": null
+          },
+          "oct_navigation_mm": {
+            "exact_equal": true,
+            "max_absolute_difference": 0.0,
+            "first_mismatch_index": null
+          },
+          "oct_navigation_valid": {
+            "exact_equal": true,
+            "max_absolute_difference": 0.0,
+            "first_mismatch_index": null
+          },
+          "simulation_time_s": {
+            "exact_equal": true,
+            "max_absolute_difference": 0.0,
+            "first_mismatch_index": null
+          },
+          "state_immediately_before_route_or_end": {
+            "exact_equal": true,
+            "max_absolute_difference": 0.0,
+            "first_mismatch_index": null
+          },
+          "motor_requested_task_rad_rad_m": {
+            "exact_equal": true,
+            "max_absolute_difference": 0.0,
+            "first_mismatch_index": null
+          },
+          "motor_commanded_task_rad_rad_m": {
+            "exact_equal": true,
+            "max_absolute_difference": 0.0,
+            "first_mismatch_index": null
+          },
+          "motor_requested_robot_ABCE": {
+            "exact_equal": true,
+            "max_absolute_difference": 0.0,
+            "first_mismatch_index": null
+          },
+          "motor_handles_ABCE": {
+            "exact_equal": true,
+            "max_absolute_difference": 0.0,
+            "first_mismatch_index": null
+          },
+          "motor_quantized_target_robot_ABCE": {
+            "exact_equal": true,
+            "max_absolute_difference": 0.0,
+            "first_mismatch_index": null
+          },
+          "motor_actual_before_robot_ABCE": {
+            "exact_equal": true,
+            "max_absolute_difference": 0.0,
+            "first_mismatch_index": null
+          },
+          "motor_actual_after_robot_ABCE": {
+            "exact_equal": true,
+            "max_absolute_difference": 0.0,
+            "first_mismatch_index": null
+          },
+          "motor_actual_before_task_rad_rad_m": {
+            "exact_equal": true,
+            "max_absolute_difference": 0.0,
+            "first_mismatch_index": null
+          },
+          "motor_actual_after_task_rad_rad_m": {
+            "exact_equal": true,
+            "max_absolute_difference": 0.0,
+            "first_mismatch_index": null
+          },
+          "motor_actual_velocity_rad_rad_m_per_s": {
+            "exact_equal": true,
+            "max_absolute_difference": 0.0,
+            "first_mismatch_index": null
+          },
+          "motor_start_time_s": {
+            "exact_equal": true,
+            "max_absolute_difference": 0.0,
+            "first_mismatch_index": null
+          },
+          "motor_end_time_s": {
+            "exact_equal": true,
+            "max_absolute_difference": 0.0,
+            "first_mismatch_index": null
+          },
+          "motor_duration_s": {
+            "exact_equal": true,
+            "max_absolute_difference": 0.0,
+            "first_mismatch_index": null
+          },
+          "motor_integration_steps": {
+            "exact_equal": true,
+            "max_absolute_difference": 0.0,
+            "first_mismatch_index": null
+          },
+          "model_raw_action": {
+            "exact_equal": true,
+            "max_absolute_difference": 0.0,
+            "first_mismatch_index": null
+          },
+          "clipped_action": {
+            "exact_equal": true,
+            "max_absolute_difference": 0.0,
+            "first_mismatch_index": null
+          },
+          "accepted_action": {
+            "exact_equal": true,
+            "max_absolute_difference": 0.0,
+            "first_mismatch_index": null
+          },
+          "post_action_independent_truth_error_um": {
+            "exact_equal": true,
+            "max_absolute_difference": 0.0,
+            "first_mismatch_index": null
+          },
+          "actual_motion_delta_deg_deg_mm": {
+            "exact_equal": true,
+            "max_absolute_difference": 0.0,
+            "first_mismatch_index": null
+          }
+        },
+        "archive_used_for_control": false,
+        "source": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261125/terminal_round_v1/v5_A4000/shards/tasks/eval_E06/raw/evaluation_results.json",
+        "source_sha256": "33f25c9204c7baab527fd8a60fa39a5fe3003cc6bbd3aa25be8e836727269232",
+        "original_contract": {
+          "version": 2,
+          "controller_variant": "feedback",
+          "rgbd_render_quality": {
+            "offsamples": 0,
+            "numslices": 112,
+            "numstacks": 64
+          },
+          "execution_backend": "MotorBackend",
+          "control_period_s": 0.05,
+          "state_action_units": "A_deg,B_deg,C_mm",
+          "rgb_preprocessing": "1920x1440 -> 224x224 bilinear",
+          "ground_truth_used_for_control": false,
+          "ground_truth_used_for_success": true,
+          "require_motor_settled_for_success": true,
+          "terminal_condition": "MotorExecution.settled",
+          "success_definition": "error_threshold_and_three_consecutive_MotorExecution.settled_frames",
+          "success_error_threshold_mm": 0.00035,
+          "stop_on_success": false,
+          "success_error_threshold_um": 0.35,
+          "required_consecutive_success_frames": 3,
+          "early_stop_error_mm": 30.0,
+          "max_consecutive_safety_limited": null,
+          "oct_navigation_used": true,
+          "action_limit_deg_deg_mm": [
+            0.2897999882698059,
+            0.14434358477592468,
+            0.04271206632256508
+          ],
+          "num_action_samples": 1,
+          "action_aggregation": "single_sample",
+          "flow_integration_steps": 4,
+          "model_epoch": 3,
+          "policy_type": "dit_rectified_flow",
+          "model_train_loss": 0.10375335215777158,
+          "model_val_loss": 0.14806195978316472,
+          "model_best_normalized_mae": null,
+          "fine_model": null,
+          "fine_switch_error_mm": null,
+          "terminal_refine_error_mm": null,
+          "terminal_confirm_frames": 8
+        }
+      },
+      "formal_primary_200um_pass": true,
+      "formal_secondary_20um_pass": true,
+      "numeric_radius_metrics_alone_are_not_formal_acceptance": true,
+      "baseline": {
+        "final_true_error_um": 33.92221564948523,
+        "primary_200um": {
+          "radius_um": 200,
+          "first_enter_post_action_cycle": 796,
+          "entry_cycles": [
+            796
+          ],
+          "first_exit_post_action_cycle": null,
+          "exit_cycles": [],
+          "longest_hold_cycles": 805,
+          "longest_hold_s": 40.25,
+          "terminal_hold_cycles": 805,
+          "terminal_hold_s": 40.25,
+          "last200_max_um": 97.77438229904317,
+          "last200_cycles_inclusive": [
+            1401,
+            1600
+          ],
+          "last200_duration_s": 10.0,
+          "passed": true
+        },
+        "long_term_20um": {
+          "radius_um": 20,
+          "first_enter_post_action_cycle": null,
+          "entry_cycles": [],
+          "first_exit_post_action_cycle": null,
+          "exit_cycles": [],
+          "longest_hold_cycles": 0,
+          "longest_hold_s": 0.0,
+          "terminal_hold_cycles": 0,
+          "terminal_hold_s": 0.0,
+          "last200_max_um": 97.77438229904317,
+          "last200_cycles_inclusive": [
+            1401,
+            1600
+          ],
+          "last200_duration_s": 10.0,
+          "passed": false
+        },
+        "source_contract": {
+          "version": 2,
+          "controller_variant": "feedback",
+          "rgbd_render_quality": {
+            "offsamples": 0,
+            "numslices": 112,
+            "numstacks": 64
+          },
+          "execution_backend": "MotorBackend",
+          "control_period_s": 0.05,
+          "state_action_units": "A_deg,B_deg,C_mm",
+          "rgb_preprocessing": "1920x1440 -> 224x224 bilinear",
+          "ground_truth_used_for_control": false,
+          "ground_truth_used_for_success": true,
+          "require_motor_settled_for_success": true,
+          "terminal_condition": "MotorExecution.settled",
+          "success_definition": "error_threshold_and_three_consecutive_MotorExecution.settled_frames",
+          "success_error_threshold_mm": 0.00035,
+          "stop_on_success": false,
+          "success_error_threshold_um": 0.35,
+          "required_consecutive_success_frames": 3,
+          "early_stop_error_mm": 30.0,
+          "max_consecutive_safety_limited": null,
+          "oct_navigation_used": true,
+          "action_limit_deg_deg_mm": [
+            0.2897999882698059,
+            0.14434358477592468,
+            0.04271206632256508
+          ],
+          "num_action_samples": 1,
+          "action_aggregation": "single_sample",
+          "flow_integration_steps": 4,
+          "model_epoch": 3,
+          "policy_type": "dit_rectified_flow",
+          "model_train_loss": 0.10375335215777158,
+          "model_val_loss": 0.14806195978316472,
+          "model_best_normalized_mae": null,
+          "fine_model": null,
+          "fine_switch_error_mm": null,
+          "terminal_refine_error_mm": null,
+          "terminal_confirm_frames": 8
+        },
+        "source": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261125/terminal_round_v1/v5_A4000/shards/tasks/eval_E06/raw/evaluation_results.json"
+      },
+      "paired_final_delta_um": -31.01827443706669
+    },
+    {
+      "status": "completed",
+      "target": "E08",
+      "seed": 50,
+      "actions": 1600,
+      "initial_true_error_um": 19609.87241492281,
+      "final_true_error_um": 3.2639973038591834,
+      "last200_max_true_error_um": 5.579104910834274,
+      "last200_includes_final_action": true,
+      "primary_200um": {
+        "radius_um": 200,
+        "first_enter_post_action_cycle": 650,
+        "entry_cycles": [
+          650
+        ],
+        "first_exit_post_action_cycle": null,
+        "exit_cycles": [],
+        "longest_hold_cycles": 951,
+        "longest_hold_s": 47.550000000000004,
+        "terminal_hold_cycles": 951,
+        "terminal_hold_s": 47.550000000000004,
+        "last200_max_um": 5.579104910834274,
+        "last200_cycles_inclusive": [
+          1401,
+          1600
+        ],
+        "last200_duration_s": 10.0,
+        "passed": true
+      },
+      "long_term_20um": {
+        "radius_um": 20,
+        "first_enter_post_action_cycle": 1209,
+        "entry_cycles": [
+          1209
+        ],
+        "first_exit_post_action_cycle": null,
+        "exit_cycles": [],
+        "longest_hold_cycles": 392,
+        "longest_hold_s": 19.6,
+        "terminal_hold_cycles": 392,
+        "terminal_hold_s": 19.6,
+        "last200_max_um": 5.579104910834274,
+        "last200_cycles_inclusive": [
+          1401,
+          1600
+        ],
+        "last200_duration_s": 10.0,
+        "passed": true
+      },
+      "original_strict_0p35um_success": false,
+      "original_terminal_success": {
+        "error_threshold_mm": 0.00035,
+        "required_consecutive_frames": 3,
+        "consecutive_frames_at_exit": 0,
+        "low_speed_at_exit": false,
+        "encoder_settled_at_exit": false,
+        "terminal_frame_pass": false,
+        "terminal_condition": "MotorExecution.settled"
+      },
+      "switch": {
+        "action_cycle": 1196,
+        "pre_action_index": 1195,
+        "measured_oct_norm_mm": 0.036726345912014166,
+        "measured_input12": [
+          0.035805340856313705,
+          -0.007655033376067877,
+          0.0028640031814575195,
+          -6.1308,
+          -8.999831452031913,
+          19.51393014762333,
+          -0.2159999999999904,
+          -0.009009724124669731,
+          0.01441493051070053,
+          -0.01037192065268755,
+          -0.0008788408595137298,
+          0.0015505775809288025
+        ],
+        "simulation_time_s": 59.74999999999874,
+        "velocity_deg_deg_mm_s": [
+          -0.2159999999999904,
+          -0.009009724124669731,
+          0.01441493051070053
+        ],
+        "previous_accepted_deg_deg_mm": [
+          -0.01037192065268755,
+          -0.0008788408595137298,
+          0.0015505775809288025
+        ]
+      },
+      "route_counts": {
+        "v5": 1195,
+        "learned_local": 405,
+        "teacher": 0,
+        "geometry": 0
+      },
+      "teacher_calls": 0,
+      "geometry_calls": 0,
+      "model_sha256": {
+        "v5": "6cc389df3786f1f34c43cf65d6dc17fe910ab342fae8d84c8e37cea6a7db6c11",
+        "local": "8d0679fc706c8a1a384977c59af5ec131e22e281afa9d02bd2f6625baccfbfc1"
+      },
+      "elapsed_s": 579.9432061800035,
+      "independent_truth": "Live scene.site_mm(needle_tip) after each apply_prepared_motor; worldXYZ 3D norm to target",
+      "control_inputs": "Measured RGB/OCT + ABC; ridge only measured OCT/ABC/actual velocity/previous accepted command",
+      "source_protocol": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261126/v5_learned_local_standard2_protocol_v2/experiment_card.json",
+      "trajectory": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261126/v5_learned_local_standard2_protocol_v2/E08/cycles.jsonl",
+      "raw": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261126/v5_learned_local_standard2_protocol_v2/E08/evaluation_results.json",
+      "switch_scoring_only": {
+        "pre_tip_world_mm": [
+          351.0456622864819,
+          -13.576398613360512,
+          375.2373902980658
+        ],
+        "target_world_mm": [
+          351.0549894697093,
+          -13.61189066077876,
+          375.23563838939805
+        ],
+        "pre_true_error_um": 36.73895699223224,
+        "post_true_error_um": 36.0930627210214,
+        "true_world_delta_mm": [
+          0.009327183227412661,
+          -0.03549204741824852,
+          -0.001751908667756652
+        ],
+        "raw_action": [
+          -0.007256668991161548,
+          0.004264625789192702,
+          0.001885776510844621
+        ],
+        "accepted_action": [
+          -0.007256668991161548,
+          0.004264625789192702,
+          0.001885776510844621
+        ]
+      },
+      "pre_switch_baseline_comparison": {
+        "status": "passed",
+        "compared_v5_actions": 1195,
+        "comparison": "np.array_equal; no atol/rtol acceptance",
+        "checks": {
+          "target_world_mm": {
+            "exact_equal": true,
+            "max_absolute_difference": 0.0,
+            "first_mismatch_index": null
+          },
+          "raw_actions": {
+            "exact_equal": true,
+            "max_absolute_difference": 0.0,
+            "first_mismatch_index": null
+          },
+          "actions": {
+            "exact_equal": true,
+            "max_absolute_difference": 0.0,
+            "first_mismatch_index": null
+          },
+          "states": {
+            "exact_equal": true,
+            "max_absolute_difference": 0.0,
+            "first_mismatch_index": null
+          },
+          "errors": {
+            "exact_equal": true,
+            "max_absolute_difference": 0.0,
+            "first_mismatch_index": null
+          },
+          "velocities": {
+            "exact_equal": true,
+            "max_absolute_difference": 0.0,
+            "first_mismatch_index": null
+          },
+          "oct_navigation_mm": {
+            "exact_equal": true,
+            "max_absolute_difference": 0.0,
+            "first_mismatch_index": null
+          },
+          "oct_navigation_valid": {
+            "exact_equal": true,
+            "max_absolute_difference": 0.0,
+            "first_mismatch_index": null
+          },
+          "simulation_time_s": {
+            "exact_equal": true,
+            "max_absolute_difference": 0.0,
+            "first_mismatch_index": null
+          },
+          "state_immediately_before_route_or_end": {
+            "exact_equal": true,
+            "max_absolute_difference": 0.0,
+            "first_mismatch_index": null
+          },
+          "motor_requested_task_rad_rad_m": {
+            "exact_equal": true,
+            "max_absolute_difference": 0.0,
+            "first_mismatch_index": null
+          },
+          "motor_commanded_task_rad_rad_m": {
+            "exact_equal": true,
+            "max_absolute_difference": 0.0,
+            "first_mismatch_index": null
+          },
+          "motor_requested_robot_ABCE": {
+            "exact_equal": true,
+            "max_absolute_difference": 0.0,
+            "first_mismatch_index": null
+          },
+          "motor_handles_ABCE": {
+            "exact_equal": true,
+            "max_absolute_difference": 0.0,
+            "first_mismatch_index": null
+          },
+          "motor_quantized_target_robot_ABCE": {
+            "exact_equal": true,
+            "max_absolute_difference": 0.0,
+            "first_mismatch_index": null
+          },
+          "motor_actual_before_robot_ABCE": {
+            "exact_equal": true,
+            "max_absolute_difference": 0.0,
+            "first_mismatch_index": null
+          },
+          "motor_actual_after_robot_ABCE": {
+            "exact_equal": true,
+            "max_absolute_difference": 0.0,
+            "first_mismatch_index": null
+          },
+          "motor_actual_before_task_rad_rad_m": {
+            "exact_equal": true,
+            "max_absolute_difference": 0.0,
+            "first_mismatch_index": null
+          },
+          "motor_actual_after_task_rad_rad_m": {
+            "exact_equal": true,
+            "max_absolute_difference": 0.0,
+            "first_mismatch_index": null
+          },
+          "motor_actual_velocity_rad_rad_m_per_s": {
+            "exact_equal": true,
+            "max_absolute_difference": 0.0,
+            "first_mismatch_index": null
+          },
+          "motor_start_time_s": {
+            "exact_equal": true,
+            "max_absolute_difference": 0.0,
+            "first_mismatch_index": null
+          },
+          "motor_end_time_s": {
+            "exact_equal": true,
+            "max_absolute_difference": 0.0,
+            "first_mismatch_index": null
+          },
+          "motor_duration_s": {
+            "exact_equal": true,
+            "max_absolute_difference": 0.0,
+            "first_mismatch_index": null
+          },
+          "motor_integration_steps": {
+            "exact_equal": true,
+            "max_absolute_difference": 0.0,
+            "first_mismatch_index": null
+          },
+          "model_raw_action": {
+            "exact_equal": true,
+            "max_absolute_difference": 0.0,
+            "first_mismatch_index": null
+          },
+          "clipped_action": {
+            "exact_equal": true,
+            "max_absolute_difference": 0.0,
+            "first_mismatch_index": null
+          },
+          "accepted_action": {
+            "exact_equal": true,
+            "max_absolute_difference": 0.0,
+            "first_mismatch_index": null
+          },
+          "post_action_independent_truth_error_um": {
+            "exact_equal": true,
+            "max_absolute_difference": 0.0,
+            "first_mismatch_index": null
+          },
+          "actual_motion_delta_deg_deg_mm": {
+            "exact_equal": true,
+            "max_absolute_difference": 0.0,
+            "first_mismatch_index": null
+          }
+        },
+        "archive_used_for_control": false,
+        "source": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261125/terminal_round_v1/v5_A4000/shards/tasks/eval_E08/raw/evaluation_results.json",
+        "source_sha256": "5d2ba1f593599be8f514ad6be55e2c61b8dbf29df52fec611e4febe3776ead17",
+        "original_contract": {
+          "version": 2,
+          "controller_variant": "feedback",
+          "rgbd_render_quality": {
+            "offsamples": 0,
+            "numslices": 112,
+            "numstacks": 64
+          },
+          "execution_backend": "MotorBackend",
+          "control_period_s": 0.05,
+          "state_action_units": "A_deg,B_deg,C_mm",
+          "rgb_preprocessing": "1920x1440 -> 224x224 bilinear",
+          "ground_truth_used_for_control": false,
+          "ground_truth_used_for_success": true,
+          "require_motor_settled_for_success": true,
+          "terminal_condition": "MotorExecution.settled",
+          "success_definition": "error_threshold_and_three_consecutive_MotorExecution.settled_frames",
+          "success_error_threshold_mm": 0.00035,
+          "stop_on_success": false,
+          "success_error_threshold_um": 0.35,
+          "required_consecutive_success_frames": 3,
+          "early_stop_error_mm": 30.0,
+          "max_consecutive_safety_limited": null,
+          "oct_navigation_used": true,
+          "action_limit_deg_deg_mm": [
+            0.2897999882698059,
+            0.14434358477592468,
+            0.04271206632256508
+          ],
+          "num_action_samples": 1,
+          "action_aggregation": "single_sample",
+          "flow_integration_steps": 4,
+          "model_epoch": 3,
+          "policy_type": "dit_rectified_flow",
+          "model_train_loss": 0.10375335215777158,
+          "model_val_loss": 0.14806195978316472,
+          "model_best_normalized_mae": null,
+          "fine_model": null,
+          "fine_switch_error_mm": null,
+          "terminal_refine_error_mm": null,
+          "terminal_confirm_frames": 8
+        }
+      },
+      "formal_primary_200um_pass": true,
+      "formal_secondary_20um_pass": true,
+      "numeric_radius_metrics_alone_are_not_formal_acceptance": true,
+      "baseline": {
+        "final_true_error_um": 57.026156970517206,
+        "primary_200um": {
+          "radius_um": 200,
+          "first_enter_post_action_cycle": 650,
+          "entry_cycles": [
+            650
+          ],
+          "first_exit_post_action_cycle": null,
+          "exit_cycles": [],
+          "longest_hold_cycles": 951,
+          "longest_hold_s": 47.550000000000004,
+          "terminal_hold_cycles": 951,
+          "terminal_hold_s": 47.550000000000004,
+          "last200_max_um": 76.37379074404649,
+          "last200_cycles_inclusive": [
+            1401,
+            1600
+          ],
+          "last200_duration_s": 10.0,
+          "passed": true
+        },
+        "long_term_20um": {
+          "radius_um": 20,
+          "first_enter_post_action_cycle": null,
+          "entry_cycles": [],
+          "first_exit_post_action_cycle": null,
+          "exit_cycles": [],
+          "longest_hold_cycles": 0,
+          "longest_hold_s": 0.0,
+          "terminal_hold_cycles": 0,
+          "terminal_hold_s": 0.0,
+          "last200_max_um": 76.37379074404649,
+          "last200_cycles_inclusive": [
+            1401,
+            1600
+          ],
+          "last200_duration_s": 10.0,
+          "passed": false
+        },
+        "source_contract": {
+          "version": 2,
+          "controller_variant": "feedback",
+          "rgbd_render_quality": {
+            "offsamples": 0,
+            "numslices": 112,
+            "numstacks": 64
+          },
+          "execution_backend": "MotorBackend",
+          "control_period_s": 0.05,
+          "state_action_units": "A_deg,B_deg,C_mm",
+          "rgb_preprocessing": "1920x1440 -> 224x224 bilinear",
+          "ground_truth_used_for_control": false,
+          "ground_truth_used_for_success": true,
+          "require_motor_settled_for_success": true,
+          "terminal_condition": "MotorExecution.settled",
+          "success_definition": "error_threshold_and_three_consecutive_MotorExecution.settled_frames",
+          "success_error_threshold_mm": 0.00035,
+          "stop_on_success": false,
+          "success_error_threshold_um": 0.35,
+          "required_consecutive_success_frames": 3,
+          "early_stop_error_mm": 30.0,
+          "max_consecutive_safety_limited": null,
+          "oct_navigation_used": true,
+          "action_limit_deg_deg_mm": [
+            0.2897999882698059,
+            0.14434358477592468,
+            0.04271206632256508
+          ],
+          "num_action_samples": 1,
+          "action_aggregation": "single_sample",
+          "flow_integration_steps": 4,
+          "model_epoch": 3,
+          "policy_type": "dit_rectified_flow",
+          "model_train_loss": 0.10375335215777158,
+          "model_val_loss": 0.14806195978316472,
+          "model_best_normalized_mae": null,
+          "fine_model": null,
+          "fine_switch_error_mm": null,
+          "terminal_refine_error_mm": null,
+          "terminal_confirm_frames": 8
+        },
+        "source": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261125/terminal_round_v1/v5_A4000/shards/tasks/eval_E08/raw/evaluation_results.json"
+      },
+      "paired_final_delta_um": -53.76215966665802
+    }
+  ]
+}

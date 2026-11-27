@@ -1,0 +1,408 @@
+{
+  "status": "recomputed",
+  "model": "after",
+  "split": "train_E40",
+  "windows": 50,
+  "groups": {
+    "all": {
+      "windows": 50,
+      "nonzero_C_windows": 50,
+      "raw_first_action_mae_deg_deg_um": [
+        0.006016554310917854,
+        0.003852850291877985,
+        1.8401979468762875
+      ],
+      "production_clipped_first_action_mae_deg_deg_um": [
+        0.0060165552693069915,
+        0.003852851529667163,
+        1.8401980982162058
+      ],
+      "C_direction_accuracy": 0.78,
+      "C_direction_correct": 156,
+      "C_direction_draws": 200,
+      "per_seed_production_mae_deg_deg_um": [
+        [
+          0.00035975288588815604,
+          0.0018351944716479807,
+          1.1934703192673624
+        ],
+        [
+          0.0017878212815048756,
+          0.008208858677541855,
+          0.532490520272404
+        ],
+        [
+          0.011908081384644902,
+          0.0034237120259720654,
+          1.392636892851442
+        ],
+        [
+          0.010010565525190031,
+          0.0019436409435067503,
+          4.242194660473615
+        ]
+      ],
+      "per_seed_C_direction_accuracy": [
+        0.82,
+        0.96,
+        0.8,
+        0.54
+      ]
+    },
+    "moving_encoder": {
+      "windows": 50,
+      "nonzero_C_windows": 50,
+      "raw_first_action_mae_deg_deg_um": [
+        0.006016554310917854,
+        0.003852850291877985,
+        1.8401979468762875
+      ],
+      "production_clipped_first_action_mae_deg_deg_um": [
+        0.0060165552693069915,
+        0.003852851529667163,
+        1.8401980982162058
+      ],
+      "C_direction_accuracy": 0.78,
+      "C_direction_correct": 156,
+      "C_direction_draws": 200,
+      "per_seed_production_mae_deg_deg_um": [
+        [
+          0.00035975288588815604,
+          0.0018351944716479807,
+          1.1934703192673624
+        ],
+        [
+          0.0017878212815048756,
+          0.008208858677541855,
+          0.532490520272404
+        ],
+        [
+          0.011908081384644902,
+          0.0034237120259720654,
+          1.392636892851442
+        ],
+        [
+          0.010010565525190031,
+          0.0019436409435067503,
+          4.242194660473615
+        ]
+      ],
+      "per_seed_C_direction_accuracy": [
+        0.82,
+        0.96,
+        0.8,
+        0.54
+      ]
+    },
+    "nonzero_C": {
+      "windows": 50,
+      "nonzero_C_windows": 50,
+      "raw_first_action_mae_deg_deg_um": [
+        0.006016554310917854,
+        0.003852850291877985,
+        1.8401979468762875
+      ],
+      "production_clipped_first_action_mae_deg_deg_um": [
+        0.0060165552693069915,
+        0.003852851529667163,
+        1.8401980982162058
+      ],
+      "C_direction_accuracy": 0.78,
+      "C_direction_correct": 156,
+      "C_direction_draws": 200,
+      "per_seed_production_mae_deg_deg_um": [
+        [
+          0.00035975288588815604,
+          0.0018351944716479807,
+          1.1934703192673624
+        ],
+        [
+          0.0017878212815048756,
+          0.008208858677541855,
+          0.532490520272404
+        ],
+        [
+          0.011908081384644902,
+          0.0034237120259720654,
+          1.392636892851442
+        ],
+        [
+          0.010010565525190031,
+          0.0019436409435067503,
+          4.242194660473615
+        ]
+      ],
+      "per_seed_C_direction_accuracy": [
+        0.82,
+        0.96,
+        0.8,
+        0.54
+      ]
+    },
+    "approaching": {
+      "windows": 50,
+      "nonzero_C_windows": 50,
+      "raw_first_action_mae_deg_deg_um": [
+        0.006016554310917854,
+        0.003852850291877985,
+        1.8401979468762875
+      ],
+      "production_clipped_first_action_mae_deg_deg_um": [
+        0.0060165552693069915,
+        0.003852851529667163,
+        1.8401980982162058
+      ],
+      "C_direction_accuracy": 0.78,
+      "C_direction_correct": 156,
+      "C_direction_draws": 200,
+      "per_seed_production_mae_deg_deg_um": [
+        [
+          0.00035975288588815604,
+          0.0018351944716479807,
+          1.1934703192673624
+        ],
+        [
+          0.0017878212815048756,
+          0.008208858677541855,
+          0.532490520272404
+        ],
+        [
+          0.011908081384644902,
+          0.0034237120259720654,
+          1.392636892851442
+        ],
+        [
+          0.010010565525190031,
+          0.0019436409435067503,
+          4.242194660473615
+        ]
+      ],
+      "per_seed_C_direction_accuracy": [
+        0.82,
+        0.96,
+        0.8,
+        0.54
+      ]
+    },
+    "receding": {
+      "windows": 0,
+      "nonzero_C_windows": 0,
+      "raw_first_action_mae_deg_deg_um": null,
+      "production_clipped_first_action_mae_deg_deg_um": null,
+      "C_direction_accuracy": null,
+      "C_direction_correct": 0,
+      "C_direction_draws": 0,
+      "per_seed_production_mae_deg_deg_um": null,
+      "per_seed_C_direction_accuracy": null
+    },
+    "crossing": {
+      "windows": 0,
+      "nonzero_C_windows": 0,
+      "raw_first_action_mae_deg_deg_um": null,
+      "production_clipped_first_action_mae_deg_deg_um": null,
+      "C_direction_accuracy": null,
+      "C_direction_correct": 0,
+      "C_direction_draws": 0,
+      "per_seed_production_mae_deg_deg_um": null,
+      "per_seed_C_direction_accuracy": null
+    },
+    "hold": {
+      "windows": 0,
+      "nonzero_C_windows": 0,
+      "raw_first_action_mae_deg_deg_um": null,
+      "production_clipped_first_action_mae_deg_deg_um": null,
+      "C_direction_accuracy": null,
+      "C_direction_correct": 0,
+      "C_direction_draws": 0,
+      "per_seed_production_mae_deg_deg_um": null,
+      "per_seed_C_direction_accuracy": null
+    },
+    "below_recede": {
+      "windows": 25,
+      "nonzero_C_windows": 25,
+      "raw_first_action_mae_deg_deg_um": [
+        0.005646263249218464,
+        0.003882275428622961,
+        1.823465689085424
+      ],
+      "production_clipped_first_action_mae_deg_deg_um": [
+        0.0056462637321601505,
+        0.003882275701604385,
+        1.823465699562803
+      ],
+      "C_direction_accuracy": 0.59,
+      "C_direction_correct": 59,
+      "C_direction_draws": 100,
+      "per_seed_production_mae_deg_deg_um": [
+        [
+          0.00022505900720716455,
+          0.001762624088416942,
+          0.9468822123017162
+        ],
+        [
+          0.001610476531495806,
+          0.008373755308541604,
+          0.44430930516682565
+        ],
+        [
+          0.01121071895438945,
+          0.003420259786096267,
+          1.395914921304211
+        ],
+        [
+          0.009538800435548183,
+          0.001972463623362728,
+          4.506756359478459
+        ]
+      ],
+      "per_seed_C_direction_accuracy": [
+        0.68,
+        0.96,
+        0.64,
+        0.08
+      ]
+    },
+    "above_recede": {
+      "windows": 25,
+      "nonzero_C_windows": 25,
+      "raw_first_action_mae_deg_deg_um": [
+        0.006386847700923681,
+        0.003823427949100733,
+        1.856930204667151
+      ],
+      "production_clipped_first_action_mae_deg_deg_um": [
+        0.006386846806453832,
+        0.0038234273577299406,
+        1.8569304968696088
+      ],
+      "C_direction_accuracy": 0.97,
+      "C_direction_correct": 97,
+      "C_direction_draws": 100,
+      "per_seed_production_mae_deg_deg_um": [
+        [
+          0.0004944467645691475,
+          0.0019077648548790193,
+          1.4400584262330085
+        ],
+        [
+          0.001965166031513945,
+          0.008043962046542105,
+          0.6206717353779823
+        ],
+        [
+          0.012605443814900355,
+          0.003427164265847864,
+          1.3893588643986732
+        ],
+        [
+          0.010482330614831881,
+          0.0019148182636507726,
+          3.977632961468771
+        ]
+      ],
+      "per_seed_C_direction_accuracy": [
+        0.96,
+        0.96,
+        0.96,
+        1.0
+      ]
+    },
+    "teacher_C_positive": {
+      "windows": 25,
+      "nonzero_C_windows": 25,
+      "raw_first_action_mae_deg_deg_um": [
+        0.005646263249218464,
+        0.003882275428622961,
+        1.823465689085424
+      ],
+      "production_clipped_first_action_mae_deg_deg_um": [
+        0.0056462637321601505,
+        0.003882275701604385,
+        1.823465699562803
+      ],
+      "C_direction_accuracy": 0.59,
+      "C_direction_correct": 59,
+      "C_direction_draws": 100,
+      "per_seed_production_mae_deg_deg_um": [
+        [
+          0.00022505900720716455,
+          0.001762624088416942,
+          0.9468822123017162
+        ],
+        [
+          0.001610476531495806,
+          0.008373755308541604,
+          0.44430930516682565
+        ],
+        [
+          0.01121071895438945,
+          0.003420259786096267,
+          1.395914921304211
+        ],
+        [
+          0.009538800435548183,
+          0.001972463623362728,
+          4.506756359478459
+        ]
+      ],
+      "per_seed_C_direction_accuracy": [
+        0.68,
+        0.96,
+        0.64,
+        0.08
+      ]
+    },
+    "teacher_C_negative": {
+      "windows": 25,
+      "nonzero_C_windows": 25,
+      "raw_first_action_mae_deg_deg_um": [
+        0.006386847700923681,
+        0.003823427949100733,
+        1.856930204667151
+      ],
+      "production_clipped_first_action_mae_deg_deg_um": [
+        0.006386846806453832,
+        0.0038234273577299406,
+        1.8569304968696088
+      ],
+      "C_direction_accuracy": 0.97,
+      "C_direction_correct": 97,
+      "C_direction_draws": 100,
+      "per_seed_production_mae_deg_deg_um": [
+        [
+          0.0004944467645691475,
+          0.0019077648548790193,
+          1.4400584262330085
+        ],
+        [
+          0.001965166031513945,
+          0.008043962046542105,
+          0.6206717353779823
+        ],
+        [
+          0.012605443814900355,
+          0.003427164265847864,
+          1.3893588643986732
+        ],
+        [
+          0.010482330614831881,
+          0.0019148182636507726,
+          3.977632961468771
+        ]
+      ],
+      "per_seed_C_direction_accuracy": [
+        0.96,
+        0.96,
+        0.96,
+        1.0
+      ]
+    }
+  },
+  "flow_loss_4_fixed_probes": 0.010742445657087955,
+  "flow_loss_excluded_from_gate": true,
+  "all_original_metric_values_exact_match": true,
+  "raw_predictions_path": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261126/original_neural_terminal_pilot_v1/offline/after/train_E40_predictions.npz",
+  "raw_predictions_sha256": "521a883f1b2f5bb5fcd3aba47ee84f212a5d3e337b603c0147171fa164080822",
+  "physical_labels_bit_exact_to_saved_horizon16_windows": true,
+  "physical_labels_bit_exact_to_accepted_teacher_trajectories": true
+}

@@ -1,0 +1,29 @@
+{
+  "status": "passed",
+  "time": "2026-11-26T23:09:38.365910+08:00",
+  "previous_nonrun": "preflight_attempt1_not_run.json",
+  "device": "physicalGPU0 RTX4090",
+  "target_split": {
+    "train": [
+      "E40",
+      "E42"
+    ],
+    "development_only": [
+      "E41"
+    ],
+    "standard_excluded": true
+  },
+  "input_ablation_passed": true,
+  "real_teacher_sensor_validated": true,
+  "optimizer_updates": 0,
+  "collection_branches": 146,
+  "output_scope": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261126/dit_relative_terminal_v2",
+  "launch": "one GNOME launch; FIFO startup ack only; no status polling",
+  "validation_s": 25.54014081292553,
+  "real_recorder_and_parser": "preflight_collection_parser.json",
+  "source_of_truth": "experiment_card.json and input_fingerprints.json",
+  "all_generated_outputs_local": true,
+  "diagnostic_nonblocking": true,
+  "final_source_validation": "passed",
+  "input_fingerprint_count": 20
+}

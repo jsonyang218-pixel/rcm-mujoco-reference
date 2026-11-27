@@ -1,0 +1,52 @@
+{
+  "status": "failed",
+  "time": "2026-11-26T10:17:24.253843+08:00",
+  "checks": [
+    {
+      "name": "heldout_moving_C_MAE_um",
+      "passed": false,
+      "before": 1.468264518189244,
+      "after": 1.9467759219696745,
+      "required": "after < before"
+    },
+    {
+      "name": "heldout_moving_nonzero_C_direction_accuracy",
+      "passed": true,
+      "before": 0.75,
+      "after": 0.755,
+      "required": "after > before"
+    },
+    {
+      "name": "heldout_all_A_MAE_deg",
+      "passed": false,
+      "before": 0.004174078311152698,
+      "after": 0.005942978518469318,
+      "required": "after <= before; zero tolerance"
+    },
+    {
+      "name": "heldout_all_B_MAE_deg",
+      "passed": false,
+      "before": 0.0032876208572361065,
+      "after": 0.003938557878364009,
+      "required": "after <= before; zero tolerance"
+    },
+    {
+      "name": "heldout_moving_encoder_A_MAE_deg",
+      "passed": false,
+      "before": 0.004174078311152698,
+      "after": 0.005942978518469318,
+      "required": "after <= before; zero tolerance"
+    },
+    {
+      "name": "heldout_moving_encoder_B_MAE_deg",
+      "passed": false,
+      "before": 0.0032876208572361065,
+      "after": 0.003938557878364009,
+      "required": "after <= before; zero tolerance"
+    }
+  ],
+  "unchanged_criteria": true,
+  "original_gate_exactly_reproduced": true,
+  "original_gate_sha256": "d24e355a2236304e790121cc395f0f0743704593e3f81f2938c36f3cecafcafa",
+  "flow_loss_excluded": true
+}

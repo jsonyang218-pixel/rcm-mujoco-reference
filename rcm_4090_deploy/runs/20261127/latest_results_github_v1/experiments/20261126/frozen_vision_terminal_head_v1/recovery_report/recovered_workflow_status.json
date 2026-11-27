@@ -1,0 +1,68 @@
+{
+  "time_utc": "2026-11-26T14:28:17.627212+00:00",
+  "recovery_status": "completed",
+  "recovered_workflow_status": "stopped_at_tinyfit_gate_failed",
+  "implementation": "complete",
+  "launch": "actual_started",
+  "original_run_ended": true,
+  "parity": "passed",
+  "tinyfit": "completed_512_updates_gate_failed",
+  "tinyfit_updates": 512,
+  "tinyfit_selected_windows": 10,
+  "numerical_gate": {
+    "rule": "each normalized axis RMSE<=0.1 AND C MAE<=0.2um",
+    "normalized_RMSE": [
+      0.05204429477453232,
+      0.03302924707531929,
+      0.11760083585977554
+    ],
+    "axis_pass": [
+      true,
+      true,
+      false
+    ],
+    "C_MAE_um": 0.2584018111228943,
+    "C_MAE_um_recomputed": 0.25840182206593454,
+    "passed": false
+  },
+  "technical_reporting_failure": {
+    "original": true,
+    "observed_lines": [
+      300,
+      313
+    ],
+    "latent_same_issue_line": 304,
+    "cause": "CPU current parameter minus CUDA initial parameter in report/save expressions",
+    "minimal_fix_applied": true,
+    "synthetic_tensor_validation": "passed",
+    "actual_pilot_rerun": false,
+    "training_algorithm_bug_fix_claim": false,
+    "unexecuted_paths_certified": false
+  },
+  "formal_training": "not_executed_dependency_gate_failed",
+  "formal_updates": 0,
+  "offline": "not_executed_dependency_gate_failed",
+  "closedloop": "skipped_tinyfit_gate",
+  "closed_loop": "skipped_tinyfit_gate",
+  "strict20um_closed_loop_result": "not_evaluated",
+  "head_parameters": 112323,
+  "state_dim": 20,
+  "visual_dim": 1536,
+  "trained_head_recoverable": false,
+  "final_gradients_recoverable": false,
+  "original_status_files_preserved": true,
+  "modified_existing_files": [
+    "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261126/frozen_vision_terminal_head_v1/pilot.py",
+    "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261126/frozen_vision_terminal_head_v1/TEST_LOG.md",
+    "/home/him1/mujoco_bc/rcm_4090_deploy/TEST_LOG.md"
+  ],
+  "additional_training_updates": 0,
+  "additional_model_forwards": 0,
+  "additional_network_samples": 0,
+  "additional_simulation_cycles": 0,
+  "additional_candidates": 0,
+  "uploads": 0,
+  "subagents": 0,
+  "gnome_launches": 0,
+  "budget_file": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261126/frozen_vision_terminal_head_v1/recovery_report/recovery_budget.json"
+}

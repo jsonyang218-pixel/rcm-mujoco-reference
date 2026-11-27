@@ -1,0 +1,44 @@
+{
+  "status": "completed",
+  "time": "2026-11-26T23:13:22.576207+08:00",
+  "branch": {
+    "id": "E40_below_15_A-1_B+1_receding",
+    "target": "E40",
+    "role": "training",
+    "side": "below",
+    "level_um": 15,
+    "requested_incoming": "receding",
+    "initial_C_offset_m": -1.0599999999999998e-05,
+    "initial_AB_offset_rad": [
+      -0.00034906585039886593,
+      0.00034906585039886593
+    ],
+    "prefix_actions_deg_deg_mm": [
+      [
+        0.0,
+        0.0,
+        -0.003
+      ],
+      [
+        0.0,
+        0.0,
+        -0.003
+      ]
+    ],
+    "teacher_steps": 64,
+    "designated_anchor_teacher_step": 0,
+    "AB_sign": [
+      -1,
+      1
+    ],
+    "prefix_speed_mm": 0.003
+  },
+  "observations": 67,
+  "teacher_actions": 64,
+  "real_sensor_calls": 67,
+  "final_true_error_um": 12.118229563565595,
+  "elapsed_s": 58.50563595601125,
+  "final_post_RGB_OCT_saved": true,
+  "no_midbranch_resets": true,
+  "neural_action_calls": 0
+}

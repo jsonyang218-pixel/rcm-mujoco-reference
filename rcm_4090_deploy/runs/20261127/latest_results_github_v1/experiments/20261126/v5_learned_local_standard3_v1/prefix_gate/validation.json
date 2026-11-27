@@ -1,0 +1,207 @@
+{
+  "status": "passed",
+  "compared_v5_actions": 24,
+  "comparison": "np.array_equal; no atol/rtol acceptance",
+  "checks": {
+    "target_world_mm": {
+      "exact_equal": true,
+      "max_absolute_difference": 0.0,
+      "first_mismatch_index": null
+    },
+    "raw_actions": {
+      "exact_equal": true,
+      "max_absolute_difference": 0.0,
+      "first_mismatch_index": null
+    },
+    "actions": {
+      "exact_equal": true,
+      "max_absolute_difference": 0.0,
+      "first_mismatch_index": null
+    },
+    "states": {
+      "exact_equal": true,
+      "max_absolute_difference": 0.0,
+      "first_mismatch_index": null
+    },
+    "errors": {
+      "exact_equal": true,
+      "max_absolute_difference": 0.0,
+      "first_mismatch_index": null
+    },
+    "velocities": {
+      "exact_equal": true,
+      "max_absolute_difference": 0.0,
+      "first_mismatch_index": null
+    },
+    "oct_navigation_mm": {
+      "exact_equal": true,
+      "max_absolute_difference": 0.0,
+      "first_mismatch_index": null
+    },
+    "oct_navigation_valid": {
+      "exact_equal": true,
+      "max_absolute_difference": 0.0,
+      "first_mismatch_index": null
+    },
+    "simulation_time_s": {
+      "exact_equal": true,
+      "max_absolute_difference": 0.0,
+      "first_mismatch_index": null
+    },
+    "state_immediately_before_route_or_end": {
+      "exact_equal": true,
+      "max_absolute_difference": 0.0,
+      "first_mismatch_index": null
+    },
+    "motor_requested_task_rad_rad_m": {
+      "exact_equal": true,
+      "max_absolute_difference": 0.0,
+      "first_mismatch_index": null
+    },
+    "motor_commanded_task_rad_rad_m": {
+      "exact_equal": true,
+      "max_absolute_difference": 0.0,
+      "first_mismatch_index": null
+    },
+    "motor_requested_robot_ABCE": {
+      "exact_equal": true,
+      "max_absolute_difference": 0.0,
+      "first_mismatch_index": null
+    },
+    "motor_handles_ABCE": {
+      "exact_equal": true,
+      "max_absolute_difference": 0.0,
+      "first_mismatch_index": null
+    },
+    "motor_quantized_target_robot_ABCE": {
+      "exact_equal": true,
+      "max_absolute_difference": 0.0,
+      "first_mismatch_index": null
+    },
+    "motor_actual_before_robot_ABCE": {
+      "exact_equal": true,
+      "max_absolute_difference": 0.0,
+      "first_mismatch_index": null
+    },
+    "motor_actual_after_robot_ABCE": {
+      "exact_equal": true,
+      "max_absolute_difference": 0.0,
+      "first_mismatch_index": null
+    },
+    "motor_actual_before_task_rad_rad_m": {
+      "exact_equal": true,
+      "max_absolute_difference": 0.0,
+      "first_mismatch_index": null
+    },
+    "motor_actual_after_task_rad_rad_m": {
+      "exact_equal": true,
+      "max_absolute_difference": 0.0,
+      "first_mismatch_index": null
+    },
+    "motor_actual_velocity_rad_rad_m_per_s": {
+      "exact_equal": true,
+      "max_absolute_difference": 0.0,
+      "first_mismatch_index": null
+    },
+    "motor_start_time_s": {
+      "exact_equal": true,
+      "max_absolute_difference": 0.0,
+      "first_mismatch_index": null
+    },
+    "motor_end_time_s": {
+      "exact_equal": true,
+      "max_absolute_difference": 0.0,
+      "first_mismatch_index": null
+    },
+    "motor_duration_s": {
+      "exact_equal": true,
+      "max_absolute_difference": 0.0,
+      "first_mismatch_index": null
+    },
+    "motor_integration_steps": {
+      "exact_equal": true,
+      "max_absolute_difference": 0.0,
+      "first_mismatch_index": null
+    },
+    "model_raw_action": {
+      "exact_equal": true,
+      "max_absolute_difference": 0.0,
+      "first_mismatch_index": null
+    },
+    "clipped_action": {
+      "exact_equal": true,
+      "max_absolute_difference": 0.0,
+      "first_mismatch_index": null
+    },
+    "accepted_action": {
+      "exact_equal": true,
+      "max_absolute_difference": 0.0,
+      "first_mismatch_index": null
+    },
+    "post_action_independent_truth_error_um": {
+      "exact_equal": true,
+      "max_absolute_difference": 0.0,
+      "first_mismatch_index": null
+    },
+    "actual_motion_delta_deg_deg_mm": {
+      "exact_equal": true,
+      "max_absolute_difference": 0.0,
+      "first_mismatch_index": null
+    }
+  },
+  "archive_used_for_control": false,
+  "source": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261125/terminal_round_v1/v5_A4000/shards/tasks/eval_E08/raw/evaluation_results.json",
+  "source_sha256": "5d2ba1f593599be8f514ad6be55e2c61b8dbf29df52fec611e4febe3776ead17",
+  "original_contract": {
+    "version": 2,
+    "controller_variant": "feedback",
+    "rgbd_render_quality": {
+      "offsamples": 0,
+      "numslices": 112,
+      "numstacks": 64
+    },
+    "execution_backend": "MotorBackend",
+    "control_period_s": 0.05,
+    "state_action_units": "A_deg,B_deg,C_mm",
+    "rgb_preprocessing": "1920x1440 -> 224x224 bilinear",
+    "ground_truth_used_for_control": false,
+    "ground_truth_used_for_success": true,
+    "require_motor_settled_for_success": true,
+    "terminal_condition": "MotorExecution.settled",
+    "success_definition": "error_threshold_and_three_consecutive_MotorExecution.settled_frames",
+    "success_error_threshold_mm": 0.00035,
+    "stop_on_success": false,
+    "success_error_threshold_um": 0.35,
+    "required_consecutive_success_frames": 3,
+    "early_stop_error_mm": 30.0,
+    "max_consecutive_safety_limited": null,
+    "oct_navigation_used": true,
+    "action_limit_deg_deg_mm": [
+      0.2897999882698059,
+      0.14434358477592468,
+      0.04271206632256508
+    ],
+    "num_action_samples": 1,
+    "action_aggregation": "single_sample",
+    "flow_integration_steps": 4,
+    "model_epoch": 3,
+    "policy_type": "dit_rectified_flow",
+    "model_train_loss": 0.10375335215777158,
+    "model_val_loss": 0.14806195978316472,
+    "model_best_normalized_mae": null,
+    "fine_model": null,
+    "fine_switch_error_mm": null,
+    "terminal_refine_error_mm": null,
+    "terminal_confirm_frames": 8
+  },
+  "seed": 50,
+  "cycles": 24,
+  "source_hashes": {
+    "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261126/v5_learned_local_standard3_v1/standard2.py": "6bd7f81b1ff3ce1117b57e4475a859351ab6d25b7f00a16170c085168b94ee24",
+    "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261126/v5_learned_local_standard3_v1/protocol_checks.py": "e154fd5ce878b8abb01a04ae65cbcd65ed5d189b5a52821c8d7211f61b2c7324",
+    "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261126/v5_learned_local_standard3_v1/launch.sh": "6e6afe6710249de146f4ba88d42ce0619db657d1c42d8b94156549738f4daab2"
+  },
+  "v1_first_accepted_difference_cycle": 7,
+  "v1_first_raw_difference_cycle": 8,
+  "reused_from": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261126/v5_learned_local_standard2_protocol_v2/prefix_gate/validation.json"
+}

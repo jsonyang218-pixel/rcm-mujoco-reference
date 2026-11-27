@@ -1,0 +1,27 @@
+{
+  "status": "blocked_before_launch",
+  "created_at": "2026-11-26T23:00:00+08:00",
+  "output_scope": "runs/20261126/dit_relative_terminal_v2",
+  "requested_launch": "one GNOME Terminal launch with one startup acknowledgement and no polling",
+  "budget_s": 2700,
+  "findings": [
+    {
+      "severity": "blocking",
+      "detail": "The reusable campaign runner consumes the prior real_input_windows.pt, which contains development_E41 samples, and its expanded-data builder promotes E41 into training. This violates the new round's mandatory E41 exclusion."
+    },
+    {
+      "severity": "blocking",
+      "detail": "The reusable model condition path consumes RGB vision tokens and normalized absolute ABC state. Masking them consistently in training and online inference, while retaining two-frame relative OCT xyz/valid, velocity, previous accepted ABC, and the original DiT/RF action path, is not implemented in this task-local runner."
+    },
+    {
+      "severity": "blocking",
+      "detail": "The task-local collector is configured for the prior E40-E42 campaign, including E41. It cannot be used unchanged for an E40/E42-only collection or a separately registered third training target."
+    },
+    {
+      "severity": "nonblocking_diagnostic_available",
+      "detail": "Existing E40/E41 paired 50um trajectories and hold evidence remain available read-only in prior run directories; the prior campaign also retains checkpoint and four near trajectories. No diagnostic was allowed to relax the new training/data-isolation requirements."
+    }
+  ],
+  "launch_attempted": false,
+  "reason": "Starting the copied runner would train on E41 and use absolute RGB/ABC inputs, so it would not execute the authorized hypothesis. No GNOME launch was issued."
+}

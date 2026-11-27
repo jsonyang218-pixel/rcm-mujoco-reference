@@ -1,0 +1,270 @@
+{
+  "name": "dit_relative_terminal_v2",
+  "created_at": "2026-11-26T23:09:26.596633+08:00",
+  "status": "awaiting_corrected_preflight",
+  "hypothesis": "Target-relative near-field DiT with jointly changed data and inputs; test feasibility, no single-factor causal attribution",
+  "output_scope": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261126/dit_relative_terminal_v2",
+  "prior_nonrun_record": "preflight_attempt1_not_run.json",
+  "prior_terminal_result": "dit_terminal_precision_campaign/candidate1:0of4 retained, no old model retraining",
+  "init_checkpoint": "/home/him1/mujoco_bc/rcm_4090_deploy/outputs/homog_label_fix_20261124_v5/homog_label_fix_20261124_v5_phase1_A/step_004000.pth",
+  "init_sha256": "6cc389df3786f1f34c43cf65d6dc17fe910ab342fae8d84c8e37cea6a7db6c11",
+  "old_diagnostic_checkpoint": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261126/dit_terminal_precision_campaign/candidate1/checkpoint.pth",
+  "near_task": {
+    "id": "E41",
+    "episode_index": 41,
+    "seed": 1041,
+    "regime": "T3",
+    "target_robot_mm": [
+      -1.3695654807400628,
+      6.588496568516707,
+      22.973909828421377
+    ],
+    "target_world_mm": [
+      349.2189832461999,
+      -12.630317456102267,
+      373.0088801232904
+    ],
+    "initial_state_si": [
+      -0.05985504851460952,
+      -0.038023251711698174,
+      0.019971079068627717
+    ],
+    "goal_state_si": [
+      -0.05954347970880375,
+      -0.0385895223852399,
+      0.019939183976147298
+    ],
+    "initial_error_um": 35.352419097552506,
+    "abc_offset_sign": [
+      -1,
+      1,
+      1
+    ],
+    "min_development_distance_um": 507.69805534735826
+  },
+  "targets": [
+    {
+      "task": {
+        "id": "E40",
+        "episode_index": 40,
+        "seed": 1040,
+        "regime": "T3",
+        "target_robot_mm": [
+          0.4367277917467681,
+          3.652696250194051,
+          23.605009145695448
+        ],
+        "target_world_mm": [
+          346.7111251543748,
+          -10.824024183615435,
+          371.35725739137047
+        ],
+        "initial_state_si": [
+          0.018810705738879198,
+          0.08616229754890467,
+          0.019858072541690124
+        ],
+        "goal_state_si": [
+          0.01849937731040504,
+          0.08672813134099054,
+          0.019889943026902168
+        ],
+        "initial_error_um": 35.423806823122376,
+        "abc_offset_sign": [
+          1,
+          -1,
+          -1
+        ],
+        "min_development_distance_um": 416.7194413864799
+      },
+      "role": "training_only"
+    },
+    {
+      "task": {
+        "id": "E42",
+        "episode_index": 42,
+        "seed": 1042,
+        "regime": "T3",
+        "target_robot_mm": [
+          -2.9397154279549578,
+          8.360724108675214,
+          21.867631686235832
+        ],
+        "target_world_mm": [
+          350.47016467398396,
+          -14.20046740331716,
+          374.6819571737403
+        ],
+        "initial_state_si": [
+          -0.13439579508167637,
+          -0.12136996120087193,
+          0.01961773289038897
+        ],
+        "goal_state_si": [
+          -0.13363112045378228,
+          -0.12198000789850152,
+          0.0195952738908368
+        ],
+        "initial_error_um": 31.591609979501445,
+        "abc_offset_sign": [
+          -1,
+          1,
+          1
+        ],
+        "min_development_distance_um": 997.4996301375694
+      },
+      "role": "training_only"
+    }
+  ],
+  "data": {
+    "training": [
+      "E40",
+      "E42"
+    ],
+    "development_only": [
+      "E41"
+    ],
+    "standard_excluded": [
+      "E00",
+      "E02",
+      "E06",
+      "E08",
+      "E10"
+    ],
+    "collector": "original real RGB2/G10 teacher, task-local AB/setup plan only",
+    "new_branches": 146,
+    "factorial": "2targets x 2Csign x 3distances(15/70/140um) x 4independentABsigns x 3motions + 2zero-hold",
+    "teacher_steps": "64 per factorial branch;224 per zero hold; exact16-future labels no padding",
+    "entering_speed_mm_s": "two actual prefix ticks of 0.0015 or0.003mm; measured velocity classified afterwards",
+    "selected_distance": "valid measurable OCT0..150um",
+    "existing_E40": "all compatible real E40 paired RGB teacher windows reused",
+    "scale_exclusion": "E41/standard never used for input or output scale estimation",
+    "balance": "hierarchical uniform target/Cside/measuredmotion/distance/speed/OCTsign/episode/window"
+  },
+  "architecture": {
+    "class_name": "StateConditionedDiTRectifiedFlowPolicy",
+    "blocks": 6,
+    "dim": 384,
+    "horizon": 16,
+    "flow_steps": 4,
+    "K": 1,
+    "execute": 1,
+    "inputs": "two-frame OCTxyz/valid, encoder history velocity, previous acceptedABC",
+    "masked": "vision tokens constant0 + original learned temporal constants; absoluteABC constant0 inside original condition",
+    "path": "all inputs through original condition encoders + six DiT blocks + four original midpoint RF steps; directABC",
+    "scales": {
+      "OCT_mm": [
+        0.05,
+        0.05,
+        0.05,
+        1
+      ],
+      "velocity_deg_deg_mm_s": [
+        0.1,
+        0.1,
+        0.1
+      ],
+      "previous_deg_deg_mm": [
+        0.005,
+        0.005,
+        0.005
+      ]
+    },
+    "frozen": "vision weights and untouched farv5; all nonvision DiT/condition weights trainable",
+    "forbidden": [
+      "handwritten axis control",
+      "sign correction",
+      "MLP output head replacement",
+      "geometry/teacher during policy evaluation",
+      "truth-conditioned inference"
+    ]
+  },
+  "training": {
+    "updates": 3000,
+    "batch": 8,
+    "lr": 3e-05,
+    "weight_decay": 0.0001,
+    "optimizer": "AdamW",
+    "gradient_clip": 1.0,
+    "loss": "first-action fixed-four-RF normalized MSE +0.005 original16stepRF auxiliary",
+    "precision": "FP32 numerical parity with prior campaign; TF32 disabled",
+    "init": "fresh original frozen v5 checkpoint, not the old3000-update model",
+    "output_scale": "population moments trainonly; floors1e-4deg,1e-4deg,1e-5mm",
+    "checkpoints": "initial,each500,final; evidence before/after; no dev selection"
+  },
+  "diagnostics": {
+    "old": "same-window E40/E41 existing50um-paired andhold C teacher/oldpolicy saved, nonblocking",
+    "ablation": "bit-exact same relative inputs under arbitrary RGB/absoluteABC replacement; live OCT0/OCT1/valid/velocity/previous perturbation checks",
+    "sampler": "original class sample vs differentiable all16 output; six-block gradient evidence"
+  },
+  "near": {
+    "target": "E41",
+    "seed": 434341,
+    "states": [
+      "below_approaching",
+      "below_receding",
+      "above_approaching",
+      "above_receding"
+    ],
+    "gate": "original50+-1um start, two actual prefix ticks,nonzero actual incoming velocity, valid RGB2",
+    "cycles_each": 240,
+    "period_s": 0.05,
+    "strict": "all last200 postXYZ<=20um including final",
+    "concurrency": 4,
+    "baseline": "old campaign and saved original exec1 trajectories read-only",
+    "offline_rejection_gate": false
+  },
+  "standard": {
+    "dependency": "all4 E41 development strict pass and E40/E42 training coverage",
+    "targets": [
+      "E00",
+      "E02",
+      "E06",
+      "E08",
+      "E10"
+    ],
+    "seeds": [
+      42,
+      44,
+      48,
+      50,
+      52
+    ],
+    "cycles_each": 1600,
+    "period_s": 0.05,
+    "K": 1,
+    "exec": 1,
+    "flow_steps": 4,
+    "caps": "original DEFAULT_ACTION_LIMIT_DEG_DEG_MM",
+    "driver": "G10",
+    "start": "fresh production RCMSceneV9 constructor default, target set only; original first-cycle history warmup zero retained",
+    "route": "original v5 until valid observable OCT norm<=100um then fixed-noise near DiT, one-way no state/velocity/accepted/history reset",
+    "strict": "each all last200 independent postXYZ<=20um including final, all5 required",
+    "concurrency": 5
+  },
+  "protocol": {
+    "truth": "initialization and independent postXYZ scoring only",
+    "driver": "g10",
+    "period_s": 0.05,
+    "cap": "original DEFAULT_ACTION_LIMIT_DEG_DEG_MM",
+    "history": "shared continuous actual two-frame history; previousaccepted and velocity never reset at100um switch",
+    "gate": "all4 E41 real50um x240: all last200 independent postXYZ<=20um including final; otherwise stop with four trajectories",
+    "standard": "E00/E02/E06/E08/E10 x1600; originalv5 to valid measuredOCT<=100um then newnearDiT",
+    "bias": "report old/new postXYZ, signed OCTC, acceptedC and crossing actions; bound independentXYZ for disappearance"
+  },
+  "budget_s": 2700,
+  "stage_max_seconds": {
+    "diagnostic": 150,
+    "collection": 750,
+    "build": 200,
+    "train": 780,
+    "near4": 400,
+    "standard5": 890,
+    "total_hard": 2700
+  },
+  "concurrency_max": 12,
+  "launch": "GNOME launch once, FIFO truePID acknowledgement only, no post-launch polling",
+  "reporting": "task-local TEST_LOG immediate locked/fsync/readback; summary/report/C_bias/perstepXYZ,OCT,velocity,acceptedABC,modelsource",
+  "failure": "retain prior and new failed evidence; no overwrite/retry/science-negative for engineering faults",
+  "simulation_only": true
+}

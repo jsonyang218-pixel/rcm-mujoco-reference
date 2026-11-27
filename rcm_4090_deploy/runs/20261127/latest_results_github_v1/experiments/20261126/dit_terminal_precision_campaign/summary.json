@@ -1,0 +1,41 @@
+{
+  "workflow_status": "batch_complete_near_negative",
+  "goal_achieved": false,
+  "first_research_batch_only": true,
+  "actual_start": {
+    "time": "2026-11-26T22:49:10.706024+08:00",
+    "pid": 351091,
+    "ppid": 351086,
+    "actual_start": true,
+    "stage": "campaign_orchestrator",
+    "gpu": 0,
+    "venv": "/home/him1/mujoco_bc/rcm_4090_deploy/.venv",
+    "budget_s": 2700,
+    "actual_training_updates": 0
+  },
+  "all_control_ABC_DiT": true,
+  "teacher_used_for_training_collection_only": true,
+  "truth_setup_offline_scoring_only": true,
+  "candidate1": {
+    "candidate": "candidate1",
+    "completed": 4,
+    "strict20um_pass": 0,
+    "denominator": 4,
+    "ratios_last200_max_vs_saved_original_exec1": [
+      1.2464640579745843,
+      1.14643884475096,
+      1.1551858206677403,
+      1.106436185926136
+    ],
+    "substantial_improvement": false,
+    "all_passed": false,
+    "scope": "E41 selected development"
+  },
+  "expansion_branch": "not_selected",
+  "hypothesis_rejected": "3000-update first-action fixed-noise local-output-scale objective did not materially improve the four original near starts",
+  "next_step": "Use saved DiT gradients, action curves and postXYZ to distinguish insufficient observable conditioning from state-distribution coverage; next batch may test near OCT conditioning with original DiT backbone",
+  "time": "2026-11-26T22:53:10.410744+08:00",
+  "runtime_s": 239.98623673710972,
+  "budget_s": 2700,
+  "simulation_only": true
+}

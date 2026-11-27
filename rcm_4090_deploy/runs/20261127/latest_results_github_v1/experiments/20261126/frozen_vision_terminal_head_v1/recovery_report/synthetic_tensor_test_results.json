@@ -1,0 +1,43 @@
+{
+  "status": "passed",
+  "cases": [
+    {
+      "device": "cpu",
+      "original_error": [
+        null,
+        null,
+        null
+      ],
+      "fixed_max_abs": 1.0,
+      "fixed_deltas": [
+        0.5,
+        -1.0,
+        -1.0
+      ]
+    },
+    {
+      "device": "cuda:0",
+      "original_error": [
+        "Expected all tensors to be on the same device, but found at least two devices, cuda:0 and cpu!",
+        "Expected all tensors to be on the same device, but found at least two devices, cuda:0 and cpu!",
+        "Expected all tensors to be on the same device, but found at least two devices, cuda:0 and cpu!"
+      ],
+      "fixed_max_abs": 1.0,
+      "fixed_deltas": [
+        0.5,
+        -1.0,
+        -1.0
+      ]
+    }
+  ],
+  "exact_except_save_writable": true,
+  "exact_failure_save_writable": true,
+  "original_exception_preserved": true,
+  "synthetic_artifacts_only": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261126/frozen_vision_terminal_head_v1/recovery_report/synthetic_tensor_test",
+  "network_instances": 0,
+  "optimizer_instances": 0,
+  "optimizer_updates": 0,
+  "autograd_backward_calls": 0,
+  "model_forwards": 0,
+  "actual_pilot_runs": 0
+}

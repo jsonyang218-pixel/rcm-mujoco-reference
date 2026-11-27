@@ -1,0 +1,12 @@
+Linux installation (existing latest project required; base 28c7182)
+
+1. Extract this ZIP into your existing rcm_4090_deploy directory.
+   It contains the changed files, not the entire project or datasets/checkpoints.
+2. Activate your existing training environment.
+3. From rcm_4090_deploy run:
+   bash scripts/run_frontiers2022_ddpg.sh
+
+See FRONTIERS2022_DDPG.md for formulas, scope, paths, and recorded results.
+This is an independent implementation, not the authors' official source.
+Unit checks and a synthetic CPU smoke run passed. No real benchmark score yet.
+The paper PDF is included under references/ with its original attribution.

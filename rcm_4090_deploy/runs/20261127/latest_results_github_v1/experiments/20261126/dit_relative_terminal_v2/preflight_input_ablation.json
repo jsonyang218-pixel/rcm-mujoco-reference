@@ -1,0 +1,101 @@
+{
+  "status": "passed",
+  "architecture": {
+    "blocks": 6,
+    "dim": 384,
+    "horizon": 16
+  },
+  "image_and_absolute_ABC_invariant": true,
+  "output_path": "original six-block DiT + original four midpoint RF steps + original action denormalization",
+  "fixed_input_scales": true,
+  "checks": [
+    {
+      "split": "train",
+      "ablation": "RGB_only",
+      "max_abs_action_delta": 0.0,
+      "bit_exact": true
+    },
+    {
+      "split": "train",
+      "ablation": "absolute_ABC_only",
+      "max_abs_action_delta": 0.0,
+      "bit_exact": true
+    },
+    {
+      "split": "train",
+      "ablation": "RGB_and_absolute_ABC",
+      "max_abs_action_delta": 0.0,
+      "bit_exact": true
+    },
+    {
+      "split": "train",
+      "live_input_sensitivity": {
+        "OCT_frame0": {
+          "condition_max_abs_delta": 0.26442381739616394,
+          "action_max_abs_delta": 0.013695942237973213
+        },
+        "OCT_frame1": {
+          "condition_max_abs_delta": 0.28058022260665894,
+          "action_max_abs_delta": 0.012279508635401726
+        },
+        "OCT_valid": {
+          "condition_max_abs_delta": 0.39087623357772827,
+          "action_max_abs_delta": 0.016011826694011688
+        },
+        "velocity": {
+          "condition_max_abs_delta": 0.3299458622932434,
+          "action_max_abs_delta": 0.016638873144984245
+        },
+        "previous_accepted": {
+          "condition_max_abs_delta": 0.43737339973449707,
+          "action_max_abs_delta": 0.022222477942705154
+        }
+      },
+      "original_four_step_sampler_max_abs": 0.0
+    },
+    {
+      "split": "development_E41",
+      "ablation": "RGB_only",
+      "max_abs_action_delta": 0.0,
+      "bit_exact": true
+    },
+    {
+      "split": "development_E41",
+      "ablation": "absolute_ABC_only",
+      "max_abs_action_delta": 0.0,
+      "bit_exact": true
+    },
+    {
+      "split": "development_E41",
+      "ablation": "RGB_and_absolute_ABC",
+      "max_abs_action_delta": 0.0,
+      "bit_exact": true
+    },
+    {
+      "split": "development_E41",
+      "live_input_sensitivity": {
+        "OCT_frame0": {
+          "condition_max_abs_delta": 0.2631301283836365,
+          "action_max_abs_delta": 0.011555967852473259
+        },
+        "OCT_frame1": {
+          "condition_max_abs_delta": 0.2794966697692871,
+          "action_max_abs_delta": 0.011777516454458237
+        },
+        "OCT_valid": {
+          "condition_max_abs_delta": 0.3983820080757141,
+          "action_max_abs_delta": 0.012139782309532166
+        },
+        "velocity": {
+          "condition_max_abs_delta": 0.3286151885986328,
+          "action_max_abs_delta": 0.016611265018582344
+        },
+        "previous_accepted": {
+          "condition_max_abs_delta": 0.4344210624694824,
+          "action_max_abs_delta": 0.017693577334284782
+        }
+      },
+      "original_four_step_sampler_max_abs": 0.0
+    }
+  ]
+}

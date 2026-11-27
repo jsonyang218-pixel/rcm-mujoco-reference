@@ -1,0 +1,195 @@
+{
+  "name": "neural_exec124_50um_v1",
+  "time": "2026-11-26T15:58:39.957673+08:00",
+  "question": "Original-v5 16-action prediction, execute1/2/4 from50um real moving starts",
+  "init_checkpoint": "/home/him1/mujoco_bc/rcm_4090_deploy/outputs/homog_label_fix_20261124_v5/homog_label_fix_20261124_v5_phase1_A/step_004000.pth",
+  "init_sha256": "6cc389df3786f1f34c43cf65d6dc17fe910ab342fae8d84c8e37cea6a7db6c11",
+  "target": {
+    "id": "E41",
+    "episode_index": 41,
+    "seed": 1041,
+    "regime": "T3",
+    "target_robot_mm": [
+      -1.3695654807400628,
+      6.588496568516707,
+      22.973909828421377
+    ],
+    "target_world_mm": [
+      349.2189832461999,
+      -12.630317456102267,
+      373.0088801232904
+    ],
+    "initial_state_si": [
+      -0.05985504851460952,
+      -0.038023251711698174,
+      0.019971079068627717
+    ],
+    "goal_state_si": [
+      -0.05954347970880375,
+      -0.0385895223852399,
+      0.019939183976147298
+    ],
+    "initial_error_um": 35.352419097552506,
+    "abc_offset_sign": [
+      -1,
+      1,
+      1
+    ],
+    "min_development_distance_um": 507.69805534735826
+  },
+  "target_role": "E41 DEVELOPMENT previously used for selection",
+  "prefix_source": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261126/neural_paired_terminal_minifit_v1/pilot.py",
+  "prefix_evidence": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261126/neural_paired_terminal_minifit_v1/paired_anchor_evidence.json",
+  "starts": {
+    "below_approaching": {
+      "id": "E41_below_50_approaching",
+      "target": "E41",
+      "side": "below",
+      "level_um": 50,
+      "requested_incoming": "approaching",
+      "initial_C_offset_m": -5.4399999999999994e-05,
+      "prefix_actions_deg_deg_mm": [
+        [
+          0.0,
+          0.0,
+          0.003
+        ],
+        [
+          0.0,
+          0.0,
+          0.003
+        ]
+      ],
+      "teacher_steps": 32,
+      "designated_anchor_teacher_step": 0
+    },
+    "below_receding": {
+      "id": "E41_below_50_receding",
+      "target": "E41",
+      "side": "below",
+      "level_um": 50,
+      "requested_incoming": "receding",
+      "initial_C_offset_m": -4.56e-05,
+      "prefix_actions_deg_deg_mm": [
+        [
+          0.0,
+          0.0,
+          -0.003
+        ],
+        [
+          0.0,
+          0.0,
+          -0.003
+        ]
+      ],
+      "teacher_steps": 32,
+      "designated_anchor_teacher_step": 0
+    },
+    "above_approaching": {
+      "id": "E41_above_50_approaching",
+      "target": "E41",
+      "side": "above",
+      "level_um": 50,
+      "requested_incoming": "approaching",
+      "initial_C_offset_m": 5.4399999999999994e-05,
+      "prefix_actions_deg_deg_mm": [
+        [
+          0.0,
+          0.0,
+          -0.003
+        ],
+        [
+          0.0,
+          0.0,
+          -0.003
+        ]
+      ],
+      "teacher_steps": 32,
+      "designated_anchor_teacher_step": 0
+    },
+    "above_receding": {
+      "id": "E41_above_50_receding",
+      "target": "E41",
+      "side": "above",
+      "level_um": 50,
+      "requested_incoming": "receding",
+      "initial_C_offset_m": 4.56e-05,
+      "prefix_actions_deg_deg_mm": [
+        [
+          0.0,
+          0.0,
+          0.003
+        ],
+        [
+          0.0,
+          0.0,
+          0.003
+        ]
+      ],
+      "teacher_steps": 32,
+      "designated_anchor_teacher_step": 0
+    }
+  },
+  "original_entry": "lerobot_training.eval_policy.PolicyEvaluator.evaluate_episode/get_action",
+  "variable": "n_action_execute_steps only:1,2,4",
+  "unchanged": {
+    "K": 1,
+    "flow_integration_steps": 4,
+    "n_obs_steps": 2,
+    "n_action_steps": 16,
+    "preprocess": "original224 production transform",
+    "caps_deg_deg_mm": [
+      0.2897999882698059,
+      0.14434358477592468,
+      0.04271206632256508
+    ],
+    "control_period_s": 0.05,
+    "driver": "g10",
+    "controller_variant": "feedback",
+    "seed": 434341
+  },
+  "total_arms": 12,
+  "cycles_per_arm": 240,
+  "neural_duration_s": 12.0,
+  "max_concurrent_workers": 4,
+  "scheduling": "one worker per start; exec1/2/4 sequential; one unchanged model instance per worker; real prefix replay each arm",
+  "parity_gate": "exact canonical scene/driver/history/RNG state and first complete16-action chunk; abort dependent arms on mismatch",
+  "start_gate": "independent needle-site3D distance50±1um, RGB2 and actual incoming XYZ/OCT motion direction",
+  "stop_on_success": false,
+  "early_stop_error_mm": 30.0,
+  "max_consecutive_safety_limited": null,
+  "limits": "production clipping and safety scales retained; invalidation changes expected schedule => protocol failure and dependent comparison stops",
+  "strict_gate": "all final200 POST errors<=20um including final; not endpoint-only",
+  "out_of_range_definition": "post3D error>100um diagnostic plus native safety rejection/early stop, no added stop",
+  "budget_s": 900,
+  "budget_includes": "preflight execution, model loading, prefix setup, failures and all scoring; writing/reading excluded",
+  "prior_preparation_runtime_charge_s": 1.0,
+  "training_updates": 0,
+  "new_weights": false,
+  "no_teacher_after_prefix": true,
+  "no_smoke_simulation": true,
+  "no_dev5_dev20": true,
+  "no_upload": true,
+  "concurrency_reason": "4 independent start workers,4 original models on physical0 RTX4090;~49GiB GPU current occupancy saved in preflight",
+  "prior_parity_evidence": [
+    "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261126/original_neural_terminal_pilot_v1/short_gate/first_input_parity.json",
+    "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261126/original_neural_terminal_pilot_v1/step0_parity.json"
+  ],
+  "environment": {
+    "DISPLAY": ":1",
+    "DBUS_SESSION_BUS_ADDRESS": "unix:path=/run/user/1000/bus",
+    "XDG_RUNTIME_DIR": "/run/user/1000",
+    "CUDA_VISIBLE_DEVICES": "0",
+    "CUDA_DEVICE_ORDER": "PCI_BUS_ID",
+    "MUJOCO_GL": "egl",
+    "MUJOCO_EGL_DEVICE_ID": "0",
+    "RCM_DRIVER_VARIANT": "g10",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "TORCH_DISABLE_NATIVE_JIT": "1",
+    "MPLBACKEND": "Agg"
+  },
+  "known_limitations": "one selected target and one seed; simulation only; no generalization or hardware claims"
+}

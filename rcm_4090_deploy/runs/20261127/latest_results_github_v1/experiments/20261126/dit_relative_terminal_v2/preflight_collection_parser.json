@@ -1,0 +1,108 @@
+{
+  "status": "passed",
+  "time": "2026-11-26T23:11:08.082094+08:00",
+  "new_recorders": [
+    {
+      "target": "E40",
+      "real_teacher_steps": 20,
+      "real16step_windows": 5,
+      "shapes": {
+        "observation.image": [
+          5,
+          2,
+          1
+        ],
+        "observation.state": [
+          5,
+          2,
+          3
+        ],
+        "observation.oct": [
+          5,
+          2,
+          4
+        ],
+        "observation.velocity": [
+          5,
+          3
+        ],
+        "observation.previous_action": [
+          5,
+          3
+        ],
+        "action": [
+          5,
+          16,
+          3
+        ]
+      },
+      "sample_indices": [
+        4,
+        2,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "excluded_from_campaign_training": true,
+      "all_window_checks_passed": true
+    },
+    {
+      "target": "E42",
+      "real_teacher_steps": 20,
+      "real16step_windows": 5,
+      "shapes": {
+        "observation.image": [
+          5,
+          2,
+          1
+        ],
+        "observation.state": [
+          5,
+          2,
+          3
+        ],
+        "observation.oct": [
+          5,
+          2,
+          4
+        ],
+        "observation.velocity": [
+          5,
+          3
+        ],
+        "observation.previous_action": [
+          5,
+          3
+        ],
+        "action": [
+          5,
+          16,
+          3
+        ]
+      },
+      "sample_indices": [
+        1,
+        2,
+        3,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "excluded_from_campaign_training": true,
+      "all_window_checks_passed": true
+    }
+  ],
+  "existing_paired_episodes_validated": 24,
+  "training_targets": [
+    "E40",
+    "E42"
+  ],
+  "E41_development_only": true,
+  "optimizer_updates": 0,
+  "elapsed_s": 20.839462947973516
+}

@@ -1,0 +1,69 @@
+{
+  "status": "prefix_completed",
+  "target": "E08",
+  "seed": 50,
+  "actions": 24,
+  "initial_true_error_um": 19609.87241492281,
+  "final_true_error_um": 19000.179486331832,
+  "last200_max_true_error_um": 19609.87241492281,
+  "last200_includes_final_action": true,
+  "primary_200um": {
+    "radius_um": 200,
+    "first_enter_post_action_cycle": null,
+    "entry_cycles": [],
+    "first_exit_post_action_cycle": null,
+    "exit_cycles": [],
+    "longest_hold_cycles": 0,
+    "longest_hold_s": 0.0,
+    "terminal_hold_cycles": 0,
+    "terminal_hold_s": 0.0,
+    "last200_max_um": null,
+    "last200_cycles_inclusive": null,
+    "last200_duration_s": null,
+    "passed": false
+  },
+  "long_term_20um": {
+    "radius_um": 20,
+    "first_enter_post_action_cycle": null,
+    "entry_cycles": [],
+    "first_exit_post_action_cycle": null,
+    "exit_cycles": [],
+    "longest_hold_cycles": 0,
+    "longest_hold_s": 0.0,
+    "terminal_hold_cycles": 0,
+    "terminal_hold_s": 0.0,
+    "last200_max_um": null,
+    "last200_cycles_inclusive": null,
+    "last200_duration_s": null,
+    "passed": false
+  },
+  "original_strict_0p35um_success": false,
+  "original_terminal_success": {
+    "error_threshold_mm": 0.00035,
+    "required_consecutive_frames": 3,
+    "consecutive_frames_at_exit": 0,
+    "low_speed_at_exit": false,
+    "encoder_settled_at_exit": false,
+    "terminal_frame_pass": false,
+    "terminal_condition": "MotorExecution.settled"
+  },
+  "switch": null,
+  "route_counts": {
+    "v5": 24,
+    "learned_local": 0,
+    "teacher": 0,
+    "geometry": 0
+  },
+  "teacher_calls": 0,
+  "geometry_calls": 0,
+  "model_sha256": {
+    "v5": "6cc389df3786f1f34c43cf65d6dc17fe910ab342fae8d84c8e37cea6a7db6c11",
+    "local": "8d0679fc706c8a1a384977c59af5ec131e22e281afa9d02bd2f6625baccfbfc1"
+  },
+  "elapsed_s": 10.579960329050664,
+  "independent_truth": "Live scene.site_mm(needle_tip) after each apply_prepared_motor; worldXYZ 3D norm to target",
+  "control_inputs": "Measured RGB/OCT + ABC; ridge only measured OCT/ABC/actual velocity/previous accepted command",
+  "source_protocol": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261126/v5_learned_local_standard2_protocol_v2/experiment_card.json",
+  "trajectory": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261126/v5_learned_local_standard2_protocol_v2/prefix_gate/E08/cycles.jsonl",
+  "raw": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261126/v5_learned_local_standard2_protocol_v2/prefix_gate/E08/evaluation_results.json"
+}

@@ -1,0 +1,14 @@
+{
+  "time": "2026-11-26T14:33:40.430157+08:00",
+  "stage": "diagnostic_correction_v1",
+  "status": "passed_syntax_resume_pending",
+  "change": "Use public NumPy NPY header APIs; reuse unchanged completed hash measurement; preserve failure and audit_attempt1.py; aggregate compute time across attempts",
+  "failure": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261126/original_neural_terminal_data_audit_v1/diagnostic_failure.json",
+  "before_script_sha256": "5d720c00acf85d816f43e1b70c157b634446228c54d6bddce4276a7b310ffbff",
+  "after_script_sha256": "c2bb590065c0f04991631e8849d6a16d19ff65f245291fe4001756398412165a",
+  "resume_command": "CUDA_VISIBLE_DEVICES=\"\" OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 .venv/bin/python -E -B -u runs/20261126/original_neural_terminal_data_audit_v1/audit.py > runs/20261126/original_neural_terminal_data_audit_v1/verification_resume1.log 2>&1",
+  "command_reference": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261126/original_neural_terminal_data_audit_v1/command.json",
+  "new_model_inference": 0,
+  "new_gradient_updates": 0,
+  "new_simulation_cycles": 0
+}

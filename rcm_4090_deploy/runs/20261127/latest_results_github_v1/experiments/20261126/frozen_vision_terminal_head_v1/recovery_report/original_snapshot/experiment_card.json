@@ -1,0 +1,271 @@
+{
+  "name": "frozen_vision_terminal_head_v1",
+  "created_at": "2026-11-26T22:11:54.348808+08:00",
+  "status": "frozen_before_preflight",
+  "question": "Frozen original visual encoder with spatial-softmax deterministic first-action head fits terminal supervision and improves development actions and hold?",
+  "interpretation": "Action target, scaling and model size all change; no single-factor architecture causal claim. E41 previously selected DEVELOPMENT, not independent test.",
+  "init_checkpoint": "/home/him1/mujoco_bc/rcm_4090_deploy/outputs/homog_label_fix_20261124_v5/homog_label_fix_20261124_v5_phase1_A/step_004000.pth",
+  "init_sha256": "6cc389df3786f1f34c43cf65d6dc17fe910ab342fae8d84c8e37cea6a7db6c11",
+  "target": {
+    "id": "E41",
+    "episode_index": 41,
+    "seed": 1041,
+    "regime": "T3",
+    "target_robot_mm": [
+      -1.3695654807400628,
+      6.588496568516707,
+      22.973909828421377
+    ],
+    "target_world_mm": [
+      349.2189832461999,
+      -12.630317456102267,
+      373.0088801232904
+    ],
+    "initial_state_si": [
+      -0.05985504851460952,
+      -0.038023251711698174,
+      0.019971079068627717
+    ],
+    "goal_state_si": [
+      -0.05954347970880375,
+      -0.0385895223852399,
+      0.019939183976147298
+    ],
+    "initial_error_um": 35.352419097552506,
+    "abc_offset_sign": [
+      -1,
+      1,
+      1
+    ],
+    "min_development_distance_um": 507.69805534735826
+  },
+  "targets": [
+    {
+      "task": {
+        "id": "E40",
+        "episode_index": 40,
+        "seed": 1040,
+        "regime": "T3",
+        "target_robot_mm": [
+          0.4367277917467681,
+          3.652696250194051,
+          23.605009145695448
+        ],
+        "target_world_mm": [
+          346.7111251543748,
+          -10.824024183615435,
+          371.35725739137047
+        ],
+        "initial_state_si": [
+          0.018810705738879198,
+          0.08616229754890467,
+          0.019858072541690124
+        ],
+        "goal_state_si": [
+          0.01849937731040504,
+          0.08672813134099054,
+          0.019889943026902168
+        ],
+        "initial_error_um": 35.423806823122376,
+        "abc_offset_sign": [
+          1,
+          -1,
+          -1
+        ],
+        "min_development_distance_um": 416.7194413864799
+      },
+      "role": "training"
+    },
+    {
+      "task": {
+        "id": "E41",
+        "episode_index": 41,
+        "seed": 1041,
+        "regime": "T3",
+        "target_robot_mm": [
+          -1.3695654807400628,
+          6.588496568516707,
+          22.973909828421377
+        ],
+        "target_world_mm": [
+          349.2189832461999,
+          -12.630317456102267,
+          373.0088801232904
+        ],
+        "initial_state_si": [
+          -0.05985504851460952,
+          -0.038023251711698174,
+          0.019971079068627717
+        ],
+        "goal_state_si": [
+          -0.05954347970880375,
+          -0.0385895223852399,
+          0.019939183976147298
+        ],
+        "initial_error_um": 35.352419097552506,
+        "abc_offset_sign": [
+          -1,
+          1,
+          1
+        ],
+        "min_development_distance_um": 507.69805534735826
+      },
+      "role": "development_holdout_previously_used_for_selection"
+    }
+  ],
+  "dataset": "runs/20261126/neural_paired_terminal_minifit_v1/real_input_windows.pt",
+  "manifest": "runs/20261126/neural_paired_terminal_minifit_v1/window_manifest.json",
+  "split": "E40 train657 / E41 selected-development657; no new data",
+  "architecture": {
+    "visual": "original self.vision frozen/eval with original GroupNorm and preprocessing; true forward shape must confirm384 spatial channels",
+    "spatial_softmax": "each frame/channel, fixed temperature1, x/y coordinate expectation[-1,1]",
+    "visual_projection": "1536->64 SiLU",
+    "state": "2ABC + 2(OCTxyz+valid) + current finite-difference velocity + previous accepted ABC =20",
+    "state_projection": "20->64 SiLU->64 SiLU",
+    "fusion": "128->64 SiLU->3 deterministic next deltaABC",
+    "forbidden": [
+      "flow",
+      "random action samples",
+      "action chunks",
+      "extra loss",
+      "gate",
+      "RNN",
+      "geometric residual"
+    ],
+    "new_head_parameter_count": 112323
+  },
+  "scales": {
+    "ABC": "original checkpoint global mean/std",
+    "OCT_xyz_scale_mm": 0.1,
+    "valid": "unscaled",
+    "velocity": "original checkpoint mean/std",
+    "previous_accepted": "original checkpoint mean/std",
+    "action": "E40-only population mean/std; frozen before development metrics",
+    "action_std_floor_deg_deg_mm": [
+      0.0001,
+      0.0001,
+      1e-05
+    ],
+    "floor_reason": "Fixed absolute floors: 0.0001deg on A/B and0.00001mm=0.01um on C, prevent near-zero label variance from ill-conditioned normalized targets; no E41 statistics",
+    "frozen_action_mean_E40_deg_deg_mm": [
+      -3.1076287996256724e-05,
+      -6.424108505598269e-06,
+      6.940580078662606e-06
+    ],
+    "frozen_action_raw_std_E40_deg_deg_mm": [
+      7.998400178621523e-06,
+      5.065904133516597e-06,
+      0.002298457082360983
+    ],
+    "frozen_action_std_E40_deg_deg_mm": [
+      9.999999747378752e-05,
+      9.999999747378752e-05,
+      0.002298457082360983
+    ],
+    "frozen_at": "2026-11-26T22:16:57.611531+08:00",
+    "E41_metrics_seen_when_frozen": false
+  },
+  "seed": 20261126,
+  "parity": {
+    "atol": 1e-06,
+    "rtol": 1e-05,
+    "precision": "FP32 GPU",
+    "coverage": "both sides and three classes, real windows; original preprocessing, online head vs batch cache including physical action delta",
+    "failure": "stop without cache training"
+  },
+  "tinyfit": {
+    "max_windows": 12,
+    "selection": "all6 E40 designated receding teacher-step0 independent episodes, then side below/above x approaching/settled first window in manifest episode/teacher_step order (10 total <=12)",
+    "updates": 512,
+    "record_every": 128,
+    "fullbatch": true,
+    "optimizer": "AdamW",
+    "lr": 0.001,
+    "weight_decay": 0.0001,
+    "clip": 1.0,
+    "precision": "FP32",
+    "gate": "each normalized axis RMSE<=0.1 AND C MAE<=0.2um",
+    "failure": "save gradients and weight delta; skip dependencies; no tuning"
+  },
+  "training": {
+    "candidates": 1,
+    "reset": "same exact saved random initial head as tinyfit; do not inherit tinyfit",
+    "updates": 1024,
+    "batch": 64,
+    "optimizer": "AdamW",
+    "lr": 0.001,
+    "weight_decay": 0.0001,
+    "clip": 1.0,
+    "precision": "FP32",
+    "sampler": "reuse prior pools_for and draw_batch; uniform3 classes, side,episode,window; replacement; all1024 batch indices saved",
+    "report_train_only_steps": [
+      128,
+      512,
+      1024
+    ],
+    "checkpoint_eval_step": 1024
+  },
+  "offline": {
+    "windows_each": 657,
+    "new_prediction_draws_each": 1,
+    "old_saved_seeds": [
+      92001,
+      92002,
+      92003,
+      92004
+    ],
+    "caps": [
+      0.2897999882698059,
+      0.14434358477592468,
+      0.04271206632256508
+    ],
+    "gates": [
+      "E41 equal-motion-weighted C_MAE strictly decreases",
+      "E41 receding C_MAE strictly decreases",
+      "E41 all nonzero-teacher-C direction accuracy does not decrease",
+      "E41 all-window A_MAE does not increase",
+      "E41 all-window B_MAE does not increase",
+      "E41 settled C_MAE does not increase"
+    ],
+    "tolerance": 0.0,
+    "baseline": "old_v5 saved before CSVs only, labels/windows/clips verified; four seeds retained and averaged; candidate once"
+  },
+  "closed_loop": {
+    "conditional": "all six offline gates pass",
+    "kinds": [
+      "below_approaching",
+      "below_receding",
+      "above_approaching",
+      "above_receding"
+    ],
+    "target": "E41 development",
+    "start_um": [
+      49,
+      51
+    ],
+    "cycles": 240,
+    "period_s": 0.05,
+    "max_parallel": 4,
+    "control": "pure new deterministic head every tick; original exec1 real prefix, velocity, previous accepted, RGB2 history,G10,caps,quantization,tau,safety preview",
+    "baseline": "saved neural_exec124_50um_v1/arms/*/exec1, no baseline rerun",
+    "strict20": "all last200 postXYZ errors including final<=20um",
+    "truth": "setup/scoring only; no teacher/geometry/ridge/originalDiT takeover or midrun zeroing"
+  },
+  "budgets_seconds": {
+    "total": 900,
+    "cache_including_parity_and_model_load": 240,
+    "training_plus_offline": 180,
+    "closed_loop": 480,
+    "reading_and_code_writing_excluded": true
+  },
+  "execution": {
+    "terminal": "single GNOME launch, one startup acknowledgement only; no agent polling",
+    "gpu": "physical0 RTX4090",
+    "venv": ".venv",
+    "MUJOCO_GL": "egl",
+    "retry": false,
+    "upload": false,
+    "production_source_edits": false
+  },
+  "implementation_saved_at": "2026-11-26T22:16:08.516909+08:00"
+}

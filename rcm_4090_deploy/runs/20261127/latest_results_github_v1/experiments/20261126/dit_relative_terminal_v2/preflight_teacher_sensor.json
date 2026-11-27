@@ -1,0 +1,77 @@
+{
+  "status": "passed",
+  "targets": [
+    {
+      "target": "E40",
+      "teacher_valid": true,
+      "teacher_ABC": [
+        -3.1288542239648266e-05,
+        -1.0200476381350619e-05,
+        -0.003750000000000281
+      ],
+      "OCT": {
+        "definition": "target_minus_tip",
+        "unit": "m",
+        "coordinate_frame": "camera_optical",
+        "delta_xyz_m": [
+          -4.654645667147555e-06,
+          -4.231684562846019e-06,
+          -4.950822910099878e-05
+        ],
+        "axial_depth_difference_m": -4.950822910099878e-05,
+        "euclidean_distance_m": 4.990628847392988e-05,
+        "along_needle_difference_m": null,
+        "source_flags": {
+          "source": "mujoco_visible_scene_depth_simulation",
+          "frame_id": "sim-oct-4cba7eede98e4db39ae66ddd35fe9064/00000000",
+          "target_source": "current_rgb_visible_depth",
+          "is_simulation": true
+        }
+      },
+      "RGB_shape": [
+        1440,
+        1920,
+        3
+      ],
+      "motor_driver": null,
+      "action_executed": false,
+      "truth_used_only_target_initialization": true
+    },
+    {
+      "target": "E42",
+      "teacher_valid": true,
+      "teacher_ABC": [
+        0.00012408102309638364,
+        1.6286520043903496e-06,
+        -0.003750000000000281
+      ],
+      "OCT": {
+        "definition": "target_minus_tip",
+        "unit": "m",
+        "coordinate_frame": "camera_optical",
+        "delta_xyz_m": [
+          -1.1797235592767133e-05,
+          6.509751314315044e-06,
+          -4.811953866267621e-05
+        ],
+        "axial_depth_difference_m": -4.811953866267621e-05,
+        "euclidean_distance_m": 4.997040755201291e-05,
+        "along_needle_difference_m": null,
+        "source_flags": {
+          "source": "mujoco_visible_scene_depth_simulation",
+          "frame_id": "sim-oct-7e108aa28b114515bdb59bd4b8838952/00000000",
+          "target_source": "current_rgb_visible_depth",
+          "is_simulation": true
+        }
+      },
+      "RGB_shape": [
+        1440,
+        1920,
+        3
+      ],
+      "motor_driver": null,
+      "action_executed": false,
+      "truth_used_only_target_initialization": true
+    }
+  ]
+}

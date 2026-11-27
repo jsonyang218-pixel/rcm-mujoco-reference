@@ -1,0 +1,158 @@
+{
+  "status": "completed_offline_failed",
+  "time": "2026-11-26T15:06:53.023056+08:00",
+  "data_gate": "passed",
+  "training": "completed",
+  "offline_improvement": "failed",
+  "optimizer_updates": 128,
+  "closed_loop_started": false,
+  "closed_loop_authorized": false,
+  "diagnostic_only": true,
+  "neural_20um_claim": false,
+  "development_not_independent_test": true,
+  "distribution_and_data_both_changed": true,
+  "unrequested_retry": false,
+  "offline_gate": {
+    "status": "failed",
+    "time": "2026-11-26T15:06:52.518629+08:00",
+    "checks": [
+      {
+        "name": "E41_equal_motion_C_MAE_um",
+        "before": 1.7829768858583912,
+        "after": 1.781243252445988,
+        "passed": true,
+        "required": "after < before"
+      },
+      {
+        "name": "E41_receding_C_MAE_um",
+        "before": 2.1826945788537464,
+        "after": 2.258334308862686,
+        "passed": false,
+        "required": "after < before"
+      },
+      {
+        "name": "E41_nonzero_teacher_C_direction",
+        "before": 0.70662100456621,
+        "after": 0.6270928462709284,
+        "passed": false,
+        "required": "after >= before"
+      },
+      {
+        "name": "E41_all_A_MAE_deg",
+        "before": 0.004375809155153353,
+        "after": 0.0059638736176007194,
+        "passed": false,
+        "required": "after <= before"
+      },
+      {
+        "name": "E41_all_B_MAE_deg",
+        "before": 0.00324899828322466,
+        "after": 0.003338244116706579,
+        "passed": false,
+        "required": "after <= before"
+      },
+      {
+        "name": "E41_settled_C_MAE_um",
+        "before": 1.5941607070793218,
+        "after": 1.429499327991783,
+        "passed": true,
+        "required": "after <= before"
+      }
+    ],
+    "numeric_tolerance": 0.0,
+    "E41_is_development_not_independent_test": true,
+    "closed_loop_allowed": false,
+    "flow_loss_not_gate": true
+  },
+  "teacher_20um_is_data_acceptance_only": true,
+  "next_step": "只建议下一轮；本轮不做闭环",
+  "artifacts": {
+    "data_gate.json": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261126/neural_paired_terminal_minifit_v1/data_gate.json",
+    "raw_data_gate.json": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261126/neural_paired_terminal_minifit_v1/raw_data_gate.json",
+    "training_result.json": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261126/neural_paired_terminal_minifit_v1/training_result.json",
+    "offline_gate.json": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261126/neural_paired_terminal_minifit_v1/offline_gate.json",
+    "input_hash_verification.json": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261126/neural_paired_terminal_minifit_v1/input_hash_verification.json"
+  },
+  "actual_data_counts": {
+    "E40": {
+      "approaching": 205,
+      "settled": 446,
+      "receding": 6
+    },
+    "E41": {
+      "approaching": 210,
+      "settled": 441,
+      "receding": 6
+    }
+  },
+  "training_result": {
+    "status": "completed",
+    "time": "2026-11-26T15:05:50.828620+08:00",
+    "optimizer_updates": 128,
+    "attempts": 129,
+    "AMP_skips": 1,
+    "optimizer_state_steps_min": 128,
+    "optimizer_state_steps_max": 128,
+    "seed": 20261126,
+    "before_sha256": "6cc389df3786f1f34c43cf65d6dc17fe910ab342fae8d84c8e37cea6a7db6c11",
+    "after_sha256": "e35d0a1cf8a7769f3170d0028c09542c36562d7fbbe8ff8ad47e3c47d4a50090",
+    "frozen_vision_tensors_bit_exact": 62,
+    "all_normalization_buffers_unchanged": true,
+    "successful_draw_class_counts": {
+      "settled": 175,
+      "receding": 154,
+      "approaching": 183
+    },
+    "successful_draw_class_proportions": {
+      "approaching": 0.357421875,
+      "receding": 0.30078125,
+      "settled": 0.341796875
+    },
+    "successful_draw_episode_counts": {
+      "E40_above_30_approaching": 100,
+      "E40_below_30_receding": 46,
+      "E40_above_70_receding": 31,
+      "E40_below_30_approaching": 106,
+      "E40_below_70_receding": 48,
+      "E40_below_50_receding": 37,
+      "E40_above_70_approaching": 18,
+      "E40_above_50_approaching": 14,
+      "E40_above_30_receding": 39,
+      "E40_above_50_receding": 44,
+      "E40_below_50_approaching": 9,
+      "E40_below_70_approaching": 20
+    },
+    "independent_collected_windows": 657,
+    "draws_are_not_independent_new_data": true,
+    "sampler_trace_replay": "exact",
+    "initial_flow_loss": 0.027012770995497704,
+    "final_flow_loss": 0.005084624979645014
+  },
+  "total_runtime_including_preflight_s": 402.9492959129857,
+  "budget_accounting": [
+    {
+      "time": "2026-11-26T15:04:48.443793+08:00",
+      "stage": "collection_and_data_gate",
+      "elapsed_s": 273.7329872759874,
+      "registered_cap_s": 600
+    },
+    {
+      "time": "2026-11-26T15:05:48.557890+08:00",
+      "stage": "offline_before",
+      "elapsed_s": 60.113855581963435,
+      "registered_cap_s": 180
+    },
+    {
+      "time": "2026-11-26T15:05:50.976359+08:00",
+      "stage": "training",
+      "elapsed_s": 2.4182210119906813,
+      "registered_cap_s": 120
+    },
+    {
+      "time": "2026-11-26T15:06:52.518541+08:00",
+      "stage": "offline_after",
+      "elapsed_s": 61.527575849962886,
+      "registered_cap_s": 119.88608007505536
+    }
+  ]
+}

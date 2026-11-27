@@ -1,0 +1,27 @@
+{
+  "workflow_status": "budget_partial",
+  "goal_achieved": false,
+  "first_research_batch_only": true,
+  "actual_start": {
+    "time": "2026-11-26T23:12:17.988022+08:00",
+    "pid": 355032,
+    "ppid": 355025,
+    "actual_start": true,
+    "stage": "campaign_orchestrator",
+    "gpu": 0,
+    "venv": "/home/him1/mujoco_bc/rcm_4090_deploy/.venv",
+    "budget_s": 2700,
+    "actual_training_updates": 0
+  },
+  "all_control_ABC_DiT": true,
+  "teacher_used_for_training_collection_only": true,
+  "truth_setup_offline_scoring_only": true,
+  "error": "TimeoutError('E40_E42_real_teacher_collection: shared batch or stage time exhausted')",
+  "traceback": "Traceback (most recent call last):\n  File \"/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261126/dit_relative_terminal_v2/campaign.py\", line 469, in run\n    group('E40_E42_real_teacher_collection',[(f'collect_{s[\"id\"]}',['collect','--branch',s['id']]) for s in expansion_plans()],750,12)\n  File \"/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261126/dit_relative_terminal_v2/campaign.py\", line 391, in group\n    if time.monotonic()>=deadline:raise TimeoutError(f'{stage}: shared batch or stage time exhausted')\n                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nTimeoutError: E40_E42_real_teacher_collection: shared batch or stage time exhausted\n",
+  "scientific_negative": false,
+  "next_step": "Retain saved checkpoints and partial evidence; repair diagnosed engineering issue within remaining shared budget or continue next authorized batch",
+  "time": "2026-11-26T23:24:53.041024+08:00",
+  "runtime_s": 780.9044120499748,
+  "budget_s": 2700,
+  "simulation_only": true
+}

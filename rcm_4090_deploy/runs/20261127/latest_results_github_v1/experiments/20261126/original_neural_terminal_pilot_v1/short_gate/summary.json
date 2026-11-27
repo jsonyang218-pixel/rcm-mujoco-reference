@@ -1,0 +1,52 @@
+{
+  "status": "completed",
+  "time": "2026-11-26T10:11:40.985493+08:00",
+  "model_sha256": "6cc389df3786f1f34c43cf65d6dc17fe910ab342fae8d84c8e37cea6a7db6c11",
+  "model_path": "/home/him1/mujoco_bc/rcm_4090_deploy/outputs/homog_label_fix_20261124_v5/homog_label_fix_20261124_v5_phase1_A/step_004000.pth",
+  "target": "E41",
+  "kind": "below_recede",
+  "early_stop_reason": null,
+  "neural_action_calls": 2,
+  "teacher_instances": 0,
+  "all_ABC_actions_from_original_neural_model": true,
+  "input_parity": {
+    "status": "passed",
+    "production_and_direct_action": [
+      -0.0012641837820410728,
+      -0.0032021573279052973,
+      -0.0007222816348075867
+    ],
+    "physical_units": "deg,deg,mm",
+    "first_action_max_abs_difference": 0.0,
+    "velocity_input": [
+      [
+        0.0,
+        0.0,
+        -0.04390716552734375
+      ]
+    ],
+    "actual_encoder_velocity": [
+      0.0,
+      0.0,
+      -0.04387152764122326
+    ],
+    "previous_accepted": [
+      [
+        0.0,
+        0.0,
+        -0.003000000026077032
+      ]
+    ],
+    "n_obs_steps": 2,
+    "K": 1,
+    "flow4": true,
+    "exec1": true
+  },
+  "cycles": 2,
+  "final_true_error_um": 38.278989614661704,
+  "last200_max_true_error_um": null,
+  "longest_le20_cycles": 0,
+  "longest_le20_s": 0.0,
+  "terminal_le20_cycles": 0,
+  "all_last200_le20": false
+}

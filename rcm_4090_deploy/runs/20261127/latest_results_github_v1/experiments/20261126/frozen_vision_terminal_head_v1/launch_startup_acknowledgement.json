@@ -1,0 +1,34 @@
+{
+  "time": "2026-11-26T22:18:40.612740+08:00",
+  "one_startup_ack_only": true,
+  "no_phase_polling": true,
+  "actual_start": {
+    "time": "2026-11-26T22:18:40.612168+08:00",
+    "status": "actual_process_started",
+    "pid": 348833,
+    "ppid": 348830,
+    "argv": [
+      "runs/20261126/frozen_vision_terminal_head_v1/pilot.py",
+      "run"
+    ],
+    "GNOME_TERMINAL_SCREEN": "/org/gnome/Terminal/screen/0ed88817_d8e8_4701_824c_1e412088b8bc",
+    "stage": "identity_then_cache_parity",
+    "not_scientific_success": true
+  },
+  "timed_out": false,
+  "launch_receipt": {
+    "time": "2026-11-26T22:18:40.602195+08:00",
+    "returncode": 0,
+    "command": [
+      "gnome-terminal",
+      "--window",
+      "--title=Frozen vision deterministic terminal head v1",
+      "--working-directory=/home/him1/mujoco_bc/rcm_4090_deploy",
+      "--",
+      "bash",
+      "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261126/frozen_vision_terminal_head_v1/launch.sh"
+    ],
+    "stdout": "",
+    "stderr": ""
+  }
+}

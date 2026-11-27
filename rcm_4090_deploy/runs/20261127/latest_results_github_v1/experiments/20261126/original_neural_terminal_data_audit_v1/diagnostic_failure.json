@@ -1,0 +1,10 @@
+{
+  "time": "2026-11-26T14:32:47.722654+08:00",
+  "status": "failed",
+  "error": "AttributeError(\"module 'numpy.lib.format' has no attribute '_read_array_header'\")",
+  "traceback": "Traceback (most recent call last):\n  File \"/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261126/original_neural_terminal_data_audit_v1/audit.py\", line 607, in <module>\n    main()\n  File \"/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261126/original_neural_terminal_data_audit_v1/audit.py\", line 160, in main\n    rgb_shape,fortran,rgb_dtype=fmt._read_array_header(f,version)\n                                ^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: module 'numpy.lib.format' has no attribute '_read_array_header'. Did you mean: 'read_array_header_1_0'?\n",
+  "model_inference_calls": 0,
+  "gradient_updates": 0,
+  "new_simulation_cycles": 0,
+  "elapsed_seconds": 0.9653713299776427
+}

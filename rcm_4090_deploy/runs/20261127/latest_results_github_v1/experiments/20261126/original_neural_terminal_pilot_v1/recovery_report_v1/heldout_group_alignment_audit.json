@@ -1,0 +1,1133 @@
+{
+  "status": "passed",
+  "windows": 50,
+  "target": "E41",
+  "group_rules_unchanged": true,
+  "all_groups_rebuilt_from_original_measurements": true,
+  "sources": [
+    {
+      "path": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261126/original_neural_terminal_pilot_v1/data/E41_below_recede/observations.npz",
+      "sha256": "549adcce5b90bf81cc01767d0cae147404f1b05371181370bfbb6d1ca5453189",
+      "rgb_shape": [
+        42,
+        1440,
+        1920,
+        3
+      ],
+      "accepted_teacher_actions": 40
+    },
+    {
+      "path": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261126/original_neural_terminal_pilot_v1/data/E41_above_recede/observations.npz",
+      "sha256": "79a925c96b0b3a7bc71574e34e06e6281900b9eeb60f29aa6b84426cbd950178",
+      "rgb_shape": [
+        42,
+        1440,
+        1920,
+        3
+      ],
+      "accepted_teacher_actions": 40
+    }
+  ],
+  "windows_rebuilt": [
+    {
+      "target": "E41",
+      "kind": "below_recede",
+      "start": 0,
+      "source": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261126/original_neural_terminal_pilot_v1/data/E41_below_recede/observations.npz",
+      "source_sha256": "549adcce5b90bf81cc01767d0cae147404f1b05371181370bfbb6d1ca5453189",
+      "history_frames": [
+        1,
+        2
+      ],
+      "action_frames_inclusive": [
+        0,
+        15
+      ],
+      "group": "approaching",
+      "moving_encoder": true,
+      "nonzero_C": true,
+      "teacher_C_mm": 0.0015564236179391178,
+      "actual_C_velocity_mm_s": -0.04387152764122326,
+      "pre_true_error_um": 37.39906803490367,
+      "post_true_error_um": 36.36497481646383
+    },
+    {
+      "target": "E41",
+      "kind": "below_recede",
+      "start": 1,
+      "source": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261126/original_neural_terminal_pilot_v1/data/E41_below_recede/observations.npz",
+      "source_sha256": "549adcce5b90bf81cc01767d0cae147404f1b05371181370bfbb6d1ca5453189",
+      "history_frames": [
+        2,
+        3
+      ],
+      "action_frames_inclusive": [
+        1,
+        16
+      ],
+      "group": "approaching",
+      "moving_encoder": true,
+      "nonzero_C": true,
+      "teacher_C_mm": 0.004784114580113491,
+      "actual_C_velocity_mm_s": 0.020682291602264202,
+      "pre_true_error_um": 36.36497481646383,
+      "post_true_error_um": 32.714323193190204
+    },
+    {
+      "target": "E41",
+      "kind": "below_recede",
+      "start": 2,
+      "source": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261126/original_neural_terminal_pilot_v1/data/E41_below_recede/observations.npz",
+      "source_sha256": "549adcce5b90bf81cc01767d0cae147404f1b05371181370bfbb6d1ca5453189",
+      "history_frames": [
+        3,
+        4
+      ],
+      "action_frames_inclusive": [
+        2,
+        17
+      ],
+      "group": "approaching",
+      "moving_encoder": true,
+      "nonzero_C": true,
+      "teacher_C_mm": 0.004915697241564265,
+      "actual_C_velocity_mm_s": 0.07301475671725455,
+      "pre_true_error_um": 32.714323193190204,
+      "post_true_error_um": 29.14203264333023
+    },
+    {
+      "target": "E41",
+      "kind": "below_recede",
+      "start": 3,
+      "source": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261126/original_neural_terminal_pilot_v1/data/E41_below_recede/observations.npz",
+      "source_sha256": "549adcce5b90bf81cc01767d0cae147404f1b05371181370bfbb6d1ca5453189",
+      "history_frames": [
+        4,
+        5
+      ],
+      "action_frames_inclusive": [
+        3,
+        18
+      ],
+      "group": "approaching",
+      "moving_encoder": true,
+      "nonzero_C": true,
+      "teacher_C_mm": 0.004382198626619316,
+      "actual_C_velocity_mm_s": 0.07144791644445037,
+      "pre_true_error_um": 29.14203264333023,
+      "post_true_error_um": 25.61677470064944
+    },
+    {
+      "target": "E41",
+      "kind": "below_recede",
+      "start": 4,
+      "source": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261126/original_neural_terminal_pilot_v1/data/E41_below_recede/observations.npz",
+      "source_sha256": "549adcce5b90bf81cc01767d0cae147404f1b05371181370bfbb6d1ca5453189",
+      "history_frames": [
+        5,
+        6
+      ],
+      "action_frames_inclusive": [
+        4,
+        19
+      ],
+      "group": "approaching",
+      "moving_encoder": true,
+      "nonzero_C": true,
+      "teacher_C_mm": 0.0038555534771847477,
+      "actual_C_velocity_mm_s": 0.07050781228062908,
+      "pre_true_error_um": 25.61677470064944,
+      "post_true_error_um": 22.921938373121478
+    },
+    {
+      "target": "E41",
+      "kind": "below_recede",
+      "start": 5,
+      "source": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261126/original_neural_terminal_pilot_v1/data/E41_below_recede/observations.npz",
+      "source_sha256": "549adcce5b90bf81cc01767d0cae147404f1b05371181370bfbb6d1ca5453189",
+      "history_frames": [
+        6,
+        7
+      ],
+      "action_frames_inclusive": [
+        5,
+        20
+      ],
+      "group": "approaching",
+      "moving_encoder": true,
+      "nonzero_C": true,
+      "teacher_C_mm": 0.003447353369021716,
+      "actual_C_velocity_mm_s": 0.053899305387863916,
+      "pre_true_error_um": 22.921938373121478,
+      "post_true_error_um": 20.47781384377889
+    },
+    {
+      "target": "E41",
+      "kind": "below_recede",
+      "start": 6,
+      "source": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261126/original_neural_terminal_pilot_v1/data/E41_below_recede/observations.npz",
+      "source_sha256": "549adcce5b90bf81cc01767d0cae147404f1b05371181370bfbb6d1ca5453189",
+      "history_frames": [
+        7,
+        8
+      ],
+      "action_frames_inclusive": [
+        6,
+        21
+      ],
+      "group": "approaching",
+      "moving_encoder": true,
+      "nonzero_C": true,
+      "teacher_C_mm": 0.003082193479685136,
+      "actual_C_velocity_mm_s": 0.04888541651461298,
+      "pre_true_error_um": 20.47781384377889,
+      "post_true_error_um": 18.096397186313546
+    },
+    {
+      "target": "E41",
+      "kind": "below_recede",
+      "start": 7,
+      "source": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261126/original_neural_terminal_pilot_v1/data/E41_below_recede/observations.npz",
+      "source_sha256": "549adcce5b90bf81cc01767d0cae147404f1b05371181370bfbb6d1ca5453189",
+      "history_frames": [
+        8,
+        9
+      ],
+      "action_frames_inclusive": [
+        7,
+        22
+      ],
+      "group": "approaching",
+      "moving_encoder": true,
+      "nonzero_C": true,
+      "teacher_C_mm": 0.0027215261146976144,
+      "actual_C_velocity_mm_s": 0.047631944296161466,
+      "pre_true_error_um": 18.096397186313546,
+      "post_true_error_um": 15.730701875589032
+    },
+    {
+      "target": "E41",
+      "kind": "below_recede",
+      "start": 8,
+      "source": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261126/original_neural_terminal_pilot_v1/data/E41_below_recede/observations.npz",
+      "source_sha256": "549adcce5b90bf81cc01767d0cae147404f1b05371181370bfbb6d1ca5453189",
+      "history_frames": [
+        9,
+        10
+      ],
+      "action_frames_inclusive": [
+        8,
+        23
+      ],
+      "group": "approaching",
+      "moving_encoder": true,
+      "nonzero_C": true,
+      "teacher_C_mm": 0.0023695970390175125,
+      "actual_C_velocity_mm_s": 0.04731857624173941,
+      "pre_true_error_um": 15.730701875589032,
+      "post_true_error_um": 14.226724045981012
+    },
+    {
+      "target": "E41",
+      "kind": "below_recede",
+      "start": 9,
+      "source": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261126/original_neural_terminal_pilot_v1/data/E41_below_recede/observations.npz",
+      "source_sha256": "549adcce5b90bf81cc01767d0cae147404f1b05371181370bfbb6d1ca5453189",
+      "history_frames": [
+        10,
+        11
+      ],
+      "action_frames_inclusive": [
+        9,
+        24
+      ],
+      "group": "approaching",
+      "moving_encoder": true,
+      "nonzero_C": true,
+      "teacher_C_mm": 0.0021427287638722814,
+      "actual_C_velocity_mm_s": 0.030083333239713794,
+      "pre_true_error_um": 14.226724045981012,
+      "post_true_error_um": 12.95777685038662
+    },
+    {
+      "target": "E41",
+      "kind": "below_recede",
+      "start": 10,
+      "source": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261126/original_neural_terminal_pilot_v1/data/E41_below_recede/observations.npz",
+      "source_sha256": "549adcce5b90bf81cc01767d0cae147404f1b05371181370bfbb6d1ca5453189",
+      "history_frames": [
+        11,
+        12
+      ],
+      "action_frames_inclusive": [
+        10,
+        25
+      ],
+      "group": "approaching",
+      "moving_encoder": true,
+      "nonzero_C": true,
+      "teacher_C_mm": 0.0019521651076423452,
+      "actual_C_velocity_mm_s": 0.025382812421023693,
+      "pre_true_error_um": 12.95777685038662,
+      "post_true_error_um": 11.751532446229167
+    },
+    {
+      "target": "E41",
+      "kind": "below_recede",
+      "start": 11,
+      "source": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261126/original_neural_terminal_pilot_v1/data/E41_below_recede/observations.npz",
+      "source_sha256": "549adcce5b90bf81cc01767d0cae147404f1b05371181370bfbb6d1ca5453189",
+      "history_frames": [
+        12,
+        13
+      ],
+      "action_frames_inclusive": [
+        11,
+        26
+      ],
+      "group": "approaching",
+      "moving_encoder": true,
+      "nonzero_C": true,
+      "teacher_C_mm": 0.0017708498555382701,
+      "actual_C_velocity_mm_s": 0.024129340202710958,
+      "pre_true_error_um": 11.751532446229167,
+      "post_true_error_um": 10.561003423008776
+    },
+    {
+      "target": "E41",
+      "kind": "below_recede",
+      "start": 12,
+      "source": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261126/original_neural_terminal_pilot_v1/data/E41_below_recede/observations.npz",
+      "source_sha256": "549adcce5b90bf81cc01767d0cae147404f1b05371181370bfbb6d1ca5453189",
+      "history_frames": [
+        13,
+        14
+      ],
+      "action_frames_inclusive": [
+        12,
+        27
+      ],
+      "group": "approaching",
+      "moving_encoder": true,
+      "nonzero_C": true,
+      "teacher_C_mm": 0.0015937980547553465,
+      "actual_C_velocity_mm_s": 0.023815972148150122,
+      "pre_true_error_um": 10.561003423008776,
+      "post_true_error_um": 9.386206306398385
+    },
+    {
+      "target": "E41",
+      "kind": "below_recede",
+      "start": 13,
+      "source": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261126/original_neural_terminal_pilot_v1/data/E41_below_recede/observations.npz",
+      "source_sha256": "549adcce5b90bf81cc01767d0cae147404f1b05371181370bfbb6d1ca5453189",
+      "history_frames": [
+        14,
+        15
+      ],
+      "action_frames_inclusive": [
+        13,
+        28
+      ],
+      "group": "approaching",
+      "moving_encoder": true,
+      "nonzero_C": true,
+      "teacher_C_mm": 0.001418734322827797,
+      "actual_C_velocity_mm_s": 0.023502604093589285,
+      "pre_true_error_um": 9.386206306398385,
+      "post_true_error_um": 8.21150451187168
+    },
+    {
+      "target": "E41",
+      "kind": "below_recede",
+      "start": 14,
+      "source": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261126/original_neural_terminal_pilot_v1/data/E41_below_recede/observations.npz",
+      "source_sha256": "549adcce5b90bf81cc01767d0cae147404f1b05371181370bfbb6d1ca5453189",
+      "history_frames": [
+        15,
+        16
+      ],
+      "action_frames_inclusive": [
+        14,
+        29
+      ],
+      "group": "approaching",
+      "moving_encoder": true,
+      "nonzero_C": true,
+      "teacher_C_mm": 0.001244190764623787,
+      "actual_C_velocity_mm_s": 0.023502604093450508,
+      "pre_true_error_um": 8.21150451187168,
+      "post_true_error_um": 7.0369457768171895
+    },
+    {
+      "target": "E41",
+      "kind": "below_recede",
+      "start": 15,
+      "source": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261126/original_neural_terminal_pilot_v1/data/E41_below_recede/observations.npz",
+      "source_sha256": "549adcce5b90bf81cc01767d0cae147404f1b05371181370bfbb6d1ca5453189",
+      "history_frames": [
+        16,
+        17
+      ],
+      "action_frames_inclusive": [
+        15,
+        30
+      ],
+      "group": "approaching",
+      "moving_encoder": true,
+      "nonzero_C": true,
+      "teacher_C_mm": 0.0010647706398525525,
+      "actual_C_velocity_mm_s": 0.023502604093589285,
+      "pre_true_error_um": 7.0369457768171895,
+      "post_true_error_um": 5.86261608671211
+    },
+    {
+      "target": "E41",
+      "kind": "below_recede",
+      "start": 16,
+      "source": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261126/original_neural_terminal_pilot_v1/data/E41_below_recede/observations.npz",
+      "source_sha256": "549adcce5b90bf81cc01767d0cae147404f1b05371181370bfbb6d1ca5453189",
+      "history_frames": [
+        17,
+        18
+      ],
+      "action_frames_inclusive": [
+        16,
+        31
+      ],
+      "group": "approaching",
+      "moving_encoder": true,
+      "nonzero_C": true,
+      "teacher_C_mm": 0.0008922574774618275,
+      "actual_C_velocity_mm_s": 0.023502604093519897,
+      "pre_true_error_um": 5.86261608671211,
+      "post_true_error_um": 5.533864677871317
+    },
+    {
+      "target": "E41",
+      "kind": "below_recede",
+      "start": 17,
+      "source": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261126/original_neural_terminal_pilot_v1/data/E41_below_recede/observations.npz",
+      "source_sha256": "549adcce5b90bf81cc01767d0cae147404f1b05371181370bfbb6d1ca5453189",
+      "history_frames": [
+        18,
+        19
+      ],
+      "action_frames_inclusive": [
+        17,
+        32
+      ],
+      "group": "approaching",
+      "moving_encoder": true,
+      "nonzero_C": true,
+      "teacher_C_mm": 0.0008399826674845845,
+      "actual_C_velocity_mm_s": 0.006580729146263287,
+      "pre_true_error_um": 5.533864677871317,
+      "post_true_error_um": 4.594799800673464
+    },
+    {
+      "target": "E41",
+      "kind": "below_recede",
+      "start": 18,
+      "source": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261126/original_neural_terminal_pilot_v1/data/E41_below_recede/observations.npz",
+      "source_sha256": "549adcce5b90bf81cc01767d0cae147404f1b05371181370bfbb6d1ca5453189",
+      "history_frames": [
+        19,
+        20
+      ],
+      "action_frames_inclusive": [
+        18,
+        33
+      ],
+      "group": "approaching",
+      "moving_encoder": true,
+      "nonzero_C": true,
+      "teacher_C_mm": 0.0006995982293825365,
+      "actual_C_velocity_mm_s": 0.018802083274760406,
+      "pre_true_error_um": 4.594799800673464,
+      "post_true_error_um": 4.328813443262876
+    },
+    {
+      "target": "E41",
+      "kind": "below_recede",
+      "start": 19,
+      "source": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261126/original_neural_terminal_pilot_v1/data/E41_below_recede/observations.npz",
+      "source_sha256": "549adcce5b90bf81cc01767d0cae147404f1b05371181370bfbb6d1ca5453189",
+      "history_frames": [
+        20,
+        21
+      ],
+      "action_frames_inclusive": [
+        19,
+        34
+      ],
+      "group": "approaching",
+      "moving_encoder": true,
+      "nonzero_C": true,
+      "teacher_C_mm": 0.0006564368632243356,
+      "actual_C_velocity_mm_s": 0.005327256927950552,
+      "pre_true_error_um": 4.328813443262876,
+      "post_true_error_um": 4.250591135239118
+    },
+    {
+      "target": "E41",
+      "kind": "below_recede",
+      "start": 20,
+      "source": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261126/original_neural_terminal_pilot_v1/data/E41_below_recede/observations.npz",
+      "source_sha256": "549adcce5b90bf81cc01767d0cae147404f1b05371181370bfbb6d1ca5453189",
+      "history_frames": [
+        21,
+        22
+      ],
+      "action_frames_inclusive": [
+        20,
+        35
+      ],
+      "group": "approaching",
+      "moving_encoder": true,
+      "nonzero_C": true,
+      "teacher_C_mm": 0.0006495511801068998,
+      "actual_C_velocity_mm_s": 0.0015668402728735709,
+      "pre_true_error_um": 4.250591135239118,
+      "post_true_error_um": 3.3905105929416908
+    },
+    {
+      "target": "E41",
+      "kind": "below_recede",
+      "start": 21,
+      "source": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261126/original_neural_terminal_pilot_v1/data/E41_below_recede/observations.npz",
+      "source_sha256": "549adcce5b90bf81cc01767d0cae147404f1b05371181370bfbb6d1ca5453189",
+      "history_frames": [
+        22,
+        23
+      ],
+      "action_frames_inclusive": [
+        21,
+        36
+      ],
+      "group": "approaching",
+      "moving_encoder": true,
+      "nonzero_C": true,
+      "teacher_C_mm": 0.0005202141983781661,
+      "actual_C_velocity_mm_s": 0.017235243001956224,
+      "pre_true_error_um": 3.3905105929416908,
+      "post_true_error_um": 3.1404784683051457
+    },
+    {
+      "target": "E41",
+      "kind": "below_recede",
+      "start": 22,
+      "source": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261126/original_neural_terminal_pilot_v1/data/E41_below_recede/observations.npz",
+      "source_sha256": "549adcce5b90bf81cc01767d0cae147404f1b05371181370bfbb6d1ca5453189",
+      "history_frames": [
+        23,
+        24
+      ],
+      "action_frames_inclusive": [
+        22,
+        37
+      ],
+      "group": "approaching",
+      "moving_encoder": true,
+      "nonzero_C": true,
+      "teacher_C_mm": 0.0004794980880649946,
+      "actual_C_velocity_mm_s": 0.005013888873250938,
+      "pre_true_error_um": 3.1404784683051457,
+      "post_true_error_um": 3.0779872725025554
+    },
+    {
+      "target": "E41",
+      "kind": "below_recede",
+      "start": 23,
+      "source": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261126/original_neural_terminal_pilot_v1/data/E41_below_recede/observations.npz",
+      "source_sha256": "549adcce5b90bf81cc01767d0cae147404f1b05371181370bfbb6d1ca5453189",
+      "history_frames": [
+        24,
+        25
+      ],
+      "action_frames_inclusive": [
+        23,
+        38
+      ],
+      "group": "approaching",
+      "moving_encoder": true,
+      "nonzero_C": true,
+      "teacher_C_mm": 0.0004726123268884719,
+      "actual_C_velocity_mm_s": 0.0012534722183127345,
+      "pre_true_error_um": 3.0779872725025554,
+      "post_true_error_um": 3.062365638487465
+    },
+    {
+      "target": "E41",
+      "kind": "below_recede",
+      "start": 24,
+      "source": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261126/original_neural_terminal_pilot_v1/data/E41_below_recede/observations.npz",
+      "source_sha256": "549adcce5b90bf81cc01767d0cae147404f1b05371181370bfbb6d1ca5453189",
+      "history_frames": [
+        25,
+        26
+      ],
+      "action_frames_inclusive": [
+        24,
+        39
+      ],
+      "group": "approaching",
+      "moving_encoder": true,
+      "nonzero_C": true,
+      "teacher_C_mm": 0.000470076247122142,
+      "actual_C_velocity_mm_s": 0.0003133680546302253,
+      "pre_true_error_um": 3.062365638487465,
+      "post_true_error_um": 3.046744484786752
+    },
+    {
+      "target": "E41",
+      "kind": "above_recede",
+      "start": 0,
+      "source": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261126/original_neural_terminal_pilot_v1/data/E41_above_recede/observations.npz",
+      "source_sha256": "79a925c96b0b3a7bc71574e34e06e6281900b9eeb60f29aa6b84426cbd950178",
+      "history_frames": [
+        1,
+        2
+      ],
+      "action_frames_inclusive": [
+        0,
+        15
+      ],
+      "group": "approaching",
+      "moving_encoder": true,
+      "nonzero_C": true,
+      "teacher_C_mm": -0.0015564236179356483,
+      "actual_C_velocity_mm_s": 0.04387152764129265,
+      "pre_true_error_um": 37.40338888588659,
+      "post_true_error_um": 36.36929566239623
+    },
+    {
+      "target": "E41",
+      "kind": "above_recede",
+      "start": 1,
+      "source": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261126/original_neural_terminal_pilot_v1/data/E41_above_recede/observations.npz",
+      "source_sha256": "79a925c96b0b3a7bc71574e34e06e6281900b9eeb60f29aa6b84426cbd950178",
+      "history_frames": [
+        2,
+        3
+      ],
+      "action_frames_inclusive": [
+        1,
+        16
+      ],
+      "group": "approaching",
+      "moving_encoder": true,
+      "nonzero_C": true,
+      "teacher_C_mm": -0.0047841145801169604,
+      "actual_C_velocity_mm_s": -0.02068229160233359,
+      "pre_true_error_um": 36.36929566239623,
+      "post_true_error_um": 32.71864401746166
+    },
+    {
+      "target": "E41",
+      "kind": "above_recede",
+      "start": 2,
+      "source": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261126/original_neural_terminal_pilot_v1/data/E41_above_recede/observations.npz",
+      "source_sha256": "79a925c96b0b3a7bc71574e34e06e6281900b9eeb60f29aa6b84426cbd950178",
+      "history_frames": [
+        3,
+        4
+      ],
+      "action_frames_inclusive": [
+        2,
+        17
+      ],
+      "group": "approaching",
+      "moving_encoder": true,
+      "nonzero_C": true,
+      "teacher_C_mm": -0.004898349137420072,
+      "actual_C_velocity_mm_s": -0.07301475671732394,
+      "pre_true_error_um": 32.71864401746166,
+      "post_true_error_um": 29.146353438094973
+    },
+    {
+      "target": "E41",
+      "kind": "above_recede",
+      "start": 3,
+      "source": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261126/original_neural_terminal_pilot_v1/data/E41_above_recede/observations.npz",
+      "source_sha256": "79a925c96b0b3a7bc71574e34e06e6281900b9eeb60f29aa6b84426cbd950178",
+      "history_frames": [
+        4,
+        5
+      ],
+      "action_frames_inclusive": [
+        3,
+        18
+      ],
+      "group": "approaching",
+      "moving_encoder": true,
+      "nonzero_C": true,
+      "teacher_C_mm": -0.00436276967046012,
+      "actual_C_velocity_mm_s": -0.07144791644431159,
+      "pre_true_error_um": 29.146353438094973,
+      "post_true_error_um": 26.451486373582096
+    },
+    {
+      "target": "E41",
+      "kind": "above_recede",
+      "start": 4,
+      "source": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261126/original_neural_terminal_pilot_v1/data/E41_above_recede/observations.npz",
+      "source_sha256": "79a925c96b0b3a7bc71574e34e06e6281900b9eeb60f29aa6b84426cbd950178",
+      "history_frames": [
+        5,
+        6
+      ],
+      "action_frames_inclusive": [
+        4,
+        19
+      ],
+      "group": "approaching",
+      "moving_encoder": true,
+      "nonzero_C": true,
+      "teacher_C_mm": -0.0039587454676408285,
+      "actual_C_velocity_mm_s": -0.053899305387863916,
+      "pre_true_error_um": 26.451486373582096,
+      "post_true_error_um": 24.00732368402253
+    },
+    {
+      "target": "E41",
+      "kind": "above_recede",
+      "start": 5,
+      "source": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261126/original_neural_terminal_pilot_v1/data/E41_above_recede/observations.npz",
+      "source_sha256": "79a925c96b0b3a7bc71574e34e06e6281900b9eeb60f29aa6b84426cbd950178",
+      "history_frames": [
+        6,
+        7
+      ],
+      "action_frames_inclusive": [
+        5,
+        20
+      ],
+      "group": "approaching",
+      "moving_encoder": true,
+      "nonzero_C": true,
+      "teacher_C_mm": -0.0035913808155603466,
+      "actual_C_velocity_mm_s": -0.04888541651461298,
+      "pre_true_error_um": 24.00732368402253,
+      "post_true_error_um": 21.625855344356964
+    },
+    {
+      "target": "E41",
+      "kind": "above_recede",
+      "start": 6,
+      "source": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261126/original_neural_terminal_pilot_v1/data/E41_above_recede/observations.npz",
+      "source_sha256": "79a925c96b0b3a7bc71574e34e06e6281900b9eeb60f29aa6b84426cbd950178",
+      "history_frames": [
+        7,
+        8
+      ],
+      "action_frames_inclusive": [
+        6,
+        21
+      ],
+      "group": "approaching",
+      "moving_encoder": true,
+      "nonzero_C": true,
+      "teacher_C_mm": -0.003235101354352732,
+      "actual_C_velocity_mm_s": -0.047631944296230855,
+      "pre_true_error_um": 21.625855344356964,
+      "post_true_error_um": 19.260086116861192
+    },
+    {
+      "target": "E41",
+      "kind": "above_recede",
+      "start": 7,
+      "source": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261126/original_neural_terminal_pilot_v1/data/E41_above_recede/observations.npz",
+      "source_sha256": "79a925c96b0b3a7bc71574e34e06e6281900b9eeb60f29aa6b84426cbd950178",
+      "history_frames": [
+        8,
+        9
+      ],
+      "action_frames_inclusive": [
+        7,
+        22
+      ],
+      "group": "approaching",
+      "moving_encoder": true,
+      "nonzero_C": true,
+      "teacher_C_mm": -0.002880930635489054,
+      "actual_C_velocity_mm_s": -0.04731857624167002,
+      "pre_true_error_um": 19.260086116861192,
+      "post_true_error_um": 16.91002844704199
+    },
+    {
+      "target": "E41",
+      "kind": "above_recede",
+      "start": 8,
+      "source": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261126/original_neural_terminal_pilot_v1/data/E41_above_recede/observations.npz",
+      "source_sha256": "79a925c96b0b3a7bc71574e34e06e6281900b9eeb60f29aa6b84426cbd950178",
+      "history_frames": [
+        9,
+        10
+      ],
+      "action_frames_inclusive": [
+        8,
+        23
+      ],
+      "group": "approaching",
+      "moving_encoder": true,
+      "nonzero_C": true,
+      "teacher_C_mm": -0.0025227751142588295,
+      "actual_C_velocity_mm_s": -0.04700520818710918,
+      "pre_true_error_um": 16.91002844704199,
+      "post_true_error_um": 15.406023999930264
+    },
+    {
+      "target": "E41",
+      "kind": "above_recede",
+      "start": 9,
+      "source": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261126/original_neural_terminal_pilot_v1/data/E41_above_recede/observations.npz",
+      "source_sha256": "79a925c96b0b3a7bc71574e34e06e6281900b9eeb60f29aa6b84426cbd950178",
+      "history_frames": [
+        10,
+        11
+      ],
+      "action_frames_inclusive": [
+        9,
+        24
+      ],
+      "group": "approaching",
+      "moving_encoder": true,
+      "nonzero_C": true,
+      "teacher_C_mm": -0.0023000918544686944,
+      "actual_C_velocity_mm_s": -0.030083333239713794,
+      "pre_true_error_um": 15.406023999930264,
+      "post_true_error_um": 14.137047096216001
+    },
+    {
+      "target": "E41",
+      "kind": "above_recede",
+      "start": 10,
+      "source": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261126/original_neural_terminal_pilot_v1/data/E41_above_recede/observations.npz",
+      "source_sha256": "79a925c96b0b3a7bc71574e34e06e6281900b9eeb60f29aa6b84426cbd950178",
+      "history_frames": [
+        11,
+        12
+      ],
+      "action_frames_inclusive": [
+        10,
+        25
+      ],
+      "group": "approaching",
+      "moving_encoder": true,
+      "nonzero_C": true,
+      "teacher_C_mm": -0.0021073761409633185,
+      "actual_C_velocity_mm_s": -0.02538281242109308,
+      "pre_true_error_um": 14.137047096216001,
+      "post_true_error_um": 12.930765512725586
+    },
+    {
+      "target": "E41",
+      "kind": "above_recede",
+      "start": 11,
+      "source": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261126/original_neural_terminal_pilot_v1/data/E41_above_recede/observations.npz",
+      "source_sha256": "79a925c96b0b3a7bc71574e34e06e6281900b9eeb60f29aa6b84426cbd950178",
+      "history_frames": [
+        12,
+        13
+      ],
+      "action_frames_inclusive": [
+        11,
+        26
+      ],
+      "group": "approaching",
+      "moving_encoder": true,
+      "nonzero_C": true,
+      "teacher_C_mm": -0.001928114313754642,
+      "actual_C_velocity_mm_s": -0.02412934020264157,
+      "pre_true_error_um": 12.930765512725586,
+      "post_true_error_um": 11.740187292178879
+    },
+    {
+      "target": "E41",
+      "kind": "above_recede",
+      "start": 12,
+      "source": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261126/original_neural_terminal_pilot_v1/data/E41_above_recede/observations.npz",
+      "source_sha256": "79a925c96b0b3a7bc71574e34e06e6281900b9eeb60f29aa6b84426cbd950178",
+      "history_frames": [
+        13,
+        14
+      ],
+      "action_frames_inclusive": [
+        12,
+        27
+      ],
+      "group": "approaching",
+      "moving_encoder": true,
+      "nonzero_C": true,
+      "teacher_C_mm": -0.0017465732581878335,
+      "actual_C_velocity_mm_s": -0.023815972148150122,
+      "pre_true_error_um": 11.740187292178879,
+      "post_true_error_um": 10.565323272636975
+    },
+    {
+      "target": "E41",
+      "kind": "above_recede",
+      "start": 13,
+      "source": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261126/original_neural_terminal_pilot_v1/data/E41_above_recede/observations.npz",
+      "source_sha256": "79a925c96b0b3a7bc71574e34e06e6281900b9eeb60f29aa6b84426cbd950178",
+      "history_frames": [
+        14,
+        15
+      ],
+      "action_frames_inclusive": [
+        13,
+        28
+      ],
+      "group": "approaching",
+      "moving_encoder": true,
+      "nonzero_C": true,
+      "teacher_C_mm": -0.0015741844727745757,
+      "actual_C_velocity_mm_s": -0.023502604093519897,
+      "pre_true_error_um": 10.565323272636975,
+      "post_true_error_um": 9.39052586668478
+    },
+    {
+      "target": "E41",
+      "kind": "above_recede",
+      "start": 14,
+      "source": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261126/original_neural_terminal_pilot_v1/data/E41_above_recede/observations.npz",
+      "source_sha256": "79a925c96b0b3a7bc71574e34e06e6281900b9eeb60f29aa6b84426cbd950178",
+      "history_frames": [
+        15,
+        16
+      ],
+      "action_frames_inclusive": [
+        14,
+        29
+      ],
+      "group": "approaching",
+      "moving_encoder": true,
+      "nonzero_C": true,
+      "teacher_C_mm": -0.0014016691561660743,
+      "actual_C_velocity_mm_s": -0.023502604093589285,
+      "pre_true_error_um": 9.39052586668478,
+      "post_true_error_um": 8.215823649886847
+    },
+    {
+      "target": "E41",
+      "kind": "above_recede",
+      "start": 15,
+      "source": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261126/original_neural_terminal_pilot_v1/data/E41_above_recede/observations.npz",
+      "source_sha256": "79a925c96b0b3a7bc71574e34e06e6281900b9eeb60f29aa6b84426cbd950178",
+      "history_frames": [
+        16,
+        17
+      ],
+      "action_frames_inclusive": [
+        15,
+        30
+      ],
+      "group": "approaching",
+      "moving_encoder": true,
+      "nonzero_C": true,
+      "teacher_C_mm": -0.0012201007841376732,
+      "actual_C_velocity_mm_s": -0.023502604093519897,
+      "pre_true_error_um": 8.215823649886847,
+      "post_true_error_um": 7.041264263945805
+    },
+    {
+      "target": "E41",
+      "kind": "above_recede",
+      "start": 16,
+      "source": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261126/original_neural_terminal_pilot_v1/data/E41_above_recede/observations.npz",
+      "source_sha256": "79a925c96b0b3a7bc71574e34e06e6281900b9eeb60f29aa6b84426cbd950178",
+      "history_frames": [
+        17,
+        18
+      ],
+      "action_frames_inclusive": [
+        16,
+        31
+      ],
+      "group": "approaching",
+      "moving_encoder": true,
+      "nonzero_C": true,
+      "teacher_C_mm": -0.001043099492361449,
+      "actual_C_velocity_mm_s": -0.023502604093589285,
+      "pre_true_error_um": 7.041264263945805,
+      "post_true_error_um": 6.712423442912216
+    },
+    {
+      "target": "E41",
+      "kind": "above_recede",
+      "start": 17,
+      "source": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261126/original_neural_terminal_pilot_v1/data/E41_above_recede/observations.npz",
+      "source_sha256": "79a925c96b0b3a7bc71574e34e06e6281900b9eeb60f29aa6b84426cbd950178",
+      "history_frames": [
+        18,
+        19
+      ],
+      "action_frames_inclusive": [
+        17,
+        32
+      ],
+      "group": "approaching",
+      "moving_encoder": true,
+      "nonzero_C": true,
+      "teacher_C_mm": -0.0009931001290798547,
+      "actual_C_velocity_mm_s": -0.006580729146193898,
+      "pre_true_error_um": 6.712423442912216,
+      "post_true_error_um": 5.773001087174483
+    },
+    {
+      "target": "E41",
+      "kind": "above_recede",
+      "start": 18,
+      "source": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261126/original_neural_terminal_pilot_v1/data/E41_above_recede/observations.npz",
+      "source_sha256": "79a925c96b0b3a7bc71574e34e06e6281900b9eeb60f29aa6b84426cbd950178",
+      "history_frames": [
+        19,
+        20
+      ],
+      "action_frames_inclusive": [
+        18,
+        33
+      ],
+      "group": "approaching",
+      "moving_encoder": true,
+      "nonzero_C": true,
+      "teacher_C_mm": -0.0008526669416017429,
+      "actual_C_velocity_mm_s": -0.018802083274829795,
+      "pre_true_error_um": 5.773001087174483,
+      "post_true_error_um": 5.506873726883236
+    },
+    {
+      "target": "E41",
+      "kind": "above_recede",
+      "start": 19,
+      "source": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261126/original_neural_terminal_pilot_v1/data/E41_above_recede/observations.npz",
+      "source_sha256": "79a925c96b0b3a7bc71574e34e06e6281900b9eeb60f29aa6b84426cbd950178",
+      "history_frames": [
+        20,
+        21
+      ],
+      "action_frames_inclusive": [
+        19,
+        34
+      ],
+      "group": "approaching",
+      "moving_encoder": true,
+      "nonzero_C": true,
+      "teacher_C_mm": -0.0008161635566342196,
+      "actual_C_velocity_mm_s": -0.005327256927811774,
+      "pre_true_error_um": 5.506873726883236,
+      "post_true_error_um": 4.583467482921994
+    },
+    {
+      "target": "E41",
+      "kind": "above_recede",
+      "start": 20,
+      "source": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261126/original_neural_terminal_pilot_v1/data/E41_above_recede/observations.npz",
+      "source_sha256": "79a925c96b0b3a7bc71574e34e06e6281900b9eeb60f29aa6b84426cbd950178",
+      "history_frames": [
+        21,
+        22
+      ],
+      "action_frames_inclusive": [
+        20,
+        35
+      ],
+      "group": "approaching",
+      "moving_encoder": true,
+      "nonzero_C": true,
+      "teacher_C_mm": -0.0006756399447381545,
+      "actual_C_velocity_mm_s": -0.018488715220338348,
+      "pre_true_error_um": 4.583467482921994,
+      "post_true_error_um": 4.33312790450812
+    },
+    {
+      "target": "E41",
+      "kind": "above_recede",
+      "start": 21,
+      "source": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261126/original_neural_terminal_pilot_v1/data/E41_above_recede/observations.npz",
+      "source_sha256": "79a925c96b0b3a7bc71574e34e06e6281900b9eeb60f29aa6b84426cbd950178",
+      "history_frames": [
+        22,
+        23
+      ],
+      "action_frames_inclusive": [
+        21,
+        36
+      ],
+      "group": "approaching",
+      "moving_encoder": true,
+      "nonzero_C": true,
+      "teacher_C_mm": -0.0006390508308605491,
+      "actual_C_velocity_mm_s": -0.005013888873250938,
+      "pre_true_error_um": 4.33312790450812,
+      "post_true_error_um": 4.254905355857133
+    },
+    {
+      "target": "E41",
+      "kind": "above_recede",
+      "start": 22,
+      "source": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261126/original_neural_terminal_pilot_v1/data/E41_above_recede/observations.npz",
+      "source_sha256": "79a925c96b0b3a7bc71574e34e06e6281900b9eeb60f29aa6b84426cbd950178",
+      "history_frames": [
+        23,
+        24
+      ],
+      "action_frames_inclusive": [
+        22,
+        37
+      ],
+      "group": "approaching",
+      "moving_encoder": true,
+      "nonzero_C": true,
+      "teacher_C_mm": -0.0006278744332129105,
+      "actual_C_velocity_mm_s": -0.0015668402728735709,
+      "pre_true_error_um": 4.254905355857133,
+      "post_true_error_um": 3.394820971455999
+    },
+    {
+      "target": "E41",
+      "kind": "above_recede",
+      "start": 23,
+      "source": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261126/original_neural_terminal_pilot_v1/data/E41_above_recede/observations.npz",
+      "source_sha256": "79a925c96b0b3a7bc71574e34e06e6281900b9eeb60f29aa6b84426cbd950178",
+      "history_frames": [
+        24,
+        25
+      ],
+      "action_frames_inclusive": [
+        23,
+        38
+      ],
+      "group": "approaching",
+      "moving_encoder": true,
+      "nonzero_C": true,
+      "teacher_C_mm": -0.0004963194321257192,
+      "actual_C_velocity_mm_s": -0.017235243002025613,
+      "pre_true_error_um": 3.394820971455999,
+      "post_true_error_um": 3.1447870972158616
+    },
+    {
+      "target": "E41",
+      "kind": "above_recede",
+      "start": 24,
+      "source": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261126/original_neural_terminal_pilot_v1/data/E41_above_recede/observations.npz",
+      "source_sha256": "79a925c96b0b3a7bc71574e34e06e6281900b9eeb60f29aa6b84426cbd950178",
+      "history_frames": [
+        25,
+        26
+      ],
+      "action_frames_inclusive": [
+        24,
+        39
+      ],
+      "group": "approaching",
+      "moving_encoder": true,
+      "nonzero_C": true,
+      "teacher_C_mm": -0.00046220541422004047,
+      "actual_C_velocity_mm_s": -0.005013888873250938,
+      "pre_true_error_um": 3.1447870972158616,
+      "post_true_error_um": 3.0822953961074244
+    }
+  ]
+}

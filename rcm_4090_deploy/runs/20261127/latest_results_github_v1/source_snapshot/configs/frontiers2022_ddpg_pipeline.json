@@ -1,0 +1,53 @@
+{
+  "model_name": "state_attention_frontiers2022_ddpg",
+  "model_entry": "lerobot_training/dit_frontiers2022_ddpg.py",
+  "checkpoint": "best_model.pth",
+  "baseline_manifest": "configs/baselines/state_attention_replay_v1/BASELINE.json",
+  "environment": {
+    "MUJOCO_GL": "egl",
+    "OMP_NUM_THREADS": "1"
+  },
+  "training": {
+    "data_dir": "data/lerobot_v12_oct_dit_rf_dagger2_acthist_20261116_224",
+    "val_data_dir": "data/lerobot_rcm_val_acthist_20261117_224",
+    "init_from": "outputs/dit_rectified_flow_state_attention_v1_acthist_20261117/best_model.pth",
+    "epochs": 4,
+    "steps_per_epoch": 1000,
+    "batch_size": 16,
+    "replay_batch_size": 16,
+    "val_batch_size": 32,
+    "num_workers": 8,
+    "lr": 1e-06,
+    "bias_lr_scale": 1.0,
+    "critic_lr": 0.0001,
+    "critic_warmup_steps": 250,
+    "gamma": 0.99,
+    "tau": 0.005,
+    "fm_weight": 0.0,
+    "q_weight": 1.0,
+    "replay_capacity": 300000,
+    "distance_scale_mm": 1.0,
+    "progress_weight": 0.0,
+    "distance_weight": 0.0,
+    "effort_weight": 0.0,
+    "control_period_s": 0.05,
+    "device": "cuda",
+    "seed": 20261117,
+    "fixed_noise_seed": 20261118
+  },
+  "evaluation": {
+    "target_manifest": "configs/v12_reachable_development_targets_0p35um.json",
+    "target_split": "development",
+    "target_start": 0,
+    "target_end": 20,
+    "episodes": 20,
+    "shards": 10,
+    "device": "cuda",
+    "seed": 42,
+    "max_steps": 1600,
+    "error_threshold_mm": 0.00035,
+    "control_period_s": 0.05,
+    "num_action_samples": 1,
+    "n_action_execute_steps": 1
+  }
+}

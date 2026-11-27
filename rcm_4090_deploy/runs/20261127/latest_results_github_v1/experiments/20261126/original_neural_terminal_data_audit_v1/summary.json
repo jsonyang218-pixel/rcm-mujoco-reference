@@ -1,0 +1,827 @@
+{
+  "status": "completed",
+  "time": "2026-11-26T14:33:43.702390+08:00",
+  "source": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261126/original_neural_terminal_pilot_v1",
+  "output": "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261126/original_neural_terminal_data_audit_v1",
+  "raw_episodes": 4,
+  "raw_teacher_states": 160,
+  "selected_windows": 100,
+  "train_windows": 50,
+  "heldout_windows": 50,
+  "episode_summaries": [
+    {
+      "episode": "E40_below_recede",
+      "original_classes": {
+        "approaching": 25,
+        "receding": 15
+      },
+      "original_class_intervals": [
+        {
+          "start_step": 0,
+          "end_step": 24,
+          "count": 25,
+          "class": "approaching"
+        },
+        {
+          "start_step": 25,
+          "end_step": 39,
+          "count": 15,
+          "class": "receding"
+        }
+      ],
+      "incoming_physical_classes": {
+        "receding": 1,
+        "approaching": 25,
+        "stationary": 14
+      },
+      "incoming_class_intervals": [
+        {
+          "start_step": 0,
+          "end_step": 0,
+          "count": 1,
+          "class": "receding"
+        },
+        {
+          "start_step": 1,
+          "end_step": 25,
+          "count": 25,
+          "class": "approaching"
+        },
+        {
+          "start_step": 26,
+          "end_step": 39,
+          "count": 14,
+          "class": "stationary"
+        }
+      ],
+      "outgoing_distance_classes": {
+        "approaching": 25,
+        "stationary": 15
+      },
+      "selected_incoming_classes": {
+        "receding": 1,
+        "approaching": 24
+      },
+      "selected_original_classes": {
+        "approaching": 25
+      },
+      "original_receding_but_distance_equal": 15,
+      "strict_zero_command_hold_count": 0,
+      "physically_stationary_post_intervals": 15,
+      "tail_first_actions_excluded": 15,
+      "tail_actions_missing_from_any_supervision": 0,
+      "first_teacher_history_ready": true,
+      "first_teacher_incoming_phase": "receding",
+      "last_OCT_post_missing": true
+    },
+    {
+      "episode": "E40_above_recede",
+      "original_classes": {
+        "approaching": 27,
+        "receding": 13
+      },
+      "original_class_intervals": [
+        {
+          "start_step": 0,
+          "end_step": 26,
+          "count": 27,
+          "class": "approaching"
+        },
+        {
+          "start_step": 27,
+          "end_step": 39,
+          "count": 13,
+          "class": "receding"
+        }
+      ],
+      "incoming_physical_classes": {
+        "receding": 1,
+        "approaching": 26,
+        "ambiguous": 1,
+        "stationary": 12
+      },
+      "incoming_class_intervals": [
+        {
+          "start_step": 0,
+          "end_step": 0,
+          "count": 1,
+          "class": "receding"
+        },
+        {
+          "start_step": 1,
+          "end_step": 25,
+          "count": 25,
+          "class": "approaching"
+        },
+        {
+          "start_step": 26,
+          "end_step": 26,
+          "count": 1,
+          "class": "ambiguous"
+        },
+        {
+          "start_step": 27,
+          "end_step": 27,
+          "count": 1,
+          "class": "approaching"
+        },
+        {
+          "start_step": 28,
+          "end_step": 39,
+          "count": 12,
+          "class": "stationary"
+        }
+      ],
+      "outgoing_distance_classes": {
+        "approaching": 27,
+        "stationary": 13
+      },
+      "selected_incoming_classes": {
+        "receding": 1,
+        "approaching": 24
+      },
+      "selected_original_classes": {
+        "approaching": 25
+      },
+      "original_receding_but_distance_equal": 13,
+      "strict_zero_command_hold_count": 0,
+      "physically_stationary_post_intervals": 13,
+      "tail_first_actions_excluded": 15,
+      "tail_actions_missing_from_any_supervision": 0,
+      "first_teacher_history_ready": true,
+      "first_teacher_incoming_phase": "receding",
+      "last_OCT_post_missing": true
+    },
+    {
+      "episode": "E41_below_recede",
+      "original_classes": {
+        "approaching": 25,
+        "receding": 15
+      },
+      "original_class_intervals": [
+        {
+          "start_step": 0,
+          "end_step": 24,
+          "count": 25,
+          "class": "approaching"
+        },
+        {
+          "start_step": 25,
+          "end_step": 39,
+          "count": 15,
+          "class": "receding"
+        }
+      ],
+      "incoming_physical_classes": {
+        "receding": 1,
+        "approaching": 25,
+        "stationary": 14
+      },
+      "incoming_class_intervals": [
+        {
+          "start_step": 0,
+          "end_step": 0,
+          "count": 1,
+          "class": "receding"
+        },
+        {
+          "start_step": 1,
+          "end_step": 25,
+          "count": 25,
+          "class": "approaching"
+        },
+        {
+          "start_step": 26,
+          "end_step": 39,
+          "count": 14,
+          "class": "stationary"
+        }
+      ],
+      "outgoing_distance_classes": {
+        "approaching": 25,
+        "stationary": 15
+      },
+      "selected_incoming_classes": {
+        "receding": 1,
+        "approaching": 24
+      },
+      "selected_original_classes": {
+        "approaching": 25
+      },
+      "original_receding_but_distance_equal": 15,
+      "strict_zero_command_hold_count": 0,
+      "physically_stationary_post_intervals": 15,
+      "tail_first_actions_excluded": 15,
+      "tail_actions_missing_from_any_supervision": 0,
+      "first_teacher_history_ready": true,
+      "first_teacher_incoming_phase": "receding",
+      "last_OCT_post_missing": true
+    },
+    {
+      "episode": "E41_above_recede",
+      "original_classes": {
+        "approaching": 27,
+        "receding": 13
+      },
+      "original_class_intervals": [
+        {
+          "start_step": 0,
+          "end_step": 26,
+          "count": 27,
+          "class": "approaching"
+        },
+        {
+          "start_step": 27,
+          "end_step": 39,
+          "count": 13,
+          "class": "receding"
+        }
+      ],
+      "incoming_physical_classes": {
+        "receding": 1,
+        "approaching": 27,
+        "stationary": 12
+      },
+      "incoming_class_intervals": [
+        {
+          "start_step": 0,
+          "end_step": 0,
+          "count": 1,
+          "class": "receding"
+        },
+        {
+          "start_step": 1,
+          "end_step": 27,
+          "count": 27,
+          "class": "approaching"
+        },
+        {
+          "start_step": 28,
+          "end_step": 39,
+          "count": 12,
+          "class": "stationary"
+        }
+      ],
+      "outgoing_distance_classes": {
+        "approaching": 27,
+        "stationary": 13
+      },
+      "selected_incoming_classes": {
+        "receding": 1,
+        "approaching": 24
+      },
+      "selected_original_classes": {
+        "approaching": 25
+      },
+      "original_receding_but_distance_equal": 13,
+      "strict_zero_command_hold_count": 0,
+      "physically_stationary_post_intervals": 13,
+      "tail_first_actions_excluded": 15,
+      "tail_actions_missing_from_any_supervision": 0,
+      "first_teacher_history_ready": true,
+      "first_teacher_incoming_phase": "receding",
+      "last_OCT_post_missing": true
+    }
+  ],
+  "raw_original_group_counts": {
+    "approaching": 104,
+    "receding": 56
+  },
+  "raw_incoming_phases": {
+    "receding": 4,
+    "approaching": 103,
+    "stationary": 52,
+    "ambiguous": 1
+  },
+  "selected_incoming_phases": {
+    "receding": 4,
+    "approaching": 96
+  },
+  "selected_original_groups": {
+    "approaching": 100
+  },
+  "excluded_tail_anchors": 60,
+  "excluded_for_history": 0,
+  "hypothesis_initial_recede_lost_to_history": false,
+  "confirmed_findings": [
+    {
+      "type": "classification_semantics",
+      "confirmed": true,
+      "finding": "Original class uses post-minus-pre distance for action outcome, not incoming motion; equal distance also falls into receding unless commandC==0 and pre_velocityC==0",
+      "impact": "4 history-valid outward incoming first windows are reported approaching; stationary nonzero-command tail is incorrectly called receding, not physical outward recovery"
+    },
+    {
+      "type": "coverage_and_horizon",
+      "confirmed": true,
+      "finding": "Only4/100 selected anchors have outgoing-from-goal incoming velocity; final15 anchors per episode lack full16 future labels and are omitted without padding",
+      "impact": "No first-action stationary/hold validation windows; tail is still present as future supervision; no evidence history warmup removed initial away states"
+    },
+    {
+      "type": "time_or_label_shift",
+      "confirmed": false,
+      "finding": "No observed mismatch in stored t/t-1/action horizon and motor interval checks; physical requested/accepted action differs from actual encoder motion by design"
+    }
+  ],
+  "no_confirmed_timing_or_label_shift": true,
+  "alignment_checks": 112,
+  "saved_input_checks": 600,
+  "input_tensor_mismatches": 0,
+  "max_float32_vs_float64_actual_velocity_deg_deg_mm_s": [
+    0.0,
+    0.0,
+    3.6783631811587725e-05
+  ],
+  "original_metrics": {
+    "train_before": {
+      "groups": {
+        "all": {
+          "windows": 50,
+          "physical_first_action_MAE_deg_deg_um": [
+            0.00461883204356127,
+            0.003385290391164375,
+            1.4598113566171378
+          ],
+          "C_direction_accuracy": 0.755
+        },
+        "moving_encoder": {
+          "windows": 50,
+          "physical_first_action_MAE_deg_deg_um": [
+            0.00461883204356127,
+            0.003385290391164375,
+            1.4598113566171378
+          ],
+          "C_direction_accuracy": 0.755
+        },
+        "nonzero_C": {
+          "windows": 50,
+          "physical_first_action_MAE_deg_deg_um": [
+            0.00461883204356127,
+            0.003385290391164375,
+            1.4598113566171378
+          ],
+          "C_direction_accuracy": 0.755
+        },
+        "approaching": {
+          "windows": 50,
+          "physical_first_action_MAE_deg_deg_um": [
+            0.00461883204356127,
+            0.003385290391164375,
+            1.4598113566171378
+          ],
+          "C_direction_accuracy": 0.755
+        },
+        "receding": {
+          "windows": 0,
+          "physical_first_action_MAE_deg_deg_um": null,
+          "C_direction_accuracy": null
+        },
+        "crossing": {
+          "windows": 0,
+          "physical_first_action_MAE_deg_deg_um": null,
+          "C_direction_accuracy": null
+        },
+        "hold": {
+          "windows": 0,
+          "physical_first_action_MAE_deg_deg_um": null,
+          "C_direction_accuracy": null
+        },
+        "below_recede": {
+          "windows": 25,
+          "physical_first_action_MAE_deg_deg_um": [
+            0.004240135260188254,
+            0.0035957402706719675,
+            1.7463451263029128
+          ],
+          "C_direction_accuracy": 0.54
+        },
+        "above_recede": {
+          "windows": 25,
+          "physical_first_action_MAE_deg_deg_um": [
+            0.004997528826934285,
+            0.0031748405116567824,
+            1.1732775869313627
+          ],
+          "C_direction_accuracy": 0.97
+        },
+        "teacher_C_positive": {
+          "windows": 25,
+          "physical_first_action_MAE_deg_deg_um": [
+            0.004240135260188254,
+            0.0035957402706719675,
+            1.7463451263029128
+          ],
+          "C_direction_accuracy": 0.54
+        },
+        "teacher_C_negative": {
+          "windows": 25,
+          "physical_first_action_MAE_deg_deg_um": [
+            0.004997528826934285,
+            0.0031748405116567824,
+            1.1732775869313627
+          ],
+          "C_direction_accuracy": 0.97
+        }
+      },
+      "flow_loss": 0.014810521052277181,
+      "normalized_first_C_label_range": [
+        -2.2887957017480023,
+        -1.7015015697573277
+      ]
+    },
+    "train_after": {
+      "groups": {
+        "all": {
+          "windows": 50,
+          "physical_first_action_MAE_deg_deg_um": [
+            0.0060165552693069915,
+            0.003852851529667163,
+            1.8401980982162058
+          ],
+          "C_direction_accuracy": 0.78
+        },
+        "moving_encoder": {
+          "windows": 50,
+          "physical_first_action_MAE_deg_deg_um": [
+            0.0060165552693069915,
+            0.003852851529667163,
+            1.8401980982162058
+          ],
+          "C_direction_accuracy": 0.78
+        },
+        "nonzero_C": {
+          "windows": 50,
+          "physical_first_action_MAE_deg_deg_um": [
+            0.0060165552693069915,
+            0.003852851529667163,
+            1.8401980982162058
+          ],
+          "C_direction_accuracy": 0.78
+        },
+        "approaching": {
+          "windows": 50,
+          "physical_first_action_MAE_deg_deg_um": [
+            0.0060165552693069915,
+            0.003852851529667163,
+            1.8401980982162058
+          ],
+          "C_direction_accuracy": 0.78
+        },
+        "receding": {
+          "windows": 0,
+          "physical_first_action_MAE_deg_deg_um": null,
+          "C_direction_accuracy": null
+        },
+        "crossing": {
+          "windows": 0,
+          "physical_first_action_MAE_deg_deg_um": null,
+          "C_direction_accuracy": null
+        },
+        "hold": {
+          "windows": 0,
+          "physical_first_action_MAE_deg_deg_um": null,
+          "C_direction_accuracy": null
+        },
+        "below_recede": {
+          "windows": 25,
+          "physical_first_action_MAE_deg_deg_um": [
+            0.0056462637321601505,
+            0.003882275701604385,
+            1.823465699562803
+          ],
+          "C_direction_accuracy": 0.59
+        },
+        "above_recede": {
+          "windows": 25,
+          "physical_first_action_MAE_deg_deg_um": [
+            0.006386846806453832,
+            0.0038234273577299406,
+            1.8569304968696088
+          ],
+          "C_direction_accuracy": 0.97
+        },
+        "teacher_C_positive": {
+          "windows": 25,
+          "physical_first_action_MAE_deg_deg_um": [
+            0.0056462637321601505,
+            0.003882275701604385,
+            1.823465699562803
+          ],
+          "C_direction_accuracy": 0.59
+        },
+        "teacher_C_negative": {
+          "windows": 25,
+          "physical_first_action_MAE_deg_deg_um": [
+            0.006386846806453832,
+            0.0038234273577299406,
+            1.8569304968696088
+          ],
+          "C_direction_accuracy": 0.97
+        }
+      },
+      "flow_loss": 0.010742445657087955,
+      "normalized_first_C_label_range": [
+        -2.2887957017480023,
+        -1.7015015697573277
+      ]
+    },
+    "heldout_before": {
+      "groups": {
+        "all": {
+          "windows": 50,
+          "physical_first_action_MAE_deg_deg_um": [
+            0.004174078311152698,
+            0.0032876208572361065,
+            1.468264518189244
+          ],
+          "C_direction_accuracy": 0.75
+        },
+        "moving_encoder": {
+          "windows": 50,
+          "physical_first_action_MAE_deg_deg_um": [
+            0.004174078311152698,
+            0.0032876208572361065,
+            1.468264518189244
+          ],
+          "C_direction_accuracy": 0.75
+        },
+        "nonzero_C": {
+          "windows": 50,
+          "physical_first_action_MAE_deg_deg_um": [
+            0.004174078311152698,
+            0.0032876208572361065,
+            1.468264518189244
+          ],
+          "C_direction_accuracy": 0.75
+        },
+        "approaching": {
+          "windows": 50,
+          "physical_first_action_MAE_deg_deg_um": [
+            0.004174078311152698,
+            0.0032876208572361065,
+            1.468264518189244
+          ],
+          "C_direction_accuracy": 0.75
+        },
+        "receding": {
+          "windows": 0,
+          "physical_first_action_MAE_deg_deg_um": null,
+          "C_direction_accuracy": null
+        },
+        "crossing": {
+          "windows": 0,
+          "physical_first_action_MAE_deg_deg_um": null,
+          "C_direction_accuracy": null
+        },
+        "hold": {
+          "windows": 0,
+          "physical_first_action_MAE_deg_deg_um": null,
+          "C_direction_accuracy": null
+        },
+        "below_recede": {
+          "windows": 25,
+          "physical_first_action_MAE_deg_deg_um": [
+            0.003961224354497972,
+            0.0034343082913528633,
+            1.702319688629359
+          ],
+          "C_direction_accuracy": 0.53
+        },
+        "above_recede": {
+          "windows": 25,
+          "physical_first_action_MAE_deg_deg_um": [
+            0.004386932267807424,
+            0.0031409334231193497,
+            1.234209347749129
+          ],
+          "C_direction_accuracy": 0.97
+        },
+        "teacher_C_positive": {
+          "windows": 25,
+          "physical_first_action_MAE_deg_deg_um": [
+            0.003961224354497972,
+            0.0034343082913528633,
+            1.702319688629359
+          ],
+          "C_direction_accuracy": 0.53
+        },
+        "teacher_C_negative": {
+          "windows": 25,
+          "physical_first_action_MAE_deg_deg_um": [
+            0.004386932267807424,
+            0.0031409334231193497,
+            1.234209347749129
+          ],
+          "C_direction_accuracy": 0.97
+        }
+      },
+      "flow_loss": 0.0156905725778779,
+      "normalized_first_C_label_range": [
+        -2.2887423196344874,
+        -1.7015528901399448
+      ]
+    },
+    "heldout_after": {
+      "groups": {
+        "all": {
+          "windows": 50,
+          "physical_first_action_MAE_deg_deg_um": [
+            0.005942978518469318,
+            0.003938557878364009,
+            1.9467759219696745
+          ],
+          "C_direction_accuracy": 0.755
+        },
+        "moving_encoder": {
+          "windows": 50,
+          "physical_first_action_MAE_deg_deg_um": [
+            0.005942978518469318,
+            0.003938557878364009,
+            1.9467759219696745
+          ],
+          "C_direction_accuracy": 0.755
+        },
+        "nonzero_C": {
+          "windows": 50,
+          "physical_first_action_MAE_deg_deg_um": [
+            0.005942978518469318,
+            0.003938557878364009,
+            1.9467759219696745
+          ],
+          "C_direction_accuracy": 0.755
+        },
+        "approaching": {
+          "windows": 50,
+          "physical_first_action_MAE_deg_deg_um": [
+            0.005942978518469318,
+            0.003938557878364009,
+            1.9467759219696745
+          ],
+          "C_direction_accuracy": 0.755
+        },
+        "receding": {
+          "windows": 0,
+          "physical_first_action_MAE_deg_deg_um": null,
+          "C_direction_accuracy": null
+        },
+        "crossing": {
+          "windows": 0,
+          "physical_first_action_MAE_deg_deg_um": null,
+          "C_direction_accuracy": null
+        },
+        "hold": {
+          "windows": 0,
+          "physical_first_action_MAE_deg_deg_um": null,
+          "C_direction_accuracy": null
+        },
+        "below_recede": {
+          "windows": 25,
+          "physical_first_action_MAE_deg_deg_um": [
+            0.005663947772700339,
+            0.003973870857325892,
+            1.9140108558349311
+          ],
+          "C_direction_accuracy": 0.54
+        },
+        "above_recede": {
+          "windows": 25,
+          "physical_first_action_MAE_deg_deg_um": [
+            0.006222009264238295,
+            0.003903244899402125,
+            1.979540988104418
+          ],
+          "C_direction_accuracy": 0.97
+        },
+        "teacher_C_positive": {
+          "windows": 25,
+          "physical_first_action_MAE_deg_deg_um": [
+            0.005663947772700339,
+            0.003973870857325892,
+            1.9140108558349311
+          ],
+          "C_direction_accuracy": 0.54
+        },
+        "teacher_C_negative": {
+          "windows": 25,
+          "physical_first_action_MAE_deg_deg_um": [
+            0.006222009264238295,
+            0.003903244899402125,
+            1.979540988104418
+          ],
+          "C_direction_accuracy": 0.97
+        }
+      },
+      "flow_loss": 0.01294193481153343,
+      "normalized_first_C_label_range": [
+        -2.2887423196344874,
+        -1.7015528901399448
+      ]
+    }
+  },
+  "recomputed_original_gate": {
+    "status": "failed",
+    "checks": [
+      {
+        "name": "heldout_moving_C_MAE_um",
+        "before": 1.468264518189244,
+        "after": 1.9467759219696745,
+        "passed": false
+      },
+      {
+        "name": "heldout_moving_nonzero_C_direction_accuracy",
+        "before": 0.75,
+        "after": 0.755,
+        "passed": true
+      },
+      {
+        "name": "heldout_all_A_MAE_deg",
+        "before": 0.004174078311152698,
+        "after": 0.005942978518469318,
+        "passed": false
+      },
+      {
+        "name": "heldout_all_B_MAE_deg",
+        "before": 0.0032876208572361065,
+        "after": 0.003938557878364009,
+        "passed": false
+      },
+      {
+        "name": "heldout_moving_encoder_A_MAE_deg",
+        "before": 0.004174078311152698,
+        "after": 0.005942978518469318,
+        "passed": false
+      },
+      {
+        "name": "heldout_moving_encoder_B_MAE_deg",
+        "before": 0.0032876208572361065,
+        "after": 0.003938557878364009,
+        "passed": false
+      }
+    ],
+    "original_gate_preserved": true,
+    "original_gate_exact_match": true,
+    "no_criterion_changed": true
+  },
+  "training_code": {
+    "status": "passed",
+    "train_loss": "Unmodified all16x3 normalized velocity MSE, reduction mean; first action nominal1/16 contribution, not explicit first-action objective",
+    "inference": "Original Euler midpoint4-flow sampler; one independent noise draw K1; exec1; no teacher in model action",
+    "condition": "Same _condition: normalized state/OCT/encoder finite-difference velocity/previous accepted command plus actual RGB2; velocity and previous action each broadcast across both history frames",
+    "train_mode": "model.train with vision.eval; no BatchNorm in frozen vision (GroupNorm20); no dropout; step0 eval/train parity previously bit-exact",
+    "precision": "Training original FP16 autocast with dynamic scaler; offline/production FP32; recipe choice, not evidence of time/label shift",
+    "loading": "Both original and after through untouched PolicyEvaluator state-attention architecture; after loader proof reused from recovery; no new model instance",
+    "sampling": "Uniform replacement batch4;129 recorded attempts128 updates1 AMP skip; all recorded indices exactly reconstructed from original CPU seed",
+    "sampling_index_mismatches": 0,
+    "successful_updates": 128,
+    "outward_incoming_first_windows_in_training_batches": 19,
+    "first_action_slots_in_successful_batches": 512,
+    "vision_tensors_unchanged": 62,
+    "normalization_keys_unchanged": [
+      "state_mean",
+      "state_std",
+      "oct_mean",
+      "oct_std",
+      "action_mean",
+      "action_std",
+      "velocity_mean",
+      "velocity_std",
+      "previous_action_mean",
+      "previous_action_std"
+    ],
+    "reused_evidence": [
+      "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261126/original_neural_terminal_pilot_v1/step0_parity.json",
+      "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261126/original_neural_terminal_pilot_v1/short_gate/first_input_parity.json",
+      "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261126/original_neural_terminal_pilot_v1/recovery_report_v1/checkpoint_training_audit.json"
+    ],
+    "no_model_inference_executed": true
+  },
+  "next_step_only_recommended": {
+    "action": "只建议：先补齐并验收连续RGB2的同误差、不同实际速度配对终端教师数据；本次不采集、不训练",
+    "registry": "继续使用已核实的homogeneous训练登记与原目标ID；E40拟合、E41整目标留出，禁止冒用/改号",
+    "history": "从运动前缀开始保存全部真实RGB/同拍signedOCT/ABC/上一受理指令，目标锚点前至少2帧真实历史，不清零速度或命令",
+    "moving": "保持MotorExecution实际编码器有限差分速度定义；在history有效以后，以已执行前缀保证每侧至少3个真实远离输入锚点，再接同观测可执行教师制动/恢复",
+    "matching": "同目标、同signedOCT侧，显式保存误差向量接近且实际速度相反的两条分支；验收同误差范围/ABC/OCT距离和实际速度，不以片段名或指令符号代替",
+    "horizon": "每个期望训练/验证锚点之后保存至少16个连续受理教师动作及下一状态；可保留40步主体，但必须追加真实连续尾部使保持锚点也有16步未来；禁止拼段/伪padding",
+    "hold": "实际编码器停稳且<=20um的连续保持段；若要求原strict hold，受理C必须真为0并保留至少16步未来。非零指令但量化不动须单列，不擅自改label",
+    "admission": "采集后先用本审计区分incoming motion和post-action outcome，逐侧核对远离/制动/恢复/保持均有可训练首窗与留出窗，达标前不训练"
+  },
+  "limitations": [
+    "Intermediate independent MuJoCo needle-site XYZ were not saved. Audit recomputes all stored pre/post distance differences and final XYZ norm, but cannot independently reconstruct each intermediate3D norm without additional kinematics/simulation; none was run.",
+    "No terminal post-action RGB/OCT after step39; final crossing cannot be directly assessed from measured OCT. Original fallback copies last OCT; explicitly flagged.",
+    "Simulation acquisition timestamps are recorded; true camera latency/hardware clock synchronization and biological/physical robot dynamics are not identified.",
+    "RGB shape/dtype and all selected history tensors were independently reprocessed on CPU; this does not independently establish needle visibility or recalibrate OCT3D geometry.",
+    "Saved predictions are physical units; latent normalized sampled trajectories are absent. Normalization inverse checked algebraically and static code checked; sampler not rerun.",
+    "Original raw strict hold group is zero because accepted C remains nonzero even when encoders settle. Physical settled low-error tail exists, but cannot be relabeled as a demonstrated zero-command hold under the original definition.",
+    "Near-error opposite-velocity neighbors exist but are few and not independent matched same-observation branches; no exact equal-signed-error velocity intervention was tested.",
+    "Flow-loss improvement versus first-action degradation is a measured association. Horizon16 objective/exec1 evaluation, coverage imbalance and FP16/FP32 difference are candidate explanations, not causal proof."
+  ],
+  "model_inference_calls": 0,
+  "policy_samples": 0,
+  "gradient_updates": 0,
+  "new_simulation_cycles": 0,
+  "input_hashes_verified": 107,
+  "all_input_hashes_unchanged": true,
+  "compute_seconds": 4.207344028982334,
+  "diagnostic_failures_preserved": [
+    "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261126/original_neural_terminal_data_audit_v1/diagnostic_failure.json"
+  ]
+}

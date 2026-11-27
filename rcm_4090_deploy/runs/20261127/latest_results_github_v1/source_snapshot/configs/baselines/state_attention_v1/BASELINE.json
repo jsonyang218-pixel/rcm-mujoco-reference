@@ -1,0 +1,416 @@
+{
+  "schema_version": 1,
+  "baseline_id": "state_attention_v1_20261117",
+  "display_name": "State-conditioned temporal attention v1",
+  "status": "frozen",
+  "frozen_at": "2026-11-17T17:05:00+08:00",
+  "comparison_role": "primary development baseline for all later model versions",
+  "model": {
+    "model_name": "state_attention_v1",
+    "architecture": "state_conditioned_temporal_attention_v1",
+    "model_entry": {
+      "path": "lerobot_training/dit_state_attention.py",
+      "sha256": "415b8a303c8b01aa5ab4d1f33d7ace8406f14a8760cdf3185c9adcdb9b0b0766",
+      "size_bytes": 8844
+    },
+    "checkpoint": {
+      "path": "outputs/dit_rectified_flow_state_attention_v1_acthist_20261117/best_model.pth",
+      "sha256": "d1e2527fe087ad1f619450bdd83eac24e63d1e3a0d96186dc2cdd849fdfbc424",
+      "size_bytes": 414731865
+    }
+  },
+  "pipeline": {
+    "config": {
+      "path": "configs/baselines/state_attention_v1/pipeline_config.json",
+      "sha256": "a1e56663f58107f34e71ab39759755b954567b5b9c7ba1072e0c9cf6a5c6e777",
+      "size_bytes": 1208
+    },
+    "training_history": {
+      "path": "configs/baselines/state_attention_v1/training_history.json",
+      "sha256": "44112b30cc46928a65879f7126919d0f8d10dee79625acf8384f00af87c08110",
+      "size_bytes": 541
+    },
+    "runner_at_freeze": {
+      "path": "lerobot_training/run_model_pipeline.py",
+      "sha256": "7e2f3385e84b52655e6724e0a433a9d499b64ed6b5d4cac47f6abad1a96996d4",
+      "size_bytes": 24756
+    }
+  },
+  "training": {
+    "train_data": {
+      "path": "data/lerobot_v12_oct_dit_rf_dagger2_acthist_20261116_224",
+      "metadata": {
+        "path": "data/lerobot_v12_oct_dit_rf_dagger2_acthist_20261116_224/metadata.json",
+        "sha256": "8f05e8f88cc44a3261a372bd22e32c5e0804af626f392743b72fa2d4d47d8acc",
+        "size_bytes": 449619
+      },
+      "episodes": 839,
+      "frames": 234316
+    },
+    "validation_data": {
+      "path": "data/lerobot_rcm_val_acthist_20261117_224",
+      "metadata": {
+        "path": "data/lerobot_rcm_val_acthist_20261117_224/metadata.json",
+        "sha256": "9848559cfe28f768630c5468954fe569869379a34451cc3981ee24624cdbb33f",
+        "size_bytes": 11490
+      },
+      "episodes": 40,
+      "frames": 27290
+    },
+    "initial_checkpoint": {
+      "path": "outputs/dit_rectified_flow_v12_oct_dit_rf_dagger2_acthist_20261117/best_model.pth",
+      "sha256": "c7156b4d6e2542d808b2397dc7135001175af25cb7bbe8098dc69e4a5b44ce0e",
+      "size_bytes": 413697793
+    },
+    "settings": {
+      "data_dir": "data/lerobot_v12_oct_dit_rf_dagger2_acthist_20261116_224",
+      "val_data_dir": "data/lerobot_rcm_val_acthist_20261117_224",
+      "init_from": "outputs/dit_rectified_flow_v12_oct_dit_rf_dagger2_acthist_20261117/best_model.pth",
+      "epochs": 4,
+      "batch_size": 64,
+      "val_batch_size": 64,
+      "num_workers": 12,
+      "lr": 0.0001,
+      "n_obs_steps": 2,
+      "n_action_steps": 16,
+      "flow_integration_steps": 4,
+      "dit_dim": 384,
+      "dit_depth": 6,
+      "dit_heads": 6,
+      "dagger_episode_start": 760,
+      "dagger_repeat": 10,
+      "seed": 20261116
+    },
+    "best_epoch": 3,
+    "best_train_loss": 0.1142573575547245,
+    "best_val_loss": 0.1498646500835316,
+    "last_history": {
+      "epoch": 3,
+      "train_loss": 0.1142573575547245,
+      "val_loss": 0.1498646500835316,
+      "elapsed_s": 979.60805023805
+    },
+    "history": [
+      {
+        "epoch": 0,
+        "train_loss": 0.12094403146160267,
+        "val_loss": 0.15161299863629205,
+        "elapsed_s": 244.93841957004042
+      },
+      {
+        "epoch": 1,
+        "train_loss": 0.11769881216478292,
+        "val_loss": 0.150786393918365,
+        "elapsed_s": 489.5438856530236
+      },
+      {
+        "epoch": 2,
+        "train_loss": 0.11591804592557936,
+        "val_loss": 0.1508793455662487,
+        "elapsed_s": 734.6485611930257
+      },
+      {
+        "epoch": 3,
+        "train_loss": 0.1142573575547245,
+        "val_loss": 0.1498646500835316,
+        "elapsed_s": 979.60805023805
+      }
+    ]
+  },
+  "evaluation": {
+    "source_summary": {
+      "path": "configs/baselines/state_attention_v1/evaluation_summary.json",
+      "sha256": "004a3844dd64728a2f31f9c144a2f7ce7e7c73a6a19e3f6bb3c926ad5d683ea0",
+      "size_bytes": 15262
+    },
+    "target_manifest": {
+      "path": "configs/v12_reachable_development_targets_0p35um.json",
+      "sha256": "fcc4872a9d5b58bb7158b36d3c0ab6d7452e4d8d747317dfb077b6e7bbc815c7",
+      "size_bytes": 52689
+    },
+    "protocol": {
+      "target_manifest": "configs/v12_reachable_development_targets_0p35um.json",
+      "target_split": "development",
+      "target_start": 0,
+      "target_end": 20,
+      "episodes": 20,
+      "shards": 10,
+      "device": "cuda",
+      "seed": 42,
+      "max_steps": 1600,
+      "error_threshold_mm": 0.00035,
+      "control_period_s": 0.05,
+      "num_action_samples": 1,
+      "n_action_execute_steps": 1
+    },
+    "result": "FAIL",
+    "episodes": 20,
+    "successes": 0,
+    "success_rate": 0.0,
+    "final_error": {
+      "values_um": [
+        1078.9651363736966,
+        258.5840656330503,
+        305.24560793614273,
+        200.72653953836272,
+        186.53714421634288,
+        243.52055509459888,
+        259.28292002405334,
+        512.4175193053986,
+        309.51243303176864,
+        156.8382380490639,
+        433.7814594315187,
+        192.8003595693677,
+        134.9009264006471,
+        209.61884839901964,
+        209.38107393328278,
+        284.612401910935,
+        721.4068510113256,
+        192.4351663904464,
+        669.1760324067262,
+        2128.197889874639
+      ],
+      "mean_um": 434.39705842651927,
+      "median_um": 258.93349282855183,
+      "minimum_um": 134.9009264006471,
+      "maximum_um": 2128.197889874639,
+      "p75_um": 453.4404743999887,
+      "p90_um": 757.1626795475631,
+      "p95_um": 1131.4267740487444
+    },
+    "per_episode_minimum_error": {
+      "values_um": [
+        62.28459709845059,
+        67.48854022513112,
+        90.94442978729478,
+        115.5033596900291,
+        142.94583697866926,
+        72.50919353991051,
+        201.13367202211958,
+        93.80776684824998,
+        73.4341708408315,
+        107.52504039488272,
+        104.82255548690635,
+        79.68320372498746,
+        56.62044538015139,
+        87.18955372115154,
+        105.37772365974239,
+        96.61961944921896,
+        137.92082828814108,
+        45.10301783465415,
+        61.14801169961423,
+        71.53855682785546
+      ],
+      "mean_um": 93.6800061748996,
+      "median_um": 89.06699175422315,
+      "minimum_um": 45.10301783465415,
+      "maximum_um": 201.13367202211958,
+      "p75_um": 105.91455284352747,
+      "p90_um": 138.4233291571939,
+      "p95_um": 145.85522873084182
+    },
+    "safety_limited_steps": {
+      "total": 0,
+      "maximum_per_episode": 0,
+      "episodes_with_any": 0
+    },
+    "records": [
+      {
+        "episode_index": 0,
+        "target_id": "target_d30721d6bc45",
+        "success": false,
+        "final_error_um": 1078.9651363736966,
+        "minimum_error_um": 62.28459709845059,
+        "steps": 1600,
+        "safety_limited_steps": 0
+      },
+      {
+        "episode_index": 1,
+        "target_id": "target_aa2ca282c44d",
+        "success": false,
+        "final_error_um": 258.5840656330503,
+        "minimum_error_um": 67.48854022513112,
+        "steps": 1600,
+        "safety_limited_steps": 0
+      },
+      {
+        "episode_index": 2,
+        "target_id": "target_26985bd28045",
+        "success": false,
+        "final_error_um": 305.24560793614273,
+        "minimum_error_um": 90.94442978729478,
+        "steps": 1600,
+        "safety_limited_steps": 0
+      },
+      {
+        "episode_index": 3,
+        "target_id": "target_3af19f0abe43",
+        "success": false,
+        "final_error_um": 200.72653953836272,
+        "minimum_error_um": 115.5033596900291,
+        "steps": 1600,
+        "safety_limited_steps": 0
+      },
+      {
+        "episode_index": 4,
+        "target_id": "target_1f3394af4340",
+        "success": false,
+        "final_error_um": 186.53714421634288,
+        "minimum_error_um": 142.94583697866926,
+        "steps": 1600,
+        "safety_limited_steps": 0
+      },
+      {
+        "episode_index": 5,
+        "target_id": "target_c3ec6b3c195b",
+        "success": false,
+        "final_error_um": 243.52055509459888,
+        "minimum_error_um": 72.50919353991051,
+        "steps": 1600,
+        "safety_limited_steps": 0
+      },
+      {
+        "episode_index": 6,
+        "target_id": "target_6f265ab4f315",
+        "success": false,
+        "final_error_um": 259.28292002405334,
+        "minimum_error_um": 201.13367202211958,
+        "steps": 1600,
+        "safety_limited_steps": 0
+      },
+      {
+        "episode_index": 7,
+        "target_id": "target_16f33fbaf614",
+        "success": false,
+        "final_error_um": 512.4175193053986,
+        "minimum_error_um": 93.80776684824998,
+        "steps": 1600,
+        "safety_limited_steps": 0
+      },
+      {
+        "episode_index": 8,
+        "target_id": "target_29b219ad42c3",
+        "success": false,
+        "final_error_um": 309.51243303176864,
+        "minimum_error_um": 73.4341708408315,
+        "steps": 1600,
+        "safety_limited_steps": 0
+      },
+      {
+        "episode_index": 9,
+        "target_id": "target_6cbc262e87a7",
+        "success": false,
+        "final_error_um": 156.8382380490639,
+        "minimum_error_um": 107.52504039488272,
+        "steps": 1600,
+        "safety_limited_steps": 0
+      },
+      {
+        "episode_index": 10,
+        "target_id": "target_087ecb1a48ae",
+        "success": false,
+        "final_error_um": 433.7814594315187,
+        "minimum_error_um": 104.82255548690635,
+        "steps": 1600,
+        "safety_limited_steps": 0
+      },
+      {
+        "episode_index": 11,
+        "target_id": "target_9d730c206335",
+        "success": false,
+        "final_error_um": 192.8003595693677,
+        "minimum_error_um": 79.68320372498746,
+        "steps": 1600,
+        "safety_limited_steps": 0
+      },
+      {
+        "episode_index": 12,
+        "target_id": "target_8c09d0273c72",
+        "success": false,
+        "final_error_um": 134.9009264006471,
+        "minimum_error_um": 56.62044538015139,
+        "steps": 1600,
+        "safety_limited_steps": 0
+      },
+      {
+        "episode_index": 13,
+        "target_id": "target_6568a41173bf",
+        "success": false,
+        "final_error_um": 209.61884839901964,
+        "minimum_error_um": 87.18955372115154,
+        "steps": 1600,
+        "safety_limited_steps": 0
+      },
+      {
+        "episode_index": 14,
+        "target_id": "target_60c55f2f653c",
+        "success": false,
+        "final_error_um": 209.38107393328278,
+        "minimum_error_um": 105.37772365974239,
+        "steps": 1600,
+        "safety_limited_steps": 0
+      },
+      {
+        "episode_index": 15,
+        "target_id": "target_a17303552cb6",
+        "success": false,
+        "final_error_um": 284.612401910935,
+        "minimum_error_um": 96.61961944921896,
+        "steps": 1600,
+        "safety_limited_steps": 0
+      },
+      {
+        "episode_index": 16,
+        "target_id": "target_fbc038a60a6e",
+        "success": false,
+        "final_error_um": 721.4068510113256,
+        "minimum_error_um": 137.92082828814108,
+        "steps": 1600,
+        "safety_limited_steps": 0
+      },
+      {
+        "episode_index": 17,
+        "target_id": "target_baf07b4fdc81",
+        "success": false,
+        "final_error_um": 192.4351663904464,
+        "minimum_error_um": 45.10301783465415,
+        "steps": 1600,
+        "safety_limited_steps": 0
+      },
+      {
+        "episode_index": 18,
+        "target_id": "target_9f48f99f6b42",
+        "success": false,
+        "final_error_um": 669.1760324067262,
+        "minimum_error_um": 61.14801169961423,
+        "steps": 1600,
+        "safety_limited_steps": 0
+      },
+      {
+        "episode_index": 19,
+        "target_id": "target_ce1d61e67e1a",
+        "success": false,
+        "final_error_um": 2128.197889874639,
+        "minimum_error_um": 71.53855682785546,
+        "steps": 1600,
+        "safety_limited_steps": 0
+      }
+    ]
+  },
+  "comparison_policy": {
+    "require_identical_target_ids_and_episode_indices": true,
+    "require_identical_target_manifest_sha256": true,
+    "primary_metrics": [
+      "canonical_successes",
+      "final_error_mean_um",
+      "final_error_median_um",
+      "per_episode_minimum_error_mean_um",
+      "paired_improved_worsened"
+    ],
+    "paired_improvement_definition": "baseline_final_error_um - candidate_final_error_um; positive is improvement",
+    "report_outputs": [
+      "comparison.json",
+      "COMPARISON.md"
+    ]
+  }
+}

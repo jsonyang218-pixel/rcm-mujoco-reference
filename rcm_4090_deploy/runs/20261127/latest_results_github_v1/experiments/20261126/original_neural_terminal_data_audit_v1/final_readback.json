@@ -1,0 +1,250 @@
+{
+  "status": "passed",
+  "time": "2026-11-26T14:35:48.375295+08:00",
+  "source_measurements_not_overwritten": true,
+  "summary_sha256": "32c206df3ea47b6e224fe68c112cfa0ca286bcfa1a9a2badf2533b32664e36fe",
+  "raw_accepted_max_abs_difference_deg_deg_mm": [
+    0.0,
+    0.0,
+    0.0
+  ],
+  "accepted_minus_executed_max_abs_difference_deg_deg_mm": [
+    8.660211341452763e-05,
+    2.1694938660492872e-05,
+    0.0016684620871877665
+  ],
+  "max_C_accepted_vs_actual_example": {
+    "episode": "E40_above_recede",
+    "target_id": "E40",
+    "segment_name": "above_recede",
+    "step": 3,
+    "global_motor_step": 29,
+    "pre_time_s": 1.4500000000000006,
+    "post_time_s": 1.5000000000000007,
+    "pre_true_distance_um": 29.140750826141502,
+    "post_true_distance_um": 26.445806214768886,
+    "true_distance_change_um": -2.694944611372616,
+    "incoming_truth_radial_um_s": -71.44747369330894,
+    "incoming_OCT_norm_radial_um_s": -71.44260527256527,
+    "incoming_physical_phase": "approaching",
+    "original_group": "approaching",
+    "outgoing_distance_phase": "approaching",
+    "crossing_next_OCT_observed": true,
+    "signed_OCT_xyz_mm": [
+      -0.002672000089660287,
+      -0.002464745892211795,
+      -0.02886163629591465
+    ],
+    "next_signed_OCT_xyz_mm": [
+      -0.002446875674650073,
+      -0.0022473318967968225,
+      -0.026186905801296234
+    ],
+    "signed_OCT_change_xyz_um": [
+      0.22512441501021385,
+      0.2174139954149723,
+      2.674730494618416
+    ],
+    "observed_OCT_norm_um": 29.089664942552663,
+    "OCT_norm_minus_true_distance_um": -0.05108588358883992,
+    "ABC_state_deg_deg_mm": [
+      1.0602,
+      4.969151878402187,
+      19.919083705390634
+    ],
+    "actual_encoder_velocity_deg_deg_mm_s": [
+      0.0,
+      0.0,
+      -0.07144791644431159
+    ],
+    "previous_accepted_deg_deg_mm": [
+      -3.936728962861434e-05,
+      -4.669098052723633e-06,
+      -0.004899241511299723
+    ],
+    "raw_teacher_deg_deg_mm": [
+      -3.325773292262671e-05,
+      -4.950796258396547e-06,
+      -0.004363427356584432
+    ],
+    "label_accepted_deg_deg_mm": [
+      -3.325773292262671e-05,
+      -4.950796258396547e-06,
+      -0.004363427356584432
+    ],
+    "actual_execution_delta_deg_deg_mm": [
+      0.0,
+      0.0,
+      -0.0026949652693966653
+    ],
+    "raw_accepted_max_abs_diff": 0.0,
+    "actual_encoder_stationary_next_interval": false,
+    "encoder_settled_pre": false,
+    "zero_accepted_C": false,
+    "original_selected_first": true,
+    "future_label_occurrences": 4,
+    "drop_reason": "",
+    "history_frames": [
+      4,
+      5
+    ],
+    "history_ready": true,
+    "RGB_structurally_valid": true,
+    "OCT_valid": true
+  },
+  "OCT_incoming_ambiguities": [
+    {
+      "episode": "E40_above_recede",
+      "target_id": "E40",
+      "segment_name": "above_recede",
+      "step": 26,
+      "global_motor_step": 52,
+      "pre_time_s": 2.5999999999999988,
+      "post_time_s": 2.6499999999999986,
+      "pre_true_distance_um": 3.0545920961553605,
+      "post_true_distance_um": 3.038933667648969,
+      "true_distance_change_um": -0.01565842850639143,
+      "incoming_truth_radial_um_s": -0.31317060512626504,
+      "incoming_OCT_norm_radial_um_s": 0.0,
+      "incoming_physical_phase": "ambiguous",
+      "original_group": "approaching",
+      "outgoing_distance_phase": "approaching",
+      "crossing_next_OCT_observed": true,
+      "signed_OCT_xyz_mm": [
+        -0.00021091496455483139,
+        -0.00027160486206412315,
+        -0.002987862564623356
+      ],
+      "next_signed_OCT_xyz_mm": [
+        -0.00019859759777318686,
+        -0.00026889462606050074,
+        -0.002959023928269744
+      ],
+      "signed_OCT_change_xyz_um": [
+        0.012317366781644523,
+        0.0027102360036224127,
+        0.028838636353611946
+      ],
+      "observed_OCT_norm_um": 3.007586578711857,
+      "OCT_norm_minus_true_distance_um": -0.047005517443503564,
+      "ABC_state_deg_deg_mm": [
+        1.0602,
+        4.969151878402187,
+        19.892995814846792
+      ],
+      "actual_encoder_velocity_deg_deg_mm_s": [
+        0.0,
+        0.0,
+        -0.0003133680545608364
+      ],
+      "previous_accepted_deg_deg_mm": [
+        -2.7385847258784093e-05,
+        -6.058698430206886e-06,
+        -0.0004509896845382444
+      ],
+      "raw_teacher_deg_deg_mm": [
+        -2.7385865217786102e-05,
+        -6.0587024066953765e-06,
+        -0.0004509896845382444
+      ],
+      "label_accepted_deg_deg_mm": [
+        -2.7385865217786102e-05,
+        -6.0587024066953765e-06,
+        -0.0004509896845382444
+      ],
+      "actual_execution_delta_deg_deg_mm": [
+        0.0,
+        0.0,
+        -1.566840272804182e-05
+      ],
+      "raw_accepted_max_abs_diff": 0.0,
+      "actual_encoder_stationary_next_interval": false,
+      "encoder_settled_pre": false,
+      "zero_accepted_C": false,
+      "original_selected_first": false,
+      "future_label_occurrences": 14,
+      "drop_reason": "insufficient_future_actions:14<16; no_padding",
+      "history_frames": [
+        27,
+        28
+      ],
+      "history_ready": true,
+      "RGB_structurally_valid": true,
+      "OCT_valid": true
+    }
+  ],
+  "episode_readback": {
+    "E40_above_recede": {
+      "final_true_error_um": 3.038933667648969,
+      "last10_max_um": 3.038933667648969,
+      "raw_original_counts": {
+        "approaching": 27,
+        "receding": 13,
+        "crossing": 0,
+        "hold": 0
+      },
+      "incoming_truth_classes_except_prefix": {
+        "approaching": 27,
+        "stationary": 12
+      }
+    },
+    "E40_below_recede": {
+      "final_true_error_um": 3.0442921785703745,
+      "last10_max_um": 3.0442921785703745,
+      "raw_original_counts": {
+        "approaching": 25,
+        "receding": 15,
+        "crossing": 0,
+        "hold": 0
+      },
+      "incoming_truth_classes_except_prefix": {
+        "approaching": 25,
+        "stationary": 14
+      }
+    },
+    "E41_above_recede": {
+      "final_true_error_um": 3.051052344071511,
+      "last10_max_um": 3.051052344071511,
+      "raw_original_counts": {
+        "approaching": 27,
+        "receding": 13,
+        "crossing": 0,
+        "hold": 0
+      },
+      "incoming_truth_classes_except_prefix": {
+        "approaching": 27,
+        "stationary": 12
+      }
+    },
+    "E41_below_recede": {
+      "final_true_error_um": 3.046744484786752,
+      "last10_max_um": 3.046744484786752,
+      "raw_original_counts": {
+        "approaching": 25,
+        "receding": 15,
+        "crossing": 0,
+        "hold": 0
+      },
+      "incoming_truth_classes_except_prefix": {
+        "approaching": 25,
+        "stationary": 14
+      }
+    }
+  },
+  "diagnostic_technical_error": "First diagnostic attempt used unavailable private NumPy header API; corrected to public API. Original diagnostic_failure.json and audit_attempt1.py retained.",
+  "diagnostic_error_is_not_scientific_failure": true,
+  "unresolved_limits": [
+    "缺各中间时刻独立needle-site XYZ，不能独立重算所有3D范数；仅重算已存距离差及终点XYZ范数。",
+    "缺最后执行后的RGB/OCT，step39的crossing不能由末帧直接确认。",
+    "真实相机延迟/硬件时钟、latent采样归一化轨迹未存，不能以零差代替缺失证据。",
+    "E40 above step26的OCT模长前后相同而真值有微小下降，传感观测原因未确认；保留ambiguous，不强改类。"
+  ],
+  "model_inference_calls": 0,
+  "policy_samples": 0,
+  "gradient_updates": 0,
+  "new_simulation_cycles": 0,
+  "command": ".venv/bin/python -E -B runs/20261126/original_neural_terminal_data_audit_v1/finalize_readback.py",
+  "script_sha256": "92e615667aaaf41d52b3068e2a331a335cbfcc0bf5a2e37aa429a189b8b39f02",
+  "report_sha256": "dbac8a86888e96826763bde9c9d080f4b80c0b026d89e05455f50cb73173d14d",
+  "total_accounted_compute_seconds": 4.210454951971769
+}

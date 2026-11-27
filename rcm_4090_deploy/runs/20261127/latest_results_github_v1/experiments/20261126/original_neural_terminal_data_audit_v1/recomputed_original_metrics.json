@@ -1,0 +1,386 @@
+{
+  "train_before": {
+    "groups": {
+      "all": {
+        "windows": 50,
+        "physical_first_action_MAE_deg_deg_um": [
+          0.00461883204356127,
+          0.003385290391164375,
+          1.4598113566171378
+        ],
+        "C_direction_accuracy": 0.755
+      },
+      "moving_encoder": {
+        "windows": 50,
+        "physical_first_action_MAE_deg_deg_um": [
+          0.00461883204356127,
+          0.003385290391164375,
+          1.4598113566171378
+        ],
+        "C_direction_accuracy": 0.755
+      },
+      "nonzero_C": {
+        "windows": 50,
+        "physical_first_action_MAE_deg_deg_um": [
+          0.00461883204356127,
+          0.003385290391164375,
+          1.4598113566171378
+        ],
+        "C_direction_accuracy": 0.755
+      },
+      "approaching": {
+        "windows": 50,
+        "physical_first_action_MAE_deg_deg_um": [
+          0.00461883204356127,
+          0.003385290391164375,
+          1.4598113566171378
+        ],
+        "C_direction_accuracy": 0.755
+      },
+      "receding": {
+        "windows": 0,
+        "physical_first_action_MAE_deg_deg_um": null,
+        "C_direction_accuracy": null
+      },
+      "crossing": {
+        "windows": 0,
+        "physical_first_action_MAE_deg_deg_um": null,
+        "C_direction_accuracy": null
+      },
+      "hold": {
+        "windows": 0,
+        "physical_first_action_MAE_deg_deg_um": null,
+        "C_direction_accuracy": null
+      },
+      "below_recede": {
+        "windows": 25,
+        "physical_first_action_MAE_deg_deg_um": [
+          0.004240135260188254,
+          0.0035957402706719675,
+          1.7463451263029128
+        ],
+        "C_direction_accuracy": 0.54
+      },
+      "above_recede": {
+        "windows": 25,
+        "physical_first_action_MAE_deg_deg_um": [
+          0.004997528826934285,
+          0.0031748405116567824,
+          1.1732775869313627
+        ],
+        "C_direction_accuracy": 0.97
+      },
+      "teacher_C_positive": {
+        "windows": 25,
+        "physical_first_action_MAE_deg_deg_um": [
+          0.004240135260188254,
+          0.0035957402706719675,
+          1.7463451263029128
+        ],
+        "C_direction_accuracy": 0.54
+      },
+      "teacher_C_negative": {
+        "windows": 25,
+        "physical_first_action_MAE_deg_deg_um": [
+          0.004997528826934285,
+          0.0031748405116567824,
+          1.1732775869313627
+        ],
+        "C_direction_accuracy": 0.97
+      }
+    },
+    "flow_loss": 0.014810521052277181,
+    "normalized_first_C_label_range": [
+      -2.2887957017480023,
+      -1.7015015697573277
+    ]
+  },
+  "train_after": {
+    "groups": {
+      "all": {
+        "windows": 50,
+        "physical_first_action_MAE_deg_deg_um": [
+          0.0060165552693069915,
+          0.003852851529667163,
+          1.8401980982162058
+        ],
+        "C_direction_accuracy": 0.78
+      },
+      "moving_encoder": {
+        "windows": 50,
+        "physical_first_action_MAE_deg_deg_um": [
+          0.0060165552693069915,
+          0.003852851529667163,
+          1.8401980982162058
+        ],
+        "C_direction_accuracy": 0.78
+      },
+      "nonzero_C": {
+        "windows": 50,
+        "physical_first_action_MAE_deg_deg_um": [
+          0.0060165552693069915,
+          0.003852851529667163,
+          1.8401980982162058
+        ],
+        "C_direction_accuracy": 0.78
+      },
+      "approaching": {
+        "windows": 50,
+        "physical_first_action_MAE_deg_deg_um": [
+          0.0060165552693069915,
+          0.003852851529667163,
+          1.8401980982162058
+        ],
+        "C_direction_accuracy": 0.78
+      },
+      "receding": {
+        "windows": 0,
+        "physical_first_action_MAE_deg_deg_um": null,
+        "C_direction_accuracy": null
+      },
+      "crossing": {
+        "windows": 0,
+        "physical_first_action_MAE_deg_deg_um": null,
+        "C_direction_accuracy": null
+      },
+      "hold": {
+        "windows": 0,
+        "physical_first_action_MAE_deg_deg_um": null,
+        "C_direction_accuracy": null
+      },
+      "below_recede": {
+        "windows": 25,
+        "physical_first_action_MAE_deg_deg_um": [
+          0.0056462637321601505,
+          0.003882275701604385,
+          1.823465699562803
+        ],
+        "C_direction_accuracy": 0.59
+      },
+      "above_recede": {
+        "windows": 25,
+        "physical_first_action_MAE_deg_deg_um": [
+          0.006386846806453832,
+          0.0038234273577299406,
+          1.8569304968696088
+        ],
+        "C_direction_accuracy": 0.97
+      },
+      "teacher_C_positive": {
+        "windows": 25,
+        "physical_first_action_MAE_deg_deg_um": [
+          0.0056462637321601505,
+          0.003882275701604385,
+          1.823465699562803
+        ],
+        "C_direction_accuracy": 0.59
+      },
+      "teacher_C_negative": {
+        "windows": 25,
+        "physical_first_action_MAE_deg_deg_um": [
+          0.006386846806453832,
+          0.0038234273577299406,
+          1.8569304968696088
+        ],
+        "C_direction_accuracy": 0.97
+      }
+    },
+    "flow_loss": 0.010742445657087955,
+    "normalized_first_C_label_range": [
+      -2.2887957017480023,
+      -1.7015015697573277
+    ]
+  },
+  "heldout_before": {
+    "groups": {
+      "all": {
+        "windows": 50,
+        "physical_first_action_MAE_deg_deg_um": [
+          0.004174078311152698,
+          0.0032876208572361065,
+          1.468264518189244
+        ],
+        "C_direction_accuracy": 0.75
+      },
+      "moving_encoder": {
+        "windows": 50,
+        "physical_first_action_MAE_deg_deg_um": [
+          0.004174078311152698,
+          0.0032876208572361065,
+          1.468264518189244
+        ],
+        "C_direction_accuracy": 0.75
+      },
+      "nonzero_C": {
+        "windows": 50,
+        "physical_first_action_MAE_deg_deg_um": [
+          0.004174078311152698,
+          0.0032876208572361065,
+          1.468264518189244
+        ],
+        "C_direction_accuracy": 0.75
+      },
+      "approaching": {
+        "windows": 50,
+        "physical_first_action_MAE_deg_deg_um": [
+          0.004174078311152698,
+          0.0032876208572361065,
+          1.468264518189244
+        ],
+        "C_direction_accuracy": 0.75
+      },
+      "receding": {
+        "windows": 0,
+        "physical_first_action_MAE_deg_deg_um": null,
+        "C_direction_accuracy": null
+      },
+      "crossing": {
+        "windows": 0,
+        "physical_first_action_MAE_deg_deg_um": null,
+        "C_direction_accuracy": null
+      },
+      "hold": {
+        "windows": 0,
+        "physical_first_action_MAE_deg_deg_um": null,
+        "C_direction_accuracy": null
+      },
+      "below_recede": {
+        "windows": 25,
+        "physical_first_action_MAE_deg_deg_um": [
+          0.003961224354497972,
+          0.0034343082913528633,
+          1.702319688629359
+        ],
+        "C_direction_accuracy": 0.53
+      },
+      "above_recede": {
+        "windows": 25,
+        "physical_first_action_MAE_deg_deg_um": [
+          0.004386932267807424,
+          0.0031409334231193497,
+          1.234209347749129
+        ],
+        "C_direction_accuracy": 0.97
+      },
+      "teacher_C_positive": {
+        "windows": 25,
+        "physical_first_action_MAE_deg_deg_um": [
+          0.003961224354497972,
+          0.0034343082913528633,
+          1.702319688629359
+        ],
+        "C_direction_accuracy": 0.53
+      },
+      "teacher_C_negative": {
+        "windows": 25,
+        "physical_first_action_MAE_deg_deg_um": [
+          0.004386932267807424,
+          0.0031409334231193497,
+          1.234209347749129
+        ],
+        "C_direction_accuracy": 0.97
+      }
+    },
+    "flow_loss": 0.0156905725778779,
+    "normalized_first_C_label_range": [
+      -2.2887423196344874,
+      -1.7015528901399448
+    ]
+  },
+  "heldout_after": {
+    "groups": {
+      "all": {
+        "windows": 50,
+        "physical_first_action_MAE_deg_deg_um": [
+          0.005942978518469318,
+          0.003938557878364009,
+          1.9467759219696745
+        ],
+        "C_direction_accuracy": 0.755
+      },
+      "moving_encoder": {
+        "windows": 50,
+        "physical_first_action_MAE_deg_deg_um": [
+          0.005942978518469318,
+          0.003938557878364009,
+          1.9467759219696745
+        ],
+        "C_direction_accuracy": 0.755
+      },
+      "nonzero_C": {
+        "windows": 50,
+        "physical_first_action_MAE_deg_deg_um": [
+          0.005942978518469318,
+          0.003938557878364009,
+          1.9467759219696745
+        ],
+        "C_direction_accuracy": 0.755
+      },
+      "approaching": {
+        "windows": 50,
+        "physical_first_action_MAE_deg_deg_um": [
+          0.005942978518469318,
+          0.003938557878364009,
+          1.9467759219696745
+        ],
+        "C_direction_accuracy": 0.755
+      },
+      "receding": {
+        "windows": 0,
+        "physical_first_action_MAE_deg_deg_um": null,
+        "C_direction_accuracy": null
+      },
+      "crossing": {
+        "windows": 0,
+        "physical_first_action_MAE_deg_deg_um": null,
+        "C_direction_accuracy": null
+      },
+      "hold": {
+        "windows": 0,
+        "physical_first_action_MAE_deg_deg_um": null,
+        "C_direction_accuracy": null
+      },
+      "below_recede": {
+        "windows": 25,
+        "physical_first_action_MAE_deg_deg_um": [
+          0.005663947772700339,
+          0.003973870857325892,
+          1.9140108558349311
+        ],
+        "C_direction_accuracy": 0.54
+      },
+      "above_recede": {
+        "windows": 25,
+        "physical_first_action_MAE_deg_deg_um": [
+          0.006222009264238295,
+          0.003903244899402125,
+          1.979540988104418
+        ],
+        "C_direction_accuracy": 0.97
+      },
+      "teacher_C_positive": {
+        "windows": 25,
+        "physical_first_action_MAE_deg_deg_um": [
+          0.005663947772700339,
+          0.003973870857325892,
+          1.9140108558349311
+        ],
+        "C_direction_accuracy": 0.54
+      },
+      "teacher_C_negative": {
+        "windows": 25,
+        "physical_first_action_MAE_deg_deg_um": [
+          0.006222009264238295,
+          0.003903244899402125,
+          1.979540988104418
+        ],
+        "C_direction_accuracy": 0.97
+      }
+    },
+    "flow_loss": 0.01294193481153343,
+    "normalized_first_C_label_range": [
+      -2.2887423196344874,
+      -1.7015528901399448
+    ]
+  }
+}

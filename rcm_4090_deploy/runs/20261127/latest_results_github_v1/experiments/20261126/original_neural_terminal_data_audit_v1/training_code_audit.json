@@ -1,0 +1,33 @@
+{
+  "status": "passed",
+  "train_loss": "Unmodified all16x3 normalized velocity MSE, reduction mean; first action nominal1/16 contribution, not explicit first-action objective",
+  "inference": "Original Euler midpoint4-flow sampler; one independent noise draw K1; exec1; no teacher in model action",
+  "condition": "Same _condition: normalized state/OCT/encoder finite-difference velocity/previous accepted command plus actual RGB2; velocity and previous action each broadcast across both history frames",
+  "train_mode": "model.train with vision.eval; no BatchNorm in frozen vision (GroupNorm20); no dropout; step0 eval/train parity previously bit-exact",
+  "precision": "Training original FP16 autocast with dynamic scaler; offline/production FP32; recipe choice, not evidence of time/label shift",
+  "loading": "Both original and after through untouched PolicyEvaluator state-attention architecture; after loader proof reused from recovery; no new model instance",
+  "sampling": "Uniform replacement batch4;129 recorded attempts128 updates1 AMP skip; all recorded indices exactly reconstructed from original CPU seed",
+  "sampling_index_mismatches": 0,
+  "successful_updates": 128,
+  "outward_incoming_first_windows_in_training_batches": 19,
+  "first_action_slots_in_successful_batches": 512,
+  "vision_tensors_unchanged": 62,
+  "normalization_keys_unchanged": [
+    "state_mean",
+    "state_std",
+    "oct_mean",
+    "oct_std",
+    "action_mean",
+    "action_std",
+    "velocity_mean",
+    "velocity_std",
+    "previous_action_mean",
+    "previous_action_std"
+  ],
+  "reused_evidence": [
+    "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261126/original_neural_terminal_pilot_v1/step0_parity.json",
+    "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261126/original_neural_terminal_pilot_v1/short_gate/first_input_parity.json",
+    "/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261126/original_neural_terminal_pilot_v1/recovery_report_v1/checkpoint_training_audit.json"
+  ],
+  "no_model_inference_executed": true
+}

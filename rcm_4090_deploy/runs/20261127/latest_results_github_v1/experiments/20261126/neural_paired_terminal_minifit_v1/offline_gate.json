@@ -1,0 +1,52 @@
+{
+  "status": "failed",
+  "time": "2026-11-26T15:06:52.518629+08:00",
+  "checks": [
+    {
+      "name": "E41_equal_motion_C_MAE_um",
+      "before": 1.7829768858583912,
+      "after": 1.781243252445988,
+      "passed": true,
+      "required": "after < before"
+    },
+    {
+      "name": "E41_receding_C_MAE_um",
+      "before": 2.1826945788537464,
+      "after": 2.258334308862686,
+      "passed": false,
+      "required": "after < before"
+    },
+    {
+      "name": "E41_nonzero_teacher_C_direction",
+      "before": 0.70662100456621,
+      "after": 0.6270928462709284,
+      "passed": false,
+      "required": "after >= before"
+    },
+    {
+      "name": "E41_all_A_MAE_deg",
+      "before": 0.004375809155153353,
+      "after": 0.0059638736176007194,
+      "passed": false,
+      "required": "after <= before"
+    },
+    {
+      "name": "E41_all_B_MAE_deg",
+      "before": 0.00324899828322466,
+      "after": 0.003338244116706579,
+      "passed": false,
+      "required": "after <= before"
+    },
+    {
+      "name": "E41_settled_C_MAE_um",
+      "before": 1.5941607070793218,
+      "after": 1.429499327991783,
+      "passed": true,
+      "required": "after <= before"
+    }
+  ],
+  "numeric_tolerance": 0.0,
+  "E41_is_development_not_independent_test": true,
+  "closed_loop_allowed": false,
+  "flow_loss_not_gate": true
+}

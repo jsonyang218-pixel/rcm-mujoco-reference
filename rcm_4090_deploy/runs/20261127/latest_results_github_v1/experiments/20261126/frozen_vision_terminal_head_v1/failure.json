@@ -1,0 +1,17 @@
+{
+  "time": "2026-11-26T22:18:46.539265+08:00",
+  "error": "RuntimeError('Expected all tensors to be on the same device, but found at least two devices, cuda:0 and cpu!')",
+  "traceback": "Traceback (most recent call last):\n  File \"/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261126/frozen_vision_terminal_head_v1/pilot.py\", line 300, in train_stage\n    changes={n:float((p.detach().cpu()-initial[n]).abs().max()) for n,p in net.head.named_parameters()}\n                      ~~~~~~~~~~~~~~~~^~~~~~~~~~~\nRuntimeError: Expected all tensors to be on the same device, but found at least two devices, cuda:0 and cpu!\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \"/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261126/frozen_vision_terminal_head_v1/pilot.py\", line 450, in run\n    passed,tiny=train_stage(net,initial,data['train'],cache['train'],manifest['train'],sampler,tiny=True)\n                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/him1/mujoco_bc/rcm_4090_deploy/runs/20261126/frozen_vision_terminal_head_v1/pilot.py\", line 313, in train_stage\n    torch.save(dict(gradients=last_grads,weight_deltas={n:p.detach().cpu()-initial[n] for n,p in net.head.named_parameters()},last_update=PROGRESS['tinyfit_updates' if tiny else 'formal_updates']),OUT/f'{name}_interrupted_gradients_weights.pt')\n                                                          ~~~~~~~~~~~~~~~~^~~~~~~~~~~\nRuntimeError: Expected all tensors to be on the same device, but found at least two devices, cuda:0 and cpu!\n",
+  "progress": {
+    "implementation": "complete",
+    "launch": "actual_started",
+    "parity": "passed",
+    "tinyfit": "failed",
+    "formal_training": "not_started",
+    "offline": "not_started",
+    "closed_loop": "not_started",
+    "tinyfit_updates": 512,
+    "formal_updates": 0
+  },
+  "no_retry": true
+}

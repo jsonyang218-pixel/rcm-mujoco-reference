@@ -1,0 +1,43 @@
+{
+  "status": "completed",
+  "time": "2026-11-26T15:05:50.828620+08:00",
+  "optimizer_updates": 128,
+  "attempts": 129,
+  "AMP_skips": 1,
+  "optimizer_state_steps_min": 128,
+  "optimizer_state_steps_max": 128,
+  "seed": 20261126,
+  "before_sha256": "6cc389df3786f1f34c43cf65d6dc17fe910ab342fae8d84c8e37cea6a7db6c11",
+  "after_sha256": "e35d0a1cf8a7769f3170d0028c09542c36562d7fbbe8ff8ad47e3c47d4a50090",
+  "frozen_vision_tensors_bit_exact": 62,
+  "all_normalization_buffers_unchanged": true,
+  "successful_draw_class_counts": {
+    "settled": 175,
+    "receding": 154,
+    "approaching": 183
+  },
+  "successful_draw_class_proportions": {
+    "approaching": 0.357421875,
+    "receding": 0.30078125,
+    "settled": 0.341796875
+  },
+  "successful_draw_episode_counts": {
+    "E40_above_30_approaching": 100,
+    "E40_below_30_receding": 46,
+    "E40_above_70_receding": 31,
+    "E40_below_30_approaching": 106,
+    "E40_below_70_receding": 48,
+    "E40_below_50_receding": 37,
+    "E40_above_70_approaching": 18,
+    "E40_above_50_approaching": 14,
+    "E40_above_30_receding": 39,
+    "E40_above_50_receding": 44,
+    "E40_below_50_approaching": 9,
+    "E40_below_70_approaching": 20
+  },
+  "independent_collected_windows": 657,
+  "draws_are_not_independent_new_data": true,
+  "sampler_trace_replay": "exact",
+  "initial_flow_loss": 0.027012770995497704,
+  "final_flow_loss": 0.005084624979645014
+}
